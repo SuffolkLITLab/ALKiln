@@ -1,8 +1,5 @@
-const install_branch = require('./tests/install-branch.js');
-const steps = require('./tests/features/support/steps.js');
+require('./steps');
 
-let setup = install_branch.setup;
-let takedown = install_branch.takedown;
+const support = require('./support');
 
-
-module.exports = { setup, takedown, steps };
+module.exports = Object.assign({}, support);
