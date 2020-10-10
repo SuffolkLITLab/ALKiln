@@ -1,10 +1,14 @@
 {
   "name": "docassemble-cucumber",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo 'These tests are fake. Use `local` or `cucumber`' && mocha tests --timeout 10000",
+    "cucumber": "./node_modules/.bin/cucumber-js tests/features/*.feature",
+    "setup": "node -e ./setup.js",
+    "takedown": "node -e 'require(\"./tests/install-branch.js\").takedown()'",
+    "local": "npm run setup && npm run cucumber; npm run takedown"
   },
   "repository": {
     "type": "git",
@@ -27,5 +31,9 @@
     "mocha": "^7.2.0",
     "puppeteer": "^3.1.0",
     "cucumber": "^6.0.5"
+  },
+  "bin": {
+    "da-setup": "./setup.js",
+    "da-takedown": "./takedown.js"
   }
 }
