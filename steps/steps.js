@@ -54,7 +54,7 @@ let click_with = {
 // I go to "lskdfjlasd.com" on pc
 // I go to the interview at "lksdfjls.com" on pc
 // /I go to the interview at ?(?:"([^"]+)")?(?: on )?(.*) /
-Given(/I start the interview "([])"[ on ]?(.*)/, async (optional_device) => {  // √
+Given(/I start the interview[ on ]?(.*)/, async (optional_device) => {  // √
   // If there is no browser open, start a new one
   if (!scope.browser) {
     scope.browser = await scope.driver.launch({ headless: !process.env.DEBUG });
