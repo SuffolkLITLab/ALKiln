@@ -1,1 +1,1 @@
-require('./steps');
+require('./steps.js');
