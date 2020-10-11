@@ -1,11 +1,13 @@
 // require('./steps/index.js');
 // require('./steps/steps.js');
-let scope = require('./support/scope.js');
-// require('./steps/world.js');
+let scope = require('./scope.js');
+let world = require('./world.js');
 
 // const support = require('./support/index.js');
 
 // module.exports = Object.assign({}, support);
+
+module.exports = Object.assign({}, scope, world);
 
 const { When, Then, And, Given, After, AfterAll, setDefaultTimeout } = require('cucumber');
 const { expect } = require('chai');
