@@ -1,12 +1,12 @@
 # Assembly Line
-venv/*
+#venv/*
 tests/chromedriver
 *DS_Store*
 node_modules*
-.env
+#.env
 npm-debug.log
 .history
-error*.jpg
+#error*.jpg
 
 # Logs
 logs
