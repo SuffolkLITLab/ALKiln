@@ -1,9 +1,5 @@
-
 let scope = require('./scope.js');
 let world = require('./world.js');
-
-
-module.exports = Object.assign({}, scope, world);
 
 const { When, Then, And, Given, After, AfterAll, setDefaultTimeout } = require('cucumber');
 const { expect } = require('chai');
