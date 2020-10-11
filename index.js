@@ -1,17 +1,16 @@
 // require('./steps/index.js');
 // require('./steps/steps.js');
-require('./support/scope.js');
+let scope = require('./support/scope.js');
 // require('./steps/world.js');
 
-const support = require('./support/index.js');
+// const support = require('./support/index.js');
 
-module.exports = Object.assign({}, support);
+// module.exports = Object.assign({}, support);
 
 const { When, Then, And, Given, After, AfterAll, setDefaultTimeout } = require('cucumber');
 const { expect } = require('chai');
 const puppeteer = require('puppeteer');
 // const scope = require('../support/scope');
-// const scope = require('./world');
 
 /* Of Note:
 - We're using `*=` because sometimes da text has funny characters in it that are hard to anticipate
@@ -50,6 +49,7 @@ regex thoughts: https://stackoverflow.com/questions/171480/regex-grabbing-values
 
 
 const INTERVIEW_URL = process.env.INTERVIEW_URL;
+console.log(INTERVIEW_URL);
 setDefaultTimeout(12 * 1000);
 
 let click_with = {
