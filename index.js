@@ -1,11 +1,7 @@
-// require('./steps/index.js');
-// require('./steps/steps.js');
+
 let scope = require('./scope.js');
 let world = require('./world.js');
 
-// const support = require('./support/index.js');
-
-// module.exports = Object.assign({}, support);
 
 module.exports = Object.assign({}, scope, world);
 
@@ -51,7 +47,7 @@ regex thoughts: https://stackoverflow.com/questions/171480/regex-grabbing-values
 
 
 const INTERVIEW_URL = process.env.INTERVIEW_URL;
-console.log(INTERVIEW_URL);
+
 setDefaultTimeout(12 * 1000);
 
 let click_with = {
@@ -66,7 +62,7 @@ let click_with = {
 // I go to "lskdfjlasd.com" on pc
 // I go to the interview at "lksdfjls.com" on pc
 // /I go to the interview at ?(?:"([^"]+)")?(?: on )?(.*) /
-Given(/I start the interview[ on ]?(.*)/, async (optional_device) => {  // √
+Given(/I start the interview at "([^"]+)"[ on ]?(.*)/, async (INTERVIEW_URL, optional_device) => {  // √
   // If there is no browser open, start a new one
   if (!scope.browser) {
     scope.browser = await scope.driver.launch({ headless: !process.env.DEBUG });
