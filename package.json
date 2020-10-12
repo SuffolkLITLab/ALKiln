@@ -1,6 +1,6 @@
 {
   "name": "docassemble-cucumber",
-  "version": "0.2.0",
+  "version": "0.2.8",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
@@ -34,6 +34,7 @@
   },
   "bin": {
     "da-setup": "./lib/github_integration/setup.js",
-    "da-takedown": "./lib/github_integration/takedown.js"
+    "da-takedown": "./lib/github_integration/takedown.js",
+    "da-cucumber": "./lib/index.js"
   }
 }
