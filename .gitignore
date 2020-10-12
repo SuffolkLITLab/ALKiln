@@ -6,7 +6,7 @@ node_modules*
 #.env
 npm-debug.log
 .history
-#error*.jpg
+error*.jpg
 
 # Logs
 logs
