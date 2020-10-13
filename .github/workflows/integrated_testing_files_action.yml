@@ -25,7 +25,7 @@ jobs:
           # Source file from the origin directory
           source_file: 'github_workflow/.github/workflows/test_form.yml'
           # Destination repository
-          destination_repo: https://github.com/plocket/tests-github-action-push
+          destination_repo: plocket/tests-github-action-push
           # Directory to push the file to
           destination_folder: '.github/workflows'
           # Email for the git commit
