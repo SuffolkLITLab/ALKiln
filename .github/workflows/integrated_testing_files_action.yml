@@ -23,14 +23,14 @@ jobs:
         uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
         with:
           # Source file from the origin directory
-          source_file: 'github_workflow/.github/workflows/test_form.yml'
+          source_file: 'practice_at_root.yml'
           # Destination repository
-          destination_repo: plocket/tests-github-action-push
+          destination_repo: 'plocket/tests-github-action-push'
           # Directory to push the file to
-          destination_folder: '.github/workflows'
+          destination_folder: 'practice-dir'
           # Email for the git commit
-          user_email: 52798256+plocket@users.noreply.github.com
+          user_email: '52798256+plocket@users.noreply.github.com'
           # GitHub username for the commit
-          user_name: plocket
+          user_name: 'plocket'
           # branch to push file to, defaults to master
-          destination_branch: main
+          destination_branch: 'main'
