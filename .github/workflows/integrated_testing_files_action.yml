@@ -1,17 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Push integrated testing files 2
+name: Non destructive push of integrated testing files
 
 # Workflow triggered manually
 on:
   workflow_dispatch:
     inputs:
-      repo:
-        description: Name of repo where you want the files to go
-        required: true
-      user:
-        description: Name of user that owns the repo
-        default: SuffolkLITLab
+      destination:
+        description: user_name/repo_name of where files will go
+        default: 'plocket/tests-github-action-push'
         required: true
       branch:
         description: Name of branch to push to on repo
@@ -40,7 +37,7 @@ jobs:
           # Source file from the origin directory
           source_file: 'practice_at_root.yml'
           # Destination repository
-          destination_repo: 'plocket/tests-github-action-push'
+          destination_repo: ${{ github.event.inputs.repo_and_user }}
           # Directory to push the file to
           destination_folder: 'practice-dir'
           # Email for the git commit
@@ -48,4 +45,4 @@ jobs:
           # GitHub username for the commit
           user_name: 'plocket'
           # branch to push file to, defaults to master
-          destination_branch: 'main'
+          destination_branch: ${{ github.event.inputs.branch }}
