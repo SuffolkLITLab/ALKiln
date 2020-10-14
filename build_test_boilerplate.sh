@@ -6,7 +6,7 @@ mkdir output
 #repo=$1
 
 cat > output/practice_file.txt << ENDOFFILE
-Practicing practice
+Practicing practice 2
 << ENDOFFILE
 
 #echo "::save-state name=processID::12345
