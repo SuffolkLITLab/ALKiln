@@ -1,7 +1,20 @@
 name: Push integrated testing files
 
-# Workflow triggered manually
-on: [workflow_dispatch]
+# Workflow triggered manually with input variables
+on: 
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: Name of repo where you want the files to go
+        required: true
+      user:
+        description: Name of user that owns the repo
+        default: SuffolkLITLab
+        required: true
+      branch:
+        description: Name of branch to push to on repo
+        default: main
+        required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -25,9 +38,9 @@ jobs:
           # Source directory from the origin directory
           source-directory: 'output'
           # Name of the destination username/organization
-          destination-github-username: 'plocket'
+          destination-github-username: ${{ github.event.inputs.user }}
           # Destination repository
-          destination-repository-name: 'tests-github-action-push'
+          destination-repository-name: ${{ github.event.inputs.repo }}
           # Email for the git commit
           user-email: '52798256+plocket@users.noreply.github.com'
           target-branch: 'main' 
