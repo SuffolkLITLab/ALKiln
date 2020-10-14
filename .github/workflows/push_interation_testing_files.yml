@@ -19,8 +19,8 @@ jobs:
         run:  sh ./build_test_boilerplate.sh
       - name: Pushes to another repository
         uses: cpina/github-action-push-to-another-repository@master
-        #env:
-        #  API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           # Source directory from the origin directory
           source-directory: 'output'
