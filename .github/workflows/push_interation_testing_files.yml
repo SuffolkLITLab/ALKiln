@@ -23,7 +23,7 @@ jobs:
         #  API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           # Source directory from the origin directory
-          source-directory: 'github_workflow'
+          source-directory: 'output'
           # Name of the destination username/organization
           destination-github-username: plocket
           # Destination repository
