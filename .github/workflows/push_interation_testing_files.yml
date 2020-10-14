@@ -25,8 +25,9 @@ jobs:
           # Source directory from the origin directory
           source-directory: 'output'
           # Name of the destination username/organization
-          destination-github-username: plocket
+          destination-github-username: 'plocket'
           # Destination repository
-          destination-repository-name: tests-github-action-push
+          destination-repository-name: 'tests-github-action-push'
           # Email for the git commit
-          user-email: 52798256+plocket@users.noreply.github.com
+          user-email: '52798256+plocket@users.noreply.github.com'
+          target-branch: 'main' 
