@@ -43,4 +43,4 @@ jobs:
           destination-repository-name: ${{ github.event.inputs.repo }}
           # Email for the git commit
           user-email: '52798256+plocket@users.noreply.github.com'
-          target-branch: 'main' 
+          target-branch: ${{ github.event.inputs.branch }} 
