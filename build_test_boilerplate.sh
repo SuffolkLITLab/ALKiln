@@ -7,7 +7,7 @@ mkdir output
 
 cat > output/practice_file.txt << ENDOFFILE
 Practicing practice 2
-<< ENDOFFILE
+ENDOFFILE
 
 #echo "::save-state name=processID::12345
 #sed -i -e "s/\(address=\).*/\1$1/" \
