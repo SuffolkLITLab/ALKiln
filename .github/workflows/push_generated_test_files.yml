@@ -1,6 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Non destructive push of integrated testing files
+name: Custom non destructive push of integrated testing files
 
 # Workflow triggered manually
 on:
@@ -33,7 +31,7 @@ jobs:
       - name: Push a file to another repository
         # You may pin to the exact commit or the version.
         # uses: dmnemec/copy_file_to_another_repo_action@8585c0da66fbd3674edba2ee64d265aa25953f8c
-        uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
+        uses: plocket/push-generated-file@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
@@ -44,8 +42,10 @@ jobs:
           # Directory to push the file to
           destination_folder: 'practice-dir'
           # Email for the git commit
+          # GIT_AUTHOR_EMAIL from git? Is that accessible in here?
           user_email: '52798256+plocket@users.noreply.github.com'
           # GitHub username for the commit
+          # Try $GIT_USERNAME in bash script in action? Or GITHUB_ACTOR in here?
           user_name: 'plocket'
           # branch to push file to, defaults to master
           destination_branch: ${{ github.event.inputs.branch }}
