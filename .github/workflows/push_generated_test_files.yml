@@ -26,7 +26,7 @@ jobs:
       - uses: actions/checkout@v2
     
       - name: creates output
-        run:  bash ./build_test_boilerplate.sh
+        run:  sh ./build_test_boilerplate.sh
         
       - name: Push a file to another repository
         # You may pin to the exact commit or the version.
