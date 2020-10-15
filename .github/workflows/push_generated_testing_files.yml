@@ -1,4 +1,4 @@
-name: Custon non destructive push of integrated testing files
+name: Custom non destructive push of integrated testing files
 
 # Workflow triggered manually
 on:
