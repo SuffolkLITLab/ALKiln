@@ -12,9 +12,31 @@ on:
         description: 'Name of branch to push to on repo'
         default: 'main'
         required: true
+      prefix:
+        required: false
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  testing:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      
+      - name: creates output
+        run:  sh ./pushing_testing_files/build_test_boilerplate.sh
+      - name: Pushes to another repository
+        uses: plocket/push-generated-file@master
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+          source_file_path: 'output'
+          destination_repo: ${{ github.event.inputs.destination_repo }}
+          destination_folder: 'folder_test'
+          target_branch: ${{ github.event.inputs.branch }}
+
   gitignore:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
