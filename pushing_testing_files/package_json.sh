@@ -8,4 +8,4 @@ mkdir to_push
 # https://unix.stackexchange.com/a/229237
 
 repo_name=$(echo "$INPUT_DESTINATION_REPO" | sed 's|.*\/\(.*\)$|\1|')
-sed -e 's|just_repo|'"$repo_name"'|' -e 's|user_repo|'"$INPUT_DESTINATION_REPO"'|' package.json > to_push/package.json
+sed -e 's|just_repo|'"$repo_name"'|' -e 's|user_repo|'"$INPUT_DESTINATION_REPO"'|' pushing_testing_files/package.json > to_push/package.json
