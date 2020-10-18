@@ -1,5 +1,5 @@
 {
-  "name": "repo_name",
+  "name": "just_repo",
   "version": "0.1.0",
   "description": "",
   "main": "",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+repo_url.git"
+    "url": "git+https://github.com/user_repo.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "repo_url/issues"
+    "url": "https://github.com/user_repo/issues"
   },
-  "homepage": "repo_url#readme",
+  "homepage": "https://github.com/user_repo#readme",
   "dependencies": {
     "bufferutil": "^4.0.1",
     "chai": "^4.2.0",
