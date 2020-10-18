@@ -63,9 +63,9 @@ jobs:
       - uses: actions/checkout@v2
         
       - name: Find replace in package_json
+        env:
+          DESTINATION: ${{ github.event.inputs.destination_repo }}
         run:  sh ./pushing_testing_files/package_json.sh
-        with:
-          destination_repo: ${{ github.event.inputs.destination_repo }}
       - name: Puch package_json
         uses: plocket/push-generated-file@master
         env:
