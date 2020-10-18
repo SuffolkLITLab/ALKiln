@@ -72,7 +72,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           token: ${{ secrets.API_TOKEN_GITHUB }}
-          source_file_path: 'output'
+          source_file_path: 'to_push'
           destination_repo: ${{ github.event.inputs.destination_repo }}
           destination_folder: 'different/nested_folder'
           target_branch: ${{ github.event.inputs.branch }}
