@@ -43,7 +43,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           token: ${{ secrets.API_TOKEN_GITHUB }}
-          source_file_path: 'gitignore'
+          source_file_path: 'root'
           destination_repo: ${{ github.event.inputs.destination_repo }}
           destination_folder: ''
           target_branch: ${{ github.event.inputs.branch }}
@@ -58,8 +58,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           token: ${{ secrets.API_TOKEN_GITHUB }}
-          source_file_path: 'package_json'
+          source_file_path: 'root'
           destination_repo: ${{ github.event.inputs.destination_repo }}
-          destination_folder: 'different/nested_folder'
+          destination_folder: ''
           target_branch: ${{ github.event.inputs.branch }}
       
