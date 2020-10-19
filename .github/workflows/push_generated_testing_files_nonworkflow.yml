@@ -69,3 +69,16 @@ jobs:
           destination_repo: ${{ github.event.inputs.destination_repo }}
           destination_folder: '.github/workflows'
           target_branch: ${{ github.event.inputs.branch }}
+      
+      - name: Create example feature
+        run:  sh ./pushing_testing_files/example_test.sh
+      - name: Push example feature
+        uses: plocket/push-generated-file@master
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+          source_file_path: 'features'
+          destination_repo: ${{ github.event.inputs.destination_repo }}
+          destination_folder: 'tests/features'
+          target_branch: ${{ github.event.inputs.branch }}
