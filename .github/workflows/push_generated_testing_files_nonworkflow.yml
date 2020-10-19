@@ -4,6 +4,10 @@ name: Push files generated to implement integrated tests
 on: 
   workflow_dispatch:
     inputs:
+      interview_base_url:
+        description: 'Just the server url for the interview. Ex: https://apps-dev.suffolklitlab.org/'
+        default: 'https://apps-dev.suffolklitlab.org/'
+        required: true
       destination_repo:
         description: 'user_name/repo_name where the files will be pushed'
         default: ''
@@ -22,19 +26,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: creates test output
-        run:  sh ./pushing_testing_files/build_test_boilerplate.sh
-      - name: Pushes test output to another repository
-        uses: plocket/push-generated-file@master
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          token: ${{ secrets.API_TOKEN_GITHUB }}
-          source_file_path: 'output'
-          destination_repo: ${{ github.event.inputs.destination_repo }}
-          destination_folder: 'folder_test'
-          target_branch: ${{ github.event.inputs.branch }}
-      
       - name: Create gitignore
         run:  sh ./pushing_testing_files/gitignore.sh
       - name: Push gitignore
@@ -52,7 +43,7 @@ jobs:
         env:
           DESTINATION: ${{ github.event.inputs.destination_repo }}
         run:  sh ./pushing_testing_files/package_json.sh
-      - name: Puch package_json
+      - name: Push package_json
         uses: plocket/push-generated-file@master
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
@@ -63,3 +54,18 @@ jobs:
           destination_folder: ''
           target_branch: ${{ github.event.inputs.branch }}
       
+      - name: Find replace in run_form_tests action
+        env:
+          DESTINATION: ${{ github.event.inputs.destination_repo }}
+          INTERVIEW_BASE_URL: ${{ github.event.inputs.interview_base_url }}
+        run:  sh ./pushing_testing_files/run_form_tests.sh
+      - name: Push run_form_tests
+        uses: plocket/push-generated-file@master
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          token: ${{ secrets.API_TOKEN_GITHUB }}
+          source_file_path: 'workflows'
+          destination_repo: ${{ github.event.inputs.destination_repo }}
+          destination_folder: '.github/workflows'
+          target_branch: ${{ github.event.inputs.branch }}
