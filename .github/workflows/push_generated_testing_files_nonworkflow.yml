@@ -15,16 +15,16 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  testing:
+  push-all:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: creates output
+      - name: creates test output
         run:  sh ./pushing_testing_files/build_test_boilerplate.sh
-      - name: Pushes to another repository
+      - name: Pushes test output to another repository
         uses: plocket/push-generated-file@master
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
@@ -34,14 +34,7 @@ jobs:
           destination_repo: ${{ github.event.inputs.destination_repo }}
           destination_folder: 'folder_test'
           target_branch: ${{ github.event.inputs.branch }}
-
-  gitignore:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        
+      
       - name: Create gitignore
         run:  sh ./pushing_testing_files/gitignore.sh
       - name: Push gitignore
@@ -54,14 +47,7 @@ jobs:
           destination_repo: ${{ github.event.inputs.destination_repo }}
           destination_folder: ''
           target_branch: ${{ github.event.inputs.branch }}
-
-  package-json:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        
+      
       - name: Find replace in package_json
         env:
           DESTINATION: ${{ github.event.inputs.destination_repo }}
@@ -76,3 +62,45 @@ jobs:
           destination_repo: ${{ github.event.inputs.destination_repo }}
           destination_folder: 'different/nested_folder'
           target_branch: ${{ github.event.inputs.branch }}
+
+#  gitignore:
+#    # The type of runner that the job will run on
+#    runs-on: ubuntu-latest
+#    steps:
+#      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#      - uses: actions/checkout@v2
+#        
+#      - name: Create gitignore
+#        run:  sh ./pushing_testing_files/gitignore.sh
+#      - name: Push gitignore
+#        uses: plocket/push-generated-file@master
+#        env:
+#          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+#        with:
+#          token: ${{ secrets.API_TOKEN_GITHUB }}
+#          source_file_path: 'to_push'
+#          destination_repo: ${{ github.event.inputs.destination_repo }}
+#          destination_folder: ''
+#          target_branch: ${{ github.event.inputs.branch }}
+#
+#  package-json:
+#    # The type of runner that the job will run on
+#    runs-on: ubuntu-latest
+#    steps:
+#      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+#      - uses: actions/checkout@v2
+#        
+#      - name: Find replace in package_json
+#        env:
+#          DESTINATION: ${{ github.event.inputs.destination_repo }}
+#        run:  sh ./pushing_testing_files/package_json.sh
+#      - name: Puch package_json
+#        uses: plocket/push-generated-file@master
+#        env:
+#          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+#        with:
+#          token: ${{ secrets.API_TOKEN_GITHUB }}
+#          source_file_path: 'to_push'
+#          destination_repo: ${{ github.event.inputs.destination_repo }}
+#          destination_folder: 'different/nested_folder'
+#          target_branch: ${{ github.event.inputs.branch }}
