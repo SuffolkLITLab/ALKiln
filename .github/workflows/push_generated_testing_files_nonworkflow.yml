@@ -43,7 +43,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           token: ${{ secrets.API_TOKEN_GITHUB }}
-          source_file_path: 'to_push'
+          source_file_path: 'gitignore'
           destination_repo: ${{ github.event.inputs.destination_repo }}
           destination_folder: ''
           target_branch: ${{ github.event.inputs.branch }}
@@ -58,49 +58,8 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           token: ${{ secrets.API_TOKEN_GITHUB }}
-          source_file_path: 'to_push'
+          source_file_path: 'package_json'
           destination_repo: ${{ github.event.inputs.destination_repo }}
           destination_folder: 'different/nested_folder'
           target_branch: ${{ github.event.inputs.branch }}
-
-#  gitignore:
-#    # The type of runner that the job will run on
-#    runs-on: ubuntu-latest
-#    steps:
-#      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#      - uses: actions/checkout@v2
-#        
-#      - name: Create gitignore
-#        run:  sh ./pushing_testing_files/gitignore.sh
-#      - name: Push gitignore
-#        uses: plocket/push-generated-file@master
-#        env:
-#          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-#        with:
-#          token: ${{ secrets.API_TOKEN_GITHUB }}
-#          source_file_path: 'to_push'
-#          destination_repo: ${{ github.event.inputs.destination_repo }}
-#          destination_folder: ''
-#          target_branch: ${{ github.event.inputs.branch }}
-#
-#  package-json:
-#    # The type of runner that the job will run on
-#    runs-on: ubuntu-latest
-#    steps:
-#      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-#      - uses: actions/checkout@v2
-#        
-#      - name: Find replace in package_json
-#        env:
-#          DESTINATION: ${{ github.event.inputs.destination_repo }}
-#        run:  sh ./pushing_testing_files/package_json.sh
-#      - name: Puch package_json
-#        uses: plocket/push-generated-file@master
-#        env:
-#          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-#        with:
-#          token: ${{ secrets.API_TOKEN_GITHUB }}
-#          source_file_path: 'to_push'
-#          destination_repo: ${{ github.event.inputs.destination_repo }}
-#          destination_folder: 'different/nested_folder'
-#          target_branch: ${{ github.event.inputs.branch }}
+      
