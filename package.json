@@ -1,6 +1,6 @@
 {
   "name": "docassemble-cucumber",
-  "version": "0.3.28",
+  "version": "0.3.33",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "cucumber",
     "puppeteer",
     "automated testing",
-    "integrated testing"
+    "integrated testing",
+    "chai"
   ],
   "author": "",
   "license": "MIT",
