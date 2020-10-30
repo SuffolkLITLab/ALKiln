@@ -15,7 +15,8 @@
     "cucumber",
     "puppeteer",
     "automated testing",
-    "integrated testing"
+    "integrated testing",
+    "chai"
   ],
   "author": "",
   "license": "MIT",

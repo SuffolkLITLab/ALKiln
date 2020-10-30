@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       interview_base_url:
-        description: 'Just the server url for the interview. Ex: https://apps-dev.suffolklitlab.org/'
+        description: 'Just the server part of the url for the interview. Ex: https://apps-dev.suffolklitlab.org/'
         default: 'https://apps-dev.suffolklitlab.org/'
         required: true
       destination_repo:
