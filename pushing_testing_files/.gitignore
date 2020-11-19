@@ -4,4 +4,4 @@ node_modules*
 .env
 npm-debug.log
 error*.jpg
-screenshot*.jpg
+screenshot_*.jpg
