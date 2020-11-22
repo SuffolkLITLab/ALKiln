@@ -7,7 +7,6 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo 'These tests are fake. Use `local`' && mocha tests --timeout 10000",
     "cucumber": "./node_modules/.bin/cucumber-js --require ./node_modules/docassemble-cucumber/lib/index.js tests/features/*.feature",
     "setup": "node_modules/.bin/da-setup",
     "takedown": "node_modules/.bin/da-takedown",
