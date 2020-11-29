@@ -1,4 +1,13 @@
-on: [push]
+on:
+  push:
+  workflow_dispatch:
+    # inputs:
+    #   language:
+    #     description: 'Optional. Test just one language using the phrase it has on its button or link. The language your interview opens on is just called "default". To manage which languages to test when pushing a branch, add a repository SECRET with a comma-separated string of the word(s) on the button or link for each language.'
+    #   tags:
+    #     description: 'Optional. Use a "tag expression" specify which tagged tests to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)'
+    #   url:
+    #     description: 'Optional. Override the automatic url'
 
 jobs:
   
