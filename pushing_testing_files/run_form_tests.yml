@@ -13,6 +13,7 @@ jobs:
       PLAYGROUND_EMAIL: ${{ secrets.PLAYGROUND_EMAIL }}
       PLAYGROUND_PASSWORD: ${{ secrets.PLAYGROUND_PASSWORD }}
       PLAYGROUND_ID: ${{ secrets.PLAYGROUND_ID }}
+      LANGUAGES: ${{ secrets.LANGUAGES }}
       BASE_URL: interview_base_url
       REPO_URL: https://github.com/repo_address
       BRANCH_PATH: ${{ github.ref }}
