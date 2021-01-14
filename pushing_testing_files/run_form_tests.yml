@@ -67,6 +67,13 @@ jobs:
         with:
           name: downloads
           path: ./**/downloads_*
+      - name: upload report
+        uses: actions/upload-artifact@v2
+        # They will upload even if a previous step has failed
+        if: ${{ always() }}
+        with:
+          name: report
+          path: ./**/*_report_*
       - name: Cleanup
         if: ${{ always() }}
         run: npm run takedown
