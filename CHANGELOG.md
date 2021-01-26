@@ -39,7 +39,14 @@ Format:
 - 
 -->
 
-## [1.1.0] - 2021-01-13
+## [1.2.1] - 2021-01-26
+### Fixed
+- #79, race condition breaks story table scenarios (ex: MADE `rental agreement`)
+- #115, order of table items matter - continue button pressed too soon
+- #139, `scope.getField()` `set_to` doesn't find all the fields
+
+
+## [1.2.0] - 2021-01-13
 ### Changed
 - Reports are saved as `.txt` files instead of `.md` files.
 - Reports are prettier.
