@@ -38,6 +38,9 @@ Format:
 ### Security
 - 
 -->
+## [Unreleased]
+### Added
+- .env-example file to files that will be pushed to dependants
 
 ## [1.2.1] - 2021-01-26
 ### Fixed
