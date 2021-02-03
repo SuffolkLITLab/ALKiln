@@ -39,6 +39,11 @@ Format:
 - 
 -->
 ## [Unreleased]
+
+## [1.2.2] - 2021-02-03
+### Fixed
+- Signature field rows (`/sign`) are not used up all in one loop
+
 ### Added
 - .env-example file to files that will be pushed to dependants
 
