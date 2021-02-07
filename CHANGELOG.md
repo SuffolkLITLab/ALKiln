@@ -40,6 +40,10 @@ Format:
 -->
 ## [Unreleased]
 
+## [1.2.3] - 2021-02-07
+### Fixed
+- Options of dropdown fields created with objects are not found [#149](https://github.com/plocket/docassemble-cucumber/issues/149)
+
 ## [1.2.2] - 2021-02-03
 ### Fixed
 - Signature field rows (`/sign`) are not used up all in one loop
