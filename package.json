@@ -1,6 +1,6 @@
 {
   "name": "docassemble-cucumber",
-  "version": "1.2.3",
+  "version": "1.2.3-fix-race.2",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
