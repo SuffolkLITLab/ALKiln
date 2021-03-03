@@ -40,6 +40,10 @@ Format:
 -->
 ## [Unreleased]
 
+## [1.2.3] - 2021-03-03
+### Fixed
+- Race condition where puppeteer thinks the page has progressed but it really hasn't.
+
 ## [1.2.3] - 2021-02-07
 ### Fixed
 - Options of dropdown fields created with objects are not found [#149](https://github.com/plocket/docassemble-cucumber/issues/149)
