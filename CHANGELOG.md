@@ -40,7 +40,11 @@ Format:
 -->
 ## [Unreleased]
 
-## [1.2.3] - 2021-03-03
+## [1.2.5] - 2021-03-06
+### Fixed
+- Simplest case of [index var](https://github.com/plocket/docassemble-cucumber/issues/158) (i.e. `i`) question.
+
+## [1.2.4] - 2021-03-03
 ### Fixed
 - Race condition where puppeteer thinks the page has progressed but it really hasn't.
 
