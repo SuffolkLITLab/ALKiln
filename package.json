@@ -4,7 +4,15 @@
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo 'Not sure how to test this'"
+    "test": "npm run langs_setup && npm run cucumber -- $@",
+    "cucumber_base": "./node_modules/.bin/cucumber-js --require ./lib/index.js",
+    "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" tests/features/*.feature; }; run_cucumber",
+    "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./lib/index.js tests/features/*_lang*.feature",
+    "langs_setup": "./lib/utils/langs.js 'tests/features/*.feature'",
+    "langs_local": "npm run langs_setup && npm run local",
+    "local": "npm run setup && npm run cucumber; npm run takedown",
+    "setup": "./lib/github_integration/setup.js",
+    "takedown": "./lib/github_integration/takedown.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +40,9 @@
   },
   "peerDependencies": {
     "cucumber": "^6.0.5"
+  },
+  "devDependencies": {
+    "cucumber": "6"
   },
   "bin": {
     "da-setup": "./lib/github_integration/setup.js",
