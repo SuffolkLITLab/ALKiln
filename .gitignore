@@ -112,3 +112,15 @@ dist
 
 # TernJS port file
 .tern-port
+
+# da testing
+tests/chromedriver
+*DS_Store*
+node_modules*
+.env
+npm-debug.log
+error*.jpg
+screenshot_*.jpg
+downloads_*
+*_lang_*.feature
+*_report_*
