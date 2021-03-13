@@ -39,6 +39,8 @@ Format:
 - 
 -->
 ## [Unreleased]
+### Added
+- Automated integrated self-testing
 
 ## [1.2.5] - 2021-03-06
 ### Fixed
