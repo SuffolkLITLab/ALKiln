@@ -2,7 +2,9 @@
 
 let DOM = {};
 
+// ============================
 // Standard fields - no proxies, no showifs.
+// ============================
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
 DOM.standard = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
