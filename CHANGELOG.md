@@ -39,6 +39,12 @@ Format:
 - 
 -->
 ## [Unreleased]
+### Added
+- Automated integrated self-testing
+
+### Fixed
+- Infinite loop when specific button tap causes error #168
+- Some items not getting selected at all (scroll into view problem)
 
 ## [1.2.5] - 2021-03-06
 ### Fixed
