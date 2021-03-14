@@ -12,7 +12,8 @@
     "langs_local": "npm run langs_setup && npm run local",
     "local": "npm run setup && npm run cucumber; npm run takedown",
     "setup": "./lib/github_integration/setup.js",
-    "takedown": "./lib/github_integration/takedown.js"
+    "takedown": "./lib/github_integration/takedown.js",
+    "unit": "node ./tests/unit_tests/getField.test.js"
   },
   "repository": {
     "type": "git",
