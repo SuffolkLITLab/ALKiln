@@ -1,4 +1,7 @@
 const cheerio = require('cheerio');
+const chai = require('chai');
+const expect = chai.expect;
+
 const DOM = require('./getField.fixtures.js');
 const scope = require('../../lib/scope.js');
 const getField = scope.getField;
@@ -16,6 +19,7 @@ const run_tests = async function () {
 
   let result = await getField( scope, { html:'', var_name:'', choice_name:'', set_to:'' });
   console.log( result );
+  expect( result ).to.equal( true );
 
 };
 
