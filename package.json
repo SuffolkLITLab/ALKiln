@@ -13,7 +13,7 @@
     "local": "npm run setup && npm run cucumber; npm run takedown",
     "setup": "./lib/github_integration/setup.js",
     "takedown": "./lib/github_integration/takedown.js",
-    "unit": "node ./tests/unit_tests/getFields.test.js"
+    "unit": "node ./tests/unit_tests/getPageData.test.js"
   },
   "repository": {
     "type": "git",
