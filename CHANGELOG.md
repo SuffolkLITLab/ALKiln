@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [1.2.6] - 2021-03-14
 ### Added
 - Automated integrated self-testing
 - Unit tests for getField with cheerio
