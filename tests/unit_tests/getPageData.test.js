@@ -13,7 +13,7 @@ const getPageData = scope.getPageData;
 // ============================
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
 // TODO: Test individual fields.
-it("finds creates the right data for standard fields", async function() {
+it("creates the right data for standard fields", async function() {
   // 18 fields (03/15/21)
   let result = await getPageData( scope, { html: html.standard });
   expect( result ).to.deep.equal( page_data.standard );
