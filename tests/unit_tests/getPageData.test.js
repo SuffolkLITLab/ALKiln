@@ -1,5 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
+const cheerio = require('cheerio');
 // We need jest or something, right? To do fancy stuff.
 
 const html = require('./html.fixtures.js');
