@@ -1,12 +1,12 @@
 // scope.getField should only be concerned with the stuff in `#daquestion`
 
-let DOM = {};
+let html = {};
 
 // ============================
 // Standard fields - no proxies, no showifs.
 // ============================
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
-DOM.standard = `
+html.standard = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
     <div class="da-page-header">
@@ -140,4 +140,4 @@ DOM.standard = `
 </section>`;
 
 
-module.exports = DOM;
+module.exports = html;
