@@ -3,6 +3,7 @@ const expect = chai.expect;
 // We need jest or something, right? To do fancy stuff.
 
 const html = require('./html.fixtures.js');
+const page_data = require('./page_data.fixtures.js');
 const scope = require('../../lib/scope.js');
 const getPageData = scope.getPageData;
 
@@ -11,15 +12,12 @@ const getPageData = scope.getPageData;
 // Standard fields - no proxies, no showifs.
 // ============================
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
-const run_standard_tests = async function () {
-
+// TODO: Test individual fields.
+it("finds creates the right data for standard fields", async function() {
   // 18 fields (03/15/21)
   let result = await getPageData( scope, { html: html.standard });
-  // expect( result ).to.equal( true );
-
-};
-
-run_standard_tests();
+  expect( result ).to.deep.equal( page_data.standard );
+});
 
 
 /*
