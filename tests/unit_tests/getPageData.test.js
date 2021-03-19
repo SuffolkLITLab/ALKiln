@@ -16,30 +16,30 @@ const getFieldData = scope.getFieldData;
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
 
 
-describe("getFieldData should create the right data for"), async function() {
+// describe("getFieldData should create the right data for"), async function() {
 
-  let sought_var = html.standard_sought_var;
-  let field_like_names = 
+//   let sought_var = html.standard_sought_var;
+//   let field_like_names = 'foo'
 
-  beforeEach(function() {
-      nock('https://dog.ceo')
-          .get('/api/breed/hound/list')
-          .reply(200, response)
-  })
+//   beforeEach(function() {
+//       nock('https://dog.ceo')
+//           .get('/api/breed/hound/list')
+//           .reply(200, response)
+//   })
 
-  it("checkboxes_yesno", async function() {
-    let $ = cheerio( html.checkboxes_yesno );  // html.standard?
-    let result = await getFieldData( scope, {
-      $,
-      node: $( html.checkboxes_yesno ),
-      sought_var,
-      field_like_names
-    });
-    expect( result ).to.deep.equal( page_data.standard );
-  });
+//   it("checkboxes_yesno", async function() {
+//     let $ = cheerio( html.checkboxes_yesno );  // html.standard?
+//     let result = await getFieldData( scope, {
+//       $,
+//       node: $( html.checkboxes_yesno ),
+//       sought_var,
+//       field_like_names
+//     });
+//     expect( result ).to.deep.equal( page_data.standard );
+//   });
 
 
-});
+// });
 
 
 it("creates the right data for standard fields", async function() {
