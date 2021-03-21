@@ -1,4 +1,6 @@
-// scope.getField should only be concerned with the stuff in `#daquestion`
+/* HTML string of pages for testing. They are split into
+* variables to make each field easier to read.
+*/
 
 let html = {};
 
@@ -19,7 +21,6 @@ html.checkboxes_yesno = `
     </fieldset>
   </div>
 </div>`;
-
 html.checkboxes_multiple_1 = `
 <div class="form-group row darequired da-field-container da-field-container-datatype-checkboxes da-field-container-inputtype-checkboxes"><label class="col-md-4 col-form-label da-form-label datext-right">checkboxes (other) 1</label>
   <div class="col-md-8 dafieldpart">
@@ -44,7 +45,6 @@ html.checkboxes_multiple_1 = `
     </fieldset>
   </div>
 </div>`;
-
 html.checkboxes_multiple_2 = `
 <div class="form-group row darequired da-field-container da-field-container-datatype-checkboxes da-field-container-inputtype-checkboxes"><label class="col-md-4 col-form-label da-form-label datext-right">checkboxes (other) 2</label>
   <div class="col-md-8 dafieldpart">
@@ -69,7 +69,6 @@ html.checkboxes_multiple_2 = `
     </fieldset>
   </div>
 </div>`;
-
 html.radio_yesno = `
 <div class="form-group row darequired da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesnoradio"><label for="cmFkaW9feWVzbm8" class="col-md-4 col-form-label da-form-label datext-right">radio (yesno)</label>
   <div class="col-md-8 dafieldpart">
@@ -86,7 +85,6 @@ html.radio_yesno = `
     </fieldset>
   </div>
 </div>`;
-
 html.radio_multiple = `
 <div class="form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-radio"><label for="cmFkaW9fb3RoZXI" class="col-md-4 col-form-label da-form-label datext-right">radio (other)</label>
   <div class="col-md-8 dafieldpart">
@@ -107,17 +105,14 @@ html.radio_multiple = `
     </fieldset>
   </div>
 </div>`;
-
 html.input_text = `
 <div class="form-group row darequired da-field-container da-field-container-datatype-text"><label for="dGV4dF9pbnB1dA" class="col-md-4 col-form-label da-form-label datext-right">text input</label>
   <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="text" name="dGV4dF9pbnB1dA" id="dGV4dF9pbnB1dA"></div>
 </div>`;
-
 html.textarea = `
 <div class="form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-area"><label for="dGV4dGFyZWE" class="col-md-4 col-form-label da-form-label datext-right">textarea</label>
   <div class="col-md-8 dafieldpart"><textarea alt="Input box" class="form-control" rows="4" name="dGV4dGFyZWE" id="dGV4dGFyZWE"></textarea></div>
 </div>`;
-
 html.dropdown = `
 <div class="form-group row darequired da-field-container da-field-container-datatype-dropdown da-field-container-inputtype-dropdown"><label for="ZHJvcGRvd25fdGVzdA" class="col-md-4 col-form-label da-form-label datext-right">dropdown</label>
   <div class="col-md-8 dafieldpart">
@@ -163,9 +158,6 @@ html.standard = `
     <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJZMmhsWTJ0aWIzaGxjMTk1WlhOdWJ3IiwgIlgyWnBaV3hrWHpFIjogIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eCIsICJYMlpwWld4a1h6SSI6ICJZMmhsWTJ0aWIzaGxjMTl2ZEdobGNsOHkiLCAiWDJacFpXeGtYek0iOiAiY21Ga2FXOWZlV1Z6Ym04IiwgIlgyWnBaV3hrWHpRIjogImNtRmthVzlmYjNSb1pYSSIsICJYMlpwWld4a1h6VSI6ICJkR1Y0ZEY5cGJuQjFkQSIsICJYMlpwWld4a1h6WSI6ICJkR1Y0ZEdGeVpXRSIsICJYMlpwWld4a1h6YyI6ICJaSEp2Y0dSdmQyNWZkR1Z6ZEEifQ">
   </form>
 </section>`;
-
-// sought_var = 'WyJkaXJlY3Rfc3RhbmRhcmRfZmllbGRzIl0' (_event)
-html.standard_sought_var = `direct_standard_fields`;
 
 
 module.exports = html;
