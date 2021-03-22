@@ -23,10 +23,16 @@ const getPageData = scope.getPageData;
 
 // TODO: Add notes detailing what behavior each test covers, including the
 // behavior in sub-functions if they are not tested independently
-it("creates the right data for standard fields", async function() {
+it(`creates the right data for standard fields`, async function() {
   // 18 fields (03/15/21)
   let result = await getPageData( scope, { html: html.standard });
   expect( result ).to.deep.equal( page_data.standard );
+});
+
+it(`creates the right data for 'show if' fields`, async function() {
+  // 18 fields (03/15/21)
+  let result = await getPageData( scope, { html: html.show_if });
+  expect( result ).to.deep.equal( page_data.show_if );
 });
 
 

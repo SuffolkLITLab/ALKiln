@@ -161,6 +161,220 @@ page_data.standard = {
       ]
     }
   ]  // ends page_data.standard.fields
-};
+};  // ends page_data.standard
+
+
+page_data.show_if = {
+  "sought_var": [
+    "direct_showifs"
+  ],
+  "fields": [
+    {
+      "selector": "input[name=\"c2hvd18y\"][value=\"True\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "show_2",
+          "value": "True",
+          "checked": false
+        }
+      ],
+      "type": "checkbox"
+    },
+    {
+      "selector": "input[name=\"X2ZpZWxkXzE\"][value=\"True\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "show_3",
+          "value": "True",
+          "checked": false
+        }
+      ],
+      "type": "checkbox"
+    },
+    {
+      "selector": "input[name=\"X2ZpZWxkXzI\"][value=\"True\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "showif_checkbox_yesno",
+          "value": "True",
+          "checked": false
+        }
+      ],
+      "type": "checkbox"
+    },
+    {
+      "selector": "input[name=\"X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eCdd\"][value=\"True\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "showif_checkboxes_other",
+          "value": "showif_checkboxes_nota_1",
+          "checked": false
+        },
+        {
+          "var_name": "showif_checkboxes_other",
+          "value": "�\u001a0��܅�$n�^��赯�",
+          "checked": false
+        }
+      ],
+      "type": "checkbox"
+    },
+    {
+      "selector": "input[name=\"X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eSdd\"][value=\"True\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "showif_checkboxes_other",
+          "value": "showif_checkboxes_nota_2",
+          "checked": false
+        },
+        {
+          "var_name": "showif_checkboxes_other",
+          "value": "�\u001a0��܅�$n�^��赯�",
+          "checked": false
+        }
+      ],
+      "type": "checkbox"
+    },
+    {
+      "selector": "input[name=\"_ignore3\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "showif_checkboxes_other",
+          "value": "al_danota",
+          "checked": false
+        }
+      ],
+      "type": "checkbox"
+    },
+    {
+      "selector": "input[name=\"X2ZpZWxkXzQ\"][value=\"True\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "showif_yesnoradio",
+          "value": "True",
+          "checked": false
+        }
+      ],
+      "type": "radio"
+    },
+    {
+      "selector": "input[name=\"X2ZpZWxkXzQ\"][value=\"False\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "showif_yesnoradio",
+          "value": "False",
+          "checked": false
+        }
+      ],
+      "type": "radio"
+    },
+    {
+      "selector": "input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_1\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "showif_radio_other",
+          "value": "showif_radio_multi_1",
+          "checked": false
+        }
+      ],
+      "type": "radio"
+    },
+    {
+      "selector": "input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_2\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "showif_radio_other",
+          "value": "showif_radio_multi_2",
+          "checked": false
+        }
+      ],
+      "type": "radio"
+    },
+    {
+      "selector": "input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_3\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "showif_radio_other",
+          "value": "showif_radio_multi_3",
+          "checked": false
+        }
+      ],
+      "type": "radio"
+    },
+    {
+      "selector": "input[name=\"X2ZpZWxkXzY\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "showif_text_input",
+          "value": "",
+          "checked": ""
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "selector": "textarea[name=\"X2ZpZWxkXzc\"]",
+      "tag": "textarea",
+      "rows": [
+        {
+          "var_name": "showif_textarea",
+          "value": "",
+          "checked": ""
+        }
+      ],
+      "type": ""
+    },
+    {
+      "selector": "select[name=\"X2ZpZWxkXzg\"]",
+      "tag": "select",
+      "rows": [
+        {
+          "var_name": "showif_dropdown",
+          "value": "",
+          "checked": false
+        },
+        {
+          "var_name": "showif_dropdown",
+          "value": "showif_dropdown_1",
+          "checked": false
+        },
+        {
+          "var_name": "showif_dropdown",
+          "value": "showif_dropdown_2",
+          "checked": false
+        },
+        {
+          "var_name": "showif_dropdown",
+          "value": "showif_dropdown_3",
+          "checked": false
+        }
+      ],
+      "type": ""
+    },
+    {
+      "selector": "button[name=\"ZGlyZWN0X3Nob3dpZnM\"][value=\"True\"]",
+      "tag": "button",
+      "rows": [
+        {
+          "var_name": "direct_showifs",
+          "value": "True",
+          "checked": false
+        }
+      ],
+      "type": "submit"
+    }
+  ]
+};  // ends page_data.show_if
 
 module.exports = page_data;
