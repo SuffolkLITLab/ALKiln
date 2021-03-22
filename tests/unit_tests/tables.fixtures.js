@@ -18,8 +18,8 @@ tables.standard = [
   { "var_name": "radio_other", "value": "radio_other_opt_2", "checked": true },
   { "var_name": "text_input", "value": "Some one-line text", "checked": "" },
   { "var_name": "textarea", "value": "Some\nmulti-line\ntext", "checked": "" },
-  { "var_name": "dropdown_test", "value": "dropdown_opt_2", "checked": true },
-  { "var_name": "direct_standard_fields", "value": "True", "checked": false }
+  { "var_name": "dropdown_test", "value": "dropdown_opt_2", "checked": true },  // May want to change `checked`
+  { "var_name": "direct_standard_fields", "value": "True", "checked": false }  // May want to change `checked`
 ];
 
 module.exports = tables;

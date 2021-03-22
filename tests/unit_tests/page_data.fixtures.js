@@ -146,10 +146,10 @@ page_data.standard = {
       "tag": "select",
       "type": "",
       "rows": [
-        { "var_name": "dropdown_test", "value": "", "checked": false },
-        { "var_name": "dropdown_test", "value": "dropdown_opt_1", "checked": false },
-        { "var_name": "dropdown_test", "value": "dropdown_opt_2", "checked": false },
-        { "var_name": "dropdown_test", "value": "dropdown_opt_3", "checked": false }
+        { "var_name": "dropdown_test", "value": "", "checked": false },  // May want to change `checked`
+        { "var_name": "dropdown_test", "value": "dropdown_opt_1", "checked": false },  // May want to change `checked`
+        { "var_name": "dropdown_test", "value": "dropdown_opt_2", "checked": false },  // May want to change `checked`
+        { "var_name": "dropdown_test", "value": "dropdown_opt_3", "checked": false }  // May want to change `checked`
       ]
     },
     {
@@ -157,10 +157,10 @@ page_data.standard = {
       "tag": "button",
       "type": "submit",
       "rows": [
-        { "var_name": "direct_standard_fields", "value": "True", "checked": false }
+        { "var_name": "direct_standard_fields", "value": "True", "checked": false }  // May want to change `checked`
       ]
     }
-  ]
+  ]  // ends page_data.standard.fields
 };
 
 module.exports = page_data;
