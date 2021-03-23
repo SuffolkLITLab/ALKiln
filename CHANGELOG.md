@@ -43,6 +43,8 @@ Format:
 ## [1.2.6] - 2021-03-14
 ### Added
 - Automated integrated self-testing
+- Unit tests for getField with cheerio
+- Refactor getField to use data
 
 ### Fixed
 - Infinite loop when specific button tap causes error #168
