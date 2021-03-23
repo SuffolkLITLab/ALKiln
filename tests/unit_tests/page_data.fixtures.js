@@ -384,6 +384,28 @@ page_data.show_if = {
 // ============================
 // Buttons
 // ============================
+// `continue button field:`
+page_data.button_continue = {
+  "sought_var": [
+    "button_continue"
+  ],
+  "fields": [
+    {
+      "selector": "button[name=\"YnV0dG9uX2NvbnRpbnVl\"][value=\"True\"]",
+      "tag": "button",
+      "rows": [
+        {
+          "var_name": "button_continue",
+          "value": "True",
+          "checked": false
+        }
+      ],
+      "type": "submit"
+    }
+  ]
+};
+
+// `yesnomaybe:`
 // TODO: Shall we allow 'maybe' in the table as a value for `None`?
 page_data.buttons_yesnomaybe = {
   "sought_var": [
@@ -430,6 +452,7 @@ page_data.buttons_yesnomaybe = {
 };
 
 // Multiple choice 'continue' button fields that are not yesnomaybe
+// `field:` and `buttons:`
 page_data.buttons_other = {
   "sought_var": [
     "buttons_other"

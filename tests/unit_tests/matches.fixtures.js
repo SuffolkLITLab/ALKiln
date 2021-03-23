@@ -127,6 +127,15 @@ matches.show_if = [
 // ============================
 // Buttons
 // ============================
+// `continue button field:`
+matches.button_continue = [
+  {
+    "field": { "selector": "button[name=\"YnV0dG9uX2NvbnRpbnVl\"][value=\"True\"]", "tag": "button", "rows": [ { "var_name": "button_continue", "value": "True", "checked": false } ], "type": "submit" },
+    "table": { "var_name": "button_continue", "value": "True", "checked": true, },
+  }
+];
+
+// `yesnomaybe:`
 matches.buttons_yesnomaybe_yes = [
   {
   "field": { "selector": "button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"True\"]", "tag": "button", "rows": [ { "var_name": "buttons_yesnomaybe", "value": "True", "checked": false, } ], "type": "submit" },
@@ -146,7 +155,7 @@ matches.buttons_yesnomaybe_none = [
   }
 ];
 
-
+// `field:` and `buttons:`
 matches.buttons_other_1 = [
   {
   "field": { "selector": "button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_1\"]", "tag": "button", "rows": [ { "var_name": "buttons_other", "value": "button_1", "checked": false, } ], "type": "submit" },

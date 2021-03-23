@@ -326,6 +326,31 @@ html.show_if = `
 // ============================
 // Buttons
 // ============================
+// `continue button field:`
+html.button_continue = `
+<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">Button (continue)</h1>
+      <div class="daclear"></div>
+    </div>
+
+    <fieldset class="da-field-buttons">
+      <legend class="sr-only">Press one of the following buttons:</legend>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uX2NvbnRpbnVl" value="True"><span>Continue</span></button></div>
+    </fieldset>
+
+    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YFovuA.U2cDuafLiEV5tfzlDHUdqn5UpHM">
+    <input type="hidden" name="_event" value="WyJidXR0b25fY29udGludWUiXQ">
+    <input type="hidden" name="_question_name" value="ID button continue">
+    <input type="hidden" name="_tracker" value="11">
+    <input type="hidden" name="_datatypes" value="eyJZblYwZEc5dVgyTnZiblJwYm5WbCI6ICJib29sZWFuIn0">
+    <input type="hidden" name="_visible" value="">
+  </form>
+</section>`;
+
+// `yesnomaybe:`
 html.buttons_yesnomaybe = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
@@ -353,6 +378,7 @@ html.buttons_yesnomaybe = `
 </section>`;
 
 // Multiple choice 'continue' button fields that are not yesnomaybe
+// `field:` and `buttons:`
 html.buttons_other = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
@@ -369,7 +395,7 @@ html.buttons_other = `
         <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uc19vdGhlcg" value="button_3"><span>button 3</span></button>
       </div>
     </fieldset>
-    
+
     <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YFoMuw.5kqHJwVOXKDaQen-VQuev2Ve3Z8">
     <input type="hidden" name="_event" value="WyJidXR0b25zX290aGVyIl0">
     <input type="hidden" name="_question_name" value="ID buttons other">
