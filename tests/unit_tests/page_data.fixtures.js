@@ -164,6 +164,9 @@ page_data.standard = {
 };  // ends page_data.standard
 
 
+// ============================
+// Simple show if fields - no proxies
+// ============================
 page_data.show_if = {
   "sought_var": [
     "direct_showifs"

@@ -19,3 +19,10 @@ it("matches the right table and field rows for standard fields", async function(
   expect( result ).to.deep.equal( matches.standard );
 
 });
+
+it("matches the right table and field rows for simple show if fields", async function() {
+  
+  let result = await getMatchingRow( scope, { page_data: page_data.show_if, story_table: tables.show_if });
+  expect( result ).to.deep.equal( matches.show_if );
+
+});

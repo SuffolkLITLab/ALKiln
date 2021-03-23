@@ -24,4 +24,25 @@ tables.standard = [
   { "var_name": "dropdown_test", "value": "dropdown_opt_2", "checked": true },  // May want to change `checked`
 ];
 
+
+// ============================
+// Simple show if fields - no proxies
+// ============================
+tables.show_if = [
+  // continue button comes first to test that it doesn't get activated till after all other
+  // variables have been set.
+  { "var_name": "direct_showifs", "value": "True", "checked": true, },  // May want to change `checked`
+  { "var_name": "show_2", "value": "True", "checked": true, },
+  { "var_name": "show_3", "value": "True", "checked": false, },
+  { "var_name": "showif_checkbox_yesno", "value": "True", "checked": true, },
+  { "var_name": "showif_checkboxes_other", "value": "showif_checkboxes_nota_1", "checked": false, },
+  { "var_name": "showif_checkboxes_other", "value": "showif_checkboxes_nota_2", "checked": true, },
+  { "var_name": "showif_checkboxes_other", "value": "al_danota", "checked": false, },
+  { "var_name": "showif_yesnoradio", "value": "False", "checked": true, },
+  { "var_name": "showif_radio_other", "value": "showif_radio_multi_2", "checked": true, },
+  { "var_name": "showif_text_input", "value": "Some one-line text in show if input", "checked": "", },
+  { "var_name": "showif_textarea", "value": "Some\nmulti-line\ntext in show if textarea", "checked": "", },
+  { "var_name": "showif_dropdown", "value": "showif_dropdown_2", "checked": true, },  // May want to change `checked`
+];
+
 module.exports = tables;
