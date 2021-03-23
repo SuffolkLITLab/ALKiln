@@ -26,3 +26,19 @@ it("matches the right table and field rows for simple show if fields", async fun
   expect( result ).to.deep.equal( matches.show_if );
 
 });
+
+
+it("matches the right table and field rows for yesnomaybe buttons", async function() {
+  
+  let result1 = await getMatchingRow( scope, { page_data: page_data.buttons_yesnomaybe, story_table: tables.buttons_yesnomaybe_yes });
+  expect( result1 ).to.deep.equal( matches.buttons_yesnomaybe_yes );
+  
+  let result2 = await getMatchingRow( scope, { page_data: page_data.buttons_yesnomaybe, story_table: tables.buttons_yesnomaybe_no });
+  expect( result2 ).to.deep.equal( matches.buttons_yesnomaybe_no );
+  
+  let result3 = await getMatchingRow( scope, { page_data: page_data.buttons_yesnomaybe, story_table: tables.buttons_yesnomaybe_none });
+  expect( result3 ).to.deep.equal( matches.buttons_yesnomaybe_none );
+
+});
+
+

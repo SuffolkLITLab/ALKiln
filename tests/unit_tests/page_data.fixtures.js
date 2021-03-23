@@ -380,4 +380,53 @@ page_data.show_if = {
   ]
 };  // ends page_data.show_if
 
+
+// ============================
+// Buttons
+// ============================
+// TODO: Shall we allow 'maybe' in the table as a value for `None`?
+page_data.buttons_yesnomaybe = {
+  "sought_var": [
+    "buttons_yesnomaybe"
+  ],
+  "fields": [
+    {
+      "selector": "button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"True\"]",
+      "tag": "button",
+      "rows": [
+        {
+          "var_name": "buttons_yesnomaybe",
+          "value": "True",
+          "checked": false
+        }
+      ],
+      "type": "submit"
+    },
+    {
+      "selector": "button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"False\"]",
+      "tag": "button",
+      "rows": [
+        {
+          "var_name": "buttons_yesnomaybe",
+          "value": "False",
+          "checked": false
+        }
+      ],
+      "type": "submit"
+    },
+    {
+      "selector": "button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"None\"]",
+      "tag": "button",
+      "rows": [
+        {
+          "var_name": "buttons_yesnomaybe",
+          "value": "None",
+          "checked": false
+        }
+      ],
+      "type": "submit"
+    }
+  ]
+};
+
 module.exports = page_data;

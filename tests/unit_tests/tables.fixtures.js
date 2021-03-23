@@ -45,4 +45,18 @@ tables.show_if = [
   { "var_name": "showif_dropdown", "value": "showif_dropdown_2", "checked": true, },  // May want to change `checked`
 ];
 
+
+// ============================
+// Buttons
+// ============================
+tables.buttons_yesnomaybe_yes = [
+  { "var_name": "buttons_yesnomaybe", "value": "True", "checked": true, },  // May want to change `checked`
+];
+tables.buttons_yesnomaybe_no = [
+  { "var_name": "buttons_yesnomaybe", "value": "False", "checked": true, },  // May want to change `checked`
+];
+tables.buttons_yesnomaybe_none = [
+  { "var_name": "buttons_yesnomaybe", "value": "None", "checked": true, },  // May want to change `checked`
+];
+
 module.exports = tables;

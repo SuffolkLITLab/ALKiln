@@ -137,11 +137,13 @@ html.standard = `
     </div>
 
     <input type="hidden" name="_checkboxes" value="eyJZMmhsWTJ0aWIzaGxjMTk1WlhOdWJ3IjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eFcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOVmpsMlkwaFNaazFSSjEwIjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eFcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOVmpsMlkwaFNaazFuSjEwIjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eFcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOVmpsMlkwaFNaazEzSjEwIjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eVcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOYkRsMlkwaFNaazFSSjEwIjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eVcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOYkRsMlkwaFNaazFuSjEwIjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eVcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOYkRsMlkwaFNaazEzSjEwIjogIkZhbHNlIiwgImNtRmthVzlmZVdWemJtOCI6ICJGYWxzZSJ9">
+    
     <fieldset class="da-field-buttons">
       <legend class="sr-only">Press one of the following buttons:</legend>
       <div class="form-actions">
         <button type="submit" class="btn btn-da btn-primary" name="ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw" value="True"><span>Continue</span></button></div>
     </fieldset>
+
     <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YE9fYw.Y5HDKdETXjEiofroVR8D1htKt5w">
     <input type="hidden" name="_event" value="WyJkaXJlY3Rfc3RhbmRhcmRfZmllbGRzIl0">
     <input type="hidden" name="_question_name" value="ID direct standard fields">
@@ -303,11 +305,13 @@ html.show_if = `
     </div>
 
     <input type="hidden" name="_checkboxes" value="eyJjMmh2ZDE4eSI6ICJGYWxzZSIsICJjMmh2ZDE4eiI6ICJGYWxzZSIsICJjMmh2ZDJsbVgyTm9aV05yWW05NFgzbGxjMjV2IjogIkZhbHNlIiwgImMyaHZkMmxtWDJOb1pXTnJZbTk0WlhOZmIzUm9aWEpiUWlkak1taDJaREpzYlZneVRtOWFWMDV5V1cwNU5GcFlUbVppYlRrd1dWWTRlQ2RkIjogIkZhbHNlIiwgImMyaHZkMmxtWDJOb1pXTnJZbTk0WlhOZmIzUm9aWEpiUWlkak1taDJaREpzYlZneVRtOWFWMDV5V1cwNU5GcFlUbVppYlRrd1dWWTRlU2RkIjogIkZhbHNlIiwgImMyaHZkMmxtWDNsbGMyNXZjbUZrYVc4IjogIkZhbHNlIn0">
+    
     <fieldset class="da-field-buttons">
       <legend class="sr-only">Press one of the following buttons:</legend>
       <div class="form-actions">
         <button type="submit" class="btn btn-da btn-primary" name="ZGlyZWN0X3Nob3dpZnM" value="True"><span>Continue</span></button></div>
     </fieldset>
+
     <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YFkEfw.7rkISHHqxsnefWbxbBnTwqKrBsQ">
     <input type="hidden" name="_event" value="WyJkaXJlY3Rfc2hvd2lmcyJd">
     <input type="hidden" name="_question_name" value="ID showifs">
@@ -315,6 +319,36 @@ html.show_if = `
     <input type="hidden" name="_datatypes" value="eyJaR2x5WldOMFgzTm9iM2RwWm5NIjogImJvb2xlYW4iLCAiYzJodmQxOHkiOiAiYm9vbGVhbiIsICJjMmh2ZDE4eiI6ICJib29sZWFuIiwgImMyaHZkMmxtWDJOb1pXTnJZbTk0WDNsbGMyNXYiOiAiYm9vbGVhbiIsICJjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZiM1JvWlhJIjogImNoZWNrYm94ZXMiLCAiYzJodmQybG1YM2xsYzI1dmNtRmthVzgiOiAiYm9vbGVhbiIsICJjMmh2ZDJsbVgzSmhaR2x2WDI5MGFHVnkiOiAidGV4dCIsICJjMmh2ZDJsbVgzUmxlSFJmYVc1d2RYUSI6ICJ0ZXh0IiwgImMyaHZkMmxtWDNSbGVIUmhjbVZoIjogInRleHQiLCAiYzJodmQybG1YMlJ5YjNCa2IzZHUiOiAidGV4dCJ9">
     <input type="hidden" name="_visible" value="">
     <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJjMmh2ZDE4eSIsICJYMlpwWld4a1h6RSI6ICJjMmh2ZDE4eiIsICJYMlpwWld4a1h6SSI6ICJjMmh2ZDJsbVgyTm9aV05yWW05NFgzbGxjMjV2IiwgIlgyWnBaV3hrWHpNIjogImMyaHZkMmxtWDJOb1pXTnJZbTk0WlhOZmIzUm9aWEkiLCAiWDJacFpXeGtYelEiOiAiYzJodmQybG1YM2xsYzI1dmNtRmthVzgiLCAiWDJacFpXeGtYelUiOiAiYzJodmQybG1YM0poWkdsdlgyOTBhR1Z5IiwgIlgyWnBaV3hrWHpZIjogImMyaHZkMmxtWDNSbGVIUmZhVzV3ZFhRIiwgIlgyWnBaV3hrWHpjIjogImMyaHZkMmxtWDNSbGVIUmhjbVZoIiwgIlgyWnBaV3hrWHpnIjogImMyaHZkMmxtWDJSeWIzQmtiM2R1In0">
+  </form>
+</section>`;
+
+
+// ============================
+// Buttons
+// ============================
+html.buttons_yesnomaybe = `
+<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">Button (yes/no/maybe)</h1>
+      <div class="daclear"></div>
+    </div>
+
+    <fieldset class="da-field-yesnomaybe">
+      <legend class="sr-only">Press one of the following buttons:</legend>
+      <div>
+        <button class="btn btn-primary btn-da " name="YnV0dG9uc195ZXNub21heWJl" type="submit" value="True"><span>Yes</span></button>
+        <button class="btn btn-da btn-secondary" name="YnV0dG9uc195ZXNub21heWJl" type="submit" value="False"><span>No</span></button>
+        <button class="btn btn-da btn-warning" name="YnV0dG9uc195ZXNub21heWJl" type="submit" value="None"><span>I don’t know</span></button>
+      </div>
+    </fieldset>
+
+    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YFn06Q.qy7hRea2kn5UZaqKe7fBKoO7p0o">
+    <input type="hidden" name="_event" value="WyJidXR0b25zX3llc25vbWF5YmUiXQ">
+    <input type="hidden" name="_question_name" value="ID buttons yesnomaybe">
+    <input type="hidden" name="_tracker" value="9">
+    <input type="hidden" name="_datatypes" value="eyJZblYwZEc5dWMxOTVaWE51YjIxaGVXSmwiOiAidGhyZWVzdGF0ZSJ9">
+    <input type="hidden" name="_visible" value="">
   </form>
 </section>`;
 
