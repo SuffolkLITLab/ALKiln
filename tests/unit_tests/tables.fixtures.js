@@ -59,4 +59,14 @@ tables.buttons_yesnomaybe_none = [
   { "var_name": "buttons_yesnomaybe", "value": "None", "checked": true, },  // May want to change `checked`
 ];
 
+tables.buttons_other_1 = [
+  { "var_name": "buttons_other", "value": "button_1", "checked": true, },  // May want to change `checked`
+];
+tables.buttons_other_2 = [
+  { "var_name": "buttons_other", "value": "button_2", "checked": true, },  // May want to change `checked`
+];
+tables.buttons_other_3 = [
+  { "var_name": "buttons_other", "value": "button_3", "checked": true, },  // May want to change `checked`
+];
+
 module.exports = tables;

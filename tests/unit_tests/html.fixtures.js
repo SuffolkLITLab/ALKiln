@@ -352,5 +352,31 @@ html.buttons_yesnomaybe = `
   </form>
 </section>`;
 
+// Multiple choice 'continue' button fields that are not yesnomaybe
+html.buttons_other = `
+<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">Button (other)</h1>
+      <div class="daclear"></div>
+    </div>
+
+    <fieldset class="da-field-buttons">
+      <legend class="sr-only">Press one of the following buttons:</legend>
+      <div>
+        <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uc19vdGhlcg" value="button_1"><span>button 1</span></button>
+        <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uc19vdGhlcg" value="button_2"><span>button 2</span></button>
+        <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uc19vdGhlcg" value="button_3"><span>button 3</span></button>
+      </div>
+    </fieldset>
+    
+    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YFoMuw.5kqHJwVOXKDaQen-VQuev2Ve3Z8">
+    <input type="hidden" name="_event" value="WyJidXR0b25zX290aGVyIl0">
+    <input type="hidden" name="_question_name" value="ID buttons other">
+    <input type="hidden" name="_tracker" value="10">
+    <input type="hidden" name="_visible" value="">
+  </form>
+</section>`;
+
 
 module.exports = html;
