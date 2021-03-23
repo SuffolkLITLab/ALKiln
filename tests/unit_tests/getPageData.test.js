@@ -49,7 +49,7 @@ it(`creates the right data for yesnomaybe buttons`, async function() {
 it(`creates the right data for other mutiple choice continue buttons`, async function() {
   // `field:` and `buttons:`
   let result = await getPageData( scope, { html: html.buttons_other });
-  // expect( result ).to.deep.equal( page_data.buttons_other );
+  expect( result ).to.deep.equal( page_data.buttons_other );
 });
 
 
