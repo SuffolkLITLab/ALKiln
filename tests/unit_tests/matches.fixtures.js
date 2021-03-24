@@ -147,4 +147,24 @@ matches.buttons_yesnomaybe_none = [
 ];
 
 
+matches.buttons_other_1 = [
+  {
+  "field": { "selector": "button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_1\"]", "tag": "button", "rows": [ { "var_name": "buttons_other", "value": "button_1", "checked": false, } ], "type": "submit" },
+  "table": { "var_name": "buttons_other", "value": "button_1", "checked": true, },
+  }
+];
+matches.buttons_other_2 = [
+  {
+  "field": { "selector": "button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_2\"]", "tag": "button", "rows": [ { "var_name": "buttons_other", "value": "button_2", "checked": false, } ], "type": "submit" },
+  "table": { "var_name": "buttons_other", "value": "button_2", "checked": true, },
+  }
+];
+matches.buttons_other_3 = [
+  {
+  "field": { "selector": "button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_3\"]", "tag": "button", "rows": [ { "var_name": "buttons_other", "value": "button_3", "checked": false, } ], "type": "submit" },
+  "table": { "var_name": "buttons_other", "value": "button_3", "checked": true, },
+  }
+];
+
+
 module.exports = matches;

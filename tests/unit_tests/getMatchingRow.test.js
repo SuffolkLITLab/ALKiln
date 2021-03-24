@@ -42,3 +42,18 @@ it("matches the right table and field rows for yesnomaybe buttons", async functi
 });
 
 
+it("matches the right table and field rows for other mutiple choice continue buttons", async function() {
+  
+  let result1 = await getMatchingRow( scope, { page_data: page_data.buttons_other, story_table: tables.buttons_other_1 });
+  expect( result1 ).to.deep.equal( matches.buttons_other_1 );
+  
+  let result2 = await getMatchingRow( scope, { page_data: page_data.buttons_other, story_table: tables.buttons_other_2 });
+  expect( result2 ).to.deep.equal( matches.buttons_other_2 );
+  
+  let result3 = await getMatchingRow( scope, { page_data: page_data.buttons_other, story_table: tables.buttons_other_3 });
+  expect( result3 ).to.deep.equal( matches.buttons_other_3 );
+
+});
+
+
+

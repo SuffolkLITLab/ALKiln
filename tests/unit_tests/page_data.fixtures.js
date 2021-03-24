@@ -429,4 +429,49 @@ page_data.buttons_yesnomaybe = {
   ]
 };
 
+// Multiple choice 'continue' button fields that are not yesnomaybe
+page_data.buttons_other = {
+  "sought_var": [
+    "buttons_other"
+  ],
+  "fields": [
+    {
+      "selector": "button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_1\"]",
+      "tag": "button",
+      "rows": [
+        {
+          "var_name": "buttons_other",
+          "value": "button_1",
+          "checked": false
+        }
+      ],
+      "type": "submit"
+    },
+    {
+      "selector": "button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_2\"]",
+      "tag": "button",
+      "rows": [
+        {
+          "var_name": "buttons_other",
+          "value": "button_2",
+          "checked": false
+        }
+      ],
+      "type": "submit"
+    },
+    {
+      "selector": "button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_3\"]",
+      "tag": "button",
+      "rows": [
+        {
+          "var_name": "buttons_other",
+          "value": "button_3",
+          "checked": false
+        }
+      ],
+      "type": "submit"
+    }
+  ]
+};
+
 module.exports = page_data;
