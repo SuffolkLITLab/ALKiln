@@ -122,11 +122,29 @@ matches.show_if = [
     "table": { "var_name": "direct_showifs", "value": "True", "checked": true, },
   },
 ];
-  
+
+
+// ============================
+// Buttons
+// ============================
+matches.buttons_yesnomaybe_yes = [
+  {
+  "field": { "selector": "button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"True\"]", "tag": "button", "rows": [ { "var_name": "buttons_yesnomaybe", "value": "True", "checked": false, } ], "type": "submit" },
+  "table": { "var_name": "buttons_yesnomaybe", "value": "True", "checked": true, },
+  }
+];
+matches.buttons_yesnomaybe_no = [
+  {
+  "field": { "selector": "button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"False\"]", "tag": "button", "rows": [ { "var_name": "buttons_yesnomaybe", "value": "False", "checked": false, } ], "type": "submit" },
+  "table": { "var_name": "buttons_yesnomaybe", "value": "False", "checked": true, },
+  }
+];
+matches.buttons_yesnomaybe_none = [
+  {
+  "field": { "selector": "button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"None\"]", "tag": "button", "rows": [ { "var_name": "buttons_yesnomaybe", "value": "None", "checked": false, } ], "type": "submit" },
+  "table": { "var_name": "buttons_yesnomaybe", "value": "None", "checked": true, },
+  }
+];
+
 
 module.exports = matches;
-
-
-
-
-

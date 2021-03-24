@@ -30,9 +30,13 @@ it(`creates the right data for standard fields`, async function() {
 });
 
 it(`creates the right data for 'show if' fields`, async function() {
-  // 18 fields (03/15/21)
   let result = await getPageData( scope, { html: html.show_if });
   expect( result ).to.deep.equal( page_data.show_if );
+});
+
+it(`creates the right data for yesnomaybe buttons`, async function() {
+  let result = await getPageData( scope, { html: html.buttons_yesnomaybe });
+  expect( result ).to.deep.equal( page_data.buttons_yesnomaybe );
 });
 
 
