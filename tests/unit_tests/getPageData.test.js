@@ -34,12 +34,20 @@ it(`creates the right data for 'show if' fields`, async function() {
   expect( result ).to.deep.equal( page_data.show_if );
 });
 
+it(`creates the right data for one continue button`, async function() {
+  // `continue button field:`
+  let result = await getPageData( scope, { html: html.button_continue });
+  expect( result ).to.deep.equal( page_data.button_continue );
+});
+
 it(`creates the right data for yesnomaybe buttons`, async function() {
+  // `yesnomaybe:`
   let result = await getPageData( scope, { html: html.buttons_yesnomaybe });
   expect( result ).to.deep.equal( page_data.buttons_yesnomaybe );
 });
 
 it(`creates the right data for other mutiple choice continue buttons`, async function() {
+  // `field:` and `buttons:`
   let result = await getPageData( scope, { html: html.buttons_other });
   expect( result ).to.deep.equal( page_data.buttons_other );
 });

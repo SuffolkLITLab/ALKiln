@@ -49,6 +49,12 @@ tables.show_if = [
 // ============================
 // Buttons
 // ============================
+// `continue button field:`
+tables.button_continue = [
+  { "var_name": "button_continue", "value": "True", "checked": true, },  // May want to change `checked`
+];
+
+// `yesnomaybe:`
 tables.buttons_yesnomaybe_yes = [
   { "var_name": "buttons_yesnomaybe", "value": "True", "checked": true, },  // May want to change `checked`
 ];
@@ -59,6 +65,7 @@ tables.buttons_yesnomaybe_none = [
   { "var_name": "buttons_yesnomaybe", "value": "None", "checked": true, },  // May want to change `checked`
 ];
 
+// `field:` and `buttons:`
 tables.buttons_other_1 = [
   { "var_name": "buttons_other", "value": "button_1", "checked": true, },  // May want to change `checked`
 ];
