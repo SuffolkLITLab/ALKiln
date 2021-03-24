@@ -42,7 +42,7 @@ it("matches the right table and field rows for yesnomaybe buttons", async functi
 });
 
 // `field:` and `buttons:`
-it("matches the right table and field rows for yesnomaybe buttons", async function() {
+it("matches the right table and field rows for other mutiple choice continue buttons", async function() {
   let result1 = await getMatchingRow( scope, { page_data: page_data.buttons_other, story_table: tables.buttons_other_1 });
   expect( result1 ).to.deep.equal( matches.buttons_other_1 );
   
