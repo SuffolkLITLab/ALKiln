@@ -12,7 +12,7 @@ page_data.standard = {
       "tag": "input",
       "type": "checkbox",
       "rows": [
-        { "var_name": "checkboxes_yesno", "value": "True", "checked": false }
+        { "var": "checkboxes_yesno", "value": "True", "checked": false }
       ]
     },
     {
@@ -20,8 +20,8 @@ page_data.standard = {
       "tag": "input",
       "type": "checkbox",
       "rows": [
-        { "var_name": "checkboxes_other_1", "value": "checkbox_other_1_opt_1", "checked": false },
-        { "var_name": "checkboxes_other_1", "value": "r\u0017���1��az����m�", "checked": false }
+        { "var": "checkboxes_other_1", "value": "checkbox_other_1_opt_1", "checked": false },
+        { "var": "checkboxes_other_1", "value": "r\u0017���1��az����m�", "checked": false }
       ]
     },
     {
@@ -29,8 +29,8 @@ page_data.standard = {
       "tag": "input",
       "type": "checkbox",
       "rows": [
-        { "var_name": "checkboxes_other_1", "value": "checkbox_other_1_opt_2", "checked": false },
-        { "var_name": "checkboxes_other_1", "value": "r\u0017���1��az����m�", "checked": false }
+        { "var": "checkboxes_other_1", "value": "checkbox_other_1_opt_2", "checked": false },
+        { "var": "checkboxes_other_1", "value": "r\u0017���1��az����m�", "checked": false }
       ]
     },
     {
@@ -38,8 +38,8 @@ page_data.standard = {
       "tag": "input",
       "type": "checkbox",
       "rows": [
-        { "var_name": "checkboxes_other_1", "value": "checkbox_other_1_opt_3", "checked": false },
-        { "var_name": "checkboxes_other_1", "value": "r\u0017���1��az����m�", "checked": false }
+        { "var": "checkboxes_other_1", "value": "checkbox_other_1_opt_3", "checked": false },
+        { "var": "checkboxes_other_1", "value": "r\u0017���1��az����m�", "checked": false }
       ]
     },
     {
@@ -47,7 +47,7 @@ page_data.standard = {
       "tag": "input",
       "type": "checkbox",
       "rows": [
-        { "var_name": "checkboxes_other_1", "value": "None", "checked": false }
+        { "var": "checkboxes_other_1", "value": "None", "checked": false }
       ]
     },
     {
@@ -55,8 +55,8 @@ page_data.standard = {
       "tag": "input",
       "type": "checkbox",
       "rows": [
-        { "var_name": "checkboxes_other_2", "value": "checkbox_other_2_opt_1", "checked": false },
-        { "var_name": "checkboxes_other_2", "value": "r\u0017���1��az����m�", "checked": false }
+        { "var": "checkboxes_other_2", "value": "checkbox_other_2_opt_1", "checked": false },
+        { "var": "checkboxes_other_2", "value": "r\u0017���1��az����m�", "checked": false }
       ]
     },
     {
@@ -64,8 +64,8 @@ page_data.standard = {
       "tag": "input",
       "type": "checkbox",
       "rows": [
-        { "var_name": "checkboxes_other_2", "value": "checkbox_other_2_opt_2", "checked": false },
-        { "var_name": "checkboxes_other_2", "value": "r\u0017���1��az����m�", "checked": false }
+        { "var": "checkboxes_other_2", "value": "checkbox_other_2_opt_2", "checked": false },
+        { "var": "checkboxes_other_2", "value": "r\u0017���1��az����m�", "checked": false }
       ]
     },
     {
@@ -73,8 +73,8 @@ page_data.standard = {
       "tag": "input",
       "type": "checkbox",
       "rows": [
-        { "var_name": "checkboxes_other_2", "value": "checkbox_other_2_opt_3", "checked": false },
-        { "var_name": "checkboxes_other_2", "value": "r\u0017���1��az����m�", "checked": false }
+        { "var": "checkboxes_other_2", "value": "checkbox_other_2_opt_3", "checked": false },
+        { "var": "checkboxes_other_2", "value": "r\u0017���1��az����m�", "checked": false }
       ]
     },
     {
@@ -82,7 +82,7 @@ page_data.standard = {
       "tag": "input",
       "type": "checkbox",
       "rows": [
-        { "var_name": "checkboxes_other_2", "value": "None", "checked": false }
+        { "var": "checkboxes_other_2", "value": "None", "checked": false }
       ]
     },
     {
@@ -90,7 +90,7 @@ page_data.standard = {
       "tag": "input",
       "type": "radio",
       "rows": [
-        { "var_name": "radio_yesno", "value": "True", "checked": false }
+        { "var": "radio_yesno", "value": "True", "checked": false }
       ]
     },
     {
@@ -98,7 +98,7 @@ page_data.standard = {
       "tag": "input",
       "type": "radio",
       "rows": [
-        { "var_name": "radio_yesno", "value": "False", "checked": false }
+        { "var": "radio_yesno", "value": "False", "checked": false }
       ]
     },
     {
@@ -106,7 +106,7 @@ page_data.standard = {
       "tag": "input",
       "type": "radio",
       "rows": [
-        { "var_name": "radio_other", "value": "radio_other_opt_1", "checked": false }
+        { "var": "radio_other", "value": "radio_other_opt_1", "checked": false }
       ]
     },
     {
@@ -114,7 +114,7 @@ page_data.standard = {
       "tag": "input",
       "type": "radio",
       "rows": [
-        { "var_name": "radio_other", "value": "radio_other_opt_2", "checked": false }
+        { "var": "radio_other", "value": "radio_other_opt_2", "checked": false }
       ]
     },
     {
@@ -122,7 +122,7 @@ page_data.standard = {
       "tag": "input",
       "type": "radio",
       "rows": [
-        { "var_name": "radio_other", "value": "radio_other_opt_3", "checked": false }
+        { "var": "radio_other", "value": "radio_other_opt_3", "checked": false }
       ]
     },
     {
@@ -130,7 +130,7 @@ page_data.standard = {
       "tag": "input",
       "type": "text",
       "rows": [
-        { "var_name": "text_input", "value": "", "checked": "" }
+        { "var": "text_input", "value": "", "checked": "" }
       ]
     },
     {
@@ -138,7 +138,7 @@ page_data.standard = {
       "tag": "textarea",
       "type": "",
       "rows": [
-        { "var_name": "textarea", "value": "", "checked": "" }
+        { "var": "textarea", "value": "", "checked": "" }
       ]
     },
     {
@@ -146,10 +146,10 @@ page_data.standard = {
       "tag": "select",
       "type": "",
       "rows": [
-        { "var_name": "dropdown_test", "value": "", "checked": false },  // May want to change `checked`
-        { "var_name": "dropdown_test", "value": "dropdown_opt_1", "checked": false },  // May want to change `checked`
-        { "var_name": "dropdown_test", "value": "dropdown_opt_2", "checked": false },  // May want to change `checked`
-        { "var_name": "dropdown_test", "value": "dropdown_opt_3", "checked": false }  // May want to change `checked`
+        { "var": "dropdown_test", "value": "", "checked": false },  // May want to change `checked`
+        { "var": "dropdown_test", "value": "dropdown_opt_1", "checked": false },  // May want to change `checked`
+        { "var": "dropdown_test", "value": "dropdown_opt_2", "checked": false },  // May want to change `checked`
+        { "var": "dropdown_test", "value": "dropdown_opt_3", "checked": false }  // May want to change `checked`
       ]
     },
     {
@@ -157,7 +157,7 @@ page_data.standard = {
       "tag": "button",
       "type": "submit",
       "rows": [
-        { "var_name": "direct_standard_fields", "value": "True", "checked": false }  // May want to change `checked`
+        { "var": "direct_standard_fields", "value": "True", "checked": false }  // May want to change `checked`
       ]
     }
   ]  // ends page_data.standard.fields
@@ -177,7 +177,7 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "show_2",
+          "var": "show_2",
           "value": "True",
           "checked": false
         }
@@ -189,7 +189,7 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "show_3",
+          "var": "show_3",
           "value": "True",
           "checked": false
         }
@@ -201,7 +201,7 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "showif_checkbox_yesno",
+          "var": "showif_checkbox_yesno",
           "value": "True",
           "checked": false
         }
@@ -213,12 +213,12 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "showif_checkboxes_other",
+          "var": "showif_checkboxes_other",
           "value": "showif_checkboxes_nota_1",
           "checked": false
         },
         {
-          "var_name": "showif_checkboxes_other",
+          "var": "showif_checkboxes_other",
           "value": "�\u001a0��܅�$n�^��赯�",
           "checked": false
         }
@@ -230,12 +230,12 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "showif_checkboxes_other",
+          "var": "showif_checkboxes_other",
           "value": "showif_checkboxes_nota_2",
           "checked": false
         },
         {
-          "var_name": "showif_checkboxes_other",
+          "var": "showif_checkboxes_other",
           "value": "�\u001a0��܅�$n�^��赯�",
           "checked": false
         }
@@ -247,7 +247,7 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "showif_checkboxes_other",
+          "var": "showif_checkboxes_other",
           "value": "None",
           "checked": false
         }
@@ -259,7 +259,7 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "showif_yesnoradio",
+          "var": "showif_yesnoradio",
           "value": "True",
           "checked": false
         }
@@ -271,7 +271,7 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "showif_yesnoradio",
+          "var": "showif_yesnoradio",
           "value": "False",
           "checked": false
         }
@@ -283,7 +283,7 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "showif_radio_other",
+          "var": "showif_radio_other",
           "value": "showif_radio_multi_1",
           "checked": false
         }
@@ -295,7 +295,7 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "showif_radio_other",
+          "var": "showif_radio_other",
           "value": "showif_radio_multi_2",
           "checked": false
         }
@@ -307,7 +307,7 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "showif_radio_other",
+          "var": "showif_radio_other",
           "value": "showif_radio_multi_3",
           "checked": false
         }
@@ -319,7 +319,7 @@ page_data.show_if = {
       "tag": "input",
       "rows": [
         {
-          "var_name": "showif_text_input",
+          "var": "showif_text_input",
           "value": "",
           "checked": ""
         }
@@ -331,7 +331,7 @@ page_data.show_if = {
       "tag": "textarea",
       "rows": [
         {
-          "var_name": "showif_textarea",
+          "var": "showif_textarea",
           "value": "",
           "checked": ""
         }
@@ -343,22 +343,22 @@ page_data.show_if = {
       "tag": "select",
       "rows": [
         {
-          "var_name": "showif_dropdown",
+          "var": "showif_dropdown",
           "value": "",
           "checked": false
         },
         {
-          "var_name": "showif_dropdown",
+          "var": "showif_dropdown",
           "value": "showif_dropdown_1",
           "checked": false
         },
         {
-          "var_name": "showif_dropdown",
+          "var": "showif_dropdown",
           "value": "showif_dropdown_2",
           "checked": false
         },
         {
-          "var_name": "showif_dropdown",
+          "var": "showif_dropdown",
           "value": "showif_dropdown_3",
           "checked": false
         }
@@ -370,7 +370,7 @@ page_data.show_if = {
       "tag": "button",
       "rows": [
         {
-          "var_name": "direct_showifs",
+          "var": "direct_showifs",
           "value": "True",
           "checked": false
         }
@@ -395,7 +395,7 @@ page_data.button_continue = {
       "tag": "button",
       "rows": [
         {
-          "var_name": "button_continue",
+          "var": "button_continue",
           "value": "True",
           "checked": false
         }
@@ -417,7 +417,7 @@ page_data.buttons_yesnomaybe = {
       "tag": "button",
       "rows": [
         {
-          "var_name": "buttons_yesnomaybe",
+          "var": "buttons_yesnomaybe",
           "value": "True",
           "checked": false
         }
@@ -429,7 +429,7 @@ page_data.buttons_yesnomaybe = {
       "tag": "button",
       "rows": [
         {
-          "var_name": "buttons_yesnomaybe",
+          "var": "buttons_yesnomaybe",
           "value": "False",
           "checked": false
         }
@@ -441,7 +441,7 @@ page_data.buttons_yesnomaybe = {
       "tag": "button",
       "rows": [
         {
-          "var_name": "buttons_yesnomaybe",
+          "var": "buttons_yesnomaybe",
           "value": "None",
           "checked": false
         }
@@ -463,7 +463,7 @@ page_data.buttons_other = {
       "tag": "button",
       "rows": [
         {
-          "var_name": "buttons_other",
+          "var": "buttons_other",
           "value": "button_1",
           "checked": false
         }
@@ -475,7 +475,7 @@ page_data.buttons_other = {
       "tag": "button",
       "rows": [
         {
-          "var_name": "buttons_other",
+          "var": "buttons_other",
           "value": "button_2",
           "checked": false
         }
@@ -487,7 +487,7 @@ page_data.buttons_other = {
       "tag": "button",
       "rows": [
         {
-          "var_name": "buttons_other",
+          "var": "buttons_other",
           "value": "button_3",
           "checked": false
         }
@@ -508,7 +508,7 @@ page_data.buttons_event_action = {
       "tag": "button",
       "rows": [
         {
-          "var_name": "button_event_action",
+          "var": "button_event_action",
           "value": "True",
           "checked": false
         }
@@ -520,7 +520,7 @@ page_data.buttons_event_action = {
       "tag": "a",
       "rows": [
         {
-          "var_name": "end",
+          "var": "end",
           "value": "",
           "checked": ""
         }
