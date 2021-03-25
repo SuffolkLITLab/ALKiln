@@ -20,7 +20,6 @@ html.standard = `
       <p>Excludes proxy vars (x, i, j, etc.) or choices created with objects.</p>
     </div>
 
-
     <div class="form-group row dayesnospacing da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesno da-field-container-emptylabel"><label for="Y2hlY2tib3hlc195ZXNubw" class="sr-only">Check if applicable</label>
       <div class="offset-md-4 col-md-8 dafieldpart">
         <fieldset class="da-field-checkbox">
@@ -403,6 +402,33 @@ html.buttons_other = `
     <input type="hidden" name="_visible" value="">
   </form>
 </section>`;
+
+// `field:` and `action buttons:`
+html.buttons_event_action = `
+<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">Button (event action)</h1>
+      <div class="daclear"></div>
+    </div>
+
+    <fieldset class="da-field-buttons">
+      <legend class="sr-only">Press one of the following buttons:</legend>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uX2V2ZW50X2FjdGlvbg" value="True"><span>Continue</span></button>
+        <a data-linknum="1" href="/interview?action=eyJhY3Rpb24iOiAiZW5kIiwgImFyZ3VtZW50cyI6IHt9fQ&amp;i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" class="btn btn-primary btn-da daquestionactionbutton danonsubmit"><svg class="svg-inline--fa fa-laugh-wink fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="laugh-wink" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm20.1 198.1c4-25.2 34.2-42.1 59.9-42.1s55.9 16.9 59.9 42.1c1.7 11.1-11.4 18.3-19.8 10.8l-9.5-8.5c-14.8-13.2-46.2-13.2-61 0L288 217c-8.4 7.4-21.6.3-19.9-10.9zM168 160c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zm230.9 146C390 377 329.4 432 256 432h-16c-73.4 0-134-55-142.9-126-1.2-9.5 6.3-18 15.9-18h270c9.6 0 17.1 8.4 15.9 18z"></path>
+          </svg><!-- <i class="fas fa-laugh-wink"></i> Font Awesome fontawesome.com --> Do not pass go</a></div>
+    </fieldset>
+
+    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YFo2Rw.jEdEyLOdAegw_klnELh4Jux0C9A">
+    <input type="hidden" name="_event" value="WyJidXR0b25fZXZlbnRfYWN0aW9uIl0">
+    <input type="hidden" name="_question_name" value="ID button event action">
+    <input type="hidden" name="_tracker" value="14">
+    <input type="hidden" name="_datatypes" value="eyJZblYwZEc5dVgyVjJaVzUwWDJGamRHbHZiZyI6ICJib29sZWFuIn0">
+    <input type="hidden" name="_visible" value="">
+  </form>
+</section>`
 
 
 module.exports = html;

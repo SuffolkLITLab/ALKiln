@@ -76,4 +76,10 @@ tables.buttons_other_3 = [
   { "var_name": "buttons_other", "value": "button_3", "checked": true, },  // May want to change `checked`
 ];
 
+// `field:` and `action buttons:`
+tables.buttons_event_action = [
+  { "var_name": "end", "value": "", "checked": "", },  // May want to change `checked`
+];
+
+
 module.exports = tables;

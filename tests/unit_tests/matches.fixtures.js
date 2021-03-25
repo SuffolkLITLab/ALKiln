@@ -175,5 +175,13 @@ matches.buttons_other_3 = [
   }
 ];
 
+// `field:` and `action buttons:`
+matches.buttons_event_action = [
+  {
+    "field":{"selector":"a[data-linknum=\"1\"]","tag":"a","rows":[{"var_name":"end","value":"","checked":""}],"type":""},
+    "table":{"var_name":"end","value":"","checked":""}
+  }
+];
+
 
 module.exports = matches;

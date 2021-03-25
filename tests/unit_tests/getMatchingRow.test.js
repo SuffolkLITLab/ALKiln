@@ -25,7 +25,6 @@ it("matches the right table and field rows for simple show if fields", async fun
 
 // `continue button field:`
 it(`creates the right data for one continue button`, async function() {
-  // `continue button field:`
   let result1 = await getMatchingRow( scope, { page_data: page_data.button_continue, story_table: tables.button_continue });
   expect( result1 ).to.deep.equal( matches.button_continue );
 });
@@ -54,5 +53,9 @@ it("matches the right table and field rows for other mutiple choice continue but
   expect( result3 ).to.deep.equal( matches.buttons_other_3 );
 });
 
-
+// `field:` and `action buttons:`
+it(`creates the right data for one continue button`, async function() {
+  let result1 = await getMatchingRow( scope, { page_data: page_data.buttons_event_action, story_table: tables.buttons_event_action });
+  expect( result1 ).to.deep.equal( matches.buttons_event_action );
+});
 

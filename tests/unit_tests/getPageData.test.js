@@ -52,6 +52,12 @@ it(`creates the right data for other mutiple choice continue buttons`, async fun
   expect( result ).to.deep.equal( page_data.buttons_other );
 });
 
+it(`creates the right data for an event action button`, async function() {
+  // `field:` and `action buttons:`
+  let result = await getPageData( scope, { html: html.buttons_event_action });
+  expect( result ).to.deep.equal( page_data.buttons_event_action );
+});
+
 
 /*
 Fields:

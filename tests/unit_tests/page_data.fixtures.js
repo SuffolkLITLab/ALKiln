@@ -497,4 +497,38 @@ page_data.buttons_other = {
   ]
 };
 
+// `field:` and `action buttons:`
+page_data.buttons_event_action = {
+  "sought_var": [
+    "button_event_action"
+  ],
+  "fields": [
+    {
+      "selector": "button[name=\"YnV0dG9uX2V2ZW50X2FjdGlvbg\"][value=\"True\"]",
+      "tag": "button",
+      "rows": [
+        {
+          "var_name": "button_event_action",
+          "value": "True",
+          "checked": false
+        }
+      ],
+      "type": "submit"
+    },
+    {
+      "selector": "a[data-linknum=\"1\"]",
+      "tag": "a",
+      "rows": [
+        {
+          "var_name": "end",
+          "value": "",
+          "checked": ""
+        }
+      ],
+      "type": ""
+    }
+  ]
+}
+
+
 module.exports = page_data;
