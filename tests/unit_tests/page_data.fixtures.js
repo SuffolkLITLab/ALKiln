@@ -47,7 +47,7 @@ page_data.standard = {
       "tag": "input",
       "type": "checkbox",
       "rows": [
-        { "var_name": "checkboxes_other_1", "value": "al_danota", "checked": false }
+        { "var_name": "checkboxes_other_1", "value": "None", "checked": false }
       ]
     },
     {
@@ -82,7 +82,7 @@ page_data.standard = {
       "tag": "input",
       "type": "checkbox",
       "rows": [
-        { "var_name": "checkboxes_other_2", "value": "al_danota", "checked": false }
+        { "var_name": "checkboxes_other_2", "value": "None", "checked": false }
       ]
     },
     {
@@ -248,7 +248,7 @@ page_data.show_if = {
       "rows": [
         {
           "var_name": "showif_checkboxes_other",
-          "value": "al_danota",
+          "value": "None",
           "checked": false
         }
       ],

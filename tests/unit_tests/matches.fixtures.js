@@ -23,8 +23,8 @@ matches.standard = [
     "table": { "var_name": "checkboxes_other_1", "value": "checkbox_other_1_opt_3", "checked": false },
   },
   {
-    "field": { "tag": "input", "type": "checkbox", "selector": "input[name=\"_ignore1\"]", "rows": [ { "var_name": "checkboxes_other_1", "value": "al_danota", "checked": false } ] },
-    "table": { "var_name": "checkboxes_other_1", "value": "al_danota", "checked": false },
+    "field": { "tag": "input", "type": "checkbox", "selector": "input[name=\"_ignore1\"]", "rows": [ { "var_name": "checkboxes_other_1", "value": "None", "checked": false } ] },
+    "table": { "var_name": "checkboxes_other_1", "value": "None", "checked": false },
   },
   {
     "field": { "tag": "input", "type": "checkbox", "selector": "input[name=\"Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk1RJ10\"][value=\"True\"]", "rows": [ { "var_name": "checkboxes_other_2", "value": "checkbox_other_2_opt_1", "checked": false }, { "var_name": "checkboxes_other_2", "value": "r\u0017���1��az����m�", "checked": false } ] },
@@ -39,8 +39,8 @@ matches.standard = [
     "table": { "var_name": "checkboxes_other_2", "value": "checkbox_other_2_opt_3", "checked": false },
   },
   {
-    "field": { "tag": "input", "type": "checkbox", "selector": "input[name=\"_ignore2\"]", "rows": [ { "var_name": "checkboxes_other_2", "value": "al_danota", "checked": false } ] },
-    "table": { "var_name": "checkboxes_other_2", "value": "al_danota", "checked": true },
+    "field": { "tag": "input", "type": "checkbox", "selector": "input[name=\"_ignore2\"]", "rows": [ { "var_name": "checkboxes_other_2", "value": "None", "checked": false } ] },
+    "table": { "var_name": "checkboxes_other_2", "value": "None", "checked": true },
   },
   {
     "field": { "tag": "input", "type": "radio", "selector": "input[name=\"cmFkaW9feWVzbm8\"][value=\"False\"]", "rows": [ { "var_name": "radio_yesno", "value": "False", "checked": false } ] },
@@ -94,8 +94,8 @@ matches.show_if = [
     "table": { "var_name": "showif_checkboxes_other", "value": "showif_checkboxes_nota_2", "checked": true, },
   },
   {
-    "field": { "tag": "input", "type": "checkbox", "selector": "input[name=\"_ignore3\"]", "rows": [ { "var_name": "showif_checkboxes_other", "value": "al_danota", "checked": false }], },
-    "table": { "var_name": "showif_checkboxes_other", "value": "al_danota", "checked": false, },
+    "field": { "tag": "input", "type": "checkbox", "selector": "input[name=\"_ignore3\"]", "rows": [ { "var_name": "showif_checkboxes_other", "value": "None", "checked": false }], },
+    "table": { "var_name": "showif_checkboxes_other", "value": "None", "checked": false, },
   },
   {
     "field": { "tag": "input", "type": "radio", "selector": "input[name=\"X2ZpZWxkXzQ\"][value=\"False\"]", "rows": [ { "var_name": "showif_yesnoradio", "value": "False", "checked": false }], },
