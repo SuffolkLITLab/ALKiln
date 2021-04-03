@@ -79,7 +79,16 @@ it(`creates the right data for a proxy input field (x, i, j...)`, async function
   // `field:` and `action buttons:`
   let result = await getPageData( scope, { html: html.proxies });
   expect( result ).to.deep.equal( page_data.proxies );
-  // console.log( JSON.stringify(result, null, 2 ));
+});
+
+
+// ============================
+// Signature
+// ============================
+it(`creates the right data for a signature field`, async function() {
+  // `field:` and `action buttons:`
+  let result = await getPageData( scope, { html: html.signature });
+  expect( result ).to.deep.equal( page_data.signature );
 });
 
 

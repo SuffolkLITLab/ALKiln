@@ -464,4 +464,45 @@ html.proxies = `
 </section>`;
 
 
+// ============================
+// Signature
+// ============================
+html.signature = `
+<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <div class="dasigpage" id="dasigpage">
+    <div class="dasigshowsmallblock dasigheader d-block d-sm-none" id="dasigheader" style="">
+      <div class="dasiginnerheader">
+        <a href="#" role="button" class="btn btn-sm btn-warning dasignav-left dasignavbutton dasigclear">Clear</a>
+        <a href="#" role="button" class="btn btn-sm btn-primary dasignav-right dasignavbutton dasigsave">Continue</a>
+        <div id="dasigtitle" class="dasigtitle">Signature 1</div>
+      </div>
+    </div>
+    <div class="dasigtoppart" id="dasigtoppart">
+      <div id="daerrormess" class="dasigerrormessage dasignotshowing">You must sign your name to continue.</div>
+      <div class="da-page-header d-none d-sm-block">
+        <h1 class="h3">Signature 1</h1>
+        <div class="daclear"></div>
+      </div>
+    </div>
+    <div id="dasigmidpart" class="dasigmidpart"></div>
+
+    <div id="dasigcontent" style="height: 180px;"><canvas id="dasigcanvas" width="450px" height="180px"></canvas></div>
+    
+    <div class="dasigbottompart" id="dasigbottompart">
+    </div>
+    <div class="form-actions d-none d-sm-block dasigbuttons mt-3">
+      <a href="#" role="button" class="btn btn-primary btn-da dasigsave">Continue</a>
+      <a href="#" role="button" class="btn btn-warning btn-da dasigclear">Clear</a>
+    </div>
+  </div>
+  <form aria-labelledby="dasigtitle" action="/interview?i=docassemble.playground12ALTestingTests80Signatures%3Aall_tests.yml" id="dasigform" method="POST"><input type="hidden" name="_save_as" value="c2lnbmF0dXJlXzE"><input type="hidden" id="da_sig_required" value="1"><input type="hidden" id="da_ajax" name="ajax" value="0"><input type="hidden" id="da_the_image" name="_the_image" value=""><input type="hidden" id="da_success" name="_success" value="0"> <input type="hidden" name="csrf_token" value="IjkyYzc0NDk2YWFkZjUyODg3NWY3NDM3NjliZjQ5ODMwOTgyOGE4ZGEi.YGhoaw.rQUphWhyjZQEJSvcwUfT6st9Q4k">
+    <input type="hidden" name="_event" value="WyJzaWduYXR1cmVfMSJd">
+    <input type="hidden" name="_question_name" value="ID first signature">
+    <input type="hidden" name="_tracker" value="11">
+  </form>
+  <div class="d-block d-md-none"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
+  <div class="dasigpost"></div>
+</section>`;
+
+
 module.exports = html;

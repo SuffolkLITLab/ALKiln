@@ -77,3 +77,12 @@ it(`matches the right table and field rows for a proxy input text field (x, i, j
   expect( result1 ).to.deep.equal( matches.proxies );
 });
 
+
+// ============================
+// Signature
+// ============================
+it(`matches the right table and field rows for a signature field`, async function() {
+  let result1 = await getMatchingRow( scope, { page_data: page_data.signature, story_table: tables.signature });
+  expect( result1 ).to.deep.equal( matches.signature );
+});
+
