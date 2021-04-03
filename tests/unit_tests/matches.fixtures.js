@@ -184,4 +184,16 @@ matches.buttons_event_action = [
 ];
 
 
+// ============================
+// Proxy vars (x, i, j, ...)
+// ============================
+// x[i].name.first
+matches.proxies = [
+  {
+    "field": { "selector": "input[name=\"eFtpXS5uYW1lLmZpcnN0\"]", "tag": "input", "rows": [ { "var_name": "a_list[0].name.first", "value": "", "checked": "" } ], "type": "text" },
+    "table": { "var_name": "a_list[0].name.first", "value": "Firstname", "checked": "", },
+  }
+];
+
+
 module.exports = matches;

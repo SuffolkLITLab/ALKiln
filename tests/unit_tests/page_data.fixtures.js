@@ -1,11 +1,11 @@
-let page_data =  {}
+let page_data =  {};
 
 // ============================
 // Standard fields - no proxies, no showifs.
 // ============================
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
 page_data.standard = {
-  "sought_var": [ "direct_standard_fields" ],
+  "sought_var": "direct_standard_fields",
   "fields": [
     {
       "selector": "input[name=\"Y2hlY2tib3hlc195ZXNubw\"][value=\"True\"]",
@@ -168,9 +168,7 @@ page_data.standard = {
 // Simple show if fields - no proxies
 // ============================
 page_data.show_if = {
-  "sought_var": [
-    "direct_showifs"
-  ],
+  "sought_var": "direct_showifs",
   "fields": [
     {
       "selector": "input[name=\"c2hvd18y\"][value=\"True\"]",
@@ -386,9 +384,7 @@ page_data.show_if = {
 // ============================
 // `continue button field:`
 page_data.button_continue = {
-  "sought_var": [
-    "button_continue"
-  ],
+  "sought_var": "button_continue",
   "fields": [
     {
       "selector": "button[name=\"YnV0dG9uX2NvbnRpbnVl\"][value=\"True\"]",
@@ -408,9 +404,7 @@ page_data.button_continue = {
 // `yesnomaybe:`
 // TODO: Shall we allow 'maybe' in the table as a value for `None`?
 page_data.buttons_yesnomaybe = {
-  "sought_var": [
-    "buttons_yesnomaybe"
-  ],
+  "sought_var": "buttons_yesnomaybe",
   "fields": [
     {
       "selector": "button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"True\"]",
@@ -454,9 +448,7 @@ page_data.buttons_yesnomaybe = {
 // Multiple choice 'continue' button fields that are not yesnomaybe
 // `field:` and `buttons:`
 page_data.buttons_other = {
-  "sought_var": [
-    "buttons_other"
-  ],
+  "sought_var": "buttons_other",
   "fields": [
     {
       "selector": "button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_1\"]",
@@ -499,9 +491,7 @@ page_data.buttons_other = {
 
 // `field:` and `action buttons:`
 page_data.buttons_event_action = {
-  "sought_var": [
-    "button_event_action"
-  ],
+  "sought_var": "button_event_action",
   "fields": [
     {
       "selector": "button[name=\"YnV0dG9uX2V2ZW50X2FjdGlvbg\"][value=\"True\"]",
@@ -529,6 +519,35 @@ page_data.buttons_event_action = {
     }
   ]
 }
+
+
+// ============================
+// Proxy vars (x, i, j, ...)
+// ============================
+// x[i].name.first
+page_data.proxies = {
+  "sought_var": "a_list[0].name.first",
+  "fields": [
+    {
+      "selector": "input[name=\"eFtpXS5uYW1lLmZpcnN0\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var_name": "a_list[0].name.first",
+          "value": "",
+          "checked": ""
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "selector": "button",
+      "tag": "button",
+      "rows": [],
+      "type": "submit"
+    }
+  ]
+};
 
 
 module.exports = page_data;
