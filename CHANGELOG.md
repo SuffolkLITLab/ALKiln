@@ -38,7 +38,18 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Changed
+- A new table format is highly encouraged: `| var | value | checked |`. var = variable name, value = words of the value to set, checked = whether to select or unselect a checkbox (only needed for checkboxes).
+
+### Deprecated
+- Previous version of table columns (`| var | choice | value |`). The new version uses `| var | value | checked |`, though we do need a better name than `checked`. It will simplify the table for developers and for the code.
+
+### Fixed
+- Some proxy field var name finding
+- Improved page var name finding in general
+- Refactored to get all fields from the page first, then compare to a new format of table
 
 ## [1.2.6] - 2021-03-14
 ### Added
