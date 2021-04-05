@@ -1,14 +1,14 @@
-let page_data =  {}
+let page_data =  {};
 
 // ============================
 // Standard fields - no proxies, no showifs.
 // ============================
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
 page_data.standard = {
-  "sought_var": [ "direct_standard_fields" ],
+  "sought_var": "direct_standard_fields",
   "fields": [
     {
-      "selector": "input[name=\"Y2hlY2tib3hlc195ZXNubw\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"Y2hlY2tib3hlc195ZXNubw\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
       "rows": [
@@ -16,7 +16,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk1RJ10\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk1RJ10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
       "rows": [
@@ -25,7 +25,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk1nJ10\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk1nJ10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
       "rows": [
@@ -34,7 +34,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk13J10\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk13J10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
       "rows": [
@@ -43,7 +43,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"_ignore1\"]",
+      "selector": "#daquestion input[name=\"_ignore1\"]",
       "tag": "input",
       "type": "checkbox",
       "rows": [
@@ -51,7 +51,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk1RJ10\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk1RJ10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
       "rows": [
@@ -60,7 +60,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk1nJ10\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk1nJ10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
       "rows": [
@@ -69,7 +69,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk13J10\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk13J10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
       "rows": [
@@ -78,7 +78,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"_ignore2\"]",
+      "selector": "#daquestion input[name=\"_ignore2\"]",
       "tag": "input",
       "type": "checkbox",
       "rows": [
@@ -86,7 +86,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"cmFkaW9feWVzbm8\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"cmFkaW9feWVzbm8\"][value=\"True\"]",
       "tag": "input",
       "type": "radio",
       "rows": [
@@ -94,7 +94,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"cmFkaW9feWVzbm8\"][value=\"False\"]",
+      "selector": "#daquestion input[name=\"cmFkaW9feWVzbm8\"][value=\"False\"]",
       "tag": "input",
       "type": "radio",
       "rows": [
@@ -102,7 +102,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"cmFkaW9fb3RoZXI\"][value=\"radio_other_opt_1\"]",
+      "selector": "#daquestion input[name=\"cmFkaW9fb3RoZXI\"][value=\"radio_other_opt_1\"]",
       "tag": "input",
       "type": "radio",
       "rows": [
@@ -110,7 +110,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"cmFkaW9fb3RoZXI\"][value=\"radio_other_opt_2\"]",
+      "selector": "#daquestion input[name=\"cmFkaW9fb3RoZXI\"][value=\"radio_other_opt_2\"]",
       "tag": "input",
       "type": "radio",
       "rows": [
@@ -118,7 +118,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"cmFkaW9fb3RoZXI\"][value=\"radio_other_opt_3\"]",
+      "selector": "#daquestion input[name=\"cmFkaW9fb3RoZXI\"][value=\"radio_other_opt_3\"]",
       "tag": "input",
       "type": "radio",
       "rows": [
@@ -126,7 +126,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "input[name=\"dGV4dF9pbnB1dA\"]",
+      "selector": "#daquestion input[name=\"dGV4dF9pbnB1dA\"]",
       "tag": "input",
       "type": "text",
       "rows": [
@@ -134,7 +134,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "textarea[name=\"dGV4dGFyZWE\"]",
+      "selector": "#daquestion textarea[name=\"dGV4dGFyZWE\"]",
       "tag": "textarea",
       "type": "",
       "rows": [
@@ -142,7 +142,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "select[name=\"ZHJvcGRvd25fdGVzdA\"]",
+      "selector": "#daquestion select[name=\"ZHJvcGRvd25fdGVzdA\"]",
       "tag": "select",
       "type": "",
       "rows": [
@@ -153,7 +153,7 @@ page_data.standard = {
       ]
     },
     {
-      "selector": "button[name=\"ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw\"][value=\"True\"]",
+      "selector": "#daquestion button[name=\"ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw\"][value=\"True\"]",
       "tag": "button",
       "type": "submit",
       "rows": [
@@ -168,12 +168,10 @@ page_data.standard = {
 // Simple show if fields - no proxies
 // ============================
 page_data.show_if = {
-  "sought_var": [
-    "direct_showifs"
-  ],
+  "sought_var": "direct_showifs",
   "fields": [
     {
-      "selector": "input[name=\"c2hvd18y\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"c2hvd18y\"][value=\"True\"]",
       "tag": "input",
       "rows": [
         {
@@ -185,7 +183,7 @@ page_data.show_if = {
       "type": "checkbox"
     },
     {
-      "selector": "input[name=\"X2ZpZWxkXzE\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"X2ZpZWxkXzE\"][value=\"True\"]",
       "tag": "input",
       "rows": [
         {
@@ -197,7 +195,7 @@ page_data.show_if = {
       "type": "checkbox"
     },
     {
-      "selector": "input[name=\"X2ZpZWxkXzI\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"X2ZpZWxkXzI\"][value=\"True\"]",
       "tag": "input",
       "rows": [
         {
@@ -209,7 +207,7 @@ page_data.show_if = {
       "type": "checkbox"
     },
     {
-      "selector": "input[name=\"X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eCdd\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eCdd\"][value=\"True\"]",
       "tag": "input",
       "rows": [
         {
@@ -226,7 +224,7 @@ page_data.show_if = {
       "type": "checkbox"
     },
     {
-      "selector": "input[name=\"X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eSdd\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eSdd\"][value=\"True\"]",
       "tag": "input",
       "rows": [
         {
@@ -243,7 +241,7 @@ page_data.show_if = {
       "type": "checkbox"
     },
     {
-      "selector": "input[name=\"_ignore3\"]",
+      "selector": "#daquestion input[name=\"_ignore3\"]",
       "tag": "input",
       "rows": [
         {
@@ -255,7 +253,7 @@ page_data.show_if = {
       "type": "checkbox"
     },
     {
-      "selector": "input[name=\"X2ZpZWxkXzQ\"][value=\"True\"]",
+      "selector": "#daquestion input[name=\"X2ZpZWxkXzQ\"][value=\"True\"]",
       "tag": "input",
       "rows": [
         {
@@ -267,7 +265,7 @@ page_data.show_if = {
       "type": "radio"
     },
     {
-      "selector": "input[name=\"X2ZpZWxkXzQ\"][value=\"False\"]",
+      "selector": "#daquestion input[name=\"X2ZpZWxkXzQ\"][value=\"False\"]",
       "tag": "input",
       "rows": [
         {
@@ -279,7 +277,7 @@ page_data.show_if = {
       "type": "radio"
     },
     {
-      "selector": "input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_1\"]",
+      "selector": "#daquestion input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_1\"]",
       "tag": "input",
       "rows": [
         {
@@ -291,7 +289,7 @@ page_data.show_if = {
       "type": "radio"
     },
     {
-      "selector": "input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_2\"]",
+      "selector": "#daquestion input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_2\"]",
       "tag": "input",
       "rows": [
         {
@@ -303,7 +301,7 @@ page_data.show_if = {
       "type": "radio"
     },
     {
-      "selector": "input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_3\"]",
+      "selector": "#daquestion input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_3\"]",
       "tag": "input",
       "rows": [
         {
@@ -315,7 +313,7 @@ page_data.show_if = {
       "type": "radio"
     },
     {
-      "selector": "input[name=\"X2ZpZWxkXzY\"]",
+      "selector": "#daquestion input[name=\"X2ZpZWxkXzY\"]",
       "tag": "input",
       "rows": [
         {
@@ -327,7 +325,7 @@ page_data.show_if = {
       "type": "text"
     },
     {
-      "selector": "textarea[name=\"X2ZpZWxkXzc\"]",
+      "selector": "#daquestion textarea[name=\"X2ZpZWxkXzc\"]",
       "tag": "textarea",
       "rows": [
         {
@@ -339,7 +337,7 @@ page_data.show_if = {
       "type": ""
     },
     {
-      "selector": "select[name=\"X2ZpZWxkXzg\"]",
+      "selector": "#daquestion select[name=\"X2ZpZWxkXzg\"]",
       "tag": "select",
       "rows": [
         {
@@ -366,7 +364,7 @@ page_data.show_if = {
       "type": ""
     },
     {
-      "selector": "button[name=\"ZGlyZWN0X3Nob3dpZnM\"][value=\"True\"]",
+      "selector": "#daquestion button[name=\"ZGlyZWN0X3Nob3dpZnM\"][value=\"True\"]",
       "tag": "button",
       "rows": [
         {
@@ -386,12 +384,10 @@ page_data.show_if = {
 // ============================
 // `continue button field:`
 page_data.button_continue = {
-  "sought_var": [
-    "button_continue"
-  ],
+  "sought_var": "button_continue",
   "fields": [
     {
-      "selector": "button[name=\"YnV0dG9uX2NvbnRpbnVl\"][value=\"True\"]",
+      "selector": "#daquestion button[name=\"YnV0dG9uX2NvbnRpbnVl\"][value=\"True\"]",
       "tag": "button",
       "rows": [
         {
@@ -408,12 +404,10 @@ page_data.button_continue = {
 // `yesnomaybe:`
 // TODO: Shall we allow 'maybe' in the table as a value for `None`?
 page_data.buttons_yesnomaybe = {
-  "sought_var": [
-    "buttons_yesnomaybe"
-  ],
+  "sought_var": "buttons_yesnomaybe",
   "fields": [
     {
-      "selector": "button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"True\"]",
+      "selector": "#daquestion button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"True\"]",
       "tag": "button",
       "rows": [
         {
@@ -425,7 +419,7 @@ page_data.buttons_yesnomaybe = {
       "type": "submit"
     },
     {
-      "selector": "button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"False\"]",
+      "selector": "#daquestion button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"False\"]",
       "tag": "button",
       "rows": [
         {
@@ -437,7 +431,7 @@ page_data.buttons_yesnomaybe = {
       "type": "submit"
     },
     {
-      "selector": "button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"None\"]",
+      "selector": "#daquestion button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"None\"]",
       "tag": "button",
       "rows": [
         {
@@ -454,12 +448,10 @@ page_data.buttons_yesnomaybe = {
 // Multiple choice 'continue' button fields that are not yesnomaybe
 // `field:` and `buttons:`
 page_data.buttons_other = {
-  "sought_var": [
-    "buttons_other"
-  ],
+  "sought_var": "buttons_other",
   "fields": [
     {
-      "selector": "button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_1\"]",
+      "selector": "#daquestion button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_1\"]",
       "tag": "button",
       "rows": [
         {
@@ -471,7 +463,7 @@ page_data.buttons_other = {
       "type": "submit"
     },
     {
-      "selector": "button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_2\"]",
+      "selector": "#daquestion button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_2\"]",
       "tag": "button",
       "rows": [
         {
@@ -483,7 +475,7 @@ page_data.buttons_other = {
       "type": "submit"
     },
     {
-      "selector": "button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_3\"]",
+      "selector": "#daquestion button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_3\"]",
       "tag": "button",
       "rows": [
         {
@@ -499,12 +491,10 @@ page_data.buttons_other = {
 
 // `field:` and `action buttons:`
 page_data.buttons_event_action = {
-  "sought_var": [
-    "button_event_action"
-  ],
+  "sought_var": "button_event_action",
   "fields": [
     {
-      "selector": "button[name=\"YnV0dG9uX2V2ZW50X2FjdGlvbg\"][value=\"True\"]",
+      "selector": "#daquestion button[name=\"YnV0dG9uX2V2ZW50X2FjdGlvbg\"][value=\"True\"]",
       "tag": "button",
       "rows": [
         {
@@ -516,7 +506,7 @@ page_data.buttons_event_action = {
       "type": "submit"
     },
     {
-      "selector": "a[data-linknum=\"1\"]",
+      "selector": "#daquestion a[data-linknum=\"1\"]",
       "tag": "a",
       "rows": [
         {
@@ -529,6 +519,58 @@ page_data.buttons_event_action = {
     }
   ]
 }
+
+
+// ============================
+// Proxy vars (x, i, j, ...)
+// ============================
+// x[i].name.first
+page_data.proxies = {
+  "sought_var": "a_list[0].name.first",
+  "fields": [
+    {
+      "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var": "a_list[0].name.first",
+          "value": "",
+          "checked": ""
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "selector": "#daquestion button",
+      "tag": "button",
+      "rows": [],
+      "type": "submit"
+    }
+  ]
+};
+
+
+// ============================
+// Signature
+// ============================
+page_data.signature = {
+  "sought_var": "signature_1",
+  "fields": [
+    {
+      "selector": "#daquestion canvas",
+      "tag": "canvas",
+      "rows": [
+        {
+          "var": "signature_1",
+          "value": "/sign",
+          "checked": false
+        }
+      ],
+      "type": ""
+    },
+    // Signature page continue buttons are in a `div.dasigbuttons`, not in a `fieldset`
+  ]
+};
 
 
 module.exports = page_data;

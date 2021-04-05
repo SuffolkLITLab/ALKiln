@@ -7,6 +7,10 @@ const html = require('./html.fixtures.js');
 const page_data = require('./page_data.fixtures.js');
 const scope = require('../../lib/scope.js');
 const getPageData = scope.getPageData;
+// TODO: Rearrange fixtures so related fixtures are next to each other? e.g.
+// buttons_yesno.html, buttons_yesno.page_data, buttons_yesno.table, buttons_yesno.matches
+// May make more files both to make and to import, but may be more useful
+// for editing, maintaining, and clarity.
 
 
 /* Test `scope.getPageData()`. Discuss: If we do a good job outlining
@@ -17,7 +21,7 @@ const getPageData = scope.getPageData;
 */
 
 // ============================
-// Standard fields - no proxies, no showifs.
+// Standard fields - no proxies
 // ============================
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
 
@@ -29,11 +33,19 @@ it(`creates the right data for standard fields`, async function() {
   expect( result ).to.deep.equal( page_data.standard );
 });
 
+
+// ============================
+// Simple show if fields - no proxies
+// ============================
 it(`creates the right data for 'show if' fields`, async function() {
   let result = await getPageData( scope, { html: html.show_if });
   expect( result ).to.deep.equal( page_data.show_if );
 });
 
+
+// ============================
+// Buttons
+// ============================
 it(`creates the right data for one continue button`, async function() {
   // `continue button field:`
   let result = await getPageData( scope, { html: html.button_continue });
@@ -56,6 +68,27 @@ it(`creates the right data for an event action button`, async function() {
   // `field:` and `action buttons:`
   let result = await getPageData( scope, { html: html.buttons_event_action });
   expect( result ).to.deep.equal( page_data.buttons_event_action );
+});
+
+
+// ============================
+// Proxy vars (x, i, j, ...)
+// ============================
+// x[i].name.first
+it(`creates the right data for a proxy input field (x, i, j...)`, async function() {
+  // `field:` and `action buttons:`
+  let result = await getPageData( scope, { html: html.proxies });
+  expect( result ).to.deep.equal( page_data.proxies );
+});
+
+
+// ============================
+// Signature
+// ============================
+it(`creates the right data for a signature field`, async function() {
+  // `field:` and `action buttons:`
+  let result = await getPageData( scope, { html: html.signature });
+  expect( result ).to.deep.equal( page_data.signature );
 });
 
 

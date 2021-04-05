@@ -18,13 +18,21 @@ it("matches the right table and field rows for standard fields", async function(
   expect( result ).to.deep.equal( matches.standard );
 });
 
+
+// ============================
+// Simple show if fields - no proxies
+// ============================
 it("matches the right table and field rows for simple show if fields", async function() {
   let result = await getMatchingRow( scope, { page_data: page_data.show_if, story_table: tables.show_if });
   expect( result ).to.deep.equal( matches.show_if );
 });
 
+
+// ============================
+// Buttons
+// ============================
 // `continue button field:`
-it(`creates the right data for one continue button`, async function() {
+it("matches the right table and field rows for one continue button", async function() {
   let result1 = await getMatchingRow( scope, { page_data: page_data.button_continue, story_table: tables.button_continue });
   expect( result1 ).to.deep.equal( matches.button_continue );
 });
@@ -54,8 +62,27 @@ it("matches the right table and field rows for other mutiple choice continue but
 });
 
 // `field:` and `action buttons:`
-it(`creates the right data for one continue button`, async function() {
+it(`matches the right table and field rows for one continue button`, async function() {
   let result1 = await getMatchingRow( scope, { page_data: page_data.buttons_event_action, story_table: tables.buttons_event_action });
   expect( result1 ).to.deep.equal( matches.buttons_event_action );
+});
+
+
+// ============================
+// Proxy vars (x, i, j, ...)
+// ============================
+// x[i].name.first
+it(`matches the right table and field rows for a proxy input text field (x, i, j...)`, async function() {
+  let result1 = await getMatchingRow( scope, { page_data: page_data.proxies, story_table: tables.proxies });
+  expect( result1 ).to.deep.equal( matches.proxies );
+});
+
+
+// ============================
+// Signature
+// ============================
+it(`matches the right table and field rows for a signature field`, async function() {
+  let result1 = await getMatchingRow( scope, { page_data: page_data.signature, story_table: tables.signature });
+  expect( result1 ).to.deep.equal( matches.signature );
 });
 

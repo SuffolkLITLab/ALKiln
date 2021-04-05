@@ -44,6 +44,8 @@ Scenario: Fields are listed out of order
     | checkboxes_yesno | True | true |
     | direct_standard_fields | True | true |
     | dropdown_test | dropdown_opt_2 |  |
+    | proxy_list[0].name.first | Proxyname1 |  |
+    | proxy_list[1].name.first | Proxyname2 |  |
     | radio_other | radio_other_opt_3 |  |
     | radio_yesno | False | false |
     | screen_features | True | true |
@@ -59,9 +61,11 @@ Scenario: Fields are listed out of order
     | textarea | Multiline text\narea value |  |
     | show_3 | True | true |
     | show_2 | True | true |
+    | signature_1 | /sign |  |
+    | signature_2 | /sign |  |
 
-@generated @slow @2 @v1
-Scenario: Format of story table is v1
+@generated @slow @2 @convert_original
+Scenario: Format of story table is original
   Given I start the interview at "all_tests"
   And the user gets to "the end" with this data:
     | var | choice | value |
@@ -75,6 +79,8 @@ Scenario: Format of story table is v1
     | checkboxes_yesno | True | true |
     | direct_standard_fields | True | true |
     | dropdown_test | | dropdown_opt_2 |
+    | proxy_list[0].name.first |  | Proxyname1 |
+    | proxy_list[1].name.first |  | Proxyname2 |
     | radio_other | | radio_other_opt_3 |
     | radio_yesno | False | false |
     | screen_features | True | true |
@@ -90,3 +96,4 @@ Scenario: Format of story table is v1
     | textarea | | Multiline text\narea value |
     | show_3 | True | true |
     | show_2 | True | true |
+    |  |  | /sign |

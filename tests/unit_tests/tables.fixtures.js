@@ -361,4 +361,21 @@ tables.current_to_current_formatting = [
 ];
 
 
+// ============================
+// Proxy vars (x, i, j, ...)
+// ============================
+// x[i].name.first
+tables.proxies = [
+  { "var": "a_list[0].name.first", "value": "Firstname", "checked": "", },
+];
+
+
+// ============================
+// Signature
+// ============================
+tables.signature = [
+  { "var": "signature_1", "value": "/sign", "checked": "", },
+];
+
+
 module.exports = tables;
