@@ -378,4 +378,13 @@ tables.signature = [
 ];
 
 
+// ============================
+// `choices:`
+// ============================
+// `field:` and `choices:`
+tables.choices = [
+  { "var": "cs_arrears_mc", "value": "No", "checked": "true", },
+];
+
+
 module.exports = tables;

@@ -207,4 +207,16 @@ matches.signature = [
 ];
 
 
+// ============================
+// `choices:`
+// ============================
+// `field:` and `choices:`
+matches.choices = [
+  {
+    field: { "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"No\"]", "tag": "input", "type": "radio", "rows": [{ "var": "cs_arrears_mc", "value": "No", "checked": false }] },
+    table: { "var": "cs_arrears_mc", "value": "No", "checked": "true", },
+  }
+];
+
+
 module.exports = matches;

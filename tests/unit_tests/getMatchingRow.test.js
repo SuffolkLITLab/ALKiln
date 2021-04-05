@@ -86,3 +86,13 @@ it(`matches the right table and field rows for a signature field`, async functio
   expect( result1 ).to.deep.equal( matches.signature );
 });
 
+
+// ============================
+// `choices:`
+// ============================
+// `field:` and `choices:`
+it(`matches the right table and field rows for a 'choices:' specifier`, async function() {
+  let result1 = await getMatchingRow( scope, { page_data: page_data.choices, story_table: tables.choices });
+  expect( result1 ).to.deep.equal( matches.choices );
+});
+

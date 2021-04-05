@@ -44,6 +44,7 @@ Format:
 - Newly found race condition on 'continue'. Can replicate inside of [DBD](https://github.com/caroRob/docassemble-DeadBrokeDads2/tree/add_tests_to_separating_interview_code_etc) very consistently, but not outside of it. See #
 - Make action buttons more permissive. Some action buttons don't lead to an event, they just have a url. See [#200](https://github.com/plocket/docassemble-cucumber/issues/200).
 - Fix all checkboxes getting checked no matter what.
+- Account for `choices:` specifier DOM difference - unlike other fields, it has no `.form-group` container.
 
 ### Added
 - New warning in report about variable appearing on a page in multiple places.

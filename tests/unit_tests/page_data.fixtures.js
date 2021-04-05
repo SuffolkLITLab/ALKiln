@@ -573,4 +573,38 @@ page_data.signature = {
 };
 
 
+// ============================
+// `choices:`
+// ============================
+// `field:` and `choices:`
+page_data.choices = {
+  "sought_var": "cs_arrears_mc",
+  "fields": [
+  {
+    "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"Yes\"]",
+    "tag": "input",
+    "type": "radio",
+    "rows": [{ "var": "cs_arrears_mc", "value": "Yes", "checked": false }]
+  },
+  {
+    "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"No\"]",
+    "tag": "input",
+    "type": "radio",
+    "rows": [{ "var": "cs_arrears_mc", "value": "No", "checked": false }]
+  },
+  {
+    "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"I am not sure\"]",
+    "tag": "input",
+    "type": "radio",
+    "rows": [{ "var": "cs_arrears_mc", "value": "I am not sure", "checked": false }]
+  },
+  {
+    "selector": "#daquestion button",
+    "tag": "button",
+    "type": "submit",
+    "rows": []
+  }]
+};
+
+
 module.exports = page_data;
