@@ -1,6 +1,6 @@
 {
   "name": "docassemble-cucumber",
-  "version": "1.2.7-htfx-race-condition.4",
+  "version": "1.2.7-htfx-race-condition.5",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
