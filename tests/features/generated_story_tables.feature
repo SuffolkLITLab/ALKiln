@@ -52,6 +52,7 @@ Scenario: Fields are listed out of order
     | showif_checkbox_yesno | False | false |
     | showif_checkboxes_other | showif_checkboxes_nota_1 | false |
     | showif_checkboxes_other | showif_checkboxes_nota_2 | true |
+    | showif_checkboxes_other | showif_checkboxes_nota_3 | false |
     | showif_dropdown | showif_dropdown_1 |  |
     | showif_radio_other | showif_radio_multi_2 |  |
     | showif_text_input | Show if text input value |  |
@@ -87,6 +88,7 @@ Scenario: Format of story table is original
     | showif_checkbox_yesno | False | false |
     | showif_checkboxes_other | showif_checkboxes_nota_1 | false |
     | showif_checkboxes_other | showif_checkboxes_nota_2 | true |
+    | showif_checkboxes_other | showif_checkboxes_nota_3 | false |
     | showif_dropdown | | showif_dropdown_1 |
     | showif_radio_other | | showif_radio_multi_2 |
     | showif_text_input |  | Show if text input value |
