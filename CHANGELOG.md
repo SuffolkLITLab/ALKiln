@@ -38,13 +38,15 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
 
+## [1.2.7] - 2021-04-05
 ### Changed
 - A new table format is highly encouraged: `| var | value | checked |`. var = variable name, value = words of the value to set, checked = whether to select or unselect a checkbox (only needed for checkboxes).
+- Basically, address much of [#158](https://github.com/plocket/docassemble-cucumber/issues/158), as noted below.
 
 ### Deprecated
-- Previous version of table columns (`| var | choice | value |`). The new version uses `| var | value | checked |`, though we do need a better name than `checked`. It will simplify the table for developers and for the code.
+- Previous version of table columns format (`| var | choice | value |`). The new version uses `| var | value | checked |`, though we do need a better name than `checked`. It will simplify the table for developers and for the code.
 
 ### Fixed
 - Some proxy field var name finding
