@@ -92,6 +92,16 @@ it(`creates the right data for a signature field`, async function() {
 });
 
 
+// ============================
+// `choices:`
+// ============================
+it(`creates the right data for a 'choices:' field`, async function() {
+  // `field:` and `choices:`
+  let result = await getPageData( scope, { html: html.choices });
+  expect( result ).to.deep.equal( page_data.choices );
+});
+
+
 /*
 Fields:
 - Checkboxes (multiple choice)

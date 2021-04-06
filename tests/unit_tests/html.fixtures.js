@@ -404,6 +404,7 @@ html.buttons_other = `
 </section>`;
 
 // `field:` and `action buttons:`
+// It's not actually a button, it's a link (`<a>`)
 html.buttons_event_action = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
@@ -502,6 +503,69 @@ html.signature = `
   </form>
   <div class="d-block d-md-none"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
   <div class="dasigpost"></div>
+</section>`;
+
+
+// ============================
+// `choices:`
+// ============================
+// `field:` and `choices:`
+html.choices = `
+<section id="daquestion" class="tab-pane active col-xl-6 col-lg-6 col-md-9">
+  <div class="progress mt-2">
+    <div class="progress-bar" role="progressbar" aria-valuenow="53.67087698402467" aria-valuemin="0" aria-valuemax="100" style="width: 53.67087698402467%;"></div>
+  </div>
+  <p><code>Page id: dbd 02 - ever pay late?</code></p>
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12testingaddteststoseparatinginterviewcodeetc%3AChildSupportObligors.yml" id="daform" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">Did you ever pay late?</h1>
+      <div class="daclear"></div>
+    </div>
+    <div class="da-subquestion">
+      <p>Did you ever fall behind on child support payments?</p>
+    </div>
+
+    <fieldset class="da-field-radio">
+      <legend class="sr-only">Choices:</legend>
+      <div class="row">
+        <div class="col-md-12"><input aria-label="Yes" alt="Yes" class="da-to-labelauty labelauty da-active-invisible dafullwidth is-invalid" id="Y3NfYXJyZWFyc19tYw_0" name="Y3NfYXJyZWFyc19tYw" type="radio" value="Yes" aria-hidden="true" style="display: none;" aria-describedby="Y3NfYXJyZWFyc19tYw-error"><label class="btn-light" for="Y3NfYXJyZWFyc19tYw_0" tabindex="0" role="radio" aria-checked="false" aria-label="Yes"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">Yes</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">Yes</span></label></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><input aria-label="No" alt="No" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="Y3NfYXJyZWFyc19tYw_1" name="Y3NfYXJyZWFyc19tYw" type="radio" value="No" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y3NfYXJyZWFyc19tYw_1" tabindex="0" role="radio" aria-checked="false" aria-label="No"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">No</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">No</span></label></div>
+      </div>
+      <div class="row">
+        <div class="col-md-12"><input aria-label="I am not sure" alt="I am not sure" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="Y3NfYXJyZWFyc19tYw_2" name="Y3NfYXJyZWFyc19tYw" type="radio" value="I am not sure" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y3NfYXJyZWFyc19tYw_2" tabindex="0" role="radio" aria-checked="false" aria-label="I am not sure"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">I am not sure</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">I am not sure</span></label></div>
+      </div>
+      <div id="daerrorcontainer" style=""><span id="Y3NfYXJyZWFyc19tYw-error" class="da-has-error text-danger">You need to select one.</span></div>
+    </fieldset>
+
+    <fieldset class="da-field-buttons">
+      <legend class="sr-only">Press one of the following buttons:</legend>
+      <div>
+        <button class="btn btn-da btn-primary" type="submit"><span>Next</span></button>
+      </div>
+    </fieldset>
+
+    <div class="daundertext">
+      <p>Feedback, suggestions, or comments? <a data-linknum="1" href="https://apps-dev.suffolklitlab.org/interview?i=docassemble.playground12testingaddteststoseparatinginterviewcodeetc%3Afeedback.yml&amp;github_repo=docassemble-deadbrokedads&amp;github_user=carorob&amp;variable=cs_arrears_mc&amp;question_id=dbd+02+-+ever+pay+late%3F&amp;reset=1&amp;from_list=1" target="_blank">Complete this survey</a>.</p>
+    </div> <input type="hidden" name="csrf_token" value="IjU0NGE0ZjczNGQ4YzY0NWUyNTE4Y2NjNzA4NDNhOTQyM2RkZGI2Y2Ui.YGuCAQ.pEgr9bcH4JjKkajiB3MXXrM4PKg">
+    <input type="hidden" name="_event" value="WyJjc19hcnJlYXJzX21jIl0">
+    <input type="hidden" name="_question_name" value="ID dbd 02 - ever pay late?">
+    <input type="hidden" name="_tracker" value="18">
+    <input type="hidden" name="_visible" value="">
+  </form>
 </section>`;
 
 
