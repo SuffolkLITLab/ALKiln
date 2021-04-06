@@ -525,7 +525,7 @@ page_data.buttons_event_action = {
 // Proxy vars (x, i, j, ...)
 // ============================
 // x[i].name.first
-page_data.proxies = {
+page_data.proxies_xi = {
   "sought_var": "a_list[0].name.first",
   "fields": [
     {
@@ -547,6 +547,64 @@ page_data.proxies = {
       "type": "submit"
     }
   ]
+};
+
+// your_past_benefits[i].still_receiving
+// your_past_benefits['State Veterans Benefits'].still_receiving
+// Non-match comes after a match
+page_data.proxies_non_match = {
+  "sought_var": "your_past_benefits['State Veterans Benefits'].still_receiving",
+  "fields": [
+  {
+    "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU\"]",
+    "tag": "input",
+    "type": "date",
+    "rows": [
+    {
+      "var": "your_past_benefits['State Veterans Benefits'].start_date",
+      "value": "",
+      "checked": ""
+    }]
+  },
+  {
+    "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw\"][value=\"True\"]",
+    "tag": "input",
+    "type": "radio",
+    "rows": [
+    {
+      "var": "your_past_benefits['State Veterans Benefits'].still_receiving",
+      "value": "True",
+      "checked": false
+    }]
+  },
+  {
+    "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw\"][value=\"False\"]",
+    "tag": "input",
+    "type": "radio",
+    "rows": [
+    {
+      "var": "your_past_benefits['State Veterans Benefits'].still_receiving",
+      "value": "False",
+      "checked": false
+    }]
+  },
+  {
+    "selector": "#daquestion input[name=\"X2ZpZWxkXzM\"]",
+    "tag": "input",
+    "type": "date",
+    "rows": [
+    {
+      "var": "your_past_benefits['State Veterans Benefits'].end_date",
+      "value": "",
+      "checked": ""
+    }]
+  },
+  {
+    "selector": "#daquestion button",
+    "tag": "button",
+    "type": "submit",
+    "rows": []
+  }]
 };
 
 

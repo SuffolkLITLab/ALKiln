@@ -33,8 +33,8 @@ it("matches the right table and field rows for simple show if fields", async fun
 // ============================
 // `continue button field:`
 it("matches the right table and field rows for one continue button", async function() {
-  let result1 = await getMatchingRow( scope, { page_data: page_data.button_continue, story_table: tables.button_continue });
-  expect( result1 ).to.deep.equal( matches.button_continue );
+  let result = await getMatchingRow( scope, { page_data: page_data.button_continue, story_table: tables.button_continue });
+  expect( result ).to.deep.equal( matches.button_continue );
 });
 
 // `yesnomaybe:`
@@ -63,8 +63,8 @@ it("matches the right table and field rows for other mutiple choice continue but
 
 // `field:` and `action buttons:`
 it(`matches the right table and field rows for one continue button`, async function() {
-  let result1 = await getMatchingRow( scope, { page_data: page_data.buttons_event_action, story_table: tables.buttons_event_action });
-  expect( result1 ).to.deep.equal( matches.buttons_event_action );
+  let result = await getMatchingRow( scope, { page_data: page_data.buttons_event_action, story_table: tables.buttons_event_action });
+  expect( result ).to.deep.equal( matches.buttons_event_action );
 });
 
 
@@ -72,9 +72,18 @@ it(`matches the right table and field rows for one continue button`, async funct
 // Proxy vars (x, i, j, ...)
 // ============================
 // x[i].name.first
-it(`matches the right table and field rows for a proxy input text field (x, i, j...)`, async function() {
-  let result1 = await getMatchingRow( scope, { page_data: page_data.proxies, story_table: tables.proxies });
-  expect( result1 ).to.deep.equal( matches.proxies );
+it(`matches the right table and field rows for a multi-proxy name (x[i])`, async function() {
+  let result = await getMatchingRow( scope, { page_data: page_data.proxies_xi, story_table: tables.proxies_xi });
+  expect( result ).to.deep.equal( matches.proxies_xi );
+});
+
+// your_past_benefits[i].still_receiving
+// your_past_benefits['State Veterans Benefits'].still_receiving
+// Non-match comes after a match
+it(`matches the right table and field rows for a proxy name when a non-match comes after a match`, async function() {
+  let result = await getMatchingRow( scope, { page_data: page_data.proxies_non_match, story_table: tables.proxies_non_match });
+  expect( result ).to.deep.equal( matches.proxies_non_match );
+  // console.log( JSON.stringify( result ) );
 });
 
 
@@ -82,8 +91,8 @@ it(`matches the right table and field rows for a proxy input text field (x, i, j
 // Signature
 // ============================
 it(`matches the right table and field rows for a signature field`, async function() {
-  let result1 = await getMatchingRow( scope, { page_data: page_data.signature, story_table: tables.signature });
-  expect( result1 ).to.deep.equal( matches.signature );
+  let result = await getMatchingRow( scope, { page_data: page_data.signature, story_table: tables.signature });
+  expect( result ).to.deep.equal( matches.signature );
 });
 
 
@@ -92,7 +101,7 @@ it(`matches the right table and field rows for a signature field`, async functio
 // ============================
 // `field:` and `choices:`
 it(`matches the right table and field rows for a 'choices:' specifier`, async function() {
-  let result1 = await getMatchingRow( scope, { page_data: page_data.choices, story_table: tables.choices });
-  expect( result1 ).to.deep.equal( matches.choices );
+  let result = await getMatchingRow( scope, { page_data: page_data.choices, story_table: tables.choices });
+  expect( result ).to.deep.equal( matches.choices );
 });
 

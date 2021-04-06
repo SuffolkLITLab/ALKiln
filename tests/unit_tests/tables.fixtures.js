@@ -365,8 +365,17 @@ tables.current_to_current_formatting = [
 // Proxy vars (x, i, j, ...)
 // ============================
 // x[i].name.first
-tables.proxies = [
+tables.proxies_xi = [
   { "var": "a_list[0].name.first", "value": "Firstname", "checked": "", },
+];
+
+// your_past_benefits[i].still_receiving
+// your_past_benefits['State Veterans Benefits'].still_receiving
+// Non-match comes after a match
+tables.proxies_non_match = [
+  { "var": "your_past_benefits['State Veterans Benefits'].start_date", "value": "01/01/2001", "checked": "", },
+  { "var": "your_past_benefits['State Veterans Benefits'].still_receiving", "value": "True", "checked": "true", },
+  { "var": "your_past_benefits['State Veterans Benefits'].end_date", "value": "02/02/2002", "checked": "", },
 ];
 
 
