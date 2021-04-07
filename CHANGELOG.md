@@ -38,7 +38,12 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+## [1.3.1] - 2021-04-07
+### Fixed
+- Message about duplicate selector matches.
+- Bump _minor_ version number appropriately.
 
 ## [1.2.8] - 2021-04-06
 ### Fixed
