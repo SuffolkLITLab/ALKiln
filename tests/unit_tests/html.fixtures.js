@@ -436,7 +436,7 @@ html.buttons_event_action = `
 // Proxy vars (x, i, j, ...)
 // ============================
 // x[i].name.first
-html.proxies = `
+html.proxies_xi = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTests80Signatures%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
     <div class="da-page-header">
@@ -461,6 +461,73 @@ html.proxies = `
     <input type="hidden" name="_datatypes" value="eyJlRnRwWFM1dVlXMWxMbVpwY25OMCI6ICJ0ZXh0In0">
     <input type="hidden" name="_visible" value="">
     <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlRnRwWFM1dVlXMWxMbVpwY25OMCJ9">
+  </form>
+</section>`;
+
+// your_past_benefits[i].still_receiving
+// your_past_benefits['State Veterans Benefits'].still_receiving
+// Non-match comes after a match
+html.proxies_non_match = `
+<section id="daquestion" class="tab-pane active col-xl-6 col-lg-6 col-md-9">
+  <div class="progress mt-2">
+    <div class="progress-bar" role="progressbar" aria-valuenow="60.27856815417815" aria-valuemin="0" aria-valuemax="100" style="width: 60.27856815417815%;"></div>
+  </div>
+  <p><code>Page id: dbd 04 benefits dates</code></p>
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12testingaddteststoseparatinginterviewcodeetc%3AChildSupportObligors.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">When did you get State Veterans Benefits?</h1>
+      <div class="daclear"></div>
+    </div>
+
+    <div class="form-group row darequired da-field-container da-field-container-datatype-date da-group-has-error"><label for="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU" class="col-md-4 col-form-label da-form-label datext-right">When did your State Veterans Benefits start?</label>
+      <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control is-invalid" type="date" name="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU" id="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU" aria-describedby="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU-error"><span id="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU-error" class="da-has-error text-danger">You need to fill this in.</span></div>
+    </div>
+
+    <div class="form-group row da-field-container da-field-container-note">
+      <div class="col-md-12">
+        <p>If you do not know when your State Veterans Benefits began, give us your best estimate.</p>
+      </div>
+    </div>
+
+    <div class="form-group row darequired da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesnoradio da-group-has-error"><label for="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw" class="col-md-4 col-form-label da-form-label datext-right">Do you still get State Veterans Benefits?</label>
+      <div class="col-md-8 dafieldpart">
+        <fieldset class="da-field-radio" role="radiogroup">
+          <legend class="sr-only">Choices:</legend><input aria-label="Yes" alt="Yes" class="da-to-labelauty labelauty da-active-invisible dafullwidth is-invalid" id="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw_0" name="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw" type="radio" value="True" aria-hidden="true" style="display: none;" aria-describedby="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw-error"><label class="btn-light" for="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw_0" tabindex="0" role="radio" aria-checked="false" aria-label="Yes"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">Yes</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">Yes</span></label><input aria-label="No" alt="No" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw_1" name="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw" type="radio" value="False" aria-hidden="true" style="display: none;"><label class="btn-light" for="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw_1" tabindex="0" role="radio" aria-checked="false" aria-label="No"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">No</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">No</span></label><span id="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw-error" class="da-has-error text-danger">You need to select one.</span>
+        </fieldset>
+      </div>
+    </div>
+
+    <div style="display: none;" class="dajsshowif" data-saveas="eW91cl9wYXN0X2JlbmVmaXRzW2ldLmVuZF9kYXRl" data-jsshowif="eyJleHByZXNzaW9uIjogInZhbChcInlvdXJfcGFzdF9iZW5lZml0c1tpXS5zdGlsbF9yZWNlaXZpbmdcIikgPT09IGZhbHNlIiwgInZhcnMiOiBbInlvdXJfcGFzdF9iZW5lZml0c1tpXS5zdGlsbF9yZWNlaXZpbmciXSwgInNpZ24iOiB0cnVlLCAibW9kZSI6IDB9">
+      <div class="form-group row darequired da-field-container da-field-container-datatype-date"><label for="X2ZpZWxkXzM" class="col-md-4 col-form-label da-form-label datext-right">When did your State Veterans Benefits end?</label>
+        <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="date" name="X2ZpZWxkXzM" id="X2ZpZWxkXzM" disabled=""></div>
+      </div>
+    </div>
+
+    <input type="hidden" name="_checkboxes" value="eyJlVzkxY2w5d1lYTjBYMkpsYm1WbWFYUnpXMmxkTG5OMGFXeHNYM0psWTJWcGRtbHVadyI6ICJGYWxzZSJ9">
+
+    <fieldset class="da-field-buttons">
+      <legend class="sr-only">Press one of the following buttons:</legend>
+      <div class="form-actions">
+        <button class="btn btn-da btn-primary" type="submit"><span>Next</span></button></div>
+    </fieldset>
+
+    <div class="daundertext">
+      <p>Feedback, suggestions, or comments? <a data-linknum="1" href="https://apps-dev.suffolklitlab.org/interview?i=docassemble.playground12testingaddteststoseparatinginterviewcodeetc%3Afeedback.yml&amp;github_repo=docassemble-deadbrokedads&amp;github_user=carorob&amp;variable=your_past_benefits%5B%27State+Veterans+Benefits%27%5D.still_receiving&amp;question_id=dbd+04+benefits+dates&amp;reset=1&amp;from_list=1" target="_blank">Complete this survey</a>.</p>
+    </div> <input type="hidden" name="csrf_token" value="IjkyOGQ1MmExNGRmY2M1MWNlZmEzMTE1MjcxODc1M2Y1OWYzYzA3ZTIi.YGuZjg.40f4LTH-W4hfe6B23YhZDv4MHVE">
+    <input type="hidden" name="_event" value="WyJ5b3VyX3Bhc3RfYmVuZWZpdHNbJ1N0YXRlIFZldGVyYW5zIEJlbmVmaXRzJ10uc3RpbGxfcmVjZWl2aW5nIl0">
+    <input type="hidden" name="_question_name" value="ID dbd 04 benefits dates">
+    <input type="hidden" name="_tracker" value="21">
+    <input type="hidden" name="_datatypes" value="eyJlVzkxY2w5d1lYTjBYMkpsYm1WbWFYUnpXMmxkTG5OMFlYSjBYMlJoZEdVIjogImRhdGUiLCAiZVc5MWNsOXdZWE4wWDJKbGJtVm1hWFJ6VzJsZExuTjBhV3hzWDNKbFkyVnBkbWx1WnciOiAiYm9vbGVhbiIsICJlVzkxY2w5d1lYTjBYMkpsYm1WbWFYUnpXMmxkTG1WdVpGOWtZWFJsIjogImRhdGUifQ">
+    <input type="hidden" name="_visible" value="">
+    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlVzkxY2w5d1lYTjBYMkpsYm1WbWFYUnpXMmxkTG5OMFlYSjBYMlJoZEdVIiwgIlgyWnBaV3hrWHpJIjogImVXOTFjbDl3WVhOMFgySmxibVZtYVhSelcybGRMbk4wYVd4c1gzSmxZMlZwZG1sdVp3IiwgIlgyWnBaV3hrWHpNIjogImVXOTFjbDl3WVhOMFgySmxibVZtYVhSelcybGRMbVZ1WkY5a1lYUmwifQ">
   </form>
 </section>`;
 

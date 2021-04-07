@@ -75,10 +75,18 @@ it(`creates the right data for an event action button`, async function() {
 // Proxy vars (x, i, j, ...)
 // ============================
 // x[i].name.first
-it(`creates the right data for a proxy input field (x, i, j...)`, async function() {
+it(`creates the right data for a multi-proxy name (x[i])`, async function() {
   // `field:` and `action buttons:`
-  let result = await getPageData( scope, { html: html.proxies });
-  expect( result ).to.deep.equal( page_data.proxies );
+  let result = await getPageData( scope, { html: html.proxies_xi });
+  expect( result ).to.deep.equal( page_data.proxies_xi );
+});
+
+// your_past_benefits[i].still_receiving
+// your_past_benefits['State Veterans Benefits'].still_receiving
+it(`creates the right data for a proxy name when a non-match comes after a match`, async function() {
+  // `field:` and `action buttons:`
+  let result = await getPageData( scope, { html: html.proxies_non_match });
+  expect( result ).to.deep.equal( page_data.proxies_non_match );
 });
 
 
