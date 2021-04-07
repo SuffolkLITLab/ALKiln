@@ -38,7 +38,36 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+## [1.3.1] - 2021-04-07
+### Fixed
+- Message about duplicate selector matches.
+- Bump _minor_ version number appropriately.
+
+## [1.2.8] - 2021-04-06
+### Fixed
+- Newly found race condition on 'continue'. Can replicate inside of [DBD](https://github.com/caroRob/docassemble-DeadBrokeDads2/tree/add_tests_to_separating_interview_code_etc) very consistently, but not outside of it. See [#190](https://github.com/plocket/docassemble-cucumber/issues/190).
+- Make action buttons more permissive. Some action buttons don't lead to an event, they just have a url. See [#200](https://github.com/plocket/docassemble-cucumber/issues/200).
+- Fix all checkboxes getting checked no matter what.
+- Account for `choices:` specifier DOM difference - unlike other fields, it has no `.form-group` container.
+- Incorrect truthy test.
+
+### Added
+- New warning in report about variable appearing on a page in multiple places.
+
+## [1.2.7] - 2021-04-05
+### Changed
+- A new table format is highly encouraged: `| var | value | checked |`. var = variable name, value = words of the value to set, checked = whether to select or unselect a checkbox (only needed for checkboxes).
+- Basically, address much of [#158](https://github.com/plocket/docassemble-cucumber/issues/158), as noted below.
+
+### Deprecated
+- Previous version of table columns format (`| var | choice | value |`). The new version uses `| var | value | checked |`, though we do need a better name than `checked`. It will simplify the table for developers and for the code.
+
+### Fixed
+- Some proxy field var name finding
+- Improved page var name finding in general
+- Refactored to get all fields from the page first, then compare to a new format of table
 
 ## [1.2.6] - 2021-03-14
 ### Added

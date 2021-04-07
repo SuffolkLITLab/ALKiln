@@ -44,12 +44,15 @@ Scenario: Fields are listed out of order
     | checkboxes_yesno | True | true |
     | direct_standard_fields | True | true |
     | dropdown_test | dropdown_opt_2 |  |
+    | proxy_list[0].name.first | Proxyname1 |  |
+    | proxy_list[1].name.first | Proxyname2 |  |
     | radio_other | radio_other_opt_3 |  |
     | radio_yesno | False | false |
     | screen_features | True | true |
     | showif_checkbox_yesno | False | false |
     | showif_checkboxes_other | showif_checkboxes_nota_1 | false |
     | showif_checkboxes_other | showif_checkboxes_nota_2 | true |
+    | showif_checkboxes_other | showif_checkboxes_nota_3 | false |
     | showif_dropdown | showif_dropdown_1 |  |
     | showif_radio_other | showif_radio_multi_2 |  |
     | showif_text_input | Show if text input value |  |
@@ -59,9 +62,11 @@ Scenario: Fields are listed out of order
     | textarea | Multiline text\narea value |  |
     | show_3 | True | true |
     | show_2 | True | true |
+    | signature_1 | /sign |  |
+    | signature_2 | /sign |  |
 
-@generated @slow @2 @v1
-Scenario: Format of story table is v1
+@generated @slow @2 @convert_original
+Scenario: Format of story table is original
   Given I start the interview at "all_tests"
   And the user gets to "the end" with this data:
     | var | choice | value |
@@ -75,12 +80,15 @@ Scenario: Format of story table is v1
     | checkboxes_yesno | True | true |
     | direct_standard_fields | True | true |
     | dropdown_test | | dropdown_opt_2 |
+    | proxy_list[0].name.first |  | Proxyname1 |
+    | proxy_list[1].name.first |  | Proxyname2 |
     | radio_other | | radio_other_opt_3 |
     | radio_yesno | False | false |
     | screen_features | True | true |
     | showif_checkbox_yesno | False | false |
     | showif_checkboxes_other | showif_checkboxes_nota_1 | false |
     | showif_checkboxes_other | showif_checkboxes_nota_2 | true |
+    | showif_checkboxes_other | showif_checkboxes_nota_3 | false |
     | showif_dropdown | | showif_dropdown_1 |
     | showif_radio_other | | showif_radio_multi_2 |
     | showif_text_input |  | Show if text input value |
@@ -90,3 +98,4 @@ Scenario: Format of story table is v1
     | textarea | | Multiline text\narea value |
     | show_3 | True | true |
     | show_2 | True | true |
+    |  |  | /sign |
