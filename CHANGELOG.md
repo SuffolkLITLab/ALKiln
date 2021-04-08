@@ -40,6 +40,10 @@ Format:
 -->
 ## [Unreleased]
 
+## [1.3.2] - 2021-04-07
+### Changed
+- Each test run creates a unique da Project now. No need to wait for previous tests to finish.
+
 ## [1.3.1] - 2021-04-07
 ### Fixed
 - Message about duplicate selector matches.
