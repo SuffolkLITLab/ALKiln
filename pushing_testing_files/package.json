@@ -3,15 +3,12 @@
   "version": "0.1.0",
   "description": "",
   "main": "",
-  "directories": {
-    "test": "tests"
-  },
   "scripts": {
     "test": "npm run langs_setup && npm run cucumber -- $@",
     "cucumber_base": "./node_modules/.bin/cucumber-js --require ./node_modules/docassemble-cucumber/lib/index.js",
-    "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" tests/features/*.feature docassemble/*/data/sources/*.feature; }; run_cucumber",
-    "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./node_modules/docassemble-cucumber/lib/index.js tests/features/*_lang*.feature",
-    "langs_setup": "node_modules/.bin/da-langs 'tests/features/*.feature'",
+    "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" docassemble/*/data/sources/*.feature; }; run_cucumber",
+    "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./node_modules/docassemble-cucumber/lib/index.js docassemble/*/data/sources/*_lang*.feature",
+    "langs_setup": "node_modules/.bin/da-langs 'docassemble/*/data/sources/*.feature'",
     "langs_local": "npm run langs_setup && npm run local",
     "local": "npm run setup && npm run cucumber; npm run takedown",
     "setup": "node_modules/.bin/da-setup",
