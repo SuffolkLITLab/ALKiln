@@ -40,6 +40,9 @@ Format:
 -->
 ## [Unreleased]
 
+### Added
+- Pushable package.json lets dev store test files in `docassemble/*/data/sources/*.feature`.
+
 ## [1.3.2] - 2021-04-07
 ### Changed
 - Each test run creates a unique da Project now. No need to wait for previous tests to finish.
