@@ -38,10 +38,11 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
 
-### Added
-- Pushable package.json lets dev store test files in `docassemble/*/data/sources/*.feature`.
+## [1.3.3] - 2021-04-16
+### Changed
+- This repo no longer has an action to generate test folders and scripts in the dependant repo. From now on, devs will use the interview in https://github.com/plocket/docassemble-ALAutomatedTestingTests to add it themselves. Note: That interview will put the tests in the `/sources` dir. Previous repos' scripts will continue as they are.
 
 ## [1.3.2] - 2021-04-07
 ### Changed
