@@ -636,4 +636,86 @@ html.choices = `
 </section>`;
 
 
+// ============================
+// dropdowns created with objects
+// ============================
+// ```
+// - Something: some_var
+//   datatype: object
+//   object labeler: |
+//     lambda y: y.short_label()```
+//   choices: some_obj
+// ```
+html.object_dropdown = `
+<section id="daquestion" class="tab-pane active col-xl-6 col-lg-6 col-md-9">
+  <div class="progress mt-2">
+    <div class="progress-bar" role="progressbar" aria-valuenow="18.549374999999998" aria-valuemin="0" aria-valuemax="100" style="width: 18.549374999999998%;"></div>
+  </div>
+  <p><code>id: choose a court from list</code><br>
+    <code>Package: docassemble.playground12MotionMod66Metadata playground; AL-2.0.12</code></p>
+  <div data-variable="dHJpYWxfY291cnQ" id="sought_variable" aria-hidden="true" style="display: none;"></div>
+  <div class="daaudiovideo-control al_custom_media_controls">
+    <audio title="Read this screen out loud" class="daaudio-control" preload="none" style="display: none;">
+      <source src="/speakfile?i=docassemble.playground12MotionMod66Metadata%3A209a_plaintiff_s_motion_to_modify.yml&amp;question=137&amp;digest=e4bf45b8a4efe4a8a2b518850cbbe90c&amp;type=question&amp;format=mp3&amp;language=en&amp;dialect=us" type="audio/mpeg">
+      <source src="/speakfile?i=docassemble.playground12MotionMod66Metadata%3A209a_plaintiff_s_motion_to_modify.yml&amp;question=137&amp;digest=e4bf45b8a4efe4a8a2b518850cbbe90c&amp;type=question&amp;format=ogg&amp;language=en&amp;dialect=us" type="audio/ogg">
+      <a target="_blank" href="/speakfile?i=docassemble.playground12MotionMod66Metadata%3A209a_plaintiff_s_motion_to_modify.yml&amp;question=137&amp;digest=e4bf45b8a4efe4a8a2b518850cbbe90c&amp;type=question&amp;format=ogg&amp;language=en&amp;dialect=us">Listen</a>
+    </audio>
+    <div id="page_reader_substitute_1" class="btn-group"> <button class="media-action play btn btn-sm btn-outline-secondary"> <svg class="svg-inline--fa fa-volume-up fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="volume-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"></path>
+        </svg><!-- <i class="fas fa-volume-up"></i> Font Awesome fontawesome.com --><span>&nbsp;Listen&nbsp;</span> <svg class="svg-inline--fa fa-play fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path>
+        </svg><!-- <i class="fas fa-play"></i> Font Awesome fontawesome.com --> </button> <button class="media-action restart btn btn-sm btn-outline-secondary" aria-hidden="true" style="display: none;"> <svg class="svg-inline--fa fa-volume-up fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="volume-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"></path>
+        </svg><!-- <i class="fas fa-volume-up"></i> Font Awesome fontawesome.com --><span>&nbsp;Listen&nbsp;</span> <svg class="svg-inline--fa fa-undo fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="undo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M212.333 224.333H12c-6.627 0-12-5.373-12-12V12C0 5.373 5.373 0 12 0h48c6.627 0 12 5.373 12 12v78.112C117.773 39.279 184.26 7.47 258.175 8.007c136.906.994 246.448 111.623 246.157 248.532C504.041 393.258 393.12 504 256.333 504c-64.089 0-122.496-24.313-166.51-64.215-5.099-4.622-5.334-12.554-.467-17.42l33.967-33.967c4.474-4.474 11.662-4.717 16.401-.525C170.76 415.336 211.58 432 256.333 432c97.268 0 176-78.716 176-176 0-97.267-78.716-176-176-176-58.496 0-110.28 28.476-142.274 72.333h98.274c6.627 0 12 5.373 12 12v48c0 6.627-5.373 12-12 12z"></path>
+        </svg><!-- <i class="fas fa-undo"></i> Font Awesome fontawesome.com --> </button> <button class="media-action pause btn btn-sm btn-outline-secondary" aria-hidden="true" style="display: none;"> <svg class="svg-inline--fa fa-volume-up fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="volume-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"></path>
+        </svg><!-- <i class="fas fa-volume-up"></i> Font Awesome fontawesome.com --><span>&nbsp;Listen&nbsp;</span> <svg class="svg-inline--fa fa-pause fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pause" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"></path>
+        </svg><!-- <i class="fas fa-pause"></i> Font Awesome fontawesome.com --> </button> <button class="media-action stop btn btn-sm btn-outline-secondary"> <svg class="svg-inline--fa fa-stop fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="stop" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"></path>
+        </svg><!-- <i class="fas fa-stop"></i> Font Awesome fontawesome.com --> </button></div>
+  </div>
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12MotionMod66Metadata%3A209a_plaintiff_s_motion_to_modify.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">What court is your case in?</h1>
+      <div class="daclear"></div>
+    </div>
+    <div class="da-subquestion">
+      <p>Look at your Abuse Prevention Order. </p>
+      <p>Underneath <strong>your</strong> name, see the court name. </p>
+      <p>Select that court from the list below:</p>
+    </div>
+    <div class="form-group row darequired da-field-container da-field-container-datatype-object da-field-container-inputtype-dropdown da-field-container-nolabel">
+      <label for="dHJpYWxfY291cnQ" class="sr-only">Answer here</label>
+      <div class="col dawidecol dafieldpart">
+        <p class="sr-only">Select box</p><select class="form-control daobject" name="dHJpYWxfY291cnQ" id="dHJpYWxfY291cnQ">
+          <option value="">Select...</option>
+          <option value="YWxsX2NvdXJ0c1swXQ">Attleboro District Court</option>
+          <option value="YWxsX2NvdXJ0c1syXQ">Ayer District Court</option>
+          <option value="YWxsX2NvdXJ0c1szXQ">Barnstable County Superior Court</option>
+        </select>
+      </div>
+    </div>
+    <fieldset class="da-field-buttons">
+      <legend class="sr-only">Press one of the following buttons:</legend>
+      <div class="form-actions">
+        <button type="button" class="btn btn-link btn-da daquestionbackbutton danonsubmit" title="Go back to the previous question"><span><svg class="svg-inline--fa fa-chevron-left fa-w-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+              <path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path>
+            </svg><!-- <i class="fas fa-chevron-left"></i> Font Awesome fontawesome.com --> Undo</span></button>
+        <button class="btn btn-da btn-primary" type="submit"><span>Next</span></button></div>
+    </fieldset>
+    <div class="daundertext">
+      <p>Feedback, suggestions, or comments? <a data-linknum="1" href="https://apps-dev.suffolklitlab.org/interview?i=docassemble.MAVirtualCourt%3Afeedback.yml&amp;github_repo=docassemble-AssemblyLine&amp;github_user=suffolklitlab&amp;variable=trial_court&amp;question_id=choose+a+court+from+list&amp;package_version=playground&amp;reset=1&amp;from_list=1" target="_blank">Complete this survey</a>.</p>
+    </div> <input type="hidden" name="csrf_token" value="IjkyYzc0NDk2YWFkZjUyODg3NWY3NDM3NjliZjQ5ODMwOTgyOGE4ZGEi.YH2U8g.PRwZHAGRHFPeYDe4K5aQQ3-ztz0">
+    <input type="hidden" name="_event" value="WyJ0cmlhbF9jb3VydCJd">
+    <input type="hidden" name="_question_name" value="ID choose a court from list">
+    <input type="hidden" name="_tracker" value="5">
+    <input type="hidden" name="_datatypes" value="eyJkSEpwWVd4ZlkyOTFjblEiOiAib2JqZWN0In0">
+    <input type="hidden" name="_visible" value="">
+    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJkSEpwWVd4ZlkyOTFjblEifQ">
+  </form>
+</section>`;
+
+
 module.exports = html;

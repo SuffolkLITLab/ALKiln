@@ -105,3 +105,19 @@ it(`matches the right table and field rows for a 'choices:' specifier`, async fu
   expect( result ).to.deep.equal( matches.choices );
 });
 
+
+// ============================
+// dropdowns created with objects
+// ============================
+// ```
+// - Something: some_var
+//   datatype: object
+//   object labeler: |
+//     lambda y: y.short_label()```
+//   choices: some_obj
+// ```
+it(`matches the right table and field rows for a 'choices:' specifier`, async function() {
+  let result = await getMatchingRow( scope, { page_data: page_data.object_dropdown, story_table: tables.object_dropdown });
+  expect( result ).to.deep.equal( matches.object_dropdown );
+});
+

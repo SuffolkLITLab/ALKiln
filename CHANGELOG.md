@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Fixed
+- Dropdowns created with objects always fail.
 
 ## [1.3.3] - 2021-04-16
 ### Changed

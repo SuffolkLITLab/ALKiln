@@ -396,4 +396,20 @@ tables.choices = [
 ];
 
 
+// ============================
+// dropdowns created with objects
+// ============================
+// ```
+// - Something: some_var
+//   datatype: object
+//   object labeler: |
+//     lambda y: y.short_label()```
+//   choices: some_obj
+// ```
+tables.object_dropdown = [
+  { "var": "trial_court", "value": "all_courts[0]", "checked": "true", },
+];
+
+
+
 module.exports = tables;

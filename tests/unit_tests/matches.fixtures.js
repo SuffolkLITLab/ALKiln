@@ -59,7 +59,7 @@ matches.standard = [
     "table": { "var": "textarea", "value": "Some\nmulti-line\ntext", "checked": "" },
   },
   {
-    "field": { "tag": "select", "type": "", "selector": "#daquestion select[name=\"ZHJvcGRvd25fdGVzdA\"]", "rows": [ { "var": "dropdown_test", "value": "", "checked": false }, { "var": "dropdown_test", "value": "dropdown_opt_1", "checked": false }, { "var": "dropdown_test", "value": "dropdown_opt_2", "checked": false }, { "var": "dropdown_test", "value": "dropdown_opt_3", "checked": false } ] },
+    "field": { "selector": "#daquestion select[name=\"ZHJvcGRvd25fdGVzdA\"]", "tag": "select", "type": "", "rows": [ { "var": "dropdown_test", "value": "", "checked": false }, { "var": "dropdown_test", "value": "", "checked": false }, { "var": "dropdown_test", "value": "dropdown_opt_1", "checked": false }, { "var": "dropdown_test", "value": "v�)v�'��m�", "checked": false }, { "var": "dropdown_test", "value": "dropdown_opt_2", "checked": false }, { "var": "dropdown_test", "value": "v�)v�'��m�", "checked": false }, { "var": "dropdown_test", "value": "dropdown_opt_3", "checked": false }, { "var": "dropdown_test", "value": "v�)v�'��m�", "checked": false } ] },
     "table": { "var": "dropdown_test", "value": "dropdown_opt_2", "checked": true },
   },
   {
@@ -114,7 +114,7 @@ matches.show_if = [
     "table": { "var": "showif_textarea", "value": "Some\nmulti-line\ntext in show if textarea", "checked": "", },
   },
   {
-    "field": { "tag": "select", "type": "", "selector": "#daquestion select[name=\"X2ZpZWxkXzg\"]", "rows": [ { "var": "showif_dropdown", "value": "", "checked": false }, { "var": "showif_dropdown", "value": "showif_dropdown_1", "checked": false }, { "var": "showif_dropdown", "value": "showif_dropdown_2", "checked": false }, { "var": "showif_dropdown", "value": "showif_dropdown_3", "checked": false }], },
+    "field": { "selector": "#daquestion select[name=\"X2ZpZWxkXzg\"]", "tag": "select", "rows": [ { "var": "showif_dropdown", "value": "", "checked": false }, { "var": "showif_dropdown", "value": "", "checked": false }, { "var": "showif_dropdown", "value": "showif_dropdown_1", "checked": false }, { "var": "showif_dropdown", "value": "�\u001a0��ݮ�]�\t�", "checked": false }, { "var": "showif_dropdown", "value": "showif_dropdown_2", "checked": false }, { "var": "showif_dropdown", "value": "�\u001a0��ݮ�]�\t�", "checked": false }, { "var": "showif_dropdown", "value": "showif_dropdown_3", "checked": false }, { "var": "showif_dropdown", "value": "�\u001a0��ݮ�]�\t�", "checked": false }], "type": "" },
     "table": { "var": "showif_dropdown", "value": "showif_dropdown_2", "checked": true, },
   },
   {
@@ -233,6 +233,24 @@ matches.choices = [
   {
     field: { "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"No\"]", "tag": "input", "type": "radio", "rows": [{ "var": "cs_arrears_mc", "value": "No", "checked": false }] },
     table: { "var": "cs_arrears_mc", "value": "No", "checked": "true", },
+  }
+];
+
+
+// ============================
+// dropdowns created with objects
+// ============================
+// ```
+// - Something: some_var
+//   datatype: object
+//   object labeler: |
+//     lambda y: y.short_label()```
+//   choices: some_obj
+// ```
+matches.object_dropdown = [
+  {
+    "field": { "selector": "#daquestion select[name=\"dHJpYWxfY291cnQ\"]", "tag": "select", "type": "", "rows": [ { "var": "trial_court", "value": "", "checked": false }, { "var": "trial_court", "value": "", "checked": false }, { "var": "trial_court", "value": "YWxsX2NvdXJ0c1swXQ", "checked": false }, { "var": "trial_court", "value": "all_courts[0]", "checked": false }, { "var": "trial_court", "value": "YWxsX2NvdXJ0c1syXQ", "checked": false }, { "var": "trial_court", "value": "all_courts[2]", "checked": false }, { "var": "trial_court", "value": "YWxsX2NvdXJ0c1szXQ", "checked": false }, { "var": "trial_court", "value": "all_courts[3]", "checked": false }] },
+    "table": { "var": "trial_court", "value": "all_courts[0]", "checked": "true" }
   }
 ];
 
