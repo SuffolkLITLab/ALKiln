@@ -110,6 +110,24 @@ it(`creates the right data for a 'choices:' field`, async function() {
 });
 
 
+// ============================
+// dropdowns created with objects
+// ============================
+// ```
+// - Something: some_var
+//   datatype: object
+//   object labeler: |
+//     lambda y: y.short_label()```
+//   choices: some_obj
+// ```
+it(`creates the right data for a 'choices:' field`, async function() {
+  // `field:` and `choices:`
+  let result = await getPageData( scope, { html: html.object_dropdown });
+  expect( result ).to.deep.equal( page_data.object_dropdown );
+  // console.log( JSON.stringify(result) );
+});
+
+
 /*
 Fields:
 - Checkboxes (multiple choice)
