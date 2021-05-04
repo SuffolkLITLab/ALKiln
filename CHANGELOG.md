@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [1.3.5] - 2021-05-04
+### Added
+- Handles setting [AssemblyLine](https://github.com/SuffolkLITLab/docassemble-AssemblyLine) ([ALToolbox](https://github.com/SuffolkLITLab/docassemble-ALToolbox)) `BirthDate` datatype. [See example of HTML here](https://github.com/plocket/docassemble-cucumber/pull/217).
+
 ## [1.3.4] - 2021-04-21
 ### Fixed
 - Dropdowns created with objects always fail.
