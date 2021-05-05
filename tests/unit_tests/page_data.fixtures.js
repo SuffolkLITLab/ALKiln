@@ -600,6 +600,208 @@ page_data.proxies_non_match = {
   }]
 };
 
+// Proxy vars used on a page with a mixture of fields created by
+// `code:` and normal fields
+// - code: children[i].name_fields()
+// - Birthdate: children[i].birthdate
+page_data.proxies_code_fields_mix = {
+  "sought_var": "children[1].name.first",
+  "fields": [
+  {
+    "selector": "#daquestion input[name=\"dXNlcnNbMF0uaGFzX2hhaXI\"]",
+    "tag": "input",
+    "type": "text",
+    "rows": [
+    {
+      "var": "users[0].has_hair",
+      "value": "",
+      "checked": ""
+    }]
+  },
+  {
+    "selector": "#daquestion input[name=\"Y2hpbGRyZW5bMV0ubmFtZS5maXJzdA\"]",
+    "tag": "input",
+    "type": "text",
+    "rows": [
+    {
+      "var": "children[1].name.first",
+      "value": "",
+      "checked": ""
+    }]
+  },
+  {
+    "selector": "#daquestion input[name=\"Y2hpbGRyZW5bMV0ubmFtZS5taWRkbGU\"]",
+    "tag": "input",
+    "type": "text",
+    "rows": [
+    {
+      "var": "children[1].name.middle",
+      "value": "",
+      "checked": ""
+    }]
+  },
+  {
+    "selector": "#daquestion input[name=\"Y2hpbGRyZW5bMV0ubmFtZS5sYXN0\"]",
+    "tag": "input",
+    "type": "text",
+    "rows": [
+    {
+      "var": "children[1].name.last",
+      "value": "",
+      "checked": ""
+    }]
+  },
+  {
+    "selector": "#daquestion select[name=\"Y2hpbGRyZW5bMV0ubmFtZS5zdWZmaXg\"]",
+    "tag": "select",
+    "type": "",
+    "rows": [
+    {
+      "var": "children[1].name.suffix",
+      "value": "",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "Jr",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "&",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "Sr",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "J",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "II",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": " ",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "III",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": " �",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "IV",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "!",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "V",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "VI",
+      "checked": false
+    },
+    {
+      "var": "children[1].name.suffix",
+      "value": "T",
+      "checked": false
+    }]
+  },
+  {
+    "selector": "#daquestion select",
+    "tag": "select",
+    "type": "",
+    "rows": []
+  },
+  {
+    "selector": "#daquestion input",
+    "tag": "input",
+    "type": "text",
+    "rows": []
+  },
+  {
+    "selector": "#daquestion input",
+    "tag": "input",
+    "type": "text",
+    "rows": []
+  },
+  {
+    "selector": "#daquestion input[name=\"Y2hpbGRyZW5baV0uYmlydGhkYXRl\"][value=\"//\"]",
+    "tag": "input",
+    "type": "hidden",
+    "rows": [
+    {
+      "var": "children[1].birthdate",
+      "value": "//",
+      "checked": false
+    }]
+  },
+  {
+    "selector": "#daquestion input[name=\"Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA\"][value=\"True\"]",
+    "tag": "input",
+    "type": "radio",
+    "rows": [
+    {
+      "var": "children[1].defendant_is_parent",
+      "value": "True",
+      "checked": false
+    }]
+  },
+  {
+    "selector": "#daquestion input[name=\"Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA\"][value=\"False\"]",
+    "tag": "input",
+    "type": "radio",
+    "rows": [
+    {
+      "var": "children[1].defendant_is_parent",
+      "value": "False",
+      "checked": false
+    }]
+  },
+  {
+    "selector": "#daquestion button",
+    "tag": "button",
+    "type": "button",
+    "rows": []
+  },
+  {
+    "selector": "#daquestion button",
+    "tag": "button",
+    "type": "submit",
+    "rows": []
+  }]
+}
+
 
 // ============================
 // Signature

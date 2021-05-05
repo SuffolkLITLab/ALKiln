@@ -213,6 +213,43 @@ matches.proxies_non_match = [
   }
 ];
 
+// Proxy vars used on a page with a mixture of fields created by
+// `code:` and normal fields
+// - code: children[i].name_fields()
+// - Birthdate: children[i].birthdate
+matches.proxies_code_fields_mix = [{
+  "field": { "selector": "#daquestion input[name=\"Y2hpbGRyZW5bMV0ubmFtZS5maXJzdA\"]", "tag": "input", "type": "text", "rows": [ { "var": "children[1].name.first", "value": "", "checked": "" }] },
+  "table": { "var": "children[1].name.first", "value": "My second", "checked": "" }
+},
+{
+  "field": { "selector": "#daquestion input[name=\"Y2hpbGRyZW5bMV0ubmFtZS5taWRkbGU\"]", "tag": "input", "type": "text", "rows": [ { "var": "children[1].name.middle", "value": "", "checked": "" }] },
+  "table": { "var": "children[1].name.middle", "value": "", "checked": "" }
+},
+{
+  "field": { "selector": "#daquestion input[name=\"Y2hpbGRyZW5bMV0ubmFtZS5sYXN0\"]", "tag": "input", "type": "text", "rows": [ { "var": "children[1].name.last", "value": "", "checked": "" }] },
+  "table": { "var": "children[1].name.last", "value": "Child", "checked": "" }
+},
+{
+  "field": { "selector": "#daquestion select[name=\"Y2hpbGRyZW5bMV0ubmFtZS5zdWZmaXg\"]", "tag": "select", "type": "", "rows": [ { "var": "children[1].name.suffix", "value": "", "checked": false }, { "var": "children[1].name.suffix", "value": "", "checked": false }, { "var": "children[1].name.suffix", "value": "Jr", "checked": false }, { "var": "children[1].name.suffix", "value": "&", "checked": false }, { "var": "children[1].name.suffix", "value": "Sr", "checked": false }, { "var": "children[1].name.suffix", "value": "J", "checked": false }, { "var": "children[1].name.suffix", "value": "II", "checked": false }, { "var": "children[1].name.suffix", "value": " ", "checked": false }, { "var": "children[1].name.suffix", "value": "III", "checked": false }, { "var": "children[1].name.suffix", "value": " �", "checked": false }, { "var": "children[1].name.suffix", "value": "IV", "checked": false }, { "var": "children[1].name.suffix", "value": "!", "checked": false }, { "var": "children[1].name.suffix", "value": "V", "checked": false }, { "var": "children[1].name.suffix", "value": "", "checked": false }, { "var": "children[1].name.suffix", "value": "VI", "checked": false }, { "var": "children[1].name.suffix", "value": "T", "checked": false }] },
+  "table": { "var": "children[1].name.suffix", "value": "", "checked": "" }
+},
+{
+  "field": { "selector": "#daquestion select[name=\"Y2hpbGRyZW5bMV0ubmFtZS5zdWZmaXg\"]", "tag": "select", "type": "", "rows": [ { "var": "children[1].name.suffix", "value": "", "checked": false }, { "var": "children[1].name.suffix", "value": "", "checked": false }, { "var": "children[1].name.suffix", "value": "Jr", "checked": false }, { "var": "children[1].name.suffix", "value": "&", "checked": false }, { "var": "children[1].name.suffix", "value": "Sr", "checked": false }, { "var": "children[1].name.suffix", "value": "J", "checked": false }, { "var": "children[1].name.suffix", "value": "II", "checked": false }, { "var": "children[1].name.suffix", "value": " ", "checked": false }, { "var": "children[1].name.suffix", "value": "III", "checked": false }, { "var": "children[1].name.suffix", "value": " �", "checked": false }, { "var": "children[1].name.suffix", "value": "IV", "checked": false }, { "var": "children[1].name.suffix", "value": "!", "checked": false }, { "var": "children[1].name.suffix", "value": "V", "checked": false }, { "var": "children[1].name.suffix", "value": "", "checked": false }, { "var": "children[1].name.suffix", "value": "VI", "checked": false }, { "var": "children[1].name.suffix", "value": "T", "checked": false }] },
+  "table": { "var": "children[1].name.suffix", "value": "", "checked": "" }
+},
+{
+  "field": { "selector": "#daquestion select[name=\"Y2hpbGRyZW5bMV0ubmFtZS5zdWZmaXg\"]", "tag": "select", "type": "", "rows": [ { "var": "children[1].name.suffix", "value": "", "checked": false }, { "var": "children[1].name.suffix", "value": "", "checked": false }, { "var": "children[1].name.suffix", "value": "Jr", "checked": false }, { "var": "children[1].name.suffix", "value": "&", "checked": false }, { "var": "children[1].name.suffix", "value": "Sr", "checked": false }, { "var": "children[1].name.suffix", "value": "J", "checked": false }, { "var": "children[1].name.suffix", "value": "II", "checked": false }, { "var": "children[1].name.suffix", "value": " ", "checked": false }, { "var": "children[1].name.suffix", "value": "III", "checked": false }, { "var": "children[1].name.suffix", "value": " �", "checked": false }, { "var": "children[1].name.suffix", "value": "IV", "checked": false }, { "var": "children[1].name.suffix", "value": "!", "checked": false }, { "var": "children[1].name.suffix", "value": "V", "checked": false }, { "var": "children[1].name.suffix", "value": "", "checked": false }, { "var": "children[1].name.suffix", "value": "VI", "checked": false }, { "var": "children[1].name.suffix", "value": "T", "checked": false }] },
+  "table": { "var": "children[1].name.suffix", "value": "", "checked": "" }
+},
+{
+  "field": { "selector": "#daquestion input[name=\"Y2hpbGRyZW5baV0uYmlydGhkYXRl\"][value=\"//\"]", "tag": "input", "type": "hidden", "rows": [ { "var": "children[1].birthdate", "value": "//", "checked": false }] },
+  "table": { "var": "children[1].birthdate", "value": "02/01/2016", "checked": "" }
+},
+{
+  "field": { "selector": "#daquestion input[name=\"Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA\"][value=\"True\"]", "tag": "input", "type": "radio", "rows": [ { "var": "children[1].defendant_is_parent", "value": "True", "checked": false }] },
+  "table": { "var": "children[1].defendant_is_parent", "value": "True", "checked": "true" }
+}];
+
 
 // ============================
 // Signature

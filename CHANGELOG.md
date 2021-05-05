@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Fixed
+- Does not handle proxy vars when fields produced by code are included on a page and they skip the proxy var (using the actual value instead). That is, there is a mix of the use of proxy vars and non-proxy vars both referring to the same objects.
 
 ## [1.3.5] - 2021-05-04
 ### Added

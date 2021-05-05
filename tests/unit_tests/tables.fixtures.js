@@ -378,6 +378,20 @@ tables.proxies_non_match = [
   { "var": "your_past_benefits['State Veterans Benefits'].end_date", "value": "02/02/2002", "checked": "", },
 ];
 
+// Proxy vars used on a page with a mixture of fields created by
+// `code:` and normal fields
+// - code: children[i].name_fields()
+// - Birthdate: children[i].birthdate
+tables.proxies_code_fields_mix = [
+  { "var": "children[1].birthdate", "value": "02/01/2016", "checked": ""  },
+  { "var": "children[1].defendant_is_parent", "value": "True", "checked": "true" },
+  { "var": "children[1].letter", "value": "B", "checked": ""  },
+  { "var": "children[1].name.first", "value": "My second", "checked": ""  },
+  { "var": "children[1].name.last", "value": "Child", "checked": ""  },
+  { "var": "children[1].name.middle", "value": "", "checked": ""  },
+  { "var": "children[1].name.suffix", "value": "", "checked": ""  },
+];
+
 
 // ============================
 // Signature

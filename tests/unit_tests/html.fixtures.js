@@ -531,6 +531,143 @@ html.proxies_non_match = `
   </form>
 </section>`;
 
+// Proxy vars used on a page with a mixture of fields created by
+// `code:` and normal fields
+// - code: children[i].name_fields()
+// - Birthdate: children[i].birthdate
+html.proxies_code_fields_mix = `<section id="daquestion" class="tab-pane active col-xl-6 col-lg-6 col-md-9">
+  <div class="progress mt-2">
+    <div class="progress-bar" role="progressbar" aria-valuenow="45.96399123373631" aria-valuemin="0" aria-valuemax="100" style="width: 45.96399123373631%;"></div>
+  </div>
+  <p><code>id: children user is parent of</code><br>
+    <code>Package: docassemble.playground204testingmaster playground; AL-2.0.17</code></p>
+  <div data-variable="Y2hpbGRyZW5bMV0ubmFtZS5maXJzdA" id="sought_variable" aria-hidden="true" style="display: none;"></div>
+  <div class="daaudiovideo-control al_custom_media_controls">
+    <audio title="Read this screen out loud" class="daaudio-control" preload="none" style="display: none;">
+      <source src="/speakfile?i=docassemble.playground204testingmaster%3A209a_package.yml&amp;question=212&amp;digest=138099e9316b0ef27922d14cf119dd4f&amp;type=question&amp;format=mp3&amp;language=en&amp;dialect=us" type="audio/mpeg">
+      <source src="/speakfile?i=docassemble.playground204testingmaster%3A209a_package.yml&amp;question=212&amp;digest=138099e9316b0ef27922d14cf119dd4f&amp;type=question&amp;format=ogg&amp;language=en&amp;dialect=us" type="audio/ogg">
+      <a target="_blank" href="/speakfile?i=docassemble.playground204testingmaster%3A209a_package.yml&amp;question=212&amp;digest=138099e9316b0ef27922d14cf119dd4f&amp;type=question&amp;format=ogg&amp;language=en&amp;dialect=us">Listen</a>
+    </audio>
+    <div id="page_reader_substitute_1" class="btn-group"> <button class="media-action play btn btn-sm btn-outline-secondary"> <svg class="svg-inline--fa fa-volume-up fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="volume-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"></path>
+        </svg><!-- <i class="fas fa-volume-up"></i> Font Awesome fontawesome.com --><span>&nbsp;Listen&nbsp;</span> <svg class="svg-inline--fa fa-play fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path>
+        </svg><!-- <i class="fas fa-play"></i> Font Awesome fontawesome.com --> </button> <button class="media-action restart btn btn-sm btn-outline-secondary" aria-hidden="true" style="display: none;"> <svg class="svg-inline--fa fa-volume-up fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="volume-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"></path>
+        </svg><!-- <i class="fas fa-volume-up"></i> Font Awesome fontawesome.com --><span>&nbsp;Listen&nbsp;</span> <svg class="svg-inline--fa fa-undo fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="undo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M212.333 224.333H12c-6.627 0-12-5.373-12-12V12C0 5.373 5.373 0 12 0h48c6.627 0 12 5.373 12 12v78.112C117.773 39.279 184.26 7.47 258.175 8.007c136.906.994 246.448 111.623 246.157 248.532C504.041 393.258 393.12 504 256.333 504c-64.089 0-122.496-24.313-166.51-64.215-5.099-4.622-5.334-12.554-.467-17.42l33.967-33.967c4.474-4.474 11.662-4.717 16.401-.525C170.76 415.336 211.58 432 256.333 432c97.268 0 176-78.716 176-176 0-97.267-78.716-176-176-176-58.496 0-110.28 28.476-142.274 72.333h98.274c6.627 0 12 5.373 12 12v48c0 6.627-5.373 12-12 12z"></path>
+        </svg><!-- <i class="fas fa-undo"></i> Font Awesome fontawesome.com --> </button> <button class="media-action pause btn btn-sm btn-outline-secondary" aria-hidden="true" style="display: none;"> <svg class="svg-inline--fa fa-volume-up fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="volume-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"></path>
+        </svg><!-- <i class="fas fa-volume-up"></i> Font Awesome fontawesome.com --><span>&nbsp;Listen&nbsp;</span> <svg class="svg-inline--fa fa-pause fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pause" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"></path>
+        </svg><!-- <i class="fas fa-pause"></i> Font Awesome fontawesome.com --> </button> <button class="media-action stop btn btn-sm btn-outline-secondary"> <svg class="svg-inline--fa fa-stop fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="stop" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+          <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"></path>
+        </svg><!-- <i class="fas fa-stop"></i> Font Awesome fontawesome.com --> </button></div>
+  </div>
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground204testingmaster%3A209a_package.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">Your children</h1>
+      <div class="daclear"></div>
+    </div>
+    <div class="da-subquestion">
+      <p>You told us
+        about Bobby.
+        Tell us about your second child. </p>
+    </div>
+    <div class="form-group row darequired da-field-container da-field-container-datatype-text"><label for="dXNlcnNbMF0uaGFzX2hhaXI" class="col-md-4 col-form-label da-form-label datext-right">First name</label>
+      <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="text" name="dXNlcnNbMF0uaGFzX2hhaXI" id="dXNlcnNbMF0uaGFzX2hhaXI" aria-invalid="false" style="background: khaki;"></div>
+    </div>
+    <div class="form-group row darequired da-field-container da-field-container-datatype-text"><label for="Y2hpbGRyZW5bMV0ubmFtZS5maXJzdA" class="col-md-4 col-form-label da-form-label datext-right">First name</label>
+      <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="text" name="Y2hpbGRyZW5bMV0ubmFtZS5maXJzdA" id="Y2hpbGRyZW5bMV0ubmFtZS5maXJzdA" aria-invalid="false" style="background: khaki;"></div>
+    </div>
+    <div class="form-group row da-field-container da-field-container-datatype-text"><label for="Y2hpbGRyZW5bMV0ubmFtZS5taWRkbGU" class="col-md-4 col-form-label da-form-label datext-right">Middle name</label>
+      <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="text" name="Y2hpbGRyZW5bMV0ubmFtZS5taWRkbGU" id="Y2hpbGRyZW5bMV0ubmFtZS5taWRkbGU" style="background: khaki;"></div>
+    </div>
+    <div class="form-group row darequired da-field-container da-field-container-datatype-text"><label for="Y2hpbGRyZW5bMV0ubmFtZS5sYXN0" class="col-md-4 col-form-label da-form-label datext-right">Last name</label>
+      <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="text" name="Y2hpbGRyZW5bMV0ubmFtZS5sYXN0" id="Y2hpbGRyZW5bMV0ubmFtZS5sYXN0" aria-invalid="false" style="background: khaki;"></div>
+    </div>
+    <div class="form-group row da-field-container da-field-container-datatype-text da-field-container-inputtype-dropdown"><label for="Y2hpbGRyZW5bMV0ubmFtZS5zdWZmaXg" class="col-md-4 col-form-label da-form-label datext-right">Suffix</label>
+      <div class="col-md-8 dafieldpart">
+        <p class="sr-only">Select box</p><select class="form-control dasingleselect" name="Y2hpbGRyZW5bMV0ubmFtZS5zdWZmaXg" id="Y2hpbGRyZW5bMV0ubmFtZS5zdWZmaXg" style="background: khaki;">
+          <option value="">Select...</option>
+          <option value="Jr">Jr</option>
+          <option value="Sr">Sr</option>
+          <option value="II">II</option>
+          <option value="III">III</option>
+          <option value="IV">IV</option>
+          <option value="V">V</option>
+          <option value="VI">VI</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row darequired da-field-container da-field-container-datatype-BirthDate da-group-has-error"><label for="Y2hpbGRyZW5baV0uYmlydGhkYXRl" class="col-md-4 col-form-label da-form-label datext-right">Birthdate</label>
+      <div class="col-md-8 dafieldpart">
+        <div class="form-row">
+          <div class="col">
+            <div style="text-align:center">Month</div><select class="form-control is-invalid" style="width:7.5em" required="" aria-describedby="-error" aria-invalid="true">
+              <option value=""> </option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+            </select><span id="-error" class="da-has-error text-danger">This field is required.</span>
+          </div>
+          <div class="col">
+            <div style="text-align:center">Day</div><input type="text" class="form-control" min="1" max="31" required="">
+          </div>
+          <div class="col">
+            <div style="text-align:center">Year</div><input type="text" class="form-control" required="">
+          </div>
+        </div><input alt="Input box" class="form-control da-BirthDate is-invalid" type="hidden" name="Y2hpbGRyZW5baV0uYmlydGhkYXRl" id="Y2hpbGRyZW5baV0uYmlydGhkYXRl" value="//" style="display: none;" aria-describedby="Y2hpbGRyZW5baV0uYmlydGhkYXRl-error"><span id="Y2hpbGRyZW5baV0uYmlydGhkYXRl-error" class="da-has-error text-danger">You need to enter a valid value.</span>
+      </div>
+    </div>
+    <div class="form-group row darequired da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesnoradio da-group-has-error"><label for="Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA" class="col-md-4 col-form-label da-form-label datext-right">Is George this child’s other parent?</label>
+      <div class="col-md-8 dafieldpart">
+        <fieldset class="da-field-radio" role="radiogroup">
+          <legend class="sr-only">Choices:</legend><input aria-label="Yes" alt="Yes" class="da-to-labelauty labelauty da-active-invisible dafullwidth is-invalid" id="Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA_0" name="Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA" type="radio" value="True" aria-hidden="true" style="display: none;" aria-describedby="Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA-error"><label class="btn-light" for="Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA_0" tabindex="0" role="radio" aria-checked="false" aria-label="Yes"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">Yes</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">Yes</span></label><input aria-label="No" alt="No" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA_1" name="Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA" type="radio" value="False" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA_1" tabindex="0" role="radio" aria-checked="false" aria-label="No"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
+              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">No</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">No</span></label><span id="Y2hpbGRyZW5baV0uZGVmZW5kYW50X2lzX3BhcmVudA-error" class="da-has-error text-danger">You need to select one.</span>
+        </fieldset>
+      </div>
+    </div>
+    <input type="hidden" name="_checkboxes" value="eyJZMmhwYkdSeVpXNWJNVjB1Ym1GdFpTNXRhV1JrYkdVIjogIk5vbmUiLCAiWTJocGJHUnlaVzViTVYwdWJtRnRaUzV6ZFdabWFYZyI6ICJOb25lIiwgIlkyaHBiR1J5Wlc1YmFWMHVaR1ZtWlc1a1lXNTBYMmx6WDNCaGNtVnVkQSI6ICJGYWxzZSJ9">
+    <fieldset class="da-button-set da-field-buttons">
+      <legend class="sr-only">Press one of the following buttons:</legend>
+      <div class="form-actions">
+        <button type="button" class="btn btn-link btn-da daquestionbackbutton danonsubmit" title="Go back to the previous question"><span><svg class="svg-inline--fa fa-chevron-left fa-w-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
+              <path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path>
+            </svg><!-- <i class="fas fa-chevron-left"></i> Font Awesome fontawesome.com --> Undo</span></button>
+        <button class="btn btn-da btn-primary" type="submit"><span>Next</span></button></div>
+    </fieldset>
+    <div class="daundertext">
+      <p><a data-linknum="1" href="/user/sign-in?next=https%3A%2F%2Fapps-dev.suffolklitlab.org%2Finterview%3Fi%3Ddocassemble.playground204testingmaster%253A209a_package.yml%26session%3DZWuAZpn6FkAg8qaREy8LAthAeGfhEaiP"><svg class="svg-inline--fa fa-sign-in-alt fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sign-in-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M416 448h-84c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h84c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32h-84c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h84c53 0 96 43 96 96v192c0 53-43 96-96 96zm-47-201L201 79c-15-15-41-4.5-41 17v96H24c-13.3 0-24 10.7-24 24v96c0 13.3 10.7 24 24 24h136v96c0 21.5 26 32 41 17l168-168c9.3-9.4 9.3-24.6 0-34z"></path>
+          </svg><!-- <i class="fas fa-sign-in-alt"></i> Font Awesome fontawesome.com --> Sign-in</a> or <a data-linknum="2" href="/user/register?next=https%3A%2F%2Fapps-dev.suffolklitlab.org%2Finterview%3Fi%3Ddocassemble.playground204testingmaster%253A209a_package.yml%26session%3DZWuAZpn6FkAg8qaREy8LAthAeGfhEaiP">register</a> to save your progress (optional).</p>
+      <p>Feedback, suggestions, or comments? <a data-linknum="3" href="https://apps-dev.suffolklitlab.org/interview?i=docassemble.MAVirtualCourt%3Afeedback.yml&amp;github_repo=docassemble-AssemblyLine&amp;github_user=suffolklitlab&amp;variable=children%5B1%5D.name.first&amp;question_id=children+user+is+parent+of&amp;package_version=playground&amp;reset=1&amp;from_list=1" target="_blank">Complete this survey</a>.</p>
+    </div> <input type="hidden" name="csrf_token" value="ImFkY2Q1Nzg0OTc4MjQwNjIyYTEzNjg2ZWZjNGQ0NzBhYjYxMThiYmMi.YJKG4w.3meZaK0wZHB-fUhyPhZUjSxTkp4">
+    <input type="hidden" name="_event" value="WyJjaGlsZHJlblsxXS5uYW1lLmZpcnN0Il0">
+    <input type="hidden" name="_question_name" value="ID children user is parent of">
+    <input type="hidden" name="_tracker" value="16">
+    <input type="hidden" name="_datatypes" value="eyJZMmhwYkdSeVpXNWJNVjB1Ym1GdFpTNW1hWEp6ZEEiOiAidGV4dCIsICJZMmhwYkdSeVpXNWJNVjB1Ym1GdFpTNXRhV1JrYkdVIjogInRleHQiLCAiWTJocGJHUnlaVzViTVYwdWJtRnRaUzVzWVhOMCI6ICJ0ZXh0IiwgIlkyaHBiR1J5Wlc1Yk1WMHVibUZ0WlM1emRXWm1hWGciOiAidGV4dCIsICJZMmhwYkdSeVpXNWJhVjB1WW1seWRHaGtZWFJsIjogIkJpcnRoRGF0ZSIsICJZMmhwYkdSeVpXNWJhVjB1WkdWbVpXNWtZVzUwWDJselgzQmhjbVZ1ZEEiOiAiYm9vbGVhbiJ9">
+    <input type="hidden" name="_visible" value="">
+    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QmZNQSI6ICJZMmhwYkdSeVpXNWJNVjB1Ym1GdFpTNW1hWEp6ZEEiLCAiWDJacFpXeGtYekJmTVEiOiAiWTJocGJHUnlaVzViTVYwdWJtRnRaUzV0YVdSa2JHVSIsICJYMlpwWld4a1h6QmZNZyI6ICJZMmhwYkdSeVpXNWJNVjB1Ym1GdFpTNXNZWE4wIiwgIlgyWnBaV3hrWHpCZk13IjogIlkyaHBiR1J5Wlc1Yk1WMHVibUZ0WlM1emRXWm1hWGciLCAiWDJacFpXeGtYekUiOiAiWTJocGJHUnlaVzViYVYwdVltbHlkR2hrWVhSbCIsICJYMlpwWld4a1h6SSI6ICJZMmhwYkdSeVpXNWJhVjB1WkdWbVpXNWtZVzUwWDJselgzQmhjbVZ1ZEEifQ">
+  </form>
+</section>`;
+
 
 // ============================
 // Signature

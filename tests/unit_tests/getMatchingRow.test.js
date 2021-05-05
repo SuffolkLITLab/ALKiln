@@ -83,6 +83,15 @@ it(`matches the right table and field rows for a multi-proxy name (x[i])`, async
 it(`matches the right table and field rows for a proxy name when a non-match comes after a match`, async function() {
   let result = await getMatchingRow( scope, { page_data: page_data.proxies_non_match, story_table: tables.proxies_non_match });
   expect( result ).to.deep.equal( matches.proxies_non_match );
+});
+
+// Proxy vars used on a page with a mixture of fields created by
+// `code:` and normal fields
+// - code: children[i].name_fields()
+// - Birthdate: children[i].birthdate
+it(`matches the right table and field rows for a proxy name when using normal fields and those created with \`code\` `, async function() {
+  let result = await getMatchingRow( scope, { page_data: page_data.proxies_code_fields_mix, story_table: tables.proxies_code_fields_mix });
+  expect( result ).to.deep.equal( matches.proxies_code_fields_mix );
   // console.log( JSON.stringify( result ) );
 });
 
