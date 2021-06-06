@@ -19,3 +19,17 @@ Scenario: I see user errors
   And I tap to continue
   Then I can't continue
   And I will be told an answer is invalid
+
+# TODO: (when need expressed by users) check link href correct
+@generated @fast @O3
+Scenario: I check navigation
+  Given I start the interview at "all_tests"
+  And the user gets to "showifs" with this data:
+    | var | choice | value |
+    | checkboxes_other | checkbox_other_opt_1 | true |
+    | dropdown_test | | dropdown_opt_2 |
+    | radio_yesno | False | false |
+    | radio_other | | radio_other_opt_3 |
+    | text_input | | Regular text input field value |
+    | textarea | | Multiline text\narea value |
+  Then I arrive at the next page
