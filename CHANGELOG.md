@@ -42,6 +42,9 @@ Format:
 ### Added
 - Tests for some observational Steps
 
+### Removed
+- Some Steps that won't work with translations and are not currently being used by anyone.
+
 ### Fixed
 - Assert found invalid input
 
