@@ -19,7 +19,7 @@ To cover:
 TODO:
 - Check that all the appropriate items are selected somehow. Maybe we need to get actual screen vars into a report. That's a lot of noise, though.
 
-The below scenario covers:
+The below scenario covers story table tests for:
 - [x] Trigger action
 - [x] Basic direct fields
 - [x] Able to select first choice (not thorough)
