@@ -41,12 +41,15 @@ Format:
 ## [Unreleased]
 ### Added
 - Tests for some observational Steps
+- Tests for some interactive Steps
+- Tests for Assembly Line package-specific tests
 
 ### Removed
 - Some Steps that won't work with translations and are not currently being used by anyone.
 
 ### Fixed
 - Assert found invalid input
+- 'I sign' was passing incorrect arguments
 
 ## [1.3.5] - 2021-05-04
 ### Added
