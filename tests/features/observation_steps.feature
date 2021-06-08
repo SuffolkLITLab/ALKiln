@@ -33,3 +33,17 @@ Scenario: I check navigation
     | text_input | | Regular text input field value |
     | textarea | | Multiline text\narea value |
   Then I arrive at the next page
+  Then the user gets to "screen features" with this data:
+    | var | value | checked |
+    | button_continue | True | true |
+    | buttons_other | button_2 |  |
+    | buttons_yesnomaybe | True | true |
+    | checkboxes_other | checkbox_other_opt_1 | true |
+    | checkboxes_other | checkbox_other_opt_2 | true |
+    | checkboxes_yesno | True | true |
+    | dropdown_test | dropdown_opt_2 |  |
+    | radio_other | radio_other_opt_3 |  |
+    | radio_yesno | False | false |
+    | text_input | Regular text input field value |  |
+    | textarea | Multiline text\narea value |  |
+  And I should see the link to "http://ecosia.org/"

@@ -40,6 +40,7 @@ Format:
 -->
 ## [Unreleased]
 ### Added
+- New step: 'I should see the link to' and its test
 - Tests for some observational Steps
 
 ### Removed
