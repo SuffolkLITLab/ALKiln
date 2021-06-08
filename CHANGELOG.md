@@ -42,6 +42,9 @@ Format:
 ### Added
 - Tests for some observational Steps
 
+### Fixed
+- Assert found invalid input
+
 ## [1.3.5] - 2021-05-04
 ### Added
 - Handles setting [AssemblyLine](https://github.com/SuffolkLITLab/docassemble-AssemblyLine) ([ALToolbox](https://github.com/SuffolkLITLab/docassemble-ALToolbox)) `BirthDate` datatype. [See example of HTML here](https://github.com/plocket/docassemble-cucumber/pull/217).
