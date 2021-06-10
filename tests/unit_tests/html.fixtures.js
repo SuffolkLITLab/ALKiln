@@ -464,6 +464,36 @@ html.proxies_xi = `
   </form>
 </section>`;
 
+// Multiple proxies by the same name are on the list (because of a loop)
+// x[i].name.first
+html.proxies_multi = `
+<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTests80Signatures%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">Proxy vars</h1>
+      <div class="daclear"></div>
+    </div>
+    
+    <div class="form-group row darequired da-field-container da-field-container-datatype-text"><label for="eFtpXS5uYW1lLmZpcnN0" class="col-md-4 col-form-label da-form-label datext-right">Name of person in list</label>
+      <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="text" name="eFtpXS5uYW1lLmZpcnN0" id="eFtpXS5uYW1lLmZpcnN0" aria-invalid="false"></div>
+    </div>
+
+    <fieldset class="da-field-buttons">
+      <legend class="sr-only">Press one of the following buttons:</legend>
+      <div class="form-actions">
+        <button class="btn btn-da btn-primary" type="submit"><span>Continue</span></button></div>
+    </fieldset>
+
+    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YF34KA.OcIBnD6kITqqewqXHsSxT-rCZBg">
+    <input type="hidden" name="_event" value="WyJhX2xpc3RbMF0ubmFtZS5maXJzdCJd">
+    <input type="hidden" name="_question_name" value="ID proxy vars">
+    <input type="hidden" name="_tracker" value="1">
+    <input type="hidden" name="_datatypes" value="eyJlRnRwWFM1dVlXMWxMbVpwY25OMCI6ICJ0ZXh0In0">
+    <input type="hidden" name="_visible" value="">
+    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlRnRwWFM1dVlXMWxMbVpwY25OMCJ9">
+  </form>
+</section>`;
+
 // your_past_benefits[i].still_receiving
 // your_past_benefits['State Veterans Benefits'].still_receiving
 // Non-match comes after a match

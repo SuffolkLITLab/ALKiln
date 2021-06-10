@@ -366,16 +366,24 @@ tables.current_to_current_formatting = [
 // ============================
 // x[i].name.first
 tables.proxies_xi = [
-  { "var": "a_list[0].name.first", "value": "Firstname", "checked": "", },
+  { "sought": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", "checked": "", },
+];
+
+// Multiple proxies by the same name are on the list (because of a loop)
+// x[i].name.first
+tables.proxies_multi = [
+  { "sought": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", "checked": "", },
+  { "sought": "a_list[1].name.first", "var": "x[i].name.first", "value": "Firstname", "checked": "", },
+  { "sought": "a_list[2].name.first", "var": "x[i].name.first", "value": "Firstname", "checked": "", },
 ];
 
 // your_past_benefits[i].still_receiving
 // your_past_benefits['State Veterans Benefits'].still_receiving
 // Non-match comes after a match
 tables.proxies_non_match = [
-  { "var": "your_past_benefits['State Veterans Benefits'].start_date", "value": "01/01/2001", "checked": "", },
-  { "var": "your_past_benefits['State Veterans Benefits'].still_receiving", "value": "True", "checked": "true", },
-  { "var": "your_past_benefits['State Veterans Benefits'].end_date", "value": "02/02/2002", "checked": "", },
+  { "sought": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].start_date", "value": "01/01/2001", "checked": "", },
+  { "sought": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].still_receiving", "value": "True", "checked": "true", },
+  { "sought": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].end_date", "value": "02/02/2002", "checked": "", },
 ];
 
 
@@ -383,7 +391,8 @@ tables.proxies_non_match = [
 // Signature
 // ============================
 tables.signature = [
-  { "var": "signature_1", "value": "/sign", "checked": "", },
+  { "sought": "signature_2", "var": "signature_2", "value": "/sign", "checked": "", },
+  { "sought": "signature_1", "var": "signature_1", "value": "/sign", "checked": "", },
 ];
 
 

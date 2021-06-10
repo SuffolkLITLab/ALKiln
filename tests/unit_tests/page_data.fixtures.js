@@ -6,6 +6,7 @@ let page_data =  {};
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
 page_data.standard = {
   "sought_var": "direct_standard_fields",
+  "uses_proxies": false,
   "fields": [
     {
       "selector": "#daquestion input[name=\"Y2hlY2tib3hlc195ZXNubw\"][value=\"True\"]",
@@ -174,6 +175,7 @@ page_data.standard = {
 // ============================
 page_data.show_if = {
   "sought_var": "direct_showifs",
+  "uses_proxies": false,
   "fields": [
     {
       "selector": "#daquestion input[name=\"c2hvd18y\"][value=\"True\"]",
@@ -378,6 +380,7 @@ page_data.show_if = {
 // `continue button field:`
 page_data.button_continue = {
   "sought_var": "button_continue",
+  "uses_proxies": false,
   "fields": [
     {
       "selector": "#daquestion button[name=\"YnV0dG9uX2NvbnRpbnVl\"][value=\"True\"]",
@@ -398,6 +401,7 @@ page_data.button_continue = {
 // TODO: Shall we allow 'maybe' in the table as a value for `None`?
 page_data.buttons_yesnomaybe = {
   "sought_var": "buttons_yesnomaybe",
+  "uses_proxies": false,
   "fields": [
     {
       "selector": "#daquestion button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"True\"]",
@@ -442,6 +446,7 @@ page_data.buttons_yesnomaybe = {
 // `field:` and `buttons:`
 page_data.buttons_other = {
   "sought_var": "buttons_other",
+  "uses_proxies": false,
   "fields": [
     {
       "selector": "#daquestion button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_1\"]",
@@ -485,6 +490,7 @@ page_data.buttons_other = {
 // `field:` and `action buttons:`
 page_data.buttons_event_action = {
   "sought_var": "button_event_action",
+  "uses_proxies": false,
   "fields": [
     {
       "selector": "#daquestion button[name=\"YnV0dG9uX2V2ZW50X2FjdGlvbg\"][value=\"True\"]",
@@ -520,13 +526,41 @@ page_data.buttons_event_action = {
 // x[i].name.first
 page_data.proxies_xi = {
   "sought_var": "a_list[0].name.first",
+  "uses_proxies": true,
   "fields": [
     {
       "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"]",
       "tag": "input",
       "rows": [
         {
-          "var": "a_list[0].name.first",
+          "var": "x[i].name.first",
+          "value": "",
+          "checked": ""
+        }
+      ],
+      "type": "text"
+    },
+    {
+      "selector": "#daquestion button",
+      "tag": "button",
+      "rows": [],
+      "type": "submit"
+    }
+  ]
+};
+
+// Multiple proxies by the same name are on the list (because of a loop)
+// x[i].name.first
+page_data.proxies_multi = {
+  "sought_var": "a_list[0].name.first",
+  "uses_proxies": true,
+  "fields": [
+    {
+      "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"]",
+      "tag": "input",
+      "rows": [
+        {
+          "var": "x[i].name.first",
           "value": "",
           "checked": ""
         }
@@ -547,6 +581,7 @@ page_data.proxies_xi = {
 // Non-match comes after a match
 page_data.proxies_non_match = {
   "sought_var": "your_past_benefits['State Veterans Benefits'].still_receiving",
+  "uses_proxies": true,
   "fields": [
   {
     "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU\"]",
@@ -554,7 +589,7 @@ page_data.proxies_non_match = {
     "type": "date",
     "rows": [
     {
-      "var": "your_past_benefits['State Veterans Benefits'].start_date",
+      "var": "your_past_benefits[i].start_date",
       "value": "",
       "checked": ""
     }]
@@ -565,7 +600,7 @@ page_data.proxies_non_match = {
     "type": "radio",
     "rows": [
     {
-      "var": "your_past_benefits['State Veterans Benefits'].still_receiving",
+      "var": "your_past_benefits[i].still_receiving",
       "value": "True",
       "checked": false
     }]
@@ -576,7 +611,7 @@ page_data.proxies_non_match = {
     "type": "radio",
     "rows": [
     {
-      "var": "your_past_benefits['State Veterans Benefits'].still_receiving",
+      "var": "your_past_benefits[i].still_receiving",
       "value": "False",
       "checked": false
     }]
@@ -587,7 +622,7 @@ page_data.proxies_non_match = {
     "type": "date",
     "rows": [
     {
-      "var": "your_past_benefits['State Veterans Benefits'].end_date",
+      "var": "your_past_benefits[i].end_date",
       "value": "",
       "checked": ""
     }]
@@ -606,6 +641,7 @@ page_data.proxies_non_match = {
 // ============================
 page_data.signature = {
   "sought_var": "signature_1",
+  "uses_proxies": false,
   "fields": [
     {
       "selector": "#daquestion canvas",
@@ -614,7 +650,7 @@ page_data.signature = {
         {
           "var": "signature_1",
           "value": "/sign",
-          "checked": false
+          "checked": ""
         }
       ],
       "type": ""
@@ -630,6 +666,7 @@ page_data.signature = {
 // `field:` and `choices:`
 page_data.choices = {
   "sought_var": "cs_arrears_mc",
+  "uses_proxies": false,
   "fields": [
   {
     "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"Yes\"]",
@@ -670,6 +707,7 @@ page_data.choices = {
 // ```
 page_data.object_dropdown =  {
   "sought_var": "trial_court",
+  "uses_proxies": false,
   "fields": [
   {
     "selector": "#daquestion select[name=\"dHJpYWxfY291cnQ\"]",

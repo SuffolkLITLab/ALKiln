@@ -190,26 +190,35 @@ matches.buttons_event_action = [
 // x[i].name.first
 matches.proxies_xi = [
   {
-    "field": { "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"]", "tag": "input", "rows": [ { "var": "a_list[0].name.first", "value": "", "checked": "" } ], "type": "text" },
-    "table": { "var": "a_list[0].name.first", "value": "Firstname", "checked": "", },
+    "field": { "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"]", "tag": "input", "rows": [ { "var": "x[i].name.first", "value": "", "checked": "" } ], "type": "text" },
+    "table": { "sought": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", "checked": "", },
+  }
+];
+
+// Multiple proxies by the same name are on the list (because of a loop)
+// x[i].name.first
+matches.proxies_multi = [
+  {
+    "field": { "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"]", "tag": "input", "rows": [ { "var": "x[i].name.first", "value": "", "checked": "" } ], "type": "text" },
+    "table": { "sought": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", "checked": "", },
   }
 ];
 
 // your_past_benefits[i].still_receiving
-// your_past_benefits['State Veterans Benefits'].still_receiving
+// your_past_benefits[i].still_receiving
 // Non-match comes after a match
 matches.proxies_non_match = [
   {
-    "field": { "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU\"]", "tag": "input", "type": "date", "rows": [ { "var": "your_past_benefits['State Veterans Benefits'].start_date", "value": "", "checked": "" }] },
-    "table": { "var": "your_past_benefits['State Veterans Benefits'].start_date", "value": "01/01/2001", "checked": "" }
+    "field": { "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU\"]", "tag": "input", "type": "date", "rows": [ { "var": "your_past_benefits[i].start_date", "value": "", "checked": "" }] },
+    "table": { "sought": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].start_date", "value": "01/01/2001", "checked": "", },
   },
   {
-    "field": { "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw\"][value=\"True\"]", "tag": "input", "type": "radio", "rows": [ { "var": "your_past_benefits['State Veterans Benefits'].still_receiving", "value": "True", "checked": false }] },
-    "table": { "var": "your_past_benefits['State Veterans Benefits'].still_receiving", "value": "True", "checked": "true" }
+    "field": { "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw\"][value=\"True\"]", "tag": "input", "type": "radio", "rows": [ { "var": "your_past_benefits[i].still_receiving", "value": "True", "checked": false }] },
+    "table": { "sought": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].still_receiving", "value": "True", "checked": "true", },
   },
   {
-    "field": { "selector": "#daquestion input[name=\"X2ZpZWxkXzM\"]", "tag": "input", "type": "date", "rows": [ { "var": "your_past_benefits['State Veterans Benefits'].end_date", "value": "", "checked": "" }] },
-    "table": { "var": "your_past_benefits['State Veterans Benefits'].end_date", "value": "02/02/2002", "checked": "" }
+    "field": { "selector": "#daquestion input[name=\"X2ZpZWxkXzM\"]", "tag": "input", "type": "date", "rows": [ { "var": "your_past_benefits[i].end_date", "value": "", "checked": "" }] },
+    "table": { "sought": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].end_date", "value": "02/02/2002", "checked": "", },
   }
 ];
 
@@ -219,8 +228,8 @@ matches.proxies_non_match = [
 // ============================
 matches.signature = [
   {
-    "field": { "selector": "#daquestion canvas", "tag": "canvas", "rows": [ { "var": "signature_1", "value": "/sign", "checked": false } ], "type": "" },
-    "table": { "var": "signature_1", "value": "/sign", "checked": "", },
+    "field": { "selector": "#daquestion canvas", "tag": "canvas", "rows": [ { "var": "signature_1", "value": "/sign", "checked": "" } ], "type": "" },
+    "table": { "sought": "signature_1", "var": "signature_1", "value": "/sign", "checked": "", },
   }
 ];
 

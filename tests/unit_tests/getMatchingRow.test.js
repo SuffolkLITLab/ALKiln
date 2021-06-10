@@ -77,6 +77,13 @@ it(`matches the right table and field rows for a multi-proxy name (x[i])`, async
   expect( result ).to.deep.equal( matches.proxies_xi );
 });
 
+// // Multiple proxies by the same name are on the list (because of a loop)
+// // x[i].name.first
+// it(`matches the right table and field rows for mulitple rows with the same proxies`, async function() {
+//   let result = await getMatchingRow( scope, { page_data: page_data.proxies_multi, story_table: tables.proxies_multi });
+//   expect( result ).to.deep.equal( matches.proxies_multi );
+// });
+
 // your_past_benefits[i].still_receiving
 // your_past_benefits['State Veterans Benefits'].still_receiving
 // Non-match comes after a match
@@ -116,7 +123,7 @@ it(`matches the right table and field rows for a 'choices:' specifier`, async fu
 //     lambda y: y.short_label()```
 //   choices: some_obj
 // ```
-it(`matches the right table and field rows for a 'choices:' specifier`, async function() {
+it(`matches the right table and field rows for a dropdown created with objects`, async function() {
   let result = await getMatchingRow( scope, { page_data: page_data.object_dropdown, story_table: tables.object_dropdown });
   expect( result ).to.deep.equal( matches.object_dropdown );
 });
