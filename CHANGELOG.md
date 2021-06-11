@@ -40,6 +40,7 @@ Format:
 -->
 ## [Unreleased]
 ### Added
+- New step: 'I should see the link to' and its test
 - Tests for some observational Steps
 - Tests for some interactive Steps
 - Tests for Assembly Line package-specific tests
