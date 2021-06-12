@@ -574,8 +574,9 @@ html.proxies_non_match = `
 // ============================
 // Signature
 // ============================
-// I think signature pages won't have sought var node on mobile
-// It's complicated. This explains it a bit, but not enoug:
+// Signature pages need the sought var node in a particular `default screen parts`
+// section or they will be missing on mobile devices/emulators
+// It's complicated. This explains it a bit, but not enough:
 // https://github.com/plocket/docassemble-ALAutomatedTestingTests/issues/119
 html.signature = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
