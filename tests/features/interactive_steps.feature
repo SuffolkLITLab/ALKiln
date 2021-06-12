@@ -3,7 +3,7 @@ Feature: Interactive steps
 
 # In tag names, 'i' is for 'interactive'
 
-@generated @fast @i1
+@fast @i1
 Scenario: I set text-type values
   Given I start the interview at "all_tests"
   And I set the "True" choice of var "checkboxes_yesno" to "true"
@@ -53,6 +53,9 @@ Scenario: I set text-type values
   # Next page
   Then the question id should be "second signature"
   When I sign
+  And I tap to continue
+  # Next page
+  Then the question id should be "simple doc"
   And I tap to continue
   # Next page
   Then the question id should be "button event action"

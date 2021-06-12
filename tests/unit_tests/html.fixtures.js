@@ -11,6 +11,7 @@ let html = {};
 // TODO: Add tests for individual fields.
 html.standard = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <div data-variable="ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
     <div class="da-page-header">
       <h1 class="h3" id="daMainQuestion">Direct standard fields</h1>
@@ -161,6 +162,7 @@ html.standard = `
 // At least all simple showif fields
 html.show_if = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <div data-variable="ZGlyZWN0X3Nob3dpZnM" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
     <div class="da-page-header">
       <h1 class="h3" id="daMainQuestion">Reveal showifs</h1>
@@ -328,6 +330,7 @@ html.show_if = `
 // `continue button field:`
 html.button_continue = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <div data-variable="YnV0dG9uX2NvbnRpbnVl" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
     <div class="da-page-header">
       <h1 class="h3" id="daMainQuestion">Button (continue)</h1>
@@ -352,6 +355,7 @@ html.button_continue = `
 // `yesnomaybe:`
 html.buttons_yesnomaybe = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <div data-variable="YnV0dG9uc195ZXNub21heWJl" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
     <div class="da-page-header">
       <h1 class="h3" id="daMainQuestion">Button (yes/no/maybe)</h1>
@@ -380,6 +384,7 @@ html.buttons_yesnomaybe = `
 // `field:` and `buttons:`
 html.buttons_other = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <div data-variable="YnV0dG9uc19vdGhlcg" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
     <div class="da-page-header">
       <h1 class="h3" id="daMainQuestion">Button (other)</h1>
@@ -407,6 +412,7 @@ html.buttons_other = `
 // It's not actually a button, it's a link (`<a>`)
 html.buttons_event_action = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <div data-variable="YnV0dG9uX2V2ZW50X2FjdGlvbg" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
     <div class="da-page-header">
       <h1 class="h3" id="daMainQuestion">Button (event action)</h1>
@@ -438,6 +444,38 @@ html.buttons_event_action = `
 // x[i].name.first
 html.proxies_xi = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <div data-variable="YV9saXN0WzBdLm5hbWUuZmlyc3Q" id="sought_variable" aria-hidden="true" style="display: none;"></div>
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTests80Signatures%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">Proxy vars</h1>
+      <div class="daclear"></div>
+    </div>
+    
+    <div class="form-group row darequired da-field-container da-field-container-datatype-text"><label for="eFtpXS5uYW1lLmZpcnN0" class="col-md-4 col-form-label da-form-label datext-right">Name of person in list</label>
+      <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="text" name="eFtpXS5uYW1lLmZpcnN0" id="eFtpXS5uYW1lLmZpcnN0" aria-invalid="false"></div>
+    </div>
+
+    <fieldset class="da-field-buttons">
+      <legend class="sr-only">Press one of the following buttons:</legend>
+      <div class="form-actions">
+        <button class="btn btn-da btn-primary" type="submit"><span>Continue</span></button></div>
+    </fieldset>
+
+    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YF34KA.OcIBnD6kITqqewqXHsSxT-rCZBg">
+    <input type="hidden" name="_event" value="WyJhX2xpc3RbMF0ubmFtZS5maXJzdCJd">
+    <input type="hidden" name="_question_name" value="ID proxy vars">
+    <input type="hidden" name="_tracker" value="1">
+    <input type="hidden" name="_datatypes" value="eyJlRnRwWFM1dVlXMWxMbVpwY25OMCI6ICJ0ZXh0In0">
+    <input type="hidden" name="_visible" value="">
+    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlRnRwWFM1dVlXMWxMbVpwY25OMCJ9">
+  </form>
+</section>`;
+
+// Multiple proxies by the same name are on the list (because of a loop)
+// x[i].name.first
+html.proxies_multi = `
+<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <div data-variable="YV9saXN0WzBdLm5hbWUuZmlyc3Q" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTests80Signatures%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
     <div class="da-page-header">
       <h1 class="h3" id="daMainQuestion">Proxy vars</h1>
@@ -469,6 +507,7 @@ html.proxies_xi = `
 // Non-match comes after a match
 html.proxies_non_match = `
 <section id="daquestion" class="tab-pane active col-xl-6 col-lg-6 col-md-9">
+  <div data-variable="eW91cl9wYXN0X2JlbmVmaXRzWydTdGF0ZSBWZXRlcmFucyBCZW5lZml0cyddLnN0aWxsX3JlY2VpdmluZw" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <div class="progress mt-2">
     <div class="progress-bar" role="progressbar" aria-valuenow="60.27856815417815" aria-valuemin="0" aria-valuemax="100" style="width: 60.27856815417815%;"></div>
   </div>
@@ -535,8 +574,13 @@ html.proxies_non_match = `
 // ============================
 // Signature
 // ============================
+// Signature pages need the sought var node in a particular `default screen parts`
+// section or they will be missing on mobile devices/emulators
+// It's complicated. This explains it a bit, but not enough:
+// https://github.com/plocket/docassemble-ALAutomatedTestingTests/issues/119
 html.signature = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <div data-variable="c2lnbmF0dXJlXzE" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <div class="dasigpage" id="dasigpage">
     <div class="dasigshowsmallblock dasigheader d-block d-sm-none" id="dasigheader" style="">
       <div class="dasiginnerheader">
@@ -579,6 +623,7 @@ html.signature = `
 // `field:` and `choices:`
 html.choices = `
 <section id="daquestion" class="tab-pane active col-xl-6 col-lg-6 col-md-9">
+  <div data-variable="Y3NfYXJyZWFyc19tYw" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <div class="progress mt-2">
     <div class="progress-bar" role="progressbar" aria-valuenow="53.67087698402467" aria-valuemin="0" aria-valuemax="100" style="width: 53.67087698402467%;"></div>
   </div>
@@ -648,6 +693,7 @@ html.choices = `
 // ```
 html.object_dropdown = `
 <section id="daquestion" class="tab-pane active col-xl-6 col-lg-6 col-md-9">
+  <div data-variable="dHJpYWxfY291cnQ" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <div class="progress mt-2">
     <div class="progress-bar" role="progressbar" aria-valuenow="18.549374999999998" aria-valuemin="0" aria-valuemax="100" style="width: 18.549374999999998%;"></div>
   </div>
