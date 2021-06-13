@@ -47,7 +47,7 @@ Format:
 - `sought` column for story table.
 
 ### Changed
-- Removed `checked` column from table. Now only put a checkbox in the table if you want it to be checked. Everything not appearing in the table will be given 'empty' values. For checkboxes, radios, etc, that means ensuring they're unselected. For fields, that means emptying. Not sure what it means for dropdowns yet.
+- Removed `checked` column from table. Now only put a checkbox in the table if you want it to be checked. Everything not appearing in the table will be given 'empty' values. For checkboxes, that means ensuring they're unselected. For text-type fields, that means emptying them of contents. Dropdowns unselect everything. RADIO BUTTONS ARE AN ISSUE because it's not clear what to do there. If there's a default selected, the user wouldn't be able to select nothing.
 - Added `sought` column to table to define sought var (| var | value | sought |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
 - Matching of fields to story table rows works differently to line up with the removal of `checked`.
 - Updated tests to match new functionality.
