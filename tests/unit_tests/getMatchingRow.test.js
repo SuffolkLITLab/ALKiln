@@ -6,7 +6,7 @@ const tables = require('./tables.fixtures.js');
 const page_data = require('./page_data.fixtures.js');
 const matches = require('./matches.fixtures.js');
 const scope = require('../../lib/scope.js');
-const getMatchingRow = scope.getMatchingRow;
+const getMatchingRows = scope.getMatchingRows;
 
 
 // ============================
@@ -14,8 +14,9 @@ const getMatchingRow = scope.getMatchingRow;
 // ============================
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
 it("matches the right table and field rows for standard fields", async function() {
-  let result = await getMatchingRow( scope, { page_data: page_data.standard, story_table: tables.standard });
+  let result = await getMatchingRows( scope, { page_data: page_data.standard, story_table: tables.standard });
   expect( result ).to.deep.equal( matches.standard );
+  expect( Object.keys( scope.report ).length ).to.equal( 1 );
 });
 
 
@@ -23,7 +24,7 @@ it("matches the right table and field rows for standard fields", async function(
 // Simple show if fields - no proxies
 // ============================
 it("matches the right table and field rows for simple show if fields", async function() {
-  let result = await getMatchingRow( scope, { page_data: page_data.show_if, story_table: tables.show_if });
+  let result = await getMatchingRows( scope, { page_data: page_data.show_if, story_table: tables.show_if });
   expect( result ).to.deep.equal( matches.show_if );
 });
 
@@ -33,37 +34,37 @@ it("matches the right table and field rows for simple show if fields", async fun
 // ============================
 // `continue button field:`
 it("matches the right table and field rows for one continue button", async function() {
-  let result = await getMatchingRow( scope, { page_data: page_data.button_continue, story_table: tables.button_continue });
+  let result = await getMatchingRows( scope, { page_data: page_data.button_continue, story_table: tables.button_continue });
   expect( result ).to.deep.equal( matches.button_continue );
 });
 
 // `yesnomaybe:`
 it("matches the right table and field rows for yesnomaybe buttons", async function() {
-  let result1 = await getMatchingRow( scope, { page_data: page_data.buttons_yesnomaybe, story_table: tables.buttons_yesnomaybe_yes });
+  let result1 = await getMatchingRows( scope, { page_data: page_data.buttons_yesnomaybe, story_table: tables.buttons_yesnomaybe_yes });
   expect( result1 ).to.deep.equal( matches.buttons_yesnomaybe_yes );
   
-  let result2 = await getMatchingRow( scope, { page_data: page_data.buttons_yesnomaybe, story_table: tables.buttons_yesnomaybe_no });
+  let result2 = await getMatchingRows( scope, { page_data: page_data.buttons_yesnomaybe, story_table: tables.buttons_yesnomaybe_no });
   expect( result2 ).to.deep.equal( matches.buttons_yesnomaybe_no );
   
-  let result3 = await getMatchingRow( scope, { page_data: page_data.buttons_yesnomaybe, story_table: tables.buttons_yesnomaybe_none });
+  let result3 = await getMatchingRows( scope, { page_data: page_data.buttons_yesnomaybe, story_table: tables.buttons_yesnomaybe_none });
   expect( result3 ).to.deep.equal( matches.buttons_yesnomaybe_none );
 });
 
 // `field:` and `buttons:`
 it("matches the right table and field rows for other mutiple choice continue buttons", async function() {
-  let result1 = await getMatchingRow( scope, { page_data: page_data.buttons_other, story_table: tables.buttons_other_1 });
+  let result1 = await getMatchingRows( scope, { page_data: page_data.buttons_other, story_table: tables.buttons_other_1 });
   expect( result1 ).to.deep.equal( matches.buttons_other_1 );
   
-  let result2 = await getMatchingRow( scope, { page_data: page_data.buttons_other, story_table: tables.buttons_other_2 });
+  let result2 = await getMatchingRows( scope, { page_data: page_data.buttons_other, story_table: tables.buttons_other_2 });
   expect( result2 ).to.deep.equal( matches.buttons_other_2 );
   
-  let result3 = await getMatchingRow( scope, { page_data: page_data.buttons_other, story_table: tables.buttons_other_3 });
+  let result3 = await getMatchingRows( scope, { page_data: page_data.buttons_other, story_table: tables.buttons_other_3 });
   expect( result3 ).to.deep.equal( matches.buttons_other_3 );
 });
 
 // `field:` and `action buttons:`
-it(`matches the right table and field rows for one continue button`, async function() {
-  let result = await getMatchingRow( scope, { page_data: page_data.buttons_event_action, story_table: tables.buttons_event_action });
+it(`matches the right table and field rows for an action button`, async function() {
+  let result = await getMatchingRows( scope, { page_data: page_data.buttons_event_action, story_table: tables.buttons_event_action });
   expect( result ).to.deep.equal( matches.buttons_event_action );
 });
 
@@ -73,14 +74,14 @@ it(`matches the right table and field rows for one continue button`, async funct
 // ============================
 // x[i].name.first
 it(`matches the right table and field rows for a multi-proxy name (x[i])`, async function() {
-  let result = await getMatchingRow( scope, { page_data: page_data.proxies_xi, story_table: tables.proxies_xi });
+  let result = await getMatchingRows( scope, { page_data: page_data.proxies_xi, story_table: tables.proxies_xi });
   expect( result ).to.deep.equal( matches.proxies_xi );
 });
 
 // Multiple proxies by the same name are on the list (because of a loop)
 // x[i].name.first
 it(`matches the right table and field rows for mulitple rows with the same proxies`, async function() {
-  let result = await getMatchingRow( scope, { page_data: page_data.proxies_multi, story_table: tables.proxies_multi });
+  let result = await getMatchingRows( scope, { page_data: page_data.proxies_multi, story_table: tables.proxies_multi });
   expect( result ).to.deep.equal( matches.proxies_multi );
 });
 
@@ -88,7 +89,7 @@ it(`matches the right table and field rows for mulitple rows with the same proxi
 // your_past_benefits['State Veterans Benefits'].still_receiving
 // Non-match comes after a match
 it(`matches the right table and field rows for a proxy name when a non-match comes after a match`, async function() {
-  let result = await getMatchingRow( scope, { page_data: page_data.proxies_non_match, story_table: tables.proxies_non_match });
+  let result = await getMatchingRows( scope, { page_data: page_data.proxies_non_match, story_table: tables.proxies_non_match });
   expect( result ).to.deep.equal( matches.proxies_non_match );
   // console.log( JSON.stringify( result ) );
 });
@@ -98,7 +99,7 @@ it(`matches the right table and field rows for a proxy name when a non-match com
 // Signature
 // ============================
 it(`matches the right table and field rows for a signature field`, async function() {
-  let result = await getMatchingRow( scope, { page_data: page_data.signature, story_table: tables.signature });
+  let result = await getMatchingRows( scope, { page_data: page_data.signature, story_table: tables.signature });
   expect( result ).to.deep.equal( matches.signature );
 });
 
@@ -108,7 +109,7 @@ it(`matches the right table and field rows for a signature field`, async functio
 // ============================
 // `field:` and `choices:`
 it(`matches the right table and field rows for a 'choices:' specifier`, async function() {
-  let result = await getMatchingRow( scope, { page_data: page_data.choices, story_table: tables.choices });
+  let result = await getMatchingRows( scope, { page_data: page_data.choices, story_table: tables.choices });
   expect( result ).to.deep.equal( matches.choices );
 });
 
@@ -124,7 +125,7 @@ it(`matches the right table and field rows for a 'choices:' specifier`, async fu
 //   choices: some_obj
 // ```
 it(`matches the right table and field rows for a dropdown created with objects`, async function() {
-  let result = await getMatchingRow( scope, { page_data: page_data.object_dropdown, story_table: tables.object_dropdown });
+  let result = await getMatchingRows( scope, { page_data: page_data.object_dropdown, story_table: tables.object_dropdown });
   expect( result ).to.deep.equal( matches.object_dropdown );
 });
 

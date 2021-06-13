@@ -40,19 +40,24 @@ Format:
 -->
 ## [Unreleased]
 ### Added
-- New step: 'I should see the link to' and its test
-- Tests for some observational Steps
-- Tests for some interactive Steps
-- Tests for Assembly Line package-specific tests
+- New step: 'I should see the link to' and its test.
+- Tests for some observational Steps.
+- Tests for some interactive Steps.
+- Tests for Assembly Line package-specific tests.
+- `sought` column to story table
 
 ### Changed
-- Added new column to table to define sought var (| var | value | checked | sought |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
+- Removed `checked` column from table. Now only put a checkbox in the table if you want it to be checked. Everything not appearing in the table will be given 'empty' values. For checkboxes, radios, etc, that means ensuring they're unselected. For fields, that means emptying. Not sure what it means for dropdowns yet.
+- Added `sought` column to table to define sought var (| var | value | sought |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
+- Matching of fields to story table rows works differently to line up with the removal of `checked`.
+- Updated tests to match new functionality.
 
 ### Deprecated
 - Previous formats of the table (| var | choice | value |) and (| var | value | checked |)
 
 ### Removed
 - Some Steps that won't work with translations and are not currently being used by anyone.
+- `checked` column from story table.
 
 ### Fixed
 - Assert found invalid input

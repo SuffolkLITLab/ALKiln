@@ -12,7 +12,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"Y2hlY2tib3hlc195ZXNubw\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
-      "rows": [
+      "guesses": [
         { "var": "checkboxes_yesno", "value": "True", "checked": false }
       ]
     },
@@ -20,7 +20,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk1RJ10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
-      "rows": [
+      "guesses": [
         { "var": "checkboxes_other_1", "value": "checkbox_other_1_opt_1", "checked": false },
         { "var": "checkboxes_other_1", "value": "r\u0017���1��az����m�", "checked": false }
       ]
@@ -29,7 +29,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk1nJ10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
-      "rows": [
+      "guesses": [
         { "var": "checkboxes_other_1", "value": "checkbox_other_1_opt_2", "checked": false },
         { "var": "checkboxes_other_1", "value": "r\u0017���1��az����m�", "checked": false }
       ]
@@ -38,7 +38,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk13J10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
-      "rows": [
+      "guesses": [
         { "var": "checkboxes_other_1", "value": "checkbox_other_1_opt_3", "checked": false },
         { "var": "checkboxes_other_1", "value": "r\u0017���1��az����m�", "checked": false }
       ]
@@ -47,7 +47,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"_ignore1\"]",
       "tag": "input",
       "type": "checkbox",
-      "rows": [
+      "guesses": [
         { "var": "checkboxes_other_1", "value": "None", "checked": false }
       ]
     },
@@ -55,7 +55,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk1RJ10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
-      "rows": [
+      "guesses": [
         { "var": "checkboxes_other_2", "value": "checkbox_other_2_opt_1", "checked": false },
         { "var": "checkboxes_other_2", "value": "r\u0017���1��az����m�", "checked": false }
       ]
@@ -64,7 +64,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk1nJ10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
-      "rows": [
+      "guesses": [
         { "var": "checkboxes_other_2", "value": "checkbox_other_2_opt_2", "checked": false },
         { "var": "checkboxes_other_2", "value": "r\u0017���1��az����m�", "checked": false }
       ]
@@ -73,7 +73,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk13J10\"][value=\"True\"]",
       "tag": "input",
       "type": "checkbox",
-      "rows": [
+      "guesses": [
         { "var": "checkboxes_other_2", "value": "checkbox_other_2_opt_3", "checked": false },
         { "var": "checkboxes_other_2", "value": "r\u0017���1��az����m�", "checked": false }
       ]
@@ -82,7 +82,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"_ignore2\"]",
       "tag": "input",
       "type": "checkbox",
-      "rows": [
+      "guesses": [
         { "var": "checkboxes_other_2", "value": "None", "checked": false }
       ]
     },
@@ -90,7 +90,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"cmFkaW9feWVzbm8\"][value=\"True\"]",
       "tag": "input",
       "type": "radio",
-      "rows": [
+      "guesses": [
         { "var": "radio_yesno", "value": "True", "checked": false }
       ]
     },
@@ -98,7 +98,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"cmFkaW9feWVzbm8\"][value=\"False\"]",
       "tag": "input",
       "type": "radio",
-      "rows": [
+      "guesses": [
         { "var": "radio_yesno", "value": "False", "checked": false }
       ]
     },
@@ -106,7 +106,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"cmFkaW9fb3RoZXI\"][value=\"radio_other_opt_1\"]",
       "tag": "input",
       "type": "radio",
-      "rows": [
+      "guesses": [
         { "var": "radio_other", "value": "radio_other_opt_1", "checked": false }
       ]
     },
@@ -114,7 +114,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"cmFkaW9fb3RoZXI\"][value=\"radio_other_opt_2\"]",
       "tag": "input",
       "type": "radio",
-      "rows": [
+      "guesses": [
         { "var": "radio_other", "value": "radio_other_opt_2", "checked": false }
       ]
     },
@@ -122,7 +122,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"cmFkaW9fb3RoZXI\"][value=\"radio_other_opt_3\"]",
       "tag": "input",
       "type": "radio",
-      "rows": [
+      "guesses": [
         { "var": "radio_other", "value": "radio_other_opt_3", "checked": false }
       ]
     },
@@ -130,7 +130,7 @@ page_data.standard = {
       "selector": "#daquestion input[name=\"dGV4dF9pbnB1dA\"]",
       "tag": "input",
       "type": "text",
-      "rows": [
+      "guesses": [
         { "var": "text_input", "value": "", "checked": "" }
       ]
     },
@@ -138,7 +138,7 @@ page_data.standard = {
       "selector": "#daquestion textarea[name=\"dGV4dGFyZWE\"]",
       "tag": "textarea",
       "type": "",
-      "rows": [
+      "guesses": [
         { "var": "textarea", "value": "", "checked": "" }
       ]
     },
@@ -146,7 +146,7 @@ page_data.standard = {
       "selector": "#daquestion select[name=\"ZHJvcGRvd25fdGVzdA\"]",
       "tag": "select",
       "type": "",
-      "rows": [
+      "guesses": [
       // May want to change `checked`
         { "var": "dropdown_test", "value": "", "checked": false },
         { "var": "dropdown_test", "value": "", "checked": false },
@@ -162,7 +162,7 @@ page_data.standard = {
       "selector": "#daquestion button[name=\"ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw\"][value=\"True\"]",
       "tag": "button",
       "type": "submit",
-      "rows": [
+      "guesses": [
         { "var": "direct_standard_fields", "value": "True", "checked": false }  // May want to change `checked`
       ]
     }
@@ -180,7 +180,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"c2hvd18y\"][value=\"True\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "show_2",
           "value": "True",
@@ -192,7 +192,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"X2ZpZWxkXzE\"][value=\"True\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "show_3",
           "value": "True",
@@ -204,7 +204,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"X2ZpZWxkXzI\"][value=\"True\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "showif_checkbox_yesno",
           "value": "True",
@@ -216,7 +216,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eCdd\"][value=\"True\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "showif_checkboxes_other",
           "value": "showif_checkboxes_nota_1",
@@ -233,7 +233,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eSdd\"][value=\"True\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "showif_checkboxes_other",
           "value": "showif_checkboxes_nota_2",
@@ -250,7 +250,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"_ignore3\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "showif_checkboxes_other",
           "value": "None",
@@ -262,7 +262,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"X2ZpZWxkXzQ\"][value=\"True\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "showif_yesnoradio",
           "value": "True",
@@ -274,7 +274,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"X2ZpZWxkXzQ\"][value=\"False\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "showif_yesnoradio",
           "value": "False",
@@ -286,7 +286,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_1\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "showif_radio_other",
           "value": "showif_radio_multi_1",
@@ -298,7 +298,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_2\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "showif_radio_other",
           "value": "showif_radio_multi_2",
@@ -310,7 +310,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"X2ZpZWxkXzU\"][value=\"showif_radio_multi_3\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "showif_radio_other",
           "value": "showif_radio_multi_3",
@@ -322,7 +322,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion input[name=\"X2ZpZWxkXzY\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "showif_text_input",
           "value": "",
@@ -334,7 +334,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion textarea[name=\"X2ZpZWxkXzc\"]",
       "tag": "textarea",
-      "rows": [
+      "guesses": [
         {
           "var": "showif_textarea",
           "value": "",
@@ -346,7 +346,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion select[name=\"X2ZpZWxkXzg\"]",
       "tag": "select",
-      "rows": [
+      "guesses": [
         { "var": "showif_dropdown", "value": "", "checked": false },
         { "var": "showif_dropdown", "value": "", "checked": false },
         { "var": "showif_dropdown", "value": "showif_dropdown_1", "checked": false },
@@ -361,7 +361,7 @@ page_data.show_if = {
     {
       "selector": "#daquestion button[name=\"ZGlyZWN0X3Nob3dpZnM\"][value=\"True\"]",
       "tag": "button",
-      "rows": [
+      "guesses": [
         {
           "var": "direct_showifs",
           "value": "True",
@@ -385,7 +385,7 @@ page_data.button_continue = {
     {
       "selector": "#daquestion button[name=\"YnV0dG9uX2NvbnRpbnVl\"][value=\"True\"]",
       "tag": "button",
-      "rows": [
+      "guesses": [
         {
           "var": "button_continue",
           "value": "True",
@@ -406,7 +406,7 @@ page_data.buttons_yesnomaybe = {
     {
       "selector": "#daquestion button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"True\"]",
       "tag": "button",
-      "rows": [
+      "guesses": [
         {
           "var": "buttons_yesnomaybe",
           "value": "True",
@@ -418,7 +418,7 @@ page_data.buttons_yesnomaybe = {
     {
       "selector": "#daquestion button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"False\"]",
       "tag": "button",
-      "rows": [
+      "guesses": [
         {
           "var": "buttons_yesnomaybe",
           "value": "False",
@@ -430,7 +430,7 @@ page_data.buttons_yesnomaybe = {
     {
       "selector": "#daquestion button[name=\"YnV0dG9uc195ZXNub21heWJl\"][value=\"None\"]",
       "tag": "button",
-      "rows": [
+      "guesses": [
         {
           "var": "buttons_yesnomaybe",
           "value": "None",
@@ -451,7 +451,7 @@ page_data.buttons_other = {
     {
       "selector": "#daquestion button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_1\"]",
       "tag": "button",
-      "rows": [
+      "guesses": [
         {
           "var": "buttons_other",
           "value": "button_1",
@@ -463,7 +463,7 @@ page_data.buttons_other = {
     {
       "selector": "#daquestion button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_2\"]",
       "tag": "button",
-      "rows": [
+      "guesses": [
         {
           "var": "buttons_other",
           "value": "button_2",
@@ -475,7 +475,7 @@ page_data.buttons_other = {
     {
       "selector": "#daquestion button[name=\"YnV0dG9uc19vdGhlcg\"][value=\"button_3\"]",
       "tag": "button",
-      "rows": [
+      "guesses": [
         {
           "var": "buttons_other",
           "value": "button_3",
@@ -495,7 +495,7 @@ page_data.buttons_event_action = {
     {
       "selector": "#daquestion button[name=\"YnV0dG9uX2V2ZW50X2FjdGlvbg\"][value=\"True\"]",
       "tag": "button",
-      "rows": [
+      "guesses": [
         {
           "var": "button_event_action",
           "value": "True",
@@ -507,7 +507,7 @@ page_data.buttons_event_action = {
     {
       "selector": "#daquestion a[data-linknum=\"1\"]",
       "tag": "a",
-      "rows": [
+      "guesses": [
         {
           "var": "end",
           "value": "",
@@ -531,7 +531,7 @@ page_data.proxies_xi = {
     {
       "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "x[i].name.first",
           "value": "",
@@ -543,7 +543,7 @@ page_data.proxies_xi = {
     {
       "selector": "#daquestion button",
       "tag": "button",
-      "rows": [],
+      "guesses": [],
       "type": "submit"
     }
   ]
@@ -558,7 +558,7 @@ page_data.proxies_multi = {
     {
       "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"]",
       "tag": "input",
-      "rows": [
+      "guesses": [
         {
           "var": "x[i].name.first",
           "value": "",
@@ -570,7 +570,7 @@ page_data.proxies_multi = {
     {
       "selector": "#daquestion button",
       "tag": "button",
-      "rows": [],
+      "guesses": [],
       "type": "submit"
     }
   ]
@@ -587,7 +587,7 @@ page_data.proxies_non_match = {
     "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU\"]",
     "tag": "input",
     "type": "date",
-    "rows": [
+    "guesses": [
     {
       "var": "your_past_benefits[i].start_date",
       "value": "",
@@ -598,7 +598,7 @@ page_data.proxies_non_match = {
     "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw\"][value=\"True\"]",
     "tag": "input",
     "type": "radio",
-    "rows": [
+    "guesses": [
     {
       "var": "your_past_benefits[i].still_receiving",
       "value": "True",
@@ -609,7 +609,7 @@ page_data.proxies_non_match = {
     "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw\"][value=\"False\"]",
     "tag": "input",
     "type": "radio",
-    "rows": [
+    "guesses": [
     {
       "var": "your_past_benefits[i].still_receiving",
       "value": "False",
@@ -620,7 +620,7 @@ page_data.proxies_non_match = {
     "selector": "#daquestion input[name=\"X2ZpZWxkXzM\"]",
     "tag": "input",
     "type": "date",
-    "rows": [
+    "guesses": [
     {
       "var": "your_past_benefits[i].end_date",
       "value": "",
@@ -631,7 +631,7 @@ page_data.proxies_non_match = {
     "selector": "#daquestion button",
     "tag": "button",
     "type": "submit",
-    "rows": []
+    "guesses": []
   }]
 };
 
@@ -646,7 +646,7 @@ page_data.signature = {
     {
       "selector": "#daquestion canvas",
       "tag": "canvas",
-      "rows": [
+      "guesses": [
         {
           "var": "signature_1",
           "value": "/sign",
@@ -672,25 +672,25 @@ page_data.choices = {
     "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"Yes\"]",
     "tag": "input",
     "type": "radio",
-    "rows": [{ "var": "cs_arrears_mc", "value": "Yes", "checked": false }]
+    "guesses": [{ "var": "cs_arrears_mc", "value": "Yes", "checked": false }]
   },
   {
     "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"No\"]",
     "tag": "input",
     "type": "radio",
-    "rows": [{ "var": "cs_arrears_mc", "value": "No", "checked": false }]
+    "guesses": [{ "var": "cs_arrears_mc", "value": "No", "checked": false }]
   },
   {
     "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"I am not sure\"]",
     "tag": "input",
     "type": "radio",
-    "rows": [{ "var": "cs_arrears_mc", "value": "I am not sure", "checked": false }]
+    "guesses": [{ "var": "cs_arrears_mc", "value": "I am not sure", "checked": false }]
   },
   {
     "selector": "#daquestion button",
     "tag": "button",
     "type": "submit",
-    "rows": []
+    "guesses": []
   }]
 };
 
@@ -713,7 +713,7 @@ page_data.object_dropdown =  {
     "selector": "#daquestion select[name=\"dHJpYWxfY291cnQ\"]",
     "tag": "select",
     "type": "",
-    "rows": [
+    "guesses": [
       { "var": "trial_court", "value": "", "checked": false },
       { "var": "trial_court", "value": "", "checked": false },
       { "var": "trial_court", "value": "YWxsX2NvdXJ0c1swXQ", "checked": false },
@@ -728,13 +728,13 @@ page_data.object_dropdown =  {
     "selector": "#daquestion button",
     "tag": "button",
     "type": "button",
-    "rows": []
+    "guesses": []
   },
   {
     "selector": "#daquestion button",
     "tag": "button",
     "type": "submit",
-    "rows": []
+    "guesses": []
   }]
 };
 

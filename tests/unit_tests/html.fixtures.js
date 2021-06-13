@@ -732,6 +732,7 @@ html.object_dropdown = `
       <p>Underneath <strong>your</strong> name, see the court name. </p>
       <p>Select that court from the list below:</p>
     </div>
+
     <div class="form-group row darequired da-field-container da-field-container-datatype-object da-field-container-inputtype-dropdown da-field-container-nolabel">
       <label for="dHJpYWxfY291cnQ" class="sr-only">Answer here</label>
       <div class="col dawidecol dafieldpart">
@@ -743,6 +744,7 @@ html.object_dropdown = `
         </select>
       </div>
     </div>
+
     <fieldset class="da-field-buttons">
       <legend class="sr-only">Press one of the following buttons:</legend>
       <div class="form-actions">
@@ -751,6 +753,7 @@ html.object_dropdown = `
             </svg><!-- <i class="fas fa-chevron-left"></i> Font Awesome fontawesome.com --> Undo</span></button>
         <button class="btn btn-da btn-primary" type="submit"><span>Next</span></button></div>
     </fieldset>
+    
     <div class="daundertext">
       <p>Feedback, suggestions, or comments? <a data-linknum="1" href="https://apps-dev.suffolklitlab.org/interview?i=docassemble.MAVirtualCourt%3Afeedback.yml&amp;github_repo=docassemble-AssemblyLine&amp;github_user=suffolklitlab&amp;variable=trial_court&amp;question_id=choose+a+court+from+list&amp;package_version=playground&amp;reset=1&amp;from_list=1" target="_blank">Complete this survey</a>.</p>
     </div> <input type="hidden" name="csrf_token" value="IjkyYzc0NDk2YWFkZjUyODg3NWY3NDM3NjliZjQ5ODMwOTgyOGE4ZGEi.YH2U8g.PRwZHAGRHFPeYDe4K5aQQ3-ztz0">
