@@ -2,7 +2,7 @@
 Feature: Story tables
 
 NOTE:
-    Unit tests make sure that all things that are supposed to match do match.
+    TODO: make sure that all things that are supposed to match do match.
 
 @fast @st1 @sought_var
 Scenario: Proxy and regular vars are mixed

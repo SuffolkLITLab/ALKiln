@@ -1,26 +1,26 @@
 @observation
 Feature: Observational steps
 
-# In tag names, 'O' is for 'Observational'
+# In tag names, 'o' is for 'observational'
 
-#@fast @O1
-#Scenario: I observe things on a single page when I arrive
-#  Given I start the interview at "all_tests"
-#  Then the question id should be "direct standard fields"
-#  And I should see the phrase "Direct standard fields"
-#  And I SHOULD see the phrase "Direct standard fields"
-#  And I should not see the phrase "zzzzzzz"
-#  And I should NOT see the phrase "zzzzzzz"
-#  And an element should have the id "daform"
-#
-#@fast @O2
-#Scenario: I see user errors
-#  Given I start the interview at "all_tests"
-#  And I tap to continue
-#  Then I can't continue
-#  And I will be told an answer is invalid
+@fast @o1
+Scenario: I observe things on a single page when I arrive
+  Given I start the interview at "all_tests"
+  Then the question id should be "direct standard fields"
+  And I should see the phrase "Direct standard fields"
+  And I SHOULD see the phrase "Direct standard fields"
+  And I should not see the phrase "zzzzzzz"
+  And I should NOT see the phrase "zzzzzzz"
+  And an element should have the id "daform"
 
-@fast @O3
+@fast @o2
+Scenario: I see user errors
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  Then I can't continue
+  And I will be told an answer is invalid
+
+@fast @o3
 Scenario: I check navigation
   Given I start the interview at "all_tests"
   And the user gets to "showifs" with this data:

@@ -44,24 +44,27 @@ Format:
 - Tests for some observational Steps.
 - Tests for some interactive Steps.
 - Tests for Assembly Line package-specific tests.
-- `sought` column to story table
+- `sought` column for story table.
 
 ### Changed
 - Removed `checked` column from table. Now only put a checkbox in the table if you want it to be checked. Everything not appearing in the table will be given 'empty' values. For checkboxes, radios, etc, that means ensuring they're unselected. For fields, that means emptying. Not sure what it means for dropdowns yet.
 - Added `sought` column to table to define sought var (| var | value | sought |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
 - Matching of fields to story table rows works differently to line up with the removal of `checked`.
 - Updated tests to match new functionality.
-
-### Deprecated
-- Previous formats of the table (| var | choice | value |) and (| var | value | checked |)
+- Attempt to handle extra space chars in dropdown menu item values. Should use trim instead with everything eventually. See issue.
+- Start scenario id with timestamp.
 
 ### Removed
+- Previous formats of the table (| var | choice | value |) and (| var | value | checked |)
 - Some Steps that won't work with translations and are not currently being used by anyone.
-- `checked` column from story table.
+- `checked` column of story table.
 
 ### Fixed
 - Assert found invalid input
 - 'I sign' was passing incorrect arguments
+- Tried to make element selectors more picky.
+- Allow more languages in scenario name.
+- Recognize anchor tag.
 
 ## [1.3.5] - 2021-05-04
 ### Added

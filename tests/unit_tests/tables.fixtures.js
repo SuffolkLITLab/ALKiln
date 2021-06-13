@@ -1,9 +1,10 @@
 let tables =  {}
 
+// TODO: Add `sought` col to non-convertion-testing rows
+
 // ============================
 // Standard fields - no proxies, no showifs.
 // ============================
-// TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
 tables.standard = [
   // continue button comes first to test that it doesn't get activated till after all other
   // variables have been set.

@@ -14,7 +14,7 @@ NOTE:
    The `sought` column does not require a value. That way simple interviews
    don't have to deal with it. They don't even need a sought column (see tests below).
 
-### Here for reference. See note above about format 1 being unsupported
+### Here for reference. See note above about formats 1 and 2 being unsupported
 ##@fast @stf1
 ##Scenario: Table is format 1 (og three cols)
 ##  Given I start the interview at "all_tests"
@@ -40,47 +40,10 @@ NOTE:
 ##    | radio_yesno | False | false |
 ##    | text_input | Regular text input field value |  |
 ##    | textarea | Multiline text\narea value |  |
-#
-## TODO: Only go up to the x[i] pages format 3a test? Or do we want to check signatures?
-#@slow @stf3
-#Scenario: Sought var
-#  Given I start the interview at "all_tests"
-#  And the user gets to "the end" with this data:
-#    | var | value | sought |
-#    | direct_showifs | True |  |
-#    | button_continue | True |  |
-#    | buttons_other | button_2 |  |  |
-#    | buttons_yesnomaybe | True |  |
-#    | checkboxes_other | checkbox_other_opt_1 |  |
-#    | checkboxes_other | checkbox_other_opt_2 |  |
-#    | checkboxes_other | checkbox_other_opt_3 |  |
-#    | checkboxes_yesno | True |  |
-#    | direct_standard_fields | True |  |
-#    | dropdown_test | dropdown_opt_2 |  |
-#    | x[i].name.first | Proxyname1 | proxy_list[0].name.first |
-#    | x[i].name.first | Proxyname2 | proxy_list[1].name.first |
-#    | radio_other | radio_other_opt_3 |  |
-#    | radio_yesno | False |  |
-#    | screen_features | True |  |
-#    | showif_checkbox_yesno | False |  |
-#    | showif_checkboxes_other | showif_checkboxes_nota_1 |  |
-#    | showif_checkboxes_other | showif_checkboxes_nota_2 |  |
-#    | showif_checkboxes_other | showif_checkboxes_nota_3 |  |
-#    | showif_dropdown | showif_dropdown_1 |  |
-#    | showif_radio_other | showif_radio_multi_2 |  |
-#    | showif_text_input | Show if text input value |  |
-#    | showif_textarea | Show if\nmultiline text\narea value |  |
-#    | showif_yesnoradio | True |  |
-#    | text_input | Regular text input field value |  |
-#    | textarea | Multiline text\narea value |  |
-#    | show_3 | True |  |
-#    | show_2 | True |  |
-#    | signature_1 | /sign |  |
-#    | signature_2 | /sign |  |
 
-# TODO: Only go up to the x[i] pages format 3b test? Or do we want to check signatures?
-@slow @stf4
-Scenario: Has sought column
+# TODO: Only go up to the x[i] pages format 3a test? Or do we want to check signatures?
+@slow @stf3
+Scenario: Has some empty entries in 'sought' column
   Given I start the interview at "all_tests"
   And the user gets to "the end" with this data:
     | var | value | sought |
@@ -90,6 +53,7 @@ Scenario: Has sought column
     | buttons_yesnomaybe | True |  |
     | checkboxes_other | checkbox_other_opt_1 |  |
     | checkboxes_other | checkbox_other_opt_2 |  |
+    | checkboxes_other | checkbox_other_opt_3 |  |
     | checkboxes_yesno | True |  |
     | direct_standard_fields | True |  |
     | dropdown_test | dropdown_opt_2 |  |
@@ -98,7 +62,10 @@ Scenario: Has sought column
     | radio_other | radio_other_opt_3 |  |
     | radio_yesno | False |  |
     | screen_features | True |  |
+    | showif_checkbox_yesno | False |  |
+    | showif_checkboxes_other | showif_checkboxes_nota_1 |  |
     | showif_checkboxes_other | showif_checkboxes_nota_2 |  |
+    | showif_checkboxes_other | showif_checkboxes_nota_3 |  |
     | showif_dropdown | showif_dropdown_1 |  |
     | showif_radio_other | showif_radio_multi_2 |  |
     | showif_text_input | Show if text input value |  |
@@ -110,3 +77,15 @@ Scenario: Has sought column
     | show_2 | True |  |
     | signature_1 | /sign |  |
     | signature_2 | /sign |  |
+
+@fast @stf4
+Scenario: Missing sought column correctly
+  Given I start the interview at "all_tests"
+  And the user gets to "showifs" with this data:
+    | var | value |
+    | checkboxes_other | checkbox_other_opt_1 |
+    | dropdown_test | dropdown_opt_2 |
+    | radio_yesno | False |
+    | radio_other | radio_other_opt_3 |
+    | text_input | Regular text input field value |
+    | textarea | Multiline text\narea value |
