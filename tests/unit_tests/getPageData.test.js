@@ -82,8 +82,8 @@ it(`creates the right data for a multi-proxy name (x[i])`, async function() {
 
 // Multiple proxies by the same name are on the list (because of a loop)
 // x[i].name.first
-it(`creates the right data for a multi-proxy name (x[i]) again for consistency`, async function() {
-  // same data as `proxies_xi`, but have this here for consistency
+it(`creates the right data for a multi-proxy name (x[i]) again for consistency with matches`, async function() {
+  // same data as `proxies_xi`, but have this here for consistency to match matches tests
   let result = await getPageData( scope, { html: html.proxies_multi });
   expect( result ).to.deep.equal( page_data.proxies_multi );
 });
