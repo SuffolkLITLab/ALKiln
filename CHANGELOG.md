@@ -44,7 +44,7 @@ Format:
 - Tests for some observational Steps.
 - Tests for some interactive Steps.
 - Tests for Assembly Line package-specific tests.
-- Debug logs for getMatchingRow
+- Move debug logs for getMatchingRow and getPageData to appropriate places.
 
 ### Changed
 - Added `sought` column to table to define sought var (| var | value | checked | sought |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
