@@ -50,6 +50,8 @@ Format:
 - Added `sought` column to table to define sought var (| var | value | checked | sought |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
 - Updated tests to match new functionality.
 - Tried to make element selectors more picky.
+- Make screenshot names unique and line up alphabetically.
+- Allow more languages in scenario name.
 
 ### Deprecated
 - Previous formats of the table: | var | choice | value | and | var | value | checked |
