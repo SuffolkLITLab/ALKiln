@@ -13,32 +13,32 @@ NOTE:
    The `sought` column does not require a value. That way simple interviews
    don't have to deal with it. They don't even need a sought column (see tests below).
 
-## TODO: Test og table with `sought` col added?
-#@fast @stf1
-#Scenario: Table is format 1 (og three cols)
-#  Given I start the interview at "all_tests"
-#  And the user gets to "showifs" with this data:
-#    | var | choice | value |
-#    | checkboxes_other | checkbox_other_opt_1 | true |
-#    | checkboxes_yesno | True | true |
-#    | dropdown_test | | dropdown_opt_2 |
-#    | radio_other | | radio_other_opt_3 |
-#    | radio_yesno | False | true |
-#    | text_input | | Regular text input field value |
-#    | textarea | | Multiline text\narea value |
-#
-#@fast @stf2
-#Scenario: Table is format 2 (no sought var)
-#  Given I start the interview at "all_tests"
-#  And the user gets to "showifs" with this data:
-#    | var | value | checked |
-#    | checkboxes_other | checkbox_other_opt_2 | true |
-#    | checkboxes_yesno | True | true |
-#    | dropdown_test | dropdown_opt_2 |  |
-#    | radio_other | radio_other_opt_3 |  |
-#    | radio_yesno | False | false |
-#    | text_input | Regular text input field value |  |
-#    | textarea | Multiline text\narea value |  |
+# TODO: Test og table with `sought` col added?
+@fast @stf1
+Scenario: Table is format 1 (og three cols)
+  Given I start the interview at "all_tests"
+  And the user gets to "showifs" with this data:
+    | var | choice | value |
+    | checkboxes_other['checkbox_other_opt_1'] |  | true |
+    | checkboxes_yesno | True | true |
+    | dropdown_test | | dropdown_opt_2 |
+    | radio_other | | radio_other_opt_3 |
+    | radio_yesno | False | true |
+    | text_input | | Regular text input field value |
+    | textarea | | Multiline text\narea value |
+
+@fast @stf2
+Scenario: Table is format 2 (no sought var)
+  Given I start the interview at "all_tests"
+  And the user gets to "showifs" with this data:
+    | var | value | checked |
+    | checkboxes_other['checkbox_other_opt_2'] | true |  |
+    | checkboxes_yesno | True | true |
+    | dropdown_test | dropdown_opt_2 |  |
+    | radio_other | radio_other_opt_3 |  |
+    | radio_yesno | False | false |
+    | text_input | Regular text input field value |  |
+    | textarea | Multiline text\narea value |  |
 
 # TODO: Only go up to the x[i] pages format 3 test
 @slow @stf3
