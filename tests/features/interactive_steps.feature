@@ -3,7 +3,7 @@ Feature: Interactive steps
 
 # In tag names, 'i' is for 'interactive'
 
-@fast @i1
+@slow @i1
 Scenario: I set text-type values
   Given I start the interview at "all_tests"
   And I set the "True" choice of var "checkboxes_yesno" to "true"

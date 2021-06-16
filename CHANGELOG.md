@@ -40,16 +40,24 @@ Format:
 -->
 ## [Unreleased]
 ### Added
-- New step: 'I should see the link to' and its test
-- Tests for some observational Steps
-- Tests for some interactive Steps
-- Tests for Assembly Line package-specific tests
+- New step: 'I should see the link to' and its test.
+- Tests for some observational Steps.
+- Tests for some interactive Steps.
+- Tests for Assembly Line package-specific tests.
+- Move debug logs for getMatchingRow and getPageData to appropriate places.
+- Start testing report to make matching tests work.
+- Give developer warning when they have multiple rows in the table for one variable.
 
 ### Changed
-- Added new column to table to define sought var (| var | value | checked | sought |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
+- Added `sought` column to table to define sought var (| var | value | checked | sought |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
+- Updated tests to match new functionality.
+- Tried to make element selectors more picky.
+- Make screenshot names unique and line up alphabetically.
+- Allow more languages in scenario name.
+- Different data structure for matches.
 
 ### Deprecated
-- Previous formats of the table (| var | choice | value |) and (| var | value | checked |)
+- Previous formats of the table: | var | choice | value | and | var | value | checked |
 
 ### Removed
 - Some Steps that won't work with translations and are not currently being used by anyone.
