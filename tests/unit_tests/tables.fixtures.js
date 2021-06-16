@@ -20,6 +20,7 @@ tables.standard = [
   { "var": "radio_yesno", "value": "False", "checked": true },
   { "var": "radio_other", "value": "radio_other_opt_2", "checked": true },
   { "var": "text_input", "value": "Some one-line text", "checked": "" },
+  {"var":"text_input","value":"Some conflicting text", "checked": "" },
   { "var": "textarea", "value": "Some\nmulti-line\ntext", "checked": "" },
   { "var": "dropdown_test", "value": "dropdown_opt_2", "checked": true },  // May want to change `checked`
 ];

@@ -16,6 +16,7 @@ const getMatchingRows = scope.getMatchingRows;
 it("matches the right table and field rows for standard fields", async function() {
   let result = await getMatchingRows( scope, { page_data: page_data.standard, story_table: tables.standard });
   expect( result ).to.deep.equal( matches.standard );
+  expect( Object.keys( scope.report ).length ).to.equal( 1 );
 });
 
 
@@ -62,7 +63,7 @@ it("matches the right table and field rows for other mutiple choice continue but
 });
 
 // `field:` and `action buttons:`
-it(`matches the right table and field rows for one continue button`, async function() {
+it(`matches the right table and field rows for an action button`, async function() {
   let result = await getMatchingRows( scope, { page_data: page_data.buttons_event_action, story_table: tables.buttons_event_action });
   expect( result ).to.deep.equal( matches.buttons_event_action );
 });
