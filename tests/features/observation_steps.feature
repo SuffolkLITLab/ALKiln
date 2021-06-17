@@ -25,7 +25,7 @@ Scenario: I check navigation
   Given I start the interview at "all_tests"
   And the user gets to "showifs" with this data:
     | var | value | checked | sought |
-    | checkboxes_other | checkbox_other_opt_1 | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |  |
     | dropdown_test | dropdown_opt_2 | |  |
     | radio_yesno | False | false |  |
     | radio_other | radio_other_opt_3 | |  |
@@ -37,8 +37,6 @@ Scenario: I check navigation
     | button_continue | True | true |  |
     | buttons_other | button_2 |  |  |
     | buttons_yesnomaybe | True | true |  |
-    | checkboxes_other | checkbox_other_opt_1 | true |  |
-    | checkboxes_other | checkbox_other_opt_2 | true |  |
     | checkboxes_yesno | True | true |  |
     | dropdown_test | dropdown_opt_2 |  |  |
     | radio_other | radio_other_opt_3 |  |  |

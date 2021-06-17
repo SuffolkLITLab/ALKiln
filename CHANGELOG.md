@@ -38,6 +38,7 @@ Format:
 ### Security
 - 
 -->
+<!-- TODO: Reduce this to just what would be relevant to the dev? -->
 ## [Unreleased]
 ### Added
 - New step: 'I should see the link to' and its test.
@@ -55,6 +56,8 @@ Format:
 - Make screenshot names unique and line up alphabetically.
 - Allow more languages in scenario name.
 - Different data structure for matches.
+- Remove the need for the `checked` story table column and prop by: 1) Moving the `value` of checkboxes into their var name column. 2) Moving the `checked` value of checkboxes into the `value` column.
+- Combined checkbox encoding matching regex into one regex.
 
 ### Deprecated
 - Previous formats of the table: | var | choice | value | and | var | value | checked |
@@ -63,8 +66,9 @@ Format:
 - Some Steps that won't work with translations and are not currently being used by anyone.
 
 ### Fixed
-- Assert found invalid input
-- 'I sign' was passing incorrect arguments
+- Assert found invalid input.
+- 'I sign' was passing incorrect arguments.
+- Regex testing for match to proxy var - both the regex itself being more strict and the test for a match being more predictable.
 
 ## [1.3.5] - 2021-05-04
 ### Added
