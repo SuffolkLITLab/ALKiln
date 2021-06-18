@@ -11,14 +11,12 @@ const normalizeTable = scope.normalizeTable;
 // ============================
 // Change old table into new table
 // ============================
-it("converts a table with original formatting into the current formatting", async function() {
-  let result = await normalizeTable( scope, { var_data: tables.original_formatting });
-  // console.log( result );
-  expect( result ).to.deep.equal( tables.old_to_current_formatting );
+it("normalizes a table with standard formatting correctly", async function() {
+  let result = await normalizeTable( scope, { var_data: tables.standard_formatting });
+  expect( result ).to.deep.equal( tables.standard_normalized_formatting );
 });
 
-it("does not change the formatting of a current table", async function() {
-  let result = await normalizeTable( scope, { var_data: tables.current_formatting });
-  // console.log( result );
-  expect( result ).to.deep.equal( tables.current_to_current_formatting );
+it("normalizes a table with missng `sought` column correctly", async function() {
+  let result = await normalizeTable( scope, { var_data: tables.missing_sought });
+  expect( result ).to.deep.equal( tables.missing_sought_to_normalized_formatting );
 });
