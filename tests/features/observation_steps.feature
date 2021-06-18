@@ -24,23 +24,23 @@ Scenario: I see user errors
 Scenario: I check navigation
   Given I start the interview at "all_tests"
   And the user gets to "showifs" with this data:
-    | var | value | checked | sought |
-    | checkboxes_other['checkbox_other_opt_1'] | true |  |  |
-    | dropdown_test | dropdown_opt_2 | |  |
-    | radio_yesno | False | false |  |
-    | radio_other | radio_other_opt_3 | |  |
-    | text_input | Regular text input field value | |  |
-    | textarea | Multiline text\narea value | |  |
+    | var | value | sought |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
   Then I arrive at the next page
   Then the user gets to "screen features" with this data:
-    | var | value | checked | sought |
-    | button_continue | True | true |  |
-    | buttons_other | button_2 |  |  |
-    | buttons_yesnomaybe | True | true |  |
-    | checkboxes_yesno | True | true |  |
-    | dropdown_test | dropdown_opt_2 |  |  |
-    | radio_other | radio_other_opt_3 |  |  |
-    | radio_yesno | False | false |  |
-    | text_input | Regular text input field value |  |  |
-    | textarea | Multiline text\narea value |  |  |
+    | var | value | sought |
+    | button_continue | True |  |
+    | buttons_other | button_2 |  |
+    | buttons_yesnomaybe | True |  |
+    | checkboxes_yesno | True |  |
+    | dropdown_test | dropdown_opt_2 |  |
+    | radio_other | radio_other_opt_3 |  |
+    | radio_yesno | False | false |
+    | text_input | Regular text input field value |  |
+    | textarea | Multiline text\narea value |  |
   And I should see the link to "http://ecosia.org/"

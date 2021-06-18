@@ -64,6 +64,7 @@ Format:
 
 ### Removed
 - Some Steps that won't work with translations and are not currently being used by anyone.
+- `checked` column
 
 ### Fixed
 - Assert found invalid input.
