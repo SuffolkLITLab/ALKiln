@@ -58,6 +58,7 @@ Format:
 - Different data structure for matches.
 - Remove the need for the `checked` story table column and prop by: 1) Moving the `value` of checkboxes into their var name column. 2) Moving the `checked` value of checkboxes into the `value` column.
 - Combined checkbox encoding matching regex into one regex.
+- Steps setting choices now work the same as the story tables - only two values given. No need for a 'sought' column value.
 
 ### Deprecated
 - Previous formats of the table: | var | choice | value | and | var | value | checked |
@@ -65,6 +66,7 @@ Format:
 ### Removed
 - Some Steps that won't work with translations and are not currently being used by anyone.
 - `checked` column
+- `scope.getField()`
 
 ### Fixed
 - Assert found invalid input.
