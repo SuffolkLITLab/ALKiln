@@ -40,9 +40,9 @@ Covers story table tests for:
     | button_continue | True |  |
     | buttons_other | button_2 | |
     | buttons_yesnomaybe | True |  |
-    | checkboxes_other['checkbox_other_opt_1'] | checked |  |
-    | checkboxes_other['checkbox_other_opt_2'] | checked |  |
-    | checkboxes_other['checkbox_other_opt_3'] | unchecked |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | checkboxes_other['checkbox_other_opt_2'] | true |  |
+    | checkboxes_other['checkbox_other_opt_3'] | false |  |
     | checkboxes_yesno | True |  |
     | direct_standard_fields | True |  |
     | dropdown_test | dropdown_opt_2 |  |
@@ -52,9 +52,9 @@ Covers story table tests for:
     | radio_yesno | False |  |
     | screen_features | True |  |
     | showif_checkbox_yesno | False |  |
-    | showif_checkboxes_other['showif_checkboxes_nota_1'] | unchecked |  |
-    | showif_checkboxes_other['showif_checkboxes_nota_2'] | checked |  |
-    | showif_checkboxes_other['showif_checkboxes_nota_3'] | unchecked |  |
+    | showif_checkboxes_other['showif_checkboxes_nota_1'] | false |  |
+    | showif_checkboxes_other['showif_checkboxes_nota_2'] | true |  |
+    | showif_checkboxes_other['showif_checkboxes_nota_3'] | false |  |
     | showif_dropdown | showif_dropdown_1 |  |
     | showif_radio_other | showif_radio_multi_2 |  |
     | showif_text_input | Show if text input value |  |
