@@ -102,14 +102,14 @@ matches.buttons_event_action = [
 // ============================
 // x[i].name.first
 matches.proxies_xi = [
-  [{"sought":"a_list[0].name.first","var":"x[i].name.first","value":"Firstname"}],
+  [{"trigger":"a_list[0].name.first","var":"x[i].name.first","value":"Firstname"}],
   []
 ];
 
 // Multiple proxies by the same name are on the list (because of a loop)
 // x[i].name.first
 matches.proxies_multi = [
-  [{"sought":"a_list[0].name.first","var":"x[i].name.first","value":"Firstname"}],
+  [{"trigger":"a_list[0].name.first","var":"x[i].name.first","value":"Firstname"}],
   []
 ];
 
@@ -117,10 +117,10 @@ matches.proxies_multi = [
 // your_past_benefits[i].still_receiving
 // Non-match comes after a match
 matches.proxies_non_match = [
-  [{"sought":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].start_date","value":"01/01/2001"}],
-  [{"sought":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].still_receiving","value":"True"}],
+  [{"trigger":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].start_date","value":"01/01/2001"}],
+  [{"trigger":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].still_receiving","value":"True"}],
   [],
-  [{"sought":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].end_date","value":"02/02/2002"}],
+  [{"trigger":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].end_date","value":"02/02/2002"}],
   []
 ];
 
@@ -129,7 +129,7 @@ matches.proxies_non_match = [
 // Signature
 // ============================
 matches.signature = [
-  [{"sought":"signature_1","var":"signature_1","value":"/sign"}]
+  [{"trigger":"signature_1","var":"signature_1","value":"/sign"}]
 ];
 
 

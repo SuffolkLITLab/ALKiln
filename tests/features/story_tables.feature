@@ -4,11 +4,11 @@ Feature: Story tables
 NOTE:
     Unit tests make sure that all things that are supposed to match do match.
 
-@fast @st1 @sought_var
+@fast @st1 @trigger_var
 Scenario: Proxy and regular vars are mixed
   Given I start the interview at "AL_tests"
   And the user gets to "end" with this data:
-    | var | value | sought |
+    | var | value | trigger |
     | users[0].name.first | Uli1 | users[0].name.first |
     | users[0].name.last | User1 | users[0].name.first |
     | users[0].address.address | 120 Tremont Street | users[0].name.first |
@@ -35,7 +35,7 @@ Covers story table tests for:
 
   Given I start the interview at "all_tests"
   And the user gets to "the end" with this data:
-    | var | value | sought |
+    | var | value | trigger |
     | direct_showifs | True |  |
     | button_continue | True |  |
     | buttons_other | button_2 | |
