@@ -50,7 +50,7 @@ Format:
 - Move debug logs for getMatchingRow and getPageData to appropriate places.
 
 ### Changed
-- Added `sought` column to table to define sought var (| var | value | checked | sought |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
+- Added `trigger` column to table to define trigger var (| var | value | checked | trigger |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
 - Updated tests to match new functionality.
 - Tried to make element selectors more picky.
 - Make screenshot names unique and line up alphabetically.
@@ -58,7 +58,7 @@ Format:
 - Different data structure for matches.
 - Remove the need for the `checked` story table column and prop by: 1) Moving the `value` of checkboxes into their var name column. 2) Moving the `checked` value of checkboxes into the `value` column.
 - Combined checkbox encoding matching regex into one regex.
-- Steps setting choices now work the same as the story tables - only two values given. No need for a 'sought' column value.
+- Steps setting choices now work the same as the story tables - only two values given. No need for a 'trigger' column value.
 
 ### Deprecated
 - Previous formats of the table: | var | choice | value | and | var | value | checked |
