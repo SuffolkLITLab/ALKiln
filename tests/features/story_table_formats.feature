@@ -46,38 +46,17 @@ NOTE:
 @slow @stf3
 Scenario: Table has sought var column
   Given I start the interview at "all_tests"
-  And the user gets to "the end" with this data:
+  And the user gets to "showifs" with this data:
     | var | value | sought |
-    | direct_showifs | True |  |
-    | button_continue | True |  |
-    | buttons_other | button_2 | |
-    | buttons_yesnomaybe | True |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
     | checkboxes_other['checkbox_other_opt_2'] | true |  |
     | checkboxes_other['checkbox_other_opt_3'] | false |  |
     | checkboxes_yesno | True |  |
-    | direct_standard_fields | True |  |
     | dropdown_test | dropdown_opt_2 |  |
-    | x[i].name.first | Proxyname1 | proxy_list[0].name.first |
-    | x[i].name.first | Proxyname2 | proxy_list[1].name.first |
     | radio_other | radio_other_opt_3 |  |
     | radio_yesno | False |  |
-    | screen_features | True |  |
-    | showif_checkbox_yesno | False |  |
-    | showif_checkboxes_other['showif_checkboxes_nota_1'] | false |  |
-    | showif_checkboxes_other['showif_checkboxes_nota_2'] | true |  |
-    | showif_checkboxes_other['showif_checkboxes_nota_3'] | false |  |
-    | showif_dropdown | showif_dropdown_1 |  |
-    | showif_radio_other | showif_radio_multi_2 |  |
-    | showif_text_input | Show if text input value |  |
-    | showif_textarea | Show if\nmultiline text\narea value |  |
-    | showif_yesnoradio | True |  |
     | text_input | Regular text input field value |  |
     | textarea | Multiline text\narea value |  |
-    | show_3 | True |  |
-    | show_2 | True |  |
-    | signature_1 | /sign |  |
-    | signature_2 | /sign |  |
 
 # TODO: Only go up to the x[i] pages
 @slow @stf4

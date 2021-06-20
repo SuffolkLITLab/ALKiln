@@ -43,9 +43,15 @@ Scenario: I set text-type values
   When I set the var "x[i].name.first" to "Proxyname1"
   And I tap to continue
   # Next page
+  Then the question id should be "is there another generic"
+  When I set the var "x.there_is_another" to "True"
+  # Next page
   Then the question id should be "proxy vars"
   When I set the var "x[i].name.first" to "Proxyname2"
   And I tap to continue
+  # Next page
+  Then the question id should be "is there another generic"
+  When I set the var "x.there_is_another" to "False"
   # Next page
   Then the question id should be "first signature"
   When I sign
