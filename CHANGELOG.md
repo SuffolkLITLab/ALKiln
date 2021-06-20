@@ -41,13 +41,13 @@ Format:
 <!-- TODO: Reduce this to just what would be relevant to the dev? -->
 ## [Unreleased]
 ### Added
+- Support for `.there_is_another` loops
 - New step: 'I should see the link to' and its test.
+- Add some warnings/feedback for the developer.
 - Tests for some observational Steps.
 - Tests for some interactive Steps.
 - Tests for Assembly Line package-specific tests.
 - Move debug logs for getMatchingRow and getPageData to appropriate places.
-- Start testing report to make matching tests work.
-- Give developer warning when they have multiple rows in the table for one variable.
 
 ### Changed
 - Added `sought` column to table to define sought var (| var | value | checked | sought |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
@@ -64,7 +64,7 @@ Format:
 - Previous formats of the table: | var | choice | value | and | var | value | checked |
 
 ### Removed
-- Some Steps that won't work with translations and are not currently being used by anyone.
+- Some Steps that won't work with translations and are not currently being used by anyone. TODO: Look up and ennumerate which steps.
 - `checked` column
 - `scope.getField()`
 
