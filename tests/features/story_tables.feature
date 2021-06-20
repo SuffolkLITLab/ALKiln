@@ -7,7 +7,7 @@ NOTE:
 @fast @st1 @trigger_var
 Scenario: Proxy and regular vars are mixed
   Given I start the interview at "AL_tests"
-  And the user gets to "end" with this data:
+  And I get to "end" with this data:
     | var | value | trigger |
     | users[0].name.first | Uli1 | users[0].name.first |
     | users[0].name.last | User1 | users[0].name.first |
@@ -34,7 +34,7 @@ Covers story table tests for:
 - [x] Continue button field listed before unrequired fields
 
   Given I start the interview at "all_tests"
-  And the user gets to "the end" with this data:
+  And I get to "the end" with this data:
     | var | value | trigger |
     | direct_showifs | True |  |
     | button_continue | True |  |
