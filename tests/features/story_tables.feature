@@ -48,7 +48,7 @@ Covers story table tests for:
     | dropdown_test | dropdown_opt_2 |  |
     | x[i].name.first | Proxyname1 | proxy_list[0].name.first |
     | x[i].name.first | Proxyname2 | proxy_list[1].name.first |
-    | x.there_is_another | 2 | proxy_list.there_is_another |
+    | x.there_is_another | 1 | proxy_list.there_is_another |
     | radio_other | radio_other_opt_3 |  |
     | radio_yesno | False |  |
     | screen_features | True |  |
