@@ -90,138 +90,138 @@ tables.buttons_event_action = [
 
 // Fully featured table
 tables.standard_formatting = [
-  { "var": "direct_showifs", "value": "True", "sought": "" },
-  { "var": "button_continue", "value": "True", "sought": "" },
-  { "var": "buttons_other", "value": "button_2", "sought": "" },
-  { "var": "buttons_yesnomaybe", "value": "True", "sought": "" },
-  { "var": "checkboxes_other", "value": "checkbox_other_opt_1", "sought": "" },
-  { "var": "checkboxes_other", "value": "checkbox_other_opt_2", "sought": "" },
-  { "var": "checkboxes_other", "value": "checkbox_other_opt_3", "sought": "" },
-  { "var": "checkboxes_yesno", "value": "True", "sought": "" },
-  { "var": "direct_standard_fields", "value": "True", "sought": "" },
-  { "var": "dropdown_test", "value": "dropdown_opt_2", "sought": "" },
-  { "var": "radio_other", "value": "radio_other_opt_3", "sought": "" },
-  { "var": "radio_yesno", "value": "False", "sought": "" },
-  { "var": "screen_features", "value": "True", "sought": "" },
-  { "var": "showif_checkbox_yesno", "value": "False", "sought": "" },
-  { "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "sought": "" },
-  { "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "sought": "" },
-  { "var": "showif_dropdown", "value": "showif_dropdown_1", "sought": "" },
-  { "var": "showif_radio_other", "value": "showif_radio_multi_2", "sought": "" },
-  { "var": "showif_text_input", "value": "Show if text input value", "sought": "" },
-  { "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "sought": "" },
-  { "var": "showif_yesnoradio", "value": "True", "sought": "" },
-  { "var": "text_input", "value": "Regular text input field value", "sought": "" },
-  { "var": "textarea", "value": "Multiline text\narea value", "sought": "" },
-  { "var": "show_3", "value": "True", "sought": "" },
-  { "var": "show_2", "value": "True", "sought": "" },
+  { "var": "direct_showifs", "value": "True", "trigger": "" },
+  { "var": "button_continue", "value": "True", "trigger": "" },
+  { "var": "buttons_other", "value": "button_2", "trigger": "" },
+  { "var": "buttons_yesnomaybe", "value": "True", "trigger": "" },
+  { "var": "checkboxes_other", "value": "checkbox_other_opt_1", "trigger": "" },
+  { "var": "checkboxes_other", "value": "checkbox_other_opt_2", "trigger": "" },
+  { "var": "checkboxes_other", "value": "checkbox_other_opt_3", "trigger": "" },
+  { "var": "checkboxes_yesno", "value": "True", "trigger": "" },
+  { "var": "direct_standard_fields", "value": "True", "trigger": "" },
+  { "var": "dropdown_test", "value": "dropdown_opt_2", "trigger": "" },
+  { "var": "radio_other", "value": "radio_other_opt_3", "trigger": "" },
+  { "var": "radio_yesno", "value": "False", "trigger": "" },
+  { "var": "screen_features", "value": "True", "trigger": "" },
+  { "var": "showif_checkbox_yesno", "value": "False", "trigger": "" },
+  { "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "trigger": "" },
+  { "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "trigger": "" },
+  { "var": "showif_dropdown", "value": "showif_dropdown_1", "trigger": "" },
+  { "var": "showif_radio_other", "value": "showif_radio_multi_2", "trigger": "" },
+  { "var": "showif_text_input", "value": "Show if text input value", "trigger": "" },
+  { "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "trigger": "" },
+  { "var": "showif_yesnoradio", "value": "True", "trigger": "" },
+  { "var": "text_input", "value": "Regular text input field value", "trigger": "" },
+  { "var": "textarea", "value": "Multiline text\narea value", "trigger": "" },
+  { "var": "show_3", "value": "True", "trigger": "" },
+  { "var": "show_2", "value": "True", "trigger": "" },
 ];
 
 // Should not be changed at all
 tables.standard_normalized_formatting = [
   {
-    "original": { "var": "direct_showifs", "value": "True", "sought": "" },
-    "var": "direct_showifs", "value": "True", "sought": "",
+    "original": { "var": "direct_showifs", "value": "True", "trigger": "" },
+    "var": "direct_showifs", "value": "True", "trigger": "",
   },
   {
-    "original": { "var": "button_continue", "value": "True", "sought": "" },
-    "var": "button_continue", "value": "True", "sought": "",
+    "original": { "var": "button_continue", "value": "True", "trigger": "" },
+    "var": "button_continue", "value": "True", "trigger": "",
   },
   {
-    "original": { "var": "buttons_other", "value": "button_2", "sought": "" },
-    "var": "buttons_other", "value": "button_2", "sought": "",
+    "original": { "var": "buttons_other", "value": "button_2", "trigger": "" },
+    "var": "buttons_other", "value": "button_2", "trigger": "",
   },
   {
-    "original": { "var": "buttons_yesnomaybe", "value": "True", "sought": "" },
-    "var": "buttons_yesnomaybe", "value": "True", "sought": "",
+    "original": { "var": "buttons_yesnomaybe", "value": "True", "trigger": "" },
+    "var": "buttons_yesnomaybe", "value": "True", "trigger": "",
   },
   {
-    "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_1", "sought": "" },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_1", "sought": "",
+    "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_1", "trigger": "" },
+    "var": "checkboxes_other", "value": "checkbox_other_opt_1", "trigger": "",
   },
   {
-    "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_2", "sought": "" },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_2", "sought": "",
+    "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_2", "trigger": "" },
+    "var": "checkboxes_other", "value": "checkbox_other_opt_2", "trigger": "",
   },
   {
-    "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_3", "sought": "" },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_3", "sought": "",
+    "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_3", "trigger": "" },
+    "var": "checkboxes_other", "value": "checkbox_other_opt_3", "trigger": "",
   },
   {
-    "original": { "var": "checkboxes_yesno", "value": "True", "sought": "" },
-    "var": "checkboxes_yesno", "value": "True", "sought": "",
+    "original": { "var": "checkboxes_yesno", "value": "True", "trigger": "" },
+    "var": "checkboxes_yesno", "value": "True", "trigger": "",
   },
   {
-    "original": { "var": "direct_standard_fields", "value": "True", "sought": "" },
-    "var": "direct_standard_fields", "value": "True", "sought": "",
+    "original": { "var": "direct_standard_fields", "value": "True", "trigger": "" },
+    "var": "direct_standard_fields", "value": "True", "trigger": "",
   },
   {
-    "original": { "var": "dropdown_test", "value": "dropdown_opt_2", "sought": "" },
-    "var": "dropdown_test", "value": "dropdown_opt_2", "sought": "",
+    "original": { "var": "dropdown_test", "value": "dropdown_opt_2", "trigger": "" },
+    "var": "dropdown_test", "value": "dropdown_opt_2", "trigger": "",
   },
   {
-    "original": { "var": "radio_other", "value": "radio_other_opt_3", "sought": "" },
-    "var": "radio_other", "value": "radio_other_opt_3", "sought": "",
+    "original": { "var": "radio_other", "value": "radio_other_opt_3", "trigger": "" },
+    "var": "radio_other", "value": "radio_other_opt_3", "trigger": "",
   },
   {
-    "original": { "var": "radio_yesno", "value": "False", "sought": "" },
-    "var": "radio_yesno", "value": "False", "sought": "",
+    "original": { "var": "radio_yesno", "value": "False", "trigger": "" },
+    "var": "radio_yesno", "value": "False", "trigger": "",
   },
   {
-    "original": { "var": "screen_features", "value": "True", "sought": "" },
-    "var": "screen_features", "value": "True", "sought": "",
+    "original": { "var": "screen_features", "value": "True", "trigger": "" },
+    "var": "screen_features", "value": "True", "trigger": "",
   },
   {
-    "original": { "var": "showif_checkbox_yesno", "value": "False", "sought": "" },
-    "var": "showif_checkbox_yesno", "value": "False", "sought": "",
+    "original": { "var": "showif_checkbox_yesno", "value": "False", "trigger": "" },
+    "var": "showif_checkbox_yesno", "value": "False", "trigger": "",
   },
   {
-    "original": { "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "sought": "" },
-    "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "sought": "",
+    "original": { "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "trigger": "" },
+    "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "trigger": "",
   },
   {
-    "original": { "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "sought": "" },
-    "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "sought": "",
+    "original": { "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "trigger": "" },
+    "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "trigger": "",
   },
   {
-    "original": { "var": "showif_dropdown", "value": "showif_dropdown_1", "sought": "" },
-    "var": "showif_dropdown", "value": "showif_dropdown_1", "sought": "",
+    "original": { "var": "showif_dropdown", "value": "showif_dropdown_1", "trigger": "" },
+    "var": "showif_dropdown", "value": "showif_dropdown_1", "trigger": "",
   },
   {
-    "original": { "var": "showif_radio_other", "value": "showif_radio_multi_2", "sought": "" },
-    "var": "showif_radio_other", "value": "showif_radio_multi_2", "sought": "",
+    "original": { "var": "showif_radio_other", "value": "showif_radio_multi_2", "trigger": "" },
+    "var": "showif_radio_other", "value": "showif_radio_multi_2", "trigger": "",
   },
   {
-    "original": { "var": "showif_text_input", "value": "Show if text input value", "sought": "" },
-    "var": "showif_text_input", "value": "Show if text input value", "sought": "",
+    "original": { "var": "showif_text_input", "value": "Show if text input value", "trigger": "" },
+    "var": "showif_text_input", "value": "Show if text input value", "trigger": "",
   },
   {
-    "original": { "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "sought": "" },
-    "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "sought": "",
+    "original": { "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "trigger": "" },
+    "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "trigger": "",
   },
   {
-    "original": { "var": "showif_yesnoradio", "value": "True", "sought": "" },
-    "var": "showif_yesnoradio", "value": "True", "sought": "",
+    "original": { "var": "showif_yesnoradio", "value": "True", "trigger": "" },
+    "var": "showif_yesnoradio", "value": "True", "trigger": "",
   },
   {
-    "original": { "var": "text_input", "value": "Regular text input field value", "sought": "" },
-    "var": "text_input", "value": "Regular text input field value", "sought": "",
+    "original": { "var": "text_input", "value": "Regular text input field value", "trigger": "" },
+    "var": "text_input", "value": "Regular text input field value", "trigger": "",
   },
   {
-    "original": { "var": "textarea", "value": "Multiline text\narea value", "sought": "" },
-    "var": "textarea", "value": "Multiline text\narea value", "sought": "",
+    "original": { "var": "textarea", "value": "Multiline text\narea value", "trigger": "" },
+    "var": "textarea", "value": "Multiline text\narea value", "trigger": "",
   },
   {
-    "original": { "var": "show_3", "value": "True", "sought": "" },
-    "var": "show_3", "value": "True", "sought": "",
+    "original": { "var": "show_3", "value": "True", "trigger": "" },
+    "var": "show_3", "value": "True", "trigger": "",
   },
   {
-    "original": { "var": "show_2", "value": "True", "sought": "" },
-    "var": "show_2", "value": "True", "sought": "",
+    "original": { "var": "show_2", "value": "True", "trigger": "" },
+    "var": "show_2", "value": "True", "trigger": "",
   },
 ];
 
-// Missing 'sought' column
+// Missing 'trigger' column
 tables.missing_sought = [
   { "var": "direct_showifs", "value": "True" },
   { "var": "button_continue", "value": "True" },
@@ -250,107 +250,107 @@ tables.missing_sought = [
   { "var": "show_2", "value": "True" },
 ];
 
-// 'sought' should be added
+// 'trigger' should be added
 tables.missing_sought_to_normalized_formatting = [
   {
     "original": { "var": "direct_showifs", "value": "True", },
-    "var": "direct_showifs", "value": "True", "sought": "",
+    "var": "direct_showifs", "value": "True", "trigger": "",
   },
   {
     "original": { "var": "button_continue", "value": "True", },
-    "var": "button_continue", "value": "True", "sought": "",
+    "var": "button_continue", "value": "True", "trigger": "",
   },
   {
     "original": { "var": "buttons_other", "value": "button_2", },
-    "var": "buttons_other", "value": "button_2", "sought": "",
+    "var": "buttons_other", "value": "button_2", "trigger": "",
   },
   {
     "original": { "var": "buttons_yesnomaybe", "value": "True", },
-    "var": "buttons_yesnomaybe", "value": "True", "sought": "",
+    "var": "buttons_yesnomaybe", "value": "True", "trigger": "",
   },
   {
     "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_1", },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_1", "sought": "",
+    "var": "checkboxes_other", "value": "checkbox_other_opt_1", "trigger": "",
   },
   {
     "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_2", },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_2", "sought": "",
+    "var": "checkboxes_other", "value": "checkbox_other_opt_2", "trigger": "",
   },
   {
     "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_3", },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_3", "sought": "",
+    "var": "checkboxes_other", "value": "checkbox_other_opt_3", "trigger": "",
   },
   {
     "original": { "var": "checkboxes_yesno", "value": "True", },
-    "var": "checkboxes_yesno", "value": "True", "sought": "",
+    "var": "checkboxes_yesno", "value": "True", "trigger": "",
   },
   {
     "original": { "var": "direct_standard_fields", "value": "True", },
-    "var": "direct_standard_fields", "value": "True", "sought": "",
+    "var": "direct_standard_fields", "value": "True", "trigger": "",
   },
   {
     "original": { "var": "dropdown_test", "value": "dropdown_opt_2", },
-    "var": "dropdown_test", "value": "dropdown_opt_2", "sought": "",
+    "var": "dropdown_test", "value": "dropdown_opt_2", "trigger": "",
   },
   {
     "original": { "var": "radio_other", "value": "radio_other_opt_3", },
-    "var": "radio_other", "value": "radio_other_opt_3", "sought": "",
+    "var": "radio_other", "value": "radio_other_opt_3", "trigger": "",
   },
   {
     "original": { "var": "radio_yesno", "value": "False", },
-    "var": "radio_yesno", "value": "False", "sought": "",
+    "var": "radio_yesno", "value": "False", "trigger": "",
   },
   {
     "original": { "var": "screen_features", "value": "True", },
-    "var": "screen_features", "value": "True", "sought": "",
+    "var": "screen_features", "value": "True", "trigger": "",
   },
   {
     "original": { "var": "showif_checkbox_yesno", "value": "False", },
-    "var": "showif_checkbox_yesno", "value": "False", "sought": "",
+    "var": "showif_checkbox_yesno", "value": "False", "trigger": "",
   },
   {
     "original": { "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", },
-    "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "sought": "",
+    "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "trigger": "",
   },
   {
     "original": { "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", },
-    "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "sought": "",
+    "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "trigger": "",
   },
   {
     "original": { "var": "showif_dropdown", "value": "showif_dropdown_1", },
-    "var": "showif_dropdown", "value": "showif_dropdown_1", "sought": "",
+    "var": "showif_dropdown", "value": "showif_dropdown_1", "trigger": "",
   },
   {
     "original": { "var": "showif_radio_other", "value": "showif_radio_multi_2", },
-    "var": "showif_radio_other", "value": "showif_radio_multi_2", "sought": "",
+    "var": "showif_radio_other", "value": "showif_radio_multi_2", "trigger": "",
   },
   {
     "original": { "var": "showif_text_input", "value": "Show if text input value", },
-    "var": "showif_text_input", "value": "Show if text input value", "sought": "",
+    "var": "showif_text_input", "value": "Show if text input value", "trigger": "",
   },
   {
     "original": { "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", },
-    "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "sought": "",
+    "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "trigger": "",
   },
   {
     "original": { "var": "showif_yesnoradio", "value": "True", },
-    "var": "showif_yesnoradio", "value": "True", "sought": "",
+    "var": "showif_yesnoradio", "value": "True", "trigger": "",
   },
   {
     "original": { "var": "text_input", "value": "Regular text input field value", },
-    "var": "text_input", "value": "Regular text input field value", "sought": "",
+    "var": "text_input", "value": "Regular text input field value", "trigger": "",
   },
   {
     "original": { "var": "textarea", "value": "Multiline text\narea value", },
-    "var": "textarea", "value": "Multiline text\narea value", "sought": "",
+    "var": "textarea", "value": "Multiline text\narea value", "trigger": "",
   },
   {
     "original": { "var": "show_3", "value": "True", },
-    "var": "show_3", "value": "True", "sought": "",
+    "var": "show_3", "value": "True", "trigger": "",
   },
   {
     "original": { "var": "show_2", "value": "True", },
-    "var": "show_2", "value": "True", "sought": "",
+    "var": "show_2", "value": "True", "trigger": "",
   },
 ];
 
@@ -360,24 +360,24 @@ tables.missing_sought_to_normalized_formatting = [
 // ============================
 // x[i].name.first
 tables.proxies_xi = [
-  { "sought": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
 ];
 
 // Multiple proxies by the same name are on the list (because of a loop)
 // x[i].name.first
 tables.proxies_multi = [
-  { "sought": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
-  { "sought": "a_list[1].name.first", "var": "x[i].name.first", "value": "Firstname", },
-  { "sought": "a_list[2].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "a_list[1].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "a_list[2].name.first", "var": "x[i].name.first", "value": "Firstname", },
 ];
 
 // your_past_benefits[i].still_receiving
 // your_past_benefits['State Veterans Benefits'].still_receiving
 // Non-match comes after a match
 tables.proxies_non_match = [
-  { "sought": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].start_date", "value": "01/01/2001", },
-  { "sought": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].still_receiving", "value": "True", },
-  { "sought": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].end_date", "value": "02/02/2002", },
+  { "trigger": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].start_date", "value": "01/01/2001", },
+  { "trigger": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].still_receiving", "value": "True", },
+  { "trigger": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].end_date", "value": "02/02/2002", },
 ];
 
 
@@ -386,8 +386,8 @@ tables.proxies_non_match = [
 // ============================
 // Also tests that multiple signature rows only match their var
 tables.signature = [
-  { "sought": "signature_2", "var": "signature_2", "value": "/sign", },
-  { "sought": "signature_1", "var": "signature_1", "value": "/sign", },
+  { "trigger": "signature_2", "var": "signature_2", "value": "/sign", },
+  { "trigger": "signature_1", "var": "signature_1", "value": "/sign", },
 ];
 
 
@@ -419,7 +419,7 @@ tables.object_dropdown = [
 // `.there_is_another`
 // ============================
 tables.there_is_another = [
-  { "var": "x.there_is_another", "value": "True", "sought": "proxy_list.there_is_another" }
+  { "var": "x.there_is_another", "value": "True", "trigger": "proxy_list.there_is_another" }
 ];
 
 

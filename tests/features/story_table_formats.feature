@@ -11,11 +11,11 @@ NOTE:
    https://github.com/plocket/docassemble-ALAutomatedTestingTests/blob/ad1232049d7ca7a9b97b22f8ca3915dd3dae8114/docassemble/ALAutomatedTestingTests/data/questions/all_tests.yml#L80
 
 NOTE:
-   The `sought` column does not require a value. That way simple interviews
-   don't have to deal with it. They don't even need a sought column (see tests below).
+   The `trigger` column does not require a value. That way simple interviews
+   don't have to deal with it. They don't even need a trigger column (see tests below).
 
 ### Here for reference. See note above about formats 1 and 2 being unsupported
-## TODO: Test og table with `sought` col added?
+## TODO: Test og table with `trigger` col added?
 #@fast @stf1
 #Scenario: Table is format 1 (og three cols)
 #  Given I start the interview at "all_tests"
@@ -30,7 +30,7 @@ NOTE:
 #    | textarea | | Multiline text\narea value |
 #
 #@fast @stf2
-#Scenario: Table is format 2 (no sought var)
+#Scenario: Table is format 2 (no trigger column)
 #  Given I start the interview at "all_tests"
 #  And the user gets to "showifs" with this data:
 #    | var | value | checked |
@@ -44,10 +44,10 @@ NOTE:
 
 # TODO: Only go up to the x[i] pages
 @slow @stf3
-Scenario: Table has sought var column
+Scenario: Table has trigger column
   Given I start the interview at "all_tests"
   And the user gets to "showifs" with this data:
-    | var | value | sought |
+    | var | value | trigger |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
     | checkboxes_other['checkbox_other_opt_2'] | true |  |
     | checkboxes_other['checkbox_other_opt_3'] | false |  |
@@ -60,7 +60,7 @@ Scenario: Table has sought var column
 
 # TODO: Only go up to the x[i] pages
 @slow @stf4
-Scenario: Table MISSING sought var column
+Scenario: Table MISSING trigger column
   Given I start the interview at "all_tests"
   And the user gets to "showifs" with this data:
     | var | value |

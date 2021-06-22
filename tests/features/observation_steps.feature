@@ -24,7 +24,7 @@ Scenario: I see user errors
 Scenario: I check navigation
   Given I start the interview at "all_tests"
   And the user gets to "showifs" with this data:
-    | var | value | sought |
+    | var | value | trigger |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
@@ -33,7 +33,7 @@ Scenario: I check navigation
     | textarea | Multiline text\narea value | |
   Then I arrive at the next page
   Then the user gets to "screen features" with this data:
-    | var | value | sought |
+    | var | value | trigger |
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
