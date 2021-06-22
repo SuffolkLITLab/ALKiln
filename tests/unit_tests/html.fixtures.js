@@ -764,4 +764,33 @@ html.object_dropdown = `
 </section>`;
 
 
+// ============================
+// `.there_is_another`
+// ============================
+html.there_is_another = `
+<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground204testing127loop%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">Is there another proxy var?</h1>
+      <div class="daclear"></div>
+    </div>
+    
+    <fieldset class="da-button-set da-field-yesno">
+      <legend class="sr-only">Press one of the following buttons:</legend>
+      <div class="form-actions">
+        <button class="btn btn-primary btn-da " name="eC50aGVyZV9pc19hbm90aGVy" type="submit" value="True" style="background: khaki;"><span>Yes</span></button>
+        <button class="btn btn-da btn-secondary" name="eC50aGVyZV9pc19hbm90aGVy" type="submit" value="False" style="background: khaki;"><span>No</span></button>
+      </div>
+    </fieldset>
+
+    <input type="hidden" name="csrf_token" value="ImI5ZWQ4NjgyNGQ3YmI2Mjc3M2MxOTFlMWYxNGI2OTczMmE3Y2FmOTYi.YM3WkQ.JiJhEgcVVaClLUrvQqWx60UHe_k">
+    <input type="hidden" name="_event" value="WyJwcm94eV9saXN0LnRoZXJlX2lzX2Fub3RoZXIiXQ">
+    <input type="hidden" name="_question_name" value="ID is there another generic">
+    <input type="hidden" name="_tracker" value="9">
+    <input type="hidden" name="_datatypes" value="eyJlQzUwYUdWeVpWOXBjMTloYm05MGFHVnkiOiAiYm9vbGVhbiJ9">
+    <input type="hidden" name="_visible" value="">
+  </form>
+</section>`;
+
+
 module.exports = html;

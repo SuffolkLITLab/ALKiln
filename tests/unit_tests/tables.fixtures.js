@@ -415,5 +415,12 @@ tables.object_dropdown = [
 ];
 
 
+// ============================
+// `.there_is_another`
+// ============================
+tables.there_is_another = [
+  { "var": "x.there_is_another", "value": "True", "sought": "proxy_list.there_is_another" }
+];
+
 
 module.exports = tables;
