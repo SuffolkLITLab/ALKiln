@@ -19,7 +19,7 @@ NOTE:
 #@fast @stf1
 #Scenario: Table is format 1 (og three cols)
 #  Given I start the interview at "all_tests"
-#  And the user gets to "showifs" with this data:
+#  And I get to "showifs" with this data:
 #    | var | choice | value |
 #    | checkboxes_other['checkbox_other_opt_1'] |  | true |
 #    | checkboxes_yesno | True | true |
@@ -32,7 +32,7 @@ NOTE:
 #@fast @stf2
 #Scenario: Table is format 2 (no trigger column)
 #  Given I start the interview at "all_tests"
-#  And the user gets to "showifs" with this data:
+#  And I get to "showifs" with this data:
 #    | var | value | checked |
 #    | checkboxes_other['checkbox_other_opt_2'] | true |  |
 #    | checkboxes_yesno | True | true |
@@ -46,7 +46,7 @@ NOTE:
 @slow @stf3
 Scenario: Table has trigger column
   Given I start the interview at "all_tests"
-  And the user gets to "showifs" with this data:
+  And I get to "showifs" with this data:
     | var | value | trigger |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
     | checkboxes_other['checkbox_other_opt_2'] | true |  |
@@ -62,7 +62,7 @@ Scenario: Table has trigger column
 @slow @stf4
 Scenario: Table MISSING trigger column
   Given I start the interview at "all_tests"
-  And the user gets to "showifs" with this data:
+  And I get to "showifs" with this data:
     | var | value |
     | checkboxes_other['checkbox_other_opt_2'] | true |
     | checkboxes_yesno | True |

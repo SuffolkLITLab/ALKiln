@@ -23,7 +23,7 @@ Scenario: I see user errors
 @slow @o3
 Scenario: I check navigation
   Given I start the interview at "all_tests"
-  And the user gets to "showifs" with this data:
+  And I get to "showifs" with this data:
     | var | value | trigger |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
     | dropdown_test | dropdown_opt_2 | |
@@ -32,7 +32,7 @@ Scenario: I check navigation
     | text_input | Regular text input field value | |
     | textarea | Multiline text\narea value | |
   Then I arrive at the next page
-  Then the user gets to "screen features" with this data:
+  Then I get to "screen features" with this data:
     | var | value | trigger |
     | button_continue | True |  |
     | buttons_other | button_2 |  |
