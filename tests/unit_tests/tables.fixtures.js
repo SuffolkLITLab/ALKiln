@@ -121,103 +121,103 @@ tables.standard_formatting = [
 tables.standard_normalized_formatting = [
   {
     "original": { "var": "direct_showifs", "value": "True", "trigger": "" },
-    "var": "direct_showifs", "value": "True", "trigger": "",
+    "var": "direct_showifs", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "button_continue", "value": "True", "trigger": "" },
-    "var": "button_continue", "value": "True", "trigger": "",
+    "var": "button_continue", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "buttons_other", "value": "button_2", "trigger": "" },
-    "var": "buttons_other", "value": "button_2", "trigger": "",
+    "var": "buttons_other", "value": "button_2", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "buttons_yesnomaybe", "value": "True", "trigger": "" },
-    "var": "buttons_yesnomaybe", "value": "True", "trigger": "",
+    "var": "buttons_yesnomaybe", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_1", "trigger": "" },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_1", "trigger": "",
+    "var": "checkboxes_other", "value": "checkbox_other_opt_1", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_2", "trigger": "" },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_2", "trigger": "",
+    "var": "checkboxes_other", "value": "checkbox_other_opt_2", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_3", "trigger": "" },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_3", "trigger": "",
+    "var": "checkboxes_other", "value": "checkbox_other_opt_3", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "checkboxes_yesno", "value": "True", "trigger": "" },
-    "var": "checkboxes_yesno", "value": "True", "trigger": "",
+    "var": "checkboxes_yesno", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "direct_standard_fields", "value": "True", "trigger": "" },
-    "var": "direct_standard_fields", "value": "True", "trigger": "",
+    "var": "direct_standard_fields", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "dropdown_test", "value": "dropdown_opt_2", "trigger": "" },
-    "var": "dropdown_test", "value": "dropdown_opt_2", "trigger": "",
+    "var": "dropdown_test", "value": "dropdown_opt_2", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "radio_other", "value": "radio_other_opt_3", "trigger": "" },
-    "var": "radio_other", "value": "radio_other_opt_3", "trigger": "",
+    "var": "radio_other", "value": "radio_other_opt_3", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "radio_yesno", "value": "False", "trigger": "" },
-    "var": "radio_yesno", "value": "False", "trigger": "",
+    "var": "radio_yesno", "value": "False", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "screen_features", "value": "True", "trigger": "" },
-    "var": "screen_features", "value": "True", "trigger": "",
+    "var": "screen_features", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_checkbox_yesno", "value": "False", "trigger": "" },
-    "var": "showif_checkbox_yesno", "value": "False", "trigger": "",
+    "var": "showif_checkbox_yesno", "value": "False", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "trigger": "" },
-    "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "trigger": "",
+    "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "trigger": "" },
-    "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "trigger": "",
+    "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_dropdown", "value": "showif_dropdown_1", "trigger": "" },
-    "var": "showif_dropdown", "value": "showif_dropdown_1", "trigger": "",
+    "var": "showif_dropdown", "value": "showif_dropdown_1", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_radio_other", "value": "showif_radio_multi_2", "trigger": "" },
-    "var": "showif_radio_other", "value": "showif_radio_multi_2", "trigger": "",
+    "var": "showif_radio_other", "value": "showif_radio_multi_2", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_text_input", "value": "Show if text input value", "trigger": "" },
-    "var": "showif_text_input", "value": "Show if text input value", "trigger": "",
+    "var": "showif_text_input", "value": "Show if text input value", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "trigger": "" },
-    "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "trigger": "",
+    "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_yesnoradio", "value": "True", "trigger": "" },
-    "var": "showif_yesnoradio", "value": "True", "trigger": "",
+    "var": "showif_yesnoradio", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "text_input", "value": "Regular text input field value", "trigger": "" },
-    "var": "text_input", "value": "Regular text input field value", "trigger": "",
+    "var": "text_input", "value": "Regular text input field value", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "textarea", "value": "Multiline text\narea value", "trigger": "" },
-    "var": "textarea", "value": "Multiline text\narea value", "trigger": "",
+    "var": "textarea", "value": "Multiline text\narea value", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "show_3", "value": "True", "trigger": "" },
-    "var": "show_3", "value": "True", "trigger": "",
+    "var": "show_3", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "show_2", "value": "True", "trigger": "" },
-    "var": "show_2", "value": "True", "trigger": "",
+    "var": "show_2", "value": "True", "trigger": "", times_used: 0,
   },
 ];
 
@@ -254,103 +254,103 @@ tables.missing_sought = [
 tables.missing_sought_to_normalized_formatting = [
   {
     "original": { "var": "direct_showifs", "value": "True", },
-    "var": "direct_showifs", "value": "True", "trigger": "",
+    "var": "direct_showifs", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "button_continue", "value": "True", },
-    "var": "button_continue", "value": "True", "trigger": "",
+    "var": "button_continue", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "buttons_other", "value": "button_2", },
-    "var": "buttons_other", "value": "button_2", "trigger": "",
+    "var": "buttons_other", "value": "button_2", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "buttons_yesnomaybe", "value": "True", },
-    "var": "buttons_yesnomaybe", "value": "True", "trigger": "",
+    "var": "buttons_yesnomaybe", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_1", },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_1", "trigger": "",
+    "var": "checkboxes_other", "value": "checkbox_other_opt_1", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_2", },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_2", "trigger": "",
+    "var": "checkboxes_other", "value": "checkbox_other_opt_2", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "checkboxes_other", "value": "checkbox_other_opt_3", },
-    "var": "checkboxes_other", "value": "checkbox_other_opt_3", "trigger": "",
+    "var": "checkboxes_other", "value": "checkbox_other_opt_3", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "checkboxes_yesno", "value": "True", },
-    "var": "checkboxes_yesno", "value": "True", "trigger": "",
+    "var": "checkboxes_yesno", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "direct_standard_fields", "value": "True", },
-    "var": "direct_standard_fields", "value": "True", "trigger": "",
+    "var": "direct_standard_fields", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "dropdown_test", "value": "dropdown_opt_2", },
-    "var": "dropdown_test", "value": "dropdown_opt_2", "trigger": "",
+    "var": "dropdown_test", "value": "dropdown_opt_2", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "radio_other", "value": "radio_other_opt_3", },
-    "var": "radio_other", "value": "radio_other_opt_3", "trigger": "",
+    "var": "radio_other", "value": "radio_other_opt_3", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "radio_yesno", "value": "False", },
-    "var": "radio_yesno", "value": "False", "trigger": "",
+    "var": "radio_yesno", "value": "False", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "screen_features", "value": "True", },
-    "var": "screen_features", "value": "True", "trigger": "",
+    "var": "screen_features", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_checkbox_yesno", "value": "False", },
-    "var": "showif_checkbox_yesno", "value": "False", "trigger": "",
+    "var": "showif_checkbox_yesno", "value": "False", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", },
-    "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "trigger": "",
+    "var": "showif_checkboxes_other['showif_checkboxes_nota_1']", "value": "false", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", },
-    "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "trigger": "",
+    "var": "showif_checkboxes_other['showif_checkboxes_nota_2']", "value": "true", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_dropdown", "value": "showif_dropdown_1", },
-    "var": "showif_dropdown", "value": "showif_dropdown_1", "trigger": "",
+    "var": "showif_dropdown", "value": "showif_dropdown_1", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_radio_other", "value": "showif_radio_multi_2", },
-    "var": "showif_radio_other", "value": "showif_radio_multi_2", "trigger": "",
+    "var": "showif_radio_other", "value": "showif_radio_multi_2", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_text_input", "value": "Show if text input value", },
-    "var": "showif_text_input", "value": "Show if text input value", "trigger": "",
+    "var": "showif_text_input", "value": "Show if text input value", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", },
-    "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "trigger": "",
+    "var": "showif_textarea", "value": "Show if\nmultiline text\narea value", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "showif_yesnoradio", "value": "True", },
-    "var": "showif_yesnoradio", "value": "True", "trigger": "",
+    "var": "showif_yesnoradio", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "text_input", "value": "Regular text input field value", },
-    "var": "text_input", "value": "Regular text input field value", "trigger": "",
+    "var": "text_input", "value": "Regular text input field value", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "textarea", "value": "Multiline text\narea value", },
-    "var": "textarea", "value": "Multiline text\narea value", "trigger": "",
+    "var": "textarea", "value": "Multiline text\narea value", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "show_3", "value": "True", },
-    "var": "show_3", "value": "True", "trigger": "",
+    "var": "show_3", "value": "True", "trigger": "", times_used: 0,
   },
   {
     "original": { "var": "show_2", "value": "True", },
-    "var": "show_2", "value": "True", "trigger": "",
+    "var": "show_2", "value": "True", "trigger": "", times_used: 0,
   },
 ];
 
