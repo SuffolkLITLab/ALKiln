@@ -75,6 +75,7 @@ special_rows.target_num_last_output.push(  {
 });
 
 // trigger uses `.target_number`
+// devs are supposed to use the right `trigger` name, but they might not
 special_rows.target_number_trigger_input = [
   {
     "original": { "var": "x.target_number", "value": "2", "trigger": "parents.target_number" },
@@ -89,11 +90,11 @@ special_rows.target_number_trigger_input = [
 special_rows.target_number_trigger_output = [ ...special_rows.target_number_trigger_input ];
 special_rows.target_number_trigger_output.push({
   "artificial": true, "source": special_rows.target_number_trigger_input[0],
-  "var": "x.there_is_another", "value": "True", "trigger": "parents.target_number",
+  "var": "x.there_is_another", "value": "True", "trigger": "parents.there_is_another",
 });
 special_rows.target_number_trigger_output.push(  {
   "artificial": true, "source": special_rows.target_number_trigger_input[1],
-  "var": "x.there_is_another", "value": "True", "trigger": "users.target_number",
+  "var": "x.there_is_another", "value": "True", "trigger": "users.there_is_another",
 });
 
 
