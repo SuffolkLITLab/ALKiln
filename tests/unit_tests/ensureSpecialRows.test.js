@@ -26,3 +26,9 @@ describe("For a `.target_number` === 3 story table row", async function() {
   });
 });
 
+describe(`For a \`.target_number\` trigger column`, async function() {
+  it( `it preserves the trigger`, async function() {
+    let result = await ensureSpecialRows( scope, { var_data: special_rows.target_number_trigger_input, from_table: true });
+    expect( result ).to.deep.equal( special_rows.target_number_trigger_output );
+  });
+});
