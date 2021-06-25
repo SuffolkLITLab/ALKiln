@@ -21,5 +21,14 @@ names.empty_string_output = ``;
 names.undefined_input;
 names.undefined_output = ``;
 
+names.colon_input = `invalid:colon`;
+names.colon_output = `invalid_colon_`;
+
+names.slash_input = `invalid/slash`;
+names.slash_output = `invalid_slash_`;
+
+names.two_consecutive_invalid_input = `two_consecutive//invalid`;
+names.two_consecutive_invalid_output = `two_consecutive__invalid_`;
+
 
 module.exports = names;

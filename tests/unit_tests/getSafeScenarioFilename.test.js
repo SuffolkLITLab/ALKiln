@@ -73,4 +73,22 @@ describe(`When I use scope.getSafeScenarioFilename()`, function() {
     test_no_lang_output_is_correct( names.one_underscore_output, result );
   });
 
+  it(`replaces invalid ':' with '_'`, async function() {
+    scope.language = undefined;
+    let result = await getSafeScenarioFilename( scope, { prefix: names.colon_input });
+    test_no_lang_output_is_correct( names.colon_output, result );
+  });
+
+  it(`replaces invalid '/' with '_'`, async function() {
+    scope.language = undefined;
+    let result = await getSafeScenarioFilename( scope, { prefix: names.slash_input });
+    test_no_lang_output_is_correct( names.slash_output, result );
+  });
+
+  it(`replaces two consecutive invalid chars with one '_' each`, async function() {
+    scope.language = undefined;
+    let result = await getSafeScenarioFilename( scope, { prefix: names.two_consecutive_invalid_input });
+    test_no_lang_output_is_correct( names.two_consecutive_invalid_output, result );
+  });
+
 });
