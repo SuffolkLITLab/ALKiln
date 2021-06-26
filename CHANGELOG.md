@@ -41,7 +41,7 @@ Format:
 <!-- TODO: Reduce this to just what would be relevant to the dev? -->
 ## [Unreleased]
 ### Added
-- Support for `.there_is_another` loops
+- Support for `.there_is_another` loops in story tables using `.target_number`
 - New step: 'I should see the link to' and its test.
 - 'I get to' is available in the `And I get to the question "some id" with this data:` instead of just 'the user gets to'
 - Add some warnings/feedback for the developer.
