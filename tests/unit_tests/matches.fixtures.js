@@ -167,11 +167,11 @@ matches.object_dropdown = [
 // ============================
 matches.mixed_quotes = [
   [],
-  [ { var: `single_quote_dict["single_quote_key"]['sq_two']`, value: 'True', trigger: '' } ],
+  [ { var: `single_quote_dict["single_quote_key"]['sq_two']`, value: 'True', trigger: `x['some_key']['dbl_quoted_val']` } ],
   [],
   [],
   [],
-  [ { var: `double_quote_dict['double_quote_key']["dq_two"]`, value: 'True', trigger: '' } ],
+  [ { var: `double_quote_dict['double_quote_key']["dq_two"]`, value: 'True', trigger: `x['some_key']["dbl_quoted_val"]` } ],
   [],
   [],
   [],

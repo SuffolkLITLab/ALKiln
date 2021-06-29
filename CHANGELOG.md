@@ -73,6 +73,7 @@ Format:
 - Assert found invalid input.
 - 'I sign' was passing incorrect arguments.
 - Regex testing for match to proxy var - both the regex itself being more strict and the test for a match being more predictable.
+- #202 handles accidental mixup of single quotes for double quotes or visa versa in all columns.
 
 ## [1.3.5] - 2021-05-04
 ### Added
