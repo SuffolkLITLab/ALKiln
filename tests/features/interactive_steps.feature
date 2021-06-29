@@ -6,7 +6,12 @@ Feature: Interactive steps
 @slow @i1
 Scenario: I set text-type values
   Given I start the interview at "all_tests"
-  And I set the var "checkboxes_yesno" to "True"
+  And I set the var "double_quote_dict['double_quote_key']['dq_two']" to "true"
+  And I set the var "single_quote_dict['single_quote_key']['sq_two']" to "true"
+  And I tap to continue
+  Then the question id should be "direct standard fields"
+  # Next page
+  When I set the var "checkboxes_yesno" to "True"
   And I set the var "checkboxes_other['checkbox_other_opt_1']" to "true"
   And I set the var "dropdown_test" to "dropdown_opt_2"
   And I set the var "radio_yesno" to "False"

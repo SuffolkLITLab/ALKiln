@@ -423,4 +423,13 @@ tables.there_is_another = [
 ];
 
 
+// ============================
+// mixed quotes
+// ============================
+tables.mixed_quotes = [
+  { "var": `double_quote_dict['double_quote_key']["dq_two"]`, "value": "True", "trigger": `x['some_key']["dbl_quoted_val"]` },
+  { "var": `single_quote_dict["single_quote_key"]['sq_two']`, "value": "True", "trigger": `x['some_key']['dbl_quoted_val']` },
+];
+
+
 module.exports = tables;

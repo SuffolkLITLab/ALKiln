@@ -4,7 +4,7 @@ Feature: Story tables
 NOTE:
     Unit tests make sure that all things that are supposed to match do match.
 
-@fast @st1 @trigger_var
+@fast @st1 @mixed
 Scenario: Proxy and regular vars are mixed
   Given I start the interview at "AL_tests"
   And I get to "end" with this data:
@@ -37,6 +37,7 @@ Covers story table tests for:
   And I get to "the end" with this data:
     | var | value | trigger |
     | direct_showifs | True |  |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | button_continue | True |  |
     | buttons_other | button_2 | |
     | buttons_yesnomaybe | True |  |
@@ -46,9 +47,6 @@ Covers story table tests for:
     | checkboxes_yesno | True |  |
     | direct_standard_fields | True |  |
     | dropdown_test | dropdown_opt_2 |  |
-    | x[i].name.first | Proxyname1 | proxy_list[0].name.first |
-    | x[i].name.first | Proxyname2 | proxy_list[1].name.first |
-    | x.target_number | 2 | proxy_list.target_number |
     | radio_other | radio_other_opt_3 |  |
     | radio_yesno | False |  |
     | screen_features | True |  |
@@ -67,3 +65,15 @@ Covers story table tests for:
     | show_2 | True |  |
     | signature_1 | /sign |  |
     | signature_2 | /sign |  |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | x[i].name.first | Proxyname1 | proxy_list[0].name.first |
+    | x[i].name.first | Proxyname2 | proxy_list[1].name.first |
+    | x.target_number | 2 | proxy_list.target_number |
+
+@fast @st3 @quotes
+Scenario: Story table accidentally uses the opposite double or single quotes
+  Given I start the interview at "all_tests"
+  And I get to "direct standard fields" with this data:
+    | var | value | trigger |
+    | double_quote_dict['double_quote_key']["dq_two"] | true |  |
+    | single_quote_dict["single_quote_key"]['sq_two'] | true |  |
