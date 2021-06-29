@@ -38,8 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- TODO: Reduce this to just what would be relevant to the dev? -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [2.0.0] - 2021-06-29
 ### Added
 - Support for `.there_is_another` loops in story tables using `.target_number`
 - New step: 'I should see the link to' and its test.
@@ -52,22 +53,22 @@ Format:
 
 ### Changed
 - Added `trigger` column to table to define trigger var (| var | value | checked | trigger |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
-- Updated tests to match new functionality.
 - Tried to make element selectors more picky.
-- Make screenshot names unique and line up alphabetically.
+- Make screenshot names unique and line up alphabetically with timestamps.
 - Allow more languages in scenario name.
-- Different data structure for matches.
+- Different data structure for matches - check one field at a time - and replace `page_data` with `fields`.
 - Remove the need for the `checked` story table column and prop by: 1) Moving the `value` of checkboxes into their var name column. 2) Moving the `checked` value of checkboxes into the `value` column.
 - Combined checkbox encoding matching regex into one regex.
 - Steps setting choices now work the same as the story tables - only two values given. No need for a 'trigger' column value.
+- Updated tests to match new functionality.
 
 ### Deprecated
-- Previous formats of the table: | var | choice | value | and | var | value | checked |
+- Previous formats of the table: `| var | choice | value |` *and* `| var | value | checked |`
 
 ### Removed
 - Some Steps that won't work with translations and are not currently being used by anyone. TODO: Look up and ennumerate which steps.
-- `checked` column
-- `scope.getField()`
+- `checked` column.
+- `scope.getField()` and other now unused scope functionality.
 
 ### Fixed
 - Assert found invalid input.
