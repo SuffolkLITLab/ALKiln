@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.1.0] - 2021-07-01
+### Added
+- Support interview filenames ending in `.yml` in the first step
+
 ## [2.0.0] - 2021-06-29
 ### Added
 - Support for `.there_is_another` loops in story tables using `.target_number`
