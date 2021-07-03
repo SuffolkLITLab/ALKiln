@@ -21,6 +21,14 @@ Scenario: I see user errors
   Then I can't continue
   And I will be told an answer is invalid
 
+@fast @o3
+Scenario: I can include .yml in the filename
+  Given I start the interview at "all_tests.yml"
+  And I tap to continue
+  And I tap to continue
+  Then I can't continue
+  And I will be told an answer is invalid
+
 @slow @o3
 Scenario: I check navigation
   Given I start the interview at "all_tests"
