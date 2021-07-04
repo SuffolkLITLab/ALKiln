@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.1.0] - 2021-07-04
+### Changed
+- Use new Buffer reference instead of old deprecated reference.
+
 ## [2.1.0] - 2021-07-01
 ### Added
 - Support interview filenames ending in `.yml` in the first step
