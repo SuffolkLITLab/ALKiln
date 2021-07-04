@@ -42,6 +42,10 @@ Format:
 
 ## [2.1.0] - 2021-07-04
 ### Changed
+- Refactor `scope.processVar()`, including rename
+
+## [2.1.0] - 2021-07-04
+### Changed
 - Use new Buffer reference instead of old deprecated reference.
 
 ## [2.1.0] - 2021-07-01
