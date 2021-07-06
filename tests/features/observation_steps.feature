@@ -48,10 +48,4 @@ Scenario: I check navigation
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
-    | checkboxes_yesno | True |  |
-    | dropdown_test | dropdown_opt_2 |  |
-    | radio_other | radio_other_opt_3 |  |
-    | radio_yesno | False | false |
-    | text_input | Regular text input field value |  |
-    | textarea | Multiline text\narea value |  |
   And I should see the link to "http://ecosia.org/"
