@@ -40,11 +40,15 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
-## [2.1.0] - 2021-07-04
+## [2.1.3] - 2021-07-06
+### Added
+- Reports now also show data about which variables were used on each page, as well as a list of which variables from a story table were used and which weren't.
+
+## [2.1.2] - 2021-07-04
 ### Changed
 - Refactor `scope.processVar()`, including rename
 
-## [2.1.0] - 2021-07-04
+## [2.1.1] - 2021-07-04
 ### Changed
 - Use new Buffer reference instead of old deprecated reference.
 
