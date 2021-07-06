@@ -41,6 +41,10 @@ Format:
 <!-- ## [Unreleased] -->
 
 ## [2.1.0] - 2021-07-04
+### Fixed
+- Var name typos in `scope.ensureSpecialRows()`
+
+## [2.1.0] - 2021-07-04
 ### Changed
 - Refactor `scope.processVar()`, including rename
 
