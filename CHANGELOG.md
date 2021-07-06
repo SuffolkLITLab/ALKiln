@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Added
+- Backwards compatibility with `#sought_variable` element.
 
 ## [2.1.0] - 2021-07-04
 ### Fixed
