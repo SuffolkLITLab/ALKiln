@@ -41,6 +41,10 @@ Format:
 ## [Unreleased]
 ### Added
 - Backwards compatibility with `#sought_variable` element.
+- Report tests
+
+### Fixed
+- Typo in report
 
 ## [2.1.0] - 2021-07-04
 ### Fixed

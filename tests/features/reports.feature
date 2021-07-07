@@ -24,6 +24,7 @@ Scenario: Report still has page id when I tap to continue without setting any fi
   When I tap to continue
   # Next page (showifs ID SHOULD BE SHOWN IN REPORT)
   Then the question id should be "buttons yesnomaybe"
+  And the report matches reports.non_setting_page_id
 
 @slow @r2
 Scenario: Report lists unused table rows
@@ -52,3 +53,4 @@ Scenario: Report lists unused table rows
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
+  Then the report matches reports.excess_rows
