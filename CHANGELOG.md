@@ -38,7 +38,13 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Added
+- Backwards compatibility with `#sought_variable` element.
+
+## [2.1.0] - 2021-07-04
+### Fixed
+- Var name typos in `scope.ensureSpecialRows()`
 
 ## [2.1.3] - 2021-07-06
 ### Added
