@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [2.1.6] - 2021-07-07
 ### Added
 - Backwards compatibility with `#sought_variable` element.
 - Report tests
@@ -46,7 +48,11 @@ Format:
 ### Fixed
 - Typo in report
 
-## [2.1.0] - 2021-07-04
+## [2.1.5] - 2021-07-07
+### Changed
+- Not sure. Can't find this commit.
+
+## [2.1.4] - 2021-07-06
 ### Fixed
 - Var name typos in `scope.ensureSpecialRows()`
 
