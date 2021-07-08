@@ -77,5 +77,15 @@ screen id: button-continue
 
 `;
 
+reports.unintended_invalid_input = `
+---------------
+Scenario: Report shows error and failure on unexpected invalid user input reports fast r 
+---------------
+screen id: group-of-complex-fields
+
+ERROR: The question id was supposed to be "direct standard fields", but it's actually "group-of-complex-fields"
+**-- Scenario Failed --**
+`;
+
 
 module.exports = reports;

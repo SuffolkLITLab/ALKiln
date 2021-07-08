@@ -54,3 +54,10 @@ Scenario: Report lists unused table rows
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
   Then the report matches reports.excess_rows
+
+@fast @r3
+Scenario: Report shows error and failure on unexpected invalid user input
+  Given the scenario error report should match "unintended_invalid_input"
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  Then the question id should be "direct standard fields"
