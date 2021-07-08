@@ -1,6 +1,6 @@
 {
   "name": "docassemble-cucumber",
-  "version": "2.1.4-htfx-sought-var",
+  "version": "2.1.6",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
