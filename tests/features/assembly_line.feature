@@ -4,7 +4,7 @@ Feature: Assembly Line package-specific Steps
 # In tag names, 'al' is for 'assembly line'
 
 @fast @al1
-Scenario: I have 2 name parts
+Scenario: I have two name parts
   Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli User"
   And I tap to continue
@@ -16,7 +16,7 @@ Scenario: I have 2 name parts
   Then the question id should be "end"
 
 @fast @al2
-Scenario: I have 3 name parts
+Scenario: I have three name parts
   Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli Udo User"
   And I tap to continue
@@ -28,7 +28,7 @@ Scenario: I have 3 name parts
   Then the question id should be "end"
 
 @fast @al3
-Scenario: I have 4 name parts
+Scenario: I have four name parts
   Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli Udo User Sr"
   And I tap to continue
