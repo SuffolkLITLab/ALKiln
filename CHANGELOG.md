@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.1.7] - 2021-07-08
+### Added
+- More detailed reports that print 1. variables that were set on each page 2. all rows that set variables, and 3. all rows that weren't used
+
 ## [2.1.6] - 2021-07-07
 ### Added
 - Backwards compatibility with `#sought_variable` element.
