@@ -38,7 +38,13 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [2.1.7] - 2021-07-08
+### Added
+- More detailed reports that print 1. variables that were set on each page 2. all rows that set variables, and 3. all rows that weren't used
+
+## [2.1.6] - 2021-07-07
 ### Added
 - Backwards compatibility with `#sought_variable` element.
 - Report tests, including failure reports
@@ -46,7 +52,11 @@ Format:
 ### Fixed
 - Typo in report
 
-## [2.1.0] - 2021-07-04
+## [2.1.5] - 2021-07-07
+### Changed
+- Not sure. Can't find this commit.
+
+## [2.1.4] - 2021-07-06
 ### Fixed
 - Var name typos in `scope.ensureSpecialRows()`
 
