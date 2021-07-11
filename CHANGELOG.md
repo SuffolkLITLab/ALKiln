@@ -38,7 +38,12 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Added
+- Step: Custom global timeout, #317, for when interviews know they'll need longer timeouts for such things as loading large documents.
+
+### Changed
+- Timeout is now 30 sec instead of 2 min as individual devs can set a custom timeout for their scenarios. We've made an assumption that this will be enough for most interviews and will have to see if that bears out.
 
 ## [2.1.7] - 2021-07-08
 ### Added
