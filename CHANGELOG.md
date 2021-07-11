@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [2.1.8] - 2021-07-11
 ### Added
 - Step: Custom global timeout, #317, for when interviews know they'll need longer timeouts for such things as loading large documents.
 
