@@ -8,7 +8,7 @@ const getSafeScenarioFilename = scope.getSafeScenarioFilename;
 // ${ prefix }${ scope.lang }${ Date.now() }_${ scope.safe_id }
 
 let lang = names.language;
-let id = names.safe_id;
+let id = names.scenario_id;
 
 let test_lang_output_is_correct = function ( expected_prefix, result ) {
   /* Test a name to see if it's valid output with a language defined. */
@@ -28,7 +28,7 @@ describe(`When I use scope.getSafeScenarioFilename()`, function() {
 
   beforeEach(function() {
     scope.language = names.language;
-    scope.safe_id = names.safe_id;
+    scope.scenario_id = id;
   });
 
   it(`preserves chinese characters`, async function() {

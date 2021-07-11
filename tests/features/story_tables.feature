@@ -63,8 +63,8 @@ Covers story table tests for:
     | textarea | Multiline text\narea value |  |
     | show_3 | True |  |
     | show_2 | True |  |
-    | signature_1 | /sign |  |
-    | signature_2 | /sign |  |
+    | signature_1 |  |  |
+    | signature_2 |  |  |
     | single_quote_dict['single_quote_key']['sq_two'] | true |  |
     | x[i].name.first | Proxyname1 | proxy_list[0].name.first |
     | x[i].name.first | Proxyname2 | proxy_list[1].name.first |
