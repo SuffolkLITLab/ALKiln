@@ -40,6 +40,13 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.2.0] - 2021-07-12
+### Added
+- Tests for reports for unexpected failures
+
+### Changed
+- Bump minor version for added timeout behavior, etc.
+
 ## [2.1.8] - 2021-07-11
 ### Added
 - Step: Custom global timeout, #317, for when interviews know they'll need longer timeouts for such things as loading large documents.
@@ -54,7 +61,7 @@ Format:
 ## [2.1.6] - 2021-07-07
 ### Added
 - Backwards compatibility with `#sought_variable` element.
-- Report tests, including failure reports
+- Report tests
 
 ### Fixed
 - Typo in report
