@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Fixed
+- Variable undefined in scope.js (message)
 
 ## [2.2.0] - 2021-07-12
 ### Added
