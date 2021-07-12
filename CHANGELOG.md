@@ -54,7 +54,7 @@ Format:
 ## [2.1.6] - 2021-07-07
 ### Added
 - Backwards compatibility with `#sought_variable` element.
-- Report tests
+- Report tests, including failure reports
 
 ### Fixed
 - Typo in report
