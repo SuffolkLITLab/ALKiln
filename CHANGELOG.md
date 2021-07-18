@@ -38,7 +38,10 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Changed
+- Updated package-lock.json with `npm fix` based on `npm audit`
 
 ## [2.2.2] - 2021-07-16
 ### Fixed
