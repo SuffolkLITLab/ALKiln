@@ -142,7 +142,7 @@ describe("For choice 3 of other mutiple choice continue buttons", async function
 });
 
 // `field:` and `action buttons:`
-it(`For an action button`, async function() {
+describe(`For an action button`, async function() {
   for ( let test_i = 0; test_i < matches.buttons_event_action.length; test_i++ ) {
     let field = fields.buttons_event_action[ test_i ];
     let curr_matches = matches.buttons_event_action[ test_i ];
@@ -159,7 +159,7 @@ it(`For an action button`, async function() {
 // Proxy vars (x, i, j, ...)
 // ============================
 // x[i].name.first
-it(`For a multi-proxy name (x[i])`, async function() {
+describe(`For a multi-proxy name (x[i])`, async function() {
   for ( let test_i = 0; test_i < matches.proxies_xi.length; test_i++ ) {
     let field = fields.proxies_xi[ test_i ];
     let curr_matches = matches.proxies_xi[ test_i ];
@@ -173,7 +173,7 @@ it(`For a multi-proxy name (x[i])`, async function() {
 
 // Multiple proxies by the same name are on the list (because of a loop)
 // x[i].name.first
-it(`For mulitple rows with the same proxies`, async function() {
+describe(`For mulitple rows with the same proxies`, async function() {
   for ( let test_i = 0; test_i < matches.proxies_multi.length; test_i++ ) {
     let field = fields.proxies_multi[ test_i ];
     let curr_matches = matches.proxies_multi[ test_i ];
@@ -188,7 +188,7 @@ it(`For mulitple rows with the same proxies`, async function() {
 // your_past_benefits[i].still_receiving
 // your_past_benefits['State Veterans Benefits'].still_receiving
 // Non-match comes after a match
-it(`For a proxy name when a non-match comes after a match`, async function() {
+describe(`For a proxy name when a non-match comes after a match`, async function() {
   for ( let test_i = 0; test_i < matches.proxies_non_match.length; test_i++ ) {
     let field = fields.proxies_non_match[ test_i ];
     let curr_matches = matches.proxies_non_match[ test_i ];
@@ -204,7 +204,7 @@ it(`For a proxy name when a non-match comes after a match`, async function() {
 // ============================
 // Signature
 // ============================
-it(`For a signature field`, async function() {
+describe(`For a signature field`, async function() {
   for ( let test_i = 0; test_i < matches.signature.length; test_i++ ) {
     let field = fields.signature[ test_i ];
     let curr_matches = matches.signature[ test_i ];
@@ -221,7 +221,7 @@ it(`For a signature field`, async function() {
 // `choices:`
 // ============================
 // `field:` and `choices:`
-it(`For a 'choices:' specifier`, async function() {
+describe(`For a 'choices:' specifier`, async function() {
   for ( let test_i = 0; test_i < matches.choices.length; test_i++ ) {
     let field = fields.choices[ test_i ];
     let curr_matches = matches.choices[ test_i ];
@@ -244,13 +244,29 @@ it(`For a 'choices:' specifier`, async function() {
 //     lambda y: y.short_label()```
 //   choices: some_obj
 // ```
-it(`For a dropdown created with objects`, async function() {
+describe(`For a dropdown created with objects`, async function() {
   for ( let test_i = 0; test_i < matches.object_dropdown.length; test_i++ ) {
     let field = fields.object_dropdown[ test_i ];
     let curr_matches = matches.object_dropdown[ test_i ];
     let name = getSafeName( field );
     it( `finds the right matches for ${ name }`, async function() {
       let result = await getMatchingRows( scope, { field, var_data: tables.object_dropdown });
+      expect( result ).to.deep.equal( curr_matches );
+    });
+  }
+});
+
+
+// ============================
+// mixed quotes
+// ============================
+describe(`For quotes that are mismatched`, async function() {
+  for ( let test_i = 0; test_i < matches.mixed_quotes.length; test_i++ ) {
+    let field = fields.mixed_quotes[ test_i ];
+    let curr_matches = matches.mixed_quotes[ test_i ];
+    let name = getSafeName( field );
+    it( `finds the right matches for ${ name }`, async function() {
+      let result = await getMatchingRows( scope, { field, var_data: tables.mixed_quotes });
       expect( result ).to.deep.equal( curr_matches );
     });
   }

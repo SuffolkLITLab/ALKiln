@@ -38,8 +38,70 @@ Format:
 ### Security
 - 
 -->
-<!-- TODO: Reduce this to just what would be relevant to the dev? -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [2.2.2] - 2021-07-16
+### Fixed
+- `toBase64` returns default valid base 64 value with clear name if needed
+
+### Added
+- Clarifying code comments
+
+## [2.2.1] - 2021-07-14
+### Fixed
+- Variable undefined in scope.js (message)
+
+## [2.2.0] - 2021-07-12
+### Added
+- Tests for reports for unexpected failures
+
+### Changed
+- Bump minor version for added timeout behavior, etc.
+
+## [2.1.8] - 2021-07-11
+### Added
+- Step: Custom global timeout, #317, for when interviews know they'll need longer timeouts for such things as loading large documents.
+
+### Changed
+- Timeout is now 30 sec instead of 2 min as individual devs can set a custom timeout for their scenarios. We've made an assumption that this will be enough for most interviews and will have to see if that bears out.
+
+## [2.1.7] - 2021-07-08
+### Added
+- More detailed reports that print 1. variables that were set on each page 2. all rows that set variables, and 3. all rows that weren't used
+
+## [2.1.6] - 2021-07-07
+### Added
+- Backwards compatibility with `#sought_variable` element.
+- Report tests
+
+### Fixed
+- Typo in report
+
+## [2.1.5] - 2021-07-07
+### Changed
+- Not sure. Can't find this commit.
+
+## [2.1.4] - 2021-07-06
+### Fixed
+- Var name typos in `scope.ensureSpecialRows()`
+
+## [2.1.3] - 2021-07-06
+### Added
+- Reports now also show data about which variables were used on each page, as well as a list of which variables from a story table were used and which weren't.
+
+## [2.1.2] - 2021-07-04
+### Changed
+- Refactor `scope.processVar()`, including rename
+
+## [2.1.1] - 2021-07-04
+### Changed
+- Use new Buffer reference instead of old deprecated reference.
+
+## [2.1.0] - 2021-07-01
+### Added
+- Support interview filenames ending in `.yml` in the first step
+
+## [2.0.0] - 2021-06-29
 ### Added
 - Support for `.there_is_another` loops in story tables using `.target_number`
 - New step: 'I should see the link to' and its test.
@@ -52,27 +114,28 @@ Format:
 
 ### Changed
 - Added `trigger` column to table to define trigger var (| var | value | checked | trigger |). See https://github.com/plocket/docassemble-cucumber/issues/256. This allows devs to use index vars and generic objects (proxy vars) freely in their interview.
-- Updated tests to match new functionality.
 - Tried to make element selectors more picky.
-- Make screenshot names unique and line up alphabetically.
+- Make screenshot names unique and line up alphabetically with timestamps.
 - Allow more languages in scenario name.
-- Different data structure for matches.
+- Different data structure for matches - check one field at a time - and replace `page_data` with `fields`.
 - Remove the need for the `checked` story table column and prop by: 1) Moving the `value` of checkboxes into their var name column. 2) Moving the `checked` value of checkboxes into the `value` column.
 - Combined checkbox encoding matching regex into one regex.
 - Steps setting choices now work the same as the story tables - only two values given. No need for a 'trigger' column value.
+- Updated tests to match new functionality.
 
 ### Deprecated
-- Previous formats of the table: | var | choice | value | and | var | value | checked |
+- Previous formats of the table: `| var | choice | value |` *and* `| var | value | checked |`
 
 ### Removed
 - Some Steps that won't work with translations and are not currently being used by anyone. TODO: Look up and ennumerate which steps.
-- `checked` column
-- `scope.getField()`
+- `checked` column.
+- `scope.getField()` and other now unused scope functionality.
 
 ### Fixed
 - Assert found invalid input.
 - 'I sign' was passing incorrect arguments.
 - Regex testing for match to proxy var - both the regex itself being more strict and the test for a match being more predictable.
+- #202 handles accidental mixup of single quotes for double quotes or visa versa in all columns.
 
 ## [1.3.5] - 2021-05-04
 ### Added

@@ -637,4 +637,96 @@ fields.object_dropdown =  [
   ];
 
 
+// ============================
+// mixed quotes
+// ============================
+fields.mixed_quotes = [
+  {
+    "selector": "#daquestion input[name=\"c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXVtCJ2MzRmZiMjVsJ10\"][value=\"True\"][id=\"c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXQ_0\"][class=\"dafield0 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth\"]",
+    "tag": "input",
+    "guesses": [
+      { "var": "single_quote_dict['single_quote_key']['sq_one']", "value": "True" },
+      { "var": "single_quote_dict['single_quote_key']['���']", "value": "True" }],
+    "type": "checkbox",
+    "trigger": "double_quote_dict['double_quote_key']"
+  },
+  {
+    "selector": "#daquestion input[name=\"c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXVtCJ2MzRmZkSGR2J10\"][value=\"True\"][id=\"c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXQ_1\"][class=\"dafield0 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth\"]",
+    "tag": "input",
+    "guesses": [
+      { "var": "single_quote_dict['single_quote_key']['sq_two']", "value": "True" },
+      { "var": "single_quote_dict['single_quote_key']['����']", "value": "True" }],
+    "type": "checkbox",
+    "trigger": "double_quote_dict['double_quote_key']"
+  },
+  {
+    "selector": "#daquestion input[name=\"c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXVtCJ2MzRmZkR2h5WldVJ10\"][value=\"True\"][id=\"c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXQ_2\"][class=\"dafield0 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth\"]",
+    "tag": "input",
+    "guesses": [
+      { "var": "single_quote_dict['single_quote_key']['sq_three']", "value": "True" },
+      { "var": "single_quote_dict['single_quote_key']['��톷�']", "value": "True" }],
+    "type": "checkbox",
+    "trigger": "double_quote_dict['double_quote_key']"
+  },
+  {
+    "selector": "#daquestion input[name=\"_ignore0\"][id=\"labelauty-848\"][class=\"dafield0 danota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth\"]",
+    "tag": "input",
+    "guesses": [
+      { "var": "single_quote_dict['single_quote_key']['None']", "value": "" }],
+    "type": "checkbox",
+    "trigger": "double_quote_dict['double_quote_key']"
+  },
+  {
+    "selector": "#daquestion input[name=\"ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXVtCJ1pIRmZiMjVsJ10\"][value=\"True\"][id=\"ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXQ_0\"][class=\"dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth\"]",
+    "tag": "input",
+    "guesses": [
+      { "var": "double_quote_dict[\"double_quote_key\"]['dq_one']", "value": "True" },
+      { "var": "double_quote_dict[\"double_quote_key\"]['v��']", "value": "True" }],
+    "type": "checkbox",
+    "trigger": "double_quote_dict['double_quote_key']"
+  },
+  {
+    "selector": "#daquestion input[name=\"ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXVtCJ1pIRmZkSGR2J10\"][value=\"True\"][id=\"ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXQ_1\"][class=\"dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth\"]",
+    "tag": "input",
+    "guesses": [
+      { "var": "double_quote_dict[\"double_quote_key\"]['dq_two']", "value": "True" },
+      { "var": "double_quote_dict[\"double_quote_key\"]['v���']", "value": "True" }],
+    "type": "checkbox",
+    "trigger": "double_quote_dict['double_quote_key']"
+  },
+  {
+    "selector": "#daquestion input[name=\"ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXVtCJ1pIRmZkR2h5WldVJ10\"][value=\"True\"][id=\"ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXQ_2\"][class=\"dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth\"]",
+    "tag": "input",
+    "guesses": [
+      { "var": "double_quote_dict[\"double_quote_key\"]['dq_three']", "value": "True" },
+      { "var": "double_quote_dict[\"double_quote_key\"]['v�톷�']", "value": "True" }],
+    "type": "checkbox",
+    "trigger": "double_quote_dict['double_quote_key']"
+  },
+  {
+    "selector": "#daquestion input[name=\"_ignore1\"][id=\"labelauty-157760\"][class=\"dafield1 danota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth\"]",
+    "tag": "input",
+    "guesses": [
+      { "var": "double_quote_dict[\"double_quote_key\"]['None']", "value": "" }],
+    "type": "checkbox",
+    "trigger": "double_quote_dict['double_quote_key']"
+  },
+  {
+    "selector": "#daquestion button[class=\"btn btn-da btn-primary\"]",
+    "tag": "button",
+    "guesses": [],
+    "type": "submit",
+    "trigger": "double_quote_dict['double_quote_key']"
+  },
+  {
+    "selector": "#daquestion input[name=\"_ignore1\"][id=\"labelauty-157760\"][class=\"dafield1 danota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth\"]",
+    "tag": "input",
+    "guesses": [
+      { "var": "double_quote_dict[\"double_quote_key\"]['None']", "value": "" }],
+    "type": "checkbox",
+    "trigger": "double_quote_dict['double_quote_key']"
+  },
+];
+
+
 module.exports = fields;

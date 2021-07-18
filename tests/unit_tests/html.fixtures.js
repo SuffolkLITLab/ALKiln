@@ -9,9 +9,10 @@ let html = {};
 // ============================
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
 // TODO: Add tests for individual fields.
+// NOTE: `.standard` also tests for old `#sought_variable` element
 html.standard = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-  <div data-variable="ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw" id="trigger" aria-hidden="true" style="display: none;"></div>
+  <div data-variable="ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw" id="sought_variable" aria-hidden="true" style="display: none;"></div>
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
     <div class="da-page-header">
       <h1 class="h3" id="daMainQuestion">Direct standard fields</h1>
@@ -769,6 +770,7 @@ html.object_dropdown = `
 // ============================
 html.there_is_another = `
 <section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+  <div data-variable="ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw" id="trigger" aria-hidden="true" style="display: none;"></div>
   <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground204testing127loop%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
     <div class="da-page-header">
       <h1 class="h3" id="daMainQuestion">Is there another proxy var?</h1>

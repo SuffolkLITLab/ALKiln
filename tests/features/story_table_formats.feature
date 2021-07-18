@@ -48,6 +48,7 @@ Scenario: Table has trigger column
   Given I start the interview at "all_tests"
   And I get to "showifs" with this data:
     | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
     | checkboxes_other['checkbox_other_opt_2'] | true |  |
     | checkboxes_other['checkbox_other_opt_3'] | false |  |
@@ -55,6 +56,7 @@ Scenario: Table has trigger column
     | dropdown_test | dropdown_opt_2 |  |
     | radio_other | radio_other_opt_3 |  |
     | radio_yesno | False |  |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
     | text_input | Regular text input field value |  |
     | textarea | Multiline text\narea value |  |
 
@@ -64,10 +66,12 @@ Scenario: Table MISSING trigger column
   Given I start the interview at "all_tests"
   And I get to "showifs" with this data:
     | var | value |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |
     | checkboxes_other['checkbox_other_opt_2'] | true |
     | checkboxes_yesno | True |
     | dropdown_test | dropdown_opt_2 |
     | radio_other | radio_other_opt_3 |
     | radio_yesno | False |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |
     | text_input | Regular text input field value |
     | textarea | Multiline text\narea value |

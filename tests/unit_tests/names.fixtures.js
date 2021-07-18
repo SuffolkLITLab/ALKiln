@@ -1,7 +1,7 @@
 let names = {};
 
 names.language = 'some_lang';
-names.safe_id = 'a_safe_id';
+names.scenario_id = 'a_safe_id';
 
 names.chinese_input = `是汉字`;
 names.chinese_output = `是汉字_`;
