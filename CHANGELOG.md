@@ -38,7 +38,15 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Changed
+- Report: List failed scenarios first, other non-passing scenarios second (should not run into those much I think), and passed scenarios last.
+- Two internal tests adjusted to be 10 secs shorter each
+- One internal test tag updated
+
+### Fixed
+- Some report ids not being recorded because old id from previous test was not different from new id in new scenario.
 
 ## [2.2.3] - 2021-07-18
 ### Changed

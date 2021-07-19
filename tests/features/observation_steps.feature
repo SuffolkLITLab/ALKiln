@@ -29,7 +29,7 @@ Scenario: I can include .yml in the filename
   Then I can't continue
   And I will be told an answer is invalid
 
-@slow @o3
+@slow @o4
 Scenario: I check navigation
   Given I start the interview at "all_tests"
   And I get to "showifs" with this data:
