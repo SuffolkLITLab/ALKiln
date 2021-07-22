@@ -38,7 +38,13 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Added
+- Values can be set to comma-separated list of names of files to upload to upload multiple files. Files must be in the package's 'sources' folder or in the 'tests/features' folder.
+
+### Changed
+- Increased `showif_timeout` because a hidden field missed getting set via a race condition. The only explanation we could come up with was that the field wasn't shown fast enough.
+- Allow duplicates of '[class="file-caption-name"]' fields as they should not be dangerous.
 
 ## [2.2.3] - 2021-07-18
 ### Changed

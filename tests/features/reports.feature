@@ -6,6 +6,8 @@ Note: For now we'll have to check them visually
 @fast @r1
 Scenario: Report still has page id when I tap to continue without setting any fields
   Given I start the interview at "all_tests"
+  And I tap to continue
+  # Next page
   And I set the var "double_quote_dict['double_quote_key']['dq_two']" to "true"
   And I set the var "single_quote_dict['single_quote_key']['sq_two']" to "true"
   And I tap to continue
@@ -59,5 +61,6 @@ Scenario: Report lists unused table rows
 Scenario: Report shows error and failure on unexpected invalid user input
   Given the scenario error report should match "unintended_invalid_input"
   Given I start the interview at "all_tests"
+  And I tap to continue
   And I tap to continue
   Then the question id should be "direct standard fields"

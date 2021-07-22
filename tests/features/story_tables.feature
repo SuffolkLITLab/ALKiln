@@ -77,3 +77,12 @@ Scenario: Story table accidentally uses the opposite double or single quotes
     | var | value | trigger |
     | double_quote_dict['double_quote_key']["dq_two"] | true |  |
     | single_quote_dict["single_quote_key"]['sq_two'] | true |  |
+
+@fast @st4 @quotes
+Scenario: I upload files with a table
+  Given I start the interview at "all_tests"
+  And I get to "group of complex fields" with this data:
+    | var | value | trigger |
+    | upload_files_visible | some_png_1.png, some_png_2.png |  |
+    | show_upload | True |  |
+    | upload_files_hidden | some_png_2.png |  |
