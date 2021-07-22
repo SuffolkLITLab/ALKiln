@@ -27,7 +27,7 @@ Scenario: I see user errors
 Scenario: I can include .yml in the filename
   Given I start the interview at "all_tests.yml"
 
-@slow @o3
+@slow @o4
 Scenario: I check navigation
   Given I start the interview at "all_tests"
   And I tap to continue

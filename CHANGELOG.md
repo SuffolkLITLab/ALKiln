@@ -46,6 +46,15 @@ Format:
 - Increased `showif_timeout` because a hidden field missed getting set via a race condition. The only explanation we could come up with was that the field wasn't shown fast enough.
 - Allow duplicates of '[class="file-caption-name"]' fields as they should not be dangerous.
 
+## [2.3.0] - 2021-07-22
+### Changed
+- Report: List failed scenarios first, other non-passing scenarios second (should not run into those much I think), and passed scenarios last.
+- Two internal tests adjusted to be 10 secs shorter each
+- One internal test tag updated
+
+### Fixed
+- Some report ids not being recorded because old id from previous test was not different from new id in new scenario.
+
 ## [2.2.3] - 2021-07-18
 ### Changed
 - Updated package-lock.json with `npm fix` based on `npm audit`
