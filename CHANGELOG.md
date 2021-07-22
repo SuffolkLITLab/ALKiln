@@ -38,8 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
 
+## [2.3.0] - 2021-07-22
 ### Changed
 - Report: List failed scenarios first, other non-passing scenarios second (should not run into those much I think), and passed scenarios last.
 - Two internal tests adjusted to be 10 secs shorter each
