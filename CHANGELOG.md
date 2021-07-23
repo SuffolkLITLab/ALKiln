@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [2.4.0] - 2021-07-23
 ### Added
 - Values can be set to comma-separated list of names of files to upload to upload multiple files. Files must be in the package's 'sources' folder or in the 'tests/features' folder.
 
