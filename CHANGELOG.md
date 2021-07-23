@@ -38,7 +38,10 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Fixed
+- Upload Step wasn't waiting for files to finish uploading
 
 ## [2.4.0] - 2021-07-23
 ### Added
