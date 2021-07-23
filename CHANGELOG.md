@@ -38,8 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
 
+## [2.4.1] - 2021-07-24
 ### Fixed
 - Upload Step wasn't waiting for files to finish uploading
 
