@@ -4,6 +4,7 @@ reports.non_setting_page_id = `
 ---------------
 Scenario: Report still has page id when I tap to continue without setting any fields reports fast r 
 ---------------
+screen id: upload-files
 screen id: group-of-complex-fields
       | double_quote_dict['double_quote_key']['dq_two'] | true |  |
       | single_quote_dict['single_quote_key']['sq_two'] | true |  |
@@ -22,6 +23,7 @@ reports.excess_rows = `
 ---------------
 Scenario: Report lists unused table rows reports slow r 
 ---------------
+screen id: upload-files
 screen id: group-of-complex-fields
       | single_quote_dict['single_quote_key']['sq_two'] | true |  |
       | double_quote_dict[\\"double_quote_key\\"]['dq_two'] | true |  |
@@ -81,6 +83,7 @@ reports.unintended_invalid_input = `
 ---------------
 Scenario: Report shows error and failure on unexpected invalid user input reports fast r 
 ---------------
+screen id: upload-files
 screen id: group-of-complex-fields
 
 ERROR: The question id was supposed to be "direct standard fields", but it's actually "group-of-complex-fields"

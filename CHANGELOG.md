@@ -40,6 +40,42 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.4.1] - 2021-07-24
+### Fixed
+- Upload Step wasn't waiting for files to finish uploading
+
+## [2.4.0] - 2021-07-23
+### Added
+- Values can be set to comma-separated list of names of files to upload to upload multiple files. Files must be in the package's 'sources' folder or in the 'tests/features' folder.
+
+### Changed
+- Increased `showif_timeout` because a hidden field missed getting set via a race condition. The only explanation we could come up with was that the field wasn't shown fast enough.
+- Allow duplicates of '[class="file-caption-name"]' fields as they should not be dangerous.
+
+## [2.3.0] - 2021-07-22
+### Changed
+- Report: List failed scenarios first, other non-passing scenarios second (should not run into those much I think), and passed scenarios last.
+- Two internal tests adjusted to be 10 secs shorter each
+- One internal test tag updated
+
+### Fixed
+- Some report ids not being recorded because old id from previous test was not different from new id in new scenario.
+
+## [2.2.3] - 2021-07-18
+### Changed
+- Updated package-lock.json with `npm fix` based on `npm audit`
+
+## [2.2.2] - 2021-07-16
+### Fixed
+- `toBase64` returns default valid base 64 value with clear name if needed
+
+### Added
+- Clarifying code comments
+
+## [2.2.1] - 2021-07-14
+### Fixed
+- Variable undefined in scope.js (message)
+
 ## [2.2.0] - 2021-07-12
 ### Added
 - Tests for reports for unexpected failures
