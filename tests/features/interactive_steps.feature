@@ -6,7 +6,13 @@ Feature: Interactive steps
 @slow @i1
 Scenario: I set text-type values
   Given I start the interview at "all_tests"
+  Then the question id should be "upload files"
+  When I set the var "upload_files_visible" to "some_png_1.png, some_png_2.png"
+  And I set the var "show_upload" to "True"
+  And I upload "some_png_2.png,some_png_1.png" to "upload_files_hidden"
   And I tap to continue
+  # Next page
+  Then the question id should be "group of complex fields"
   And I set the var "double_quote_dict['double_quote_key']['dq_two']" to "true"
   And I set the var "single_quote_dict['single_quote_key']['sq_two']" to "true"
   And I tap to continue

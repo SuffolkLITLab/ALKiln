@@ -6,6 +6,7 @@ Feature: Observational steps
 @fast @o1
 Scenario: I observe things on a single page when I arrive
   Given I start the interview at "all_tests"
+  And I tap to continue
   Then the question id should be "group of complex fields"
   And I should see the phrase "Some complex fields"
   And I SHOULD see the phrase "Some complex fields"
@@ -18,20 +19,18 @@ Scenario: I see user errors
   Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
+  And I tap to continue
   Then I can't continue
   And I will be told an answer is invalid
 
 @fast @o3
 Scenario: I can include .yml in the filename
   Given I start the interview at "all_tests.yml"
-  And I tap to continue
-  And I tap to continue
-  Then I can't continue
-  And I will be told an answer is invalid
 
-@slow @o3
+@slow @o4
 Scenario: I check navigation
   Given I start the interview at "all_tests"
+  And I tap to continue
   And I get to "showifs" with this data:
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
