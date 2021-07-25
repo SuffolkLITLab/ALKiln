@@ -86,7 +86,7 @@ Scenario: Report shows error and failure on unexpected invalid user input report
 screen id: upload-files
 screen id: group-of-complex-fields
 
-ERROR: The question id was supposed to be "direct standard fields", but it's actually "group-of-complex-fields"
+ERROR: The question id was supposed to be "direct standard fields", but it's actually "group-of-complex-fields".
 **-- Scenario Failed --**
 `;
 
