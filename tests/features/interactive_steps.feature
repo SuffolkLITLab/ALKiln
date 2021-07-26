@@ -74,6 +74,7 @@ Scenario: I set text-type values
   And I tap to continue
   # Next page
   Then the question id should be "simple doc"
+  When I download "simple-doc.pdf"
   And I tap to continue
   # Next page
   Then the question id should be "button event action"
