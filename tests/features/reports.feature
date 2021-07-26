@@ -1,13 +1,122 @@
 @reports
 Feature: Reports show the right things
 
-@fast @r1
-Scenario: Report still shows page id when I tap to continue without setting any fields
-  Given
-    """
+# re for report error
+# rw for report warning
+# rw for report pass
 
+# ===============================
+# Reoprts for failing Scenarios
+# ===============================
+
+@fast @re1 @error
+Scenario: Fail with missng language link
+  Given the failed Scenario report should include:
+  """
+  Could not find the link with the text "Latin"
+  """
+  And I start the interview at "all_tests" in lang "Latin"
+
+## This screen has not yet been created
+#@fast @re2 @error
+#Scenario: Fail with found no page id
+#  Given the failed Scenario report should include:
+#  """
+#  Did not find any question id.
+#  """
+#  And I start the interview at "all_tests"
+#  Then the question id should be "any question id"
+
+@fast @re3 @error
+Scenario: Fail with wrong page id
+  Given the failed Scenario report should include:
+  """
+  The question id was supposed to be
+  """
+  And I start the interview at "all_tests"
+  Then the question id should be "wrong question id"
+
+@fast @re4 @error
+Scenario: Fail with a missing phrase
+  Given the failed Scenario report should include:
+  """
+  SHOULD be on this page, but it's NOT
+  """
+  And I start the interview at "all_tests"
+  Then I SHOULD see the phrase "phrase missing"
+
+@fast @re5 @error
+Scenario: Fail with incorrectly present phrase
+  Given the failed Scenario report should include:
+  """
+  should NOT be on this page, but it IS here
+  """
+  And I start the interview at "all_tests"
+  Then I should NOT see the phrase "e"
+
+@fast @re6 @error
+Scenario: Fail with missing element id
+  Given the failed Scenario report should include:
+  """
+  No element on this page has the ID
+  """
+  And I start the interview at "all_tests"
+  Then an element should have the id "wrong element id"
+
+@fast @re7 @error
+Scenario: Fail with unexpectedly able to continue
+  Given the failed Scenario report should include:
+  """
+  The page should have stopped the user from continuing, but the user was able to continue.
+  """
+  And I start the interview at "all_tests"
+  Then the question id should be "upload files"
+  And I tap to continue
+  Then I can't continue
+
+@fast @re8 @error
+Scenario: Fail with missing error message
+  Given the failed Scenario report should include:
+  """
+  No error message was found on the page
+  """
+  And I start the interview at "all_tests"
+  And I will be told an answer is invalid
+
+## Not sure how to trigger this at the moment
+#@fast @re9 @error
+#Scenario: Fail with missing user error message
+#  Given the failed Scenario report should include:
+#  """
+#  The error was a system error, not an error message to the user.
+#  """
+#  And I start the interview at "all_tests"
+#  And I will be told an answer is invalid
+
+@fast @re10 @error
+Scenario: Fail with was uexepctedly not able to continue
+  Given the failed Scenario report should include:
+  """
+  User did not arrive at the next page.
+  """
+  And I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  Then I arrive at the next page
+
+
+
+# ===============================
+# Reoprts for passing Scenarios
+# ===============================
+
+@fast @rp1
+Scenario: Report still shows page id when I tap to continue without setting any fields
+  Given the Scenario should pass with this report:
+    """
     ---------------
-    Scenario: Report still shows page id when I tap to continue without setting any fields reports fast r 
+    Scenario: Report still shows page id when I tap to continue without setting any fields reports fast rp 
     ---------------
     screen id: upload-files
     screen id: group-of-complex-fields
@@ -20,7 +129,7 @@ Scenario: Report still shows page id when I tap to continue without setting any 
           | radio_yesno | False |  |
           | radio_other | radio_other_opt_3 |  |
           | text_input | Regular text input field value |  |
-          | textarea | Multiline text\\narea value |  |
+          | textarea | Multiline text\narea value |  |
     screen id: showifs
 
     """
@@ -46,23 +155,23 @@ Scenario: Report still shows page id when I tap to continue without setting any 
   # Next page (showifs ID SHOULD BE SHOWN IN REPORT)
   Then the question id should be "buttons yesnomaybe"
 
-@slow @r2
+@slow @rp2
 Scenario: Report lists unused table rows
   Given the Scenario should pass with this report:
     """
 
     ---------------
-    Scenario: Report lists unused table rows reports slow r 
+    Scenario: Report lists unused table rows reports slow rp 
     ---------------
     screen id: upload-files
     screen id: group-of-complex-fields
           | single_quote_dict['single_quote_key']['sq_two'] | true |  |
-          | double_quote_dict[\\"double_quote_key\\"]['dq_two'] | true |  |
+          | double_quote_dict[\"double_quote_key\"]['dq_two'] | true |  |
 
       Rows that got set:
         And I get the question id "direct standard fields" with this data:
           | var | value | trigger |
-          | double_quote_dict[\\"double_quote_key\\"]['dq_two'] | true |  |
+          | double_quote_dict[\"double_quote_key\"]['dq_two'] | true |  |
           | single_quote_dict['single_quote_key']['sq_two'] | true |  |
       Unused rows:
           | extra_2 | extra 2 |  |
@@ -73,7 +182,7 @@ Scenario: Report lists unused table rows
           | radio_yesno | False | false |
           | radio_other | radio_other_opt_3 |  |
           | text_input | Regular text input field value |  |
-          | textarea | Multiline text\\narea value |  |
+          | textarea | Multiline text\narea value |  |
           | dropdown_test | dropdown_opt_2 |  |
 
       Rows that got set:
@@ -84,7 +193,7 @@ Scenario: Report lists unused table rows
           | radio_other | radio_other_opt_3 |  |
           | radio_yesno | False | false |
           | text_input | Regular text input field value |  |
-          | textarea | Multiline text\\narea value |  |
+          | textarea | Multiline text\narea value |  |
       Unused rows:
           | extra_3 | extra 3 |  |
           | extra_4 | extra 4 |  |
@@ -134,24 +243,3 @@ Scenario: Report lists unused table rows
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
-
-
-@fast @r3
-Scenario: Report shows error on unexpected invalid user input
-  Given the Scenario should fail with this report:
-    """
-
-    ---------------
-    Scenario: Report shows error on unexpected invalid user input reports fast r 
-    ---------------
-    screen id: upload-files
-    screen id: group-of-complex-fields
-
-    ERROR: The question id was supposed to be "direct standard fields", but it's actually "group-of-complex-fields".
-    **-- Scenario Failed --**
-
-    """
-  And I start the interview at "all_tests"
-  And I tap to continue
-  And I tap to continue
-  Then the question id should be "direct standard fields"
