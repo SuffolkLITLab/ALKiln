@@ -11,7 +11,7 @@ Feature: Reports show the right things
 
 @fast @re1 @error
 Scenario: Fail with missng language link
-  Given the failed Scenario report should include:
+  Given the Scenario report should include:
   """
   Could not find the link with the text "Latin"
   """
@@ -20,7 +20,7 @@ Scenario: Fail with missng language link
 ## This screen has not yet been created
 #@fast @re2 @error
 #Scenario: Fail with found no page id
-#  Given the failed Scenario report should include:
+#  Given the Scenario report should include:
 #  """
 #  Did not find any question id.
 #  """
@@ -29,7 +29,7 @@ Scenario: Fail with missng language link
 
 @fast @re3 @error
 Scenario: Fail with wrong page id
-  Given the failed Scenario report should include:
+  Given the Scenario report should include:
   """
   The question id was supposed to be
   """
@@ -38,7 +38,7 @@ Scenario: Fail with wrong page id
 
 @fast @re4 @error
 Scenario: Fail with a missing phrase
-  Given the failed Scenario report should include:
+  Given the Scenario report should include:
   """
   SHOULD be on this page, but it's NOT
   """
@@ -47,7 +47,7 @@ Scenario: Fail with a missing phrase
 
 @fast @re5 @error
 Scenario: Fail with incorrectly present phrase
-  Given the failed Scenario report should include:
+  Given the Scenario report should include:
   """
   should NOT be on this page, but it IS here
   """
@@ -56,7 +56,7 @@ Scenario: Fail with incorrectly present phrase
 
 @fast @re6 @error
 Scenario: Fail with missing element id
-  Given the failed Scenario report should include:
+  Given the Scenario report should include:
   """
   No element on this page has the ID
   """
@@ -65,7 +65,7 @@ Scenario: Fail with missing element id
 
 @fast @re7 @error
 Scenario: Fail with unexpectedly able to continue
-  Given the failed Scenario report should include:
+  Given the Scenario report should include:
   """
   The page should have stopped the user from continuing, but the user was able to continue.
   """
@@ -76,7 +76,7 @@ Scenario: Fail with unexpectedly able to continue
 
 @fast @re8 @error
 Scenario: Fail with missing error message
-  Given the failed Scenario report should include:
+  Given the Scenario report should include:
   """
   No error message was found on the page
   """
@@ -86,7 +86,7 @@ Scenario: Fail with missing error message
 ## Not sure how to trigger this at the moment
 #@fast @re9 @error
 #Scenario: Fail with missing user error message
-#  Given the failed Scenario report should include:
+#  Given the Scenario report should include:
 #  """
 #  The error was a system error, not an error message to the user.
 #  """
@@ -95,7 +95,7 @@ Scenario: Fail with missing error message
 
 @fast @re10 @error
 Scenario: Fail with was uexepctedly not able to continue
-  Given the failed Scenario report should include:
+  Given the Scenario report should include:
   """
   User did not arrive at the next page.
   """
@@ -113,7 +113,7 @@ Scenario: Fail with was uexepctedly not able to continue
 
 @fast @rp1
 Scenario: Report still shows page id when I tap to continue without setting any fields
-  Given the Scenario should pass with this report:
+  Given the Scenario report should include:
     """
     ---------------
     Scenario: Report still shows page id when I tap to continue without setting any fields reports fast rp 
@@ -157,7 +157,7 @@ Scenario: Report still shows page id when I tap to continue without setting any 
 
 @slow @rp2
 Scenario: Report lists unused table rows
-  Given the Scenario should pass with this report:
+  Given the Scenario report should include:
     """
 
     ---------------
