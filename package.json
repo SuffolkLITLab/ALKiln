@@ -1,56 +1,40 @@
 {
   "name": "docassemble-cucumber",
-  "version": "2.4.1",
-  "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
-  "main": "lib/index.js",
+  "version": "0.1.0",
+  "description": "",
+  "main": "",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
-    "test": "npm run unit && npm run langs_setup && npm run cucumber -- $@",
-    "cucumber_base": "./node_modules/.bin/cucumber-js --require ./lib/index.js",
-    "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" tests/features/*.feature; }; run_cucumber",
-    "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./lib/index.js tests/features/*_lang*.feature",
-    "langs_setup": "./lib/utils/langs.js 'tests/features/*.feature'",
+    "test": "npm run langs_setup && npm run cucumber -- $@",
+    "cucumber_base": "./node_modules/.bin/cucumber-js --require ./node_modules/docassemble-cucumber/lib/index.js",
+    "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" docassemble/*/data/sources/*.feature; }; run_cucumber",
+    "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./node_modules/docassemble-cucumber/lib/index.js docassemble/*/data/sources/*_lang*.feature",
+    "langs_setup": "node_modules/.bin/da-langs 'docassemble/*/data/sources/*.feature'",
     "langs_local": "npm run langs_setup && npm run local",
     "local": "npm run setup && npm run cucumber; npm run takedown",
-    "setup": "./lib/github_integration/setup.js",
-    "takedown": "./lib/github_integration/takedown.js",
-    "unit": "mocha tests/unit_tests/*.test.*"
+    "setup": "node_modules/.bin/da-setup",
+    "takedown": "node_modules/.bin/da-takedown"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/plocket/docassemble-cucumber.git"
   },
-  "keywords": [
-    "docassemble",
-    "cucumber",
-    "puppeteer",
-    "automated testing",
-    "integrated testing",
-    "chai"
-  ],
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/plocket/docassemble-cucumber/issues"
   },
   "homepage": "https://github.com/plocket/docassemble-cucumber#readme",
   "dependencies": {
+    "bufferutil": "^4.0.1",
     "chai": "^4.2.0",
-    "cheerio": "^1.0.0-rc.5",
+    "cucumber": "^6.0.5",
+    "docassemble-cucumber": "^2.0.0",
     "dotenv": "^8.2.0",
     "mocha": "^7.2.0",
     "puppeteer": "^3.1.0",
-    "sanitize-filename": "^1.6.3"
-  },
-  "peerDependencies": {
-    "cucumber": "^6.0.5"
-  },
-  "devDependencies": {
-    "cucumber": "6"
-  },
-  "bin": {
-    "da-setup": "./lib/github_integration/setup.js",
-    "da-takedown": "./lib/github_integration/takedown.js",
-    "da-cucumber": "./lib/index.js",
-    "da-langs": "./lib/utils/langs.js"
+    "utf-8-validate": "^5.0.2"
   }
 }
