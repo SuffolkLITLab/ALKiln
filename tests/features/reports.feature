@@ -64,3 +64,11 @@ Scenario: Report shows error and failure on unexpected invalid user input
   And I tap to continue
   And I tap to continue
   Then the question id should be "direct standard fields"
+
+# Cannot auto test that multiple vars get detected, but it has been
+# confirmed by hand.
+@fast @r4
+Scenario: Fails when set var Step tries to set a variable that isn't on page
+  Given the scenario error report should match "missing_var"
+  Given I start the interview at "all_tests"
+  And I set the var "missing_var_1" to "missing value 1"
