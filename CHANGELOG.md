@@ -38,7 +38,10 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Added
+- Internal testing Step to test contents of reports include certain content.
+- Internal testing Step to check passing tests should be passing and failing ones should be failing.
 
 ## [2.4.1] - 2021-07-24
 ### Fixed

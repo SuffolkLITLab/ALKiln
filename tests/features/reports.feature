@@ -1,16 +1,17 @@
 @reports
 Feature: Reports show the right things
 
-# re for report error
+# rf for report failing
 # rw for report warning
-# rw for report pass
+# rp for report pass
 
 # ===============================
-# Reoprts for failing Scenarios
+# Reoprts for "failed" Scenarios
 # ===============================
 
-@fast @re1 @error
+@fast @rf1 @error
 Scenario: Fail with missng language link
+  Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
   Could not find the link with the text "Latin"
@@ -18,8 +19,9 @@ Scenario: Fail with missng language link
   And I start the interview at "all_tests" in lang "Latin"
 
 ## This screen has not yet been created
-#@fast @re2 @error
+#@fast @rf2 @error
 #Scenario: Fail with found no page id
+#  Given the final Scenario status should be "failed"
 #  Given the Scenario report should include:
 #  """
 #  Did not find any question id.
@@ -27,8 +29,9 @@ Scenario: Fail with missng language link
 #  And I start the interview at "all_tests"
 #  Then the question id should be "any question id"
 
-@fast @re3 @error
+@fast @rf3 @error
 Scenario: Fail with wrong page id
+  Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
   The question id was supposed to be
@@ -36,8 +39,9 @@ Scenario: Fail with wrong page id
   And I start the interview at "all_tests"
   Then the question id should be "wrong question id"
 
-@fast @re4 @error
+@fast @rf4 @error
 Scenario: Fail with a missing phrase
+  Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
   SHOULD be on this page, but it's NOT
@@ -45,8 +49,9 @@ Scenario: Fail with a missing phrase
   And I start the interview at "all_tests"
   Then I SHOULD see the phrase "phrase missing"
 
-@fast @re5 @error
+@fast @rf5 @error
 Scenario: Fail with incorrectly present phrase
+  Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
   should NOT be on this page, but it IS here
@@ -54,8 +59,9 @@ Scenario: Fail with incorrectly present phrase
   And I start the interview at "all_tests"
   Then I should NOT see the phrase "e"
 
-@fast @re6 @error
+@fast @rf6 @error
 Scenario: Fail with missing element id
+  Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
   No element on this page has the ID
@@ -63,8 +69,9 @@ Scenario: Fail with missing element id
   And I start the interview at "all_tests"
   Then an element should have the id "wrong element id"
 
-@fast @re7 @error
+@fast @rf7 @error
 Scenario: Fail with unexpectedly able to continue
+  Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
   The page should have stopped the user from continuing, but the user was able to continue.
@@ -74,8 +81,9 @@ Scenario: Fail with unexpectedly able to continue
   And I tap to continue
   Then I can't continue
 
-@fast @re8 @error
+@fast @rf8 @error
 Scenario: Fail with missing error message
+  Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
   No error message was found on the page
@@ -84,8 +92,9 @@ Scenario: Fail with missing error message
   And I will be told an answer is invalid
 
 ## Not sure how to trigger this at the moment
-#@fast @re9 @error
+#@fast @rf9 @error
 #Scenario: Fail with missing user error message
+#  Given the final Scenario status should be "failed"
 #  Given the Scenario report should include:
 #  """
 #  The error was a system error, not an error message to the user.
@@ -93,8 +102,9 @@ Scenario: Fail with missing error message
 #  And I start the interview at "all_tests"
 #  And I will be told an answer is invalid
 
-@fast @re10 @error
+@fast @rf10 @error
 Scenario: Fail with was uexepctedly not able to continue
+  Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
   User did not arrive at the next page.
@@ -108,11 +118,12 @@ Scenario: Fail with was uexepctedly not able to continue
 
 
 # ===============================
-# Reoprts for passing Scenarios
+# Reoprts for "passed" Scenarios
 # ===============================
 
 @fast @rp1
 Scenario: Report still shows page id when I tap to continue without setting any fields
+  Given the final Scenario status should be "passed"
   Given the Scenario report should include:
     """
     ---------------
@@ -157,6 +168,7 @@ Scenario: Report still shows page id when I tap to continue without setting any 
 
 @slow @rp2
 Scenario: Report lists unused table rows
+  Given the final Scenario status should be "passed"
   Given the Scenario report should include:
     """
 
