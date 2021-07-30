@@ -9,6 +9,8 @@ Feature: Reports show the right things
 # Reoprts for "failed" Scenarios
 # ===============================
 
+# ---- Exceptions in steps.js ----
+
 @fast @rf1 @error
 Scenario: Fail with missng language link
   Given the final Scenario status should be "failed"
@@ -18,7 +20,7 @@ Scenario: Fail with missng language link
   """
   And I start the interview at "all_tests" in lang "Latin"
 
-## This screen has not yet been created
+## This screen has not yet been created in the testing interview
 #@fast @rf2 @error
 #Scenario: Fail with found no page id
 #  Given the final Scenario status should be "failed"
@@ -115,143 +117,328 @@ Scenario: Fail with was uexepctedly not able to continue
   And I tap to continue
   Then I arrive at the next page
 
-
-
-# ===============================
-# Reoprts for "passed" Scenarios
-# ===============================
-
-@fast @rp1
-Scenario: Report still shows page id when I tap to continue without setting any fields
-  Given the final Scenario status should be "passed"
+@fast @rf11 @error
+Scenario: Fail with link text not visible
+  Given the final Scenario status should be "failed"
   Given the Scenario report should include:
-    """
-    ---------------
-    Scenario: Report still shows page id when I tap to continue without setting any fields reports fast rp 
-    ---------------
-    screen id: upload-files
-    screen id: group-of-complex-fields
-          | double_quote_dict['double_quote_key']['dq_two'] | true |  |
-          | single_quote_dict['single_quote_key']['sq_two'] | true |  |
-    screen id: direct-standard-fields
-          | checkboxes_yesno | True |  |
-          | checkboxes_other['checkbox_other_opt_1'] | true |  |
-          | dropdown_test | dropdown_opt_2 |  |
-          | radio_yesno | False |  |
-          | radio_other | radio_other_opt_3 |  |
-          | text_input | Regular text input field value |  |
-          | textarea | Multiline text\narea value |  |
-    screen id: showifs
-
-    """
+  """
+  Cannot find a link with the text
+  """
   And I start the interview at "all_tests"
-  And I tap to continue
-  # Next page
-  And I set the var "double_quote_dict['double_quote_key']['dq_two']" to "true"
-  And I set the var "single_quote_dict['single_quote_key']['sq_two']" to "true"
-  And I tap to continue
-  Then the question id should be "direct standard fields"
-  # Next page
-  When I set the var "checkboxes_yesno" to "True"
-  And I set the var "checkboxes_other['checkbox_other_opt_1']" to "true"
-  And I set the var "dropdown_test" to "dropdown_opt_2"
-  And I set the var "radio_yesno" to "False"
-  And I set the var "radio_other" to "radio_other_opt_3"
-  And I set the var "text_input" to "Regular text input field value"
-  And I set the var "textarea" to "Multiline text\narea value"
-  When I tap to continue
-  # Next page
-  Then the question id should be "showifs"
-  When I tap to continue
-  # Next page (showifs ID SHOULD BE SHOWN IN REPORT)
-  Then the question id should be "buttons yesnomaybe"
+  Then I should see the link "Missing link"
 
-@slow @rp2
-Scenario: Report lists unused table rows
-  Given the final Scenario status should be "passed"
+@fast @rf12 @error
+Scenario: Fail with missing link with url
+  Given the final Scenario status should be "failed"
   Given the Scenario report should include:
-    """
-
-    ---------------
-    Scenario: Report lists unused table rows reports slow rp 
-    ---------------
-    screen id: upload-files
-    screen id: group-of-complex-fields
-          | single_quote_dict['single_quote_key']['sq_two'] | true |  |
-          | double_quote_dict[\"double_quote_key\"]['dq_two'] | true |  |
-
-      Rows that got set:
-        And I get the question id "direct standard fields" with this data:
-          | var | value | trigger |
-          | double_quote_dict[\"double_quote_key\"]['dq_two'] | true |  |
-          | single_quote_dict['single_quote_key']['sq_two'] | true |  |
-      Unused rows:
-          | extra_2 | extra 2 |  |
-          | extra_out_of_alphabetical_order | extra 1 |  |
-
-    screen id: direct-standard-fields
-          | checkboxes_other['checkbox_other_opt_1'] | true |  |
-          | radio_yesno | False | false |
-          | radio_other | radio_other_opt_3 |  |
-          | text_input | Regular text input field value |  |
-          | textarea | Multiline text\narea value |  |
-          | dropdown_test | dropdown_opt_2 |  |
-
-      Rows that got set:
-        And I get the question id "showifs" with this data:
-          | var | value | trigger |
-          | checkboxes_other['checkbox_other_opt_1'] | true |  |
-          | dropdown_test | dropdown_opt_2 |  |
-          | radio_other | radio_other_opt_3 |  |
-          | radio_yesno | False | false |
-          | text_input | Regular text input field value |  |
-          | textarea | Multiline text\narea value |  |
-      Unused rows:
-          | extra_3 | extra 3 |  |
-          | extra_4 | extra 4 |  |
-          | extra_5 | extra 5 |  |
-
-    screen id: showifs
-    screen id: buttons-yesnomaybe
-          | buttons_yesnomaybe | True |  |
-    screen id: buttons-other
-          | buttons_other | button_2 |  |
-    screen id: button-continue
-          | button_continue | True |  |
-
-      Rows that got set:
-        And I get the question id "screen features" with this data:
-          | var | value | trigger |
-          | button_continue | True |  |
-          | buttons_other | button_2 |  |
-          | buttons_yesnomaybe | True |  |
-      Unused rows:
-          | extra_6 | extra 6 |  |
-          | extra_7 | extra 7 |  |
-
-    """
+  """
+  Cannot find a link to
+  """
   And I start the interview at "all_tests"
-  And I get to "direct standard fields" with this data:
-    | var | value | trigger |
-    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
-    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
-    | extra_out_of_alphabetical_order | extra 1 |  |
-    | extra_2 | extra 2 |  |
+  Then I should see the link to "http://missing-url.com"
+
+@slow @rf13 @error
+Scenario: Fail with link with given text does not lead to correct url
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  Cannot find a link with the text "Link to external page" leading to http://wrong-url.com.
+  """
+  Given I start the interview at "all_tests"
+  And I tap to continue
   And I get to "showifs" with this data:
     | var | value | trigger |
-    | extra_3 | extra 3 |  |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
-    | extra_4 | extra 4 |  |
     | radio_other | radio_other_opt_3 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
     | text_input | Regular text input field value | |
     | textarea | Multiline text\narea value | |
-    | extra_5 | extra 5 |  |
+  Then I arrive at the next page
   Then I get to "screen features" with this data:
     | var | value | trigger |
-    | extra_6 | extra 6 |  |
-    | extra_7 | extra 7 |  |
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
+  And I should see the link to "http://ecosia.org/"
+  Then the "Link to external page" link leads to "http://wrong-url.com"
+
+@slow @rf14 @error
+Scenario: Fail with link unexpectedly opens in same window
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  The link "Link to external page" does NOT open in the same window
+  """
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I get to "showifs" with this data:
+    | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
+  Then I arrive at the next page
+  Then I get to "screen features" with this data:
+    | var | value | trigger |
+    | button_continue | True |  |
+    | buttons_other | button_2 |  |
+    | buttons_yesnomaybe | True |  |
+  And I should see the link to "http://ecosia.org/"
+  Then the "Link to external page" link opens in the same window
+
+@fast @rf15 @error
+Scenario: Fail with link unexpectedly opens in a new window
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  The link "Link: reload the page" does NOT open in a new window
+  """
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I get to "showifs" with this data:
+    | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
+  Then I arrive at the next page
+  Then I get to "screen features" with this data:
+    | var | value | trigger |
+    | button_continue | True |  |
+    | buttons_other | button_2 |  |
+    | buttons_yesnomaybe | True |  |
+  And I should see the link to "http://ecosia.org/"
+  Then the "Link: reload the page" link opens in a new window
+
+## Don't currently have a broken link to test and this Step is not officially supported
+#@fast @rf16 @error
+#Scenario: Fail with link leads to a broken page
+#  Given the final Scenario status should be "failed"
+#  Given the Scenario report should include:
+#  """
+#  link is broken
+#  """
+#  Given I start the interview at "all_tests"
+#  And I tap to continue
+#  And I get to "showifs" with this data:
+#    | var | value | trigger |
+#    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+#    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+#    | dropdown_test | dropdown_opt_2 | |
+#    | radio_yesno | False | false |
+#    | radio_other | radio_other_opt_3 | |
+#    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+#    | text_input | Regular text input field value | |
+#    | textarea | Multiline text\narea value | |
+#  Then I arrive at the next page
+#  Then I get to "screen features" with this data:
+#    | var | value | trigger |
+#    | button_continue | True |  |
+#    | buttons_other | button_2 |  |
+#    | buttons_yesnomaybe | True |  |
+#  And I should see the link to "http://ecosia.org/"
+#  Then the "Link to external page" link opens a working page
+
+# 'I tap to continue'
+# Tapping to continue should not ever fail for its own sake. We
+# have Steps that check the consequences of tapping to continue.
+
+## Test has been added in a different branch. Will be moved to this spot.
+#@fast @rf17 @error
+#Scenario: Fail with var can't be set
+#  Given the final Scenario status should be "failed"
+#  Given the Scenario report should include:
+#  """
+#  
+#  """
+#  And I start the interview at "all_tests"
+
+@fast @rf18 @error
+Scenario: Fail with missing term with the given text
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  The term "wrong term" seems to be missing
+  """
+  And I start the interview at "all_tests"
+  Then I tap the defined text link "wrong term"
+
+@fast @rf19 @error
+Scenario: Fail with cannot find missing document
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  Cannot find a link to that document
+  """
+  And I start the interview at "all_tests"
+  Then I download "missing-doc.pdf"
+
+
+# ---- Exceptions in scope.js ----
+
+#@fast @rf20 @error
+#Scenario: Fail with 
+#  Given the final Scenario status should be "failed"
+#  Given the Scenario report should include:
+#  """
+#  
+#  """
+#  And I start the interview at "all_tests"
+
+# scope.js
+# I upload "___" to "___"
+# No need to test wrong var name
+# Test non-existant file?
+# How to test non-existant directory?
+#
+# I sign
+
+## ===============================
+## Reoprts for "passed" Scenarios
+## ===============================
+#
+#@fast @rp1
+#Scenario: Report still shows page id when I tap to continue without setting any fields
+#  Given the final Scenario status should be "passed"
+#  Given the Scenario report should include:
+#    """
+#    ---------------
+#    Scenario: Report still shows page id when I tap to continue without setting any fields reports fast #rp 
+#    ---------------
+#    screen id: upload-files
+#    screen id: group-of-complex-fields
+#          | double_quote_dict['double_quote_key']['dq_two'] | true |  |
+#          | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+#    screen id: direct-standard-fields
+#          | checkboxes_yesno | True |  |
+#          | checkboxes_other['checkbox_other_opt_1'] | true |  |
+#          | dropdown_test | dropdown_opt_2 |  |
+#          | radio_yesno | False |  |
+#          | radio_other | radio_other_opt_3 |  |
+#          | text_input | Regular text input field value |  |
+#          | textarea | Multiline text\narea value |  |
+#    screen id: showifs
+#
+#    """
+#  And I start the interview at "all_tests"
+#  And I tap to continue
+#  # Next page
+#  And I set the var "double_quote_dict['double_quote_key']['dq_two']" to "true"
+#  And I set the var "single_quote_dict['single_quote_key']['sq_two']" to "true"
+#  And I tap to continue
+#  Then the question id should be "direct standard fields"
+#  # Next page
+#  When I set the var "checkboxes_yesno" to "True"
+#  And I set the var "checkboxes_other['checkbox_other_opt_1']" to "true"
+#  And I set the var "dropdown_test" to "dropdown_opt_2"
+#  And I set the var "radio_yesno" to "False"
+#  And I set the var "radio_other" to "radio_other_opt_3"
+#  And I set the var "text_input" to "Regular text input field value"
+#  And I set the var "textarea" to "Multiline text\narea value"
+#  When I tap to continue
+#  # Next page
+#  Then the question id should be "showifs"
+#  When I tap to continue
+#  # Next page (showifs ID SHOULD BE SHOWN IN REPORT)
+#  Then the question id should be "buttons yesnomaybe"
+#
+#@slow @rp2
+#Scenario: Report lists unused table rows
+#  Given the final Scenario status should be "passed"
+#  Given the Scenario report should include:
+#    """
+#
+#    ---------------
+#    Scenario: Report lists unused table rows reports slow rp 
+#    ---------------
+#    screen id: upload-files
+#    screen id: group-of-complex-fields
+#          | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+#          | double_quote_dict[\"double_quote_key\"]['dq_two'] | true |  |
+#
+#      Rows that got set:
+#        And I get the question id "direct standard fields" with this data:
+#          | var | value | trigger |
+#          | double_quote_dict[\"double_quote_key\"]['dq_two'] | true |  |
+#          | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+#      Unused rows:
+#          | extra_2 | extra 2 |  |
+#          | extra_out_of_alphabetical_order | extra 1 |  |
+#
+#    screen id: direct-standard-fields
+#          | checkboxes_other['checkbox_other_opt_1'] | true |  |
+#          | radio_yesno | False | false |
+#          | radio_other | radio_other_opt_3 |  |
+#          | text_input | Regular text input field value |  |
+#          | textarea | Multiline text\narea value |  |
+#          | dropdown_test | dropdown_opt_2 |  |
+#
+#      Rows that got set:
+#        And I get the question id "showifs" with this data:
+#          | var | value | trigger |
+#          | checkboxes_other['checkbox_other_opt_1'] | true |  |
+#          | dropdown_test | dropdown_opt_2 |  |
+#          | radio_other | radio_other_opt_3 |  |
+#          | radio_yesno | False | false |
+#          | text_input | Regular text input field value |  |
+#          | textarea | Multiline text\narea value |  |
+#      Unused rows:
+#          | extra_3 | extra 3 |  |
+#          | extra_4 | extra 4 |  |
+#          | extra_5 | extra 5 |  |
+#
+#    screen id: showifs
+#    screen id: buttons-yesnomaybe
+#          | buttons_yesnomaybe | True |  |
+#    screen id: buttons-other
+#          | buttons_other | button_2 |  |
+#    screen id: button-continue
+#          | button_continue | True |  |
+#
+#      Rows that got set:
+#        And I get the question id "screen features" with this data:
+#          | var | value | trigger |
+#          | button_continue | True |  |
+#          | buttons_other | button_2 |  |
+#          | buttons_yesnomaybe | True |  |
+#      Unused rows:
+#          | extra_6 | extra 6 |  |
+#          | extra_7 | extra 7 |  |
+#
+#    """
+#  And I start the interview at "all_tests"
+#  And I get to "direct standard fields" with this data:
+#    | var | value | trigger |
+#    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+#    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+#    | extra_out_of_alphabetical_order | extra 1 |  |
+#    | extra_2 | extra 2 |  |
+#  And I get to "showifs" with this data:
+#    | var | value | trigger |
+#    | extra_3 | extra 3 |  |
+#    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+#    | dropdown_test | dropdown_opt_2 | |
+#    | radio_yesno | False | false |
+#    | extra_4 | extra 4 |  |
+#    | radio_other | radio_other_opt_3 | |
+#    | text_input | Regular text input field value | |
+#    | textarea | Multiline text\narea value | |
+#    | extra_5 | extra 5 |  |
+#  Then I get to "screen features" with this data:
+#    | var | value | trigger |
+#    | extra_6 | extra 6 |  |
+#    | extra_7 | extra 7 |  |
+#    | button_continue | True |  |
+#    | buttons_other | button_2 |  |
+#    | buttons_yesnomaybe | True |  |
