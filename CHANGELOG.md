@@ -40,8 +40,12 @@ Format:
 -->
 ## [Unreleased]
 ### Added
+- Report line for error on load.
 - Internal testing Step to test contents of reports include certain content.
 - Internal testing Step to check passing tests should be passing and failing ones should be failing.
+
+### Fixed
+- Loading page did not catch system error and re-trying without timeout was not robust.
 
 ## [2.4.1] - 2021-07-24
 ### Fixed
