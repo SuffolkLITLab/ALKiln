@@ -9,6 +9,8 @@ Feature: Reports show the right things
 # Reoprts for "failed" Scenarios
 # ===============================
 
+# ---- Exceptions in steps.js ----
+
 @fast @rf1 @error
 Scenario: Fail with missng language link
   Given the final Scenario status should be "failed"
@@ -18,7 +20,7 @@ Scenario: Fail with missng language link
   """
   And I start the interview at "all_tests" in lang "Latin"
 
-## This screen has not yet been created
+## This screen has not yet been created in the testing interview
 #@fast @rf2 @error
 #Scenario: Fail with found no page id
 #  Given the final Scenario status should be "failed"
@@ -102,8 +104,9 @@ Scenario: Fail with missing error message
 #  And I start the interview at "all_tests"
 #  And I will be told an answer is invalid
 
+# TODO: Check this with validation code failure too
 @fast @rf10 @error
-Scenario: Fail with was uexepctedly not able to continue
+Scenario: Fail with was uexepctedly not able to continue for invalid field input message
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
@@ -115,7 +118,227 @@ Scenario: Fail with was uexepctedly not able to continue
   And I tap to continue
   Then I arrive at the next page
 
+@fast @rf11 @error
+Scenario: Fail with link text not visible
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  Cannot find a link with the text
+  """
+  And I start the interview at "all_tests"
+  Then I should see the link "Missing link"
 
+@fast @rf12 @error
+Scenario: Fail with missing link with url
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  Cannot find a link to
+  """
+  And I start the interview at "all_tests"
+  Then I should see the link to "http://missing-url.com"
+
+@slow @rf13 @error
+Scenario: Fail with link with given text does not lead to correct url
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  Cannot find a link with the text "Link to external page" leading to http://wrong-url.com.
+  """
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I get to "showifs" with this data:
+    | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
+  Then I arrive at the next page
+  Then I get to "screen features" with this data:
+    | var | value | trigger |
+    | button_continue | True |  |
+    | buttons_other | button_2 |  |
+    | buttons_yesnomaybe | True |  |
+  And I should see the link to "http://ecosia.org/"
+  Then the "Link to external page" link leads to "http://wrong-url.com"
+
+@slow @rf14 @error
+Scenario: Fail with link unexpectedly opens in same window
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  The link "Link to external page" does NOT open in the same window
+  """
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I get to "showifs" with this data:
+    | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
+  Then I arrive at the next page
+  Then I get to "screen features" with this data:
+    | var | value | trigger |
+    | button_continue | True |  |
+    | buttons_other | button_2 |  |
+    | buttons_yesnomaybe | True |  |
+  And I should see the link to "http://ecosia.org/"
+  Then the "Link to external page" link opens in the same window
+
+@fast @rf15 @error
+Scenario: Fail with link unexpectedly opens in a new window
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  The link "Link: reload the page" does NOT open in a new window
+  """
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I get to "showifs" with this data:
+    | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
+  Then I arrive at the next page
+  Then I get to "screen features" with this data:
+    | var | value | trigger |
+    | button_continue | True |  |
+    | buttons_other | button_2 |  |
+    | buttons_yesnomaybe | True |  |
+  And I should see the link to "http://ecosia.org/"
+  Then the "Link: reload the page" link opens in a new window
+
+## Don't currently have a broken link to test and this Step is not officially supported
+#@fast @rf16 @error
+#Scenario: Fail with link leads to a broken page
+#  Given the final Scenario status should be "failed"
+#  Given the Scenario report should include:
+#  """
+#  link is broken
+#  """
+#  Given I start the interview at "all_tests"
+#  And I tap to continue
+#  And I get to "showifs" with this data:
+#    | var | value | trigger |
+#    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+#    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+#    | dropdown_test | dropdown_opt_2 | |
+#    | radio_yesno | False | false |
+#    | radio_other | radio_other_opt_3 | |
+#    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+#    | text_input | Regular text input field value | |
+#    | textarea | Multiline text\narea value | |
+#  Then I arrive at the next page
+#  Then I get to "screen features" with this data:
+#    | var | value | trigger |
+#    | button_continue | True |  |
+#    | buttons_other | button_2 |  |
+#    | buttons_yesnomaybe | True |  |
+#  And I should see the link to "http://ecosia.org/"
+#  Then the "Link to external page" link opens a working page
+
+# 'I tap to continue'
+# Tapping to continue should not ever fail for its own sake. We
+# have Steps that check the consequences of tapping to continue.
+
+# Below is test from scope.js, which makes this of place. Maybe this is the
+# wrong way to organize things. Or maybe we shouldn't give tests unique ids
+# at all.
+
+# Not testing: missing var independently, missing value independently.
+# Cannot auto test that multiple vars get detected because it's not currently
+# possible to hand in multiple vars and require that all rows be used, but it
+# has been confirmed by hand for now.
+@fast @rf17 @error
+Scenario: Fail with var not on page
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  Did not find a field on this page for the variable
+  """
+  And the Scenario report should include:
+  """
+  Missing variable or variables on page
+  """
+  And I start the interview at "all_tests"
+  And I set the var "missing_var_1" to "missing value 1"
+
+@fast @rf18 @error
+Scenario: Fail with missing term with the given text
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  The term "wrong term" seems to be missing
+  """
+  And I start the interview at "all_tests"
+  Then I tap the defined text link "wrong term"
+
+@fast @rf19 @error
+Scenario: Fail with cannot find missing document
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  Cannot find a link to that document
+  """
+  And I start the interview at "all_tests"
+  Then I download "missing-doc.pdf"
+
+
+# ---- Exceptions in scope.js ----
+
+# This can have a ton of different error messages depending on the DA error
+# that was triggered. We'll make do with one for now.
+@fast @rf20 @error
+Scenario: Fail with system error after Step using wrong file name as trigger
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  Reference to invalid playground path
+  """
+  And I start the interview at "wrong_yaml_filename"
+
+## Not sure how to trigger this. I think we'd need the server to be down.
+#@fast @rf21 @error
+#Scenario: Fail with interview does not load after multiple tries
+#  Given the final Scenario status should be "failed"
+#  Given the Scenario report should include:
+#  """
+#  The interview at ${ interview_url } did not load after
+#  """
+#  And I start the interview at "wrong_yaml_filename"
+
+#@fast @rf22 @error
+#Scenario: Fail with 
+#  Given the final Scenario status should be "failed"
+#  Given the Scenario report should include:
+#  """
+#  
+#  """
+#  And I start the interview at "wrong_yaml_filename"
+
+
+
+# scope.js
+# I upload "___" to "___"
+# No need to test wrong var name
+# Test non-existant file?
+# How to test non-existant directory?
+#
+# I sign
 
 # ===============================
 # Reoprts for "passed" Scenarios
@@ -255,20 +478,3 @@ Scenario: Report lists unused table rows
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
-
-# Will restore these with next PR
-#@fast @r3
-#Scenario: Report shows error and failure on unexpected invalid user input
-#  Given the scenario error report should match "unintended_invalid_input"
-#  Given I start the interview at "all_tests"
-#  And I tap to continue
-#  And I tap to continue
-#  Then the question id should be "direct standard fields"
-#
-## Cannot auto test that multiple vars get detected, but it has been
-## confirmed by hand.
-#@fast @r4
-#Scenario: Fails when set var Step tries to set a variable that isn't on page
-#  Given the scenario error report should match "missing_var"
-#  Given I start the interview at "all_tests"
-#  And I set the var "missing_var_1" to "missing value 1"
