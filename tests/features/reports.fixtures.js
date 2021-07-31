@@ -90,5 +90,14 @@ ERROR: The question id was supposed to be "direct standard fields", but it's act
 **-- Scenario Failed --**
 `;
 
+reports.missing_var = `
+---------------
+Scenario: Fails when set var Step tries to set a variable that isn t on page reports fast r 
+---------------
+screen id: upload-files
+Did not find a field on this page for the variable \`missing_var_1\` that could be set to \`missing value 1\`
+**-- Scenario Failed --**
+`;
+
 
 module.exports = reports;
