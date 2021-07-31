@@ -104,8 +104,9 @@ Scenario: Fail with missing error message
 #  And I start the interview at "all_tests"
 #  And I will be told an answer is invalid
 
+# TODO: Check this with validation code failure too
 @fast @rf10 @error
-Scenario: Fail with was uexepctedly not able to continue
+Scenario: Fail with was uexepctedly not able to continue for invalid field input message
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
@@ -254,15 +255,27 @@ Scenario: Fail with link unexpectedly opens in a new window
 # Tapping to continue should not ever fail for its own sake. We
 # have Steps that check the consequences of tapping to continue.
 
-## Test has been added in a different branch. Will be moved to this spot.
-#@fast @rf17 @error
-#Scenario: Fail with var can't be set
-#  Given the final Scenario status should be "failed"
-#  Given the Scenario report should include:
-#  """
-#  
-#  """
-#  And I start the interview at "all_tests"
+# Below is test from scope.js, which makes this of place. Maybe this is the
+# wrong way to organize things. Or maybe we shouldn't give tests unique ids
+# at all.
+
+# Not testing: missing var independently, missing value independently.
+# Cannot auto test that multiple vars get detected because it's not currently
+# possible to hand in multiple vars and require that all rows be used, but it
+# has been confirmed by hand for now.
+@fast @rf17 @error
+Scenario: Fail with var not on page
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  Did not find a field on this page for the variable
+  """
+  And the Scenario report should include:
+  """
+  Missing variable or variables on page
+  """
+  And I start the interview at "all_tests"
+  And I set the var "missing_var_1" to "missing value 1"
 
 @fast @rf18 @error
 Scenario: Fail with missing term with the given text
@@ -465,20 +478,3 @@ Scenario: Report lists unused table rows
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
-
-# Will restore these with next PR
-#@fast @r3
-#Scenario: Report shows error and failure on unexpected invalid user input
-#  Given the scenario error report should match "unintended_invalid_input"
-#  Given I start the interview at "all_tests"
-#  And I tap to continue
-#  And I tap to continue
-#  Then the question id should be "direct standard fields"
-#
-## Cannot auto test that multiple vars get detected, but it has been
-## confirmed by hand.
-#@fast @r4
-#Scenario: Fails when set var Step tries to set a variable that isn't on page
-#  Given the scenario error report should match "missing_var"
-#  Given I start the interview at "all_tests"
-#  And I set the var "missing_var_1" to "missing value 1"

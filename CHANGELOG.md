@@ -47,6 +47,9 @@ Format:
 - Tweak report wording
 
 ### Fixed
+- Internal report check logic
+
+### Fixed
 - Loading page did not catch system error and re-trying without timeout was not robust.
 
 ## [2.5.0] - 2021-07-31
