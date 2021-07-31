@@ -39,13 +39,25 @@ Format:
 - 
 -->
 ## [Unreleased]
+
+### Added
+- Tests for failed Scenarios and their reports
+
+### Changed
+- Tweak report wording
+
+### Fixed
+- Loading page did not catch system error and re-trying without timeout was not robust.
+
+## [2.5.0] - 2021-07-31
 ### Added
 - Report line for error on load.
 - Internal testing Step to test contents of reports include certain content.
 - Internal testing Step to check passing tests should be passing and failing ones should be failing.
 
+## [2.4.2] - 2021-07-31
 ### Fixed
-- Loading page did not catch system error and re-trying without timeout was not robust.
+- Steps that set vars (other than the story table) should fail when they can't set their var, but they did not fail.
 
 ## [2.4.1] - 2021-07-24
 ### Fixed
