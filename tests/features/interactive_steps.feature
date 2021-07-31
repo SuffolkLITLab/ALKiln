@@ -30,7 +30,8 @@ Scenario: I set text-type values
   Then the question id should be "showifs"
   When I set the var "show_2" to "True"
   And I set the var "show_3" to "True"
-  And I set the var "showif_checkbox_yesno['showif_checkboxes_nota_2']" to "true"
+  And I set the var "showif_checkbox_yesno" to "true"
+  And I set the var "showif_checkboxes_other['showif_checkboxes_nota_2']" to "true"
   And I set the var "showif_checkboxes_other['showif_checkboxes_nota_3']" to "true"
   And I set the var "showif_yesnoradio" to "True"
   And I set the var "showif_radio_other" to "showif_radio_multi_2"
@@ -74,6 +75,7 @@ Scenario: I set text-type values
   And I tap to continue
   # Next page
   Then the question id should be "simple doc"
+  When I download "simple-doc.pdf"
   And I tap to continue
   # Next page
   Then the question id should be "button event action"

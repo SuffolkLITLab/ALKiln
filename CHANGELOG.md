@@ -43,6 +43,11 @@ Format:
 - Internal testing Step to test contents of reports include certain content.
 - Internal testing Step to check passing tests should be passing and failing ones should be failing.
 
+## [2.4.2] - 2021-07-31
+
+### Fixed
+- Steps that set vars (other than the story table) should fail when they can't set their var, but they did not fail.
+
 ## [2.4.1] - 2021-07-24
 ### Fixed
 - Upload Step wasn't waiting for files to finish uploading
