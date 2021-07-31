@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [2.4.2] - 2021-07-31
 
 ### Fixed
 - Steps that set vars (other than the story table) should fail when they can't set their var, but they did not fail.
