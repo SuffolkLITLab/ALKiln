@@ -40,6 +40,9 @@ Format:
 -->
 ## [Unreleased]
 
+### Fixed
+- Wrong error when server times out on page load.
+
 ## [2.5.1] - 2021-07-31
 ### Added
 - Tests for failed Scenarios and their reports
