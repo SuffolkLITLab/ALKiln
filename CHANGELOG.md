@@ -38,8 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
 
+## [2.5.2] - 2021-08-03
 ### Fixed
 - Wrong error when server times out on page load.
 

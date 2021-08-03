@@ -1,6 +1,6 @@
 {
   "name": "docassemble-cucumber",
-  "version": "2.5.1-htfx-page-load.1",
+  "version": "2.5.2",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
