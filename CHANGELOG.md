@@ -38,8 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
 
+## [2.5.3] - 2021-08-06
 ### Fixed
 - Not giving enough time for package to load - failing too soon on error of module not found.
 - Not waiting for package page to appear on setup: https://github.com/plocket/docassemble-cucumber/issues/367#issuecomment-892591770. I believe we tried this in the past and it wasn't enough.
