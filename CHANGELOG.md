@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.5.4] - 2021-08-07
+### Fixed
+- In page load, total timeout needs to be checked in more places to give useful error message before Step fully times out.
+
 ## [2.5.3] - 2021-08-06
 ### Fixed
 - Not giving enough time for package to load - failing too soon on error of module not found.
