@@ -20,6 +20,7 @@ Scenario: Report still has page id when I tap to continue without setting any fi
   And I set the var "radio_other" to "radio_other_opt_3"
   And I set the var "text_input" to "Regular text input field value"
   And I set the var "textarea" to "Multiline text\narea value"
+  And I set the var "date_input" to "today"
   When I tap to continue
   # Next page
   Then the question id should be "showifs"
@@ -47,6 +48,7 @@ Scenario: Report lists unused table rows
     | radio_other | radio_other_opt_3 | |
     | text_input | Regular text input field value | |
     | textarea | Multiline text\narea value | |
+    | date_input | today-3 |  |
     | extra_5 | extra 5 |  |
   Then I get to "screen features" with this data:
     | var | value | trigger |

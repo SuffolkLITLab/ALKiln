@@ -16,6 +16,7 @@ screen id: direct-standard-fields
       | radio_other | radio_other_opt_3 |  |
       | text_input | Regular text input field value |  |
       | textarea | Multiline text\\narea value |  |
+      | date_input | today |  |
 screen id: showifs
 `;
 
@@ -43,6 +44,7 @@ screen id: direct-standard-fields
       | radio_other | radio_other_opt_3 |  |
       | text_input | Regular text input field value |  |
       | textarea | Multiline text\\narea value |  |
+      | date_input | today-3 |  |
       | dropdown_test | dropdown_opt_2 |  |
 
   Rows that got set:
