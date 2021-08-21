@@ -40,6 +40,40 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.5.4] - 2021-08-07
+### Fixed
+- In page load, total timeout needs to be checked in more places to give useful error message before Step fully times out.
+
+## [2.5.3] - 2021-08-06
+### Fixed
+- Not giving enough time for package to load - failing too soon on error of module not found.
+- Not waiting for package page to appear on setup: https://github.com/plocket/docassemble-cucumber/issues/367#issuecomment-892591770. I believe we tried this in the past and it wasn't enough.
+
+## [2.5.2] - 2021-08-03
+### Fixed
+- Wrong error when server times out on page load.
+
+## [2.5.1] - 2021-07-31
+### Added
+- Tests for failed Scenarios and their reports
+
+### Changed
+- Tweak report wording
+
+### Fixed
+- Internal report check logic
+- Loading page did not catch system error and re-trying without timeout was not robust.
+
+## [2.5.0] - 2021-07-31
+### Added
+- Report line for error on load.
+- Internal testing Step to test contents of reports include certain content.
+- Internal testing Step to check passing tests should be passing and failing ones should be failing.
+
+## [2.4.2] - 2021-07-31
+### Fixed
+- Steps that set vars (other than the story table) should fail when they can't set their var, but they did not fail.
+
 ## [2.4.1] - 2021-07-24
 ### Fixed
 - Upload Step wasn't waiting for files to finish uploading
