@@ -25,7 +25,7 @@ Scenario: I set text-type values
   And I set the var "radio_other" to "radio_other_opt_3"
   And I set the var "text_input" to "Regular text input field value"
   And I set the var "textarea" to "Multiline text\narea value"
-  And I set the var "date_input" to "today-1"
+  And I set the var "date_input" to "today - 1"
   When I set the var "direct_standard_fields" to "True"
   # Next page
   Then the question id should be "showifs"
