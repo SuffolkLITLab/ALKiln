@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.6.0] - 2021-08-07
+### Added
+- 'today' and 'today - 1' for setting dates
+
 ## [2.5.4] - 2021-08-07
 ### Fixed
 - In page load, total timeout needs to be checked in more places to give useful error message before Step fully times out.
