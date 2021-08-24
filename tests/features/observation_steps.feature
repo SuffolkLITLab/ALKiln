@@ -41,6 +41,7 @@ Scenario: I check navigation
     | single_quote_dict['single_quote_key']['sq_two'] | true |  |
     | text_input | Regular text input field value | |
     | textarea | Multiline text\narea value | |
+    | date_input | today | |
   Then I arrive at the next page
   Then I get to "screen features" with this data:
     | var | value | trigger |
