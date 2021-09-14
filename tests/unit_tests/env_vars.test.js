@@ -8,7 +8,7 @@ describe('env_vars', function () {
     describe('validateEnvironment', function() {
 
         /**
-         * All variables should be defined in .env.  For reference, those variables are the following:
+         * All required variables should be defined in .env. For reference, those variables are the following:
          * 
          * PLAYGROUND_ID
          * PLAYGROUND_EMAIL
