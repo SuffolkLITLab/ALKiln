@@ -30,5 +30,7 @@ names.slash_output = `invalid_slash_`;
 names.two_consecutive_invalid_input = `two_consecutive//invalid`;
 names.two_consecutive_invalid_output = `two_consecutive__invalid_`;
 
+names.numerical_input = `scenario_w1th_number00`;
+names.numerical_output = `scenario_w1th_number00_`;
 
 module.exports = names;

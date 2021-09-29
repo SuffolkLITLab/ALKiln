@@ -91,4 +91,10 @@ describe(`When I use scope.getSafeScenarioFilename()`, function() {
     test_no_lang_output_is_correct( names.two_consecutive_invalid_output, result );
   });
 
+  it(`does not replace numbers`, async function() {
+    scope.language = undefined;
+    let result = await getSafeScenarioFilename( scope, { prefix: names.numerical_input });
+    test_no_lang_output_is_correct( names.numerical_output, result );
+  });
+
 });
