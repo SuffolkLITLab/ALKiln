@@ -15,12 +15,58 @@ Scenario: I observe things on a single page when I arrive
   And an element should have the id "daform"
 
 @fast @o2
-Scenario: I see user errors
+Scenario: I see user errors.
+#  They're everywhere.  Some don't even know they are errors.
   Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
   And I tap to continue
   Then I can't continue
+  And I will be told an answer is invalid
+
+@fast @o2
+Scenario: Test "Then I don't continue" with a single quote
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  Then I don't continue
+  And I will be told an answer is invalid
+
+@fast @o2
+Scenario: Test "Then I cannot continue"
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  Then I cannot continue
+  And I will be told an answer is invalid
+
+@fast @o2
+Scenario: Test "Then I do not continue"
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  Then I do not continue
+  And I will be told an answer is invalid
+
+@fast @o2
+Scenario: Test "Then I can’t continue" with an apostrophe
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  Then I can’t continue
+  And I will be told an answer is invalid
+
+@fast @o2
+Scenario: Test "Then I don’t continue" with an apostrophe
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  Then I don’t continue
   And I will be told an answer is invalid
 
 @fast @o3
