@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.7.0.pre-update-dom] - 2021-11-22
+### Changed
+- Update to Bootstrap 5 Docassemble DOM changes
+
 ## [2.6.0] - 2021-08-07
 ### Added
 - 'today' and 'today - 1' for setting dates
