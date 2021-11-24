@@ -587,204 +587,183 @@ fields.buttons_event_action = [
   ];
 
 
-// // ============================
-// // Proxy vars (x, i, j, ...)
-// // ============================
-// // x[i].name.first
-// fields.proxies_xi = [
-//     {
-//       "trigger": "a_list[0].name.first",
-//       "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"][id=\"eFtpXS5uYW1lLmZpcnN0\"][class=\"form-control\"]",
-//       "tag": "input",
-//       "guesses": [
-//         { "var": "x[i].name.first", "value": "" }
-//       ],
-//       "type": "text"
-//     },
-//     {
-//       "trigger": "a_list[0].name.first",
-//       "selector": "#daquestion button[class=\"btn btn-da btn-primary\"]",
-//       "tag": "button",
-//       "guesses": [],
-//       "type": "submit"
-//     }
-//   ];
+// ============================
+// Proxy vars (x, i, j, ...)
+// ============================
+// x[i].name.first
+fields.proxies_xi = [
+  {
+    "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"][id=\"eFtpXS5uYW1lLmZpcnN0\"][class=\"form-control\"]",
+    "tag": "input",
+    "guesses": [
+      {
+        "var": "x[i].name.first",
+        "value": ""
+      }
+    ],
+    "type": "text",
+    "trigger": "proxy_list[0].name.first"
+  },
+  {
+    "selector": "#daquestion button[class=\"btn btn-da btn-primary\"]",
+    "tag": "button",
+    "guesses": [],
+    "type": "submit",
+    "trigger": "proxy_list[0].name.first"
+  }
+];
 
-// // Multiple proxies by the same name are on the list (because of a loop)
-// // x[i].name.first
-// fields.proxies_multi = [
-//     {
-//       "trigger": "a_list[0].name.first",
-//       "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"][id=\"eFtpXS5uYW1lLmZpcnN0\"][class=\"form-control\"]",
-//       "tag": "input",
-//       "guesses": [
-//         { "var": "x[i].name.first", "value": "" }
-//       ],
-//       "type": "text"
-//     },
-//     {
-//       "trigger": "a_list[0].name.first",
-//       "selector": "#daquestion button[class=\"btn btn-da btn-primary\"]",
-//       "tag": "button",
-//       "guesses": [],
-//       "type": "submit"
-//     }
-//   ];
-
-// // your_past_benefits[i].still_receiving
-// // your_past_benefits['State Veterans Benefits'].still_receiving
-// // Non-match comes after a match
-// fields.proxies_non_match = [
-//     {
-//       "trigger": "your_past_benefits['State Veterans Benefits'].still_receiving",
-//       "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU\"][id=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU\"][class=\"form-control is-invalid\"]",
-//       "tag": "input",
-//       "guesses": [
-//         { "var": "your_past_benefits[i].start_date", "value": "" }
-//       ],
-//       "type": "date"
-//     },
-//     {
-//       "trigger": "your_past_benefits['State Veterans Benefits'].still_receiving",
-//       "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw\"][value=\"True\"][id=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw_0\"][class=\"da-to-labelauty labelauty da-active-invisible dafullwidth is-invalid\"]",
-//       "tag": "input",
-//       "guesses": [
-//         { "var": "your_past_benefits[i].still_receiving", "value": "True" }
-//       ],
-//       "type": "radio"
-//     },
-//     {
-//       "trigger": "your_past_benefits['State Veterans Benefits'].still_receiving",
-//       "selector": "#daquestion input[name=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw\"][value=\"False\"][id=\"eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw_1\"][class=\"da-to-labelauty labelauty da-active-invisible dafullwidth\"]",
-//       "tag": "input",
-//       "guesses": [
-//         { "var": "your_past_benefits[i].still_receiving", "value": "False" }
-//       ],
-//       "type": "radio"
-//     },
-//     {
-//       "trigger": "your_past_benefits['State Veterans Benefits'].still_receiving",
-//       "selector": "#daquestion input[name=\"X2ZpZWxkXzM\"][id=\"X2ZpZWxkXzM\"][class=\"form-control\"]",
-//       "tag": "input",
-//       "guesses": [
-//         { "var": "your_past_benefits[i].end_date", "value": "" }
-//       ],
-//       "type": "date"
-//     },
-//     {
-//       "trigger": "your_past_benefits['State Veterans Benefits'].still_receiving",
-//       "selector": "#daquestion button[class=\"btn btn-da btn-primary\"]",
-//       "tag": "button",
-//       "guesses": [],
-//       "type": "submit"
-//     }
-//   ];
+// Multiple proxies by the same name are on the list (because of a loop)
+// x[i].name.first
+fields.proxies_multi = [
+  {
+    "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"][id=\"eFtpXS5uYW1lLmZpcnN0\"][class=\"form-control\"]",
+    "tag": "input",
+    "guesses": [
+      {
+        "var": "x[i].name.first",
+        "value": ""
+      }
+    ],
+    "type": "text",
+    "trigger": "proxy_list[1].name.first"
+  },
+  {
+    "selector": "#daquestion button[class=\"btn btn-da btn-primary\"]",
+    "tag": "button",
+    "guesses": [],
+    "type": "submit",
+    "trigger": "proxy_list[1].name.first"
+  }
+];
 
 
-// // ============================
-// // Signature
-// // ============================
-// fields.signature = [
-//     {
-//       "trigger": "signature_1",
-//       "selector": "#daquestion canvas",
-//       "tag": "canvas",
-//       "guesses": [
-//         {
-//           "var": "signature_1",
-//           "value": "/sign",
-//         }
-//       ],
-//       "type": ""
-//     },
-//     // Signature page continue buttons are in a `div.dasigbuttons`, not in a `fieldset`
-//   ];
+// ============================
+// Signature
+// ============================
+// Signature page continue buttons are contained in a different DOM structure than regular ones
+// Also, there's an additional hidden continue button on the page with similar selectors
+fields.signature = [
+    {
+      "trigger": "signature_1",
+      "selector": "#daquestion canvas",
+      "tag": "canvas",
+      "guesses": [
+        {
+          "var": "signature_1",
+          "value": "/sign",
+        }
+      ],
+      "type": ""
+    },
+    
+  ];
 
 
-// // ============================
-// // `choices:`
-// // ============================
-// // `field:` and `choices:`
-// fields.choices = [
-//     {
-//       "trigger": "cs_arrears_mc",
-//       "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"Yes\"][id=\"Y3NfYXJyZWFyc19tYw_0\"][class=\"da-to-labelauty labelauty da-active-invisible dafullwidth is-invalid\"]",
-//       "tag": "input",
-//       "guesses": [
-//         { "var": "cs_arrears_mc", "value": "Yes" }
-//       ],
-//       "type": "radio"
-//     },
-//     {
-//       "trigger": "cs_arrears_mc",
-//       "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"No\"][id=\"Y3NfYXJyZWFyc19tYw_1\"][class=\"da-to-labelauty labelauty da-active-invisible dafullwidth\"]",
-//       "tag": "input",
-//       "guesses": [
-//         { "var": "cs_arrears_mc", "value": "No" }
-//       ],
-//       "type": "radio"
-//     },
-//     {
-//       "trigger": "cs_arrears_mc",
-//       "selector": "#daquestion input[name=\"Y3NfYXJyZWFyc19tYw\"][value=\"I am not sure\"][id=\"Y3NfYXJyZWFyc19tYw_2\"][class=\"da-to-labelauty labelauty da-active-invisible dafullwidth\"]",
-//       "tag": "input",
-//       "guesses": [
-//         { "var": "cs_arrears_mc", "value": "I am not sure" }
-//       ],
-//       "type": "radio"
-//     },
-//     {
-//       "trigger": "cs_arrears_mc",
-//       "selector": "#daquestion button[class=\"btn btn-da btn-primary\"]",
-//       "tag": "button",
-//       "guesses": [],
-//       "type": "submit"
-//     }
-//   ];
+// ============================
+// `choices:`
+// ============================
+// `field:` and `choices:`
+// ```
+// field: favorite_fruit
+// choices:
+//   - Apple
+//   - Orange
+// ```
+fields.choices = [
+  {
+    "selector": "#daquestion input[name=\"ZmllbGRfYW5kX2Nob2ljZXM\"][value=\"Choice 1\"][id=\"ZmllbGRfYW5kX2Nob2ljZXM_0\"][class=\"da-to-labelauty labelauty da-active-invisible dafullwidth\"]",
+    "tag": "input",
+    "guesses": [
+      {
+        "var": "field_and_choices",
+        "value": "Choice 1"
+      }
+    ],
+    "type": "radio",
+    "trigger": "field_and_choices"
+  },
+  {
+    "selector": "#daquestion input[name=\"ZmllbGRfYW5kX2Nob2ljZXM\"][value=\"Choice 2\"][id=\"ZmllbGRfYW5kX2Nob2ljZXM_1\"][class=\"da-to-labelauty labelauty da-active-invisible dafullwidth\"]",
+    "tag": "input",
+    "guesses": [
+      {
+        "var": "field_and_choices",
+        "value": "Choice 2"
+      }
+    ],
+    "type": "radio",
+    "trigger": "field_and_choices"
+  },
+  {
+    "selector": "#daquestion button[class=\"btn btn-da btn-primary\"]",
+    "tag": "button",
+    "guesses": [],
+    "type": "submit",
+    "trigger": "field_and_choices"
+  }
+];
 
 
-// // ============================
-// // dropdowns created with objects
-// // ============================
-// // ```
-// // - Something: some_var
-// //   datatype: object
-// //   object labeler: |
-// //     lambda y: y.short_label()```
-// //   choices: some_obj
-// // ```
-// fields.object_dropdown =  [
-//     {
-//       "trigger": "trial_court",
-//       "selector": "#daquestion select[name=\"dHJpYWxfY291cnQ\"][id=\"dHJpYWxfY291cnQ\"][class=\"form-control daobject\"]",
-//       "tag": "select",
-//       "guesses": [
-//         { "var": "trial_court", "value": "" },
-//         { "var": "trial_court", "value": "" },
-//         { "var": "trial_court", "value": "YWxsX2NvdXJ0c1swXQ" },
-//         { "var": "trial_court", "value": "all_courts[0]" },
-//         { "var": "trial_court", "value": "YWxsX2NvdXJ0c1syXQ" },
-//         { "var": "trial_court", "value": "all_courts[2]" },
-//         { "var": "trial_court", "value": "YWxsX2NvdXJ0c1szXQ" },
-//         { "var": "trial_court", "value": "all_courts[3]" }
-//       ],
-//       "type": ""
-//     },
-//     {
-//       "trigger": "trial_court",
-//       "selector": "#daquestion button[class=\"btn btn-link btn-da daquestionbackbutton danonsubmit\"]",
-//       "tag": "button",
-//       "guesses": [],
-//       "type": "button"
-//     },
-//     {
-//       "trigger": "trial_court",
-//       "selector": "#daquestion button[class=\"btn btn-da btn-primary\"]",
-//       "tag": "button",
-//       "guesses": [],
-//       "type": "submit"
-//     }
-//   ];
+// ============================
+// dropdowns created with objects
+// ============================
+// ```
+// - Something: some_var
+//   datatype: object
+//   choices:
+//     - obj1
+//     - obj2
+// ```
+fields.object_dropdown = [
+  {
+    "selector": "#daquestion select[name=\"b2JqZWN0X2Ryb3Bkb3du\"][id=\"b2JqZWN0X2Ryb3Bkb3du\"][class=\"form-select dasingleselect daobject\"]",
+    "tag": "select",
+    "guesses": [
+      {
+        "var": "object_dropdown",
+        "value": ""
+      },
+      {
+        "var": "object_dropdown",
+        "value": ""
+      },
+      {
+        "var": "object_dropdown",
+        "value": "b2JqX29wdF8x"
+      },
+      {
+        "var": "object_dropdown",
+        "value": "obj_opt_1"
+      },
+      {
+        "var": "object_dropdown",
+        "value": "b2JqX29wdF8y"
+      },
+      {
+        "var": "object_dropdown",
+        "value": "obj_opt_2"
+      },
+      {
+        "var": "object_dropdown",
+        "value": "b2JqX29wdF8z"
+      },
+      {
+        "var": "object_dropdown",
+        "value": "obj_opt_3"
+      }
+    ],
+    "type": "",
+    "trigger": "object_dropdown"
+  },
+  {
+    "selector": "#daquestion button[class=\"btn btn-da btn-primary\"]",
+    "tag": "button",
+    "guesses": [],
+    "type": "submit",
+    "trigger": "object_dropdown"
+  }
+];
 
 
 // // ============================
