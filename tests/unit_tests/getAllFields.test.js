@@ -1,6 +1,5 @@
 const chai = require('chai');
 const expect = chai.expect;
-const cheerio = require('cheerio');
 // We need jest or something, right? To do fancy stuff.
 
 const html = require('./html.fixtures.js');
@@ -49,6 +48,7 @@ it(`creates the right data for 'show if' fields`, async function() {
 it(`creates the right data for one continue button`, async function() {
   // `continue button field:`
   let result = await getAllFields( scope, { html: html.button_continue });
+  console.log( JSON.stringify( result, 2, null ) );
   expect( result ).to.deep.equal( fields.button_continue );
 });
 
@@ -64,71 +64,71 @@ it(`creates the right data for other mutiple choice continue buttons`, async fun
   expect( result ).to.deep.equal( fields.buttons_other );
 });
 
-it(`creates the right data for an event action button`, async function() {
-  // `field:` and `action buttons:`
-  let result = await getAllFields( scope, { html: html.buttons_event_action });
-  expect( result ).to.deep.equal( fields.buttons_event_action );
-});
+// it(`creates the right data for an event action button`, async function() {
+//   // `field:` and `action buttons:`
+//   let result = await getAllFields( scope, { html: html.buttons_event_action });
+//   expect( result ).to.deep.equal( fields.buttons_event_action );
+// });
 
 
-// ============================
-// Proxy vars (x, i, j, ...)
-// ============================
-// x[i].name.first
-it(`creates the right data for a multi-proxy name (x[i])`, async function() {
-  let result = await getAllFields( scope, { html: html.proxies_xi });
-  expect( result ).to.deep.equal( fields.proxies_xi );
-});
+// // ============================
+// // Proxy vars (x, i, j, ...)
+// // ============================
+// // x[i].name.first
+// it(`creates the right data for a multi-proxy name (x[i])`, async function() {
+//   let result = await getAllFields( scope, { html: html.proxies_xi });
+//   expect( result ).to.deep.equal( fields.proxies_xi );
+// });
 
-// Multiple proxies by the same name are on the list (because of a loop)
-// x[i].name.first
-it(`creates the right data for a multi-proxy name (x[i]) again for consistency`, async function() {
-  // same data as `proxies_xi`, but have this here for consistency
-  let result = await getAllFields( scope, { html: html.proxies_multi });
-  expect( result ).to.deep.equal( fields.proxies_multi );
-});
+// // Multiple proxies by the same name are on the list (because of a loop)
+// // x[i].name.first
+// it(`creates the right data for a multi-proxy name (x[i]) again for consistency`, async function() {
+//   // same data as `proxies_xi`, but have this here for consistency
+//   let result = await getAllFields( scope, { html: html.proxies_multi });
+//   expect( result ).to.deep.equal( fields.proxies_multi );
+// });
 
-// your_past_benefits[i].still_receiving
-// your_past_benefits['State Veterans Benefits'].still_receiving
-it(`creates the right data for a proxy name when a non-match comes after a match`, async function() {
-  let result = await getAllFields( scope, { html: html.proxies_non_match });
-  expect( result ).to.deep.equal( fields.proxies_non_match );
-});
-
-
-// ============================
-// Signature
-// ============================
-it(`creates the right data for a signature field`, async function() {
-  // `field:` and `action buttons:`
-  let result = await getAllFields( scope, { html: html.signature });
-  expect( result ).to.deep.equal( fields.signature );
-});
+// // your_past_benefits[i].still_receiving
+// // your_past_benefits['State Veterans Benefits'].still_receiving
+// it(`creates the right data for a proxy name when a non-match comes after a match`, async function() {
+//   let result = await getAllFields( scope, { html: html.proxies_non_match });
+//   expect( result ).to.deep.equal( fields.proxies_non_match );
+// });
 
 
-// ============================
-// `choices:`
-// ============================
-it(`creates the right data for a 'choices:' field`, async function() {
-  // `field:` and `choices:`
-  let result = await getAllFields( scope, { html: html.choices });
-  expect( result ).to.deep.equal( fields.choices );
-});
+// // ============================
+// // Signature
+// // ============================
+// it(`creates the right data for a signature field`, async function() {
+//   // `field:` and `action buttons:`
+//   let result = await getAllFields( scope, { html: html.signature });
+//   expect( result ).to.deep.equal( fields.signature );
+// });
 
 
-// ============================
-// dropdowns created with objects
-// ============================
-// ```
-// - Something: some_var
-//   datatype: object
-//   object labeler: |
-//     lambda y: y.short_label()```
-//   choices: some_obj
-// ```
-it(`creates the right data for a 'choices:' field`, async function() {
-  // `field:` and `choices:`
-  let result = await getAllFields( scope, { html: html.object_dropdown });
-  expect( result ).to.deep.equal( fields.object_dropdown );
-  // console.log( JSON.stringify(result) );
-});
+// // ============================
+// // `choices:`
+// // ============================
+// it(`creates the right data for a 'choices:' field`, async function() {
+//   // `field:` and `choices:`
+//   let result = await getAllFields( scope, { html: html.choices });
+//   expect( result ).to.deep.equal( fields.choices );
+// });
+
+
+// // ============================
+// // dropdowns created with objects
+// // ============================
+// // ```
+// // - Something: some_var
+// //   datatype: object
+// //   object labeler: |
+// //     lambda y: y.short_label()```
+// //   choices: some_obj
+// // ```
+// it(`creates the right data for a 'choices:' field`, async function() {
+//   // `field:` and `choices:`
+//   let result = await getAllFields( scope, { html: html.object_dropdown });
+//   expect( result ).to.deep.equal( fields.object_dropdown );
+//   // console.log( JSON.stringify(result) );
+// });
