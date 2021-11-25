@@ -613,7 +613,8 @@ fields.proxies_xi = [
   }
 ];
 
-// Multiple proxies by the same name are on the list (because of a loop)
+// Multiple proxies by the same name are in the story table (because of a loop)
+// Second loop (second page where this question is asked)
 // x[i].name.first
 fields.proxies_multi = [
   {

@@ -9,18 +9,20 @@ tables.standard = [
   // variables have been set.
   { "var": "direct_standard_fields", "value": "True" },  // May want to change `checked`
   { "var": "checkboxes_yesno", "value": "True" },
-  { "var": "checkboxes_other_1['checkbox_other_1_opt_1']", "value": "false" },
-  { "var": "checkboxes_other_1['checkbox_other_1_opt_2']", "value": "true" },
-  { "var": "checkboxes_other_1['checkbox_other_1_opt_3']", "value": "false" },
-  { "var": "checkboxes_other_1['None']", "value": "false" },
-  { "var": "checkboxes_other_2['checkbox_other_2_opt_1']", "value": "false" },
-  { "var": "checkboxes_other_2['checkbox_other_2_opt_2']", "value": "false" },
-  { "var": "checkboxes_other_2['checkbox_other_2_opt_3']", "value": "false" },
-  { "var": "checkboxes_other_2['None']", "value": "true" },
+  { "var": "checkboxes_other['checkbox_other_opt_1']", "value": "false" },
+  { "var": "checkboxes_other['checkbox_other_opt_2']", "value": "true" },
+  { "var": "checkboxes_other['checkbox_other_opt_3']", "value": "false" },
+  { "var": "checkboxes_other['None']", "value": "false" },
+  // Not sure when these got removed
+  // { "var": "checkboxes_other_2['checkbox_other_2_opt_1']", "value": "false" },
+  // { "var": "checkboxes_other_2['checkbox_other_2_opt_2']", "value": "false" },
+  // { "var": "checkboxes_other_2['checkbox_other_2_opt_3']", "value": "false" },
+  // { "var": "checkboxes_other_2['None']", "value": "true" },
+  { "var": "date_input","value":"today-1" },
   { "var": "radio_yesno", "value": "False" },
   { "var": "radio_other", "value": "radio_other_opt_2" },
   { "var": "text_input", "value": "Some one-line text" },
-  {"var":"text_input","value":"Some conflicting text" },
+  { "var": "text_input","value":"Some conflicting text" },
   { "var": "textarea", "value": "Some\nmulti-line\ntext" },
   { "var": "dropdown_test", "value": "dropdown_opt_2" },  // May want to change `checked`
 ];
@@ -360,15 +362,15 @@ tables.missing_sought_to_normalized_formatting = [
 // ============================
 // x[i].name.first
 tables.proxies_xi = [
-  { "trigger": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
 ];
 
 // Multiple proxies by the same name are on the list (because of a loop)
 // x[i].name.first
 tables.proxies_multi = [
-  { "trigger": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
-  { "trigger": "a_list[1].name.first", "var": "x[i].name.first", "value": "Firstname", },
-  { "trigger": "a_list[2].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "proxy_list[1].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "proxy_list[2].name.first", "var": "x[i].name.first", "value": "Firstname", },
 ];
 
 
