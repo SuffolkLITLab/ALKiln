@@ -188,21 +188,6 @@ describe(`For mulitple rows with the same proxies`, async function() {
   }
 });
 
-// // your_past_benefits[i].still_receiving
-// // your_past_benefits['State Veterans Benefits'].still_receiving
-// // Non-match comes after a match
-// describe(`For a proxy name when a non-match comes after a match`, async function() {
-//   for ( let test_i = 0; test_i < fields.proxies_non_match.length; test_i++ ) {
-//     let field = fields.proxies_non_match[ test_i ];
-//     let curr_matches = matches.proxies_non_match[ test_i ];
-//     let name = getSafeName( field );
-//     it( `finds the right matches for ${ name }`, async function() {
-//       let result = await getMatchingRows( scope, { field, var_data: tables.proxies_non_match });
-//       expect( result ).to.deep.equal( curr_matches );
-//     });
-//   }
-// });
-
 
 // // ============================
 // // Signature

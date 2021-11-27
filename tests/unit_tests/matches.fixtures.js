@@ -111,17 +111,6 @@ matches.proxies_multi = [
   []
 ];
 
-// your_past_benefits[i].still_receiving
-// your_past_benefits[i].still_receiving
-// Non-match comes after a match
-matches.proxies_non_match = [
-  [{"trigger":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].start_date","value":"01/01/2001"}],
-  [{"trigger":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].still_receiving","value":"True"}],
-  [],
-  [{"trigger":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].end_date","value":"02/02/2002"}],
-  []
-];
-
 
 // ============================
 // Signature

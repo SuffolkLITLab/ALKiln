@@ -43,6 +43,8 @@ Format:
 ## [2.7.0.pre-update-dom] - 2021-11-22
 ### Changed
 - Update to Bootstrap 5 Docassemble DOM changes
+- Remove test(s?) for guessing proxy vars as we don't do that anymore #221
+- Added instructions for using tags when running cucumber tests
 
 ## [2.6.0] - 2021-08-07
 ### Added

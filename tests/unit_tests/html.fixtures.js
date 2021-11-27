@@ -501,6 +501,10 @@ html.buttons_event_action = `
 // ============================
 // Proxy vars (x, i, j, ...)
 // ============================
+// These tests are useful so we make sure we're handling iteration with
+// proxies correctly, but we don't need to worry about guessing the proxy
+// name. See https://github.com/plocket/docassemble-cucumber/pull/221
+
 // x[i].name.first
 html.proxies_xi = `
 <div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
