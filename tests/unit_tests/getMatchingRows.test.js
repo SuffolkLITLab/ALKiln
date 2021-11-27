@@ -189,73 +189,73 @@ describe(`For mulitple rows with the same proxies`, async function() {
 });
 
 
-// // ============================
-// // Signature
-// // ============================
-// describe(`For a signature field`, async function() {
-//   for ( let test_i = 0; test_i < fields.signature.length; test_i++ ) {
-//     let field = fields.signature[ test_i ];
-//     let curr_matches = matches.signature[ test_i ];
-//     let name = getSafeName( field );
-//     it( `finds the right matches for ${ name }`, async function() {
-//       let result = await getMatchingRows( scope, { field, var_data: tables.signature });
-//       expect( result ).to.deep.equal( curr_matches );
-//     });
-//   }
-// });
+// ============================
+// Signature
+// ============================
+describe(`For a signature field`, async function() {
+  for ( let test_i = 0; test_i < fields.signature.length; test_i++ ) {
+    let field = fields.signature[ test_i ];
+    let curr_matches = matches.signature[ test_i ];
+    let name = getSafeName( field );
+    it( `finds the right matches for ${ name }`, async function() {
+      let result = await getMatchingRows( scope, { field, var_data: tables.signature });
+      expect( result ).to.deep.equal( curr_matches );
+    });
+  }
+});
 
 
-// // ============================
-// // `choices:`
-// // ============================
-// // `field:` and `choices:`
-// describe(`For a 'choices:' specifier`, async function() {
-//   for ( let test_i = 0; test_i < fields.choices.length; test_i++ ) {
-//     let field = fields.choices[ test_i ];
-//     let curr_matches = matches.choices[ test_i ];
-//     let name = getSafeName( field );
-//     it( `finds the right matches for ${ name }`, async function() {
-//       let result = await getMatchingRows( scope, { field, var_data: tables.choices });
-//       expect( result ).to.deep.equal( curr_matches );
-//     });
-//   }
-// });
+// ============================
+// `choices:`
+// ============================
+// `field:` and `choices:`
+describe(`For a 'choices:' specifier`, async function() {
+  for ( let test_i = 0; test_i < fields.choices.length; test_i++ ) {
+    let field = fields.choices[ test_i ];
+    let curr_matches = matches.choices[ test_i ];
+    let name = getSafeName( field );
+    it( `finds the right matches for ${ name }`, async function() {
+      let result = await getMatchingRows( scope, { field, var_data: tables.choices });
+      expect( result ).to.deep.equal( curr_matches );
+    });
+  }
+});
 
 
-// // ============================
-// // dropdowns created with objects
-// // ============================
-// // ```
-// // - Something: some_var
-// //   datatype: object
-// //   object labeler: |
-// //     lambda y: y.short_label()```
-// //   choices: some_obj
-// // ```
-// describe(`For a dropdown created with objects`, async function() {
-//   for ( let test_i = 0; test_i < fields.object_dropdown.length; test_i++ ) {
-//     let field = fields.object_dropdown[ test_i ];
-//     let curr_matches = matches.object_dropdown[ test_i ];
-//     let name = getSafeName( field );
-//     it( `finds the right matches for ${ name }`, async function() {
-//       let result = await getMatchingRows( scope, { field, var_data: tables.object_dropdown });
-//       expect( result ).to.deep.equal( curr_matches );
-//     });
-//   }
-// });
+// ============================
+// dropdowns created with objects
+// ============================
+// ```
+// - Something: some_var
+//   datatype: object
+//   object labeler: |
+//     lambda y: y.short_label()```
+//   choices: some_obj
+// ```
+describe(`For a dropdown created with objects`, async function() {
+  for ( let test_i = 0; test_i < fields.object_dropdown.length; test_i++ ) {
+    let field = fields.object_dropdown[ test_i ];
+    let curr_matches = matches.object_dropdown[ test_i ];
+    let name = getSafeName( field );
+    it( `finds the right matches for ${ name }`, async function() {
+      let result = await getMatchingRows( scope, { field, var_data: tables.object_dropdown });
+      expect( result ).to.deep.equal( curr_matches );
+    });
+  }
+});
 
 
-// // ============================
-// // mixed quotes
-// // ============================
-// describe(`For quotes that are mismatched`, async function() {
-//   for ( let test_i = 0; test_i < fields.mixed_quotes.length; test_i++ ) {
-//     let field = fields.mixed_quotes[ test_i ];
-//     let curr_matches = matches.mixed_quotes[ test_i ];
-//     let name = getSafeName( field );
-//     it( `finds the right matches for ${ name }`, async function() {
-//       let result = await getMatchingRows( scope, { field, var_data: tables.mixed_quotes });
-//       expect( result ).to.deep.equal( curr_matches );
-//     });
-//   }
-// });
+// ============================
+// mixed quotes
+// ============================
+describe(`For quotes that are mismatched`, async function() {
+  for ( let test_i = 0; test_i < fields.mixed_quotes.length; test_i++ ) {
+    let field = fields.mixed_quotes[ test_i ];
+    let curr_matches = matches.mixed_quotes[ test_i ];
+    let name = getSafeName( field );
+    it( `finds the right matches for ${ name }`, async function() {
+      let result = await getMatchingRows( scope, { field, var_data: tables.mixed_quotes });
+      expect( result ).to.deep.equal( curr_matches );
+    });
+  }
+});

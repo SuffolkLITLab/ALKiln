@@ -126,5 +126,16 @@ it(`creates the right data for a 'choices:' field`, async function() {
 it(`creates the right data for a dropdown created with an object`, async function() {
   let result = await getAllFields( scope, { html: html.object_dropdown });
   expect( result ).to.deep.equal( fields.object_dropdown );
+});
+
+
+// ============================
+// DOM for mixed quotes test in getMatchingRows.test.js
+// ============================
+// Helps us create the mixed quotes test in getMatchingRows.test.js, but
+// commented out because it's not a useful test for getAllFields()
+it(`creates the right data for a question whose table will have mixed quotes`, async function() {
+  let result = await getAllFields( scope, { html: html.mixed_quotes });
   // console.log( JSON.stringify(result) );
+  expect( result ).to.deep.equal( fields.mixed_quotes );
 });

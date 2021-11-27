@@ -125,8 +125,7 @@ matches.signature = [
 // ============================
 // `field:` and `choices:`
 matches.choices = [
-  [],
-  [{"var":"cs_arrears_mc","value":"No"}],
+  [{"var":"field_and_choices","value":"Choice 1"}],
   [],
   []
 ];
@@ -143,7 +142,7 @@ matches.choices = [
 //   choices: some_obj
 // ```
 matches.object_dropdown = [
-  [{"var":"trial_court","value":"all_courts[0]"}],
+  [{"var":"object_dropdown","value":"obj_opt_2"}],
   [],
   []
 ];
@@ -154,11 +153,12 @@ matches.object_dropdown = [
 // ============================
 matches.mixed_quotes = [
   [],
-  [ { var: `single_quote_dict["single_quote_key"]['sq_two']`, value: 'True', trigger: `x['some_key']['dbl_quoted_val']` } ],
+  [ { var: `single_quote_dict["single_quote_key"]['sq_two']`, value: 'True', trigger: `double_quote_dict['double_quote_key']` } ],
   [],
   [],
   [],
-  [ { var: `double_quote_dict['double_quote_key']["dq_two"]`, value: 'True', trigger: `x['some_key']["dbl_quoted_val"]` } ],
+  [ { var: `double_quote_dict['double_quote_key']["dq_two"]`, value: 'True', trigger: `double_quote_dict["double_quote_key"]` } ],
+  [],
   [],
   [],
   [],
