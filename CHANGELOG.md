@@ -45,6 +45,7 @@ Format:
 - Update to Bootstrap 5 Docassemble DOM changes
 - Remove test(s?) for guessing proxy vars as we don't do that anymore #221
 - Added instructions for using tags when running cucumber tests
+- Handle clicking in `tapElement()` ourselves now instead of with puppeteer. See previous commit for the change.
 
 ## [2.6.0] - 2021-08-07
 ### Added
