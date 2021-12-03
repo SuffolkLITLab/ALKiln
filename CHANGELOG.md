@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.7.0.pre-update-dom.2] - 2021-12-02
+### Fixed
+- Quick fix for frequent timeout errors. See https://github.com/SuffolkLITLab/ALKiln/issues/389#issuecomment-984844240, Option 1 - disable cucumber timeout and, instead, handle timeout errors to allow 3 attempts to load an interview. For future development, convert to API key to check if server is restarting.
+
 ## [2.7.0.pre-update-dom] - 2021-11-22
 ### Changed
 - Update to Bootstrap 5 Docassemble DOM changes
