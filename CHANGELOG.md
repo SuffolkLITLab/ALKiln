@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.7.0-pre-update-dom.4] - 2021-12-03
+### Changed
+- Give test resetting, a common failure point, a couple of tries and add a warning and instructions about simply re-running the tests.
+
 ## [2.7.0-pre-update-dom.3] - 2021-12-02
 ### Fixed
 - Abandon puppeteer clicks and handle them all ourselves. This means people can't run a mobile device because they can't tap. It takes some implementation. See https://stackoverflow.com/a/56547605/14144258.
