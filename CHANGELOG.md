@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [2.7.0-pre-update-dom.3] - 2021-12-02
+### Fixed
+- Abandon puppeteer clicks and handle them all ourselves. This means people can't run a mobile device because they can't tap. It takes some implementation. See https://stackoverflow.com/a/56547605/14144258.
+
 ## [2.7.0-pre-update-dom.2] - 2021-12-02
 ### Fixed
 - Quick fix for frequent timeout errors. See https://github.com/SuffolkLITLab/ALKiln/issues/389#issuecomment-984844240, Option 1 - disable cucumber timeout and, instead, handle timeout errors to allow 3 attempts to load an interview. For future development, convert to API key to check if server is restarting.
