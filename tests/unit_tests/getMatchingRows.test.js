@@ -19,20 +19,23 @@ let getSafeName = function ( field ) {
   if ( guess_1 ) { name = field.guesses[0].var }
   return name;
 };
+
+// TODO: Add `testForMatches()` to reduce duplication (will run for loops)
+
 // ============================
 
 
 // ============================
 // Standard fields - no proxies, no showifs.
 // ============================
-describe("For standard fields", async function() {
-  // Note: One of these should have a report for having two fields that match
-  for ( let test_i = 0; test_i < matches.standard.length; test_i++ ) {
+describe("Matches: For standard fields", async function() {
+  // TODO: One of these should have a report for having two fields that match. Test the report?
+  for ( let test_i = 0; test_i < fields.standard.length; test_i++ ) {
     let field = fields.standard[ test_i ];
     let curr_matches = matches.standard[ test_i ];
     let name = getSafeName( field );
+    let result = await getMatchingRows( scope, { field, var_data: tables.standard });
     it( `finds the right matches for ${ name }`, async function() {
-      let result = await getMatchingRows( scope, { field, var_data: tables.standard });
       expect( result ).to.deep.equal( curr_matches );
     });
   }
@@ -43,12 +46,12 @@ describe("For standard fields", async function() {
 // Simple show if fields - no proxies
 // ============================
 describe("For simple show if fields", async function() {
-  for ( let test_i = 0; test_i < matches.show_if.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.show_if.length; test_i++ ) {
     let field = fields.show_if[ test_i ];
     let curr_matches = matches.show_if[ test_i ];
     let name = getSafeName( field );
+    let result = await getMatchingRows( scope, { field, var_data: tables.show_if });
     it( `finds the right matches for ${ name }`, async function() {
-      let result = await getMatchingRows( scope, { field, var_data: tables.show_if });
       expect( result ).to.deep.equal( curr_matches );
     });
   }
@@ -60,7 +63,7 @@ describe("For simple show if fields", async function() {
 // ============================
 // `continue button field:`
 describe("For one continue button", async function() {
-  for ( let test_i = 0; test_i < matches.button_continue.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.button_continue.length; test_i++ ) {
     let field = fields.button_continue[ test_i ];
     let curr_matches = matches.button_continue[ test_i ];
     let name = getSafeName( field );
@@ -73,7 +76,7 @@ describe("For one continue button", async function() {
 
 // `yesnomaybe:`
 describe("For the 'yes' choice of yesnomaybe buttons", async function() {
-  for ( let test_i = 0; test_i < matches.buttons_yesnomaybe_yes.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.buttons_yesnomaybe.length; test_i++ ) {
     let field = fields.buttons_yesnomaybe[ test_i ];
     let curr_matches = matches.buttons_yesnomaybe_yes[ test_i ];
     let name = getSafeName( field );
@@ -84,7 +87,7 @@ describe("For the 'yes' choice of yesnomaybe buttons", async function() {
   }
 });
 describe("For the 'no' choice of yesnomaybe buttons", async function() {
-  for ( let test_i = 0; test_i < matches.buttons_yesnomaybe_no.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.buttons_yesnomaybe.length; test_i++ ) {
     let field = fields.buttons_yesnomaybe[ test_i ];
     let curr_matches = matches.buttons_yesnomaybe_no[ test_i ];
     let name = getSafeName( field );
@@ -95,7 +98,7 @@ describe("For the 'no' choice of yesnomaybe buttons", async function() {
   }
 });
 describe("For the 'maybe' choice of yesnomaybe buttons", async function() {
-  for ( let test_i = 0; test_i < matches.buttons_yesnomaybe_none.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.buttons_yesnomaybe.length; test_i++ ) {
     let field = fields.buttons_yesnomaybe[ test_i ];
     let curr_matches = matches.buttons_yesnomaybe_none[ test_i ];
     let name = getSafeName( field );
@@ -108,7 +111,7 @@ describe("For the 'maybe' choice of yesnomaybe buttons", async function() {
 
 // `field:` and `buttons:`
 describe("For choice 1 of other mutiple choice continue buttons", async function() {
-  for ( let test_i = 0; test_i < matches.buttons_other_1.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.buttons_other.length; test_i++ ) {
     let field = fields.buttons_other[ test_i ];
     let curr_matches = matches.buttons_other_1[ test_i ];
     let name = getSafeName( field );
@@ -119,7 +122,7 @@ describe("For choice 1 of other mutiple choice continue buttons", async function
   }
 });
 describe("For choice 2 of other mutiple choice continue buttons", async function() {
-  for ( let test_i = 0; test_i < matches.buttons_other_2.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.buttons_other.length; test_i++ ) {
     let field = fields.buttons_other[ test_i ];
     let curr_matches = matches.buttons_other_2[ test_i ];
     let name = getSafeName( field );
@@ -130,7 +133,7 @@ describe("For choice 2 of other mutiple choice continue buttons", async function
   }
 });
 describe("For choice 3 of other mutiple choice continue buttons", async function() {
-  for ( let test_i = 0; test_i < matches.buttons_other_3.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.buttons_other.length; test_i++ ) {
     let field = fields.buttons_other[ test_i ];
     let curr_matches = matches.buttons_other_3[ test_i ];
     let name = getSafeName( field );
@@ -143,7 +146,7 @@ describe("For choice 3 of other mutiple choice continue buttons", async function
 
 // `field:` and `action buttons:`
 describe(`For an action button`, async function() {
-  for ( let test_i = 0; test_i < matches.buttons_event_action.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.buttons_event_action.length; test_i++ ) {
     let field = fields.buttons_event_action[ test_i ];
     let curr_matches = matches.buttons_event_action[ test_i ];
     let name = getSafeName( field );
@@ -160,7 +163,7 @@ describe(`For an action button`, async function() {
 // ============================
 // x[i].name.first
 describe(`For a multi-proxy name (x[i])`, async function() {
-  for ( let test_i = 0; test_i < matches.proxies_xi.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.proxies_xi.length; test_i++ ) {
     let field = fields.proxies_xi[ test_i ];
     let curr_matches = matches.proxies_xi[ test_i ];
     let name = getSafeName( field );
@@ -174,7 +177,7 @@ describe(`For a multi-proxy name (x[i])`, async function() {
 // Multiple proxies by the same name are on the list (because of a loop)
 // x[i].name.first
 describe(`For mulitple rows with the same proxies`, async function() {
-  for ( let test_i = 0; test_i < matches.proxies_multi.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.proxies_multi.length; test_i++ ) {
     let field = fields.proxies_multi[ test_i ];
     let curr_matches = matches.proxies_multi[ test_i ];
     let name = getSafeName( field );
@@ -185,27 +188,12 @@ describe(`For mulitple rows with the same proxies`, async function() {
   }
 });
 
-// your_past_benefits[i].still_receiving
-// your_past_benefits['State Veterans Benefits'].still_receiving
-// Non-match comes after a match
-describe(`For a proxy name when a non-match comes after a match`, async function() {
-  for ( let test_i = 0; test_i < matches.proxies_non_match.length; test_i++ ) {
-    let field = fields.proxies_non_match[ test_i ];
-    let curr_matches = matches.proxies_non_match[ test_i ];
-    let name = getSafeName( field );
-    it( `finds the right matches for ${ name }`, async function() {
-      let result = await getMatchingRows( scope, { field, var_data: tables.proxies_non_match });
-      expect( result ).to.deep.equal( curr_matches );
-    });
-  }
-});
-
 
 // ============================
 // Signature
 // ============================
 describe(`For a signature field`, async function() {
-  for ( let test_i = 0; test_i < matches.signature.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.signature.length; test_i++ ) {
     let field = fields.signature[ test_i ];
     let curr_matches = matches.signature[ test_i ];
     let name = getSafeName( field );
@@ -222,7 +210,7 @@ describe(`For a signature field`, async function() {
 // ============================
 // `field:` and `choices:`
 describe(`For a 'choices:' specifier`, async function() {
-  for ( let test_i = 0; test_i < matches.choices.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.choices.length; test_i++ ) {
     let field = fields.choices[ test_i ];
     let curr_matches = matches.choices[ test_i ];
     let name = getSafeName( field );
@@ -245,7 +233,7 @@ describe(`For a 'choices:' specifier`, async function() {
 //   choices: some_obj
 // ```
 describe(`For a dropdown created with objects`, async function() {
-  for ( let test_i = 0; test_i < matches.object_dropdown.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.object_dropdown.length; test_i++ ) {
     let field = fields.object_dropdown[ test_i ];
     let curr_matches = matches.object_dropdown[ test_i ];
     let name = getSafeName( field );
@@ -261,7 +249,7 @@ describe(`For a dropdown created with objects`, async function() {
 // mixed quotes
 // ============================
 describe(`For quotes that are mismatched`, async function() {
-  for ( let test_i = 0; test_i < matches.mixed_quotes.length; test_i++ ) {
+  for ( let test_i = 0; test_i < fields.mixed_quotes.length; test_i++ ) {
     let field = fields.mixed_quotes[ test_i ];
     let curr_matches = matches.mixed_quotes[ test_i ];
     let name = getSafeName( field );
