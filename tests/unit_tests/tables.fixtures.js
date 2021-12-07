@@ -9,18 +9,20 @@ tables.standard = [
   // variables have been set.
   { "var": "direct_standard_fields", "value": "True" },  // May want to change `checked`
   { "var": "checkboxes_yesno", "value": "True" },
-  { "var": "checkboxes_other_1['checkbox_other_1_opt_1']", "value": "false" },
-  { "var": "checkboxes_other_1['checkbox_other_1_opt_2']", "value": "true" },
-  { "var": "checkboxes_other_1['checkbox_other_1_opt_3']", "value": "false" },
-  { "var": "checkboxes_other_1['None']", "value": "false" },
-  { "var": "checkboxes_other_2['checkbox_other_2_opt_1']", "value": "false" },
-  { "var": "checkboxes_other_2['checkbox_other_2_opt_2']", "value": "false" },
-  { "var": "checkboxes_other_2['checkbox_other_2_opt_3']", "value": "false" },
-  { "var": "checkboxes_other_2['None']", "value": "true" },
+  { "var": "checkboxes_other['checkbox_other_opt_1']", "value": "false" },
+  { "var": "checkboxes_other['checkbox_other_opt_2']", "value": "true" },
+  { "var": "checkboxes_other['checkbox_other_opt_3']", "value": "false" },
+  { "var": "checkboxes_other['None']", "value": "false" },
+  // Not sure when these got removed
+  // { "var": "checkboxes_other_2['checkbox_other_2_opt_1']", "value": "false" },
+  // { "var": "checkboxes_other_2['checkbox_other_2_opt_2']", "value": "false" },
+  // { "var": "checkboxes_other_2['checkbox_other_2_opt_3']", "value": "false" },
+  // { "var": "checkboxes_other_2['None']", "value": "true" },
+  { "var": "date_input","value":"today-1" },
   { "var": "radio_yesno", "value": "False" },
   { "var": "radio_other", "value": "radio_other_opt_2" },
   { "var": "text_input", "value": "Some one-line text" },
-  {"var":"text_input","value":"Some conflicting text" },
+  { "var": "text_input","value":"Some conflicting text" },
   { "var": "textarea", "value": "Some\nmulti-line\ntext" },
   { "var": "dropdown_test", "value": "dropdown_opt_2" },  // May want to change `checked`
 ];
@@ -360,24 +362,15 @@ tables.missing_sought_to_normalized_formatting = [
 // ============================
 // x[i].name.first
 tables.proxies_xi = [
-  { "trigger": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
 ];
 
 // Multiple proxies by the same name are on the list (because of a loop)
 // x[i].name.first
 tables.proxies_multi = [
-  { "trigger": "a_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
-  { "trigger": "a_list[1].name.first", "var": "x[i].name.first", "value": "Firstname", },
-  { "trigger": "a_list[2].name.first", "var": "x[i].name.first", "value": "Firstname", },
-];
-
-// your_past_benefits[i].still_receiving
-// your_past_benefits['State Veterans Benefits'].still_receiving
-// Non-match comes after a match
-tables.proxies_non_match = [
-  { "trigger": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].start_date", "value": "01/01/2001", },
-  { "trigger": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].still_receiving", "value": "True", },
-  { "trigger": "your_past_benefits['State Veterans Benefits'].still_receiving", "var": "your_past_benefits[i].end_date", "value": "02/02/2002", },
+  { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "proxy_list[1].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "proxy_list[2].name.first", "var": "x[i].name.first", "value": "Firstname", },
 ];
 
 
@@ -396,7 +389,7 @@ tables.signature = [
 // ============================
 // `field:` and `choices:`
 tables.choices = [
-  { "var": "cs_arrears_mc", "value": "No", },
+  { "var": "field_and_choices", "value": "Choice 1", },
 ];
 
 
@@ -411,7 +404,7 @@ tables.choices = [
 //   choices: some_obj
 // ```
 tables.object_dropdown = [
-  { "var": "trial_court", "value": "all_courts[0]", },
+  { "var": "object_dropdown", "value": "obj_opt_2", },
 ];
 
 
@@ -427,8 +420,8 @@ tables.there_is_another = [
 // mixed quotes
 // ============================
 tables.mixed_quotes = [
-  { "var": `double_quote_dict['double_quote_key']["dq_two"]`, "value": "True", "trigger": `x['some_key']["dbl_quoted_val"]` },
-  { "var": `single_quote_dict["single_quote_key"]['sq_two']`, "value": "True", "trigger": `x['some_key']['dbl_quoted_val']` },
+  { "var": `double_quote_dict['double_quote_key']["dq_two"]`, "value": "True", "trigger": `double_quote_dict["double_quote_key"]` },
+  { "var": `single_quote_dict["single_quote_key"]['sq_two']`, "value": "True", "trigger": `double_quote_dict['double_quote_key']` },
 ];
 
 

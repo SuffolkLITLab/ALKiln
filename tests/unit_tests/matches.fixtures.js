@@ -5,24 +5,21 @@ let matches =  {}
 // ============================
 // TODO: Add more complex fields. E.g `object_checkboxes` and dropdown with `object`.
 matches.standard = [
-  [{"var":"checkboxes_yesno","value":"True"}],
-  [{"var":"checkboxes_other_1['checkbox_other_1_opt_1']","value":"false"}],
-  [{"var":"checkboxes_other_1['checkbox_other_1_opt_2']","value":"true"}],
-  [{"var":"checkboxes_other_1['checkbox_other_1_opt_3']","value":"false"}],
-  [{"var":"checkboxes_other_1['None']","value":"false"}],
-  [{"var":"checkboxes_other_2['checkbox_other_2_opt_1']","value":"false"}],
-  [{"var":"checkboxes_other_2['checkbox_other_2_opt_2']","value":"false"}],
-  [{"var":"checkboxes_other_2['checkbox_other_2_opt_3']","value":"false"}],
-  [{"var":"checkboxes_other_2['None']","value":"true"}],
+  [ { var: 'checkboxes_yesno', value: 'True' } ],
+  [ { var: "checkboxes_other['checkbox_other_opt_1']", value: 'false' } ],
+  [ { var: "checkboxes_other['checkbox_other_opt_2']", value: 'true' } ],
+  [ { var: "checkboxes_other['checkbox_other_opt_3']", value: 'false' } ],
+  [ { var: "checkboxes_other['None']", value: 'false' } ],
   [],
-  [{"var":"radio_yesno","value":"False"}],
+  [ { var: 'radio_yesno', value: 'False' } ],
   [],
-  [{"var":"radio_other","value":"radio_other_opt_2"}],
+  [ { var: 'radio_other', value: 'radio_other_opt_2' } ],
   [],
-  [{"var":"text_input","value":"Some one-line text"},{"var":"text_input","value":"Some conflicting text"}],
-  [{"var":"textarea","value":"Some\nmulti-line\ntext"}],
-  [{"var":"dropdown_test","value":"dropdown_opt_2"}],
-  [{"var":"direct_standard_fields","value":"True"}]
+  [ { var: 'text_input', value: 'Some one-line text' }, { var: 'text_input', value: 'Some conflicting text' } ],
+  [ { var: 'textarea', value: 'Some\nmulti-line\ntext' } ],
+  [ { 'var': 'date_input','value':'today-1' } ],
+  [ { var: 'dropdown_test', value: 'dropdown_opt_2' } ],
+  [ { var: 'direct_standard_fields', value: 'True' } ]
 ];
 
 
@@ -30,21 +27,22 @@ matches.standard = [
 // Simple show if fields - no proxies
 // ============================
 matches.show_if = [
-  [{"var":"show_2","value":"True"}],
-  [{"var":"show_3","value":"True"}],
-  [{"var":"showif_checkbox_yesno","value":"True"}],
-  [{"var":"showif_checkboxes_other['showif_checkboxes_nota_1']","value":"false"}],
-  [{"var":"showif_checkboxes_other['showif_checkboxes_nota_2']","value":"true"}],
-  [{"var":"showif_checkboxes_other['None']","value":"false"}],
+  [ { var: 'show_2', value: 'True' } ],
+  [ { var: 'show_3', value: 'True' } ],
+  [ { var: 'showif_checkbox_yesno', value: 'True' } ],
+  [ { var: "showif_checkboxes_other['showif_checkboxes_nota_1']", value: 'false' } ],
+  [ { var: "showif_checkboxes_other['showif_checkboxes_nota_2']", value: 'true' } ],
   [],
-  [{"var":"showif_yesnoradio","value":"False"}],
+  [ { var: "showif_checkboxes_other['None']", value: 'false' } ],
   [],
-  [{"var":"showif_radio_other","value":"showif_radio_multi_2"}],
+  [ { var: 'showif_yesnoradio', value: 'False' } ],
   [],
-  [{"var":"showif_text_input","value":"Some one-line text in show if input"}],
-  [{"var":"showif_textarea","value":"Some\nmulti-line\ntext in show if textarea"}],
-  [{"var":"showif_dropdown","value":"showif_dropdown_2"}],
-  [{"var":"direct_showifs","value":"True"}]
+  [ { var: 'showif_radio_other', value: 'showif_radio_multi_2' } ],
+  [],
+  [ { var: 'showif_text_input', value: 'Some one-line text in show if input' } ],
+  [ { var: 'showif_textarea', value: 'Some\nmulti-line\ntext in show if textarea' } ],
+  [ { var: 'showif_dropdown', value: 'showif_dropdown_2' } ],
+  [ { var: 'direct_showifs', value: 'True' } ]
 ];
 
 
@@ -102,25 +100,14 @@ matches.buttons_event_action = [
 // ============================
 // x[i].name.first
 matches.proxies_xi = [
-  [{"trigger":"a_list[0].name.first","var":"x[i].name.first","value":"Firstname"}],
+  [{"trigger":"proxy_list[0].name.first","var":"x[i].name.first","value":"Firstname"}],
   []
 ];
 
 // Multiple proxies by the same name are on the list (because of a loop)
 // x[i].name.first
 matches.proxies_multi = [
-  [{"trigger":"a_list[0].name.first","var":"x[i].name.first","value":"Firstname"}],
-  []
-];
-
-// your_past_benefits[i].still_receiving
-// your_past_benefits[i].still_receiving
-// Non-match comes after a match
-matches.proxies_non_match = [
-  [{"trigger":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].start_date","value":"01/01/2001"}],
-  [{"trigger":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].still_receiving","value":"True"}],
-  [],
-  [{"trigger":"your_past_benefits['State Veterans Benefits'].still_receiving","var":"your_past_benefits[i].end_date","value":"02/02/2002"}],
+  [{"trigger":"proxy_list[1].name.first","var":"x[i].name.first","value":"Firstname"}],
   []
 ];
 
@@ -138,8 +125,7 @@ matches.signature = [
 // ============================
 // `field:` and `choices:`
 matches.choices = [
-  [],
-  [{"var":"cs_arrears_mc","value":"No"}],
+  [{"var":"field_and_choices","value":"Choice 1"}],
   [],
   []
 ];
@@ -156,7 +142,7 @@ matches.choices = [
 //   choices: some_obj
 // ```
 matches.object_dropdown = [
-  [{"var":"trial_court","value":"all_courts[0]"}],
+  [{"var":"object_dropdown","value":"obj_opt_2"}],
   [],
   []
 ];
@@ -167,11 +153,12 @@ matches.object_dropdown = [
 // ============================
 matches.mixed_quotes = [
   [],
-  [ { var: `single_quote_dict["single_quote_key"]['sq_two']`, value: 'True', trigger: `x['some_key']['dbl_quoted_val']` } ],
+  [ { var: `single_quote_dict["single_quote_key"]['sq_two']`, value: 'True', trigger: `double_quote_dict['double_quote_key']` } ],
   [],
   [],
   [],
-  [ { var: `double_quote_dict['double_quote_key']["dq_two"]`, value: 'True', trigger: `x['some_key']["dbl_quoted_val"]` } ],
+  [ { var: `double_quote_dict['double_quote_key']["dq_two"]`, value: 'True', trigger: `double_quote_dict["double_quote_key"]` } ],
+  [],
   [],
   [],
   [],
