@@ -132,10 +132,11 @@ it(`creates the right data for a dropdown created with an object`, async functio
 // ============================
 // DOM for mixed quotes test in getMatchingRows.test.js
 // ============================
-// Helps us create the mixed quotes test in getMatchingRows.test.js, but
-// commented out because it's not a useful test for getAllFields()
+// Why is this test useful? Or so someone might ask when looking at this closely.
+// This file runs tests for `.getAllFields()`, but also helps us generate the
+// objects in fields.fixtures.js for the `.getMatchingRows()` unit tests. The
+// following test is mostly useful for that second purpose.
 it(`creates the right data for a question whose table will have mixed quotes`, async function() {
   let result = await getAllFields( scope, { html: html.mixed_quotes });
-  // console.log( JSON.stringify(result) );
   expect( result ).to.deep.equal( fields.mixed_quotes );
 });
