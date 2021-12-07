@@ -39,6 +39,10 @@ Format:
 - 
 -->
 <!-- ## [Unreleased] -->
+## [3.0.1-peer-deps.1] - 2021-12-07
+### Changed
+- Peer dependencies and dev dependencies. Now `cucumber` is just a dependency. See https://github.com/SuffolkLITLab/ALKiln/issues/396 for discussion.
+
 ## [3.0.0] - 2021-12-07
 ### Changed
 - v3 release to update to da Bootstrap 5. Breaks for servers that have not yet updated to that da version.
