@@ -39,6 +39,32 @@ Format:
 - 
 -->
 <!-- ## [Unreleased] -->
+## [3.0.0] - 2021-12-07
+### Changed
+- v3 release to update to da Bootstrap 5. Breaks for servers that have not yet updated to that da version.
+
+## [2.7.0-pre-update-dom.4] - 2021-12-03
+### Changed
+- Give test resetting, a common failure point, a couple of tries and add a warning and instructions about simply re-running the tests.
+
+## [2.7.0-pre-update-dom.3] - 2021-12-02
+### Fixed
+- Abandon puppeteer clicks and handle them all ourselves. This means people can't run a mobile device because they can't tap. It takes some implementation. See https://stackoverflow.com/a/56547605/14144258.
+
+## [2.7.0-pre-update-dom.2] - 2021-12-02
+### Fixed
+- Quick fix for frequent timeout errors. See https://github.com/SuffolkLITLab/ALKiln/issues/389#issuecomment-984844240, Option 1 - disable cucumber timeout and, instead, handle timeout errors to allow 3 attempts to load an interview. For future development, convert to API key to check if server is restarting.
+
+## [2.7.0-pre-update-dom] - 2021-11-22
+### Changed
+- Update to Bootstrap 5 Docassemble DOM changes
+- Remove test(s?) for guessing proxy vars as we don't do that anymore #221
+- Added instructions for using tags when running cucumber tests
+- Handle clicking in `tapElement()` ourselves now instead of with puppeteer. See previous commit for the change.
+
+## [2.6.0] - 2021-08-07
+### Added
+- 'today' and 'today - 1' for setting dates
 
 ## [2.5.4] - 2021-08-07
 ### Fixed

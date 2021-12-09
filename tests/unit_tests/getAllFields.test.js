@@ -1,6 +1,5 @@
 const chai = require('chai');
 const expect = chai.expect;
-const cheerio = require('cheerio');
 // We need jest or something, right? To do fancy stuff.
 
 const html = require('./html.fixtures.js');
@@ -88,13 +87,6 @@ it(`creates the right data for a multi-proxy name (x[i]) again for consistency`,
   expect( result ).to.deep.equal( fields.proxies_multi );
 });
 
-// your_past_benefits[i].still_receiving
-// your_past_benefits['State Veterans Benefits'].still_receiving
-it(`creates the right data for a proxy name when a non-match comes after a match`, async function() {
-  let result = await getAllFields( scope, { html: html.proxies_non_match });
-  expect( result ).to.deep.equal( fields.proxies_non_match );
-});
-
 
 // ============================
 // Signature
@@ -109,8 +101,13 @@ it(`creates the right data for a signature field`, async function() {
 // ============================
 // `choices:`
 // ============================
+// ```
+// field: favorite_fruit
+// choices:
+//   - Apple
+//   - Orange
+// ```
 it(`creates the right data for a 'choices:' field`, async function() {
-  // `field:` and `choices:`
   let result = await getAllFields( scope, { html: html.choices });
   expect( result ).to.deep.equal( fields.choices );
 });
@@ -122,13 +119,24 @@ it(`creates the right data for a 'choices:' field`, async function() {
 // ```
 // - Something: some_var
 //   datatype: object
-//   object labeler: |
-//     lambda y: y.short_label()```
-//   choices: some_obj
+//   choices:
+//     - obj1
+//     - obj2
 // ```
-it(`creates the right data for a 'choices:' field`, async function() {
-  // `field:` and `choices:`
+it(`creates the right data for a dropdown created with an object`, async function() {
   let result = await getAllFields( scope, { html: html.object_dropdown });
   expect( result ).to.deep.equal( fields.object_dropdown );
-  // console.log( JSON.stringify(result) );
+});
+
+
+// ============================
+// DOM for mixed quotes test in getMatchingRows.test.js
+// ============================
+// Why is this test useful? Or so someone might ask when looking at this closely.
+// This file runs tests for `.getAllFields()`, but also helps us generate the
+// objects in fields.fixtures.js for the `.getMatchingRows()` unit tests. The
+// following test is mostly useful for that second purpose.
+it(`creates the right data for a question whose table will have mixed quotes`, async function() {
+  let result = await getAllFields( scope, { html: html.mixed_quotes });
+  expect( result ).to.deep.equal( fields.mixed_quotes );
 });
