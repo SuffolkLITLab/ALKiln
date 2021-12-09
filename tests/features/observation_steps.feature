@@ -24,51 +24,6 @@ Scenario: I see user errors.
   Then I can't continue
   And I will be told an answer is invalid
 
-@fast @o2
-Scenario: Test "Then I don't continue" with a single quote
-  Given I start the interview at "all_tests"
-  And I tap to continue
-  And I tap to continue
-  And I tap to continue
-  Then I don't continue
-  And I will be told an answer is invalid
-
-@fast @o2
-Scenario: Test "Then I cannot continue"
-  Given I start the interview at "all_tests"
-  And I tap to continue
-  And I tap to continue
-  And I tap to continue
-  Then I cannot continue
-  And I will be told an answer is invalid
-
-@fast @o2
-Scenario: Test "Then I do not continue"
-  Given I start the interview at "all_tests"
-  And I tap to continue
-  And I tap to continue
-  And I tap to continue
-  Then I do not continue
-  And I will be told an answer is invalid
-
-@fast @o2
-Scenario: Test "Then I can’t continue" with an apostrophe
-  Given I start the interview at "all_tests"
-  And I tap to continue
-  And I tap to continue
-  And I tap to continue
-  Then I can’t continue
-  And I will be told an answer is invalid
-
-@fast @o2
-Scenario: Test "Then I don’t continue" with an apostrophe
-  Given I start the interview at "all_tests"
-  And I tap to continue
-  And I tap to continue
-  And I tap to continue
-  Then I don’t continue
-  And I will be told an answer is invalid
-
 @fast @o3
 Scenario: I can include .yml in the filename
   Given I start the interview at "all_tests.yml"
@@ -95,3 +50,48 @@ Scenario: I check navigation
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
   And I should see the link to "http://ecosia.org/"
+
+@fast @o4
+Scenario: Test "Then I don't continue" with a single quote
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  Then I don't continue
+  And I will be told an answer is invalid
+
+@fast @o5
+Scenario: Test "Then I cannot continue"
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  Then I cannot continue
+  And I will be told an answer is invalid
+
+@fast @o6
+Scenario: Test "Then I do not continue"
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  Then I do not continue
+  And I will be told an answer is invalid
+
+@fast @o7
+Scenario: Test "Then I can’t continue" with an apostrophe
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  Then I can’t continue
+  And I will be told an answer is invalid
+
+@fast @o8
+Scenario: Test "Then I don’t continue" with an apostrophe
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  Then I don’t continue
+  And I will be told an answer is invalid
