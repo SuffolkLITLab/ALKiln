@@ -1,5 +1,9 @@
 /* HTML string of pages for testing. They are split into
 * variables to make each field easier to read.
+* 
+* #trigger element is added into #daquestion, though it's not at
+* that location on the actual page. Otherwise, we'd have a lot more
+* html in here. In scope.js, it's found just using its id selector.
 */
 
 let html = {};
@@ -11,149 +15,167 @@ let html = {};
 // TODO: Add tests for individual fields.
 // NOTE: `.standard` also tests for old `#sought_variable` element
 html.standard = `
-<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-  <div data-variable="ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw" id="sought_variable" aria-hidden="true" style="display: none;"></div>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">Direct standard fields</h1>
-      <div class="daclear"></div>
-    </div>
-    <div class="da-subquestion">
-      <p>Excludes proxy vars (x, i, j, etc.) or choices created with objects.</p>
-    </div>
-
-    <div class="form-group row dayesnospacing da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesno da-field-container-emptylabel"><label for="Y2hlY2tib3hlc195ZXNubw" class="sr-only">Check if applicable</label>
-      <div class="offset-md-4 col-md-8 dafieldpart">
-        <fieldset class="da-field-checkbox">
-          <legend class="sr-only">Choices:</legend><input aria-label="checkboxes (yesno)" alt="checkboxes (yesno)" class="da-to-labelauty checkbox-icon dauncheckable labelauty da-active-invisible dafullwidth" type="checkbox" value="True" name="Y2hlY2tib3hlc195ZXNubw" id="Y2hlY2tib3hlc195ZXNubw" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y2hlY2tib3hlc195ZXNubw" tabindex="0" role="checkbox" aria-checked="false" aria-label="checkboxes (yesno)"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-              </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">checkboxes (yesno)</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">checkboxes (yesno)</span></label>
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion">Direct standard fields</h1>
+            <div class="daclear"></div>
+        </div>
+        <div class="da-subquestion">
+            <p>Excludes proxy vars (x, i, j, etc.) or choices created with objects.</p>
+        </div>
+        <div class="da-form-group row dayesnospacing da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesno da-field-container-emptylabel"><span class="visually-hidden">Check if applicable</span>
+            <div class="offset-md-4 col-md-8 dafieldpart">
+                <fieldset class="da-field-checkbox">
+                    <legend class="visually-hidden">Choices:</legend>
+                    <input aria-label="checkboxes (yesno)" alt="checkboxes (yesno)" class="da-to-labelauty checkbox-icon dauncheckable labelauty da-active-invisible dafullwidth" type="checkbox" value="True" name="Y2hlY2tib3hlc195ZXNubw"
+                    id="Y2hlY2tib3hlc195ZXNubw" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="Y2hlY2tib3hlc195ZXNubw" tabindex="0" role="checkbox" aria-checked="false" aria-label="checkboxes (yesno)"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">checkboxes (yesno)</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">checkboxes (yesno)</span>
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="da-form-group row darequired da-field-container da-field-container-datatype-checkboxes da-field-container-inputtype-checkboxes">
+            <label class="col-md-4 col-form-label da-form-label datext-right">checkboxes (other)</label>
+            <div class="col-md-8 dafieldpart">
+                <fieldset class="da-field-checkboxes" role="group">
+                    <legend class="visually-hidden">Checkboxes:</legend>
+                    <input aria-label="checkboxes opt 1" alt="checkboxes opt 1" class="dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="Y2hlY2tib3hlc19vdGhlcg_0" name="Y2hlY2tib3hlc19vdGhlcltCJ1kyaGxZMnRpYjNoZmIzUm9aWEpmYjNCMFh6RSdd"
+                    type="checkbox" value="True" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="Y2hlY2tib3hlc19vdGhlcg_0" tabindex="0" role="checkbox" aria-checked="false" aria-label="checkboxes opt 1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">checkboxes opt 1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">checkboxes opt 1</span>
+                    </label>
+                    <input aria-label="checkboxes opt 2" alt="checkboxes opt 2" class="dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="Y2hlY2tib3hlc19vdGhlcg_1" name="Y2hlY2tib3hlc19vdGhlcltCJ1kyaGxZMnRpYjNoZmIzUm9aWEpmYjNCMFh6SSdd"
+                    type="checkbox" value="True" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="Y2hlY2tib3hlc19vdGhlcg_1" tabindex="0" role="checkbox" aria-checked="false" aria-label="checkboxes opt 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">checkboxes opt 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">checkboxes opt 2</span>
+                    </label>
+                    <input aria-label="checkboxes opt 3" alt="checkboxes opt 3" class="dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="Y2hlY2tib3hlc19vdGhlcg_2" name="Y2hlY2tib3hlc19vdGhlcltCJ1kyaGxZMnRpYjNoZmIzUm9aWEpmYjNCMFh6TSdd"
+                    type="checkbox" value="True" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="Y2hlY2tib3hlc19vdGhlcg_2" tabindex="0" role="checkbox" aria-checked="false" aria-label="checkboxes opt 3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">checkboxes opt 3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">checkboxes opt 3</span>
+                    </label>
+                    <input aria-label="None of the above" alt="None of the above" class="dafield1 danota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" type="checkbox" name="_ignore1" aria-hidden="true" id="labelauty-294201"
+                    style="display: none;">
+                    <label class="form-label btn-light" for="labelauty-294201" tabindex="0" role="checkbox" aria-checked="false" aria-label="None of the above"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">None of the above</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">None of the above</span>
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="da-form-group row darequired da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesnoradio">
+            <label for="cmFkaW9feWVzbm8" class="col-md-4 col-form-label da-form-label datext-right">radio (yesno)</label>
+            <div class="col-md-8 dafieldpart">
+                <fieldset class="da-field-radio" role="radiogroup">
+                    <legend class="visually-hidden">Choices:</legend>
+                    <input aria-label="Yes" alt="Yes" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="cmFkaW9feWVzbm8_0" name="cmFkaW9feWVzbm8" type="radio" value="True" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="cmFkaW9feWVzbm8_0" tabindex="0" role="radio" aria-checked="false" aria-label="Yes"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">Yes</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">Yes</span>
+                    </label>
+                    <input aria-label="No" alt="No" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="cmFkaW9feWVzbm8_1" name="cmFkaW9feWVzbm8" type="radio" value="False" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="cmFkaW9feWVzbm8_1" tabindex="0" role="radio" aria-checked="false" aria-label="No"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">No</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">No</span>
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="da-form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-radio">
+            <label for="cmFkaW9fb3RoZXI" class="col-md-4 col-form-label da-form-label datext-right">radio (other)</label>
+            <div class="col-md-8 dafieldpart">
+                <fieldset class="da-field-radio" role="radiogroup">
+                    <legend class="visually-hidden">Choices:</legend>
+                    <input aria-label="radio opt 1" alt="radio opt 1" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="cmFkaW9fb3RoZXI_0" name="cmFkaW9fb3RoZXI" type="radio" value="radio_other_opt_1" aria-hidden="true"
+                    style="display: none;">
+                    <label class="form-label btn-light" for="cmFkaW9fb3RoZXI_0" tabindex="0" role="radio" aria-checked="false" aria-label="radio opt 1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">radio opt 1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">radio opt 1</span>
+                    </label>
+                    <input aria-label="radio opt 2" alt="radio opt 2" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="cmFkaW9fb3RoZXI_1" name="cmFkaW9fb3RoZXI" type="radio" value="radio_other_opt_2" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="cmFkaW9fb3RoZXI_1" tabindex="0" role="radio" aria-checked="false" aria-label="radio opt 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">radio opt 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">radio opt 2</span>
+                    </label>
+                    <input aria-label="radio opt 3" alt="radio opt 3" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="cmFkaW9fb3RoZXI_2" name="cmFkaW9fb3RoZXI" type="radio" value="radio_other_opt_3" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="cmFkaW9fb3RoZXI_2" tabindex="0" role="radio" aria-checked="false" aria-label="radio opt 3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">radio opt 3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">radio opt 3</span>
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="da-form-group row darequired da-field-container da-field-container-datatype-text">
+            <label for="dGV4dF9pbnB1dA" class="col-md-4 col-form-label da-form-label datext-right">text input</label>
+            <div class="col-md-8 dafieldpart">
+                <input alt="Input box" class="form-control" type="text" name="dGV4dF9pbnB1dA" id="dGV4dF9pbnB1dA">
+            </div>
+        </div>
+        <div class="da-form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-area">
+            <label for="dGV4dGFyZWE" class="col-md-4 col-form-label da-form-label datext-right">textarea</label>
+            <div class="col-md-8 dafieldpart">
+                <textarea alt="Input box" class="form-control" rows="4" name="dGV4dGFyZWE" id="dGV4dGFyZWE"></textarea>
+            </div>
+        </div>
+        <div class="da-form-group row da-field-container da-field-container-datatype-date">
+            <label for="ZGF0ZV9pbnB1dA" class="col-md-4 col-form-label da-form-label datext-right">date field</label>
+            <div class="col-md-8 dafieldpart">
+                <input alt="Input box" class="form-control" type="date" name="ZGF0ZV9pbnB1dA" id="ZGF0ZV9pbnB1dA">
+            </div>
+        </div>
+        <div class="da-form-group row darequired da-field-container da-field-container-datatype-dropdown da-field-container-inputtype-dropdown">
+            <label for="ZHJvcGRvd25fdGVzdA" class="col-md-4 col-form-label da-form-label datext-right">dropdown</label>
+            <div class="col-md-8 dafieldpart">
+                <p class="visually-hidden">Select box</p>
+                <select class="form-select dasingleselect" name="ZHJvcGRvd25fdGVzdA" id="ZHJvcGRvd25fdGVzdA">
+                    <option value="">Select...</option>
+                    <option value="dropdown_opt_1">dropdown opt 1</option>
+                    <option value="dropdown_opt_2">dropdown opt 2</option>
+                    <option value="dropdown_opt_3">dropdown opt 3</option>
+                </select>
+            </div>
+        </div>
+        <input type="hidden" name="_checkboxes" value="eyJZMmhsWTJ0aWIzaGxjMTk1WlhOdWJ3IjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2x0Q0oxa3lhR3haTW5ScFlqTm9abUl6VW05YVdFcG1Zak5DTUZoNlJTZGQiOiAiRmFsc2UiLCAiWTJobFkydGliM2hsYzE5dmRHaGxjbHRDSjFreWFHeFpNblJwWWpOb1ptSXpVbTlhV0VwbVlqTkNNRmg2U1NkZCI6ICJGYWxzZSIsICJZMmhsWTJ0aWIzaGxjMTl2ZEdobGNsdENKMWt5YUd4Wk1uUnBZak5vWm1JelVtOWFXRXBtWWpOQ01GaDZUU2RkIjogIkZhbHNlIiwgImNtRmthVzlmZVdWemJtOCI6ICJGYWxzZSIsICJaR0YwWlY5cGJuQjFkQSI6ICJOb25lIn0">
+        <fieldset class="da-button-set da-field-buttons">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button type="submit" class="btn btn-da btn-primary" name="ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw" value="True">Continue</button>
         </fieldset>
-      </div>
-    </div>
-
-    <div class="form-group row darequired da-field-container da-field-container-datatype-checkboxes da-field-container-inputtype-checkboxes"><label class="col-md-4 col-form-label da-form-label datext-right">checkboxes (other) 1</label>
-      <div class="col-md-8 dafieldpart">
-        <fieldset class="da-field-checkboxes" role="group">
-          <legend class="sr-only">Checkboxes:</legend><input aria-label="checkboxes opt 1" alt="checkboxes opt 1" class="dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="Y2hlY2tib3hlc19vdGhlcl8x_0" name="Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk1RJ10" type="checkbox" value="True" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y2hlY2tib3hlc19vdGhlcl8x_0" tabindex="0" role="checkbox" aria-checked="false" aria-label="checkboxes opt 1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-              </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">checkboxes opt 1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">checkboxes opt 1</span></label><input aria-label="checkboxes opt 2" alt="checkboxes opt 2" class="dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="Y2hlY2tib3hlc19vdGhlcl8x_1" name="Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk1nJ10" type="checkbox" value="True" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y2hlY2tib3hlc19vdGhlcl8x_1" tabindex="0" role="checkbox" aria-checked="false" aria-label="checkboxes opt 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-              </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">checkboxes opt 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">checkboxes opt 2</span></label><input aria-label="checkboxes opt 3" alt="checkboxes opt 3" class="dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="Y2hlY2tib3hlc19vdGhlcl8x_2" name="Y2hlY2tib3hlc19vdGhlcl8xW0InWTJobFkydGliM2hmYjNSb1pYSmZNVjl2Y0hSZk13J10" type="checkbox" value="True" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y2hlY2tib3hlc19vdGhlcl8x_2" tabindex="0" role="checkbox" aria-checked="false" aria-label="checkboxes opt 3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-              </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">checkboxes opt 3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">checkboxes opt 3</span></label><input aria-label="None of the above" alt="None of the above" class="dafield1 danota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" type="checkbox" name="_ignore1" aria-hidden="true" id="labelauty-712020" style="display: none;"><label class="btn-light" for="labelauty-712020" tabindex="0" role="checkbox" aria-checked="false" aria-label="None of the above"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-              </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">None of the above</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">None of the above</span></label>
-        </fieldset>
-      </div>
-    </div>
-
-    <div class="form-group row darequired da-field-container da-field-container-datatype-checkboxes da-field-container-inputtype-checkboxes"><label class="col-md-4 col-form-label da-form-label datext-right">checkboxes (other) 2</label>
-      <div class="col-md-8 dafieldpart">
-        <fieldset class="da-field-checkboxes" role="group">
-          <legend class="sr-only">Checkboxes:</legend><input aria-label="checkboxes opt 1" alt="checkboxes opt 1" class="dafield2 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="Y2hlY2tib3hlc19vdGhlcl8y_0" name="Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk1RJ10" type="checkbox" value="True" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y2hlY2tib3hlc19vdGhlcl8y_0" tabindex="0" role="checkbox" aria-checked="false" aria-label="checkboxes opt 1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-              </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">checkboxes opt 1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">checkboxes opt 1</span></label><input aria-label="checkboxes opt 2" alt="checkboxes opt 2" class="dafield2 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="Y2hlY2tib3hlc19vdGhlcl8y_1" name="Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk1nJ10" type="checkbox" value="True" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y2hlY2tib3hlc19vdGhlcl8y_1" tabindex="0" role="checkbox" aria-checked="false" aria-label="checkboxes opt 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-              </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">checkboxes opt 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">checkboxes opt 2</span></label><input aria-label="checkboxes opt 3" alt="checkboxes opt 3" class="dafield2 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="Y2hlY2tib3hlc19vdGhlcl8y_2" name="Y2hlY2tib3hlc19vdGhlcl8yW0InWTJobFkydGliM2hmYjNSb1pYSmZNbDl2Y0hSZk13J10" type="checkbox" value="True" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y2hlY2tib3hlc19vdGhlcl8y_2" tabindex="0" role="checkbox" aria-checked="false" aria-label="checkboxes opt 3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-              </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">checkboxes opt 3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">checkboxes opt 3</span></label><input aria-label="None of the above" alt="None of the above" class="dafield2 danota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" type="checkbox" name="_ignore2" aria-hidden="true" id="labelauty-344271" style="display: none;"><label class="btn-light" for="labelauty-344271" tabindex="0" role="checkbox" aria-checked="false" aria-label="None of the above"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-              </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">None of the above</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">None of the above</span></label>
-        </fieldset>
-      </div>
-    </div>
-
-    <div class="form-group row darequired da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesnoradio"><label for="cmFkaW9feWVzbm8" class="col-md-4 col-form-label da-form-label datext-right">radio (yesno)</label>
-      <div class="col-md-8 dafieldpart">
-        <fieldset class="da-field-radio" role="radiogroup">
-          <legend class="sr-only">Choices:</legend><input aria-label="Yes" alt="Yes" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="cmFkaW9feWVzbm8_0" name="cmFkaW9feWVzbm8" type="radio" value="True" aria-hidden="true" style="display: none;"><label class="btn-light" for="cmFkaW9feWVzbm8_0" tabindex="0" role="radio" aria-checked="false" aria-label="Yes"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">Yes</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">Yes</span></label><input aria-label="No" alt="No" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="cmFkaW9feWVzbm8_1" name="cmFkaW9feWVzbm8" type="radio" value="False" aria-hidden="true" style="display: none;"><label class="btn-light" for="cmFkaW9feWVzbm8_1" tabindex="0" role="radio" aria-checked="false" aria-label="No"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">No</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">No</span></label>
-        </fieldset>
-      </div>
-    </div>
-
-    <div class="form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-radio"><label for="cmFkaW9fb3RoZXI" class="col-md-4 col-form-label da-form-label datext-right">radio (other)</label>
-      <div class="col-md-8 dafieldpart">
-        <fieldset class="da-field-radio" role="radiogroup">
-          <legend class="sr-only">Choices:</legend><input aria-label="radio opt 1" alt="radio opt 1" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="cmFkaW9fb3RoZXI_0" name="cmFkaW9fb3RoZXI" type="radio" value="radio_other_opt_1" aria-hidden="true" style="display: none;"><label class="btn-light" for="cmFkaW9fb3RoZXI_0" tabindex="0" role="radio" aria-checked="false" aria-label="radio opt 1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">radio opt 1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">radio opt 1</span></label><input aria-label="radio opt 2" alt="radio opt 2" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="cmFkaW9fb3RoZXI_1" name="cmFkaW9fb3RoZXI" type="radio" value="radio_other_opt_2" aria-hidden="true" style="display: none;"><label class="btn-light" for="cmFkaW9fb3RoZXI_1" tabindex="0" role="radio" aria-checked="false" aria-label="radio opt 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">radio opt 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">radio opt 2</span></label><input aria-label="radio opt 3" alt="radio opt 3" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="cmFkaW9fb3RoZXI_2" name="cmFkaW9fb3RoZXI" type="radio" value="radio_other_opt_3" aria-hidden="true" style="display: none;"><label class="btn-light" for="cmFkaW9fb3RoZXI_2" tabindex="0" role="radio" aria-checked="false" aria-label="radio opt 3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">radio opt 3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">radio opt 3</span></label>
-        </fieldset>
-      </div>
-    </div>
-
-    <div class="form-group row darequired da-field-container da-field-container-datatype-text"><label for="dGV4dF9pbnB1dA" class="col-md-4 col-form-label da-form-label datext-right">text input</label>
-      <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="text" name="dGV4dF9pbnB1dA" id="dGV4dF9pbnB1dA"></div>
-    </div>
-
-    <div class="form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-area"><label for="dGV4dGFyZWE" class="col-md-4 col-form-label da-form-label datext-right">textarea</label>
-      <div class="col-md-8 dafieldpart"><textarea alt="Input box" class="form-control" rows="4" name="dGV4dGFyZWE" id="dGV4dGFyZWE"></textarea></div>
-    </div>
-
-    <div class="form-group row darequired da-field-container da-field-container-datatype-dropdown da-field-container-inputtype-dropdown"><label for="ZHJvcGRvd25fdGVzdA" class="col-md-4 col-form-label da-form-label datext-right">dropdown</label>
-      <div class="col-md-8 dafieldpart">
-        <p class="sr-only">Select box</p><select class="form-control" name="ZHJvcGRvd25fdGVzdA" id="ZHJvcGRvd25fdGVzdA">
-          <option value="">Select...</option>
-          <option value="dropdown_opt_1">dropdown opt 1</option>
-          <option value="dropdown_opt_2">dropdown opt 2</option>
-          <option value="dropdown_opt_3">dropdown opt 3</option>
-        </select>
-      </div>
-    </div>
-
-    <input type="hidden" name="_checkboxes" value="eyJZMmhsWTJ0aWIzaGxjMTk1WlhOdWJ3IjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eFcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOVmpsMlkwaFNaazFSSjEwIjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eFcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOVmpsMlkwaFNaazFuSjEwIjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eFcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOVmpsMlkwaFNaazEzSjEwIjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eVcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOYkRsMlkwaFNaazFSSjEwIjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eVcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOYkRsMlkwaFNaazFuSjEwIjogIkZhbHNlIiwgIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eVcwSW5XVEpvYkZreWRHbGlNMmhtWWpOU2IxcFlTbVpOYkRsMlkwaFNaazEzSjEwIjogIkZhbHNlIiwgImNtRmthVzlmZVdWemJtOCI6ICJGYWxzZSJ9">
-    
-    <fieldset class="da-field-buttons">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div class="form-actions">
-        <button type="submit" class="btn btn-da btn-primary" name="ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw" value="True"><span>Continue</span></button></div>
-    </fieldset>
-
-    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YE9fYw.Y5HDKdETXjEiofroVR8D1htKt5w">
-    <input type="hidden" name="_event" value="WyJkaXJlY3Rfc3RhbmRhcmRfZmllbGRzIl0">
-    <input type="hidden" name="_question_name" value="ID direct standard fields">
-    <input type="hidden" name="_tracker" value="1">
-    <input type="hidden" name="_datatypes" value="eyJaR2x5WldOMFgzTjBZVzVrWVhKa1gyWnBaV3hrY3ciOiAiYm9vbGVhbiIsICJZMmhsWTJ0aWIzaGxjMTk1WlhOdWJ3IjogImJvb2xlYW4iLCAiWTJobFkydGliM2hsYzE5dmRHaGxjbDh4IjogImNoZWNrYm94ZXMiLCAiWTJobFkydGliM2hsYzE5dmRHaGxjbDh5IjogImNoZWNrYm94ZXMiLCAiY21Ga2FXOWZlV1Z6Ym04IjogImJvb2xlYW4iLCAiY21Ga2FXOWZiM1JvWlhJIjogInRleHQiLCAiZEdWNGRGOXBibkIxZEEiOiAidGV4dCIsICJkR1Y0ZEdGeVpXRSI6ICJ0ZXh0IiwgIlpISnZjR1J2ZDI1ZmRHVnpkQSI6ICJkcm9wZG93biJ9">
-    <input type="hidden" name="_visible" value="">
-    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJZMmhsWTJ0aWIzaGxjMTk1WlhOdWJ3IiwgIlgyWnBaV3hrWHpFIjogIlkyaGxZMnRpYjNobGMxOXZkR2hsY2w4eCIsICJYMlpwWld4a1h6SSI6ICJZMmhsWTJ0aWIzaGxjMTl2ZEdobGNsOHkiLCAiWDJacFpXeGtYek0iOiAiY21Ga2FXOWZlV1Z6Ym04IiwgIlgyWnBaV3hrWHpRIjogImNtRmthVzlmYjNSb1pYSSIsICJYMlpwWld4a1h6VSI6ICJkR1Y0ZEY5cGJuQjFkQSIsICJYMlpwWld4a1h6WSI6ICJkR1Y0ZEdGeVpXRSIsICJYMlpwWld4a1h6YyI6ICJaSEp2Y0dSdmQyNWZkR1Z6ZEEifQ">
-  </form>
-</section>`;
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ42Pw.Mt_IdBcCQmIFPn3gi7ZeZLvLLC4">
+        <input type="hidden" name="_event" value="WyJkaXJlY3Rfc3RhbmRhcmRfZmllbGRzIl0">
+        <input type="hidden" name="_question_name" value="ID direct standard fields">
+        <input type="hidden" name="_tracker" value="5">
+        <input type="hidden" name="_datatypes" value="eyJaR2x5WldOMFgzTjBZVzVrWVhKa1gyWnBaV3hrY3ciOiAiYm9vbGVhbiIsICJZMmhsWTJ0aWIzaGxjMTk1WlhOdWJ3IjogImJvb2xlYW4iLCAiWTJobFkydGliM2hsYzE5dmRHaGxjZyI6ICJjaGVja2JveGVzIiwgImNtRmthVzlmZVdWemJtOCI6ICJib29sZWFuIiwgImNtRmthVzlmYjNSb1pYSSI6ICJ0ZXh0IiwgImRHVjRkRjlwYm5CMWRBIjogInRleHQiLCAiZEdWNGRHRnlaV0UiOiAidGV4dCIsICJaR0YwWlY5cGJuQjFkQSI6ICJkYXRlIiwgIlpISnZjR1J2ZDI1ZmRHVnpkQSI6ICJkcm9wZG93biJ9">
+        <input type="hidden" name="_visible" value="">
+        <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJZMmhsWTJ0aWIzaGxjMTk1WlhOdWJ3IiwgIlgyWnBaV3hrWHpFIjogIlkyaGxZMnRpYjNobGMxOXZkR2hsY2ciLCAiWDJacFpXeGtYekkiOiAiY21Ga2FXOWZlV1Z6Ym04IiwgIlgyWnBaV3hrWHpNIjogImNtRmthVzlmYjNSb1pYSSIsICJYMlpwWld4a1h6USI6ICJkR1Y0ZEY5cGJuQjFkQSIsICJYMlpwWld4a1h6VSI6ICJkR1Y0ZEdGeVpXRSIsICJYMlpwWld4a1h6WSI6ICJaR0YwWlY5cGJuQjFkQSIsICJYMlpwWld4a1h6YyI6ICJaSEp2Y0dSdmQyNWZkR1Z6ZEEifQ">
+    </form>
+</div>`;
 
 
 // ============================
@@ -162,167 +184,216 @@ html.standard = `
 // Types of fields that use _field_n
 // At least all simple showif fields
 html.show_if = `
-<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-  <div data-variable="ZGlyZWN0X3Nob3dpZnM" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">Reveal showifs</h1>
-      <div class="daclear"></div>
-    </div>
-    <div class="da-subquestion">
-      <p>We start only seeing layer 1, the first question. All other layers are hidden to test finding various hidden fields in the DOM.</p>
-      <p>TODO:</p>
-      <ul>
-        <li>object</li>
-        <li>object_checkbox</li>
-      </ul>
-      <p>No showifs: yesnomaybe: (buttons), buttons: (other), continue button field:</p>
-    </div>
-
-    <div class="form-group row dayesnospacing da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesno da-field-container-emptylabel"><label for="c2hvd18y" class="sr-only">Check if applicable</label>
-      <div class="offset-md-4 col-md-8 dafieldpart">
-        <fieldset class="da-field-checkbox">
-          <legend class="sr-only">Choices:</legend><input aria-label="Show layer 2" alt="Show layer 2" class="da-to-labelauty checkbox-icon dauncheckable labelauty da-active-invisible dafullwidth" type="checkbox" value="True" name="c2hvd18y" id="c2hvd18y" aria-hidden="true" style="display: none;"><label class="btn-light" for="c2hvd18y" tabindex="0" role="checkbox" aria-checked="false" aria-label="Show layer 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-              </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">Show layer 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">Show layer 2</span></label>
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="ZGlyZWN0X3Nob3dpZnM" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion">Reveal showifs</h1>
+            <div class="daclear"></div>
+        </div>
+        <div class="da-subquestion">
+            <p>We start only seeing layer 1, the first question. All other layers are hidden to test finding various hidden fields in the DOM.</p>
+            <p>TODO:</p>
+            <ul>
+                <li>object</li>
+                <li>object_checkbox</li>
+            </ul>
+            <p>No showifs: yesnomaybe: (buttons), buttons: (other), continue button field:</p>
+        </div>
+        <div class="da-form-group row dayesnospacing da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesno da-field-container-emptylabel"><span class="visually-hidden">Check if applicable</span>
+            <div class="offset-md-4 col-md-8 dafieldpart">
+                <fieldset class="da-field-checkbox">
+                    <legend class="visually-hidden">Choices:</legend>
+                    <input aria-label="Show layer 2" alt="Show layer 2" class="da-to-labelauty checkbox-icon dauncheckable labelauty da-active-invisible dafullwidth" type="checkbox" value="True" name="c2hvd18y" id="c2hvd18y" aria-hidden="true"
+                    style="display: none;">
+                    <label class="form-label btn-light" for="c2hvd18y" tabindex="0" role="checkbox" aria-checked="false" aria-label="Show layer 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">Show layer 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">Show layer 2</span>
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div style="display: none;" class="dashowif" data-saveas="c2hvd18z" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18y" data-showif-val="True">
+            <div class="da-form-group row dayesnospacing da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesno da-field-container-emptylabel"><span class="visually-hidden">Check if applicable</span>
+                <div class="offset-md-4 col-md-8 dafieldpart">
+                    <fieldset class="da-field-checkbox">
+                        <legend class="visually-hidden">Choices:</legend>
+                        <input aria-label="Show layer 3" alt="Show layer 3" class="da-to-labelauty checkbox-icon dauncheckable labelauty da-active-invisible dafullwidth" type="checkbox" value="True" name="X2ZpZWxkXzE" id="X2ZpZWxkXzE"
+                        aria-hidden="true" disabled="" style="display: none;">
+                        <label class="form-label btn-light" for="X2ZpZWxkXzE" tabindex="0" role="checkbox" aria-checked="false" aria-label="Show layer 3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-unchecked">Show layer 3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                                <span
+                                class="labelauty-checked">Show layer 3</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX2NoZWNrYm94X3llc25v" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
+            <div class="da-form-group row dayesnospacing da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesno da-field-container-emptylabel"><span class="visually-hidden">Check if applicable</span>
+                <div class="offset-md-4 col-md-8 dafieldpart">
+                    <fieldset class="da-field-checkbox">
+                        <legend class="visually-hidden">Choices:</legend>
+                        <input aria-label="showif checkbox yesno" alt="showif checkbox yesno" class="da-to-labelauty checkbox-icon dauncheckable labelauty da-active-invisible dafullwidth" type="checkbox" value="True" name="X2ZpZWxkXzI"
+                        id="X2ZpZWxkXzI" aria-hidden="true" disabled="" style="display: none;">
+                        <label class="form-label btn-light" for="X2ZpZWxkXzI" tabindex="0" role="checkbox" aria-checked="false" aria-label="showif checkbox yesno"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-unchecked">showif checkbox yesno</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                                <span
+                                class="labelauty-checked">showif checkbox yesno</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX2NoZWNrYm94ZXNfb3RoZXI" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
+            <div class="da-form-group row darequired da-field-container da-field-container-datatype-checkboxes da-field-container-inputtype-checkboxes">
+                <label class="col-md-4 col-form-label da-form-label datext-right">showif checkboxes (multiple)</label>
+                <div class="col-md-8 dafieldpart">
+                    <fieldset class="da-field-checkboxes" role="group">
+                        <legend class="visually-hidden">Checkboxes:</legend>
+                        <input aria-label="showif checkbox nota 1" alt="showif checkbox nota 1" class="dafield3 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzM_0" name="X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eCdd"
+                        type="checkbox" value="True" aria-hidden="true" style="display: none;" disabled="">
+                        <label class="form-label btn-light" for="X2ZpZWxkXzM_0" tabindex="0" role="checkbox" aria-checked="false" aria-label="showif checkbox nota 1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-unchecked">showif checkbox nota 1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                                <span
+                                class="labelauty-checked">showif checkbox nota 1</span>
+                        </label>
+                        <input aria-label="showif checkbox nota 2" alt="showif checkbox nota 2" class="dafield3 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzM_1" name="X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eSdd"
+                        type="checkbox" value="True" aria-hidden="true" style="display: none;" disabled="">
+                        <label class="form-label btn-light" for="X2ZpZWxkXzM_1" tabindex="0" role="checkbox" aria-checked="false" aria-label="showif checkbox nota 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-unchecked">showif checkbox nota 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                                <span
+                                class="labelauty-checked">showif checkbox nota 2</span>
+                        </label>
+                        <input aria-label="showif checkbox nota 3" alt="showif checkbox nota 3" class="dafield3 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzM_2" name="X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eidd"
+                        type="checkbox" value="True" aria-hidden="true" style="display: none;" disabled="">
+                        <label class="form-label btn-light" for="X2ZpZWxkXzM_2" tabindex="0" role="checkbox" aria-checked="false" aria-label="showif checkbox nota 3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-unchecked">showif checkbox nota 3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                                <span
+                                class="labelauty-checked">showif checkbox nota 3</span>
+                        </label>
+                        <input aria-label="None of the above" alt="None of the above" class="dafield3 danota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" type="checkbox" name="_ignore3" aria-hidden="true" id="labelauty-67439"
+                        disabled="" style="display: none;">
+                        <label class="form-label btn-light" for="labelauty-67439" tabindex="0" role="checkbox" aria-checked="false" aria-label="None of the above"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-unchecked">None of the above</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                                <span
+                                class="labelauty-checked">None of the above</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX3llc25vcmFkaW8" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
+            <div class="da-form-group row darequired da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesnoradio">
+                <label for="X2ZpZWxkXzQ" class="col-md-4 col-form-label da-form-label datext-right">showif yesnoradio</label>
+                <div class="col-md-8 dafieldpart">
+                    <fieldset class="da-field-radio" role="radiogroup">
+                        <legend class="visually-hidden">Choices:</legend>
+                        <input aria-label="Yes" alt="Yes" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzQ_0" name="X2ZpZWxkXzQ" type="radio" value="True" aria-hidden="true" disabled="" style="display: none;">
+                        <label class="form-label btn-light" for="X2ZpZWxkXzQ_0" tabindex="0" role="radio" aria-checked="false" aria-label="Yes"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-unchecked">Yes</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                                <span
+                                class="labelauty-checked">Yes</span>
+                        </label>
+                        <input aria-label="No" alt="No" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzQ_1" name="X2ZpZWxkXzQ" type="radio" value="False" aria-hidden="true" disabled="" style="display: none;">
+                        <label class="form-label btn-light" for="X2ZpZWxkXzQ_1" tabindex="0" role="radio" aria-checked="false" aria-label="No"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-unchecked">No</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                                <span
+                                class="labelauty-checked">No</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX3JhZGlvX290aGVy" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
+            <div class="da-form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-radio">
+                <label for="X2ZpZWxkXzU" class="col-md-4 col-form-label da-form-label datext-right">showif radio (multiple)</label>
+                <div class="col-md-8 dafieldpart">
+                    <fieldset class="da-field-radio" role="radiogroup">
+                        <legend class="visually-hidden">Choices:</legend>
+                        <input aria-label="showif radio multi 1" alt="showif radio multi 1" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzU_0" name="X2ZpZWxkXzU" type="radio" value="showif_radio_multi_1"
+                        aria-hidden="true" style="display: none;" disabled="">
+                        <label class="form-label btn-light" for="X2ZpZWxkXzU_0" tabindex="0" role="radio" aria-checked="false" aria-label="showif radio multi 1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-unchecked">showif radio multi 1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                                <span
+                                class="labelauty-checked">showif radio multi 1</span>
+                        </label>
+                        <input aria-label="showif radio multi 2" alt="showif radio multi 2" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzU_1" name="X2ZpZWxkXzU" type="radio" value="showif_radio_multi_2" aria-hidden="true"
+                        style="display: none;" disabled="">
+                        <label class="form-label btn-light" for="X2ZpZWxkXzU_1" tabindex="0" role="radio" aria-checked="false" aria-label="showif radio multi 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-unchecked">showif radio multi 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                                <span
+                                class="labelauty-checked">showif radio multi 2</span>
+                        </label>
+                        <input aria-label="showif radio multi 3" alt="showif radio multi 3" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzU_2" name="X2ZpZWxkXzU" type="radio" value="showif_radio_multi_3" aria-hidden="true"
+                        disabled="" style="display: none;">
+                        <label class="form-label btn-light" for="X2ZpZWxkXzU_2" tabindex="0" role="radio" aria-checked="false" aria-label="showif radio multi 3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-unchecked">showif radio multi 3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                                <span
+                                class="labelauty-checked">showif radio multi 3</span>
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX3RleHRfaW5wdXQ" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
+            <div class="da-form-group row darequired da-field-container da-field-container-datatype-text">
+                <label for="X2ZpZWxkXzY" class="col-md-4 col-form-label da-form-label datext-right">showif text input</label>
+                <div class="col-md-8 dafieldpart">
+                    <input alt="Input box" class="form-control" type="text" name="X2ZpZWxkXzY" id="X2ZpZWxkXzY" disabled="">
+                </div>
+            </div>
+        </div>
+        <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX3RleHRhcmVh" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
+            <div class="da-form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-area">
+                <label for="X2ZpZWxkXzc" class="col-md-4 col-form-label da-form-label datext-right">showif text input</label>
+                <div class="col-md-8 dafieldpart">
+                    <textarea alt="Input box" class="form-control" rows="4" name="X2ZpZWxkXzc" id="X2ZpZWxkXzc" disabled=""></textarea>
+                </div>
+            </div>
+        </div>
+        <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX2Ryb3Bkb3du" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
+            <div class="da-form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-dropdown">
+                <label for="X2ZpZWxkXzg" class="col-md-4 col-form-label da-form-label datext-right">showif dropdown</label>
+                <div class="col-md-8 dafieldpart">
+                    <p class="visually-hidden">Select box</p>
+                    <select class="form-select dasingleselect" name="X2ZpZWxkXzg" id="X2ZpZWxkXzg" disabled="">
+                        <option value="">Select...</option>
+                        <option value="showif_dropdown_1">showif dropdown opt 1</option>
+                        <option value="showif_dropdown_2">showif dropdown opt 2</option>
+                        <option value="showif_dropdown_3">showif dropdown opt 3</option>
+                        <option value="showif_dropdown_4">showif dropdown opt 4</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="_checkboxes" value="eyJjMmh2ZDE4eSI6ICJGYWxzZSIsICJjMmh2ZDE4eiI6ICJGYWxzZSIsICJjMmh2ZDJsbVgyTm9aV05yWW05NFgzbGxjMjV2IjogIkZhbHNlIiwgImMyaHZkMmxtWDJOb1pXTnJZbTk0WlhOZmIzUm9aWEpiUWlkak1taDJaREpzYlZneVRtOWFWMDV5V1cwNU5GcFlUbVppYlRrd1dWWTRlQ2RkIjogIkZhbHNlIiwgImMyaHZkMmxtWDJOb1pXTnJZbTk0WlhOZmIzUm9aWEpiUWlkak1taDJaREpzYlZneVRtOWFWMDV5V1cwNU5GcFlUbVppYlRrd1dWWTRlU2RkIjogIkZhbHNlIiwgImMyaHZkMmxtWDJOb1pXTnJZbTk0WlhOZmIzUm9aWEpiUWlkak1taDJaREpzYlZneVRtOWFWMDV5V1cwNU5GcFlUbVppYlRrd1dWWTRlaWRkIjogIkZhbHNlIiwgImMyaHZkMmxtWDNsbGMyNXZjbUZrYVc4IjogIkZhbHNlIn0">
+        <fieldset class="da-button-set da-field-buttons">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button type="submit" class="btn btn-da btn-primary" name="ZGlyZWN0X3Nob3dpZnM" value="True">Continue</button>
         </fieldset>
-      </div>
-    </div>
-    
-    <div style="display: none;" class="dashowif" data-saveas="c2hvd18z" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18y" data-showif-val="True">
-      <div class="form-group row dayesnospacing da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesno da-field-container-emptylabel"><label for="X2ZpZWxkXzE" class="sr-only">Check if applicable</label>
-        <div class="offset-md-4 col-md-8 dafieldpart">
-          <fieldset class="da-field-checkbox">
-            <legend class="sr-only">Choices:</legend><input aria-label="Show layer 3" alt="Show layer 3" class="da-to-labelauty checkbox-icon dauncheckable labelauty da-active-invisible dafullwidth" type="checkbox" value="True" name="X2ZpZWxkXzE" id="X2ZpZWxkXzE" aria-hidden="true" disabled="" style="display: none;"><label class="btn-light" for="X2ZpZWxkXzE" tabindex="0" role="checkbox" aria-checked="false" aria-label="Show layer 3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-                </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">Show layer 3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">Show layer 3</span></label>
-          </fieldset>
-        </div>
-      </div>
-    </div>
-    
-    <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX2NoZWNrYm94X3llc25v" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
-      <div class="form-group row dayesnospacing da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesno da-field-container-emptylabel"><label for="X2ZpZWxkXzI" class="sr-only">Check if applicable</label>
-        <div class="offset-md-4 col-md-8 dafieldpart">
-          <fieldset class="da-field-checkbox">
-            <legend class="sr-only">Choices:</legend><input aria-label="showif checkbox yesno" alt="showif checkbox yesno" class="da-to-labelauty checkbox-icon dauncheckable labelauty da-active-invisible dafullwidth" type="checkbox" value="True" name="X2ZpZWxkXzI" id="X2ZpZWxkXzI" aria-hidden="true" disabled="" style="display: none;"><label class="btn-light" for="X2ZpZWxkXzI" tabindex="0" role="checkbox" aria-checked="false" aria-label="showif checkbox yesno"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-                </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">showif checkbox yesno</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">showif checkbox yesno</span></label>
-          </fieldset>
-        </div>
-      </div>
-    </div>
-    
-    <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX2NoZWNrYm94ZXNfb3RoZXI" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
-      <div class="form-group row darequired da-field-container da-field-container-datatype-checkboxes da-field-container-inputtype-checkboxes"><label class="col-md-4 col-form-label da-form-label datext-right">showif checkboxes (multiple)</label>
-        <div class="col-md-8 dafieldpart">
-          <fieldset class="da-field-checkboxes" role="group">
-            <legend class="sr-only">Checkboxes:</legend><input aria-label="showif checkbox nota 1" alt="showif checkbox nota 1" class="dafield3 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzM_0" name="X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eCdd" type="checkbox" value="True" aria-hidden="true" style="display: none;" disabled=""><label class="btn-light" for="X2ZpZWxkXzM_0" tabindex="0" role="checkbox" aria-checked="false" aria-label="showif checkbox nota 1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-                </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">showif checkbox nota 1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">showif checkbox nota 1</span></label><input aria-label="showif checkbox nota 2" alt="showif checkbox nota 2" class="dafield3 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzM_1" name="X2ZpZWxkXzNbQidjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZibTkwWVY4eSdd" type="checkbox" value="True" aria-hidden="true" style="display: none;" disabled=""><label class="btn-light" for="X2ZpZWxkXzM_1" tabindex="0" role="checkbox" aria-checked="false" aria-label="showif checkbox nota 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-                </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">showif checkbox nota 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">showif checkbox nota 2</span></label><input aria-label="None of the above" alt="None of the above" class="dafield3 danota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" type="checkbox" name="_ignore3" aria-hidden="true" id="labelauty-473746" disabled="" style="display: none;"><label class="btn-light" for="labelauty-473746" tabindex="0" role="checkbox" aria-checked="false" aria-label="None of the above"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path>
-                </svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">None of the above</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">None of the above</span></label>
-          </fieldset>
-        </div>
-      </div>
-    </div>
-    
-    <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX3llc25vcmFkaW8" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
-      <div class="form-group row darequired da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesnoradio"><label for="X2ZpZWxkXzQ" class="col-md-4 col-form-label da-form-label datext-right">showif yesnoradio</label>
-        <div class="col-md-8 dafieldpart">
-          <fieldset class="da-field-radio" role="radiogroup">
-            <legend class="sr-only">Choices:</legend><input aria-label="Yes" alt="Yes" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzQ_0" name="X2ZpZWxkXzQ" type="radio" value="True" aria-hidden="true" disabled="" style="display: none;"><label class="btn-light" for="X2ZpZWxkXzQ_0" tabindex="0" role="radio" aria-checked="false" aria-label="Yes"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-                </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">Yes</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">Yes</span></label><input aria-label="No" alt="No" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzQ_1" name="X2ZpZWxkXzQ" type="radio" value="False" aria-hidden="true" disabled="" style="display: none;"><label class="btn-light" for="X2ZpZWxkXzQ_1" tabindex="0" role="radio" aria-checked="false" aria-label="No"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-                </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">No</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">No</span></label>
-          </fieldset>
-        </div>
-      </div>
-    </div>
-    
-    <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX3JhZGlvX290aGVy" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
-      <div class="form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-radio"><label for="X2ZpZWxkXzU" class="col-md-4 col-form-label da-form-label datext-right">showif radio (multiple)</label>
-        <div class="col-md-8 dafieldpart">
-          <fieldset class="da-field-radio" role="radiogroup">
-            <legend class="sr-only">Choices:</legend><input aria-label="showif radio multi 1" alt="showif radio multi 1" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzU_0" name="X2ZpZWxkXzU" type="radio" value="showif_radio_multi_1" aria-hidden="true" style="display: none;" disabled=""><label class="btn-light" for="X2ZpZWxkXzU_0" tabindex="0" role="radio" aria-checked="false" aria-label="showif radio multi 1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-                </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">showif radio multi 1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">showif radio multi 1</span></label><input aria-label="showif radio multi 2" alt="showif radio multi 2" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzU_1" name="X2ZpZWxkXzU" type="radio" value="showif_radio_multi_2" aria-hidden="true" style="display: none;" disabled=""><label class="btn-light" for="X2ZpZWxkXzU_1" tabindex="0" role="radio" aria-checked="false" aria-label="showif radio multi 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-                </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">showif radio multi 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">showif radio multi 2</span></label><input aria-label="showif radio multi 3" alt="showif radio multi 3" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="X2ZpZWxkXzU_2" name="X2ZpZWxkXzU" type="radio" value="showif_radio_multi_3" aria-hidden="true" disabled="" style="display: none;"><label class="btn-light" for="X2ZpZWxkXzU_2" tabindex="0" role="radio" aria-checked="false" aria-label="showif radio multi 3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-                </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">showif radio multi 3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                  <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-                </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">showif radio multi 3</span></label>
-          </fieldset>
-        </div>
-      </div>
-    </div>
-    
-    <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX3RleHRfaW5wdXQ" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
-      <div class="form-group row darequired da-field-container da-field-container-datatype-text"><label for="X2ZpZWxkXzY" class="col-md-4 col-form-label da-form-label datext-right">showif text input</label>
-        <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="text" name="X2ZpZWxkXzY" id="X2ZpZWxkXzY" disabled=""></div>
-      </div>
-    </div>
-    
-    <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX3RleHRhcmVh" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
-      <div class="form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-area"><label for="X2ZpZWxkXzc" class="col-md-4 col-form-label da-form-label datext-right">showif text input</label>
-        <div class="col-md-8 dafieldpart"><textarea alt="Input box" class="form-control" rows="4" name="X2ZpZWxkXzc" id="X2ZpZWxkXzc" disabled=""></textarea></div>
-      </div>
-    </div>
-    
-    <div style="display: none;" class="dashowif" data-saveas="c2hvd2lmX2Ryb3Bkb3du" data-showif-sign="1" data-showif-mode="0" data-showif-var="c2hvd18z" data-showif-val="True">
-      <div class="form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-dropdown"><label for="X2ZpZWxkXzg" class="col-md-4 col-form-label da-form-label datext-right">showif dropdown</label>
-        <div class="col-md-8 dafieldpart">
-          <p class="sr-only">Select box</p><select class="form-control" name="X2ZpZWxkXzg" id="X2ZpZWxkXzg" disabled="">
-            <option value="">Select...</option>
-            <option value="showif_dropdown_1">showif dropdown opt 1</option>
-            <option value="showif_dropdown_2">showif dropdown opt 2</option>
-            <option value="showif_dropdown_3">showif dropdown opt 3</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <input type="hidden" name="_checkboxes" value="eyJjMmh2ZDE4eSI6ICJGYWxzZSIsICJjMmh2ZDE4eiI6ICJGYWxzZSIsICJjMmh2ZDJsbVgyTm9aV05yWW05NFgzbGxjMjV2IjogIkZhbHNlIiwgImMyaHZkMmxtWDJOb1pXTnJZbTk0WlhOZmIzUm9aWEpiUWlkak1taDJaREpzYlZneVRtOWFWMDV5V1cwNU5GcFlUbVppYlRrd1dWWTRlQ2RkIjogIkZhbHNlIiwgImMyaHZkMmxtWDJOb1pXTnJZbTk0WlhOZmIzUm9aWEpiUWlkak1taDJaREpzYlZneVRtOWFWMDV5V1cwNU5GcFlUbVppYlRrd1dWWTRlU2RkIjogIkZhbHNlIiwgImMyaHZkMmxtWDNsbGMyNXZjbUZrYVc4IjogIkZhbHNlIn0">
-    
-    <fieldset class="da-field-buttons">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div class="form-actions">
-        <button type="submit" class="btn btn-da btn-primary" name="ZGlyZWN0X3Nob3dpZnM" value="True"><span>Continue</span></button></div>
-    </fieldset>
-
-    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YFkEfw.7rkISHHqxsnefWbxbBnTwqKrBsQ">
-    <input type="hidden" name="_event" value="WyJkaXJlY3Rfc2hvd2lmcyJd">
-    <input type="hidden" name="_question_name" value="ID showifs">
-    <input type="hidden" name="_tracker" value="8">
-    <input type="hidden" name="_datatypes" value="eyJaR2x5WldOMFgzTm9iM2RwWm5NIjogImJvb2xlYW4iLCAiYzJodmQxOHkiOiAiYm9vbGVhbiIsICJjMmh2ZDE4eiI6ICJib29sZWFuIiwgImMyaHZkMmxtWDJOb1pXTnJZbTk0WDNsbGMyNXYiOiAiYm9vbGVhbiIsICJjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZiM1JvWlhJIjogImNoZWNrYm94ZXMiLCAiYzJodmQybG1YM2xsYzI1dmNtRmthVzgiOiAiYm9vbGVhbiIsICJjMmh2ZDJsbVgzSmhaR2x2WDI5MGFHVnkiOiAidGV4dCIsICJjMmh2ZDJsbVgzUmxlSFJmYVc1d2RYUSI6ICJ0ZXh0IiwgImMyaHZkMmxtWDNSbGVIUmhjbVZoIjogInRleHQiLCAiYzJodmQybG1YMlJ5YjNCa2IzZHUiOiAidGV4dCJ9">
-    <input type="hidden" name="_visible" value="">
-    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJjMmh2ZDE4eSIsICJYMlpwWld4a1h6RSI6ICJjMmh2ZDE4eiIsICJYMlpwWld4a1h6SSI6ICJjMmh2ZDJsbVgyTm9aV05yWW05NFgzbGxjMjV2IiwgIlgyWnBaV3hrWHpNIjogImMyaHZkMmxtWDJOb1pXTnJZbTk0WlhOZmIzUm9aWEkiLCAiWDJacFpXeGtYelEiOiAiYzJodmQybG1YM2xsYzI1dmNtRmthVzgiLCAiWDJacFpXeGtYelUiOiAiYzJodmQybG1YM0poWkdsdlgyOTBhR1Z5IiwgIlgyWnBaV3hrWHpZIjogImMyaHZkMmxtWDNSbGVIUmZhVzV3ZFhRIiwgIlgyWnBaV3hrWHpjIjogImMyaHZkMmxtWDNSbGVIUmhjbVZoIiwgIlgyWnBaV3hrWHpnIjogImMyaHZkMmxtWDJSeWIzQmtiM2R1In0">
-  </form>
-</section>`;
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ45kg.7hWBFaZmdlwwBjqLhviS-tyKbS4">
+        <input type="hidden" name="_event" value="WyJkaXJlY3Rfc2hvd2lmcyJd">
+        <input type="hidden" name="_question_name" value="ID showifs">
+        <input type="hidden" name="_tracker" value="6">
+        <input type="hidden" name="_datatypes" value="eyJaR2x5WldOMFgzTm9iM2RwWm5NIjogImJvb2xlYW4iLCAiYzJodmQxOHkiOiAiYm9vbGVhbiIsICJjMmh2ZDE4eiI6ICJib29sZWFuIiwgImMyaHZkMmxtWDJOb1pXTnJZbTk0WDNsbGMyNXYiOiAiYm9vbGVhbiIsICJjMmh2ZDJsbVgyTm9aV05yWW05NFpYTmZiM1JvWlhJIjogImNoZWNrYm94ZXMiLCAiYzJodmQybG1YM2xsYzI1dmNtRmthVzgiOiAiYm9vbGVhbiIsICJjMmh2ZDJsbVgzSmhaR2x2WDI5MGFHVnkiOiAidGV4dCIsICJjMmh2ZDJsbVgzUmxlSFJmYVc1d2RYUSI6ICJ0ZXh0IiwgImMyaHZkMmxtWDNSbGVIUmhjbVZoIjogInRleHQiLCAiYzJodmQybG1YMlJ5YjNCa2IzZHUiOiAidGV4dCJ9">
+        <input type="hidden" name="_visible" value="">
+        <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJjMmh2ZDE4eSIsICJYMlpwWld4a1h6RSI6ICJjMmh2ZDE4eiIsICJYMlpwWld4a1h6SSI6ICJjMmh2ZDJsbVgyTm9aV05yWW05NFgzbGxjMjV2IiwgIlgyWnBaV3hrWHpNIjogImMyaHZkMmxtWDJOb1pXTnJZbTk0WlhOZmIzUm9aWEkiLCAiWDJacFpXeGtYelEiOiAiYzJodmQybG1YM2xsYzI1dmNtRmthVzgiLCAiWDJacFpXeGtYelUiOiAiYzJodmQybG1YM0poWkdsdlgyOTBhR1Z5IiwgIlgyWnBaV3hrWHpZIjogImMyaHZkMmxtWDNSbGVIUmZhVzV3ZFhRIiwgIlgyWnBaV3hrWHpjIjogImMyaHZkMmxtWDNSbGVIUmhjbVZoIiwgIlgyWnBaV3hrWHpnIjogImMyaHZkMmxtWDJSeWIzQmtiM2R1In0">
+    </form>
+</div>`;
 
 
 // ============================
@@ -330,246 +401,169 @@ html.show_if = `
 // ============================
 // `continue button field:`
 html.button_continue = `
-<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-  <div data-variable="YnV0dG9uX2NvbnRpbnVl" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">Button (continue)</h1>
-      <div class="daclear"></div>
-    </div>
-
-    <fieldset class="da-field-buttons">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div class="form-actions">
-        <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uX2NvbnRpbnVl" value="True"><span>Continue</span></button></div>
-    </fieldset>
-
-    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YFovuA.U2cDuafLiEV5tfzlDHUdqn5UpHM">
-    <input type="hidden" name="_event" value="WyJidXR0b25fY29udGludWUiXQ">
-    <input type="hidden" name="_question_name" value="ID button continue">
-    <input type="hidden" name="_tracker" value="11">
-    <input type="hidden" name="_datatypes" value="eyJZblYwZEc5dVgyTnZiblJwYm5WbCI6ICJib29sZWFuIn0">
-    <input type="hidden" name="_visible" value="">
-  </form>
-</section>`;
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="YnV0dG9uX2NvbnRpbnVl" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion">Button (continue)</h1>
+            <div class="daclear"></div>
+        </div>
+        <fieldset class="da-button-set da-field-buttons">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uX2NvbnRpbnVl" value="True">Continue</button>
+        </fieldset>
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ4-uA.hKcFQB0Glf6JDt96_UPDIDAvcjA">
+        <input type="hidden" name="_event" value="WyJidXR0b25fY29udGludWUiXQ">
+        <input type="hidden" name="_question_name" value="ID button continue">
+        <input type="hidden" name="_tracker" value="12">
+        <input type="hidden" name="_datatypes" value="eyJZblYwZEc5dVgyTnZiblJwYm5WbCI6ICJib29sZWFuIn0">
+        <input type="hidden" name="_visible" value="">
+    </form>
+</div>`;
 
 // `yesnomaybe:`
 html.buttons_yesnomaybe = `
-<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-  <div data-variable="YnV0dG9uc195ZXNub21heWJl" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">Button (yes/no/maybe)</h1>
-      <div class="daclear"></div>
-    </div>
-
-    <fieldset class="da-field-yesnomaybe">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div>
-        <button class="btn btn-primary btn-da " name="YnV0dG9uc195ZXNub21heWJl" type="submit" value="True"><span>Yes</span></button>
-        <button class="btn btn-da btn-secondary" name="YnV0dG9uc195ZXNub21heWJl" type="submit" value="False"><span>No</span></button>
-        <button class="btn btn-da btn-warning" name="YnV0dG9uc195ZXNub21heWJl" type="submit" value="None"><span>I don’t know</span></button>
-      </div>
-    </fieldset>
-
-    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YFn06Q.qy7hRea2kn5UZaqKe7fBKoO7p0o">
-    <input type="hidden" name="_event" value="WyJidXR0b25zX3llc25vbWF5YmUiXQ">
-    <input type="hidden" name="_question_name" value="ID buttons yesnomaybe">
-    <input type="hidden" name="_tracker" value="9">
-    <input type="hidden" name="_datatypes" value="eyJZblYwZEc5dWMxOTVaWE51YjIxaGVXSmwiOiAidGhyZWVzdGF0ZSJ9">
-    <input type="hidden" name="_visible" value="">
-  </form>
-</section>`;
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="YnV0dG9uc195ZXNub21heWJl" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion">Button (yes/no/maybe)</h1>
+            <div class="daclear"></div>
+        </div>
+        <fieldset class="da-button-set da-field-yesnomaybe">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button class="btn btn-primary btn-da" name="YnV0dG9uc195ZXNub21heWJl" type="submit" value="True">Yes</button>
+            <button class="btn btn-secondary btn-da" name="YnV0dG9uc195ZXNub21heWJl" type="submit" value="False">No</button>
+            <button class="btn btn-warning btn-da" name="YnV0dG9uc195ZXNub21heWJl" type="submit" value="None">I don’t know</button>
+        </fieldset>
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ48WA.uOXCbXlqc77MpYPJu5hxyq4b5ss">
+        <input type="hidden" name="_event" value="WyJidXR0b25zX3llc25vbWF5YmUiXQ">
+        <input type="hidden" name="_question_name" value="ID buttons yesnomaybe">
+        <input type="hidden" name="_tracker" value="8">
+        <input type="hidden" name="_datatypes" value="eyJZblYwZEc5dWMxOTVaWE51YjIxaGVXSmwiOiAidGhyZWVzdGF0ZSJ9">
+        <input type="hidden" name="_visible" value="">
+    </form>
+</div>`;
 
 // Multiple choice 'continue' button fields that are not yesnomaybe
 // `field:` and `buttons:`
 html.buttons_other = `
-<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-  <div data-variable="YnV0dG9uc19vdGhlcg" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">Button (other)</h1>
-      <div class="daclear"></div>
-    </div>
-
-    <fieldset class="da-field-buttons">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div>
-        <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uc19vdGhlcg" value="button_1"><span>button 1</span></button>
-        <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uc19vdGhlcg" value="button_2"><span>button 2</span></button>
-        <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uc19vdGhlcg" value="button_3"><span>button 3</span></button>
-      </div>
-    </fieldset>
-
-    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YFoMuw.5kqHJwVOXKDaQen-VQuev2Ve3Z8">
-    <input type="hidden" name="_event" value="WyJidXR0b25zX290aGVyIl0">
-    <input type="hidden" name="_question_name" value="ID buttons other">
-    <input type="hidden" name="_tracker" value="10">
-    <input type="hidden" name="_visible" value="">
-  </form>
-</section>`;
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="YnV0dG9uc19vdGhlcg" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion">Button (other)</h1>
+            <div class="daclear"></div>
+        </div>
+        <fieldset class="da-button-set da-field-buttons">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uc19vdGhlcg" value="button_1">button 1</button>
+            <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uc19vdGhlcg" value="button_2">button 2</button>
+            <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uc19vdGhlcg" value="button_3">button 3</button>
+        </fieldset>
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ4-QQ.l-7025694Jgr31vxB48L1A2SFy0">
+        <input type="hidden" name="_event" value="WyJidXR0b25zX290aGVyIl0">
+        <input type="hidden" name="_question_name" value="ID buttons other">
+        <input type="hidden" name="_tracker" value="11">
+        <input type="hidden" name="_visible" value="">
+    </form>
+</div>`;
 
 // `field:` and `action buttons:`
 // It's not actually a button, it's a link (`<a>`)
 html.buttons_event_action = `
-<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-  <div data-variable="YnV0dG9uX2V2ZW50X2FjdGlvbg" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">Button (event action)</h1>
-      <div class="daclear"></div>
-    </div>
-
-    <fieldset class="da-field-buttons">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div class="form-actions">
-        <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uX2V2ZW50X2FjdGlvbg" value="True"><span>Continue</span></button>
-        <a data-linknum="1" href="/interview?action=eyJhY3Rpb24iOiAiZW5kIiwgImFyZ3VtZW50cyI6IHt9fQ&amp;i=docassemble.playground12ALTestingTestingRun%3Aall_tests.yml" class="btn btn-primary btn-da daquestionactionbutton danonsubmit"><svg class="svg-inline--fa fa-laugh-wink fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="laugh-wink" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
-            <path fill="currentColor" d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm20.1 198.1c4-25.2 34.2-42.1 59.9-42.1s55.9 16.9 59.9 42.1c1.7 11.1-11.4 18.3-19.8 10.8l-9.5-8.5c-14.8-13.2-46.2-13.2-61 0L288 217c-8.4 7.4-21.6.3-19.9-10.9zM168 160c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zm230.9 146C390 377 329.4 432 256 432h-16c-73.4 0-134-55-142.9-126-1.2-9.5 6.3-18 15.9-18h270c9.6 0 17.1 8.4 15.9 18z"></path>
-          </svg><!-- <i class="fas fa-laugh-wink"></i> Font Awesome fontawesome.com --> Do not pass go</a></div>
-    </fieldset>
-
-    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YFo2Rw.jEdEyLOdAegw_klnELh4Jux0C9A">
-    <input type="hidden" name="_event" value="WyJidXR0b25fZXZlbnRfYWN0aW9uIl0">
-    <input type="hidden" name="_question_name" value="ID button event action">
-    <input type="hidden" name="_tracker" value="14">
-    <input type="hidden" name="_datatypes" value="eyJZblYwZEc5dVgyVjJaVzUwWDJGamRHbHZiZyI6ICJib29sZWFuIn0">
-    <input type="hidden" name="_visible" value="">
-  </form>
-</section>`
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="YnV0dG9uX2V2ZW50X2FjdGlvbg" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion">Button (event action)</h1>
+            <div class="daclear"></div>
+        </div>
+        <fieldset class="da-button-set da-field-buttons">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button type="submit" class="btn btn-da btn-primary" name="YnV0dG9uX2V2ZW50X2FjdGlvbg" value="True">Continue</button>
+            <a data-linknum="1" href="/interview?action=eyJhY3Rpb24iOiAiZW5kIiwgImFyZ3VtZW50cyI6IHt9fQ&amp;i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" class="btn btn-primary btn-da daquestionactionbutton danonsubmit">
+                <svg class="svg-inline--fa fa-laugh-wink fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="laugh-wink" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" data-fa-i2svg="">
+                    <path fill="currentColor" d="M248 8C111 8 0 119 0 256s111 248 248 248 248-111 248-248S385 8 248 8zm20.1 198.1c4-25.2 34.2-42.1 59.9-42.1s55.9 16.9 59.9 42.1c1.7 11.1-11.4 18.3-19.8 10.8l-9.5-8.5c-14.8-13.2-46.2-13.2-61 0L288 217c-8.4 7.4-21.6.3-19.9-10.9zM168 160c17.7 0 32 14.3 32 32s-14.3 32-32 32-32-14.3-32-32 14.3-32 32-32zm230.9 146C390 377 329.4 432 256 432h-16c-73.4 0-134-55-142.9-126-1.2-9.5 6.3-18 15.9-18h270c9.6 0 17.1 8.4 15.9 18z"></path>
+                </svg>
+                <!-- <i class="fas fa-laugh-wink"></i> Font Awesome fontawesome.com -->Do not pass go</a>
+        </fieldset>
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ5ADA.Fl6yjmlTVe5CEwvE98xIQ8o7_SM">
+        <input type="hidden" name="_event" value="WyJidXR0b25fZXZlbnRfYWN0aW9uIl0">
+        <input type="hidden" name="_question_name" value="ID button event action">
+        <input type="hidden" name="_tracker" value="24">
+        <input type="hidden" name="_datatypes" value="eyJZblYwZEc5dVgyVjJaVzUwWDJGamRHbHZiZyI6ICJib29sZWFuIn0">
+        <input type="hidden" name="_visible" value="">
+    </form>
+</div>`;
 
 
 // ============================
 // Proxy vars (x, i, j, ...)
 // ============================
+// These tests are useful so we make sure we're handling iteration with
+// proxies correctly, but we don't need to worry about guessing the proxy
+// name. See https://github.com/plocket/docassemble-cucumber/pull/221
+
 // x[i].name.first
 html.proxies_xi = `
-<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-  <div data-variable="YV9saXN0WzBdLm5hbWUuZmlyc3Q" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTests80Signatures%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">Proxy vars</h1>
-      <div class="daclear"></div>
-    </div>
-    
-    <div class="form-group row darequired da-field-container da-field-container-datatype-text"><label for="eFtpXS5uYW1lLmZpcnN0" class="col-md-4 col-form-label da-form-label datext-right">Name of person in list</label>
-      <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="text" name="eFtpXS5uYW1lLmZpcnN0" id="eFtpXS5uYW1lLmZpcnN0" aria-invalid="false"></div>
-    </div>
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="cHJveHlfbGlzdFswXS5uYW1lLmZpcnN0" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion">Proxy var 1</h1>
+            <div class="daclear"></div>
+        </div>
+        <div class="da-form-group row darequired da-field-container da-field-container-datatype-text">
+            <label for="eFtpXS5uYW1lLmZpcnN0" class="col-md-4 col-form-label da-form-label datext-right">first proxy name</label>
+            <div class="col-md-8 dafieldpart">
+                <input alt="Input box" class="form-control" type="text" name="eFtpXS5uYW1lLmZpcnN0" id="eFtpXS5uYW1lLmZpcnN0">
+            </div>
+        </div>
+        <fieldset class="da-button-set da-field-buttons">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button class="btn btn-da btn-primary" type="submit">Continue</button>
+        </fieldset>
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ5H8A.Tjer87_fAJ3oFK_LPAL6dO1hM0c">
+        <input type="hidden" name="_event" value="WyJwcm94eV9saXN0WzBdLm5hbWUuZmlyc3QiXQ">
+        <input type="hidden" name="_question_name" value="ID proxy vars">
+        <input type="hidden" name="_tracker" value="16">
+        <input type="hidden" name="_datatypes" value="eyJlRnRwWFM1dVlXMWxMbVpwY25OMCI6ICJ0ZXh0In0">
+        <input type="hidden" name="_visible" value="">
+        <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlRnRwWFM1dVlXMWxMbVpwY25OMCJ9">
+    </form>
+</div>`;
 
-    <fieldset class="da-field-buttons">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div class="form-actions">
-        <button class="btn btn-da btn-primary" type="submit"><span>Continue</span></button></div>
-    </fieldset>
-
-    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YF34KA.OcIBnD6kITqqewqXHsSxT-rCZBg">
-    <input type="hidden" name="_event" value="WyJhX2xpc3RbMF0ubmFtZS5maXJzdCJd">
-    <input type="hidden" name="_question_name" value="ID proxy vars">
-    <input type="hidden" name="_tracker" value="1">
-    <input type="hidden" name="_datatypes" value="eyJlRnRwWFM1dVlXMWxMbVpwY25OMCI6ICJ0ZXh0In0">
-    <input type="hidden" name="_visible" value="">
-    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlRnRwWFM1dVlXMWxMbVpwY25OMCJ9">
-  </form>
-</section>`;
-
+// Second page of above
 // Multiple proxies by the same name are on the list (because of a loop)
 // x[i].name.first
 html.proxies_multi = `
-<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-  <div data-variable="YV9saXN0WzBdLm5hbWUuZmlyc3Q" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTests80Signatures%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">Proxy vars</h1>
-      <div class="daclear"></div>
-    </div>
-    
-    <div class="form-group row darequired da-field-container da-field-container-datatype-text"><label for="eFtpXS5uYW1lLmZpcnN0" class="col-md-4 col-form-label da-form-label datext-right">Name of person in list</label>
-      <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="text" name="eFtpXS5uYW1lLmZpcnN0" id="eFtpXS5uYW1lLmZpcnN0" aria-invalid="false"></div>
-    </div>
-
-    <fieldset class="da-field-buttons">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div class="form-actions">
-        <button class="btn btn-da btn-primary" type="submit"><span>Continue</span></button></div>
-    </fieldset>
-
-    <input type="hidden" name="csrf_token" value="IjQ5MDg1MTU1M2Q3OTAzMzBlYWE0NTdjNDJhMWVhMGZjYjUzOWZmMDYi.YF34KA.OcIBnD6kITqqewqXHsSxT-rCZBg">
-    <input type="hidden" name="_event" value="WyJhX2xpc3RbMF0ubmFtZS5maXJzdCJd">
-    <input type="hidden" name="_question_name" value="ID proxy vars">
-    <input type="hidden" name="_tracker" value="1">
-    <input type="hidden" name="_datatypes" value="eyJlRnRwWFM1dVlXMWxMbVpwY25OMCI6ICJ0ZXh0In0">
-    <input type="hidden" name="_visible" value="">
-    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlRnRwWFM1dVlXMWxMbVpwY25OMCJ9">
-  </form>
-</section>`;
-
-// your_past_benefits[i].still_receiving
-// your_past_benefits['State Veterans Benefits'].still_receiving
-// Non-match comes after a match
-html.proxies_non_match = `
-<section id="daquestion" class="tab-pane active col-xl-6 col-lg-6 col-md-9">
-  <div data-variable="eW91cl9wYXN0X2JlbmVmaXRzWydTdGF0ZSBWZXRlcmFucyBCZW5lZml0cyddLnN0aWxsX3JlY2VpdmluZw" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <div class="progress mt-2">
-    <div class="progress-bar" role="progressbar" aria-valuenow="60.27856815417815" aria-valuemin="0" aria-valuemax="100" style="width: 60.27856815417815%;"></div>
-  </div>
-  <p><code>Page id: dbd 04 benefits dates</code></p>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12testingaddteststoseparatinginterviewcodeetc%3AChildSupportObligors.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">When did you get State Veterans Benefits?</h1>
-      <div class="daclear"></div>
-    </div>
-
-    <div class="form-group row darequired da-field-container da-field-container-datatype-date da-group-has-error"><label for="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU" class="col-md-4 col-form-label da-form-label datext-right">When did your State Veterans Benefits start?</label>
-      <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control is-invalid" type="date" name="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU" id="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU" aria-describedby="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU-error"><span id="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0YXJ0X2RhdGU-error" class="da-has-error text-danger">You need to fill this in.</span></div>
-    </div>
-
-    <div class="form-group row da-field-container da-field-container-note">
-      <div class="col-md-12">
-        <p>If you do not know when your State Veterans Benefits began, give us your best estimate.</p>
-      </div>
-    </div>
-
-    <div class="form-group row darequired da-field-container da-field-container-datatype-boolean da-field-container-inputtype-yesnoradio da-group-has-error"><label for="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw" class="col-md-4 col-form-label da-form-label datext-right">Do you still get State Veterans Benefits?</label>
-      <div class="col-md-8 dafieldpart">
-        <fieldset class="da-field-radio" role="radiogroup">
-          <legend class="sr-only">Choices:</legend><input aria-label="Yes" alt="Yes" class="da-to-labelauty labelauty da-active-invisible dafullwidth is-invalid" id="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw_0" name="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw" type="radio" value="True" aria-hidden="true" style="display: none;" aria-describedby="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw-error"><label class="btn-light" for="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw_0" tabindex="0" role="radio" aria-checked="false" aria-label="Yes"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">Yes</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">Yes</span></label><input aria-label="No" alt="No" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw_1" name="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw" type="radio" value="False" aria-hidden="true" style="display: none;"><label class="btn-light" for="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw_1" tabindex="0" role="radio" aria-checked="false" aria-label="No"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">No</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">No</span></label><span id="eW91cl9wYXN0X2JlbmVmaXRzW2ldLnN0aWxsX3JlY2VpdmluZw-error" class="da-has-error text-danger">You need to select one.</span>
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="cHJveHlfbGlzdFsxXS5uYW1lLmZpcnN0" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion">Proxy var 2</h1>
+            <div class="daclear"></div>
+        </div>
+        <div class="da-form-group row darequired da-field-container da-field-container-datatype-text">
+            <label for="eFtpXS5uYW1lLmZpcnN0" class="col-md-4 col-form-label da-form-label datext-right">second proxy name</label>
+            <div class="col-md-8 dafieldpart">
+                <input alt="Input box" class="form-control" type="text" name="eFtpXS5uYW1lLmZpcnN0" id="eFtpXS5uYW1lLmZpcnN0">
+            </div>
+        </div>
+        <fieldset class="da-button-set da-field-buttons">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button class="btn btn-da btn-primary" type="submit">Continue</button>
         </fieldset>
-      </div>
-    </div>
-
-    <div style="display: none;" class="dajsshowif" data-saveas="eW91cl9wYXN0X2JlbmVmaXRzW2ldLmVuZF9kYXRl" data-jsshowif="eyJleHByZXNzaW9uIjogInZhbChcInlvdXJfcGFzdF9iZW5lZml0c1tpXS5zdGlsbF9yZWNlaXZpbmdcIikgPT09IGZhbHNlIiwgInZhcnMiOiBbInlvdXJfcGFzdF9iZW5lZml0c1tpXS5zdGlsbF9yZWNlaXZpbmciXSwgInNpZ24iOiB0cnVlLCAibW9kZSI6IDB9">
-      <div class="form-group row darequired da-field-container da-field-container-datatype-date"><label for="X2ZpZWxkXzM" class="col-md-4 col-form-label da-form-label datext-right">When did your State Veterans Benefits end?</label>
-        <div class="col-md-8 dafieldpart"><input alt="Input box" class="form-control" type="date" name="X2ZpZWxkXzM" id="X2ZpZWxkXzM" disabled=""></div>
-      </div>
-    </div>
-
-    <input type="hidden" name="_checkboxes" value="eyJlVzkxY2w5d1lYTjBYMkpsYm1WbWFYUnpXMmxkTG5OMGFXeHNYM0psWTJWcGRtbHVadyI6ICJGYWxzZSJ9">
-
-    <fieldset class="da-field-buttons">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div class="form-actions">
-        <button class="btn btn-da btn-primary" type="submit"><span>Next</span></button></div>
-    </fieldset>
-
-    <div class="daundertext">
-      <p>Feedback, suggestions, or comments? <a data-linknum="1" href="https://apps-dev.suffolklitlab.org/interview?i=docassemble.playground12testingaddteststoseparatinginterviewcodeetc%3Afeedback.yml&amp;github_repo=docassemble-deadbrokedads&amp;github_user=carorob&amp;variable=your_past_benefits%5B%27State+Veterans+Benefits%27%5D.still_receiving&amp;question_id=dbd+04+benefits+dates&amp;reset=1&amp;from_list=1" target="_blank">Complete this survey</a>.</p>
-    </div> <input type="hidden" name="csrf_token" value="IjkyOGQ1MmExNGRmY2M1MWNlZmEzMTE1MjcxODc1M2Y1OWYzYzA3ZTIi.YGuZjg.40f4LTH-W4hfe6B23YhZDv4MHVE">
-    <input type="hidden" name="_event" value="WyJ5b3VyX3Bhc3RfYmVuZWZpdHNbJ1N0YXRlIFZldGVyYW5zIEJlbmVmaXRzJ10uc3RpbGxfcmVjZWl2aW5nIl0">
-    <input type="hidden" name="_question_name" value="ID dbd 04 benefits dates">
-    <input type="hidden" name="_tracker" value="21">
-    <input type="hidden" name="_datatypes" value="eyJlVzkxY2w5d1lYTjBYMkpsYm1WbWFYUnpXMmxkTG5OMFlYSjBYMlJoZEdVIjogImRhdGUiLCAiZVc5MWNsOXdZWE4wWDJKbGJtVm1hWFJ6VzJsZExuTjBhV3hzWDNKbFkyVnBkbWx1WnciOiAiYm9vbGVhbiIsICJlVzkxY2w5d1lYTjBYMkpsYm1WbWFYUnpXMmxkTG1WdVpGOWtZWFJsIjogImRhdGUifQ">
-    <input type="hidden" name="_visible" value="">
-    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlVzkxY2w5d1lYTjBYMkpsYm1WbWFYUnpXMmxkTG5OMFlYSjBYMlJoZEdVIiwgIlgyWnBaV3hrWHpJIjogImVXOTFjbDl3WVhOMFgySmxibVZtYVhSelcybGRMbk4wYVd4c1gzSmxZMlZwZG1sdVp3IiwgIlgyWnBaV3hrWHpNIjogImVXOTFjbDl3WVhOMFgySmxibVZtYVhSelcybGRMbVZ1WkY5a1lYUmwifQ">
-  </form>
-</section>`;
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ5IgA.E1YcjbUeiPEheD7U_6uixUMTz1M">
+        <input type="hidden" name="_event" value="WyJwcm94eV9saXN0WzFdLm5hbWUuZmlyc3QiXQ">
+        <input type="hidden" name="_question_name" value="ID proxy vars">
+        <input type="hidden" name="_tracker" value="20">
+        <input type="hidden" name="_datatypes" value="eyJlRnRwWFM1dVlXMWxMbVpwY25OMCI6ICJ0ZXh0In0">
+        <input type="hidden" name="_visible" value="">
+        <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlRnRwWFM1dVlXMWxMbVpwY25OMCJ9">
+    </form>
+</div>`;
 
 
 // ============================
@@ -580,106 +574,113 @@ html.proxies_non_match = `
 // It's complicated. This explains it a bit, but not enough:
 // https://github.com/plocket/docassemble-ALAutomatedTestingTests/issues/119
 html.signature = `
-<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-  <div data-variable="c2lnbmF0dXJlXzE" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <div class="dasigpage" id="dasigpage">
-    <div class="dasigshowsmallblock dasigheader d-block d-sm-none" id="dasigheader" style="">
-      <div class="dasiginnerheader">
-        <a href="#" role="button" class="btn btn-sm btn-warning dasignav-left dasignavbutton dasigclear">Clear</a>
-        <a href="#" role="button" class="btn btn-sm btn-primary dasignav-right dasignavbutton dasigsave">Continue</a>
-        <div id="dasigtitle" class="dasigtitle">Signature 1</div>
-      </div>
-    </div>
-    <div class="dasigtoppart" id="dasigtoppart">
-      <div id="daerrormess" class="dasigerrormessage dasignotshowing">You must sign your name to continue.</div>
-      <div class="da-page-header d-none d-sm-block">
-        <h1 class="h3">Signature 1</h1>
-        <div class="daclear"></div>
-      </div>
-    </div>
-    <div id="dasigmidpart" class="dasigmidpart"></div>
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="c2lnbmF0dXJlXzE" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <div class="dasigpage" id="dasigpage">
+        <div class="dasigshowsmallblock dasigheader d-block d-sm-none" id="dasigheader" style="">
+            <div class="dasiginnerheader">
+                <a href="#" role="button" class="btn btn-sm btn-warning dasignav-left dasignavbutton dasigclear">Clear</a>
+                <a href="#" role="button" class="btn btn-sm btn-primary dasignav-right dasignavbutton dasigsave">Continue</a>
+                <div id="dasigtitle" class="dasigtitle">Signature 1</div>
+            </div>
+        </div>
+        <div class="dasigtoppart" id="dasigtoppart">
+            <div id="daerrormess" class="dasigerrormessage dasignotshowing">You must sign your name to continue.</div>
+            <div class="da-page-header d-none d-sm-block">
+                <h1 class="h3">Signature 1</h1>
+                <div class="daclear"></div>
+            </div>
+        </div>
+        <div id="dasigmidpart" class="dasigmidpart"></div>
+        <div id="dasigcontent" style="height: 218.4px;">
+            <canvas id="dasigcanvas" width="546px" height="218.4px"></canvas>
+        </div>
+        <div class="dasigbottompart" id="dasigbottompart">
 
-    <div id="dasigcontent" style="height: 180px;"><canvas id="dasigcanvas" width="450px" height="180px"></canvas></div>
-    
-    <div class="dasigbottompart" id="dasigbottompart">
+        </div>
+        <fieldset class="da-button-set d-none d-sm-block da-signature">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <div class="dasigbuttons mt-3">
+                <a href="#" role="button" class="btn btn-primary btn-da dasigsave">Continue</a>
+                <a href="#" role="button" class="btn btn-warning btn-da dasigclear">Clear</a>
+            </div>
+        </fieldset>
     </div>
-    <div class="form-actions d-none d-sm-block dasigbuttons mt-3">
-      <a href="#" role="button" class="btn btn-primary btn-da dasigsave">Continue</a>
-      <a href="#" role="button" class="btn btn-warning btn-da dasigclear">Clear</a>
+    <form aria-labelledby="dasigtitle" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="dasigform" method="POST">
+        <input type="hidden" name="_save_as" value="c2lnbmF0dXJlXzE">
+        <input type="hidden" id="da_sig_required" value="1">
+        <input type="hidden" id="da_ajax" name="ajax" value="0">
+        <input type="hidden" id="da_the_image" name="_the_image" value="">
+        <input type="hidden" id="da_success" name="_success" value="0">
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ5JYw.TjKi2VrM8zgaiChOLEfFcVXH_7c">
+        <input type="hidden" name="_event" value="WyJzaWduYXR1cmVfMSJd">
+        <input type="hidden" name="_question_name" value="ID first signature">
+        <input type="hidden" name="_tracker" value="24">
+    </form>
+    <div class="d-block d-md-none">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
-  </div>
-  <form aria-labelledby="dasigtitle" action="/interview?i=docassemble.playground12ALTestingTests80Signatures%3Aall_tests.yml" id="dasigform" method="POST"><input type="hidden" name="_save_as" value="c2lnbmF0dXJlXzE"><input type="hidden" id="da_sig_required" value="1"><input type="hidden" id="da_ajax" name="ajax" value="0"><input type="hidden" id="da_the_image" name="_the_image" value=""><input type="hidden" id="da_success" name="_success" value="0"> <input type="hidden" name="csrf_token" value="IjkyYzc0NDk2YWFkZjUyODg3NWY3NDM3NjliZjQ5ODMwOTgyOGE4ZGEi.YGhoaw.rQUphWhyjZQEJSvcwUfT6st9Q4k">
-    <input type="hidden" name="_event" value="WyJzaWduYXR1cmVfMSJd">
-    <input type="hidden" name="_question_name" value="ID first signature">
-    <input type="hidden" name="_tracker" value="11">
-  </form>
-  <div class="d-block d-md-none"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></div>
-  <div class="dasigpost"></div>
-</section>`;
+    <div class="dasigpost">
+        <div data-variable="c2lnbmF0dXJlXzE" id="trigger" aria-hidden="true" style="display: none;"></div>
+    </div>
+</div>`;
 
 
 // ============================
 // `choices:`
 // ============================
 // `field:` and `choices:`
+// ```
+// field: favorite_fruit
+// choices:
+//   - Apple
+//   - Orange
+// ```
 html.choices = `
-<section id="daquestion" class="tab-pane active col-xl-6 col-lg-6 col-md-9">
-  <div data-variable="Y3NfYXJyZWFyc19tYw" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <div class="progress mt-2">
-    <div class="progress-bar" role="progressbar" aria-valuenow="53.67087698402467" aria-valuemin="0" aria-valuemax="100" style="width: 53.67087698402467%;"></div>
-  </div>
-  <p><code>Page id: dbd 02 - ever pay late?</code></p>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12testingaddteststoseparatinginterviewcodeetc%3AChildSupportObligors.yml" id="daform" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">Did you ever pay late?</h1>
-      <div class="daclear"></div>
-    </div>
-    <div class="da-subquestion">
-      <p>Did you ever fall behind on child support payments?</p>
-    </div>
-
-    <fieldset class="da-field-radio">
-      <legend class="sr-only">Choices:</legend>
-      <div class="row">
-        <div class="col-md-12"><input aria-label="Yes" alt="Yes" class="da-to-labelauty labelauty da-active-invisible dafullwidth is-invalid" id="Y3NfYXJyZWFyc19tYw_0" name="Y3NfYXJyZWFyc19tYw" type="radio" value="Yes" aria-hidden="true" style="display: none;" aria-describedby="Y3NfYXJyZWFyc19tYw-error"><label class="btn-light" for="Y3NfYXJyZWFyc19tYw_0" tabindex="0" role="radio" aria-checked="false" aria-label="Yes"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">Yes</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">Yes</span></label></div>
-      </div>
-      <div class="row">
-        <div class="col-md-12"><input aria-label="No" alt="No" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="Y3NfYXJyZWFyc19tYw_1" name="Y3NfYXJyZWFyc19tYw" type="radio" value="No" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y3NfYXJyZWFyc19tYw_1" tabindex="0" role="radio" aria-checked="false" aria-label="No"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">No</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">No</span></label></div>
-      </div>
-      <div class="row">
-        <div class="col-md-12"><input aria-label="I am not sure" alt="I am not sure" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="Y3NfYXJyZWFyc19tYw_2" name="Y3NfYXJyZWFyc19tYw" type="radio" value="I am not sure" aria-hidden="true" style="display: none;"><label class="btn-light" for="Y3NfYXJyZWFyc19tYw_2" tabindex="0" role="radio" aria-checked="false" aria-label="I am not sure"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path>
-              </svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-unchecked">I am not sure</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                <path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
-              </svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span><span class="labelauty-checked">I am not sure</span></label></div>
-      </div>
-      <div id="daerrorcontainer" style=""><span id="Y3NfYXJyZWFyc19tYw-error" class="da-has-error text-danger">You need to select one.</span></div>
-    </fieldset>
-
-    <fieldset class="da-field-buttons">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div>
-        <button class="btn btn-da btn-primary" type="submit"><span>Next</span></button>
-      </div>
-    </fieldset>
-
-    <div class="daundertext">
-      <p>Feedback, suggestions, or comments? <a data-linknum="1" href="https://apps-dev.suffolklitlab.org/interview?i=docassemble.playground12testingaddteststoseparatinginterviewcodeetc%3Afeedback.yml&amp;github_repo=docassemble-deadbrokedads&amp;github_user=carorob&amp;variable=cs_arrears_mc&amp;question_id=dbd+02+-+ever+pay+late%3F&amp;reset=1&amp;from_list=1" target="_blank">Complete this survey</a>.</p>
-    </div> <input type="hidden" name="csrf_token" value="IjU0NGE0ZjczNGQ4YzY0NWUyNTE4Y2NjNzA4NDNhOTQyM2RkZGI2Y2Ui.YGuCAQ.pEgr9bcH4JjKkajiB3MXXrM4PKg">
-    <input type="hidden" name="_event" value="WyJjc19hcnJlYXJzX21jIl0">
-    <input type="hidden" name="_question_name" value="ID dbd 02 - ever pay late?">
-    <input type="hidden" name="_tracker" value="18">
-    <input type="hidden" name="_visible" value="">
-  </form>
-</section>`;
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="ZmllbGRfYW5kX2Nob2ljZXM" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion"><code>field:</code> and <code>choices</code></h1>
+            <div class="daclear"></div>
+        </div>
+        <fieldset class="da-field-radio">
+            <legend class="visually-hidden">Choices:</legend>
+            <div class="row">
+                <div class="col-md-12">
+                    <input aria-label="Choice 1" alt="Choice 1" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="ZmllbGRfYW5kX2Nob2ljZXM_0" name="ZmllbGRfYW5kX2Nob2ljZXM" type="radio" value="Choice 1" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="ZmllbGRfYW5kX2Nob2ljZXM_0" tabindex="0" role="radio" aria-checked="false" aria-label="Choice 1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">Choice 1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">Choice 1</span>
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <input aria-label="Choice 2" alt="Choice 2" class="da-to-labelauty labelauty da-active-invisible dafullwidth" id="ZmllbGRfYW5kX2Nob2ljZXM_1" name="ZmllbGRfYW5kX2Nob2ljZXM" type="radio" value="Choice 2" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="ZmllbGRfYW5kX2Nob2ljZXM_1" tabindex="0" role="radio" aria-checked="false" aria-label="Choice 2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 448c-110.5 0-200-89.5-200-200S145.5 56 256 56s200 89.5 200 200-89.5 200-200 200z"></path></svg><!-- <i class="far fa-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">Choice 2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check-circle fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check-circle" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256c0 136.967-111.033 248-248 248S8 392.967 8 256 119.033 8 256 8s248 111.033 248 248zM227.314 387.314l184-184c6.248-6.248 6.248-16.379 0-22.627l-22.627-22.627c-6.248-6.249-16.379-6.249-22.628 0L216 308.118l-70.059-70.059c-6.248-6.248-16.379-6.248-22.628 0l-22.627 22.627c-6.248 6.248-6.248 16.379 0 22.627l104 104c6.249 6.249 16.379 6.249 22.628.001z"></path></svg><!-- <i class="fas fa-check-circle fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">Choice 2</span>
+                    </label>
+                </div>
+            </div>
+            <div id="daerrorcontainer" style="display:none"></div>
+        </fieldset>
+        <fieldset class="da-button-set da-field-buttons">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button class="btn btn-da btn-primary" type="submit">Continue</button>
+        </fieldset>
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ5QAg.SCJdmS-cpk2MUs3c-25uFHInpHM">
+        <input type="hidden" name="_event" value="WyJmaWVsZF9hbmRfY2hvaWNlcyJd">
+        <input type="hidden" name="_question_name" value="ID field and choices">
+        <input type="hidden" name="_tracker" value="1">
+        <input type="hidden" name="_visible" value="">
+    </form>
+</div>`;
 
 
 // ============================
@@ -688,111 +689,173 @@ html.choices = `
 // ```
 // - Something: some_var
 //   datatype: object
-//   object labeler: |
-//     lambda y: y.short_label()```
-//   choices: some_obj
+//   choices:
+//     - obj1
+//     - obj2
 // ```
 html.object_dropdown = `
-<section id="daquestion" class="tab-pane active col-xl-6 col-lg-6 col-md-9">
-  <div data-variable="dHJpYWxfY291cnQ" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <div class="progress mt-2">
-    <div class="progress-bar" role="progressbar" aria-valuenow="18.549374999999998" aria-valuemin="0" aria-valuemax="100" style="width: 18.549374999999998%;"></div>
-  </div>
-  <p><code>id: choose a court from list</code><br>
-    <code>Package: docassemble.playground12MotionMod66Metadata playground; AL-2.0.12</code></p>
-  <div data-variable="dHJpYWxfY291cnQ" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <div class="daaudiovideo-control al_custom_media_controls">
-    <audio title="Read this screen out loud" class="daaudio-control" preload="none" style="display: none;">
-      <source src="/speakfile?i=docassemble.playground12MotionMod66Metadata%3A209a_plaintiff_s_motion_to_modify.yml&amp;question=137&amp;digest=e4bf45b8a4efe4a8a2b518850cbbe90c&amp;type=question&amp;format=mp3&amp;language=en&amp;dialect=us" type="audio/mpeg">
-      <source src="/speakfile?i=docassemble.playground12MotionMod66Metadata%3A209a_plaintiff_s_motion_to_modify.yml&amp;question=137&amp;digest=e4bf45b8a4efe4a8a2b518850cbbe90c&amp;type=question&amp;format=ogg&amp;language=en&amp;dialect=us" type="audio/ogg">
-      <a target="_blank" href="/speakfile?i=docassemble.playground12MotionMod66Metadata%3A209a_plaintiff_s_motion_to_modify.yml&amp;question=137&amp;digest=e4bf45b8a4efe4a8a2b518850cbbe90c&amp;type=question&amp;format=ogg&amp;language=en&amp;dialect=us">Listen</a>
-    </audio>
-    <div id="page_reader_substitute_1" class="btn-group"> <button class="media-action play btn btn-sm btn-outline-secondary"> <svg class="svg-inline--fa fa-volume-up fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="volume-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
-          <path fill="currentColor" d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"></path>
-        </svg><!-- <i class="fas fa-volume-up"></i> Font Awesome fontawesome.com --><span>&nbsp;Listen&nbsp;</span> <svg class="svg-inline--fa fa-play fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="play" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-          <path fill="currentColor" d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"></path>
-        </svg><!-- <i class="fas fa-play"></i> Font Awesome fontawesome.com --> </button> <button class="media-action restart btn btn-sm btn-outline-secondary" aria-hidden="true" style="display: none;"> <svg class="svg-inline--fa fa-volume-up fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="volume-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
-          <path fill="currentColor" d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"></path>
-        </svg><!-- <i class="fas fa-volume-up"></i> Font Awesome fontawesome.com --><span>&nbsp;Listen&nbsp;</span> <svg class="svg-inline--fa fa-undo fa-w-16" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="undo" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-          <path fill="currentColor" d="M212.333 224.333H12c-6.627 0-12-5.373-12-12V12C0 5.373 5.373 0 12 0h48c6.627 0 12 5.373 12 12v78.112C117.773 39.279 184.26 7.47 258.175 8.007c136.906.994 246.448 111.623 246.157 248.532C504.041 393.258 393.12 504 256.333 504c-64.089 0-122.496-24.313-166.51-64.215-5.099-4.622-5.334-12.554-.467-17.42l33.967-33.967c4.474-4.474 11.662-4.717 16.401-.525C170.76 415.336 211.58 432 256.333 432c97.268 0 176-78.716 176-176 0-97.267-78.716-176-176-176-58.496 0-110.28 28.476-142.274 72.333h98.274c6.627 0 12 5.373 12 12v48c0 6.627-5.373 12-12 12z"></path>
-        </svg><!-- <i class="fas fa-undo"></i> Font Awesome fontawesome.com --> </button> <button class="media-action pause btn btn-sm btn-outline-secondary" aria-hidden="true" style="display: none;"> <svg class="svg-inline--fa fa-volume-up fa-w-18" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="volume-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="">
-          <path fill="currentColor" d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z"></path>
-        </svg><!-- <i class="fas fa-volume-up"></i> Font Awesome fontawesome.com --><span>&nbsp;Listen&nbsp;</span> <svg class="svg-inline--fa fa-pause fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pause" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-          <path fill="currentColor" d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z"></path>
-        </svg><!-- <i class="fas fa-pause"></i> Font Awesome fontawesome.com --> </button> <button class="media-action stop btn btn-sm btn-outline-secondary"> <svg class="svg-inline--fa fa-stop fa-w-14" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="stop" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-          <path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"></path>
-        </svg><!-- <i class="fas fa-stop"></i> Font Awesome fontawesome.com --> </button></div>
-  </div>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12MotionMod66Metadata%3A209a_plaintiff_s_motion_to_modify.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">What court is your case in?</h1>
-      <div class="daclear"></div>
-    </div>
-    <div class="da-subquestion">
-      <p>Look at your Abuse Prevention Order. </p>
-      <p>Underneath <strong>your</strong> name, see the court name. </p>
-      <p>Select that court from the list below:</p>
-    </div>
-    <div class="form-group row darequired da-field-container da-field-container-datatype-object da-field-container-inputtype-dropdown da-field-container-nolabel">
-      <label for="dHJpYWxfY291cnQ" class="sr-only">Answer here</label>
-      <div class="col dawidecol dafieldpart">
-        <p class="sr-only">Select box</p><select class="form-control daobject" name="dHJpYWxfY291cnQ" id="dHJpYWxfY291cnQ">
-          <option value="">Select...</option>
-          <option value="YWxsX2NvdXJ0c1swXQ">Attleboro District Court</option>
-          <option value="YWxsX2NvdXJ0c1syXQ">Ayer District Court</option>
-          <option value="YWxsX2NvdXJ0c1szXQ">Barnstable County Superior Court</option>
-        </select>
-      </div>
-    </div>
-    <fieldset class="da-field-buttons">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div class="form-actions">
-        <button type="button" class="btn btn-link btn-da daquestionbackbutton danonsubmit" title="Go back to the previous question"><span><svg class="svg-inline--fa fa-chevron-left fa-w-10" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" data-fa-i2svg="">
-              <path fill="currentColor" d="M34.52 239.03L228.87 44.69c9.37-9.37 24.57-9.37 33.94 0l22.67 22.67c9.36 9.36 9.37 24.52.04 33.9L131.49 256l154.02 154.75c9.34 9.38 9.32 24.54-.04 33.9l-22.67 22.67c-9.37 9.37-24.57 9.37-33.94 0L34.52 272.97c-9.37-9.37-9.37-24.57 0-33.94z"></path>
-            </svg><!-- <i class="fas fa-chevron-left"></i> Font Awesome fontawesome.com --> Undo</span></button>
-        <button class="btn btn-da btn-primary" type="submit"><span>Next</span></button></div>
-    </fieldset>
-    <div class="daundertext">
-      <p>Feedback, suggestions, or comments? <a data-linknum="1" href="https://apps-dev.suffolklitlab.org/interview?i=docassemble.MAVirtualCourt%3Afeedback.yml&amp;github_repo=docassemble-AssemblyLine&amp;github_user=suffolklitlab&amp;variable=trial_court&amp;question_id=choose+a+court+from+list&amp;package_version=playground&amp;reset=1&amp;from_list=1" target="_blank">Complete this survey</a>.</p>
-    </div> <input type="hidden" name="csrf_token" value="IjkyYzc0NDk2YWFkZjUyODg3NWY3NDM3NjliZjQ5ODMwOTgyOGE4ZGEi.YH2U8g.PRwZHAGRHFPeYDe4K5aQQ3-ztz0">
-    <input type="hidden" name="_event" value="WyJ0cmlhbF9jb3VydCJd">
-    <input type="hidden" name="_question_name" value="ID choose a court from list">
-    <input type="hidden" name="_tracker" value="5">
-    <input type="hidden" name="_datatypes" value="eyJkSEpwWVd4ZlkyOTFjblEiOiAib2JqZWN0In0">
-    <input type="hidden" name="_visible" value="">
-    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJkSEpwWVd4ZlkyOTFjblEifQ">
-  </form>
-</section>`;
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="b2JqZWN0X2Ryb3Bkb3du" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion">Object dropdown</h1>
+            <div class="daclear"></div>
+        </div>
+        <div class="da-form-group row darequired da-field-container da-field-container-datatype-object da-field-container-inputtype-dropdown">
+            <label for="b2JqZWN0X2Ryb3Bkb3du" class="col-md-4 col-form-label da-form-label datext-right">Object dropdown</label>
+            <div class="col-md-8 dafieldpart">
+                <p class="visually-hidden">Select box</p>
+                <select class="form-select dasingleselect daobject" name="b2JqZWN0X2Ryb3Bkb3du" id="b2JqZWN0X2Ryb3Bkb3du">
+                    <option value="">Select...</option>
+                    <option value="b2JqX29wdF8x">obj opt 1</option>
+                    <option value="b2JqX29wdF8y">obj opt 2</option>
+                    <option value="b2JqX29wdF8z">obj opt 3</option>
+                </select>
+            </div>
+        </div>
+        <fieldset class="da-button-set da-field-buttons">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button class="btn btn-da btn-primary" type="submit">Continue</button>
+        </fieldset>
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ5MdQ.qmGUG_q-cJeO-zySkNUJgaQIquQ">
+        <input type="hidden" name="_event" value="WyJvYmplY3RfZHJvcGRvd24iXQ">
+        <input type="hidden" name="_question_name" value="ID object dropdown">
+        <input type="hidden" name="_tracker" value="2">
+        <input type="hidden" name="_datatypes" value="eyJiMkpxWldOMFgyUnliM0JrYjNkdSI6ICJvYmplY3QifQ">
+        <input type="hidden" name="_visible" value="">
+        <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJiMkpxWldOMFgyUnliM0JrYjNkdSJ9">
+    </form>
+</div>`;
 
 
-// ============================
-// `.there_is_another`
-// ============================
-html.there_is_another = `
-<section id="daquestion" class="tab-pane active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-  <div data-variable="ZGlyZWN0X3N0YW5kYXJkX2ZpZWxkcw" id="trigger" aria-hidden="true" style="display: none;"></div>
-  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground204testing127loop%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
-    <div class="da-page-header">
-      <h1 class="h3" id="daMainQuestion">Is there another proxy var?</h1>
-      <div class="daclear"></div>
-    </div>
-    
-    <fieldset class="da-button-set da-field-yesno">
-      <legend class="sr-only">Press one of the following buttons:</legend>
-      <div class="form-actions">
-        <button class="btn btn-primary btn-da " name="eC50aGVyZV9pc19hbm90aGVy" type="submit" value="True" style="background: khaki;"><span>Yes</span></button>
-        <button class="btn btn-da btn-secondary" name="eC50aGVyZV9pc19hbm90aGVy" type="submit" value="False" style="background: khaki;"><span>No</span></button>
-      </div>
-    </fieldset>
+html.mixed_quotes = `
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="ZG91YmxlX3F1b3RlX2RpY3RbJ2RvdWJsZV9xdW90ZV9rZXknXQ" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" class="form-horizontal" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion">Some complex fields</h1>
+            <div class="daclear"></div>
+        </div>
+        <div class="da-form-group row da-field-container da-field-container-datatype-checkboxes da-field-container-inputtype-checkboxes">
+            <label class="col-md-4 col-form-label da-form-label datext-right">Singly quoted key</label>
+            <div class="col-md-8 dafieldpart">
+                <fieldset class="da-field-checkboxes" role="group">
+                    <legend class="visually-hidden">Checkboxes:</legend>
+                    <input aria-label="1" alt="1" class="dafield0 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXQ_0" name="c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXVtCJ2MzRmZiMjVsJ10"
+                    type="checkbox" value="True" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXQ_0" tabindex="0" role="checkbox" aria-checked="false" aria-label="1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">1</span>
+                    </label>
+                    <input aria-label="2" alt="2" class="dafield0 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXQ_1" name="c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXVtCJ2MzRmZkSGR2J10"
+                    type="checkbox" value="True" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXQ_1" tabindex="0" role="checkbox" aria-checked="false" aria-label="2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">2</span>
+                    </label>
+                    <input aria-label="3" alt="3" class="dafield0 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXQ_2" name="c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXVtCJ2MzRmZkR2h5WldVJ10"
+                    type="checkbox" value="True" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="c2luZ2xlX3F1b3RlX2RpY3RbJ3NpbmdsZV9xdW90ZV9rZXknXQ_2" tabindex="0" role="checkbox" aria-checked="false" aria-label="3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">3</span>
+                    </label>
+                    <input aria-label="None of the above" alt="None of the above" class="dafield0 danota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" type="checkbox" name="_ignore0" aria-hidden="true" id="labelauty-647679"
+                    style="display: none;">
+                    <label class="form-label btn-light" for="labelauty-647679" tabindex="0" role="checkbox" aria-checked="false" aria-label="None of the above"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">None of the above</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">None of the above</span>
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="da-form-group row da-field-container da-field-container-datatype-checkboxes da-field-container-inputtype-checkboxes">
+            <label class="col-md-4 col-form-label da-form-label datext-right">Doubly quoted key</label>
+            <div class="col-md-8 dafieldpart">
+                <fieldset class="da-field-checkboxes" role="group">
+                    <legend class="visually-hidden">Checkboxes:</legend>
+                    <input aria-label="1" alt="1" class="dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXQ_0" name="ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXVtCJ1pIRmZiMjVsJ10"
+                    type="checkbox" value="True" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXQ_0" tabindex="0" role="checkbox" aria-checked="false" aria-label="1"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">1</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">1</span>
+                    </label>
+                    <input aria-label="2" alt="2" class="dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXQ_1" name="ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXVtCJ1pIRmZkSGR2J10"
+                    type="checkbox" value="True" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXQ_1" tabindex="0" role="checkbox" aria-checked="false" aria-label="2"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">2</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">2</span>
+                    </label>
+                    <input aria-label="3" alt="3" class="dafield1 danon-nota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" id="ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXQ_2" name="ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXVtCJ1pIRmZkR2h5WldVJ10"
+                    type="checkbox" value="True" aria-hidden="true" style="display: none;">
+                    <label class="form-label btn-light" for="ZG91YmxlX3F1b3RlX2RpY3RbImRvdWJsZV9xdW90ZV9rZXkiXQ_2" tabindex="0" role="checkbox" aria-checked="false" aria-label="3"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">3</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">3</span>
+                    </label>
+                    <input aria-label="None of the above" alt="None of the above" class="dafield1 danota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth" type="checkbox" name="_ignore1" aria-hidden="true" id="labelauty-382460"
+                    style="display: none;">
+                    <label class="form-label btn-light" for="labelauty-382460" tabindex="0" role="checkbox" aria-checked="false" aria-label="None of the above"><span class="labelauty-unchecked-image text-muted"><svg class="svg-inline--fa fa-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="far" data-icon="square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-6 400H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h340c3.3 0 6 2.7 6 6v340c0 3.3-2.7 6-6 6z"></path></svg><!-- <i class="far fa-square fa-fw"></i> Font Awesome fontawesome.com --></span>
+                        <span
+                        class="labelauty-unchecked">None of the above</span><span class="labelauty-checked-image"><svg class="svg-inline--fa fa-check fa-w-16 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path></svg><!-- <i class="fas fa-check fa-fw"></i> Font Awesome fontawesome.com --></span>
+                            <span
+                            class="labelauty-checked">None of the above</span>
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <input type="hidden" name="_checkboxes" value="eyJjMmx1WjJ4bFgzRjFiM1JsWDJScFkzUmJKM05wYm1kc1pWOXhkVzkwWlY5clpYa25YVnRDSjJNelJtWmlNalZzSjEwIjogIkZhbHNlIiwgImMybHVaMnhsWDNGMWIzUmxYMlJwWTNSYkozTnBibWRzWlY5eGRXOTBaVjlyWlhrblhWdENKMk16Um1aa1NHUjJKMTAiOiAiRmFsc2UiLCAiYzJsdVoyeGxYM0YxYjNSbFgyUnBZM1JiSjNOcGJtZHNaVjl4ZFc5MFpWOXJaWGtuWFZ0Q0oyTXpSbVprUjJoNVdsZFZKMTAiOiAiRmFsc2UiLCAiWkc5MVlteGxYM0YxYjNSbFgyUnBZM1JiSW1SdmRXSnNaVjl4ZFc5MFpWOXJaWGtpWFZ0Q0oxcElSbVppTWpWc0oxMCI6ICJGYWxzZSIsICJaRzkxWW14bFgzRjFiM1JsWDJScFkzUmJJbVJ2ZFdKc1pWOXhkVzkwWlY5clpYa2lYVnRDSjFwSVJtWmtTR1IySjEwIjogIkZhbHNlIiwgIlpHOTFZbXhsWDNGMWIzUmxYMlJwWTNSYkltUnZkV0pzWlY5eGRXOTBaVjlyWlhraVhWdENKMXBJUm1aa1IyaDVXbGRWSjEwIjogIkZhbHNlIn0">
+        <fieldset class="da-button-set da-field-buttons">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button class="btn btn-da btn-primary" type="submit">Continue</button>
+        </fieldset>
+        <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YaI9GQ.FV-3E3wNClsNK6F_lvJlxdVDxXY">
+        <input type="hidden" name="_event" value="WyJkb3VibGVfcXVvdGVfZGljdFsnZG91YmxlX3F1b3RlX2tleSddIl0">
+        <input type="hidden" name="_question_name" value="ID group of complex fields">
+        <input type="hidden" name="_tracker" value="3">
+        <input type="hidden" name="_datatypes" value="eyJjMmx1WjJ4bFgzRjFiM1JsWDJScFkzUmJKM05wYm1kc1pWOXhkVzkwWlY5clpYa25YUSI6ICJjaGVja2JveGVzIiwgIlpHOTFZbXhsWDNGMWIzUmxYMlJwWTNSYkltUnZkV0pzWlY5eGRXOTBaVjlyWlhraVhRIjogImNoZWNrYm94ZXMifQ">
+        <input type="hidden" name="_visible" value="">
+        <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJjMmx1WjJ4bFgzRjFiM1JsWDJScFkzUmJKM05wYm1kc1pWOXhkVzkwWlY5clpYa25YUSIsICJYMlpwWld4a1h6RSI6ICJaRzkxWW14bFgzRjFiM1JsWDJScFkzUmJJbVJ2ZFdKc1pWOXhkVzkwWlY5clpYa2lYUSJ9">
+    </form>
+</div>`;
 
-    <input type="hidden" name="csrf_token" value="ImI5ZWQ4NjgyNGQ3YmI2Mjc3M2MxOTFlMWYxNGI2OTczMmE3Y2FmOTYi.YM3WkQ.JiJhEgcVVaClLUrvQqWx60UHe_k">
-    <input type="hidden" name="_event" value="WyJwcm94eV9saXN0LnRoZXJlX2lzX2Fub3RoZXIiXQ">
-    <input type="hidden" name="_question_name" value="ID is there another generic">
-    <input type="hidden" name="_tracker" value="9">
-    <input type="hidden" name="_datatypes" value="eyJlQzUwYUdWeVpWOXBjMTloYm05MGFHVnkiOiAiYm9vbGVhbiJ9">
-    <input type="hidden" name="_visible" value="">
-  </form>
-</section>`;
+
+// // ============================
+// // `.there_is_another`
+// // ============================
+// html.there_is_another = `
+// <div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+//     <div data-variable="cHJveHlfbGlzdC50aGVyZV9pc19hbm90aGVy" id="trigger" aria-hidden="true" style="display: none;"></div>
+//     <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
+//         <div class="da-page-header">
+//             <h1 class="h3" id="daMainQuestion">Is there another proxy var?</h1>
+//             <div class="daclear"></div>
+//         </div>
+//         <fieldset class="da-button-set da-field-yesno">
+//             <legend class="visually-hidden">Press one of the following buttons:</legend>
+//             <button class="btn btn-primary btn-da" name="eC50aGVyZV9pc19hbm90aGVy" type="submit" value="True">Yes</button>
+//             <button class="btn btn-secondary btn-da" name="eC50aGVyZV9pc19hbm90aGVy" type="submit" value="False">No</button>
+//         </fieldset>
+//         <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ5KUQ.2ObHJubASqN4YqSlhzwDhdZxaoQ">
+//         <input type="hidden" name="_event" value="WyJwcm94eV9saXN0LnRoZXJlX2lzX2Fub3RoZXIiXQ">
+//         <input type="hidden" name="_question_name" value="ID is there another generic">
+//         <input type="hidden" name="_tracker" value="19">
+//         <input type="hidden" name="_datatypes" value="eyJlQzUwYUdWeVpWOXBjMTloYm05MGFHVnkiOiAiYm9vbGVhbiJ9">
+//         <input type="hidden" name="_visible" value="">
+//     </form>
+// </div>`;
 
 
 module.exports = html;
