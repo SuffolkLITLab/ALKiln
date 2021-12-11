@@ -39,6 +39,15 @@ Format:
 - 
 -->
 <!-- ## [Unreleased] -->
+
+## [3.0.2] - 2021-12-10
+### Changed
+- Improve some error messages and handling for the new private repo workflow.
+
+## [3.0.1] - 2021-12-10
+### Fixed
+- Allow authenticated GitHub user to pull from a private repository for which they have at least read permissions.
+
 ## [3.0.0] - 2021-12-07
 ### Changed
 - v3 release to update to da Bootstrap 5. Breaks for servers that have not yet updated to that da version.
