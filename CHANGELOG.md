@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [3.0.3] - 2021-12-11
+### Fixed
+- Implement a temporary fix for inability to pull private repos into empty da Projects. See https://github.com/SuffolkLITLab/ALKiln/issues/417#issuecomment-991812294
+
 ## [3.0.2] - 2021-12-10
 ### Changed
 - Improve some error messages and handling for the new private repo workflow.
