@@ -40,6 +40,11 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+<!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
+### Changed
+- Peer dependencies and dev dependencies. Now `cucumber` is just a dependency. See https://github.com/SuffolkLITLab/ALKiln/issues/396 for discussion.
+
+
 ## [3.0.4] - 2021-12-11
 ### Fixed
 - Use different criteria for testing that the package was saved.
@@ -55,6 +60,7 @@ Format:
 ## [3.0.1] - 2021-12-10
 ### Fixed
 - Allow authenticated GitHub user to pull from a private repository for which they have at least read permissions.
+
 
 ## [3.0.0] - 2021-12-07
 ### Changed
