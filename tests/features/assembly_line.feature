@@ -3,8 +3,11 @@ Feature: Assembly Line package-specific Steps
 
 # In tag names, 'al' is for 'assembly line'
 
+# Note: the first test for this suite is the first test in this file and we're having timeout issues, so we're trying to give the server longer to load.
+
 @fast @al1
 Scenario: I have two name parts
+  Given the max secs for each step is 120
   Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli User"
   And I tap to continue

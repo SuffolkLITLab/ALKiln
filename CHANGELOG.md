@@ -39,9 +39,28 @@ Format:
 - 
 -->
 <!-- ## [Unreleased] -->
-## [3.0.1-peer-deps.1] - 2021-12-07
+
+<!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
 ### Changed
 - Peer dependencies and dev dependencies. Now `cucumber` is just a dependency. See https://github.com/SuffolkLITLab/ALKiln/issues/396 for discussion.
+
+
+## [3.0.4] - 2021-12-11
+### Fixed
+- Use different criteria for testing that the package was saved.
+
+## [3.0.3] - 2021-12-11
+### Fixed
+- Implement a temporary fix for inability to pull private repos into empty da Projects. See https://github.com/SuffolkLITLab/ALKiln/issues/417#issuecomment-991812294
+
+## [3.0.2] - 2021-12-10
+### Changed
+- Improve some error messages and handling for the new private repo workflow.
+
+## [3.0.1] - 2021-12-10
+### Fixed
+- Allow authenticated GitHub user to pull from a private repository for which they have at least read permissions.
+
 
 ## [3.0.0] - 2021-12-07
 ### Changed
