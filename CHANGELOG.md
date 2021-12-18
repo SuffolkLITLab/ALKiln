@@ -46,8 +46,8 @@ Format:
 - Use API key to access da server, create projects, pull code, delete projects, and check for server restart.
 
 <!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
-### Removed
-- Peer dependencies and dev dependencies. Now `cucumber` is just a dependency. See https://github.com/SuffolkLITLab/ALKiln/issues/396 for discussion. Setup interview has not been updated to remove dependencies.
+### Changed
+- Peer dependencies and dev dependencies. Now `cucumber` is just a dependency. See https://github.com/SuffolkLITLab/ALKiln/issues/396 for discussion.
 
 
 ## [3.0.4] - 2021-12-11
