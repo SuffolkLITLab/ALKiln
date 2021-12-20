@@ -11,8 +11,8 @@
     "langs_setup": "./lib/utils/langs.js 'tests/features/*.feature'",
     "langs_local": "npm run langs_setup && npm run local",
     "local": "npm run setup && npm run cucumber; npm run takedown",
-    "setup": "./lib/github_integration/setup.js",
-    "takedown": "./lib/github_integration/takedown.js",
+    "setup": "./lib/docassemble/setup.js",
+    "takedown": "./lib/docassemble/takedown.js",
     "unit": "mocha tests/unit_tests/*.test.*"
   },
   "repository": {
@@ -45,8 +45,8 @@
     "sanitize-filename": "^1.6.3"
   },
   "bin": {
-    "da-setup": "./lib/github_integration/setup.js",
-    "da-takedown": "./lib/github_integration/takedown.js",
+    "da-setup": "./lib/docassemble/setup.js",
+    "da-takedown": "./lib/docassemble/takedown.js",
     "da-cucumber": "./lib/index.js",
     "da-langs": "./lib/utils/langs.js"
   }
