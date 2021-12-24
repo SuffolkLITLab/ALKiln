@@ -38,7 +38,6 @@ Format:
 ### Security
 - 
 -->
-<<<<<<< HEAD
 ## [Unreleased]
 ### Added
 - Add action.yml that runs most of what users' workflows run now, along with notes for a new user workflow that will take less maintainance. See #420. We need to add documentation on how to write a workflow file as it currently is if they want to take back control. Setup interview has not yet been updated with this workflow.
