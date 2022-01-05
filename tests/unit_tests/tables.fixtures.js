@@ -373,6 +373,16 @@ tables.proxies_multi = [
   { "trigger": "proxy_list[2].name.first", "var": "x[i].name.first", "value": "Firstname", },
 ];
 
+// Missing table row for second loop
+tables.proxies_missing_loop = [
+  { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
+];
+
+// Missing trigger matches second loop
+tables.proxies_missing_trigger = [
+  { "trigger": "", "var": "x[i].name.first", "value": "Firstname", },
+];
+
 
 // ============================
 // Signature

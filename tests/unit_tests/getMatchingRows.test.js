@@ -188,6 +188,32 @@ describe(`For mulitple rows with the same proxies`, async function() {
   }
 });
 
+// Missing table row for loop
+describe(`For a second proxy loop page,`, async function() {
+  for ( let test_i = 0; test_i < fields.proxies_multi.length; test_i++ ) {
+    let field = fields.proxies_multi[ test_i ];
+    let curr_matches = matches.proxies_missing_loop[ test_i ];
+    let name = getSafeName( field );
+    it( `does not find any matches when table row for second loop page is missing`, async function() {
+      let result = await getMatchingRows( scope, { field, var_data: tables.proxies_missing_loop });
+      expect( result ).to.deep.equal( curr_matches );
+    });
+  }
+});
+
+// Missing trigger matches second loop
+describe(`For a second proxy loop page,`, async function() {
+  for ( let test_i = 0; test_i < fields.proxies_multi.length; test_i++ ) {
+    let field = fields.proxies_multi[ test_i ];
+    let curr_matches = matches.proxies_missing_trigger[ test_i ];
+    let name = getSafeName( field );
+    it( `matches with a missing trigger row with the correct variable name`, async function() {
+      let result = await getMatchingRows( scope, { field, var_data: tables.proxies_missing_trigger });
+      expect( result ).to.deep.equal( curr_matches );
+    });
+  }
+});
+
 
 // ============================
 // Signature

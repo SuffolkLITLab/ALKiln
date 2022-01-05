@@ -111,6 +111,18 @@ matches.proxies_multi = [
   []
 ];
 
+// Missing table row for second loop
+matches.proxies_missing_loop = [
+  [],
+  []
+];
+
+// Missing trigger matches second loop
+matches.proxies_missing_trigger = [
+  [{"trigger":"","var":"x[i].name.first","value":"Firstname"}],
+  []
+];
+
 
 // ============================
 // Signature

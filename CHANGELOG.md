@@ -46,6 +46,9 @@ Format:
 ### Removed
 - Peer dependencies and dev dependencies. Now `cucumber` is just a dependency. See https://github.com/SuffolkLITLab/ALKiln/issues/396 for discussion. Setup interview has not been updated to remove dependencies.
 
+### Fixed
+- Proxy var story table row matches for any page containing the given variable name when there's only one row for the relevant variable. #464.
+
 
 ## [3.0.4] - 2021-12-11
 ### Fixed
