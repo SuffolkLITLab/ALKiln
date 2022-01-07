@@ -25,14 +25,36 @@ inputs:
 runs:
   using: "composite"
   steps:
+    # This doesn't use an already established package-lock.json and that
+    # comes with some types of test breaking risks. Same problem as before.
+    - name: Overwrite or create package.json
+      run: |
+        cat << EOF > "package.json"
+        {
+          "scripts": {
+            "test": "npm run langs_setup && npm run cucumber -- $@",
+            "cucumber_base": "./node_modules/.bin/cucumber-js --require ./node_modules/docassemble-cucumber/lib/index.js",
+            "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" docassemble/*/data/sources/*.feature; }; run_cucumber",
+            "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./node_modules/docassemble-cucumber/lib/index.js docassemble/*/data/sources/*_lang*.feature",
+            "langs_setup": "node_modules/.bin/da-langs 'docassemble/*/data/sources/*.feature'",
+            "setup": "node_modules/.bin/da-setup",
+            "takedown": "node_modules/.bin/da-takedown"
+          },
+          "dependencies": {
+            "cucumber": "^6.0.5",
+            "docassemble-cucumber": "^3.0.0"
+          }
+        }
+      shell: bash
+
     # Install node
-    - name: "ALKiln: Install node package manager"
+    - name: "ALKiln: Install node packages"
       uses: actions/setup-node@v1
       with:
         node-version: "12"
     - run: npm install
       shell: bash
-
+      
     # Set environment variables
     - name: "ALKiln: Set environment variables"
       # If extra languages were set manually, override the repository
@@ -73,7 +95,7 @@ runs:
       if: ${{ always() }}
       run: npm run takedown
       shell: bash
-
+    
     # Upload artifacts that subscribers can download on the Actions summary page
     - name: "ALKiln: Upload errors to action summary artifacts"
       if: ${{ failure() }}
@@ -84,12 +106,14 @@ runs:
     - name: "ALKiln: Upload screenshots to action summary artifacts"
       if: ${{ always() }}
       uses: actions/upload-artifact@v2
+      #if-no-files-found: ignore
       with:
         name: screenshots
         path: ./**/screenshot*.jpg
     - name: "ALKiln: Upload downloaded files to action summary artifacts"
       if: ${{ always() }}
       uses: actions/upload-artifact@v2
+      #if-no-files-found: ignore
       with:
         name: downloads
         path: ./**/downloads_*
