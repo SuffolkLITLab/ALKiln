@@ -40,6 +40,13 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [3.0.6] - 2021-01-07
+### Changed
+- See #371
+- Scenario heading tags are now on a second line
+- Artifact filenames use dashes more and are created separately from Scenario headings
+- Scenario ids are separated from filenames and Scenario headings
+
 ## [3.0.5] - 2021-01-06
 ### Added
 - Add action.yml that runs most of what users' workflows run now, along with notes for a new user workflow that will take less maintainance. See #420. We need to add documentation on how to write a workflow file as it currently is if they want to take back control. Setup interview has not yet been updated with this workflow.
