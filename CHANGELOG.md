@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Added
+- Step: `the value of the JSON variable "([^"]+)" should be "([^"]+)"`. Compare JSON variable with a text value to given text. See #470.
 
 ## [3.0.6] - 2021-01-07
 ### Changed
