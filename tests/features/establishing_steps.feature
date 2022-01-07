@@ -15,3 +15,8 @@ Scenario: I am able to set a custom wait time before an interview has been loade
   Given the max seconds for each step in this scenario is 40
   And I start the interview at "all_tests"
   And I wait 35 seconds
+
+@fast @e3 @urlargs
+Scenario: Interview name includes url args
+  Given I start the interview at "url_args.yml&from=theinternets&random=zoo"
+  Then I should see the phrase "zoo"
