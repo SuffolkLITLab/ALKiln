@@ -17,22 +17,6 @@ let mock_scenario = function ( description, tag_names=[] ) {
   return scenario;
 };  // Ends mock_scenario();
 
-
-let test_basename = function ( description, result ) {
-  /* Test a name to see if it's valid output with a language defined. */
-  let expected_name_regex_str = `^${ expected_prefix }\\d{13}_${ names.base_filename }$`;
-  let regex = new RegExp( expected_name_regex_str );
-
-  // Log more info if it failed
-  let found_match = regex.test( result );
-  if ( !found_match ) {
-    console.log( 'regex:', regex.source );
-    console.log( 'result:', result );
-  }
-
-  expect( found_match ).to.be.true;
-};
-
 describe(`When I use scope.getSafeScenarioBaseFilename()`, function() {
 
   beforeEach(function() {
