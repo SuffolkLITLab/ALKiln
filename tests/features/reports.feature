@@ -350,7 +350,8 @@ Scenario: Report still shows page id when I tap to continue without setting any 
   Given the Scenario report should include:
     """
     ---------------
-    Scenario: Report still shows page id when I tap to continue without setting any fields reports fast rp 
+    Scenario: Report still shows page id when I tap to continue without setting any fields
+    Tags: @reports @fast @rp1
     ---------------
     screen id: upload-files
     screen id: group-of-complex-fields
@@ -396,7 +397,8 @@ Scenario: Report lists unused table rows
     """
 
     ---------------
-    Scenario: Report lists unused table rows reports slow rp 
+    Scenario: Report lists unused table rows
+    Tags: @reports @slow @rp2
     ---------------
     screen id: upload-files
     screen id: group-of-complex-fields
