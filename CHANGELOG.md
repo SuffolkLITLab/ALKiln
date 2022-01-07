@@ -38,17 +38,22 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Fixed
+- Proxy var story table row matches for any page containing the given variable name when there's only one row for the relevant variable. #464.
+
+## [3.0.5] - 2021-01-06
 ### Added
 - Add action.yml that runs most of what users' workflows run now, along with notes for a new user workflow that will take less maintainance. See #420. We need to add documentation on how to write a workflow file as it currently is if they want to take back control. Setup interview has not yet been updated with this workflow.
+- Add package.json creation/overwriting to action.yml. Simplify package.json.
 
 <!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
 ### Removed
 - Peer dependencies and dev dependencies. Now `cucumber` is just a dependency. See https://github.com/SuffolkLITLab/ALKiln/issues/396 for discussion. Setup interview has not been updated to remove dependencies.
 
 ### Fixed
-- Proxy var story table row matches for any page containing the given variable name when there's only one row for the relevant variable. #464.
-
+- Interview name not allowing url parameters. #449
 
 ## [3.0.4] - 2021-12-11
 ### Fixed
