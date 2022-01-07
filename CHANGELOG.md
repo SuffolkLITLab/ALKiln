@@ -38,10 +38,11 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
 ### Added
 - Add action.yml that runs most of what users' workflows run now, along with notes for a new user workflow that will take less maintainance. See #420. We need to add documentation on how to write a workflow file as it currently is if they want to take back control. Setup interview has not yet been updated with this workflow.
 - Add package.json creation/overwriting to action.yml. Simplify package.json.
+- Step: `the value of the JSON variable "([^"]+)" should be "([^"]+)"`. Compare JSON variable with a text value to given text. See #470.
 
 <!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
 ### Removed

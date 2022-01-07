@@ -95,3 +95,22 @@ Scenario: Test "Then I don’t continue" with an apostrophe
   And I tap to continue
   Then I don’t continue
   And I will be told an answer is invalid
+
+@fast @o9
+Scenario: I can match JSON page var to str
+  Given I start the interview at "all_tests.yml"
+  And I get to "showifs" with this data:
+    | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
+    | date_input | today | |
+  Then the value of the JSON variable "dropdown_test" should be
+  """
+  dropdown_opt_2
+  """
