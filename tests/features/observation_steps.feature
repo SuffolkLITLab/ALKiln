@@ -110,7 +110,7 @@ Scenario: I can match JSON page var to str
     | text_input | Regular text input field value | |
     | textarea | Multiline text\narea value | |
     | date_input | today | |
-  Then the value of the JSON variable "dropdown_test" should be
+  Then the text in the JSON variable "dropdown_test" should be
   """
   dropdown_opt_2
   """
