@@ -41,6 +41,10 @@ Format:
 <!-- ## [Unreleased] -->
 ## [3.0.7] - 2022
 ### Security
+- Fully publish the security fix in v3.0.7
+
+## [3.0.7] - 2022
+### Security
 - Pinned colors library to 1.4.0. See https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/. We don't use faker, so we don't need to handle that.
 
 ## [3.0.6] - 2022-01-07
