@@ -52,6 +52,7 @@ Format:
 
 ### Fixed
 - Fixed interview name not allowing url parameters. #449
+- Fix invalid project name allowed.
 
 
 ## [3.0.4] - 2021-12-11
