@@ -39,7 +39,7 @@ Format:
 - 
 -->
 <!-- ## [Unreleased] -->
-## [3.0.7] - 2022-01-10
+## [3.0.9] - 2022-01-10
 ### Security
 - Install the security fix in the action's package.json as well. Because dependents have to require cucumber itself, if they're not using our action (if they have their own package.json), they're going to have to implement this fix in their repo too. That's why our fix isn't working. We'll start the process of helping developers update. We also need to deprecate all previous versions of ALKiln. See #489.
 
