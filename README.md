@@ -1,6 +1,6 @@
 # ALKiln
 
-Formerly named "docassemble-cucumer"
+Formerly named "docassemble-cucumber"
 
 Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.
 
