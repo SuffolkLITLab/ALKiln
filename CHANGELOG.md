@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [3.0.10] - 2022-01-24
 ### Added
 - Step to log the page's JSON variables and values in the report. Future goal: save to file. See #454.
 
