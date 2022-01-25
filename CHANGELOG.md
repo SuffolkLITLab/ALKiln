@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Added
+- Step: `the text in the JSON variable "variable_with_text_value" should be`. Compare JSON variable with a text value to given text. See #470. Does not accept nested values, e.g. "child.name.first". Downloads all the JSON vars to a .json file in the "downloads" artifacts.
 
 ## [3.0.10] - 2022-01-24
 ### Added
