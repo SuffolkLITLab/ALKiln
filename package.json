@@ -1,6 +1,6 @@
 {
   "name": "docassemble-cucumber",
-  "version": "3.0.6",
+  "version": "3.0.10",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
@@ -36,6 +36,7 @@
   "dependencies": {
     "chai": "^4.2.0",
     "cheerio": "^1.0.0-rc.5",
+    "colors": "1.4.0",
     "cucumber": "^6.0.5",
     "dotenv": "^8.2.0",
     "mocha": "^7.2.0",

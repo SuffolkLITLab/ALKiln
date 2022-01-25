@@ -114,3 +114,9 @@ Scenario: I can match JSON page var to str
   """
   dropdown_opt_2
   """
+
+# Maybe this one should be in the report tests (as well?)
+@fast @o10 @json
+Scenario: I get the page's JSON
+  Given I start the interview at "all_tests"
+  Then I get the page's JSON variables and values

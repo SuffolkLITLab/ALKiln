@@ -42,14 +42,30 @@ Format:
 ### Added
 - Step: `the text in the JSON variable "variable_with_text_value" should be`. Compare JSON variable with a text value to given text. See #470. Does not accept nested values, e.g. "child.name.first". Downloads all the JSON vars to a .json file in the "downloads" artifacts.
 
-## [3.0.6] - 2021-01-07
+## [3.0.10] - 2022-01-24
+### Added
+- Step to log the page's JSON variables and values in the report. Future goal: save to file. See #454.
+
+## [3.0.9] - 2022-01-10
+### Security
+- Install the security fix in the action's package.json as well. Because dependents have to require cucumber itself, if they're not using our action (if they have their own package.json), they're going to have to implement this fix in their repo too. That's why our fix isn't working. We'll start the process of helping developers update. We also need to deprecate all previous versions of ALKiln. See #489.
+
+## [3.0.8] - 2022-01-10
+### Security
+- Fully publish the security fix in v3.0.7
+
+## [3.0.7] - 2022-01-10
+### Security
+- Pinned colors library to 1.4.0. See https://www.bleepingcomputer.com/news/security/dev-corrupts-npm-libs-colors-and-faker-breaking-thousands-of-apps/. We don't use faker, so we don't need to handle that.
+
+## [3.0.6] - 2022-01-07
 ### Changed
 - See #371
 - Scenario heading tags are now on a second line
 - Artifact filenames use dashes more and are created separately from Scenario headings
 - Scenario ids are separated from filenames and Scenario headings
 
-## [3.0.5] - 2021-01-06
+## [3.0.5] - 2022-01-06
 ### Added
 - Add action.yml that runs most of what users' workflows run now, along with notes for a new user workflow that will take less maintainance. See #420. We need to add documentation on how to write a workflow file as it currently is if they want to take back control. Setup interview has not yet been updated with this workflow.
 - Add package.json creation/overwriting to action.yml. Simplify package.json.
