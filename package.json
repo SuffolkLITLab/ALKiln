@@ -1,6 +1,6 @@
 {
   "name": "docassemble-cucumber",
-  "version": "3.0.5-hotfix-url-args.1",
+  "version": "3.0.11",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
@@ -36,11 +36,13 @@
   "dependencies": {
     "chai": "^4.2.0",
     "cheerio": "^1.0.0-rc.5",
+    "colors": "1.4.0",
     "cucumber": "^6.0.5",
     "dotenv": "^8.2.0",
     "mocha": "^7.2.0",
     "puppeteer": "^3.1.0",
-    "sanitize-filename": "^1.6.3"
+    "sanitize-filename": "^1.6.3",
+    "uuid": "^8.3.2"
   },
   "bin": {
     "da-setup": "./lib/github_integration/setup.js",
