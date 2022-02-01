@@ -354,6 +354,22 @@ Scenario: I can't match JSON page var to str
 # I sign
 
 # ===============================
+# Reports for Scenarios with warnings
+# ===============================
+
+@fast @rw1 @warning
+Scenario: Warn when there are too many names
+  Given the Scenario report should include:
+  """
+  The name "Uli Udo User Sr Jr" has more than 4 parts, but 4 is the maximum allowed. The test is using the first 4 parts.
+  """
+  Given I start the interview at "AL_tests"
+  And I set the name of "users[0]" to "Uli Udo User Sr Jr"
+  And I tap to continue
+  
+
+
+# ===============================
 # Reoprts for "passed" Scenarios
 # ===============================
 
