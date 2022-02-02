@@ -38,7 +38,7 @@ runs:
             "takedown": "node_modules/.bin/da-takedown"
           },
           "dependencies": {
-            "cucumber": "^6.0.5",
+            "@cucumber/cucumber": "^7.3.2",
             "docassemble-cucumber": "^3.0.0"
           }
         }
