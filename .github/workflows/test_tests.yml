@@ -18,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [17.x]
 
     env:
       BASE_URL: https://apps-dev.suffolklitlab.org
