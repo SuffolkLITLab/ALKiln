@@ -34,6 +34,7 @@
   },
   "homepage": "https://github.com/plocket/docassemble-cucumber#readme",
   "dependencies": {
+    "@cucumber/cucumber": "^7.0.0",
     "chai": "^4.2.0",
     "cheerio": "^1.0.0-rc.5",
     "cucumber": "^6.0.5",

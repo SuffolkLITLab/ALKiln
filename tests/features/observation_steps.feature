@@ -101,3 +101,9 @@ Scenario: Test "Then I don’t continue" with an apostrophe
 Scenario: I get the page's JSON
   Given I start the interview at "all_tests"
   Then I get the page's JSON variables and values
+
+@fast @o9
+Scenario: I take a screenshot
+  Given I start the interview at "all_tests"
+  Then I take a screenshot
+  Then I take a screenshot named "some-screenshot"
