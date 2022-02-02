@@ -41,6 +41,7 @@ Format:
 <!-- ## [Unreleased] -->
 
 ### Changed
+- Update to v13 of puppeteer
 - Update to v7 of cucumber
 - Update action.yml node to v17
 
