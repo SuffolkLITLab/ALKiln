@@ -38,6 +38,7 @@ runs:
             "takedown": "node_modules/.bin/da-takedown"
           },
           "dependencies": {
+            "colors": "1.4.0",
             "@cucumber/cucumber": "^7.3.2",
             "docassemble-cucumber": "^3.0.0"
           }
