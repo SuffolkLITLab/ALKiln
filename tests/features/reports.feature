@@ -341,7 +341,7 @@ Scenario: Fail with system error after Step using wrong file name as trigger
 # I sign
 
 # ===============================
-# Reoprts for Scenarios with warnings
+# Reports for Scenarios with warnings
 # ===============================
 
 @fast @rw1 @warning
@@ -355,7 +355,7 @@ Scenario: Warn when there are too many names
   And I tap to continue
 
 # ===============================
-# Reoprts for "passed" Scenarios
+# Reports for "passed" Scenarios
 # ===============================
 
 @fast @rp1
