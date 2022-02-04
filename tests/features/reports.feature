@@ -341,8 +341,18 @@ Scenario: Fail with system error after Step using wrong file name as trigger
 # I sign
 
 # ===============================
-# Reoprts for  Scenarios
+# Reoprts for Scenarios with warnings
 # ===============================
+
+@fast @rw1 @warning
+Scenario: Warn when there are too many names
+  Given the Scenario report should include:
+  """
+  The name "Uli Udo User Sampson Jr" has more than 4 parts, but 4 is maximum allowed. The test will set the name to "Uli Udo User Jr"
+  """
+  Given I start the interview at "AL_tests"
+  And I set the name of "users[0]" to "Uli Udo User Sampson Jr"
+  And I tap to continue
 
 # ===============================
 # Reoprts for "passed" Scenarios
