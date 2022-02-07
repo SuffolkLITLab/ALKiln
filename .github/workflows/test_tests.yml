@@ -21,10 +21,11 @@ jobs:
         node-version: [12.x]
 
     env:
-      BASE_URL: https://apps-dev.suffolklitlab.org
+      BASE_URL: ${{ secrets.SERVER_URL }}
       PLAYGROUND_EMAIL: ${{ secrets.PLAYGROUND_EMAIL }}
       PLAYGROUND_PASSWORD: ${{ secrets.PLAYGROUND_PASSWORD }}
       PLAYGROUND_ID: ${{ secrets.PLAYGROUND_ID }}
+      DOCASSEMBLE_DEVELOPER_API_KEY: ${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}
       BRANCH_PATH: main
       EXTRA_LANGUAGES: ${{ secrets.EXTRA_LANGUAGES }}
       REPO_URL: https://github.com/plocket/docassemble-ALAutomatedTestingTests

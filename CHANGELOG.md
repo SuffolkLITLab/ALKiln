@@ -45,12 +45,16 @@ Format:
 - Step: `the text in the JSON variable "variable_with_text_value" should be`. Compare JSON variable with a text value to given text. See #470. Does not accept nested values, e.g. "child.name.first". Downloads all the JSON vars to a .json file in the "downloads" artifacts.
 - Step to log the page's JSON variables and values in the report. Future goal: save to file. See #454.
 
+### Changed
+- Use API key to access da server, create projects, pull code, delete projects, and check for server restart.
+
 <!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
 ### Removed
 - Peer dependencies and dev dependencies. Now `cucumber` is just a dependency. See https://github.com/SuffolkLITLab/ALKiln/issues/396 for discussion. Setup interview has not been updated to remove dependencies.
 
 ### Fixed
 - Fixed interview name not allowing url parameters. #449
+- Fix invalid project name allowed.
 
 
 ## [3.0.4] - 2021-12-11
