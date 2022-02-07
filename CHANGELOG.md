@@ -38,6 +38,12 @@ Format:
 ### Security
 - 
 -->
+
+<!-- ## [Unreleased] -->
+### Changed
+- Add warning in steps.js for name input with too many parts.
+- Create test in reports features to test the warning. 
+
 <!-- ## [Unreleased] -->
 ### Added
 - Add action.yml that runs most of what users' workflows run now, along with notes for a new user workflow that will take less maintainance. See #420. We need to add documentation on how to write a workflow file as it currently is if they want to take back control. Setup interview has not yet been updated with this workflow.
