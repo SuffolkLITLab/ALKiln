@@ -16,6 +16,10 @@ Scenario: I am able to set a custom wait time before an interview has been loade
   And I start the interview at "all_tests"
   And I wait 35 seconds
 
+@slow @e3 @wait_first
+Scenario: I can wait as a first step in a test
+  Given I wait 1 second
+
 @fast @e3 @urlargs
 Scenario: Interview name includes url args
   Given I start the interview at "url_args.yml&from=theinternets&random=zoo"
