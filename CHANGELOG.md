@@ -49,6 +49,8 @@ Format:
 - Update to v13 of puppeteer
 - Update to v7 of cucumber
 - Update action.yml node to v17
+- Use alkiln v4 package.json we create during the test run in `action.yml` (as discussed in #489)
+- Remove and ignore package-lock.json so that our tests will behave more like our users' tests
 
 <!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
 ### Removed
@@ -56,6 +58,7 @@ Format:
 
 ### Fixed
 - Fixed interview name not allowing url parameters. #449
+- Freeze colors npm package to before bug in both package.json and action.yml
 
 
 ## [3.0.4] - 2021-12-11

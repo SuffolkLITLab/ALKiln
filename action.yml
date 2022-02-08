@@ -40,7 +40,7 @@ runs:
           "dependencies": {
             "colors": "1.4.0",
             "@cucumber/cucumber": "^7.3.2",
-            "docassemble-cucumber": "^3.0.0"
+            "docassemble-cucumber": "^4.0.0"
           }
         }
       shell: bash
@@ -126,7 +126,7 @@ runs:
 # # In place of `uses: suffolkLITLab/ALKiln@releases/v4`, they
 # # might use another version.
 
-# name: Use the ALKiln testing framework
+# name: Use ALKiln testing framework v4 to run tests
 # description: "Use the ALKiln testing framework to test interviews. See https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing."
 
 # on:
