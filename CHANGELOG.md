@@ -43,6 +43,7 @@ Format:
 ### Added
 - Add action.yml that runs most of what users' workflows run now, along with notes for a new user workflow that will take less maintainance. See #420. We need to add documentation on how to write a workflow file as it currently is if they want to take back control. Setup interview has not yet been updated with this workflow.
 - Add package.json creation/overwriting to action.yml. Simplify package.json.
+- Step: `the text in the JSON variable "variable_with_text_value" should be`. Compare JSON variable with a text value to given text. See #470. Does not accept nested values, e.g. "child.name.first". Downloads all the JSON vars to a .json file in the "downloads" artifacts.
 - Step to log the page's JSON variables and values in the report. Future goal: save to file. See #454.
 
 ### Changed
@@ -51,6 +52,9 @@ Format:
 - Update action.yml node to v17
 - Use alkiln v4 package.json we create during the test run in `action.yml` (as discussed in #489)
 - Remove and ignore package-lock.json so that our tests will behave more like our users' tests
+- Use API key to access da server, create projects, pull code, delete projects, and check for server restart.
+- Add warning in steps.js for name input with too many parts.
+- Create test in reports features to test the warning.
 
 <!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
 ### Removed
@@ -59,7 +63,7 @@ Format:
 ### Fixed
 - Fixed interview name not allowing url parameters. #449
 - Freeze colors npm package to before bug in both package.json and action.yml
-
+- Fix invalid project name allowed.
 
 ## [3.0.4] - 2021-12-11
 ### Fixed
