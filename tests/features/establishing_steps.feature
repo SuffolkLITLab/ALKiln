@@ -20,3 +20,8 @@ Scenario: I am able to set a custom wait time before an interview has been loade
 Scenario: Interview name includes url args
   Given I start the interview at "url_args.yml&from=theinternets&random=zoo"
   Then I should see the phrase "zoo"
+
+@fast @e5 @login
+Scenario: I log in
+  Given I log in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
+  And I start the interview at "all_tests"
