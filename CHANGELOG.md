@@ -47,6 +47,7 @@ Format:
 
 ### Changed
 - Use API key to access da server, create projects, pull code, delete projects, and check for server restart.
+- Allow a developer to wait as a first Step. See #387.
 
 <!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
 ### Removed
