@@ -321,16 +321,29 @@ Scenario: Fail with system error after Step using wrong file name as trigger
 #  """
 #  And I start the interview at "wrong_yaml_filename"
 
-#@fast @rf22 @error
-#Scenario: Fail with 
-#  Given the final Scenario status should be "failed"
-#  Given the Scenario report should include:
-#  """
-#  
-#  """
-#  And I start the interview at "wrong_yaml_filename"
-
-
+@fast @rf22
+Scenario: I can't match JSON page var to str
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  was not equal to the expected value
+  """
+  Given I start the interview at "all_tests.yml"
+  And I get to "showifs" with this data:
+    | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
+    | date_input | today | |
+  Then the text in the JSON variable "dropdown_test" should be
+  """
+  wrong_value
+  """
 
 # scope.js
 # I upload "___" to "___"
@@ -350,7 +363,8 @@ Scenario: Report still shows page id when I tap to continue without setting any 
   Given the Scenario report should include:
     """
     ---------------
-    Scenario: Report still shows page id when I tap to continue without setting any fields reports fast rp 
+    Scenario: Report still shows page id when I tap to continue without setting any fields
+    Tags: @reports @fast @rp1
     ---------------
     screen id: upload-files
     screen id: group-of-complex-fields
@@ -396,7 +410,8 @@ Scenario: Report lists unused table rows
     """
 
     ---------------
-    Scenario: Report lists unused table rows reports slow rp 
+    Scenario: Report lists unused table rows
+    Tags: @reports @slow @rp2
     ---------------
     screen id: upload-files
     screen id: group-of-complex-fields
