@@ -41,3 +41,4 @@ Scenario: I have four name parts
   And I set the var "users[i].proxy_var" to "Mixed proxy var step test"
   And I tap to continue
   Then the question id should be "end"
+
