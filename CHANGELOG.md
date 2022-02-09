@@ -39,6 +39,8 @@ Format:
 - 
 -->
 <!-- ## [Unreleased] -->
+### Added
+- Add Step to log into server account using GitHub SECRETs. See #499.
 
 ## [3.1.11] - 2022-02-02
 ### Changed

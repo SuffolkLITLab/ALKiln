@@ -83,3 +83,7 @@ Scenario: I set text-type values
   And I tap to continue
   # Next page
   Then the question id should be "the end"
+
+@fast @i2
+Scenario: I log in
+  Given I log in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
