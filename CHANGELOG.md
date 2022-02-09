@@ -39,6 +39,12 @@ Format:
 - 
 -->
 <!-- ## [Unreleased] -->
+### Added
+- Add Step to log into server account using GitHub SECRETs. See #499.
+
+## [3.1.11] - 2022-02-02
+### Changed
+- Handle an Assembly Line name Step value that has too many names, including a warning for the developer. Include the first three names and the last name to try to catch suffixes.
 
 ## [3.0.11] - 2022-01-25
 ### Added
