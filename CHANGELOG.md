@@ -40,7 +40,11 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
-## [3.2.0] - 2022-02-04
+## [3.2.1] - 2022-02-09
+### Fixed
+- Typo in report that was messing up copy/paste of test table
+
+## [3.2.0] - 2022-02-09
 ### Added
 - Add Step to log into server account using GitHub SECRETs (environment variables). See #499.
 
