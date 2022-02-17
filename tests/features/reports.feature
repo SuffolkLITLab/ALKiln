@@ -354,7 +354,21 @@ Scenario: I can't match JSON page var to str
 # I sign
 
 # ===============================
-# Reoprts for "passed" Scenarios
+# Reports for Scenarios with warnings
+# ===============================
+
+@fast @rw1 @warning
+Scenario: Warn when there are too many names
+  Given the Scenario report should include:
+  """
+  The name "Uli Udo User Sampson Jr" has more than 4 parts, but 4 is the maximum allowed. The test will set the name to "Uli Udo User Jr"
+  """
+  Given I start the interview at "AL_tests"
+  And I set the name of "users[0]" to "Uli Udo User Sampson Jr"
+  And I tap to continue
+
+# ===============================
+# Reports for "passed" Scenarios
 # ===============================
 
 @fast @rp1
@@ -419,7 +433,7 @@ Scenario: Report lists unused table rows
           | double_quote_dict[\"double_quote_key\"]['dq_two'] | true |  |
 
       Rows that got set:
-        And I get the question id "direct standard fields" with this data:
+        And I get to the question id "direct standard fields" with this data:
           | var | value | trigger |
           | double_quote_dict[\"double_quote_key\"]['dq_two'] | true |  |
           | single_quote_dict['single_quote_key']['sq_two'] | true |  |
@@ -436,7 +450,7 @@ Scenario: Report lists unused table rows
           | dropdown_test | dropdown_opt_2 |  |
 
       Rows that got set:
-        And I get the question id "showifs" with this data:
+        And I get to the question id "showifs" with this data:
           | var | value | trigger |
           | checkboxes_other['checkbox_other_opt_1'] | true |  |
           | dropdown_test | dropdown_opt_2 |  |
@@ -458,7 +472,7 @@ Scenario: Report lists unused table rows
           | button_continue | True |  |
 
       Rows that got set:
-        And I get the question id "screen features" with this data:
+        And I get to the question id "screen features" with this data:
           | var | value | trigger |
           | button_continue | True |  |
           | buttons_other | button_2 |  |
