@@ -40,6 +40,8 @@ Format:
 -->
 <!--2022-02-11 -->
 ## [Unreleased]
+### Added
+-added log.txt for report items and pushed into github artifact
 ### Added 
 -fix typo in the report
 
