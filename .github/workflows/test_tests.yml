@@ -73,6 +73,12 @@ jobs:
         with:
           name: report
           path: ./**/*_report_*
+      - name: log artifact
+        uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: log file
+          path: ./log.txt
       - name: Cleanup
         if: ${{ always() }}
         run: npm run takedown

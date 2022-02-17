@@ -247,16 +247,16 @@ Tags: @observation @fast @o10 @json
   "i": "docassemble.playground259testingmain00000:all_tests.yml",
   "steps": 1,
   "success": true,
-  "uid": "EeJj63icS282GXWtD171fbgqsBKH2lCX",
+  "uid": "D10vpEFpbmuggjmbR0WdZuYkWRTGMLg7",
   "variables": {
     "_internal": {
       "accesstime": {
-        "-1": "2022-02-17T17:16:53.424182"
+        "-1": "2022-02-17T18:53:59.206563"
       },
       "answered": [],
       "answers": {},
       "device_local": {
-        "zUxCZvCNLZPhhgCB": {
+        "BtZBvkuKhzMmYTBl": {
           "_class": "docassemble.base.util.DADeviceLocal",
           "instanceName": "device_local"
         }
@@ -274,25 +274,25 @@ Tags: @observation @fast @o10 @json
         "roles": []
       },
       "misc": {},
-      "modtime": "2022-02-17T17:16:53.424182",
+      "modtime": "2022-02-17T18:53:59.206563",
       "objselections": {},
       "post default": "<div data-variable=\"dXBsb2FkX2ZpbGVzX3Zpc2libGU\" id=\"trigger\" aria-hidden=\"true\" style=\"display: none;\"></div>",
       "progress": 0,
       "referer": null,
       "secret": null,
       "session_local": {
-        "845d1e7084": {
+        "d5c90ea1a5": {
           "_class": "docassemble.base.util.DASessionLocal",
           "instanceName": "session_local"
         }
       },
-      "starttime": "2022-02-17T17:16:53.399887",
+      "starttime": "2022-02-17T18:53:59.183036",
       "steps": 1,
       "steps_offset": 0,
       "tasks": {},
       "tracker": 1,
       "user_local": {
-        "t174980": {
+        "t175272": {
           "_class": "docassemble.base.util.DAUserLocal",
           "instanceName": "user_local"
         }
@@ -590,7 +590,7 @@ Tags: @reports @fast @rf22
  type: row, value:       | textarea | Multiline text\narea value |  |Report:
  type: note, value:   All rows were usedReport:
  type: note, value: Report:
- type: error, value: The variable "dropdown_test" was not equal to the expected value on the "direct-standard-fields" screen. Check the downloads file downloads_direct-standard-fields_JSON_1645118273945-I can't match JSON page var to str-@reports-@fast-@rf22.json to see the page's JSON variables.Report:
+ type: error, value: The variable "dropdown_test" was not equal to the expected value on the "direct-standard-fields" screen. Check the downloads file downloads_direct-standard-fields_JSON_1645124099293-I can't match JSON page var to str-@reports-@fast-@rf22.json to see the page's JSON variables.Report:
  type: outcome, value: **-- Scenario Failed --**Report:
  type: heading, value: 
 ---------------
