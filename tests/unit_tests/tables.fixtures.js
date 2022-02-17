@@ -21,8 +21,8 @@ tables.standard = [
   { "var": "date_input","value":"today-1" },
   { "var": "radio_yesno", "value": "False" },
   { "var": "radio_other", "value": "radio_other_opt_2" },
-  { "var": "text_input", "value": "Some one-line text" },
-  { "var": "text_input","value":"Some conflicting text" },
+  { "var": "text_input", "value": "Some one-line text", "original": { "var": "text_input", "value": "Some one-line text" } },
+  { "var": "text_input","value":"Some conflicting text", "original": { "var": "text_input","value":"Some conflicting text" } },
   { "var": "textarea", "value": "Some\nmulti-line\ntext" },
   { "var": "dropdown_test", "value": "dropdown_opt_2" },  // May want to change `checked`
 ];
@@ -375,12 +375,12 @@ tables.proxies_multi = [
 
 // Missing table row for second loop
 tables.proxies_missing_loop = [
-  { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", "original": { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname" } },
 ];
 
 // Missing trigger matches second loop
 tables.proxies_missing_trigger = [
-  { "trigger": "", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "", "var": "x[i].name.first", "value": "Firstname", "original": { "trigger": "", "var": "x[i].name.first", "value": "Firstname" }},
 ];
 
 

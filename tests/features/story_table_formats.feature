@@ -1,4 +1,4 @@
-@story_tables_formats
+@story_tables_formats @table
 Feature: Supported story table formats
 
 NOTE:
