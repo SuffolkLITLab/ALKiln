@@ -38,6 +38,11 @@ Format:
 ### Security
 - 
 -->
+<!--2022-02-11 -->
+## [Unreleased]
+### Added 
+-fix typo in the report
+
 ## [Unreleased]
 ### Added
 - Add action.yml that runs most of what users' workflows run now, along with notes for a new user workflow that will take less maintainance. See #420. We need to add documentation on how to write a workflow file as it currently is if they want to take back control. Setup interview has not yet been updated with this workflow.
@@ -47,6 +52,8 @@ Format:
 
 ### Changed
 - Use API key to access da server, create projects, pull code, delete projects, and check for server restart.
+- Add warning in steps.js for name input with too many parts.
+- Create test in reports features to test the warning.
 
 <!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
 ### Removed
