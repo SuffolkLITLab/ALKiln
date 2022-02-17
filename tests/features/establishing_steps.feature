@@ -24,3 +24,9 @@ Scenario: Interview name includes url args
 @slow @e4 @wait_first
 Scenario: I can wait as a first step in a test
   Given I wait 1 second
+  
+@slow @e5 @wait_first
+Scenario: Interview name includes url args with a wait
+  Given I wait 1 second
+  Then I start the interview at "url_args.yml&from=theinternets&random=zoo"
+  Then I should see the phrase "zoo"
