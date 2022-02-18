@@ -46,8 +46,14 @@ Format:
 - Step: `the text in the JSON variable "variable_with_text_value" should be`. Compare JSON variable with a text value to given text. See #470. Does not accept nested values, e.g. "child.name.first". Downloads all the JSON vars to a .json file in the "downloads" artifacts.
 - Step to log the page's JSON variables and values in the report. Future goal: save to file. See #454.
 - Allow a developer to wait as a first Step. See #387.
+- fix typo in the report
 
 ### Changed
+- Update to v13 of puppeteer
+- Update to v7 of cucumber
+- Update action.yml node to v17
+- Use alkiln v4 package.json we create during the test run in `action.yml` (as discussed in #489)
+- Remove and ignore package-lock.json so that our tests will behave more like our users' tests
 - Use API key to access da server, create projects, pull code, delete projects, and check for server restart.
 - Add warning in steps.js for name input with too many parts. Add test in reports.
 - fix typo in the report
@@ -58,8 +64,8 @@ Format:
 
 ### Fixed
 - Fixed interview name not allowing url parameters. #449
+- Freeze colors npm package to before bug in both package.json and action.yml
 - Fix invalid project name allowed.
-
 
 ## [3.0.4] - 2021-12-11
 ### Fixed
