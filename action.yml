@@ -41,8 +41,9 @@ runs:
             "takedown": "node_modules/.bin/da-takedown"
           },
           "dependencies": {
-            "cucumber": "^6.0.5",
-            "docassemble-cucumber": "^3.0.0"
+            "colors": "1.4.0",
+            "@cucumber/cucumber": "^7.3.2",
+            "docassemble-cucumber": "^4.0.0"
           }
         }
       shell: bash
@@ -51,7 +52,7 @@ runs:
     - name: "ALKiln: Install node packages"
       uses: actions/setup-node@v1
       with:
-        node-version: "12"
+        node-version: "17"
     - run: npm install
       shell: bash
       
@@ -128,9 +129,8 @@ runs:
 # # A developer's workflow should look similar to the below
 # # In place of `uses: suffolkLITLab/ALKiln@releases/v4`, they
 # # might use another version.
-
-# name: Use the ALKiln testing framework
-
+#
+# name: Use the ALKiln testing framework v4 to run tests
 # on:
 #   push:
 #   workflow_dispatch:
