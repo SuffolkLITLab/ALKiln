@@ -9,7 +9,14 @@ dependent on it.
 
 ## Documentation
 
-https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing/
+Information for using the framework is at https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing/
+
+We're currently maintaining two stable versions and to see the status of each of those versions, you have to check those branches:
+
+- [Version 3](https://github.com/SuffolkLITLab/ALKiln/tree/releases/v3)
+- [Version 4](https://github.com/SuffolkLITLab/ALKiln/tree/releases/v4)
+
+See their CHANGELOGs at those locations.
 
 ## Integration tests
 To setup for the integration tests, create the project on the server:
