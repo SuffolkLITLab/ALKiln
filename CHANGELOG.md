@@ -38,6 +38,7 @@ Format:
 ### Security
 - 
 -->
+<!--2022-02-11 -->
 
 ## [Unreleased]
 ### Added
@@ -46,7 +47,8 @@ Format:
 - Step: `the text in the JSON variable "variable_with_text_value" should be`. Compare JSON variable with a text value to given text. See #470. Does not accept nested values, e.g. "child.name.first". Downloads all the JSON vars to a .json file in the "downloads" artifacts.
 - Step to log the page's JSON variables and values in the report. Future goal: save to file. See #454.
 - Allow a developer to wait as a first Step. See #387.
-- fix typo in the report
+- fix typo in the report.
+- Create log.txt for report items and uploaded as github artifact so there's always some kind of output.
 
 ### Changed
 - Update to v13 of puppeteer
