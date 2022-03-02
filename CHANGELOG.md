@@ -57,6 +57,7 @@ Format:
 - Use API key to access da server, create projects, pull code, delete projects, and check for server restart.
 - Add warning in steps.js for name input with too many parts. Add test in reports.
 - fix typo in the report
+- Throw an error for uploading nonexistent file, changed to error instead of warning in reports. 
 
 <!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
 ### Removed
