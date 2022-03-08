@@ -31,7 +31,7 @@ Scenario: Interview name includes url args with a wait
   Then I start the interview at "url_args.yml&from=theinternets&random=zoo"
   Then I should see the phrase "zoo"
 
-@fast @e6 @login
-Scenario: I log in
-  Given I log in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
+@fast @e6 @signin
+Scenario: I sign in
+  Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
   And I start the interview at "all_tests"

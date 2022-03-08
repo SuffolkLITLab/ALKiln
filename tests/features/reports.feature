@@ -345,26 +345,26 @@ Scenario: I can't match JSON page var to str
   wrong_value
   """
 
-@fast @rf22 @login
+@fast @rf22 @signin
 Scenario: Fail with wrong email secret
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
   email address GitHub SECRET
   """
-  Given I log in with the email "WRONG_EMAIL_NAME" and the password "USER1_PASSWORD"
+  Given I log on with the email "WRONG_EMAIL_NAME" and the password "USER1_PASSWORD"
 
-@fast @rf23 @login
+@fast @rf23 @signin
 Scenario: Fail with wrong password secret
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
   password GitHub SECRET
   """
-  Given I log in with the email "USER1_EMAIL" and the password "WRONG_PASSWORD_NAME"
+  Given I sign in with the email "USER1_EMAIL" and the password "WRONG_PASSWORD_NAME"
 
-@fast @rf24 @login
-Scenario: Fail with 2 wrong login secrets
+@fast @rf24 @signin
+Scenario: Fail with 2 wrong signin secrets
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
@@ -374,7 +374,7 @@ Scenario: Fail with 2 wrong login secrets
   """
   password GitHub SECRET
   """
-  Given I log in with the email "WRONG_EMAIL_NAME" and the password "WRONG_PASSWORD_NAME"
+  Given I sign in with the email "WRONG_EMAIL_NAME" and the password "WRONG_PASSWORD_NAME"
 
 # scope.js
 # I upload "___" to "___"
