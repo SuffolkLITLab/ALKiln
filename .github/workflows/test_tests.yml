@@ -18,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [17.x]
 
     env:
       BASE_URL: ${{ secrets.SERVER_URL }}
@@ -75,6 +75,12 @@ jobs:
         with:
           name: report
           path: ./**/*_report_*
+      - name: log artifact
+        uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: log file
+          path: ./log.txt
       - name: Cleanup
         if: ${{ always() }}
         run: npm run takedown
