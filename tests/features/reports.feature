@@ -345,6 +345,37 @@ Scenario: I can't match JSON page var to str
   wrong_value
   """
 
+@fast @rf22 @signin
+Scenario: Fail with wrong email secret
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  email address GitHub SECRET
+  """
+  Given I log on with the email "WRONG_EMAIL_NAME" and the password "USER1_PASSWORD"
+
+@fast @rf23 @signin
+Scenario: Fail with wrong password secret
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  password GitHub SECRET
+  """
+  Given I sign in with the email "USER1_EMAIL" and the password "WRONG_PASSWORD_NAME"
+
+@fast @rf24 @signin
+Scenario: Fail with 2 wrong signin secrets
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  email address GitHub SECRET
+  """
+  Given the Scenario report should include:
+  """
+  password GitHub SECRET
+  """
+  Given I sign in with the email "WRONG_EMAIL_NAME" and the password "WRONG_PASSWORD_NAME"
+
 # scope.js
 # I upload "___" to "___"
 # No need to test wrong var name

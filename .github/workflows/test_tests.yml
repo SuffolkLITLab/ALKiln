@@ -29,6 +29,8 @@ jobs:
       BRANCH_PATH: main
       EXTRA_LANGUAGES: ${{ secrets.EXTRA_LANGUAGES }}
       REPO_URL: https://github.com/plocket/docassemble-ALAutomatedTestingTests
+      USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
+      USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
 
     name: Run Puppeteer tests
     steps:
