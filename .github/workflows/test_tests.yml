@@ -18,7 +18,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [17.x]
 
     env:
       BASE_URL: ${{ secrets.SERVER_URL }}
@@ -29,6 +29,8 @@ jobs:
       BRANCH_PATH: main
       EXTRA_LANGUAGES: ${{ secrets.EXTRA_LANGUAGES }}
       REPO_URL: https://github.com/plocket/docassemble-ALAutomatedTestingTests
+      USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
+      USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
 
     name: Run Puppeteer tests
     steps:
@@ -73,6 +75,12 @@ jobs:
         with:
           name: report
           path: ./**/*_report_*
+      - name: log artifact
+        uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: log file
+          path: ./log.txt
       - name: Cleanup
         if: ${{ always() }}
         run: npm run takedown
