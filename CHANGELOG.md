@@ -44,6 +44,10 @@ Format:
 -->
 ## [Unreleased]
 
+- Step to create data with story table in a cucumber `Background`
+- Step to trigger a `Background` story table
+- Custom workflow input for ALKiln version so that pre-releases can be used
+
 ### Internal
 - BREAKS ALKilnInThePlayground v1.2.0 and below (as we discussed) as that project is still exploratory. Can now take the location of the "sources" folder or folders as an argument in the command line. The formats are `npm run cucumber @tags -- --sources=./foo` and `alkiln-run @tags --sources=./foo`.
 

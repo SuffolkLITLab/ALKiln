@@ -3,6 +3,19 @@ Feature: Observational steps
 
 # In tag names, 'o' is for 'observational'
 
+Background: I get past the standard fields page
+  Given I always have this data:
+    | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
+    | date_input | today | |
+
 @fast @o1
 Scenario: I observe things on a single page when I arrive
   Given I start the interview at "all_tests"
@@ -32,18 +45,7 @@ Scenario: I can include .yml in the filename
 Scenario: I check navigation
   Given I start the interview at "all_tests"
   And I tap to continue
-  And I get to "showifs" with this data:
-    | var | value | trigger |
-    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
-    | checkboxes_other['checkbox_other_opt_1'] | true |  |
-    | combobox_input | Custom combobox option |  |
-    | dropdown_test | dropdown_opt_2 | |
-    | radio_yesno | False | false |
-    | radio_other | radio_other_opt_3 | |
-    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
-    | text_input | Regular text input field value | |
-    | textarea | Multiline text\narea value | |
-    | date_input | today | |
+  And I get to "showifs" with the background data
   Then I arrive at the next page
   Then I get to "screen features" with this data:
     | var | value | trigger |
