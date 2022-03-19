@@ -1,6 +1,6 @@
 {
   "name": "docassemble-cucumber",
-  "version": "3.3.0-background-table.1",
+  "version": "3.3.0-background-table.2",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
