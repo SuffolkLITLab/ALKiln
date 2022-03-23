@@ -138,7 +138,7 @@ Scenario: Fail with missing link with url
   And I start the interview at "all_tests"
   Then I should see the link to "http://missing-url.com"
 
-@slow @rf13 @error
+@slow @rf13 @error @table
 Scenario: Fail with link with given text does not lead to correct url
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -166,7 +166,7 @@ Scenario: Fail with link with given text does not lead to correct url
   And I should see the link to "http://ecosia.org/"
   Then the "Link to external page" link leads to "http://wrong-url.com"
 
-@slow @rf14 @error
+@slow @rf14 @error @table
 Scenario: Fail with link unexpectedly opens in same window
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -194,7 +194,7 @@ Scenario: Fail with link unexpectedly opens in same window
   And I should see the link to "http://ecosia.org/"
   Then the "Link to external page" link opens in the same window
 
-@fast @rf15 @error
+@fast @rf15 @error @table
 Scenario: Fail with link unexpectedly opens in a new window
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -223,7 +223,7 @@ Scenario: Fail with link unexpectedly opens in a new window
   Then the "Link: reload the page" link opens in a new window
 
 ## Don't currently have a broken link to test and this Step is not officially supported
-#@fast @rf16 @error
+#@fast @rf16 @error @table
 #Scenario: Fail with link leads to a broken page
 #  Given the final Scenario status should be "failed"
 #  Given the Scenario report should include:
@@ -321,7 +321,7 @@ Scenario: Fail with system error after Step using wrong file name as trigger
 #  """
 #  And I start the interview at "wrong_yaml_filename"
 
-@fast @rf22
+@fast @rf22 @table
 Scenario: I can't match JSON page var to str
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -448,70 +448,27 @@ Scenario: Report still shows page id when I tap to continue without setting any 
   # Next page (showifs ID SHOULD BE SHOWN IN REPORT)
   Then the question id should be "buttons yesnomaybe"
 
-@slow @rp2
+@slow @rp2 @table
 Scenario: Report lists unused table rows
   Given the final Scenario status should be "passed"
   Given the Scenario report should include:
     """
-
-    ---------------
-    Scenario: Report lists unused table rows
-    Tags: @reports @slow @rp2
-    ---------------
-    screen id: upload-files
-    screen id: group-of-complex-fields
-          | single_quote_dict['single_quote_key']['sq_two'] | true |  |
-          | double_quote_dict[\"double_quote_key\"]['dq_two'] | true |  |
-
-      Rows that got set:
-        And I get to the question id "direct standard fields" with this data:
-          | var | value | trigger |
-          | double_quote_dict[\"double_quote_key\"]['dq_two'] | true |  |
-          | single_quote_dict['single_quote_key']['sq_two'] | true |  |
       Unused rows:
           | extra_2 | extra 2 |  |
           | extra_out_of_alphabetical_order | extra 1 |  |
-
-    screen id: direct-standard-fields
-          | checkboxes_other['checkbox_other_opt_1'] | true |  |
-          | radio_yesno | False | false |
-          | radio_other | radio_other_opt_3 |  |
-          | text_input | Regular text input field value |  |
-          | textarea | Multiline text\narea value |  |
-          | dropdown_test | dropdown_opt_2 |  |
-
-      Rows that got set:
-        And I get to the question id "showifs" with this data:
-          | var | value | trigger |
-          | checkboxes_other['checkbox_other_opt_1'] | true |  |
-          | dropdown_test | dropdown_opt_2 |  |
-          | radio_other | radio_other_opt_3 |  |
-          | radio_yesno | False | false |
-          | text_input | Regular text input field value |  |
-          | textarea | Multiline text\narea value |  |
+    """
+  Given the Scenario report should include:
+    """
       Unused rows:
           | extra_3 | extra 3 |  |
           | extra_4 | extra 4 |  |
           | extra_5 | extra 5 |  |
-
-    screen id: showifs
-    screen id: buttons-yesnomaybe
-          | buttons_yesnomaybe | True |  |
-    screen id: buttons-other
-          | buttons_other | button_2 |  |
-    screen id: button-continue
-          | button_continue | True |  |
-
-      Rows that got set:
-        And I get to the question id "screen features" with this data:
-          | var | value | trigger |
-          | button_continue | True |  |
-          | buttons_other | button_2 |  |
-          | buttons_yesnomaybe | True |  |
+    """
+  Given the Scenario report should include:
+    """
       Unused rows:
           | extra_6 | extra 6 |  |
           | extra_7 | extra 7 |  |
-
     """
   And I start the interview at "all_tests"
   And I get to "direct standard fields" with this data:

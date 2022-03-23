@@ -15,7 +15,7 @@ matches.standard = [
   [],
   [ { var: 'radio_other', value: 'radio_other_opt_2' } ],
   [],
-  [ { var: 'text_input', value: 'Some one-line text' }, { var: 'text_input', value: 'Some conflicting text' } ],
+  [ { var: 'text_input', value: 'Some one-line text', "original": { var: 'text_input', value: 'Some one-line text' } }, { var: 'text_input', value: 'Some conflicting text', "original": { var: 'text_input', value: 'Some conflicting text' } } ],
   [ { var: 'textarea', value: 'Some\nmulti-line\ntext' } ],
   [ { 'var': 'date_input','value':'today-1' } ],
   [ { var: 'dropdown_test', value: 'dropdown_opt_2' } ],
@@ -108,6 +108,18 @@ matches.proxies_xi = [
 // x[i].name.first
 matches.proxies_multi = [
   [{"trigger":"proxy_list[1].name.first","var":"x[i].name.first","value":"Firstname"}],
+  []
+];
+
+// Missing table row for second loop
+matches.proxies_missing_loop = [
+  [],
+  []
+];
+
+// Missing trigger matches second loop
+matches.proxies_missing_trigger = [
+  [{ "trigger": "", "var": "x[i].name.first", "value": "Firstname", "original": { "trigger": "", "var": "x[i].name.first", "value": "Firstname" }}],
   []
 ];
 

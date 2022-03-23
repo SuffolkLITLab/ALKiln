@@ -1,4 +1,4 @@
-@story_tables
+@story_tables @table
 Feature: Story tables
 
 NOTE:

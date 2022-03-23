@@ -66,6 +66,7 @@ Format:
 - Peer dependencies and dev dependencies. Now `cucumber` is just a dependency. See https://github.com/SuffolkLITLab/ALKiln/issues/396 for discussion. Setup interview has not been updated to remove dependencies.
 
 ### Fixed
+- Proxy var story table row matches for any page containing the given variable name when there's only one row for the relevant variable. #464.
 - Fixed interview name not allowing url parameters. #449
 - Freeze colors npm package to before bug in both package.json and action.yml
 - Fix invalid project name allowed.
