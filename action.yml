@@ -61,7 +61,7 @@ runs:
 
     # This doesn't use an already established package-lock.json and that
     # comes with some types of test breaking risks. Same problem as before.
-    - name: Overwrite or create package.json
+    - name: Temporarily overwrite or create package.json
       run: |
         cat << EOF > "package.json"
         {
