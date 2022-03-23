@@ -21,41 +21,18 @@ inputs:
     description: 'Other languages you want to test. This should be in your GitHub SECRETS or the SECRETS of your org.'
     required: false
     default: ''
+  # This is necessary to test pre-releases at the very least. It does seem
+  # strange considering we're controlling everything through the action, but
+  # that actually doesn't touch the npm version that's pulled in.
+  ALKILN_VERSION:
+    description: 'Version of ALKiln to get from npm.'
+    required: false
+    default: '^4.0.0'
 
 runs:
   using: "composite"
   steps:
-    # This doesn't use an already established package-lock.json and that
-    # comes with some types of test breaking risks. Same problem as before.
-    - name: Overwrite or create package.json
-      run: |
-        cat << EOF > "package.json"
-        {
-          "scripts": {
-            "test": "npm run langs_setup && npm run cucumber -- $@",
-            "cucumber_base": "./node_modules/.bin/cucumber-js --require ./node_modules/docassemble-cucumber/lib/index.js",
-            "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" docassemble/*/data/sources/*.feature; }; run_cucumber",
-            "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./node_modules/docassemble-cucumber/lib/index.js docassemble/*/data/sources/*_lang*.feature",
-            "langs_setup": "node_modules/.bin/da-langs 'docassemble/*/data/sources/*.feature'",
-            "setup": "node_modules/.bin/da-setup",
-            "takedown": "node_modules/.bin/da-takedown"
-          },
-          "dependencies": {
-            "colors": "1.4.0",
-            "@cucumber/cucumber": "^7.3.2",
-            "docassemble-cucumber": "^4.0.0"
-          }
-        }
-      shell: bash
-
-    # Install node
-    - name: "ALKiln: Install node packages"
-      uses: actions/setup-node@v1
-      with:
-        node-version: "17"
-    - run: npm install
-      shell: bash
-      
+    
     # Set environment variables
     - name: "ALKiln: Set environment variables"
       # If extra languages were set manually, override the repository
@@ -76,9 +53,41 @@ runs:
         echo "PLAYGROUND_PASSWORD=${{ inputs.PLAYGROUND_PASSWORD }}" >> $GITHUB_ENV
         echo "PLAYGROUND_ID=${{ inputs.PLAYGROUND_ID }}" >> $GITHUB_ENV
         echo "DOCASSEMBLE_DEVELOPER_API_KEY=${{ inputs.DOCASSEMBLE_DEVELOPER_API_KEY }}" >> $GITHUB_ENV
+        echo "ALKILN_VERSION=${{ inputs.ALKILN_VERSION }}" >> $GITHUB_ENV
       shell: bash
     - name: "ALKiln: confirm info"
       run: echo -e "\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nManually added languages are $EXTRA_LANGUAGES\nAll other data is secret\n"
+      shell: bash
+
+    # This doesn't use an already established package-lock.json and that
+    # comes with some types of test breaking risks. Same problem as before.
+    - name: Temporarily overwrite or create package.json
+      run: |
+        cat << EOF > "package.json"
+        {
+          "scripts": {
+            "test": "npm run langs_setup && npm run cucumber -- $@",
+            "cucumber_base": "./node_modules/.bin/cucumber-js --require ./node_modules/@suffolklitlab/alkiln/lib/index.js",
+            "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" docassemble/*/data/sources/*.feature; }; run_cucumber",
+            "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./node_modules/.bin/alkiln-cucumber docassemble/*/data/sources/*_lang*.feature",
+            "langs_setup": "node_modules/.bin/alkiln-langs 'docassemble/*/data/sources/*.feature'",
+            "setup": "node_modules/.bin/alkiln-setup",
+            "takedown": "node_modules/.bin/alkiln-takedown"
+          },
+          "dependencies": {
+            "colors": "1.4.0",
+            "@cucumber/cucumber": "^7.3.2",
+            "@suffolklitlab/alkiln": "$ALKILN_VERSION"
+          }
+        }
+      shell: bash
+
+    # Install node
+    - name: "ALKiln: Install node packages"
+      uses: actions/setup-node@v1
+      with:
+        node-version: "17"
+    - run: npm install
       shell: bash
 
     # Run tests
@@ -141,9 +150,9 @@ runs:
 #       tags:
 #         description: 'Optional. Use a "tag expression" specify which tagged tests to run. See https://cucumber.io/docs/cucumber/api/#tag-expressions for syntax.'
 #         default: ''
-
+#
 # jobs:
-
+#
 #   interview-testing:
 #     runs-on: ubuntu-latest
 #     name: Run interview tests

@@ -48,8 +48,10 @@ Format:
 - Step to log the page's JSON variables and values in the report. Future goal: save to file. See #454.
 - Step to log into the developer's docassemble server account using GitHub SECRETs. See #499.
 - Create log.txt for report items and uploaded as github artifact so there's always some kind of output.
+- Add control of alkiln npm version to the action.yml
 
 ### Changed
+- NPM package is now suffolklitlab scoped package. Refer to @suffolklitlab/alkiln from now on.
 - Update to v13 of puppeteer
 - Update to v7 of cucumber
 - Update action.yml node to v17
@@ -71,6 +73,7 @@ Format:
 - Freeze colors npm package to before bug in both package.json and action.yml
 - Fix invalid project name allowed.
 - fix typo in the report.
+- session_vars branch path regex not removing start of branch path
 
 ## [3.0.4] - 2021-12-11
 ### Fixed
