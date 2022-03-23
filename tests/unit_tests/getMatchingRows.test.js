@@ -7,6 +7,8 @@ const fields = require('./fields.fixtures.js');
 const matches = require('./matches.fixtures.js');
 const scope = require('../../lib/scope.js');
 const getMatchingRows = scope.getMatchingRows;
+// Match state var instantiated in steps.js. TODO: Add tests for such rows.
+scope.row_needs_trigger_flag = `ALKiln: no trigger variable needed`;
 
 // TODO: Add tests for reports
 
