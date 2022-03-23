@@ -376,6 +376,16 @@ Scenario: Fail with 2 wrong signin secrets
   """
   Given I sign in with the email "WRONG_EMAIL_NAME" and the password "WRONG_PASSWORD_NAME"
 
+@fast @rf25 @upload
+Scenario: Fail with could not find files 
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  Could not find "nonexistant1.pdf, nonexistant2.pdf"
+  """
+  Given I start the interview at "all_tests"
+  And I upload "nonexistant1.pdf, nonexistant2.pdf" to "upload_files_visible"
+
 # scope.js
 # I upload "___" to "___"
 # No need to test wrong var name
@@ -383,6 +393,7 @@ Scenario: Fail with 2 wrong signin secrets
 # How to test non-existant directory?
 #
 # I sign
+
 
 # ===============================
 # Reports for Scenarios with warnings
