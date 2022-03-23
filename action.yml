@@ -27,7 +27,7 @@ inputs:
   ALKILN_VERSION:
     description: 'Version of ALKiln to get from npm.'
     required: false
-    default: '4.0.0'
+    default: '^4.0.0'
 
 runs:
   using: "composite"
