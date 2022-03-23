@@ -32,7 +32,7 @@
   "bugs": {
     "url": "https://github.com/SuffolkLITLab/ALKiln/issues"
   },
-  "homepage": "https://suffolklitlab.github.io/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing",
+  "homepage": "https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing/",
   "dependencies": {
     "@cucumber/cucumber": "^7.3.2",
     "axios": "^0.24.0",
