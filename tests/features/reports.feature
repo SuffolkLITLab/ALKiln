@@ -374,7 +374,7 @@ Scenario: Fail with 2 wrong signin secrets
   """
   password GitHub SECRET
   """
-  Given I sign in with the email "WRONG_EMAIL_NAME" and the password "WRONG_PASSWORD_NAM
+  Given I sign in with the email "WRONG_EMAIL_NAME" and the password "WRONG_PASSWORD_NAME"
 
 @fast @rf25 @upload
 Scenario: Fail with could not find files 
