@@ -53,6 +53,7 @@ runs:
         echo "PLAYGROUND_PASSWORD=${{ inputs.PLAYGROUND_PASSWORD }}" >> $GITHUB_ENV
         echo "PLAYGROUND_ID=${{ inputs.PLAYGROUND_ID }}" >> $GITHUB_ENV
         echo "DOCASSEMBLE_DEVELOPER_API_KEY=${{ inputs.DOCASSEMBLE_DEVELOPER_API_KEY }}" >> $GITHUB_ENV
+        echo "ALKILN_VERSION=${{ inputs.ALKILN_VERSION }}" >> $GITHUB_ENV
       shell: bash
     - name: "ALKiln: confirm info"
       run: echo -e "\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nManually added languages are $EXTRA_LANGUAGES\nAll other data is secret\n"
