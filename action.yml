@@ -80,6 +80,21 @@ runs:
             "@suffolklitlab/alkiln": "$ALKILN_VERSION"
           }
         }
+        EOF
+        # Keep in sync w
+        cat << EOF > "cucumber.json"
+        {
+          "default": {
+            "format": [
+              "progress",
+              "html:cucumber-report.html",
+              "json:cucumber-report.json",
+              "summary:cucumber-report.txt"
+            ],
+            "require": ["./lib/index.js"]
+          }
+        }
+        EOF
       shell: bash
 
     # Install node
@@ -96,7 +111,13 @@ runs:
       shell: bash
     - name: "ALKiln: Run tests"
       if: ${{ success() }}
-      run: npm run test -- ${{ github.event.inputs.tags && format('"--tags" "{0}"', github.event.inputs.tags) }}
+      run: |
+        npm run test -- ${{ github.event.inputs.tags && format('"--tags" "{0}"', github.event.inputs.tags) }}
+        # in case there are multiple reports for some reason, only concat to the last one
+        pattern="alkiln_report_*.txt"
+        files=( $pattern )
+        # strip out the terminal color commands from the text when appending to the alkiln report
+        sed 's/^[\[[[:digit:]][[:digit:]]m//g' cucumber-report.txt >> "${files[-1]}"
       shell: bash
     - run: echo -e "\n\n====ALKiln could not create a project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
       if: ${{ failure() }}

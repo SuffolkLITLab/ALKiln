@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run unit && npm run langs_setup && npm run cucumber -- $@",
-    "cucumber_base": "./node_modules/.bin/cucumber-js --require ./lib/index.js",
+    "cucumber_base": "./node_modules/.bin/cucumber-js",
     "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" tests/features/*.feature; }; run_cucumber",
     "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./lib/index.js tests/features/*_lang*.feature",
     "langs_setup": "./lib/utils/langs.js 'tests/features/*.feature'",
