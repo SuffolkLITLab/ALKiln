@@ -31,6 +31,8 @@ jobs:
       REPO_URL: https://github.com/plocket/docassemble-ALAutomatedTestingTests
       USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
       USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
+      SECRET_VAR1: secret-var1-value
+      SECRET_VAR2: secret-var2-value
 
     name: Run Puppeteer tests
     steps:
