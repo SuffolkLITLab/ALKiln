@@ -48,6 +48,7 @@ jobs:
       - run: npm install
       - run: npm run setup
       - run: npm run test -- ${{ github.event.inputs.tags && format('"--tags" "{0}"', github.event.inputs.tags) }}
+        shell: bash
       - name: upload error artifacts
         uses: actions/upload-artifact@v2
         if: ${{ failure() }}
