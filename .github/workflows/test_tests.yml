@@ -75,7 +75,7 @@ jobs:
         with:
           name: report
           path: ./**/*_report_*
-      - name: debug_log artifact
+      - name: upload debug_log artifact
         uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
