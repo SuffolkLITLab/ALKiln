@@ -57,10 +57,11 @@ Format:
 - BREAKING: Update action.yml node to v17
 - BREAKING: Use alkiln v4 package.json we create during the test run in `action.yml` (as discussed in #489)
 - BREAKING: Use API key to access da server, create projects, pull code, delete projects, and check for server restart.
+- BREAKING: Throw an error for uploading nonexistent file, changed to error instead of warning in reports.
+- Update test setup interview to v4 of ALKiln.
 - Remove and ignore package-lock.json so that our tests will behave more like our users' tests
 - Add warning in steps.js for name input with too many parts. Add test in reports.
-- fix typo in the report
-- Throw an error for uploading nonexistent file, changed to error instead of warning in reports. 
+- fix typo in the report 
 - Allow a developer to wait as a first Step. See #387.
 
 <!-- ## [3.0.1-peer-deps.1] - 2021-12-07 -->
