@@ -80,6 +80,19 @@ runs:
             "@suffolklitlab/alkiln": "$ALKILN_VERSION"
           }
         }
+        EOF
+        # Keep in sync with the cucumber.json in root
+        cat << EOF > "cucumber.json"
+        {
+          "default": {
+            "format": [
+              "progress",
+              "summary:cucumber-report.txt"
+            ],
+            "require": ["./lib/index.js"]
+          }
+        }
+        EOF
       shell: bash
 
     # Install node

@@ -1,0 +1,9 @@
+{
+  "default": {
+    "format": [
+      "progress",
+      "summary:cucumber-report.txt"
+    ],
+    "require": ["./lib/index.js"]
+  }
+}
