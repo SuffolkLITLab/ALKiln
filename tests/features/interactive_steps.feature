@@ -84,8 +84,7 @@ Scenario: I set text-type values
   # Next page
   Then the question id should be "the end"
 
-@fast @i2
-@fast @i2
+@fast @i2 @secret
 Scenario: handles settings from Github secrets
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
