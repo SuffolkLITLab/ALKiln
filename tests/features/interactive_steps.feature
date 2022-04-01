@@ -90,7 +90,7 @@ Scenario: handles settings from Github secrets
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
-  Could not find "SECRET_NOT_THERE"
+  The GitHub SECRET "SECRET_NOT_THERE" doesn't exist
   """
   Given I start the interview at "test_secret_vars"
   When I set the var "first_text_entry" to the secret "SECRET_VAR1"
