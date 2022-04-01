@@ -386,6 +386,17 @@ Scenario: Fail with could not find files
   Given I start the interview at "all_tests"
   And I upload "nonexistant1.pdf, nonexistant2.pdf" to "upload_files_visible"
 
+@fast @rf26 @secret @error
+Scenario: Fail to find var while keeping value secret
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  Did not find a field on this page for the variable "missing_var" that could be set to "SECRET_FOR_MISSING_FIELD"
+  """
+  And I start the interview at "test_secret_vars"
+  And I set the var "missing_var" to the secret "SECRET_FOR_MISSING_FIELD"
+
+
 # scope.js
 # I upload "___" to "___"
 # No need to test wrong var name
@@ -408,6 +419,7 @@ Scenario: Warn when there are too many names
   Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli Udo User Sampson Jr"
   And I tap to continue
+
 
 # ===============================
 # Reports for "passed" Scenarios

@@ -33,6 +33,7 @@ jobs:
       USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
+      SECRET_FOR_MISSING_FIELD: secret for missing field
 
     name: Run Puppeteer tests
     steps:
