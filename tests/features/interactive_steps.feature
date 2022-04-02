@@ -83,3 +83,21 @@ Scenario: I set text-type values
   And I tap to continue
   # Next page
   Then the question id should be "the end"
+
+@fast @i2 @secret
+Scenario: handles settings from Github secrets
+  Given the final Scenario status should be "failed"
+  And the Scenario report should include:
+  """
+  The GitHub SECRET "SECRET_NOT_THERE" doesn't exist
+  """
+  Given I start the interview at "test_secret_vars"
+  When I set the var "first_text_entry" to the secret "SECRET_VAR1"
+  And I tap to continue
+  Then I see the phrase "secret-var1-value"
+  When I tap to continue
+  And I set the var "second_text_entry" to the github secret "SECRET_VAR2"
+  And I tap to continue
+  Then I see the phrase "secret-var2-value"
+  When I tap to continue
+  And I set the variable "third_text_entry" to secret "SECRET_NOT_THERE"
