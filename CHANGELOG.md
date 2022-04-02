@@ -39,6 +39,9 @@ Format:
 - 
 -->
 <!-- ## [Unreleased] -->
+## [4.1.0] - 2022-04-01
+### Added
+- Step to set vars to secret variables. That is, using environment variables while hiding the names of those variables in the report, errors, and console logs.
 
 ## [4.0.0] - 2022-03-30
 ### Added
