@@ -39,7 +39,7 @@ Format:
 - 
 -->
 <!-- ## [Unreleased] -->
-## [4.1.0] - 2022-04-01
+## [4.1.1] - 2022-04-01
 ### Added
 - Step to set vars to secret variables. That is, using environment variables while hiding the names of those variables in the report, errors, and console logs.
 
