@@ -76,7 +76,7 @@ runs:
           },
           "dependencies": {
             "colors": "1.4.0",
-            "@cucumber/cucumber": "^7.3.2",
+            "@cucumber/cucumber": "7.3.2",
             "@suffolklitlab/alkiln": "$ALKILN_VERSION"
           }
         }

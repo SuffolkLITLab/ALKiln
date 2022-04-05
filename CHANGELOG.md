@@ -38,7 +38,10 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Changed
+- Pin versions of dependencies in action.yml and package.json
+
 ## [4.1.1] - 2022-04-01
 ### Added
 - Step to set vars to secret variables. That is, using environment variables while hiding the names of those variables in the report, errors, and console logs.
