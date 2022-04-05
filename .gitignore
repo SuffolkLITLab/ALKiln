@@ -131,3 +131,4 @@ _al_test_project_name*
 package-lock.json
 #report logs
 /debug_log.txt
+/log.txt
