@@ -38,7 +38,11 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+- Appends the results of the cucumber [summary formatter](https://github.com/cucumber/cucumber-js/blob/main/docs/formatters.md#summary) to the `debug_log.txt`, which includes useful stack traces into the Kiln code when tests fail.
+
 ## [4.1.1] - 2022-04-01
 ### Added
 - Step to set vars to secret variables. That is, using environment variables while hiding the names of those variables in the report, errors, and console logs.
