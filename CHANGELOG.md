@@ -51,6 +51,7 @@ Format:
 - Step to log the page's JSON variables and values in the report. Future goal: save to file. See #454.
 - Step to log into the developer's docassemble server account using GitHub SECRETs. See #499.
 - Create log.txt for report items and uploaded as github artifact so there's always some kind of output.
+- Changes log.txt file to debug_log.txt and upload as github artifact. 
 - Add control of alkiln npm version to the action.yml
 
 ### Changed
