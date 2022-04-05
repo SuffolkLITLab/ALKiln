@@ -38,9 +38,13 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.2.0] - 2022-04-05
 ### Changed
 - Pin versions of dependencies in action.yml and package.json
+- Change log.txt file to debug_log.txt and upload as github artifact.
+- Update cheerio version to remove vulnerabilities.
 
 ## [4.1.1] - 2022-04-01
 ### Added
@@ -54,7 +58,6 @@ Format:
 - Step to log the page's JSON variables and values in the report. Future goal: save to file. See #454.
 - Step to log into the developer's docassemble server account using GitHub SECRETs. See #499.
 - Create log.txt for report items and uploaded as github artifact so there's always some kind of output.
-- Changes log.txt file to debug_log.txt and upload as github artifact. 
 - Add control of alkiln npm version to the action.yml
 
 ### Changed
