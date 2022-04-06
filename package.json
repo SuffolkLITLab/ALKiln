@@ -34,16 +34,16 @@
   },
   "homepage": "https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing/",
   "dependencies": {
-    "@cucumber/cucumber": "^7.3.2",
-    "axios": "^0.24.0",
-    "chai": "^4.2.0",
-    "cheerio": "^1.0.0-rc.5",
-    "dotenv": "^8.2.0",
-    "mocha": "^9.2.0",
-    "puppeteer": "^13.1.3",
-    "qs": "^6.10.2",
-    "sanitize-filename": "^1.6.3",
-    "uuid": "^8.3.2"
+    "@cucumber/cucumber": "7.3.2",
+    "axios": "0.24.0",
+    "chai": "4.2.0",
+    "cheerio": "1.0.0-rc.10",
+    "dotenv": "8.2.0",
+    "mocha": "9.2.0",
+    "puppeteer": "13.1.3",
+    "qs": "6.10.2",
+    "sanitize-filename": "1.6.3",
+    "uuid": "8.3.2"
   },
   "bin": {
     "alkiln-setup": "./lib/docassemble/setup.js",
