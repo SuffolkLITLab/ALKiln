@@ -128,4 +128,4 @@ _al_test_project_name*
 # So that our tests will behave more like our users' tests
 package-lock.json
 #report logs
-/log.txt
+/debug_log.txt
