@@ -29,7 +29,7 @@ inputs:
     required: false
     default: '^4.0.0'
   MAX_SECONDS_FOR_SETUP:
-    description: 'Amount of time to give the Project to upload your package's GitHub code.'
+    description: "Amount of time to give the Project to upload your package's GitHub code."
     required: false
     default: '120'
 
