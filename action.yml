@@ -28,6 +28,10 @@ inputs:
     description: 'Version of ALKiln to get from npm.'
     required: false
     default: '^4.0.0'
+  MAX_SECONDS_FOR_SETUP:
+    description: 'Amount of time to give the Project to upload your package's GitHub code.'
+    required: false
+    default: '120'
 
 runs:
   using: "composite"
@@ -54,9 +58,11 @@ runs:
         echo "PLAYGROUND_ID=${{ inputs.PLAYGROUND_ID }}" >> $GITHUB_ENV
         echo "DOCASSEMBLE_DEVELOPER_API_KEY=${{ inputs.DOCASSEMBLE_DEVELOPER_API_KEY }}" >> $GITHUB_ENV
         echo "ALKILN_VERSION=${{ inputs.ALKILN_VERSION }}" >> $GITHUB_ENV
+        echo "MAX_SECONDS_FOR_SETUP=${{ inputs.MAX_SECONDS_FOR_SETUP }}" >> $GITHUB_ENV
       shell: bash
     - name: "ALKiln: confirm info"
       run: echo -e "\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nManually added languages are $EXTRA_LANGUAGES\nAll other data is secret\n"
+      run: echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nManually added languages are $EXTRA_LANGUAGES\n"
       shell: bash
 
     # This doesn't use an already established package-lock.json and that
