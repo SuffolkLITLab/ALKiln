@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.3.0] - 2022-04-07
 ### Added
 - GitHub environment variable `MAX_SECONDS_FOR_SETUP` to set a custom maximum time for setup and takedown for packages that take a long time to load.
 
