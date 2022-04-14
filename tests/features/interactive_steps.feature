@@ -4,7 +4,7 @@ Feature: Interactive steps
 # In tag names, 'i' is for 'interactive'
 
 @slow @i1
-Scenario: I set text-type values
+Scenario: I set various values
   Given I start the interview at "all_tests"
   Then the question id should be "upload files"
   When I set the var "upload_files_visible" to "some_png_1.png, some_png_2.png"

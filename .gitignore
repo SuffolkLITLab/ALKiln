@@ -119,13 +119,15 @@ tests/chromedriver
 node_modules*
 .env
 npm-debug.log
+# alkiln
+*_lang_*.feature
 error*.jpg
 screenshot_*.jpg
 downloads_*
-*_lang_*.feature
 *_report_*
-_al_test_project_name*
+/_al_test*
 # So that our tests will behave more like our users' tests
-package-lock.json
+/package-lock.json
 #report logs
 /debug_log.txt
+/alkiln_tests_output*

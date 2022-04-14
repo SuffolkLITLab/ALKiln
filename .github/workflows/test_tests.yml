@@ -84,6 +84,12 @@ jobs:
         with:
           name: debug_log file
           path: ./debug_log.txt
+      - name: upload artifacts folder
+        uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: alkiln_tests_output-${{ steps.date.outputs.date }}
+          path: ./alkiln_tests_output-*
       - name: Cleanup
         if: ${{ always() }}
         run: npm run takedown
