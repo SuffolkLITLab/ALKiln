@@ -322,7 +322,7 @@ Scenario: Fail with system error after Step using wrong file name as trigger
 #  And I start the interview at "wrong_yaml_filename"
 
 @fast @rf22 @table
-Scenario: I can't match JSON page var to str
+Scenario: Fail with I can't match JSON page var to str
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
