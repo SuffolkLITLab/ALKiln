@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Changed
+- Artifacts will all be in one folder. See https://github.com/SuffolkLITLab/ALKiln/issues/552.
 
 ## [4.3.0] - 2022-04-07
 ### Added
