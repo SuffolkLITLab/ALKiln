@@ -96,7 +96,7 @@ Scenario: Test "Then I don’t continue" with an apostrophe
   Then I don’t continue
   And I will be told an answer is invalid
 
-@fast @o9 @table
+@fast @o9 @table @json
 Scenario: I can match JSON page var to str
   Given I start the interview at "all_tests.yml"
   And I get to "showifs" with this data:
@@ -121,7 +121,7 @@ Scenario: I get the page's JSON
   Given I start the interview at "all_tests"
   Then I get the page's JSON variables and values
 
-@fast @o9
+@fast @o9 @screenshot
 Scenario: I take a screenshot
   Given I start the interview at "all_tests"
   Then I take a screenshot
