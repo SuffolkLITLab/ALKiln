@@ -125,7 +125,7 @@ error*.jpg
 screenshot_*.jpg
 downloads_*
 *_report_*
-/_al_test*
+/_alkiln_test*
 # So that our tests will behave more like our users' tests
 /package-lock.json
 #report logs

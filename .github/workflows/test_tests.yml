@@ -37,6 +37,8 @@ jobs:
 
     name: Run Puppeteer tests
     steps:
+      - name: Set name of artifact folder
+        run: echo "ARTIFACT_NAME=alkiln_tests_output $(date +'%Y-%m-%d at %Hhrs %Mmins %Ssecs')" >> $GITHUB_ENV
       - name: Set languages
         run: echo "EXTRA_LANGUAGES=${{ github.event.inputs.extra_languages }}" >> $GITHUB_ENV
         if: ${{ github.event.inputs.extra_languages != '' }}
@@ -51,45 +53,14 @@ jobs:
       - run: npm install
       - run: npm run setup
       - run: npm run test -- ${{ github.event.inputs.tags && format('"--tags" "{0}"', github.event.inputs.tags) }}
-      - name: upload error artifacts
-        uses: actions/upload-artifact@v2
-        if: ${{ failure() }}
-        with:
-          name: errors
-          path: ./**/error*.jpg
-      - name: upload screenshot steps
-        uses: actions/upload-artifact@v2
-        # They will upload even if a previosu step has failed
-        if: ${{ always() }}
-        with:
-          name: screenshots
-          path: ./**/screenshot*.jpg
-      - name: upload downloads
-        uses: actions/upload-artifact@v2
-        # They will upload even if a previous step has failed
-        if: ${{ always() }}
-        with:
-          name: downloads
-          path: ./**/downloads_*
-      - name: upload report
-        uses: actions/upload-artifact@v2
-        # They will upload even if a previous step has failed
-        if: ${{ always() }}
-        with:
-          name: report
-          path: ./**/*_report_*
-      - name: upload debug_log artifact
-        uses: actions/upload-artifact@v2
-        if: ${{ always() }}
-        with:
-          name: debug_log file
-          path: ./debug_log.txt
+      # Artifacts
       - name: upload artifacts folder
         uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
-          name: alkiln_tests_output-${{ steps.date.outputs.date }}
+          name: ${{ env.ARTIFACT_NAME }}
           path: ./alkiln_tests_output-*
+      # Delete Playground Project and project name file
       - name: Cleanup
         if: ${{ always() }}
         run: npm run takedown
