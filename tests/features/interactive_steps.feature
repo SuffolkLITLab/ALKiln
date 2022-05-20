@@ -101,3 +101,15 @@ Scenario: handles settings from Github secrets
   Then I see the phrase "secret-var2-value"
   When I tap to continue
   And I set the variable "third_text_entry" to secret "SECRET_NOT_THERE"
+
+@i3 @tap-elements @tabs
+Scenario: tap elements
+  Given I start the interview at "test_taps"
+  And I tap the "Tests-first_template-tab" tab
+  Then I see the phrase "Mechanics"
+  And I tap the "Tests-second_template-tab" tab
+  Then I see the phrase "villify"
+  And I tap the "Tests-third_template-tab" tab
+  Then I see the phrase "mueseum"
+  And I tap the "#special_event" element and wait 5 seconds
+  Then I see the phrase "Portishead"
