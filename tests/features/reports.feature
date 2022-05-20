@@ -11,7 +11,7 @@ Feature: Reports show the right things
 
 # ---- Exceptions in steps.js ----
 
-@fast @rf1 @error
+@fast @rf1 @error @failing
 Scenario: Fail with missng language link
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -21,7 +21,7 @@ Scenario: Fail with missng language link
   And I start the interview at "all_tests" in lang "Latin"
 
 ## This screen has not yet been created in the testing interview
-#@fast @rf2 @error
+#@fast @rf2 @error @failing
 #Scenario: Fail with found no page id
 #  Given the final Scenario status should be "failed"
 #  Given the Scenario report should include:
@@ -31,7 +31,7 @@ Scenario: Fail with missng language link
 #  And I start the interview at "all_tests"
 #  Then the question id should be "any question id"
 
-@fast @rf3 @error
+@fast @rf3 @error @failing
 Scenario: Fail with wrong page id
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -41,7 +41,7 @@ Scenario: Fail with wrong page id
   And I start the interview at "all_tests"
   Then the question id should be "wrong question id"
 
-@fast @rf4 @error
+@fast @rf4 @error @failing
 Scenario: Fail with a missing phrase
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -51,7 +51,7 @@ Scenario: Fail with a missing phrase
   And I start the interview at "all_tests"
   Then I SHOULD see the phrase "phrase missing"
 
-@fast @rf5 @error
+@fast @rf5 @error @failing
 Scenario: Fail with incorrectly present phrase
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -61,7 +61,7 @@ Scenario: Fail with incorrectly present phrase
   And I start the interview at "all_tests"
   Then I should NOT see the phrase "e"
 
-@fast @rf6 @error
+@fast @rf6 @error @failing
 Scenario: Fail with missing element id
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -71,7 +71,7 @@ Scenario: Fail with missing element id
   And I start the interview at "all_tests"
   Then an element should have the id "wrong element id"
 
-@fast @rf7 @error
+@fast @rf7 @error @failing
 Scenario: Fail with unexpectedly able to continue
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -83,7 +83,7 @@ Scenario: Fail with unexpectedly able to continue
   And I tap to continue
   Then I can't continue
 
-@fast @rf8 @error
+@fast @rf8 @error @failing
 Scenario: Fail with missing error message
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -94,7 +94,7 @@ Scenario: Fail with missing error message
   And I will be told an answer is invalid
 
 ## Not sure how to trigger this at the moment
-#@fast @rf9 @error
+#@fast @rf9 @error @failing
 #Scenario: Fail with missing user error message
 #  Given the final Scenario status should be "failed"
 #  Given the Scenario report should include:
@@ -105,7 +105,7 @@ Scenario: Fail with missing error message
 #  And I will be told an answer is invalid
 
 # TODO: Check this with validation code failure too
-@fast @rf10 @error
+@fast @rf10 @error @failing
 Scenario: Fail with was uexepctedly not able to continue for invalid field input message
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -118,7 +118,7 @@ Scenario: Fail with was uexepctedly not able to continue for invalid field input
   And I tap to continue
   Then I arrive at the next page
 
-@fast @rf11 @error
+@fast @rf11 @error @failing
 Scenario: Fail with link text not visible
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -128,7 +128,7 @@ Scenario: Fail with link text not visible
   And I start the interview at "all_tests"
   Then I should see the link "Missing link"
 
-@fast @rf12 @error
+@fast @rf12 @error @failing
 Scenario: Fail with missing link with url
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -138,7 +138,7 @@ Scenario: Fail with missing link with url
   And I start the interview at "all_tests"
   Then I should see the link to "http://missing-url.com"
 
-@slow @rf13 @error @table
+@slow @rf13 @error @table @failing
 Scenario: Fail with link with given text does not lead to correct url
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -166,7 +166,7 @@ Scenario: Fail with link with given text does not lead to correct url
   And I should see the link to "http://ecosia.org/"
   Then the "Link to external page" link leads to "http://wrong-url.com"
 
-@slow @rf14 @error @table
+@slow @rf14 @error @table @failing
 Scenario: Fail with link unexpectedly opens in same window
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -194,7 +194,7 @@ Scenario: Fail with link unexpectedly opens in same window
   And I should see the link to "http://ecosia.org/"
   Then the "Link to external page" link opens in the same window
 
-@fast @rf15 @error @table
+@fast @rf15 @error @table @failing
 Scenario: Fail with link unexpectedly opens in a new window
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -223,7 +223,7 @@ Scenario: Fail with link unexpectedly opens in a new window
   Then the "Link: reload the page" link opens in a new window
 
 ## Don't currently have a broken link to test and this Step is not officially supported
-#@fast @rf16 @error @table
+#@fast @rf16 @error @table @failing
 #Scenario: Fail with link leads to a broken page
 #  Given the final Scenario status should be "failed"
 #  Given the Scenario report should include:
@@ -263,7 +263,7 @@ Scenario: Fail with link unexpectedly opens in a new window
 # Cannot auto test that multiple vars get detected because it's not currently
 # possible to hand in multiple vars and require that all rows be used, but it
 # has been confirmed by hand for now.
-@fast @rf17 @error
+@fast @rf17 @error @failing
 Scenario: Fail with var not on page
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -277,7 +277,7 @@ Scenario: Fail with var not on page
   And I start the interview at "all_tests"
   And I set the var "missing_var_1" to "missing value 1"
 
-@fast @rf18 @error
+@fast @rf18 @error @failing
 Scenario: Fail with missing term with the given text
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -287,7 +287,7 @@ Scenario: Fail with missing term with the given text
   And I start the interview at "all_tests"
   Then I tap the defined text link "wrong term"
 
-@fast @rf19 @error
+@fast @rf19 @error @failing
 Scenario: Fail with cannot find missing document
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -302,7 +302,7 @@ Scenario: Fail with cannot find missing document
 
 # This can have a ton of different error messages depending on the DA error
 # that was triggered. We'll make do with one for now.
-@fast @rf20 @error
+@fast @rf20 @error @failing
 Scenario: Fail with system error after Step using wrong file name as trigger
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -312,7 +312,7 @@ Scenario: Fail with system error after Step using wrong file name as trigger
   And I start the interview at "wrong_yaml_filename"
 
 ## Not sure how to trigger this. I think we'd need the server to be down.
-#@fast @rf21 @error
+#@fast @rf21 @error @failing
 #Scenario: Fail with interview does not load after multiple tries
 #  Given the final Scenario status should be "failed"
 #  Given the Scenario report should include:
@@ -321,7 +321,7 @@ Scenario: Fail with system error after Step using wrong file name as trigger
 #  """
 #  And I start the interview at "wrong_yaml_filename"
 
-@fast @rf22 @table
+@fast @rf22 @table @failing
 Scenario: Fail with I can't match JSON page var to str
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -345,7 +345,7 @@ Scenario: Fail with I can't match JSON page var to str
   wrong_value
   """
 
-@fast @rf22 @signin
+@fast @rf22 @signin @failing
 Scenario: Fail with wrong email secret
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -354,7 +354,7 @@ Scenario: Fail with wrong email secret
   """
   Given I log on with the email "WRONG_EMAIL_NAME" and the password "USER1_PASSWORD"
 
-@fast @rf23 @signin
+@fast @rf23 @signin @failing
 Scenario: Fail with wrong password secret
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -363,7 +363,7 @@ Scenario: Fail with wrong password secret
   """
   Given I sign in with the email "USER1_EMAIL" and the password "WRONG_PASSWORD_NAME"
 
-@fast @rf24 @signin
+@fast @rf24 @signin @failing
 Scenario: Fail with 2 wrong signin secrets
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -376,7 +376,7 @@ Scenario: Fail with 2 wrong signin secrets
   """
   Given I sign in with the email "WRONG_EMAIL_NAME" and the password "WRONG_PASSWORD_NAME"
 
-@fast @rf25 @upload
+@fast @rf25 @upload @failing
 Scenario: Fail with could not find files 
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
@@ -386,7 +386,7 @@ Scenario: Fail with could not find files
   Given I start the interview at "all_tests"
   And I upload "nonexistant1.pdf, nonexistant2.pdf" to "upload_files_visible"
 
-@fast @rf26 @secret @error
+@fast @rf26 @secret @error @failing
 Scenario: Fail to find var while keeping value secret
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:

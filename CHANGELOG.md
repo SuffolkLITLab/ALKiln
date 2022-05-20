@@ -40,7 +40,8 @@ Format:
 -->
 ## [Unreleased]
 ### Changed
-- Artifacts will all be in one folder. See https://github.com/SuffolkLITLab/ALKiln/issues/552.
+- Artifacts are now all in one folder. See https://github.com/SuffolkLITLab/ALKiln/issues/552.
+- Abstract names of some artifact directories
 
 ## [4.3.0] - 2022-04-07
 ### Added

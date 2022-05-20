@@ -54,7 +54,13 @@ jobs:
       - run: npm run setup
       - run: npm run test -- ${{ github.event.inputs.tags && format('"--tags" "{0}"', github.event.inputs.tags) }}
       # Artifacts
-      - name: upload artifacts folder
+      - name: upload unit tests artifacts folder
+        uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ./alkiln_tests_misc-*
+      - name: upload integration tests artifacts folder
         uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
