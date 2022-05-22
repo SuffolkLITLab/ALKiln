@@ -42,6 +42,10 @@ Format:
 ### Added
 - Appends the results of the cucumber [summary formatter](https://github.com/cucumber/cucumber-js/blob/main/docs/formatters.md#summary) to the `debug_log.txt`, which includes useful stack traces into the Kiln code when tests fail.
 
+### Fixed
+- Prevent login info from being saved in the report or screenshots being taken on error. [#599](https://github.com/SuffolkLITLab/ALKiln/issues/559).
+- Prevent error screenshots of screens that used a secret.
+
 ## [4.3.0] - 2022-04-07
 ### Added
 - GitHub environment variable `MAX_SECONDS_FOR_SETUP` to set a custom maximum time for setup and takedown for packages that take a long time to load.
