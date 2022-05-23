@@ -111,5 +111,5 @@ Scenario: tap elements
   Then I see the phrase "villify"
   And I tap the "Tests-third_template-tab" tab
   Then I see the phrase "museum"
-  And I tap the "#special_event" element and wait 5 seconds
+  And I tap the "#special_event" element and wait 1 second
   Then I see the phrase "Portishead"
