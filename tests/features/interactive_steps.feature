@@ -113,3 +113,13 @@ Scenario: tap elements
   Then I see the phrase "museum"
   And I tap the "#special_event" element and wait 1 second
   Then I see the phrase "Portishead"
+
+@i4 @tap-elements @tabs
+Scenario: tap element with an error
+  Given the final Scenario status should be "failed"
+  And the Scenario report should include:
+  """
+  is there a typo?
+  """
+  Given I start the interview at "test_taps"
+  And I tap the "Tests-not_there-tab" tab
