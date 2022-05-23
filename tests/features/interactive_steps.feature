@@ -110,6 +110,6 @@ Scenario: tap elements
   And I tap the "Tests-second_template-tab" tab
   Then I see the phrase "villify"
   And I tap the "Tests-third_template-tab" tab
-  Then I see the phrase "mueseum"
+  Then I see the phrase "museum"
   And I tap the "#special_event" element and wait 5 seconds
   Then I see the phrase "Portishead"
