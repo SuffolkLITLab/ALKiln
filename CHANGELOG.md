@@ -41,6 +41,7 @@ Format:
 ## [Unreleased]
 ### Added
 - Appends the results of the cucumber [summary formatter](https://github.com/cucumber/cucumber-js/blob/main/docs/formatters.md#summary) to the `debug_log.txt`, which includes useful stack traces into the Kiln code when tests fail.
+- Steps that tap tabs (made using the `tabbed_templates_html` function from ALToolbox) and other arbitrary elements on the page.
 
 ## [4.3.0] - 2022-04-07
 ### Added
