@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.4.0] - 2022-05-23
 ### Added
 - Appends the results of the cucumber [summary formatter](https://github.com/cucumber/cucumber-js/blob/main/docs/formatters.md#summary) to the `debug_log.txt`, which includes useful stack traces into the Kiln code when tests fail.
 
