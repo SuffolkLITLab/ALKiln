@@ -43,6 +43,7 @@ Format:
 ## [4.4.0] - 2022-05-23
 ### Added
 - Appends the results of the cucumber [summary formatter](https://github.com/cucumber/cucumber-js/blob/main/docs/formatters.md#summary) to the `debug_log.txt`, which includes useful stack traces into the Kiln code when tests fail.
+- Steps that tap tabs (made using the `tabbed_templates_html` function from ALToolbox) and other arbitrary elements on the page.
 
 ### Fixed
 - Prevent login info from being saved in the report or screenshots being taken on error. [#599](https://github.com/SuffolkLITLab/ALKiln/issues/559).
