@@ -346,7 +346,7 @@ Scenario: Fail with I can't match JSON page var to str
   """
 
 @fast @rf22 @signin @failing
-Scenario: Fail with wrong email secret
+Scenario: Fail with wrong email secret name
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
@@ -355,7 +355,7 @@ Scenario: Fail with wrong email secret
   Given I log on with the email "WRONG_EMAIL_NAME" and the password "USER1_PASSWORD"
 
 @fast @rf23 @signin @failing
-Scenario: Fail with wrong password secret
+Scenario: Fail with wrong password secret name
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
@@ -364,7 +364,7 @@ Scenario: Fail with wrong password secret
   Given I sign in with the email "USER1_EMAIL" and the password "WRONG_PASSWORD_NAME"
 
 @fast @rf24 @signin @failing
-Scenario: Fail with 2 wrong signin secrets
+Scenario: Fail with 2 wrong signin secret names
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
@@ -392,6 +392,10 @@ Scenario: Fail to find var while keeping value secret
   Given the Scenario report should include:
   """
   Did not find a field on this page for the variable "missing_var" that could be set to "SECRET_FOR_MISSING_FIELD"
+  """
+  And the Scenario report should include:
+  """
+  For security, ALKiln will not create a screenshot for this error.
   """
   And I start the interview at "test_secret_vars"
   And I set the var "missing_var" to the secret "SECRET_FOR_MISSING_FIELD"
@@ -518,3 +522,11 @@ Scenario: Report lists unused table rows
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
+
+@fast @rp3 @signin
+Scenario: Sign in to server successfully
+  Given the Scenario report should include:
+  """
+  Signed in
+  """
+  Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
