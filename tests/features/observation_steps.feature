@@ -123,8 +123,30 @@ Scenario: I get the page's JSON
   Given I start the interview at "all_tests"
   Then I get the page's JSON variables and values
 
-@fast @o9
+@fast @o11
 Scenario: I take a screenshot
   Given I start the interview at "all_tests"
   Then I take a screenshot
   Then I take a screenshot named "some-screenshot"
+
+@slow @o12 @accessibility @a11y
+Scenario: I check the pages for accessibility
+  Given I start the interview at "all_tests"
+  And I check all pages for accessibility issues
+  And I tap to continue
+  Then I get to "screen features" with this data:
+    | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | object_checkboxes_test["obj_chkbx_opt_1"] | True | |
+    | object_select_test | obj_chkbx_opt_2 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
+    | date_input | today | |
+    | button_continue | True |  |
+    | buttons_other | button_2 |  |
+    | buttons_yesnomaybe | True |  |
