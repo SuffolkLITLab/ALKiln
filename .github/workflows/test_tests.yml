@@ -86,7 +86,7 @@ jobs:
         if: ${{ always() }}
         with:
           name: a11y report
-          path: ./**/axe_failure_*
+          path: ./**/aXe_failure_*
       - name: upload debug_log artifact
         uses: actions/upload-artifact@v2
         if: ${{ always() }}

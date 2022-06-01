@@ -153,7 +153,7 @@ runs:
       # They will upload even if a previous step has failed
       with:
         name: a11y report
-        path: ./**/axe_failure_*
+        path: ./**/aXe_failure*
 
 # ##################################
 # # A developer's workflow should look similar to the below
