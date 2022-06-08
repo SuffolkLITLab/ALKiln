@@ -35,7 +35,7 @@
   },
   "homepage": "https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing/",
   "dependencies": {
-    "@axe-core/puppeteer": "^4.4.2",
+    "@axe-core/puppeteer": "4.4.2",
     "@cucumber/cucumber": "7.3.2",
     "axios": "0.24.0",
     "chai": "4.2.0",
