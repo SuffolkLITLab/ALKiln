@@ -47,7 +47,7 @@ Scenario: I check navigation
   Then I get to "screen features" with this data:
     | var | value | trigger |
     | object_checkboxes_test["obj_chkbx_opt_1"] | True | |
-    | object_dropdown | obj_chkbx_opt_2 | |
+    | object_dropdown | obj_opt_2 | |
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
