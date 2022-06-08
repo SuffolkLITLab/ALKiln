@@ -119,7 +119,7 @@ Scenario: tap elements
   And I tap the "#special_event" element and wait 1 second
   Then I see the phrase "Portishead"
 
-@i4 @tap-elements @tabs
+@i4 @tap-elements @tabs @error
 Scenario: tap element with an error
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
