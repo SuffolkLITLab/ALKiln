@@ -142,6 +142,7 @@ Scenario: I check the pages for accessibility
     | radio_yesno | False | false |
     | radio_other | radio_other_opt_3 | |
     | object_checkboxes_test["obj_chkbx_opt_1"] | True | |
+    | object_dropdown | obj_opt_2 | |
     | object_select_test | obj_chkbx_opt_2 | |
     | single_quote_dict['single_quote_key']['sq_two'] | true |  |
     | text_input | Regular text input field value | |
