@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [4.6.0] - 2022-06-10
+### Added
+- Steps to test web accessibility either on individual page or for all subsequent pages.
+
 ## [4.5.2] - 2022-06-10
 ### Fixed
 - (internal) Expected in report is reset properly
