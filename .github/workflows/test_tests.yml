@@ -80,6 +80,13 @@ jobs:
         with:
           name: report
           path: ./**/*_report_*
+      - name: upload a11y reports
+        uses: actions/upload-artifact@v2
+        # They will upload even if a previous step has failed
+        if: ${{ always() }}
+        with:
+          name: a11y report
+          path: ./**/aXe_failure_*
       - name: upload debug_log artifact
         uses: actions/upload-artifact@v2
         if: ${{ always() }}
