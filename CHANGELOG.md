@@ -38,11 +38,15 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.5.1] - 2022-06-10
+### Fixed
 - Corrected some schema errors in the `action.yml` (the `run` key was specified twice, should only have been once, and `required: False` is needed
   for optional inputs)
 
 ## [4.5.0] - 2022-05-23
+### Added
 - Steps that tap tabs (made using the `tabbed_templates_html` function from ALToolbox) and other arbitrary elements on the page.
 
 ## [4.4.0] - 2022-05-23
