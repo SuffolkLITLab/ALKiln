@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.5.2] - 2022-06-10
 ### Fixed
 - (internal) Expected in report is reset properly
   - if a test used "the Scenario report should include ...", then all tests that were
