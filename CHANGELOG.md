@@ -38,7 +38,11 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Fixed
+- (internal) Expected in report is reset properly
+  - if a test used "the Scenario report should include ...", then all tests that were
+    run after that would pass even if the test itself failed but wasn't expected to fail
 
 ## [4.5.1] - 2022-06-10
 ### Fixed
