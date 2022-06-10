@@ -43,6 +43,12 @@ Format:
 - Artifacts are now all in one folder. See https://github.com/SuffolkLITLab/ALKiln/issues/552.
 - Abstract names of some artifact directories
 
+## [4.5.2] - 2022-06-10
+### Fixed
+- (internal) Expected in report is reset properly
+  - if a test used "the Scenario report should include ...", then all tests that were
+    run after that would pass even if the test itself failed but wasn't expected to fail
+
 ## [4.5.1] - 2022-06-10
 ### Fixed
 - Corrected some schema errors in the `action.yml` (the `run` key was specified twice, should only have been once, and `required: False` is needed

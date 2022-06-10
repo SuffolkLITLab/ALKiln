@@ -47,6 +47,8 @@ Covers story table tests for:
     | checkboxes_yesno | True |  |
     | direct_standard_fields | True |  |
     | dropdown_test | dropdown_opt_2 |  |
+    | object_checkboxes_test["obj_chkbx_opt_1"] | true | |
+    | object_dropdown | obj_opt_2 | |
     | radio_other | radio_other_opt_3 |  |
     | radio_yesno | False |  |
     | screen_features | True |  |

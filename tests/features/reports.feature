@@ -160,6 +160,8 @@ Scenario: Fail with link with given text does not lead to correct url
   Then I arrive at the next page
   Then I get to "screen features" with this data:
     | var | value | trigger |
+    | object_checkboxes_test["obj_chkbx_opt_1"] | true | |
+    | object_dropdown | obj_opt_2 | |
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
@@ -188,6 +190,8 @@ Scenario: Fail with link unexpectedly opens in same window
   Then I arrive at the next page
   Then I get to "screen features" with this data:
     | var | value | trigger |
+    | object_checkboxes_test["obj_chkbx_opt_1"] | true | |
+    | object_dropdown | obj_opt_2 | |
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
@@ -216,6 +220,8 @@ Scenario: Fail with link unexpectedly opens in a new window
   Then I arrive at the next page
   Then I get to "screen features" with this data:
     | var | value | trigger |
+    | object_checkboxes_test["obj_chkbx_opt_1"] | true | |
+    | object_dropdown | obj_opt_2 | |
     | button_continue | True |  |
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
@@ -472,6 +478,11 @@ Scenario: Report still shows page id when I tap to continue without setting any 
   # Next page
   Then the question id should be "showifs"
   When I tap to continue
+  # Next page
+  Then the question id should be "object checkboxes"
+  And I set the var "object_checkboxes_test['obj_chkbx_opt_1']" to "true" 
+  And I set the var "object_dropdown" to "obj_opt_2"
+  When I tap to continue
   # Next page (showifs ID SHOULD BE SHOWN IN REPORT)
   Then the question id should be "buttons yesnomaybe"
 
@@ -517,6 +528,8 @@ Scenario: Report lists unused table rows
     | extra_5 | extra 5 |  |
   Then I get to "screen features" with this data:
     | var | value | trigger |
+    | object_checkboxes_test["obj_chkbx_opt_1"] | true | |
+    | object_dropdown | obj_opt_2 | |
     | extra_6 | extra 6 |  |
     | extra_7 | extra 7 |  |
     | button_continue | True |  |
