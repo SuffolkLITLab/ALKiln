@@ -41,6 +41,11 @@ Scenario: I set text-type values
   And I set the var "showif_dropdown" to "showif_dropdown_1"
   When I tap to continue
   # Next page
+  Then the question id should be "object checkboxes"
+  And I set the var "object_checkboxes_test['obj_chkbx_opt_1']" to "true" 
+  And I set the var "object_dropdown" to "obj_opt_2"
+  When I tap to continue
+  # Next page
   Then the question id should be "buttons yesnomaybe"
   When I set the var "buttons_yesnomaybe" to "None"
   # Next page
@@ -114,7 +119,7 @@ Scenario: tap elements
   And I tap the "#special_event" element and wait 1 second
   Then I see the phrase "Portishead"
 
-@i4 @tap-elements @tabs
+@i4 @tap-elements @tabs @error
 Scenario: tap element with an error
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
