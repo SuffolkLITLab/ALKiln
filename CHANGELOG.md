@@ -40,7 +40,7 @@ Format:
 -->
 ## [Unreleased]
 ### Changed
-- Cucumber tests' artifacts are now all in one folder. See https://github.com/SuffolkLITLab/ALKiln/issues/552.
+- Put cucumber tests' artifacts in one folder. See https://github.com/SuffolkLITLab/ALKiln/issues/552.
 - Add separate artifacts dir for our own internal tests, like unit tests
 - Abstract names of some of those artifact directories
 
