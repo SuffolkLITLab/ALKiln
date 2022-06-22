@@ -41,7 +41,8 @@ jobs:
     steps:
       - name: Set name of artifact folder with date and UTC time
         # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
-        run: echo "ARTIFACT_NAME=alkiln_tests_output $(date +'%Y-%m-%d at %Hhrs %Mmins %Ssecs' -u) UTC" >> $GITHUB_ENV
+        run: echo "ARTIFACT_NAME=alkiln_tests_output-$(date +'%Y-%m-%d at %Hhrs %Mmins %Ssecs' -u) UTC" >> $GITHUB_ENV
+        run: echo "UNIT_TESTS_ARTIFACT_NAME=_alkiln_tests_misc-$(date +'%Y-%m-%d at %Hhrs %Mmins %Ssecs' -u) UTC" >> $GITHUB_ENV
       - name: Set languages
         run: echo "EXTRA_LANGUAGES=${{ github.event.inputs.extra_languages }}" >> $GITHUB_ENV
         if: ${{ github.event.inputs.extra_languages != '' }}
@@ -62,8 +63,8 @@ jobs:
         # This will upload even if a previous step has failed
         if: ${{ always() }}
         with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: ./alkiln_tests_misc-*
+          name: ${{ env.UNIT_TESTS_ARTIFACT_NAME }}
+          path: ./_alkiln_tests_misc-*
       - name: upload integration tests artifacts folder
         uses: actions/upload-artifact@v2
         if: ${{ always() }}
