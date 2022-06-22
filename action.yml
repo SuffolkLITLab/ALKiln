@@ -36,12 +36,14 @@ inputs:
 runs:
   using: "composite"
   steps:
-    
     # Set environment variables
     - name: "ALKiln: Set environment variables"
       # If extra languages were set manually, override the repository
       # EXTRA_LANGUAGES secret with the manually set values
+      # Human-readable date/time:
+      # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
       run: |
+        echo "ARTIFACT_NAME=alkiln_tests_output $(date +'%Y-%m-%d at %Hhrs %Mmins %Ssecs' -u) UTC" >> $GITHUB_ENV
         if ${{ github.event.inputs.extra_languages != '' }}
         then
           echo "Manually set languages: ${{ github.event.inputs.extra_languages }}"
@@ -121,32 +123,12 @@ runs:
       shell: bash
     
     # Upload artifacts that subscribers can download on the Actions summary page
-    - name: "ALKiln: Upload errors to action summary artifacts"
-      if: ${{ failure() }}
-      uses: actions/upload-artifact@v2
-      with:
-        name: errors
-        path: ./**/error*.jpg
-    - name: "ALKiln: Upload screenshots to action summary artifacts"
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v2
-      #if-no-files-found: ignore
-      with:
-        name: screenshots
-        path: ./**/screenshot*.jpg
-    - name: "ALKiln: Upload downloaded files to action summary artifacts"
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v2
-      #if-no-files-found: ignore
-      with:
-        name: downloads
-        path: ./**/downloads_*
-    - name: "ALKiln: Upload report to action summary artifacts"
+    - name: "ALKiln: Upload artifacts folder"
       if: ${{ always() }}
       uses: actions/upload-artifact@v2
       with:
-        name: report
-        path: ./**/*_report_*
+        name: ${{ env.ARTIFACT_NAME }}
+        path: ./alkiln_tests_output-*
     - name: "ALKiln: Upload Accessibility failures, if any, to action summary artifacts"
       if: ${{ always() }}
       uses: actions/upload-artifact@v2
@@ -184,8 +166,4 @@ runs:
 #         with:
 #           SERVER_URL: "${{ secrets.SERVER_URL }}"
 #           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}"
-#           PLAYGROUND_EMAIL: "${{ secrets.PLAYGROUND_EMAIL }}"
-#           PLAYGROUND_PASSWORD: "${{ secrets.PLAYGROUND_PASSWORD }}"
-#           PLAYGROUND_ID: "${{ secrets.PLAYGROUND_ID }}"
-#           EXTRA_LANGUAGES: "${{ secrets.EXTRA_LANGUAGES }}"
 #       - run: echo "Finished running ALKiln tests"
