@@ -129,13 +129,6 @@ runs:
       with:
         name: ${{ env.ARTIFACT_NAME }}
         path: ./alkiln_tests_output-*
-    - name: "ALKiln: Upload Accessibility failures, if any, to action summary artifacts"
-      if: ${{ always() }}
-      uses: actions/upload-artifact@v2
-      # They will upload even if a previous step has failed
-      with:
-        name: a11y report
-        path: ./**/aXe_failure*
 
 # ##################################
 # # A developer's workflow should look similar to the below
