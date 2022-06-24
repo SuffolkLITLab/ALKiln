@@ -87,8 +87,8 @@ Scenario: I set text-type values
   Then the question id should be "button event action"
   And I tap to continue
   # Next page
-  Then the question id should be "simple-dropdown-field"
-  And I set the var "simple_dropdown_field" to "email"
+  Then the question id should be "single-dropdown-field"
+  And I set the var "single_dropdown_field" to "email"
   And I tap to continue
   # Next page
   Then the question id should be "the end"
