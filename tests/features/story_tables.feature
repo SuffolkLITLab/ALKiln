@@ -68,6 +68,7 @@ Covers story table tests for:
     | signature_1 |  |  |
     | signature_2 |  |  |
     | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | single_dropdown_field | email | |
     | x[i].name.first | Proxyname1 | proxy_list[0].name.first |
     | x[i].name.first | Proxyname2 | proxy_list[1].name.first |
     | x.target_number | 2 | proxy_list.target_number |
