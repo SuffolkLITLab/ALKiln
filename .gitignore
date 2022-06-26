@@ -126,6 +126,7 @@ node_modules*
 npm-debug.log
 /_alkiln_test*
 /alkiln_test*
+/runtime_config.json
 error*.jpg
 screenshot_*.jpg
 downloads_*
