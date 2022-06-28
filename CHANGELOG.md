@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.6.2] - 2022-06-28
 ### Changed
 - Put cucumber tests' artifacts in one folder. See https://github.com/SuffolkLITLab/ALKiln/issues/552.
 - Add separate artifacts dir for our own internal tests, like unit tests
