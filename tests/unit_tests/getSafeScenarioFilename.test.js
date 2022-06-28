@@ -8,9 +8,12 @@
  
  
 let test_filename = function ( expected_prefix, result ) {
-   /* Test a name to see if it's valid output with a language defined. */
-  let expected_name_regex_str = `^${ expected_prefix }\\d{13}-${ names.base_filename }$`;
-   let regex = new RegExp( expected_name_regex_str );
+  /* Test a name to see if it's valid output with a language defined. */
+  let expected_name_regex_str = `^${ expected_prefix }-${ names.base_filename }-\.{37}$`;
+  if ( expected_prefix == `` ) {
+   expected_name_regex_str = `^${ names.base_filename }-\.{37}$`;
+  }
+  let regex = new RegExp( expected_name_regex_str );
  
   // Log more info if it failed
   let found_match = regex.test( result );

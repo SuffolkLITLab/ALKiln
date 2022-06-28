@@ -117,13 +117,16 @@ dist
 # TernJS port file
 .tern-port
 
-# da testing
+# ALKiln testing
 tests/chromedriver
 *DS_Store*
 node_modules*
 .vscode/**
 .env
 npm-debug.log
+/_alkiln_test*
+/alkiln_test*
+/runtime_config.json
 error*.jpg
 screenshot_*.jpg
 downloads_*
