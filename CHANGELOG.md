@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.6.1] - 2022-06-28
 ### Fixed
 - Single dropdown fields on pages are now recognized as fields properly
 
