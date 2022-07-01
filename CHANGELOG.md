@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Added
+- Generate random input to fill out a simple form automatically
 
 ## [4.6.2] - 2022-06-28
 ### Changed
