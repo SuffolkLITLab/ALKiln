@@ -133,7 +133,7 @@ Scenario: tap element with an error
   Given I start the interview at "test_taps"
   And I tap the "Tests-not_there-tab" tab
 
-@i5 @random
-Scenario: answer randomly till the end
-  Given I start the interview at "all_tests"
-  And I answer randomly
+#@i5 @random
+#Scenario: answer randomly till the end
+#  Given I start the interview at "all_tests"
+#  And I answer randomly
