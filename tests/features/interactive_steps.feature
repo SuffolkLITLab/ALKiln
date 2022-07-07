@@ -136,4 +136,4 @@ Scenario: tap element with an error
 @i5 @random
 Scenario: I answer randomly till the end
   Given I start the interview at "all_tests"
-  And I answer randomly
+  And I answer randomly for at most 20 pages
