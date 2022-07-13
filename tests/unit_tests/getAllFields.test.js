@@ -125,7 +125,7 @@ it(`creates the right data for a 'choices:' field`, async function() {
 // ```
 it(`creates the right data for a dropdown created with an object`, async function() {
   let result = await getAllFields( scope, { html: html.object_dropdown });
-  expect( result ).to.deep.equal( fields.object_dropdown );
+  expect( fields.object_dropdown ).to.deep.equal( result );
 });
 
 
