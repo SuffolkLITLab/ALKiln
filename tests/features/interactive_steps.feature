@@ -90,6 +90,9 @@ Scenario: I set various values
   Then the question id should be "single-dropdown-field"
   And I set the var "single_dropdown_field" to "email"
   And I tap to continue
+  Then the question id should be "object-radio-field"
+  When I set the var "object_radio_field" to "object_radio_choice_one"
+  And I tap to continue
   # Next page
   Then the question id should be "the end"
 
