@@ -183,15 +183,7 @@ fields.standard = [
       },
       {
         "var": "dropdown_test",
-        "value": ""
-      },
-      {
-        "var": "dropdown_test",
         "value": "dropdown_opt_1"
-      },
-      {
-        "var": "dropdown_test",
-        "value": "v�)v�'��m�"
       },
       {
         "var": "dropdown_test",
@@ -199,16 +191,8 @@ fields.standard = [
       },
       {
         "var": "dropdown_test",
-        "value": "v�)v�'��m�"
-      },
-      {
-        "var": "dropdown_test",
         "value": "dropdown_opt_3"
       },
-      {
-        "var": "dropdown_test",
-        "value": "v�)v�'��m�"
-      }
     ],
     "type": "",
     "trigger": "direct_standard_fields"
@@ -422,15 +406,7 @@ fields.show_if = [
       },
       {
         "var": "showif_dropdown",
-        "value": ""
-      },
-      {
-        "var": "showif_dropdown",
         "value": "showif_dropdown_1"
-      },
-      {
-        "var": "showif_dropdown",
-        "value": "�\u001a0��ݮ�]�\t�"
       },
       {
         "var": "showif_dropdown",
@@ -438,24 +414,12 @@ fields.show_if = [
       },
       {
         "var": "showif_dropdown",
-        "value": "�\u001a0��ݮ�]�\t�"
-      },
-      {
-        "var": "showif_dropdown",
         "value": "showif_dropdown_3"
-      },
-      {
-        "var": "showif_dropdown",
-        "value": "�\u001a0��ݮ�]�\t�"
       },
       {
         "var": "showif_dropdown",
         "value": "showif_dropdown_4"
       },
-      {
-        "var": "showif_dropdown",
-        "value": "�\u001a0��ݮ�]�\t�"
-      }
     ],
     "type": "",
     "trigger": "direct_showifs"
@@ -721,10 +685,6 @@ fields.object_dropdown = [
     "selector": "#daquestion select[name=\"b2JqZWN0X2Ryb3Bkb3du\"][id=\"b2JqZWN0X2Ryb3Bkb3du\"][class=\"form-select dasingleselect daobject\"]",
     "tag": "select",
     "guesses": [
-      {
-        "var": "object_dropdown",
-        "value": ""
-      },
       {
         "var": "object_dropdown",
         "value": ""
