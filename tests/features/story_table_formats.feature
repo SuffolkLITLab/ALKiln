@@ -3,7 +3,6 @@ Feature: Supported story table formats
 
 NOTE:
     Unsupported formats:
-    - Arrays (see https://github.com/plocket/docassemble-cucumber/issues/257)
     - Format 1 and 2 tables (permanent) (see https://github.com/plocket/docassemble-cucumber/issues/264)
 
 NOTE:
@@ -75,3 +74,52 @@ Scenario: Table MISSING trigger column
     | single_quote_dict['single_quote_key']['sq_two'] | true |
     | text_input | Regular text input field value |
     | textarea | Multiline text\narea value |
+
+@fast @stf5
+Scenario: Table has no header row, has trigger column
+  Given I start the interview at "all_tests"
+  And I get to "showifs" with this data:
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | checkboxes_other['checkbox_other_opt_2'] | true |  |
+    | checkboxes_other['checkbox_other_opt_3'] | false |  |
+    | checkboxes_yesno | True |  |
+    | dropdown_test | dropdown_opt_2 |  |
+    | radio_other | radio_other_opt_3 |  |
+    | radio_yesno | False |  |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value |  |
+    | textarea | Multiline text\narea value |  |
+
+@fast @stf6
+Scenario: Table has no header row, MISSING trigger column
+  Given I start the interview at "all_tests"
+  And I get to "showifs" with this data:
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |
+    | checkboxes_other['checkbox_other_opt_2'] | true |
+    | checkboxes_yesno | True |
+    | dropdown_test | dropdown_opt_2 |
+    | radio_other | radio_other_opt_3 |
+    | radio_yesno | False |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |
+    | text_input | Regular text input field value |
+    | textarea | Multiline text\narea value |
+
+@fast @stf7
+Scenario: Table has no header row, one row only has one column
+  Given the final Scenario status should be "failed"
+  And the Scenario report should include:
+  """
+  Your Story Table definition is bad:
+  """
+  Given I start the interview at "all_tests"
+  And I get to "showifs" with this data:
+    | double_quote_dict["double_quote_key"]['dq_two'] |
+    | checkboxes_other['checkbox_other_opt_2'] |
+    | checkboxes_yesno |
+    | dropdown_test |
+    | radio_other |
+    | radio_yesno |
+    | single_quote_dict['single_quote_key']['sq_two'] |
+    | text_input |
+    | textarea |
