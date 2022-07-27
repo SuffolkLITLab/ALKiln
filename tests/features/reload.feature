@@ -154,9 +154,3 @@ Feature: Errors caused by server reload
 #  And I wait 18 seconds
 #  Given the max seconds for each step in this scenario is 30
 #  And I tap to continue
-
-# Is this necessary?
-@reload100
-Scenario: I ensure this feature file is valid, but don't do anything in it
-  Given I wait 1 second
-
