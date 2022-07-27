@@ -26,17 +26,20 @@ Feature: Errors caused by server reload
 # - [x] 4. Set the var of a continue button
 #   - [x] I set the var ... (using a button press to continue)
 #   - [x] (same as above?) I set the var ... GitHub)? secret (for a button press)
-# - [x] Signing out at end of step
-# 
-# # Already hand tested
-# - [ ] I tap to continue
-# - [ ] In the middle of a story table (same as "tap to continue")
+#   - [ ] (same as above? We don't have an interview ready for this yet. Seen notes in 4c) I set the var for a button in a story table
+# - [x] 5. Signing out at end of step
+# - [x] 6. Tap to continue
+#   - [x] I tap to continue
+#   - [x] In the middle of a story table (basically same as "tap to continue")
+# - [x] 7. Fails both tests
+# - [x] 8. The server does actually finish reloading during the first attempt, so there's only one error printed in the report.
 # 
 # # Not yet implemented
 # - [ ] I download
+# - [ ] I upload?
 #
 # Skipping for now because not a documented step yet
-# - [ ] I tap the defined text link (really needs testing? not sure it's even currently listed)
+# - [ ] I tap the defined text link
 
 # For this scenario, start the server setup before you start running the test and wait till 4th attempt to pull in the code.
 # No screenshots are taken because these are secrets
@@ -59,13 +62,13 @@ Scenario: The server reloads while I tap a tab
 @reload3a
 Scenario: The server reloads while I tap an element selector
   Given I start the interview at "all_tests"
-  Given I wait 18 seconds
+  And I wait 18 seconds
   Given the max seconds for each step in this scenario is 5
   Then I tap the "button.btn.btn-da.btn-primary[type='submit']" element
 
 #@reload3b
 #  Given I start the interview at "all_tests"
-#  Given I wait 18 seconds
+#  And I wait 18 seconds
 #  Given the max seconds for each step in this scenario is 5
 #  Then I tap the "button.btn.btn-da.btn-primary[type='submit']" element and wait 1 seconds
 
@@ -82,7 +85,7 @@ Scenario: The server reloads while I set the var of a continue button
   And I set the var "radio_other" to "radio_other_opt_3"
   And I set the var "text_input" to "Regular text input field value"
   And I set the var "textarea" to "Multiline text\narea value"
-  Given I wait 25 seconds
+  And I wait 25 seconds
   Given the max seconds for each step in this scenario is 5
   Then I set the var "direct_standard_fields" to "True"
 
@@ -99,17 +102,60 @@ Scenario: The server reloads while I set the var of a continue button
   And I set the var "radio_other" to "radio_other_opt_3"
   And I set the var "text_input" to "Regular text input field value"
   And I set the var "textarea" to "Multiline text\narea value"
-  Given I wait 25 seconds
+  And I wait 25 seconds
   Given the max seconds for each step in this scenario is 5
   Then I set the var "direct_standard_fields" to the github secret "STANDARD_FIELDS"
 
+## We don't have an interview set up for this yet. We need one where the _first_ page
+## has a continue button field that sets a variable.
+#@reload4c
+#Scenario: The server reloads while I run a story table
+#  Given I start the interview at "all_tests"
+#  And I wait 18 seconds
+#  Given the max seconds for each step in this scenario is 3
+#  And I get to "id of second page" with this data:
+#    | var | value | trigger |
+#    | some_continue_button_var_on_first_page | true |  |
+
 @reload5
-Scenario: I reload while signing out
+Scenario: The server reloads while signing out
   Given I start the interview at "all_tests"
-  Given I wait 16 seconds
+  And I wait 16 seconds
   Given the max seconds for each step in this scenario is 1
+
+@reload6a
+Scenario: The server reloads while I tap to continue
+  Given I start the interview at "all_tests"
+  And I wait 18 seconds
+  Given the max seconds for each step in this scenario is 3
+  And I tap to continue
+
+@reload6b
+Scenario: The server reloads while I run a story table
+  Given I start the interview at "all_tests"
+  And I wait 18 seconds
+  Given the max seconds for each step in this scenario is 3
+  And I get to "direct standard fields" with this data:
+    | var | value | trigger |
+    | double_quote_dict['double_quote_key']["dq_two"] | true |  |
+    | single_quote_dict["single_quote_key"]['sq_two'] | true |  |
+
+# This test might not be necessary. The test run should end in failure and the message should appear in both reports.
+# Run `npm run setup` both times. This will complicate takedown - it creates two projects, so at the end you have to takedown the current project, which removes the project name in the config, then you have to put the name of the first project into the config and then run takedown again.
+@reload7
+Scenario: The server is reloading in both attempts
+  Given I start the interview at "all_tests"
+  And I wait 22 seconds
+  Given the max seconds for each step in this scenario is 1
+
+@reload8
+Scenario: The server finishes reloading before the first timeout
+  Given I start the interview at "all_tests"
+  And I wait 18 seconds
+  Given the max seconds for each step in this scenario is 30
+  And I tap to continue
 
 @reload100
 Scenario: I ensure this feature file is valid, but don't do anything in it
-  Given the max seconds for each step in this scenario is 15
+  Given I wait 1 second
 
