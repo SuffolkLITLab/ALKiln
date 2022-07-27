@@ -16,16 +16,17 @@ Feature: Errors caused by server reload
 
 # # Tests that need to be written and run:
 # # Theoretically implemented
-# - [ ] sign in to server with `.sign_in` on two levels:
+# - [ ] 1. sign in to server with `.sign_in` on two levels:
 #   - [x] (throw_after_server_reloads() solved this I think) when navigating to server
 #   - [ ] when submitting to log in (impossible to time? they both happen at once)
-# - [x] (waits full time for sign-out page, but I think it's working otherwise) I tap the ... tab (should not cause timeout at all, so should be fine)
-# - [ ] (broken. weird. see report 1) I tap the ... element$
-# - [ ] I tap the ... element and wait
-# - [ ] I set the var ... (using a button press to continue)
-# - [ ] I set the var ... GitHub)? secret (for a button press)
-# - [ ] I tap the defined text link (really needs testing? not sure it's even currently listed)
-# - [ ] (broken, server reload failure in wrong attempt. noticed when tapping tab) Signing out at end of step
+# - [x] 2. (waits full time for sign-out page, but I think it's working otherwise) I tap the ... tab (should not cause timeout at all, so should be fine)
+# - [x] 3. tap elements
+#   - [x] I tap the ... element$
+#   - [ ] (same as above?) I tap the ... element and wait
+# - [x] 4. Set the var of a continue button
+#   - [x] I set the var ... (using a button press to continue)
+#   - [x] (same as above?) I set the var ... GitHub)? secret (for a button press)
+# - [x] Signing out at end of step
 # 
 # # Already hand tested
 # - [ ] I tap to continue
@@ -33,6 +34,9 @@ Feature: Errors caused by server reload
 # 
 # # Not yet implemented
 # - [ ] I download
+#
+# Skipping for now because not a documented step yet
+# - [ ] I tap the defined text link (really needs testing? not sure it's even currently listed)
 
 # For this scenario, start the server setup before you start running the test and wait till 4th attempt to pull in the code.
 # No screenshots are taken because these are secrets
@@ -52,24 +56,60 @@ Scenario: The server reloads while I tap a tab
   And I tap the "Tests-second_template-tab" tab
   Then I see the phrase "villify"
 
-@reload3
+@reload3a
 Scenario: The server reloads while I tap an element selector
   Given I start the interview at "all_tests"
-  Given I wait 20 seconds
+  Given I wait 18 seconds
   Given the max seconds for each step in this scenario is 5
   Then I tap the "button.btn.btn-da.btn-primary[type='submit']" element
 
-@reload4
-Scenario: The server reloads while I navigate to the server sign in page
-  Given the max seconds for each step in this scenario is 15
-  Given I wait 15 seconds
+#@reload3b
+#  Given I start the interview at "all_tests"
+#  Given I wait 18 seconds
+#  Given the max seconds for each step in this scenario is 5
+#  Then I tap the "button.btn.btn-da.btn-primary[type='submit']" element and wait 1 seconds
+
+# Start setup on the 12th dot
+@reload4a
+Scenario: The server reloads while I set the var of a continue button
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  When I set the var "checkboxes_yesno" to "True"
+  And I set the var "checkboxes_other['checkbox_other_opt_1']" to "true"
+  And I set the var "dropdown_test" to "dropdown_opt_2"
+  And I set the var "radio_yesno" to "False"
+  And I set the var "radio_other" to "radio_other_opt_3"
+  And I set the var "text_input" to "Regular text input field value"
+  And I set the var "textarea" to "Multiline text\narea value"
+  Given I wait 25 seconds
+  Given the max seconds for each step in this scenario is 5
+  Then I set the var "direct_standard_fields" to "True"
+
+# You must add the env var `STANDARD_FIELDS`. Otherwise, it's just like @reload4a
+@reload4b
+Scenario: The server reloads while I set the var of a continue button
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  When I set the var "checkboxes_yesno" to "True"
+  And I set the var "checkboxes_other['checkbox_other_opt_1']" to "true"
+  And I set the var "dropdown_test" to "dropdown_opt_2"
+  And I set the var "radio_yesno" to "False"
+  And I set the var "radio_other" to "radio_other_opt_3"
+  And I set the var "text_input" to "Regular text input field value"
+  And I set the var "textarea" to "Multiline text\narea value"
+  Given I wait 25 seconds
+  Given the max seconds for each step in this scenario is 5
+  Then I set the var "direct_standard_fields" to the github secret "STANDARD_FIELDS"
 
 @reload5
-Scenario: The server reloads while I navigate to the server sign in page
-  Given the max seconds for each step in this scenario is 15
-  Given I wait 15 seconds
+Scenario: I reload while signing out
+  Given I start the interview at "all_tests"
+  Given I wait 16 seconds
+  Given the max seconds for each step in this scenario is 1
 
-@reload5
+@reload100
 Scenario: I ensure this feature file is valid, but don't do anything in it
   Given the max seconds for each step in this scenario is 15
 
