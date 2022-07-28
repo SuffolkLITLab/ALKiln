@@ -36,7 +36,6 @@ Feature: Errors caused by server reload
 # 
 # # Not yet implemented
 # - [ ] I download
-# - [ ] I upload?
 #
 # Skipping for now because not a documented step yet
 # - [ ] I tap the defined text link

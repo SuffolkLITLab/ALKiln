@@ -40,6 +40,13 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [4.7.0] - 2022-07-27
+### Added
+- Generate random input to fill out a simple form automatically
+
+### Changed
+- Add page id to the "Missing Variable or variables on page" error report
+
 ## [4.6.2] - 2022-06-28
 ### Changed
 - Put cucumber tests' artifacts in one folder. See https://github.com/SuffolkLITLab/ALKiln/issues/552.
