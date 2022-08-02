@@ -727,6 +727,36 @@ html.object_dropdown = `
     </form>
 </div>`;
 
+html.object_multiselect = `
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
+    <div data-variable="b2JqZWN0X211bHRpc2VsZWN0" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground1alauto%3Aall_tests.yml" id="daform" class="form-horizontal daformfields" method="POST" novalidate="novalidate">
+        <div class="da-page-header"><h1 class="h3" id="daMainQuestion">Objects</h1><div class="daclear"></div></div>
+        <div class="da-form-group row darequired da-field-container da-field-container-datatype-object_multiselect da-field-container-inputtype-multiselect">
+            <label for="b2JqZWN0X211bHRpc2VsZWN0" class="col-md-4 col-form-label da-form-label datext-right">Object multiselect</label>
+            <div class="col-md-8 dafieldpart">
+                <p class="visually-hidden">Multiselect box</p>
+                <select class="form-control damultiselect daobject" data-varname="b2JqZWN0X211bHRpc2VsZWN0" name="b2JqZWN0X211bHRpc2VsZWN0" id="b2JqZWN0X211bHRpc2VsZWN0" required="" multiple="">
+                    <option value="b2JqZWN0X211bHRpc2VsZWN0W0InWWpKS2NWZ3lPWGRrUmpoNCdd" data-valname="YjJKcVgyOXdkRjh4">obj opt 1</option>
+                    <option value="b2JqZWN0X211bHRpc2VsZWN0W0InWWpKS2NWZ3lPWGRrUmpoNSdd" data-valname="YjJKcVgyOXdkRjh5">obj opt 2</option>
+                    <option value="b2JqZWN0X211bHRpc2VsZWN0W0InWWpKS2NWZ3lPWGRrUmpoNidd" data-valname="YjJKcVgyOXdkRjh6">obj opt 3</option>
+                </select> <input type="hidden" name="b2JqZWN0X211bHRpc2VsZWN0LmdhdGhlcmVk" value="True">
+            </div>
+        </div>
+        <input type="hidden" name="_checkboxes" value="eyJiMkpxWldOMFgyMTFiSFJwYzJWc1pXTjBXMEluV1dwS1MyTldaM2xQV0dSclVtcG9OQ2RkIjogIkZhbHNlIiwgImIySnFaV04wWDIxMWJIUnBjMlZzWldOMFcwSW5XV3BLUzJOV1ozbFBXR1JyVW1wb05TZGQiOiAiRmFsc2UiLCAiYjJKcVpXTjBYMjExYkhScGMyVnNaV04wVzBJbldXcEtTMk5XWjNsUFdHUnJVbXBvTmlkZCI6ICJGYWxzZSJ9">
+        <fieldset class="da-button-set da-field-buttons">
+            <legend class="visually-hidden">Press one of the following buttons:</legend>
+            <button class="btn btn-da btn-primary" type="submit">Continue</button>
+        </fieldset>
+        <input type="hidden" name="csrf_token" value="IjM0MGVkNzE2OWE4YTY1MmI1Y2ZjNWM3NTJmZDI2MWY2NGEzZThjODQi.YulMtg.BZSZwrEOP1in9Iaqi3YYMwADNlg">
+        <input type="hidden" name="_question_name" value="ID object checkboxes">
+        <input type="hidden" name="_tracker" value="10">
+        <input type="hidden" name="_visible" value="">
+        <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJiMkpxWldOMFgyMTFiSFJwYzJWc1pXTjAifQ">
+    </form>
+</div>
+`;
+
 
 html.mixed_quotes = `
 <div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
