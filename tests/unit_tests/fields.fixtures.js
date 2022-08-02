@@ -25,10 +25,6 @@ fields.standard = [
         "var": "checkboxes_other['checkbox_other_opt_1']",
         "value": "True"
       },
-      {
-        "var": "checkboxes_other['r\u0017���1��az����']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "direct_standard_fields"
@@ -41,10 +37,6 @@ fields.standard = [
         "var": "checkboxes_other['checkbox_other_opt_2']",
         "value": "True"
       },
-      {
-        "var": "checkboxes_other['r\u0017���1��az����']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "direct_standard_fields"
@@ -57,10 +49,6 @@ fields.standard = [
         "var": "checkboxes_other['checkbox_other_opt_3']",
         "value": "True"
       },
-      {
-        "var": "checkboxes_other['r\u0017���1��az����']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "direct_standard_fields"
@@ -260,10 +248,6 @@ fields.show_if = [
         "var": "showif_checkboxes_other['showif_checkboxes_nota_1']",
         "value": "True"
       },
-      {
-        "var": "showif_checkboxes_other['�\u001a0��܅�$n�^��赯�']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "direct_showifs"
@@ -276,10 +260,6 @@ fields.show_if = [
         "var": "showif_checkboxes_other['showif_checkboxes_nota_2']",
         "value": "True"
       },
-      {
-        "var": "showif_checkboxes_other['�\u001a0��܅�$n�^��赯�']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "direct_showifs"
@@ -292,10 +272,6 @@ fields.show_if = [
         "var": "showif_checkboxes_other['showif_checkboxes_nota_3']",
         "value": "True"
       },
-      {
-        "var": "showif_checkboxes_other['�\u001a0��܅�$n�^��赯�']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "direct_showifs"
@@ -726,6 +702,70 @@ fields.object_dropdown = [
   }
 ];
 
+// ============================
+// multiselect created with objects
+// ============================
+// ```
+// - Something: some_var
+//   datatype: object
+//   choices:
+//     - obj1
+//     - obj2
+// ```
+fields.object_multiselect = [
+  {
+    "selector": "#daquestion select[name=\"b2JqZWN0X211bHRpc2VsZWN0\"][id=\"b2JqZWN0X211bHRpc2VsZWN0\"][class=\"form-control damultiselect daobject\"]",
+    "tag": "select",
+    "guesses": [
+      {
+        "var": "object_multiselect['b2JqX29wdF8x']",
+        "value": "True"
+      },
+      {
+        "var": "object_multiselect['obj_opt_1']",
+        "value": "True"
+      },
+      {
+        "var": "object_multiselect['b2JqX29wdF8y']",
+        "value": "True"
+      },
+      {
+        "var": "object_multiselect['obj_opt_2']",
+        "value": "True"
+      },
+      {
+        "var": "object_multiselect['b2JqX29wdF8z']",
+        "value": "True"
+      },
+      {
+        "var": "object_multiselect['obj_opt_3']",
+        "value": "True"
+      },
+    ],
+    "type": "",
+    "trigger": "object_multiselect"
+  },
+  {
+    "guesses": [
+      {
+        "value": "True",
+        "var": "object_multiselect.gathered"
+      }
+    ],
+    "selector": "#daquestion input[name=\"b2JqZWN0X211bHRpc2VsZWN0LmdhdGhlcmVk\"][value=\"True\"]",
+    "tag": "input",
+    "trigger": "object_multiselect",
+    "type": "hidden"
+  },
+  {
+    "selector": "#daquestion button[class=\"btn btn-da btn-primary\"]",
+    "tag": "button",
+    "guesses": [],
+    "type": "submit",
+    "trigger": "object_multiselect"
+  }, 
+];
+
 
 // ============================
 // mixed quotes
@@ -739,10 +779,6 @@ fields.mixed_quotes = [
         "var": "single_quote_dict['single_quote_key']['sq_one']",
         "value": "True"
       },
-      {
-        "var": "single_quote_dict['single_quote_key']['���']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "double_quote_dict['double_quote_key']"
@@ -755,10 +791,6 @@ fields.mixed_quotes = [
         "var": "single_quote_dict['single_quote_key']['sq_two']",
         "value": "True"
       },
-      {
-        "var": "single_quote_dict['single_quote_key']['����']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "double_quote_dict['double_quote_key']"
@@ -771,10 +803,6 @@ fields.mixed_quotes = [
         "var": "single_quote_dict['single_quote_key']['sq_three']",
         "value": "True"
       },
-      {
-        "var": "single_quote_dict['single_quote_key']['��톷�']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "double_quote_dict['double_quote_key']"
@@ -799,10 +827,6 @@ fields.mixed_quotes = [
         "var": "double_quote_dict[\"double_quote_key\"]['dq_one']",
         "value": "True"
       },
-      {
-        "var": "double_quote_dict[\"double_quote_key\"]['v��']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "double_quote_dict['double_quote_key']"
@@ -815,10 +839,6 @@ fields.mixed_quotes = [
         "var": "double_quote_dict[\"double_quote_key\"]['dq_two']",
         "value": "True"
       },
-      {
-        "var": "double_quote_dict[\"double_quote_key\"]['v���']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "double_quote_dict['double_quote_key']"
@@ -831,10 +851,6 @@ fields.mixed_quotes = [
         "var": "double_quote_dict[\"double_quote_key\"]['dq_three']",
         "value": "True"
       },
-      {
-        "var": "double_quote_dict[\"double_quote_key\"]['v�톷�']",
-        "value": "True"
-      }
     ],
     "type": "checkbox",
     "trigger": "double_quote_dict['double_quote_key']"
