@@ -38,11 +38,19 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Changed
+- Ensure unique folder names for random input screenshots in case developer uses multiple random steps in one Scenario.
+- Ensure random input detects unexpected interview errors.
+
+### Fixed
+- Fix failure when signature page is the first screen.
+- Internal tests failing even when failure status is as expected.
+- Double printing in report of scenario failure, one of them even when Scenario was possibly non-failure, like skipped.
 
 ## [4.7.0] - 2022-07-27
 ### Added
-- Generate random input to fill out a simple form automatically
+- Generate random input to fill out a simple form automatically. Missing ensure unique random screenshot folder names. Missing ensure error screens are detected as errors.
 
 ### Changed
 - Add page id to the "Missing Variable or variables on page" error report
