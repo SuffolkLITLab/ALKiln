@@ -46,6 +46,9 @@ Format:
 
 ### Changed
 - Add page id to the "Missing Variable or variables on page" error report
+- Allows Story Tables to not include a header row, as long as they have 2 or 3 columns.
+  This isn't the suggested way at the moment, since including headers is more readable,
+  but can prevent confusing and unnecessary errors.
 
 ## [4.6.2] - 2022-06-28
 ### Changed
