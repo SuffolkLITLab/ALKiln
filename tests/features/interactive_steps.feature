@@ -132,12 +132,3 @@ Scenario: tap element with an error
   """
   Given I start the interview at "test_taps"
   And I tap the "Tests-not_there-tab" tab
-
-# Should create two unique folders for random step screenshots which
-# must be checked manually
-@i5 @random
-Scenario: I answer randomly till the end twice
-  Given I start the interview at "all_tests"
-  And I answer randomly for at most 50 pages
-  Given I start the interview at "all_tests"
-  And I answer randomly for at most 50 pages
