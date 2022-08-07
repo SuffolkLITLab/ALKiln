@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.7.1] - 2022-08-07
 ### Changed
 - Ensure unique folder names for random input screenshots in case developer uses multiple random steps in one Scenario.
 - Ensure random input detects unexpected interview errors.
@@ -50,7 +52,7 @@ Format:
 
 ## [4.7.0] - 2022-07-27
 ### Added
-- Generate random input to fill out a simple form automatically. Does not yet ensure that random screenshot folder names are unique, or that error screens are detected as errors.
+- Generate random input to fill out a simple form automatically. Does not yet ensure that random screenshot folder names are unique, or that error screens are detected as errors. 4.7.1 implements those.
 
 ### Changed
 - Add page id to the "Missing Variable or variables on page" error report
