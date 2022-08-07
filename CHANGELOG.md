@@ -50,7 +50,7 @@ Format:
 
 ## [4.7.0] - 2022-07-27
 ### Added
-- Generate random input to fill out a simple form automatically. Missing ensure unique random screenshot folder names. Missing ensure error screens are detected as errors.
+- Generate random input to fill out a simple form automatically. Does not yet ensure that random screenshot folder names are unique, or that error screens are detected as errors.
 
 ### Changed
 - Add page id to the "Missing Variable or variables on page" error report
