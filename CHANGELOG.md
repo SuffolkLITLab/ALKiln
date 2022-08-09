@@ -40,12 +40,25 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [4.7.1] - 2022-08-07
+### Changed
+- Ensure unique folder names for random input screenshots in case developer uses multiple random steps in one Scenario.
+- Ensure random input detects unexpected interview errors.
+
+### Fixed
+- Fix failure when signature page is the first screen.
+- Internal tests failing even when failure status is as expected.
+- Double printing in report of scenario failure, one of them even when Scenario was possibly non-failure, like skipped.
+
 ## [4.7.0] - 2022-07-27
 ### Added
-- Generate random input to fill out a simple form automatically
+- Generate random input to fill out a simple form automatically. Does not yet ensure that random screenshot folder names are unique, or that error screens are detected as errors. 4.7.1 implements those.
 
 ### Changed
 - Add page id to the "Missing Variable or variables on page" error report
+- Allows Story Tables to not include a header row, as long as they have 2 or 3 columns.
+  This isn't the suggested way at the moment, since including headers is more readable,
+  but can prevent confusing and unnecessary errors.
 
 ## [4.6.2] - 2022-06-28
 ### Changed
