@@ -40,6 +40,12 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [4.7.2] - 2022-08-09
+### Changed
+- Inform the developer when a test failure may have been caused by a server reload. See https://github.com/SuffolkLITLab/ALKiln/issues/392.
+- Retry all failing tests once.
+
+
 ## [4.7.1] - 2022-08-07
 ### Changed
 - Ensure unique folder names for random input screenshots in case developer uses multiple random steps in one Scenario.
