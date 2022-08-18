@@ -38,7 +38,12 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Changed
+- Don't mark `...there_in_another | False |` in story tables as invalid, as it's necessary for some
+  workflows (see https://github.com/SuffolkLITLab/ALKiln/pull/580 for a longer discussion)
+  - Explicitly **not** documented, as we don't want to encourage people to use it if it's not
+    necessary for their interviews.
 
 ## [4.9.3] - 2022-09-07
 ### Fixed

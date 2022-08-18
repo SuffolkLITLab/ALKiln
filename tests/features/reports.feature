@@ -6,13 +6,13 @@ Feature: Reports show the right things
 # rp for report pass
 
 # ===============================
-# Reoprts for "failed" Scenarios
+# Reports for "failed" Scenarios
 # ===============================
 
 # ---- Exceptions in steps.js ----
 
 @fast @rf1 @error
-Scenario: Fail with missng language link
+Scenario: Fail with missing language link
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
@@ -106,7 +106,7 @@ Scenario: Fail with missing error message
 
 # TODO: Check this with validation code failure too
 @fast @rf10 @error
-Scenario: Fail with was uexepctedly not able to continue for invalid field input message
+Scenario: Fail with was unexpectedly not able to continue for invalid field input message
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
@@ -544,3 +544,14 @@ Scenario: Sign in to server successfully
   Signed in
   """
   Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
+
+@rp4 @table
+Scenario: Report doesn't complain about `there_is_another | False` in a table.
+  Given the Scenario report should not include:
+  """
+  The attribute `.there_is_another` is invalid in story table tests
+  """
+  Given I start the interview at "test_gather"
+  And I get to "end screen" with this data:
+    | var | value | trigger |
+    | users.there_is_another | False | users.there_is_another |
