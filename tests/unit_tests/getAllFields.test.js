@@ -6,6 +6,8 @@ const html = require('./html.fixtures.js');
 const fields = require('./fields.fixtures.js');
 const scope = require('../../lib/scope.js');
 const getAllFields = scope.getAllFields;
+
+chai.config.truncateThreshold = 0
 // TODO: Rearrange fixtures so related fixtures are next to each other? e.g.
 // buttons_yesno.html, buttons_yesno.fields, buttons_yesno.table, buttons_yesno.matches
 // May make more files both to make and to import, but may be more useful
@@ -29,7 +31,14 @@ const getAllFields = scope.getAllFields;
 it(`creates the right data for standard fields`, async function() {
   // 18 fields (03/15/21)
   let result = await getAllFields( scope, { html: html.standard });
-  expect( result ).to.deep.equal( fields.standard );
+  console.log(`${ JSON.stringify(result) }`);
+  console.log(`-----------------\n${ JSON.stringify(fields.standard) }`);
+  expect( result.length ).to.equal( fields.standard.length );
+  for (let i = 0; i < result.length; i++) {
+    let res = result[i];
+    let fed = fields.standard[i];
+    expect( res ).to.deep.equal( fed );
+  }
 });
 
 
