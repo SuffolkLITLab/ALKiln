@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.8.0] - 2022-08-30
 ### Changed
 - Date for filenames. Format date in y-m-d format instead of d-m-y that it had by default. Include ms.
 
