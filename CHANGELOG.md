@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Changed
+- Allow devs to test list of interviews on their server. See https://github.com/SuffolkLITLab/ALKiln/issues/600.
 
 ## [4.8.0] - 2022-08-30
 ### Changed
