@@ -444,6 +444,7 @@ Scenario: Report still shows page id when I tap to continue without setting any 
     Scenario: Report still shows page id when I tap to continue without setting any fields
     Tags: @reports @fast @rp1
     ---------------
+    Trying to load the interview question page for "all_tests"
     screen id: upload-files
     screen id: group-of-complex-fields
           | double_quote_dict['double_quote_key']['dq_two'] | true |  |
