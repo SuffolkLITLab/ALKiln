@@ -38,9 +38,11 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
-### Changed
-- runtime_config.json gets created when needed when artifacts folder is created.
+<!-- ## [Unreleased] -->
+
+## [4.9.1] - 2022-09-01
+### Fixed
+- runtime_config.json gets created when needed when artifacts folder is created. See https://github.com/SuffolkLITLab/ALKiln/issues/600.
 
 ## [4.9.0] - 2022-09-01
 ### Changed
