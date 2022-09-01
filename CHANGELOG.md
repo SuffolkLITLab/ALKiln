@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Changed
+- runtime_config.json gets created when needed when artifacts folder is created.
 
 ## [4.9.0] - 2022-09-01
 ### Changed
