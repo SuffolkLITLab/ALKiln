@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.9.0] - 2022-09-01
 ### Changed
 - Allow devs to test an arbitrary interview. See https://github.com/SuffolkLITLab/ALKiln/issues/600.
 - Create artifacts folder even when setup has been skipped. See https://github.com/SuffolkLITLab/ALKiln/issues/600.
