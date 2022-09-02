@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Fixed
+- Environment variables `SERVER_RELOAD_TIMEOUT_SECONDS` and `MAX_SECONDS_FOR_SERVER_RELOAD` were being used as milliseconds instead of seconds. See https://github.com/SuffolkLITLab/ALKiln/issues/606.
 
 ## [4.9.1] - 2022-09-01
 ### Fixed
