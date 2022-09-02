@@ -77,7 +77,7 @@ runs:
           "scripts": {
             "test": "npm run langs_setup && npm run cucumber -- $@",
             "cucumber_base": "./node_modules/.bin/cucumber-js --require ./node_modules/@suffolklitlab/alkiln/lib/index.js",
-            "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" docassemble/*/data/sources/*.feature; }; run_cucumber",
+            "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" docassemble/*/data/sources/*.feature --retry 1; }; run_cucumber",
             "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./node_modules/.bin/alkiln-cucumber docassemble/*/data/sources/*_lang*.feature",
             "langs_setup": "node_modules/.bin/alkiln-langs 'docassemble/*/data/sources/*.feature'",
             "setup": "node_modules/.bin/alkiln-setup",

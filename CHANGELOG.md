@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Fixed
+- `retry` of failed tests not implemented for developers. See https://github.com/SuffolkLITLab/ALKiln/issues/601.
 
 ## [4.9.2] - 2022-09-02
 ### Fixed
