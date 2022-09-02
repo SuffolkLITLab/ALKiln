@@ -295,7 +295,6 @@ fields.show_if = [
   },
   {
     "selector": "#daquestion input[name=\"_ignore3\"][id=\"labelauty-67439\"][class=\"dafield3 danota-checkbox da-to-labelauty checkbox-icon labelauty da-active-invisible dafullwidth\"]",
-    "multiple": false,
     "tag": "input",
     "guesses": [
       {
@@ -373,7 +372,6 @@ fields.show_if = [
   },
   {
     "selector": "#daquestion input[name=\"X2ZpZWxkXzY\"][id=\"X2ZpZWxkXzY\"][class=\"form-control\"]",
-    "multiple": false,
     "tag": "input",
     "guesses": [
       {
@@ -386,7 +384,6 @@ fields.show_if = [
   },
   {
     "selector": "#daquestion textarea[name=\"X2ZpZWxkXzc\"][id=\"X2ZpZWxkXzc\"][class=\"form-control\"]",
-    "multiple": false,
     "tag": "textarea",
     "guesses": [
       {
@@ -884,6 +881,7 @@ fields.mixed_quotes = [
         "value": "True"
       },
     ],
+    "multiple": false,
     "type": "checkbox",
     "trigger": "double_quote_dict['double_quote_key']"
   },
@@ -896,6 +894,7 @@ fields.mixed_quotes = [
         "value": "True"
       },
     ],
+    "multiple": false,
     "type": "checkbox",
     "trigger": "double_quote_dict['double_quote_key']"
   },

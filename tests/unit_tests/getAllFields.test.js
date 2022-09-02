@@ -1,5 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
+const deepEqualInAnyOrder = require('deep-equal-in-any-order');
+chai.use(deepEqualInAnyOrder);
 // We need jest or something, right? To do fancy stuff.
 
 const html = require('./html.fixtures.js');
@@ -31,13 +33,13 @@ chai.config.truncateThreshold = 0
 it(`creates the right data for standard fields`, async function() {
   // 18 fields (03/15/21)
   let result = await getAllFields( scope, { html: html.standard });
-  console.log(`${ JSON.stringify(result) }`);
-  console.log(`-----------------\n${ JSON.stringify(fields.standard) }`);
+  // console.log(`${ JSON.stringify(result) }`);
+  // console.log(`-----------------\n${ JSON.stringify(fields.standard) }`);
   expect( result.length ).to.equal( fields.standard.length );
   for (let i = 0; i < result.length; i++) {
     let res = result[i];
-    let fed = fields.standard[i];
-    expect( res ).to.deep.equal( fed );
+    let expected = fields.standard[i];
+    expect( res ).to.deep.equalInAnyOrder( expected );
   }
 });
 
@@ -47,7 +49,9 @@ it(`creates the right data for standard fields`, async function() {
 // ============================
 it(`creates the right data for 'show if' fields`, async function() {
   let result = await getAllFields( scope, { html: html.show_if });
-  expect( result ).to.deep.equal( fields.show_if );
+  // console.log(`${ JSON.stringify(result, null, 2) }`);
+  // console.log(`-----------------\n${ JSON.stringify(fields.show_if, null, 2) }`);
+  expect( result ).to.deep.equalInAnyOrder( fields.show_if );
 });
 
 
@@ -152,5 +156,5 @@ it(`creates the right data for a multiselect created with an object`, async func
 // following test is mostly useful for that second purpose.
 it(`creates the right data for a question whose table will have mixed quotes`, async function() {
   let result = await getAllFields( scope, { html: html.mixed_quotes });
-  expect( result ).to.deep.equal( fields.mixed_quotes );
+  expect( result ).to.deep.equalInAnyOrder( fields.mixed_quotes );
 });
