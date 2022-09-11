@@ -38,12 +38,17 @@ runs:
   steps:
     - run: echo "ACTION_PATH=${{ github.action_path }}" >> $GITHUB_ENV
       shell: bash
-    - run: ls
-      shell: bash
-    - run: sudo cp "${{ github.action_path }}/cucumber.js" /root/
-      shell: bash
-    - run: ls
-      shell: bash
+    - run:
+      touch cucumber.js
+      cat "${ACTION_PATH}/cucumber.js" > cucumber.js
+      file=$(<"cucumber.js")
+      echo $file
+    #- run: ls
+    #  shell: bash
+    #- run: sudo cp "${{ github.action_path }}/cucumber.js" /root/
+    #  shell: bash
+    #- run: ls
+    #  shell: bash
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
 #     # Set environment variables
