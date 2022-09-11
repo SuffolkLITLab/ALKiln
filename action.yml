@@ -36,7 +36,13 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: echo "ACTION_PATH=${{ github.action_path }}" >> $GITHUB_ENV
+    #- run: echo "ACTION_PATH=${{ github.action_path }}" >> $GITHUB_ENV
+    #  shell: bash
+    - run: ls
+      shell: bash
+    - run: sudo cp "${{ github.action_path }}/cucumber.js" /root/
+      shell: bash
+    - run: ls
       shell: bash
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
