@@ -36,8 +36,8 @@ inputs:
 runs:
   using: "composite"
   steps:
-    #- run: echo "ACTION_PATH=${{ github.action_path }}" >> $GITHUB_ENV
-    #  shell: bash
+    - run: echo "ACTION_PATH=${{ github.action_path }}" >> $GITHUB_ENV
+      shell: bash
     - run: ls
       shell: bash
     - run: sudo cp "${{ github.action_path }}/cucumber.js" /root/
