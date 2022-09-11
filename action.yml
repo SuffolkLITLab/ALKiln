@@ -41,7 +41,7 @@ runs:
     - name: make file
       run: |
         touch cucumber.js
-        cat "${ACTION_PATH}/cucumber.js" > cucumber.js
+        cat "${{ github.action_path }}/cucumber.js" > cucumber.js
         file=$(<"cucumber.js")
         echo $file
       shell: bash
