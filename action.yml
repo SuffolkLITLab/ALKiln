@@ -43,6 +43,7 @@ runs:
       cat "${ACTION_PATH}/cucumber.js" > cucumber.js
       file=$(<"cucumber.js")
       echo $file
+      shell: bash
     #- run: ls
     #  shell: bash
     #- run: sudo cp "${{ github.action_path }}/cucumber.js" /root/
