@@ -36,7 +36,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: echo "${{ github.action_path }}"
+    - run: echo "ACTION_PATH=${{ github.action_path }}" >> $GITHUB_ENV
       shell: bash
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
