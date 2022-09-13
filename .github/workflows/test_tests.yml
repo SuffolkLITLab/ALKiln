@@ -1,78 +1,123 @@
-name: Test the tests
+name: Publish a new version
 
 on:
-  push:
   workflow_dispatch:
     inputs:
-      extra_languages:
-        required: False
-        description: 'Optional. A list of comma separated language names visible on buttons or links that change the language of the interview. Overrides the EXTRA_LANGUAGES repo secret.'
-        default: ''
-      tags:
-        required: False
-        description: 'Optional. Use a "tag expression" specify which tagged tests to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)'
-        default: ''
+      bump_type:
+        required: True
+        description: 'major, minor, patch, or pre (pre-release)'
+        default: 'minor'
+      tag:
+        required: True
+        description: 'Use "dev" if this is not supposed to be the "latest" version that gets pulled by everyone'
+        default: 'latest'
 
 jobs:
 
-  puppeteer-tests:
+  publish:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
         node-version: [17.x]
 
-    env:
-      BASE_URL: ${{ secrets.SERVER_URL }}
-      PLAYGROUND_EMAIL: ${{ secrets.PLAYGROUND_EMAIL }}
-      PLAYGROUND_PASSWORD: ${{ secrets.PLAYGROUND_PASSWORD }}
-      PLAYGROUND_ID: ${{ secrets.PLAYGROUND_ID }}
-      DOCASSEMBLE_DEVELOPER_API_KEY: ${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}
-      BRANCH_PATH: main
-      EXTRA_LANGUAGES: ${{ secrets.EXTRA_LANGUAGES }}
-      REPO_URL: https://github.com/plocket/docassemble-ALAutomatedTestingTests
-      USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
-      USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
-      SECRET_VAR1: secret-var1-value
-      SECRET_VAR2: secret-var2-value
-      SECRET_FOR_MISSING_FIELD: secret for missing field
-
-    name: Run Puppeteer tests
+    name: Bump, publish, tag
     steps:
-      - name: Set name of artifact folder with date and UTC time
-        # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
-        run: |
-          echo "ARTIFACT_NAME=alkiln_tests_output-$(date +'%Y-%m-%d at %Hhrs %Mmins %Ssecs' -u) UTC" >> $GITHUB_ENV
-          echo "UNIT_TESTS_ARTIFACT_NAME=_alkiln_tests_misc-$(date +'%Y-%m-%d at %Hhrs %Mmins %Ssecs' -u) UTC" >> $GITHUB_ENV
-      - name: Set languages
-        run: echo "EXTRA_LANGUAGES=${{ github.event.inputs.extra_languages }}" >> $GITHUB_ENV
-        if: ${{ github.event.inputs.extra_languages != '' }}
-      # For the testing repo, the `REPO_URL` is that of a different repo and is created in `env:`
-      - run: echo "Repo address is $REPO_URL"
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup environment
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - run: npm run setup
-      - run: npm run test -- ${{ github.event.inputs.tags && format('"--tags" "{0}"', github.event.inputs.tags) }}
-      # Artifacts
-      - name: upload unit tests artifacts folder
-        uses: actions/upload-artifact@v2
-        # This will upload even if a previous step has failed
-        if: ${{ always() }}
-        with:
-          name: ${{ env.UNIT_TESTS_ARTIFACT_NAME }}
-          path: ./_alkiln_tests_misc-*
-      - name: upload integration tests artifacts folder
-        uses: actions/upload-artifact@v2
-        if: ${{ always() }}
-        with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: ./alkiln_tests_output-*
-      # Delete Playground Project and project name file
-      - name: Cleanup
-        if: ${{ always() }}
-        run: npm run takedown
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+      #- name: Increment package.json
+      ## String manipulation, I think
+      ## Get old version number
+      ## Get bump_type
+      ## Manipulate numbers based on bump_type
+      #- name: Update changelog?
+      ## How? Can we do it the other way around - use a dated edit of the changelog to
+      ## inform the publishing info instead of having these inputs?
+      #- name: Update developer package.json
+      ## String manipulation, I think
+      #- name: Update developer package-lock.json
+      ## npm install
+      #- name: Publish npm version
+      #  run: npm publish --tag ${{ github.event.inputs.tag }}
+      #- name: Push new GitHub tag
+      ## Use new version number
+
+
+#name: Test the tests
+#
+#on:
+#  push:
+#  workflow_dispatch:
+#    inputs:
+#      extra_languages:
+#        required: False
+#        description: 'Optional. A list of comma separated language names visible on buttons or links that change the language of the interview. Overrides the EXTRA_LANGUAGES repo secret.'
+#        default: ''
+#      tags:
+#        required: False
+#        description: 'Optional. Use a "tag expression" specify which tagged tests to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)'
+#        default: ''
+#
+#jobs:
+#
+#  puppeteer-tests:
+#    runs-on: ubuntu-latest
+#
+#    strategy:
+#      matrix:
+#        node-version: [17.x]
+#
+#    env:
+#      BASE_URL: ${{ secrets.SERVER_URL }}
+#      PLAYGROUND_EMAIL: ${{ secrets.PLAYGROUND_EMAIL }}
+#      PLAYGROUND_PASSWORD: ${{ secrets.PLAYGROUND_PASSWORD }}
+#      PLAYGROUND_ID: ${{ secrets.PLAYGROUND_ID }}
+#      DOCASSEMBLE_DEVELOPER_API_KEY: ${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}
+#      BRANCH_PATH: main
+#      EXTRA_LANGUAGES: ${{ secrets.EXTRA_LANGUAGES }}
+#      REPO_URL: https://github.com/plocket/docassemble-ALAutomatedTestingTests
+#      USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
+#      USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
+#      SECRET_VAR1: secret-var1-value
+#      SECRET_VAR2: secret-var2-value
+#      SECRET_FOR_MISSING_FIELD: secret for missing field
+#
+#    name: Run Puppeteer tests
+#    steps:
+#      - name: Set name of artifact folder with date and UTC time
+#        # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
+#        run: |
+#          echo "ARTIFACT_NAME=alkiln_tests_output-$(date +'%Y-%m-%d at %Hhrs %Mmins %Ssecs' -u) UTC" >> $GITHUB_ENV
+#          echo "UNIT_TESTS_ARTIFACT_NAME=_alkiln_tests_misc-$(date +'%Y-%m-%d at %Hhrs %Mmins %Ssecs' -u) UTC" >> $GITHUB_ENV
+#      - name: Set languages
+#        run: echo "EXTRA_LANGUAGES=${{ github.event.inputs.extra_languages }}" >> $GITHUB_ENV
+#        if: ${{ github.event.inputs.extra_languages != '' }}
+#      # For the testing repo, the `REPO_URL` is that of a different repo and is created in `env:`
+#      - run: echo "Repo address is $REPO_URL"
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#      - name: Setup environment
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: ${{ matrix.node-version }}
+#      - run: npm install
+#      - run: npm run setup
+#      - run: npm run test -- ${{ github.event.inputs.tags && format('"--tags" "{0}"', github.event.inputs.tags) }}
+#      # Artifacts
+#      - name: upload unit tests artifacts folder
+#        uses: actions/upload-artifact@v2
+#        # This will upload even if a previous step has failed
+#        if: ${{ always() }}
+#        with:
+#          name: ${{ env.UNIT_TESTS_ARTIFACT_NAME }}
+#          path: ./_alkiln_tests_misc-*
+#      - name: upload integration tests artifacts folder
+#        uses: actions/upload-artifact@v2
+#        if: ${{ always() }}
+#        with:
+#          name: ${{ env.ARTIFACT_NAME }}
+#          path: ./alkiln_tests_output-*
+#      # Delete Playground Project and project name file
+#      - name: Cleanup
+#        if: ${{ always() }}
+#        run: npm run takedown
