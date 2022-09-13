@@ -23,6 +23,8 @@ jobs:
 
     name: Bump, publish, tag
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - run: echo $GITHUB_WORKSPACE
         shell: bash
       - run: ls
