@@ -1,0 +1,43 @@
+name: Publish a new version
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        required: True
+        description: 'major, minor, patch, or pre (pre-release)'
+        default: 'minor'
+      tag:
+        required: True
+        description: 'Use "dev" if this is not supposed to be the "latest" version that gets pulled by everyone'
+        default: 'latest'
+
+jobs:
+
+  publish:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [17.x]
+
+    name: Bump, publish, tag
+    steps:
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+      #- name: Increment package.json
+      ## String manipulation, I think
+      ## Get old version number
+      ## Get bump_type
+      ## Manipulate numbers based on bump_type
+      #- name: Update changelog?
+      ## How? Can we do it the other way around - use a dated edit of the changelog to
+      ## inform the publishing info instead of having these inputs?
+      #- name: Update developer package.json
+      ## String manipulation, I think
+      #- name: Update developer package-lock.json
+      ## npm install
+      #- name: Publish npm version
+      #  run: npm publish --tag ${{ github.event.inputs.tag }}
+      #- name: Push new GitHub tag
+      ## Use new version number
