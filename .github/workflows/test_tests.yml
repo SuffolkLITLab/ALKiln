@@ -25,12 +25,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: echo $GITHUB_WORKSPACE
-        shell: bash
       - run: ls
         shell: bash
-      #- name: Setup tmate session
-      #  uses: mxschmitt/action-tmate@v3
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
       #- name: Increment package.json
       ## String manipulation, I think
       ## Get old version number
