@@ -134,7 +134,7 @@ Scenario: tap element with an error
   And I tap the "Tests-not_there-tab" tab
 
 @i5 @decoding-test @object-multiselect
-Scenario: Runs through interview designed to use base64 encoding corner cases
+Scenario: Base64 encoded corner cases are decoded correctly
   Given I start the interview at "test_decoding"
   And I get to "end screen" with this data:
     | var | value | trigger |
