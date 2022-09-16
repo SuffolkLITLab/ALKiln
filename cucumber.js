@@ -1,3 +1,3 @@
 module.exports = {
-  default: "--require ./lib/index.js --format progress --format summary:cucumber-report.txt"
+  default: "--publish-quiet  --require ./lib/index.js --format progress --format summary:cucumber-report.txt"
 }
