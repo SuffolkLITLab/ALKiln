@@ -727,7 +727,6 @@ html.object_dropdown = `
     </form>
 </div>`;
 
-
 html.mixed_quotes = `
 <div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
     <div data-variable="ZG91YmxlX3F1b3RlX2RpY3RbJ2RvdWJsZV9xdW90ZV9rZXknXQ" id="trigger" aria-hidden="true" style="display: none;"></div>

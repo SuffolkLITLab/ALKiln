@@ -132,3 +132,17 @@ Scenario: tap element with an error
   """
   Given I start the interview at "test_taps"
   And I tap the "Tests-not_there-tab" tab
+
+@i5 @decoding-test @object-multiselect
+Scenario: Base64 encoded corner cases are decoded correctly
+  Given I start the interview at "test_decoding"
+  And I get to "end screen" with this data:
+    | var | value | trigger |
+    | object_multiselect_test['obj_opt_1'] | True | |
+    | object_multiselect_test['obj_opt_3'] | True | |
+    | multiselect_test['hi'] | True | |
+    | multiselect_test['dear'] | True | |
+    | object_radio_field | object_radio_choice_one | |
+    | object_checkboxes_test['obj_chkbx_opt_1'] | True | |
+    | object_dropdown | obj_opt_2 | |
+    | checkbox_dict['single_quote_key']['🁳🧴🯍🥫🅍🗎🹇🗷🌲🯵'] | True | |
