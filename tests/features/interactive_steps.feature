@@ -147,8 +147,11 @@ Scenario: Base64 encoded corner cases are decoded correctly
     | object_dropdown | obj_opt_2 | |
     | checkbox_dict['single_quote_key']['🁳🧴🯍🥫🅍🗎🹇🗷🌲🯵'] | True | |
 
+# This test should fail because it's target id is never found, but that also means
+# it has succeeded because it didn't try to keep looking for the id by pressing 'restart'
+# to continue.
 @fast @i6
-Scenario: Doesn't try to 'continue' with a restart button
+Scenario: Fails as it doesn't try to 'continue' with a restart button
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
