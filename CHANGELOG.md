@@ -38,7 +38,10 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Changed
+- continuing between screens will only longer press button with the `btn-primary` class. This means
+  that it won't press "Exit", or "Restart" buttons, to avoid getting in an infinite loop.
 
 ## [4.9.3] - 2022-09-07
 ### Fixed
