@@ -1,0 +1,101 @@
+---
+mandatory: True
+id: interview order
+code: |
+  #object_multiselect_test
+  #multiselect_test
+  object_radio_field
+  #object_checkboxes_test
+  #checkbox_dict['single_quote_key']
+  end_screen
+---
+id: object multiselect
+question: |
+  Object Multiselect
+fields:
+  - Object multiselect: object_multiselect_test
+    datatype: object_multiselect
+    choices:
+      - obj_opt_1
+      - obj_opt_2
+      - obj_opt_3
+---
+id: multiselect
+question: |
+  Multiselect
+fields:
+  - Multiselect: multiselect_test
+    datatype: multiselect
+    choices:
+      - "hi"
+      - "there"
+      - "dear"
+      - "reader"
+---
+id: object-radio-field
+question: Object radio field
+fields:
+  - object radio field: object_radio_field
+    datatype: object_radio
+    choices:
+      - object_radio_choice_one
+      - object_radio_choice_two
+---
+id: object checkboxes
+question: |
+  Objects
+fields:
+  - Object checkboxes: object_checkboxes_test
+    datatype: object_checkboxes
+    choices:
+      - obj_chkbx_opt_1
+      - obj_chkbx_opt_2
+      - obj_chkbx_opt_3
+  - Object dropdown: object_dropdown
+    datatype: object
+    choices:
+      - obj_opt_1
+      - obj_opt_2
+      - obj_opt_3
+---
+id: group of complex fields
+question: |
+  Some complex fields
+fields:
+  - Singly quoted key: checkbox_dict['single_quote_key']
+    datatype: checkboxes
+    none of the above: False
+    choices:
+      - 1: sq_one
+      - 2: sq_two
+      - 'weird unicode': "🁳🧴🯍🥫🅍🗎🹇🗷🌲🯵"
+---
+id: end screen
+event: end_screen
+question: All done!
+---
+objects:
+  - checkbox_dict: DADict
+  - object_radio_choice_one: Individual
+  - object_radio_choice_two: Individual
+  - obj_chkbx_opt_1: DAObject
+  - obj_chkbx_opt_2: DAObject
+  - obj_chkbx_opt_3: DAObject
+  - obj_opt_1: DAObject
+  - obj_opt_2: DAObject
+  - obj_opt_3: DAObject
+---
+code: |
+  obj_chkbx_opt_1.name = 'obj_chkbx_opt_1'
+  obj_chkbx_opt_2.name = 'obj_chkbx_opt_2'
+  obj_chkbx_opt_3.name = 'obj_chkbx_opt_3'
+  obj_opt_1.name = 'obj_opt_1'
+  obj_opt_2.name = 'obj_opt_2'
+  obj_opt_3.name = 'obj_opt_3'
+---
+code: |
+  object_radio_choice_one.name.first = 'Bob'
+  object_radio_choice_one.name.last = 'FirstChoice'
+  object_radio_choice_two.name.first = 'Joe'
+  object_radio_choice_two.name.last = 'SecondChoice'
+---
