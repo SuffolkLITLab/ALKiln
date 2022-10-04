@@ -28,9 +28,9 @@ jobs:
       PLAYGROUND_PASSWORD: ${{ secrets.PLAYGROUND_PASSWORD }}
       PLAYGROUND_ID: ${{ secrets.PLAYGROUND_ID }}
       DOCASSEMBLE_DEVELOPER_API_KEY: ${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}
-      BRANCH_PATH: main
+      BRANCH_PATH: move_tests_internal
       EXTRA_LANGUAGES: ${{ secrets.EXTRA_LANGUAGES }}
-      REPO_URL: https://github.com/plocket/docassemble-ALAutomatedTestingTests
+      REPO_URL: https://github.com/SuffolkLITLab/ALKiln
       USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
       USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
       SECRET_VAR1: secret-var1-value
