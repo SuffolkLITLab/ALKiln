@@ -43,6 +43,10 @@ Format:
 - continuing between screens will only longer press button with the `btn-primary` class. This means
   that it won't press "Exit", or "Restart" buttons, to avoid getting in an infinite loop.
 
+### Fixed
+- Corrects the month in the artifact folder timestamp; was printing things like `81` for September
+  instead of `09`, because of a `+` being interpreted as Javascript string concatenation and not math.
+
 ## [4.9.3] - 2022-09-07
 ### Fixed
 - `retry` of failed tests not implemented for developers. See https://github.com/SuffolkLITLab/ALKiln/issues/601.
