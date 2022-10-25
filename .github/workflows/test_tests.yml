@@ -28,9 +28,7 @@ jobs:
       PLAYGROUND_PASSWORD: ${{ secrets.PLAYGROUND_PASSWORD }}
       PLAYGROUND_ID: ${{ secrets.PLAYGROUND_ID }}
       DOCASSEMBLE_DEVELOPER_API_KEY: ${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}
-      BRANCH_PATH: move_tests_internal
       EXTRA_LANGUAGES: ${{ secrets.EXTRA_LANGUAGES }}
-      REPO_URL: https://github.com/SuffolkLITLab/ALKiln
       USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
       USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
       SECRET_VAR1: secret-var1-value
@@ -39,6 +37,10 @@ jobs:
 
     name: Run Puppeteer tests
     steps:
+      - name: Set Github-related environment variables
+        run: |
+          echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
+          echo "BRANCH_PATH=${{ github.ref }}" >> $GITHUB_ENV
       - name: Set name of artifact folder with date and UTC time
         # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
         run: |
