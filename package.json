@@ -4,7 +4,7 @@
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "npm run unit && npm run langs_setup && npm run cucumber_internal -- $@",
+    "test": "npm run unit && npm run langs_setup && npm run cucumber -- $@",
     "cucumber": "./lib/run_cucumber.js",
     "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./lib/index.js docassemble/*/data/sources/*_lang*.feature",
     "langs_setup": "./lib/utils/langs.js 'docassemble/*/data/sources/*.feature'",
