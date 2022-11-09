@@ -43,7 +43,13 @@ Format:
 - Don't mark `...there_in_another | False |` in story tables as invalid, as it's necessary for some
   workflows (see https://github.com/SuffolkLITLab/ALKiln/pull/580 for a longer discussion)
   - Explicitly **not** documented, as we don't want to encourage people to use it if it's not
-    necessary for their interviews.
+    necessary for their interviews
+- continuing between screens will only longer press button with the `btn-primary` class. This means
+  that it won't press "Exit", or "Restart" buttons, to avoid getting in an infinite loop.
+
+### Fixed
+- Corrects the month in the artifact folder timestamp; was printing things like `81` for September
+  instead of `09`, because of a `+` being interpreted as Javascript string concatenation and not math.
 
 ## [4.9.3] - 2022-09-07
 ### Fixed
