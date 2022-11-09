@@ -41,11 +41,13 @@ Format:
 ## [Unreleased]
 ### Changed
 - Don't mark `...there_in_another | False |` in story tables as invalid, as it's necessary for some
-  workflows (see https://github.com/SuffolkLITLab/ALKiln/pull/580 for a longer discussion)
+  workflows (see https://github.com/SuffolkLITLab/ALKiln/pull/580 for a longer discussion).
   - Explicitly **not** documented, as we don't want to encourage people to use it if it's not
-    necessary for their interviews
+    necessary for their interviews.
 - continuing between screens will only longer press button with the `btn-primary` class. This means
   that it won't press "Exit", or "Restart" buttons, to avoid getting in an infinite loop.
+- Shorten test report and artifact filenames, attempting to have fewer files whose whole paths are
+  longer than 260 characters. (See https://github.com/SuffolkLITLab/ALKiln/pull/626 for details).
 
 ### Fixed
 - Corrects the month in the artifact folder timestamp; was printing things like `81` for September
