@@ -1,0 +1,33 @@
+metadata:
+  title: Test testing url args
+  short title: Test url args
+  comment: Test the automated integrated testing library for AssemblyLine with url functionality
+---
+# Necessary to tell us what the trigger var is on each page.
+# In future, this should not be needed here.
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+mandatory: True
+id: interview order
+code: |
+  url_args_test
+  end
+---
+id: url_args_test
+question: Show url args
+subquestion: |
+  Trying:
+  
+  &from=theinternets&random=zoo
+  
+  origin2: ${ url_args.get( 'from', 'unknown' ) }
+  
+  random2: ${ url_args.get( 'random', 'unknown' ) }
+continue button field: url_args_test
+---
+id: end
+event: end
+question: The end!
+---

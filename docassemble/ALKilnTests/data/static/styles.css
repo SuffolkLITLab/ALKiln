@@ -1,0 +1,46 @@
+body {
+  font-family: Helvetica;
+}
+
+/* https://www.cssportal.com/blog/numbered-lists-with-css/ */
+/* Will work with 2-digit numbers */
+ol {
+  list-style:none;
+  counter-reset:mycounter;
+  padding:0;
+}
+ol li {
+  position:relative; 
+  margin-left: 2em;
+}
+ol li:before {
+  content: counter(mycounter);
+  counter-increment: mycounter;
+  position: absolute;
+  left: -2em;
+  width: 1.5em;
+  height: 1.3em;
+  line-height: 1.3em;
+  border-radius: 2px;
+  color: #212529;
+  background: white;
+  text-align: center;
+  border: 1px solid #212529;
+}
+
+ul {
+  padding-inline-start: 1em;
+}
+
+.daterm, .daterm:hover {
+  text-decoration: underline dashed;
+  text-underline-offset: 2px;
+  /* Increases the contrast so it doesn't fail. */
+  color: #3b842c;
+}
+
+.da-review ul {
+  list-style: none;
+  padding: .5em;
+  border: 4px solid #55555555;
+}

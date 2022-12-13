@@ -1,0 +1,14 @@
+metadata:
+  title: Test testing library
+  short title: Test ALKiln
+  comment: Test the automated integrated testing library for AssemblyLine
+---
+mandatory: True
+id: interview order
+code: |
+  end
+---
+id: the end
+event: end
+question: |
+  Congradulations! Tests have passed!

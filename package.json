@@ -6,10 +6,10 @@
   "scripts": {
     "test": "npm run unit && npm run langs_setup && npm run cucumber -- $@",
     "cucumber_base": "run_cucumber(){ ./node_modules/.bin/cucumber-js \"$@\"; status=$?; ./lib/utils/clean_reports.js; return $status; }; run_cucumber",
-    "cucumber": "run_base(){ npm run cucumber_base -- \"$@\" tests/features/*.feature --retry 1; }; run_base",
+    "cucumber": "run_base(){ npm run cucumber_base -- \"$@\" docassemble/*/data/sources/*.feature --retry 1; }; run_base",
     "cucumber_external": "run_cucumber(){ tmp_path=`pwd`; ( new_path=\"$1\"; shift; cd \"$new_path\"; npm run --prefix \"${tmp_path}\" cucumber_base -- \"$@\" \"$new_path\"/docassemble/*/data/sources/*.feature;) }; run_cucumber",
-    "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./lib/index.js tests/features/*_lang*.feature",
-    "langs_setup": "./lib/utils/langs.js 'tests/features/*.feature'",
+    "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./lib/index.js docassemble/*/data/sources/*_lang*.feature",
+    "langs_setup": "./lib/utils/langs.js 'docassemble/*/data/sources/*.feature'",
     "langs_local": "npm run langs_setup && npm run local",
     "local": "npm run setup && npm run cucumber; npm run takedown",
     "setup": "./lib/docassemble/setup.js",

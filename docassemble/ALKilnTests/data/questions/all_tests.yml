@@ -1,0 +1,312 @@
+metadata:
+  title: Test testing library
+  short title: Test ALKiln
+  comment: Test the automated integrated testing library created with the AssemblyLine project
+---
+features:
+  css:
+    - styles.css
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+mandatory: True
+id: interview order
+code: |
+  upload_files_visible
+  double_quote_dict["double_quote_key"]
+  direct_standard_fields
+  direct_showifs
+  object_checkboxes_test
+  buttons_yesnomaybe
+  buttons_other
+  button_continue
+  screen_features
+  proxy_list.gather()
+  signature_1
+  signature_2
+  see_simple_doc
+  
+  button_event_action
+  single_dropdown_field
+  end
+---
+id: upload files
+question: |
+  Upload a file
+subquestion: |
+  [https://github.com/plocket/docassemble-ALAutomatedTestingTests/issues/151](https://github.com/plocket/docassemble-ALAutomatedTestingTests/issues/151)
+fields:
+  - Upload file field: upload_files_visible
+    datatype: files
+    required: False
+    maximum image size: 1024
+    image upload type: jpeg
+    accept: |
+      "image/png, image/jpg, .doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,.pdf"
+  - Show other file upload: show_upload
+    datatype: yesno
+  - Hidden upload field: upload_files_hidden
+    show if: show_upload
+    datatype: files
+    required: False
+    maximum image size: 1024
+    image upload type: jpeg
+    accept: |
+      "image/png, image/jpg, .doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/pdf,.pdf"
+---
+id: group of complex fields
+question: |
+  Some complex fields
+fields:
+  - Singly quoted key: single_quote_dict['single_quote_key']
+    datatype: checkboxes
+    required: False
+    none of the above: False
+    choices:
+      - 1: sq_one
+      - 2: sq_two
+      - 3: sq_three
+  - Doubly quoted key: double_quote_dict["double_quote_key"]
+    datatype: checkboxes
+    required: False
+    none of the above: False
+    choices:
+      - 1: dq_one
+      - 2: dq_two
+      - 3: dq_three
+---
+id: direct standard fields
+continue button field: direct_standard_fields
+question: |
+  Direct standard fields
+subquestion: |
+  Excludes proxy vars (x, i, j, etc.) or choices created with objects.
+fields:
+  - checkboxes (yesno): checkboxes_yesno
+    datatype: yesno
+  # TODO: Add checkbox yesno to leave blank
+  - checkboxes (other): checkboxes_other
+    datatype: checkboxes
+    choices: 
+       - checkboxes opt 1: checkbox_other_opt_1
+       - checkboxes opt 2: checkbox_other_opt_2
+       - checkboxes opt 3: checkbox_other_opt_3
+  # TODO: Add checkbox (other) to test 'none of the above'
+  - radio (yesno): radio_yesno
+    datatype: yesnoradio
+  # TODO: Add radio yesno to choose 'no'
+  - radio (other): radio_other
+    datatype: radio
+    choices: 
+      - radio opt 1: radio_other_opt_1
+      - radio opt 2: radio_other_opt_2
+      - radio opt 3: radio_other_opt_3
+  # Same DOM as `datatype: area`
+  - text input: text_input
+  - textarea: textarea
+    input type: area
+  - date field: date_input
+    datatype: date
+    required: False
+  - dropdown: dropdown_test
+    datatype: dropdown
+    choices:
+      - dropdown opt 1: dropdown_opt_1
+      - dropdown opt 2: dropdown_opt_2
+      - dropdown opt 3: dropdown_opt_3
+---
+id: showifs
+continue button field: direct_showifs
+question: |
+  Reveal showifs
+subquestion: |
+  We start only seeing layer 1, the first question. All other layers are hidden to test finding various hidden fields in the DOM.
+
+  TODO:
+
+  - object
+  - object_checkbox
+
+  No showifs: yesnomaybe: (buttons), buttons: (other), continue button field:
+fields:
+  - Show layer 2: show_2
+    datatype: yesno
+  - Show layer 3: show_3
+    datatype: yesno
+    show if: show_2
+  # TODO: Add checkbox yesno to leave blank
+  - showif checkbox yesno: showif_checkbox_yesno
+    datatype: yesno
+    show if: show_3
+  # A checkbox's none of the above `for` value is unique
+  - showif checkboxes (multiple): showif_checkboxes_other
+    datatype: checkboxes
+    choices:
+      - showif checkbox nota 1: showif_checkboxes_nota_1
+      - showif checkbox nota 2: showif_checkboxes_nota_2
+      - showif checkbox nota 3: showif_checkboxes_nota_3
+    show if: show_3
+  # TODO: Add checkbox (other) to test 'none of the above'
+  - showif yesnoradio: showif_yesnoradio 
+    datatype: yesnoradio
+    show if: show_3
+  # TODO: Add radio yesno to choose 'no'
+  - showif radio (multiple): showif_radio_other
+    datatype: radio
+    choices:
+      - showif radio multi 1: showif_radio_multi_1
+      - showif radio multi 2: showif_radio_multi_2
+      - showif radio multi 3: showif_radio_multi_3
+    show if: show_3
+  - showif text input: showif_text_input
+    show if: show_3
+  - showif text input: showif_textarea
+    datatype: area
+    show if: show_3
+  - showif dropdown: showif_dropdown  
+    show if: show_3
+    choices: 
+    - showif dropdown opt 1: showif_dropdown_1
+    - showif dropdown opt 2: showif_dropdown_2
+    - showif dropdown opt 3: showif_dropdown_3
+    - showif dropdown opt 4: showif_dropdown_4
+---
+objects:
+  - obj_chkbx_opt_1: DAObject
+  - obj_chkbx_opt_2: DAObject
+  - obj_chkbx_opt_3: DAObject
+  - obj_opt_1: DAObject
+  - obj_opt_2: DAObject
+  - obj_opt_3: DAObject
+---
+code: |
+  obj_chkbx_opt_1.name = 'obj_chkbx_opt_1'
+  obj_chkbx_opt_2.name = 'obj_chkbx_opt_2'
+  obj_chkbx_opt_3.name = 'obj_chkbx_opt_3'
+  obj_opt_1.name = 'obj_opt_1'
+  obj_opt_2.name = 'obj_opt_2'
+  obj_opt_3.name = 'obj_opt_3'
+---
+id: object checkboxes
+question: |
+  Objects
+fields:
+  - Object checkboxes: object_checkboxes_test
+    datatype: object_checkboxes
+    choices:
+      - obj_chkbx_opt_1
+      - obj_chkbx_opt_2
+      - obj_chkbx_opt_3
+  - Object dropdown: object_dropdown
+    datatype: object
+    choices:
+      - obj_opt_1
+      - obj_opt_2
+      - obj_opt_3
+---
+id: buttons yesnomaybe
+question: |
+  Button (yes/no/maybe)
+yesnomaybe: buttons_yesnomaybe
+---
+id: buttons other
+question: |
+  Button (other)
+field: buttons_other
+buttons:
+  - button 1: button_1
+  - button 2: button_2
+  - button 3: button_3
+---
+id: button continue
+continue button field: button_continue
+question: |
+  Button (continue)
+---
+id: screen features
+continue button field: screen_features
+question: |
+  Other screen features
+subquestion: | 
+  * [Link to external page](http://ecosia.org/). Its value is always the same.
+  * [Link: reload the page](${ interview_url() }). Its value changes.
+  * {Term} (working).
+  * {Broken term}.
+terms: 
+  term: |
+    A term is a word that you click on if you don't know what the definition is.
+---
+objects:
+  - proxy_list: DAList.using(object_type=Individual, there_are_any=True)
+---
+id: proxy vars
+generic object: DAList
+question: |
+  Proxy var ${ i + 1 }
+fields:
+  - ${ ordinal(i) } proxy name: x[i].name.first
+---
+id: is there another generic
+generic object: DAList
+question: |
+  Is there another proxy var?
+yesno: x.there_is_another
+---
+objects:
+  - single_quote_dict: DADict
+  - double_quote_dict: DADict
+---
+id: first signature
+question: |
+  Signature 1
+signature: signature_1
+---
+id: second signature
+question: |
+  Signature 2
+signature: signature_2
+---
+id: button event action
+question: |
+  Button (event action)
+field: button_event_action
+action buttons: 
+  - label: Do not pass go
+    action: end
+    icon: laugh-wink
+---
+id: Single dropdown field
+question: Single dropdown field
+field: single_dropdown_field
+dropdown:
+  - Efile and serve: efile_and_serve
+  - Email: email
+  - Mail: mail
+  - Hand delivery: hand_delivery
+---
+id: simple doc
+question: |
+  Document
+subquestion: |
+  [Tap to download](${ simple_doc.pdf.url_for( attachment=True ) })
+continue button field: see_simple_doc
+---
+id: simple attachment
+attachment:
+    variable name: simple_doc
+    pdf template file: simple.pdf
+    filename: simple-doc
+    skip undefined: True
+    editable: False
+    fields:
+      - "proxy1_name_first": ${ proxy_list[0].name.first }
+      - "proxy1_signature": ${ proxy_list[0].signature }
+---
+id: the end
+event: end
+question: |
+  Congratulations! Tests have passed!

@@ -1,0 +1,25 @@
+---
+objects:
+  - person1: Individual
+  - person2: Individual
+---
+mandatory: True
+code: |
+  person1.name.first
+  person2.name.first
+  end
+---
+id: name
+generic object: Individual
+question: Name of person ${ x.special_id }
+fields:
+  - Name: x.name.first
+---
+id: end
+event: end
+question: The end of trigger tests!
+---
+code: |
+  person1.special_id = 1
+  person2.special_id = 2
+---
