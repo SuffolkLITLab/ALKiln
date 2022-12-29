@@ -38,7 +38,10 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Changed
+- Fix artifacts not being saved in GitHub. See https://github.com/SuffolkLITLab/ALKiln/issues/629.
+- Make internal test folder names a bit simpler and more modular-izable.
 
 ## [4.10.0] - 2022-11-17
 ### Changed
