@@ -55,6 +55,14 @@ Format:
 ### Removed
 - Internal - deleted unignored local files (since adding .npmignore). Part 1 of the process out of 2.
 
+## [4.10.1-pre-cli] - 2023-01-09
+### Changed
+- a lot internally!
+  - using cucumber's JS API to run tests
+  - upgraded cucumber
+  - instead of running `npm run tests`, you can directly call scripts
+  - don't print the "publish this cucumber report" message
+
 ## [4.10.1] - 2023-01-07
 ### Changed
 - Fix artifacts not being saved in GitHub. See https://github.com/SuffolkLITLab/ALKiln/issues/629.
