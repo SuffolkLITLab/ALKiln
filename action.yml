@@ -73,9 +73,6 @@ runs:
       uses: actions/setup-node@v1
       with:
         node-version: "17"
-    - run: npm install
-      shell: bash
-
     # npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
     - name: Install ALKiln directly from npm
       run: |
