@@ -233,7 +233,7 @@ Scenario: I sign with text
   When I set the var "x.there_is_another" to "False"
   # Next page
   Then the question id should be "first signature"
-  When I sign
+  When I sign with the name "David"
   And I wait 2 second
   
 
