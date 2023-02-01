@@ -128,7 +128,8 @@ node_modules*
 .vscode/**
 .env
 npm-debug.log
-/_alkiln_test*
+/alkiln-*
+/_alkiln-*
 /alkiln_test*
 /runtime_config.json
 error*.jpg

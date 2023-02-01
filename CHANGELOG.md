@@ -41,6 +41,15 @@ Format:
 <!-- ## [Unreleased] -->
 
 
+
+## [4.10.3] - 2023-01-11
+### Removed
+- Internal - ignore local test output files. Part 2 of the process out of 2.
+
+## [4.10.2] - 2023-01-11
+### Removed
+- Internal - deleted unignored local files (since adding .npmignore). Part 1 of the process out of 2.
+
 ## [4.10.1] - 2023-01-07
 ### Changed
 - Fix artifacts not being saved in GitHub. See https://github.com/SuffolkLITLab/ALKiln/issues/629.
