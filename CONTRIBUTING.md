@@ -145,7 +145,7 @@ The `./lib/utils/session_var.js` file keeps track of what you might otherwise th
 
 ### Setup and takedown logic
 
-All of the setup and takedown logic is in the `./lib/docassemble` directory. Not a great name. It is named after the docassemble API code that is in there. Also, setup and takedown interact very closely with docassemble and the docassemble server.
+All of the setup and takedown logic is in the `./lib/docassemble` directory. It is named after the docassemble API code that is in there. Also, setup and takedown interact very closely with docassemble and the docassemble server.
 
 Other files also use the docassemble API functions, so this folder is in a bit of a messy position.
 
