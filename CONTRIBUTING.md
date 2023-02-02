@@ -93,6 +93,8 @@ An honest look at our current project architecture - some of our files and folde
 
 ### Logic architecture
 
+ALKiln uses [cucumber](https://cucumber.io/docs/installation/javascript/)[1] with [Gherkin](https://cucumber.io/docs/gherkin/reference/) syntax, [puppeteer](https://pptr.dev/), and [chai](https://www.chaijs.com/).
+
 #### .feature files
 
 The `.feature` files are written in Gherkin, a syntax cucumber uses. The "code" in there relies on the functions set up in `./lib/steps.js`.
@@ -173,3 +175,7 @@ Instructions for running tests should be near the top of this document.
 ### Files that you don't need to look at
 
 `index.js` and `world.js` don't really matter. `./lib/utils/langs.js` used to work, but we're not sure it does anymore. No one has used it yet, so we're waiting to experiment until someone expresses a need or we have some extra time.
+
+# Footnotes
+
+[1] To be clear, our framework is a misuse of cucumberjs. cucumberjs is geared towards behavior driven development. We try to make BDD available to our developers, but it's not always possible and not necessarily our goal.

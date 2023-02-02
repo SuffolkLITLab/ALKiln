@@ -29,7 +29,7 @@ Our users are developers of online forms (interviews). Usually they're very new 
 
 They do good work and we hope to give them a less code-focused way to automate their testing. They avoid having to learn Javascript, GitHub actions, and other such things.
 
-To do that, we use [cucumberjs](https://cucumber.io/docs/installation/javascript/)[1], which uses [Gherkin](https://cucumber.io/docs/gherkin/reference/) syntax to give a user/developer a more human-like syntax to instruct alkiln on what answers to give to the user's online form.
+To do that, we use [cucumberjs](https://cucumber.io/docs/installation/javascript/), which uses [Gherkin](https://cucumber.io/docs/gherkin/reference/) syntax to give a user/developer a more human-like syntax to instruct alkiln on what answers to give to the user's online form.
 
 ## How the tests run
 
@@ -71,7 +71,3 @@ When done you want to test a new branch or test files have been updated, clean u
 ```
 npm run takedown
 ```
-
-# Footnotes
-
-[1] To be clear, our framework is a misuse of cucumberjs. cucumberjs is geared towards behavior driven development. We try to make BDD available to our developers, but it's not always possible and not necessarily our goal.
