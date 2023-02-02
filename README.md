@@ -71,3 +71,7 @@ When done you want to test a new branch or test files have been updated, clean u
 ```
 npm run takedown
 ```
+
+# Footnotes
+
+[1] To be clear, our framework is a misuse of cucumberjs. cucumberjs is geared towards behavior driven development. We try to make BDD available to our developers, but it's not always possible and not necessarily our goal.
