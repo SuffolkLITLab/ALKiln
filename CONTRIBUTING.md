@@ -87,13 +87,13 @@ When done you want to test a new branch or internal test interview files have be
 npm run takedown
 ```
 
-# Very general architecture of files and folders
+## Very general architecture of files and folders
 
 An honest look at our current project architecture - some of our files and folders, what they do, and how they interact.
 
-## Logic architecture
+### Logic architecture
 
-### .feature files
+#### .feature files
 
 The `.feature` files are written in Gherkin, a syntax cucumber uses. The "code" in there relies on the functions set up in `./lib/steps.js`.
 
@@ -110,7 +110,7 @@ Then('I sign', { timeout: -1 }, async () => {
 });
 ```
 
-### steps.js
+#### steps.js
 
 `./lib/steps.js` defines all the Gherkin sentences that our users (the developers) can write. See [cucumber documentation on defining steps](https://cucumber.io/docs/cucumber/step-definitions/?lang=javascript). We sometimes use "cucumber expressions" and, but often use regular expressions as we often want to be more flexible about the user's input.
 
@@ -121,7 +121,7 @@ The file handles things like:
 * Finishing a Scenario
 * Finishing all tests
 
-### scope.js
+#### scope.js
 
 `./lib/steps.js` makes heavy use of `./lib/scope.js`, where most of the action happens. We have decided to mostly keep it in one file to avoid bouncing back and forth between files.
 
@@ -135,29 +135,29 @@ The file handles things like:
 * Checking for server restarts
 * Generating test report content
 
-## Logging
+### Logging
 
 `./lib/utils/log.js` takes care of logging information of various kinds (normal, debug, error) to the console in ways we find useful. We should probably find a logging library instead, but this is what we have for now. An important feature is that it ensures the messages clearly belong to ALKiln and not to some other process.
 
-## session_vas.js
+### session_vars.js
 
 The `./lib/utils/session_var.js` file keeps track of what you might otherwise think of as environment variables. We like to think of them as constants, but some of them do need go through functions, so for consistency we get them all through functions. Also because it was easier to test them when they are functions.
 
-## Setup and takedown logic
+### Setup and takedown logic
 
 All of the setup and takedown logic is in the `./lib/docassemble` directory. Not a great name. It is named after the docassemble API code that is in there. Also, setup and takedown interact very closely with docassemble and the docassemble server.
 
 Other files also use the docassemble API functions, so this folder is in a bit of a messy position.
 
-## Bash commands
+### Bash commands
 
 Our `./package.json` uses the code in the `script` directive to setup, run, and takedown tests. We are working on converting this to a command line tool to avoid some complexity in GitHub actions, increase security, and align more with what this framework has grown into. (TODO: Define this better)
 
-## GitHub composite action
+### GitHub composite action
 
 Our `./action.yml` is a [composite action](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action). The users/developers let it do most of the work for them. It installs npm, installs our repo, then uses our repo to set up the tests, run the tests, generate and save reports, errors, and screenshots, and clean up the tests.
 
-## Internal cucumber test interviews
+### Internal cucumber test interviews
 
 To run internal integrated tests, our repository itself includes a docassemble project. Most of its files are in the `./docassemble` directory. There are other files it needs, like `./setup.py`. This is what gets pulled into the docassemble server when the internal cucumber tests are run.
 ```
@@ -170,6 +170,6 @@ Our unit tests use chai for assertions. They are in `./tests/unit_tests` and the
 
 Instructions for running tests should be near the top of this document.
 
-## Files that you don't need to look at
+### Files that you don't need to look at
 
 `index.js` and `world.js` don't really matter. `./lib/utils/langs.js` used to work, but we're not sure it does anymore. No one has used it yet, so we're waiting to experiment until someone expresses a need or we have some extra time.
