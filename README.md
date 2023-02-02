@@ -19,7 +19,7 @@ If you have questions or need to report a bug, [start a new issue](https://githu
 
 ## Our code
 
-Our code is a bot that pretends to be a human interacting with online forms (interviews) that have been made with the [docassemble](https://docassemble.org) open source platform. It looks at the HTML DOM, manipulates it, and interacts with it.
+Our code pretends to be a human interacting with online forms (interviews) that have been made with the [docassemble](https://docassemble.org) open source platform. It looks at the HTML DOM, manipulates it, and interacts with it.
 
 It uses [cucumber](https://cucumber.io/docs/installation/javascript/), [puppeteer](https://pptr.dev/), and [chai](https://www.chaijs.com/).
 

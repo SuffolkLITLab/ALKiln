@@ -19,7 +19,7 @@ Before making a pull request
 
 1. Search issues to see if what you are thinking of has been discussed yet.
 1. Make an issue about the change you are thinking of.
-1. Assing yourself to an issue.
+1. Assign yourself to an issue.
 1. Make a new branch.
 1. Make your edits. Feel free to run tests as you go.
 1. When you're ready to push
@@ -29,7 +29,7 @@ Before making a pull request
    1. If needed, update the `README.md` (e.g. the cheat sheet section) and/or `CONTRIBUTING.md` docs. Changes to our architecture might require editing `CONTRIBUTING.md`.
 1. Push to GitHub.
 1. Wait for the GitHub tests to pass. You may have to re-run failing tests - server restarts or race conditions may interfere with them. We have reduced them greatly, but some are impossible to avoid.
-1. Make your pull request.
+1. Make your pull request. Work in progress pull requests are great too. A pull request must be reviewed before it can be merged.
 
 ## .env
 
@@ -127,7 +127,7 @@ The file handles things like:
 
 Many `./lib/steps.js` steps make use of the `scope.steps` object. It is there to avoid duplicating code between steps.
 
-The file hanldes things like:
+The file handles things like:
 * Finding form fields on a page
 * Filling out form fields
 * Generating random data for form fields
