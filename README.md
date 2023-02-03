@@ -2,6 +2,8 @@
 
 ALKiln, or Assembly Line Kiln, is an open source project that helps [docassemble](https://docassemble.org/) developers create automated tests for their interviews (online forms). It works well with https://github.com/suffolklitlab/docassemble-AssemblyLine but isn't dependent on it.
 
+This documentation is for internal developers—those working on ALKiln itself.
+
 <!-- 
 https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-readable.md
 √ What is this repo or project? (You can reuse the repo description you used earlier because this section doesn’t have to be long.)
@@ -23,7 +25,9 @@ It uses [cucumber](https://cucumber.io/docs/installation/javascript/), [puppetee
 
 ## Our users
 
-Our users are developers of online forms (interviews). Usually they're very new to coding and are unfamiliar GitHub and with a lot of coding concepts. If they know how to code, it tends to be in Python. They usually don't have the resource or funding to put into learning these skills.
+Our users are developers of online forms (interviews). Usually they're very new to coding and are unfamiliar GitHub and with a lot of coding concepts. If they know how to code, it tends to be in Python because that's what docassemble uses. They usually don't have the resource or funding to put into learning these skills.
+
+For example, a pro bono law firm is trying to write a form that people can use to create a restraining order. They're coding it using docassemble. Their users are already going through a hard time, and the forms make them outline their heart wrenching experiences in detail. The developers need to make sure their users don't get system errors right in the middle of that. They use our framework to run the end-to-end tests.
 
 They do good work and we hope to give them a less code-focused way to automate their testing. They avoid having to learn Javascript, GitHub actions, and other such things.
 
@@ -50,6 +54,8 @@ The developers have a GitHub action that is really just a wrapper. It uses a com
 Read about contributing in our [CONTRIBUTING.md document](CONTRIBUTING.md). Here's a quick cheat sheet for some commands once you're up and running:
 
 ## Cheat sheet
+
+*Once you've already read the contributing documentation, you can use these as quick reminders for running our internal tests.*
 To setup for the integration tests, create the project on the server:
 ```
 npm run setup
@@ -65,7 +71,7 @@ To run the unit tests in isolation:
 npm run unit
 ```
 
-When done you want to test a new branch or test files have been updated, clean up before setting up again:
+If you or someone else changes the interview code in `./docassemble`, you have to clean up the old data on the server before running `setup` again:
 ```
 npm run takedown
 ```
