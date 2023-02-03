@@ -161,7 +161,7 @@ When you `npm run` the scripts in our `./package.json` you can setup, run, or ta
 
 Our `./action.yml` is a [composite action](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action). The users/developers let it do most of the work for them. It installs npm, installs our repo, then uses our repo to set up the tests, run the tests, generate and save reports, errors, and screenshots, and clean up the tests.
 
-### Internal cucumber test interviews
+### Internal tests
 
 We have our own docassemble package in our repo to test our own end-to-end tests. Most of what the package needs is in `./docassemble`. That docassemble package is what the test setup pulls into the docassemble server. Our internal end-to-end cucumber tests are `.feature` files that are stored in `./docassemble/ALKilnTests/data/sources`. The interview (online form) `.yml` files that those `.feature` files use are also deep in the `./docassemble` package. You probably won't be touching the interview files. If you get curious, feel free to ask us.
 
