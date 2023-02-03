@@ -33,22 +33,6 @@ They do good work and we hope to give them a less code-focused way to automate t
 
 To do that, we use [cucumberjs](https://cucumber.io/docs/installation/javascript/), which uses [Gherkin](https://cucumber.io/docs/gherkin/reference/) syntax to give a user/developer a more human-like syntax to instruct alkiln on what answers to give to the user's online form.
 
-## How the tests run
-
-This section requires knowledge of the docassemble platform a bit, as well as GitHub actions, so be wary. We're working on improving this.
-
-Our tests require the user/developer to have a docassemble server on which they host these interviews and at least one developer account. When GitHub runs the tests, it does the following:
-
-1. Sets up on the docassemble server. In a given developer account:
-   1. Creates a new interview (online form) for this particular branch of the repository.
-   1. Pulls in the code from that branch into the docassemble server.
-1. Runs the tests
-   1. Pretends to be an anonymous account that comes to the form and inputs answers.
-   1. Writes up reports and possibly takes screenshots to show to the developer.
-1. Cleans up by deleting the interview it created
-
-The developers have a GitHub action that is really just a wrapper. It uses a composite action in our repository and gives important variables, like their GitHub secret of the API key for their docassemble server developer account.
-
 ## Contributing
 
 Read about contributing in our [CONTRIBUTING.md document](CONTRIBUTING.md). Here's a quick cheat sheet for some commands once you're up and running:

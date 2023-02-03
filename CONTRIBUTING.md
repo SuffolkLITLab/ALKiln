@@ -89,6 +89,22 @@ If you or someone else changes the interview code in `./docassemble`, you have t
 npm run takedown
 ```
 
+## How the tests run
+
+This section requires knowledge of the docassemble platform a bit, as well as GitHub actions, so be wary. We're hoping to improve this.
+
+Our tests require the user/developer to have a docassemble server on which they host these interviews (online forms) and at least one developer account. When GitHub runs the tests, it does the following:
+
+1. Sets up on the docassemble server. In a given developer account:
+   1. Creates a new interview for this particular branch of the repository.
+   1. Pulls in the code from that branch into the docassemble server.
+1. Runs the tests
+   1. Pretends to be an anonymous account that comes to the form and inputs answers.
+   1. Writes up reports and possibly takes screenshots to show to the developer.
+1. Cleans up by deleting the interview it created
+
+The developers have a GitHub action that is really just a wrapper. It uses a composite action in our repository and gives important variables, like their GitHub secret of the API key for their docassemble server developer account.
+
 ## Very general architecture of files and folders
 
 An honest look at our current project architecture—some of our files and folders, what they do, and how they interact.
