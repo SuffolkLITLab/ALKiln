@@ -145,7 +145,7 @@ The file handles things like:
 
 ### session_vars.js
 
-The `./lib/utils/session_var.js` file keeps track of what you might otherwise think of as environment variables. We like to think of them as constants, but some of them do need go through functions, so for consistency we get them all through functions. Also because it was easier to test them when they are functions.
+The `./lib/utils/session_var.js` file keeps track of what you might otherwise think of as environment variables. We like to think of them as constants, but some of them do need to go through functions, so for consistency we get them all through functions. Also because it was easier to test them when they are functions.
 
 ### Setup and takedown logic
 
