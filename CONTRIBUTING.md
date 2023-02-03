@@ -165,7 +165,7 @@ Our `./action.yml` is a [composite action](https://docs.github.com/en/actions/cr
 
 We have our own docassemble package in our repo to test our own end-to-end tests. Most of what the package needs is in `./docassemble`. That docassemble package is what the test setup pulls into the docassemble server. Our internal end-to-end cucumber tests are `.feature` files that are stored in `./docassemble/ALKilnTests/data/sources`. The interview (online form) `.yml` files that those `.feature` files use are also deep in the `./docassemble` package. You probably won't be touching the interview files. If you get curious, feel free to ask us.
 
-  There are other files the docassemble package needs, like `./setup.py`, so if you see them around, don't worry about them.
+There are other files the docassemble package needs, like `./setup.py`, so if you see them around, don't worry about them.
 
 Our unit tests are in `./tests/unit_tests` and their filenames end in `.test.js`. Like the cucumber tests, they use chai for assertions. The fixtures for the tests are also contained in that folder and end in `.fixtures.js`.
 
