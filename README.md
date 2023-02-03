@@ -15,8 +15,6 @@ Read about how to use this framework at https://suffolklitlab.org/docassemble-As
 
 If you have questions or need to report a bug, [start a new issue](https://github.com/SuffolkLITLab/ALKiln/issues/new).
 
-# Project overview
-
 ## Our code
 
 Our code pretends to be a human interacting with online forms (interviews) that have been made with the [docassemble](https://docassemble.org) open source platform. It looks at the HTML DOM, manipulates it, and interacts with it.
@@ -33,7 +31,7 @@ To do that, we use [cucumberjs](https://cucumber.io/docs/installation/javascript
 
 ## How the tests run
 
-This section requires knowledge of the docassemble platform a bit, as well as GitHub actions, so be ware. We're working on improving this.
+This section requires knowledge of the docassemble platform a bit, as well as GitHub actions, so be wary. We're working on improving this.
 
 Our tests require the user/developer to have a docassemble server on which they host these interviews and at least one developer account. When GitHub runs the tests, it does the following:
 
@@ -47,7 +45,7 @@ Our tests require the user/developer to have a docassemble server on which they 
 
 The developers have a GitHub action that is really just a wrapper. It uses a composite action in our repository and gives important variables, like their GitHub secret of the API key for their docassemble server developer account.
 
-# Contributing
+## Contributing
 
 Read about contributing in our [CONTRIBUTING.md document](CONTRIBUTING.md). Here's a quick cheat sheet for some commands once you're up and running:
 
