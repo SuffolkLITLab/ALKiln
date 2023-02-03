@@ -11,7 +11,7 @@ For documentation changes, you can just edit and make a pull request. Ignore the
 1. Contact @plocket to get important information for your `.env` file.
 1. Run `npm run setup`
 
-Advanced contributors: If you're going to work on our docassemble internal testing interviews, do so as a contributor on this repository. Avoid forking if you can. The reasons are complex.
+Advanced contributors: If you're going to work on our docassemble internal testing interviews, do so as a contributor on this repository. Avoid forking if you can. The reasons are complex. If you feel a need to fork, reach out to us.
 
 ## PRs
 
@@ -28,7 +28,7 @@ Before making a pull request
    1. AVOID changing the version number. We'll do that after merging your changes.
    1. If needed, update the `README.md` (e.g. the cheat sheet section) and/or `CONTRIBUTING.md` docs. Changes to our architecture might require editing `CONTRIBUTING.md`.
 1. Push to GitHub.
-1. Wait for the GitHub tests to pass. You may have to re-run failing tests - server restarts or race conditions may interfere with them. We have reduced them greatly, but some are impossible to avoid.
+1. Wait for the GitHub tests to pass. You may have to re-run failing tests—server restarts or race conditions may interfere with them. We have reduced them greatly, but some are impossible to avoid.
 1. Make your pull request. Work in progress pull requests are great too. A pull request must be reviewed before it can be merged.
 
 ## .env
@@ -89,7 +89,7 @@ npm run takedown
 
 ## Very general architecture of files and folders
 
-An honest look at our current project architecture - some of our files and folders, what they do, and how they interact.
+An honest look at our current project architecture—some of our files and folders, what they do, and how they interact.
 
 ### Logic architecture
 
@@ -139,7 +139,7 @@ The file handles things like:
 
 ### Logging
 
-`./lib/utils/log.js` takes care of logging information of various kinds (normal, debug, error) to the console in ways we find useful. We should probably find a logging library instead, but this is what we have for now. An important feature is that it ensures the messages clearly belong to ALKiln and not to some other process.
+`./lib/utils/log.js` takes care of logging information of various kinds (normal, debug, error) to the command line in ways we hope are useful. We should probably find a logging library instead, but this is what we have for now. An important feature is that it ensures the messages clearly belong to ALKiln and not to some other process.
 
 ### session_vars.js
 
@@ -153,7 +153,7 @@ Other files also use the docassemble API functions, so this folder is in a bit o
 
 ### Bash commands
 
-Our `./package.json` uses the code in the `script` directive to setup, run, and takedown tests. We are working on converting this to a command line tool to avoid some complexity in GitHub actions, increase security, and align more with what this framework has grown into. (TODO: Define this better)
+When you `npm run` the scripts in our `./package.json` you can setup, run, or takedown tests. We are working on converting this to a command line tool to avoid some complexity in GitHub actions, increase security, and align more with what this framework has grown into. (TODO: Define this better)
 
 ### GitHub composite action
 
@@ -168,7 +168,7 @@ npm run cucumber
 
 Those tests are the `.feature` files stored in `./docassemble/ALKilnTests/data/sources`.
 
-Our unit tests use chai for assertions. They are in `./tests/unit_tests` and their filenames end in `.test.js`. The fixtures for the tests are also contained in that folder and end in `.fixtures.js`.
+Our unit tests are in `./tests/unit_tests` and their filenames end in `.test.js`. Like the cucumber tests, they use chai for assertions. The fixtures for the tests are also contained in that folder and end in `.fixtures.js`.
 
 Instructions for running tests should be near the top of this document.
 
