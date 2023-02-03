@@ -5,9 +5,9 @@ For documentation changes, you can just edit and make a pull request. Ignore the
 ## Setup
 
 1. Asking to join as a contributor is simplest. You can fork, but you will have to change lines in your `.env` file and may have to set GitHub secrets in your repository. You have to talk to us either way.
-1. Clone the repository locally.
+1. Clone the repository locally: `git clone git@github.com:SuffolkLITLab/ALKiln.git`
 1. Run `npm install`
-1. Create your `.env` file at the root of the project.
+1. Create [your `.env` file](#env) at the root of the project.
 1. Contact @plocket to get important information for your `.env` file.
 1. Run `npm run setup`
 
@@ -21,7 +21,7 @@ Before making a pull request
 1. Make an issue about the change you are thinking of.
 1. Assign yourself to an issue.
 1. Make a new branch.
-1. Make your edits. Feel free to run tests as you go.
+1. Make your edits. Feel free to [run tests](#running-internal-tests) as you go.
 1. When you're ready to push
    1. Run `npm run test` to make sure your code passes all our tests.
    1. Make an entry in the `CHANGELOG.md` describing your change.
@@ -170,7 +170,7 @@ Those tests are the `.feature` files stored in `./docassemble/ALKilnTests/data/s
 
 Our unit tests are in `./tests/unit_tests` and their filenames end in `.test.js`. Like the cucumber tests, they use chai for assertions. The fixtures for the tests are also contained in that folder and end in `.fixtures.js`.
 
-Instructions for running tests should be near the top of this document.
+If you want to know the commands, you can go to the [instructions for running tests](#running-internal-tests).
 
 ### Files that you don't need to look at
 
