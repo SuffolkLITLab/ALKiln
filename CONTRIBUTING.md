@@ -48,6 +48,8 @@ MAX_SECONDS_FOR_SETUP=
 
 # Set DEBUG to 1 to run in non-headless mode and see the test run live
 DEBUG=
+# If you edit interview files (.yml files), you should push to a new 
+# branch and update BRANCH_PATH to that branch name
 BRANCH_PATH=v4
 USER1_EMAIL=<ask @plocket>
 USER1_PASSWORD=<ask @plocket>
@@ -58,11 +60,11 @@ SECRET_INVALID_THERE_IS_ANOTHER=invalid value for there_is_another
 ```
 
 ## Running internal tests
-Make the code available to test on the docassemble server:
+Only run this the first time you run tests in this repository to make the code available to test on the docassemble server:
 ```
 npm run setup
 ```
-To be able to keep running tests on the same code, avoid takedown.
+If you run `takedown`, you will then have to run `setup` again.
 
 Use the syntax below to trigger all tests (cucumber and unit tests):
 ```
@@ -82,7 +84,7 @@ To run the unit tests in isolation:
 npm run unit
 ```
 
-When done you want to test a new branch or internal test interview files have been updated, clean up before setting up again:
+If you or someone else changes the interview code in `./docassemble`, you have to clean up the old data on the server before running `setup` again:
 ```
 npm run takedown
 ```
@@ -161,12 +163,9 @@ Our `./action.yml` is a [composite action](https://docs.github.com/en/actions/cr
 
 ### Internal cucumber test interviews
 
-To run internal integrated tests, our repository itself includes a docassemble project. Most of its files are in the `./docassemble` directory. There are other files it needs, like `./setup.py`. This is what gets pulled into the docassemble server when the internal cucumber tests are run.
-```
-npm run cucumber
-```
+We have our own docassemble package in our repo to test our own end-to-end tests. Most of what the package needs is in `./docassemble`. That docassemble package is what the test setup pulls into the docassemble server. Our internal end-to-end cucumber tests are `.feature` files that are stored in `./docassemble/ALKilnTests/data/sources`. The interview (online form) `.yml` files that those `.feature` files use are also deep in the `./docassemble` package. You probably won't be touching the interview files. If you get curious, feel free to ask us.
 
-Those tests are the `.feature` files stored in `./docassemble/ALKilnTests/data/sources`.
+  There are other files the docassemble package needs, like `./setup.py`, so if you see them around, don't worry about them.
 
 Our unit tests are in `./tests/unit_tests` and their filenames end in `.test.js`. Like the cucumber tests, they use chai for assertions. The fixtures for the tests are also contained in that folder and end in `.fixtures.js`.
 
