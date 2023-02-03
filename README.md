@@ -25,7 +25,7 @@ It uses [cucumber](https://cucumber.io/docs/installation/javascript/), [puppetee
 
 ## Our users
 
-Our users are developers of online forms (interviews). Usually they're very new to coding and are unfamiliar GitHub and with a lot of coding concepts. If they know how to code, it tends to be in Python because that's what docassemble uses. They usually don't have the resource or funding to put into learning these skills.
+Our users are developers of online forms (interviews). Usually they're very new to coding and are unfamiliar with GitHub and with a lot of coding concepts. If they know how to code, it tends to be in Python because that's what docassemble uses. They usually don't have the resource or funding to put into learning these skills.
 
 For example, a pro bono law firm is trying to write a form that people can use to create a restraining order. They're coding it using docassemble. Their users are already going through a hard time, and the forms make them outline their heart wrenching experiences in detail. The developers need to make sure their users don't get system errors right in the middle of that. They use our framework to run the end-to-end tests.
 
@@ -56,7 +56,7 @@ Read about contributing in our [CONTRIBUTING.md document](CONTRIBUTING.md). Here
 ## Cheat sheet
 
 *Once you've already read the contributing documentation, you can use these as quick reminders for running our internal tests.*
-To setup for the integration tests, create the project on the server:
+To set up for the integration tests, create the project on the server:
 ```
 npm run setup
 ```
