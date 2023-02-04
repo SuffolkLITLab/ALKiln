@@ -1,8 +1,7 @@
 # ALKiln
 
-ALKiln, or Assembly Line Kiln, is an open source project that helps [docassemble](https://docassemble.org/) developers create automated tests for their interviews (online forms). It works well with https://github.com/suffolklitlab/docassemble-AssemblyLine but isn't dependent on it.
+ALKiln, or Assembly Line Kiln, is an open source project that helps [docassemble](https://docassemble.org/) developers create automated tests for their interviews (online forms). It works well with the [Document Assembly Line Project](https://suffolklitlab.org/docassemble-AssemblyLine-documentation) but isn't dependent on it.
 
-This documentation is for internal developers—those working on ALKiln itself.
 
 <!-- 
 https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-readable.md
@@ -13,9 +12,11 @@ https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-rea
 -->
 
 ## Use ALKiln
-Read about how to use this framework at https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing/.
+Read about how to use this framework in [Assembly Line's documentation](https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing/).
 
 If you have questions or need to report a bug, [start a new issue](https://github.com/SuffolkLITLab/ALKiln/issues/new).
+
+The following documentation is for internal developers—those working on ALKiln itself.
 
 ## Our code
 

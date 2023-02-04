@@ -91,9 +91,7 @@ npm run takedown
 
 ## How the tests run
 
-This section requires knowledge of the docassemble platform a bit, as well as GitHub actions, so be wary. We're hoping to improve this.
-
-Our tests require the user/developer to have a docassemble server on which they host these interviews (online forms) and at least one developer account. When GitHub runs the tests, it does the following:
+Our tests require the user/developer to have a docassemble server on which they host these interviews (online forms) and at least one developer account. With our help, our users set up the tests to run when they commit new code or to run manually. When GitHub runs the tests, it does the following:
 
 1. Sets up on the docassemble server. In a given developer account:
    1. Creates a new interview for this particular branch of the repository.
@@ -103,7 +101,7 @@ Our tests require the user/developer to have a docassemble server on which they 
    1. Writes up reports and possibly takes screenshots to show to the developer.
 1. Cleans up by deleting the interview it created
 
-The developers have a GitHub action that is really just a wrapper. It uses a composite action in our repository and gives important variables, like their GitHub secret of the API key for their docassemble server developer account.
+When the developer commits code to GitHub, their account triggers our code, passing along variables that our code needs, like their GitHub secret of the API key for their docassemble server developer account.
 
 ## Very general architecture of files and folders
 
@@ -189,7 +187,7 @@ If you want to know the commands, you can go to the [instructions for running te
 
 ### Files that you don't need to look at
 
-`index.js` and `world.js` don't really matter. `./lib/utils/langs.js` used to work, but we're not sure it does anymore. No one has used it yet, so we're waiting to experiment until someone expresses a need or we have some extra time.
+`index.js` and `world.js` are short files that cucumber needs. `./lib/utils/langs.js` used to work, but we're not sure it does anymore. No one has used it yet, so we're waiting to experiment until someone expresses a need or we have some extra time.
 
 # Footnotes
 
