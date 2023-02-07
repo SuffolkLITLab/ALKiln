@@ -2,7 +2,6 @@
 
 ALKiln, or Assembly Line Kiln, is an open source project that helps [docassemble](https://docassemble.org/) developers create automated tests for their interviews (online forms). It works well with the [Document Assembly Line Project](https://suffolklitlab.org/docassemble-AssemblyLine-documentation) but isn't dependent on it.
 
-
 <!-- 
 https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-readable.md
 √ What is this repo or project? (You can reuse the repo description you used earlier because this section doesn’t have to be long.)
@@ -12,6 +11,7 @@ https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-rea
 -->
 
 ## Use ALKiln
+
 Read about how to use this framework in [Assembly Line's documentation](https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing/).
 
 If you have questions or need to report a bug, [start a new issue](https://github.com/SuffolkLITLab/ALKiln/issues/new).
@@ -42,21 +42,25 @@ Read about contributing in our [CONTRIBUTING.md document](CONTRIBUTING.md). Here
 
 *Once you've already read the contributing documentation, you can use these as quick reminders for running our internal tests.*
 To set up for the integration tests, create the project on the server:
-```
+
+```bash
 npm run setup
 ```
 
 Use the syntax below to trigger specific tags:
-```
+
+```bash
 npm run cucumber -- "--tags" "@tagname"
 ```
 
 To run the unit tests in isolation:
-```
+
+```bash
 npm run unit
 ```
 
 If you or someone else changes the interview code in `./docassemble`, you have to clean up the old data on the server before running `setup` again:
-```
+
+```bash
 npm run takedown
 ```
