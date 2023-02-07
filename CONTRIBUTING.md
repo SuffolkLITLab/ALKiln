@@ -37,7 +37,7 @@ Before making a pull request
 
 You need to make your own `.env` file. It contains sensitive variables, like passwords. We use them for our internal tests. The file should look something like the below:
 
-```
+```bash
 # For everyone
 
 DOCASSEMBLE_DEVELOPER_API_KEY=<ask @niharikasingh>
@@ -62,19 +62,24 @@ SECRET_INVALID_THERE_IS_ANOTHER=invalid value for there_is_another
 ```
 
 ## Running internal tests
+
 Only run this the first time you run tests in this repository to make the code available to test on the docassemble server:
-```
+
+```bash
 npm run setup
 ```
+
 If you run `takedown`, you will then have to run `setup` again.
 
 Use the syntax below to trigger all tests (cucumber and unit tests):
-```
+
+```bash
 npm run test
 ```
 
 Run only cucumber tests:
-```
+
+```bash
 npm run cucumber
 
 # To test Features or Scenarios specific tags:
@@ -82,12 +87,14 @@ npm run cucumber -- "--tags" "@tagname"
 ```
 
 To run the unit tests in isolation:
-```
+
+```bash
 npm run unit
 ```
 
 If you or someone else changes the interview code in `./docassemble`, you have to clean up the old data on the server before running `setup` again:
-```
+
+```bash
 npm run takedown
 ```
 
@@ -111,7 +118,7 @@ An honest look at our current project architecture—some of our files and folde
 
 ### Logic architecture
 
-ALKiln uses [cucumber](https://cucumber.io/docs/installation/javascript/)[1] with [Gherkin](https://cucumber.io/docs/gherkin/reference/) syntax, [puppeteer](https://pptr.dev/), and [chai](https://www.chaijs.com/).
+ALKiln uses [cucumber](https://cucumber.io/docs/installation/javascript/)[^1] with [Gherkin](https://cucumber.io/docs/gherkin/reference/) syntax, [puppeteer](https://pptr.dev/), and [chai](https://www.chaijs.com/).
 
 #### .feature files
 
@@ -135,6 +142,7 @@ Then('I sign', { timeout: -1 }, async () => {
 `./lib/steps.js` defines all the Gherkin sentences that our users (the developers) can write. See [cucumber documentation on defining steps](https://cucumber.io/docs/cucumber/step-definitions/?lang=javascript). We sometimes use "cucumber expressions" and, but often use regular expressions as we often want to be more flexible about the user's input.
 
 The file handles things like:
+
 * Creating state
 * Defining steps for the users/developers
 * Defining steps for internal testing, like testing for appropriate errors and error messages
@@ -148,6 +156,7 @@ The file handles things like:
 Many `./lib/steps.js` steps make use of the `scope.steps` object. It is there to avoid duplicating code between steps.
 
 The file handles things like:
+
 * Finding form fields on a page
 * Filling out form fields
 * Generating random data for form fields
