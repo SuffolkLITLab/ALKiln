@@ -191,6 +191,6 @@ If you want to know the commands, you can go to the [instructions for running te
 
 `index.js` and `world.js` are short files that cucumber needs. `./lib/utils/langs.js` used to work, but we're not sure it does anymore. No one has used it yet, so we're waiting to experiment until someone expresses a need or we have some extra time.
 
-# Footnotes
+## Footnotes
 
 [1] To be clear, our framework is a misuse of cucumberjs. cucumberjs is geared towards behavior driven development. We try to make BDD available to our developers, but it's not always possible and not necessarily our goal.
