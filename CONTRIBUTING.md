@@ -4,11 +4,13 @@ For documentation changes, you can just edit and make a pull request. Ignore the
 
 ## Setup
 
+If you are not already in contact with us, you can join the #assembly-line-test channel in the [docassemble Slack](https://docassemble.org/docs/support.html#tocAnchor-1-1) or [make a new issue](https://github.com/SuffolkLITLab/ALKiln/issues/new) and mention @niharikasingh to let us know you're interested.
+
 1. Asking to join as a contributor is simplest. You can fork, but you will have to change lines in your `.env` file and may have to set GitHub secrets in your repository. You have to talk to us either way.
 1. Clone the repository locally: `git clone git@github.com:SuffolkLITLab/ALKiln.git`
 1. Run `npm install`
 1. Create [your `.env` file](#env) at the root of the project.
-1. Contact @plocket to get important information for your `.env` file.
+1. Contact @niharikasingh to get important information for your `.env` file.
 1. Run `npm run setup`
 
 Advanced contributors: If you're going to work on our docassemble internal testing interviews, do so as a contributor on this repository. Avoid forking if you can. The reasons are complex. If you feel a need to fork, reach out to us.
@@ -38,7 +40,7 @@ You need to make your own `.env` file. It contains sensitive variables, like pas
 ```
 # For everyone
 
-DOCASSEMBLE_DEVELOPER_API_KEY=<ask @plocket>
+DOCASSEMBLE_DEVELOPER_API_KEY=<ask @niharikasingh>
 SERVER_URL=https://apps-dev.suffolklitlab.org
 REPO_URL=https://github.com/SuffolkLITLab/alkiln
 SERVER_RELOAD_TIMEOUT_SECONDS=
@@ -51,8 +53,8 @@ DEBUG=
 # If you edit interview files (.yml files), you should push to a new 
 # branch and update BRANCH_PATH to that branch name
 BRANCH_PATH=v4
-USER1_EMAIL=<ask @plocket>
-USER1_PASSWORD=<ask @plocket>
+USER1_EMAIL=<ask @niharikasingh>
+USER1_PASSWORD=<ask @niharikasingh>
 SECRET_VAR1=secret-var1-value
 SECRET_VAR2=secret-var2-value
 SECRET_FOR_MISSING_FIELD=secret for missing field
