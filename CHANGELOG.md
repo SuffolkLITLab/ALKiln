@@ -39,6 +39,9 @@ Format:
 - 
 -->
 ## [Unreleased]
+### Added
+- added additional functionality to the sign method to allow developers to take a name argument to sign on canvas: issue #596
+
 ### Changed
 - continuing between screens will only longer press button with the `btn-primary` class. This means
   that it won't press "Exit", or "Restart" buttons, to avoid getting in an infinite loop.
