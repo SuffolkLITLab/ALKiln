@@ -41,6 +41,7 @@ Format:
 ## [Unreleased]
 ## Added
 - Contribution docs
+- Story table can take screenshots after each visited page
 
 ## [4.10.3] - 2023-01-11
 ### Removed
