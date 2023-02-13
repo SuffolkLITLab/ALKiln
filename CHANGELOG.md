@@ -39,18 +39,7 @@ Format:
 - 
 -->
 ## [Unreleased]
-## Added
-- Contribution docs
 
-## [4.10.3] - 2023-01-11
-### Removed
-- Internal - ignore local test output files. Part 2 of the process out of 2.
-
-## [4.10.2] - 2023-01-11
-### Removed
-- Internal - deleted unignored local files (since adding .npmignore). Part 1 of the process out of 2.
-
-## [4.11.0] - 2023-01-09
 ### Added
 - A new script: `alkiln-run`, which acts like `npm run cucumber`, but can
   be run in any directory, not just in an npm package.
@@ -62,6 +51,14 @@ Format:
 - the github action no longer runs `npm run XYZ`; it directly calls scripts,
     e.g. `alkiln-setup`, `alkiln-run`, `alkiln-takedown`
 - don't print the ["publish this cucumber report" message](https://github.com/cucumber/cucumber-js/blob/main/docs/configuration.md#options)
+
+## [4.10.3] - 2023-01-11
+### Removed
+- Internal - ignore local test output files. Part 2 of the process out of 2.
+
+## [4.10.2] - 2023-01-11
+### Removed
+- Internal - deleted unignored local files (since adding .npmignore). Part 1 of the process out of 2.
 
 ## [4.10.1] - 2023-01-07
 ### Changed
