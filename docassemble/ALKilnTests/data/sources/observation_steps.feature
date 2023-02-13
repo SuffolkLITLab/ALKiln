@@ -152,9 +152,9 @@ Scenario: I check the pages for accessibility
     | buttons_other | button_2 |  |
     | buttons_yesnomaybe | True |  |
 
-#@fast @o13 @signature @screenshot
-#Scenario: I take a screenshot of the signature
-#  Given I start the interview at "test_signature.yml"
-#  And I sign
-#  And I take a screenshot
-#  Then I tap to continue
+@fast @o13 @signature @screenshot
+Scenario: I take a screenshot of the signature
+  Given I start the interview at "test_signature.yml"
+  And I sign
+  And I take a screenshot
+  Then I tap to continue

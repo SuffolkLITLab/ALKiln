@@ -39,8 +39,11 @@ Format:
 - 
 -->
 ## [Unreleased]
-## Added
+### Added
 - Contribution docs
+
+### Fixed
+- #511, couldn't take screenshots of signature pages https://github.com/SuffolkLITLab/ALKiln/issues/511
 
 ## [4.10.3] - 2023-01-11
 ### Removed
