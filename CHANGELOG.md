@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.10.4] - 2023-02-15
 ### Added
 - Contribution docs
 
