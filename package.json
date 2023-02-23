@@ -9,6 +9,7 @@
     "local": "npm run setup && npm run cucumber; npm run takedown",
     "setup": "./lib/docassemble/setup.js",
     "takedown": "./lib/docassemble/takedown.js",
+    "startserver": "./lib/docassemble/startserver.js",
     "unit": "mocha tests/unit_tests/*.test.*"
   },
   "repository": {
@@ -50,6 +51,7 @@
     "diff": "5.0.0"
   },
   "bin": {
+    "alkiln-startserver": "./lib/docassemble/startserver.js",
     "alkiln-setup": "./lib/docassemble/setup.js",
     "alkiln-takedown": "./lib/docassemble/takedown.js",
     "alkiln-run": "./lib/run_cucumber.js"
