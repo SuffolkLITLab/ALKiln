@@ -234,6 +234,7 @@ Scenario: I sign with text
   # Next page
   Then the question id should be "first signature"
   When I sign with the name "David"
-  And I wait 2 second
-  
+  And I tap to continue
+  # Next page
+  Then the question id should be "second signature"
 
