@@ -38,19 +38,15 @@ Format:
 ### Security
 - 
 -->
-<<<<<<< HEAD
+
 ## [Unreleased]
-## Added
-- Contribution docs.
+### Added
 - Story table can take screenshots after each visited page.
 - Projects created in da each have a unique name. We assume for now this will not build up test packages in the server.
-=======
-<!-- ## [Unreleased] -->
 
 ## [4.10.4] - 2023-02-15
 ### Added
 - Contribution docs
->>>>>>> v4
 
 ### Fixed
 - #511, couldn't take screenshots of signature pages https://github.com/SuffolkLITLab/ALKiln/issues/511
