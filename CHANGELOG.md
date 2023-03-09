@@ -52,6 +52,13 @@ Format:
     e.g. `alkiln-setup`, `alkiln-run`, `alkiln-takedown`
 - don't print the ["publish this cucumber report" message](https://github.com/cucumber/cucumber-js/blob/main/docs/configuration.md#options)
 
+## [4.10.4] - 2023-02-15
+### Added
+- Contribution docs
+
+### Fixed
+- #511, couldn't take screenshots of signature pages https://github.com/SuffolkLITLab/ALKiln/issues/511
+
 ## [4.10.3] - 2023-01-11
 ### Removed
 - Internal - ignore local test output files. Part 2 of the process out of 2.
