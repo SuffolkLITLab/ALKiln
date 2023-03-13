@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.11.0] - 2023-03-13
 ### Changed
 - Shorten Axios errors to make them more readable (https://github.com/SuffolkLITLab/ALKiln/pull/632)
 
