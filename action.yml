@@ -5,15 +5,6 @@ inputs:
   SERVER_URL:
     description: 'The url of your docassemble server. This should be in your GitHub SECRETS or the SECRETS of your org.'
     required: true
-  PLAYGROUND_EMAIL:
-    description: 'The email of your docassemble testing account. This should be in your GitHub SECRETS or the SECRETS of your org.'
-    required: true
-  PLAYGROUND_PASSWORD:
-    description: 'The password of your docassemble testing account. This should be in your GitHub SECRETS or the SECRETS of your org.'
-    required: true
-  PLAYGROUND_ID:
-    description: 'The id of your docassemble testing account. This should be in your GitHub SECRETS or the SECRETS of your org.'
-    required: true
   DOCASSEMBLE_DEVELOPER_API_KEY:
     description: 'API key of the testing account with developer permissions on your docassemble server.'
     required: true
@@ -32,6 +23,16 @@ inputs:
     description: "Amount of time to give the Project to upload your package's GitHub code."
     required: false
     default: '120'
+
+  ## Testing by hand on the server. Should only be created by interview code.
+  #_USER_ID:
+  #  description: 'AVOID SETTING THIS YOURSELF. The id of your docassemble playground account. This is created and used by ALKiln when testing manually on your server.'
+  #  required: false
+  #_PROJECT_NAME:
+  #  description: 'AVOID SETTING THIS YOURSELF. The name of the Playground Project to test manually on your server. ALKiln will ask you for this information.'
+  #  required: false
+  #_ORIGIN:
+  #  description: 'AVOID SETTING THIS YOURSELF. The origin that's triggering this round of tests.'
 
 runs:
   using: "composite"
@@ -55,12 +56,12 @@ runs:
         echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
         echo "BRANCH_PATH=${{ github.ref }}" >> $GITHUB_ENV
         echo "BASE_URL=${{ inputs.SERVER_URL }}" >> $GITHUB_ENV
-        echo "PLAYGROUND_EMAIL=${{ inputs.PLAYGROUND_EMAIL }}" >> $GITHUB_ENV
-        echo "PLAYGROUND_PASSWORD=${{ inputs.PLAYGROUND_PASSWORD }}" >> $GITHUB_ENV
-        echo "PLAYGROUND_ID=${{ inputs.PLAYGROUND_ID }}" >> $GITHUB_ENV
         echo "DOCASSEMBLE_DEVELOPER_API_KEY=${{ inputs.DOCASSEMBLE_DEVELOPER_API_KEY }}" >> $GITHUB_ENV
         echo "ALKILN_VERSION=${{ inputs.ALKILN_VERSION }}" >> $GITHUB_ENV
         echo "MAX_SECONDS_FOR_SETUP=${{ inputs.MAX_SECONDS_FOR_SETUP }}" >> $GITHUB_ENV
+
+      #  echo "_USER_ID=${{ inputs._USER_ID }}" >> $GITHUB_ENV
+      #  echo "_PROJECT_NAME=${{ inputs._PROJECT_NAME }}" >> $GITHUB_ENV
       shell: bash
     - name: "ALKiln: confirm info"
       run: |

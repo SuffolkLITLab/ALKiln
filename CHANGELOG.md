@@ -43,6 +43,7 @@ Format:
 ### Added
 - A new script: `alkiln-run`, which acts like `npm run cucumber`, but can
   be run in any directory, not just in an npm package.
+- Ability to run ALKiln from an interview by a logged-in user
 
 ### Changed
 - upgraded cucumber v8.6.0
