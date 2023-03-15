@@ -70,10 +70,9 @@ runs:
 
     # Install node
     - name: "ALKiln: Install node packages"
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
-        node-version: "17"
-    # npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
+        node-version: "18"
     - name: Install ALKiln directly from npm
       run: |
         npm install -g github:SuffolkLITLab/ALKiln#v5
@@ -98,7 +97,7 @@ runs:
     # Upload artifacts that subscribers can download on the Actions summary page
     - name: "ALKiln: Upload artifacts folder"
       if: ${{ always() }}
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ env.ARTIFACT_NAME }}
         path: ./alkiln-*

@@ -20,7 +20,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [17.x]
+        node-version: [18.x]
 
     env:
       BASE_URL: ${{ secrets.SERVER_URL }}
@@ -52,9 +52,9 @@ jobs:
       # For the testing repo, the `REPO_URL` is that of a different repo and is created in `env:`
       - run: echo "Repo address is $REPO_URL"
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup environment
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
@@ -62,14 +62,14 @@ jobs:
       - run: npm run test -- ${{ github.event.inputs.tags && format('"--tags" "{0}"', github.event.inputs.tags) }}
       # Artifacts
       - name: upload unit tests artifacts folder
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         # This will upload even if a previous step has failed
         if: ${{ always() }}
         with:
           name: ${{ env.UNIT_TESTS_ARTIFACT_NAME }}
           path: ./_alkiln-*
       - name: upload integration tests artifacts folder
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: ${{ always() }}
         with:
           name: ${{ env.ARTIFACT_NAME }}
