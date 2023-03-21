@@ -76,7 +76,7 @@ runs:
     # npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
     - name: Install ALKiln directly from npm
       run: |
-        npm install -g github:SuffolkLITLab/ALKiln#lighter_package_json
+        npm install -g github:SuffolkLITLab/ALKiln#v5
       shell: bash
 
     # Run tests
