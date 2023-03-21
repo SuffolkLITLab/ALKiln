@@ -52,6 +52,11 @@ Format:
     e.g. `alkiln-setup`, `alkiln-run`, `alkiln-takedown`
 - don't print the ["publish this cucumber report" message](https://github.com/cucumber/cucumber-js/blob/main/docs/configuration.md#options)
 
+
+## [4.11.1] - 2023-03-21
+### Changed
+- Get error data from server errors
+
 ## [4.11.0] - 2023-03-13
 ### Changed
 - Shorten Axios errors to make them more readable (https://github.com/SuffolkLITLab/ALKiln/pull/632)
