@@ -68,58 +68,31 @@ runs:
         echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nManually added languages are $EXTRA_LANGUAGES\n"
       shell: bash
 
-    # This doesn't use an already established package-lock.json and that
-    # comes with some types of test breaking risks. Same problem as before.
-    - name: Temporarily overwrite or create package.json
-      run: |
-        cat << EOF > "package.json"
-        {
-          "scripts": {
-            "test": "npm run langs_setup && npm run cucumber -- $@",
-            "cucumber_base": "./node_modules/.bin/cucumber-js --require ./node_modules/@suffolklitlab/alkiln/lib/index.js",
-            "cucumber": "run_cucumber(){ npm run cucumber_base -- \"$@\" docassemble/*/data/sources/*.feature --retry 1; }; run_cucumber",
-            "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./node_modules/.bin/alkiln-cucumber docassemble/*/data/sources/*_lang*.feature",
-            "langs_setup": "node_modules/.bin/alkiln-langs 'docassemble/*/data/sources/*.feature'",
-            "setup": "node_modules/.bin/alkiln-setup",
-            "takedown": "node_modules/.bin/alkiln-takedown"
-          },
-          "dependencies": {
-            "colors": "1.4.0",
-            "@cucumber/cucumber": "7.3.2",
-            "@suffolklitlab/alkiln": "$ALKILN_VERSION"
-          }
-        }
-        EOF
-        # Keep in sync with the cucumber.js in root
-        cat << EOF > "cucumber.js"
-        module.exports = {
-          default: "--require ./lib/index.js --format progress --format summary:cucumber-report.txt"
-        }
-        EOF
-      shell: bash
-
     # Install node
     - name: "ALKiln: Install node packages"
       uses: actions/setup-node@v1
       with:
         node-version: "17"
-    - run: npm install
+    # npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
+    - name: Install ALKiln directly from npm
+      run: |
+        npm install -g github:SuffolkLITLab/ALKiln#v5
       shell: bash
 
     # Run tests
     - name: "ALKiln: Create a Project and pull the package from GitHub"
-      run: npm run setup
+      run: alkiln-setup
       shell: bash
     - name: "ALKiln: Run tests"
       if: ${{ success() }}
-      run: npm run test -- ${{ github.event.inputs.tags && format('"--tags" "{0}"', github.event.inputs.tags) }}
+      run: alkiln-run ${{ github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
       shell: bash
     - run: echo -e "\n\n====ALKiln could not create a project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
       if: ${{ failure() }}
       shell: bash
     - name: "ALKiln: Delete project from docassemble test account"
       if: ${{ always() }}
-      run: npm run takedown
+      run: alkiln-takedown
       shell: bash
     
     # Upload artifacts that subscribers can download on the Actions summary page

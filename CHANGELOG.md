@@ -38,7 +38,19 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+- A new script: `alkiln-run`, which acts like `npm run cucumber`, but can
+  be run in any directory, not just in an npm package.
+
+### Changed
+- upgraded cucumber v8.6.0
+- using cucumber's JS API to run tests. For more details on how it works,
+    see [the cucumber-js docs](https://github.com/cucumber/cucumber-js/blob/main/docs/javascript_api.md).
+- the github action no longer runs `npm run XYZ`; it directly calls scripts,
+    e.g. `alkiln-setup`, `alkiln-run`, `alkiln-takedown`
+- don't print the ["publish this cucumber report" message](https://github.com/cucumber/cucumber-js/blob/main/docs/configuration.md#options)
 
 ## [4.11.0] - 2023-03-13
 ### Changed
