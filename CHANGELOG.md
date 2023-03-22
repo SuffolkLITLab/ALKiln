@@ -53,6 +53,13 @@ Format:
 - don't print the ["publish this cucumber report" message](https://github.com/cucumber/cucumber-js/blob/main/docs/configuration.md#options)
 
 
+## [Unreleased]
+### Security
+- Pass docassemble API keys through HTTP headers instead of as parameters.
+  - Parameters to certain HTTP requests are printed directly in docassemble's
+    uWSGI log, leaking API keys to actors with log access on your docassemble
+    server
+
 ## [4.11.1] - 2023-03-21
 ### Changed
 - Get error data from server errors
