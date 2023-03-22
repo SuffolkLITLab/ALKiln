@@ -40,13 +40,13 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
-
-## [Unreleased]
+## [4.11.2] - 2023-03-22
 ### Security
 - Pass docassemble API keys through HTTP headers instead of as parameters.
+  - ACTION: all users should delete any uWSGI logs that show their API keys.
   - Parameters to certain HTTP requests are printed directly in docassemble's
     uWSGI log, leaking API keys to actors with log access on your docassemble
-    server
+    server.
 
 ## [4.11.1] - 2023-03-21
 ### Changed
