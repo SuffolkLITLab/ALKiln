@@ -1,0 +1,43 @@
+modules:
+  - docassemble.ALToolbox.misc
+---
+mandatory: True
+event: main_screen
+id: main screen
+question: |
+  Tabbed Template Sceen
+subquestion: |
+  ${ tabbed_templates_html("Tests", 
+    template_a,
+    template_b,
+    template_c
+  )}
+---
+template: template_a
+subject: |
+  first template
+content: |
+  This first, primary template has the unique word Mechanics that should be found.
+---
+template: template_b
+subject: |
+  second template
+content: |
+  This second, surplus template has the unique word villify that should be found.
+---
+template: template_c
+subject: |
+  third template
+content: |
+  This third, additional template has the unique word museum that should be found.
+
+  It also has a button that brings us to an event.
+
+  ${ action_button_html(url_ask([{'recompute': ['special_event']}]),
+    label="Special event", id_tag="special_event")}
+---
+event: special_event
+question: |
+  Special event
+subquestion: |
+  The unique word on this screen is Portishead!

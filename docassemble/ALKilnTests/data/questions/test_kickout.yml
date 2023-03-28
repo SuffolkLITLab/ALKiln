@@ -1,0 +1,37 @@
+---
+mandatory: True
+code: |
+  show_first_screen
+  user_choice
+  if user_choice == 'wrong':
+    kickout_screen
+  else:
+    success_screen
+---
+id: show first screen
+question: |
+  Welcome to this interview!
+continue button field: show_first_screen
+---
+id: make choice
+question: |
+  What is your choice?
+fields:
+  - My choice is...: user_choice
+    choices:
+      - The Correct choice: correct
+      - The Wrong choice: wrong
+---
+id: kickout screen
+event: kickout_screen
+question: |
+  You answered incorrectly
+buttons:
+  - Restart: restart
+  - Exit: exit
+    url: https://courtformsonline.org
+---
+id: success screen
+event: success_screen
+question: |
+  You answered correctly!

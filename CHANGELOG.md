@@ -39,12 +39,63 @@ Format:
 - 
 -->
 ## [Unreleased]
+
 ### Added
 - added additional functionality to the sign method to allow developers to take a name argument to sign on canvas: issue #596
+- A new script: `alkiln-run`, which acts like `npm run cucumber`, but can
+  be run in any directory, not just in an npm package.
 
 ### Changed
-- continuing between screens will only longer press button with the `btn-primary` class. This means
+- upgraded cucumber v8.6.0
+- using cucumber's JS API to run tests. For more details on how it works,
+    see [the cucumber-js docs](https://github.com/cucumber/cucumber-js/blob/main/docs/javascript_api.md).
+- the github action no longer runs `npm run XYZ`; it directly calls scripts,
+    e.g. `alkiln-setup`, `alkiln-run`, `alkiln-takedown`
+- don't print the ["publish this cucumber report" message](https://github.com/cucumber/cucumber-js/blob/main/docs/configuration.md#options)
+
+
+## [4.11.1] - 2023-03-21
+### Changed
+- Get error data from server errors
+
+## [4.11.0] - 2023-03-13
+### Changed
+- Shorten Axios errors to make them more readable (https://github.com/SuffolkLITLab/ALKiln/pull/632)
+
+## [4.10.4] - 2023-02-15
+### Added
+- Contribution docs
+
+### Fixed
+- #511, couldn't take screenshots of signature pages https://github.com/SuffolkLITLab/ALKiln/issues/511
+
+## [4.10.3] - 2023-01-11
+### Removed
+- Internal - ignore local test output files. Part 2 of the process out of 2.
+
+## [4.10.2] - 2023-01-11
+### Removed
+- Internal - deleted unignored local files (since adding .npmignore). Part 1 of the process out of 2.
+
+## [4.10.1] - 2023-01-07
+### Changed
+- Fix artifacts not being saved in GitHub. See https://github.com/SuffolkLITLab/ALKiln/issues/629.
+- Make internal test folder names a bit simpler and more modular-izable.
+
+## [4.10.0] - 2022-11-17
+### Changed
+- Don't mark `...there_in_another | False |` in story tables as invalid, as it's necessary for some
+  workflows (see https://github.com/SuffolkLITLab/ALKiln/pull/580 for a longer discussion).
+  - Explicitly **not** documented, as we don't want to encourage people to use it if it's not
+    necessary for their interviews.
+- continuing between screens will no longer press button with the `btn-primary` class. This means
   that it won't press "Exit", or "Restart" buttons, to avoid getting in an infinite loop.
+- Shorten test report and artifact filenames, attempting to have fewer files whose whole paths are
+  longer than 260 characters. (See https://github.com/SuffolkLITLab/ALKiln/pull/626 for details).
+
+### Fixed
+- Corrects the month in the artifact folder timestamp; was printing things like `81` for September
+  instead of `09`, because of a `+` being interpreted as Javascript string concatenation and not math.
 
 ## [4.9.3] - 2022-09-07
 ### Fixed

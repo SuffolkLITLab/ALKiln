@@ -1,15 +1,13 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "4.9.3",
+  "version": "4.11.1",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run unit && npm run langs_setup && npm run cucumber -- $@",
-    "cucumber_base": "run_cucumber(){ ./node_modules/.bin/cucumber-js \"$@\"; status=$?; ./lib/utils/clean_reports.js; return $status; }; run_cucumber",
-    "cucumber": "run_base(){ npm run cucumber_base -- \"$@\" tests/features/*.feature --retry 1; }; run_base",
-    "cucumber_external": "run_cucumber(){ tmp_path=`pwd`; ( new_path=\"$1\"; shift; cd \"$new_path\"; npm run --prefix \"${tmp_path}\" cucumber_base -- \"$@\" \"$new_path\"/docassemble/*/data/sources/*.feature;) }; run_cucumber",
-    "langs": "npm run langs_setup && ./node_modules/.bin/cucumber-js --require ./lib/index.js tests/features/*_lang*.feature",
-    "langs_setup": "./lib/utils/langs.js 'tests/features/*.feature'",
+    "cucumber": "./lib/run_cucumber.js",
+    "langs": "npm run langs_setup && npm run cucumber",
+    "langs_setup": "./lib/utils/langs.js 'docassemble/*/data/sources/*.feature'",
     "langs_local": "npm run langs_setup && npm run local",
     "local": "npm run setup && npm run cucumber; npm run takedown",
     "setup": "./lib/docassemble/setup.js",
@@ -36,13 +34,13 @@
   "homepage": "https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing/",
   "dependencies": {
     "@axe-core/puppeteer": "4.4.2",
-    "@cucumber/cucumber": "7.3.2",
+    "@cucumber/cucumber": "8.6.0",
     "@faker-js/faker": "^7.3.0",
     "axios": "0.24.0",
     "chai": "4.2.0",
     "cheerio": "1.0.0-rc.10",
-    "dotenv": "8.2.0",
     "deep-equal-in-any-order": "^2.0.0",
+    "dotenv": "8.2.0",
     "mocha": "9.2.0",
     "puppeteer": "13.1.3",
     "qs": "6.10.2",
@@ -52,6 +50,7 @@
   "bin": {
     "alkiln-setup": "./lib/docassemble/setup.js",
     "alkiln-takedown": "./lib/docassemble/takedown.js",
-    "alkiln-langs": "./lib/utils/langs.js"
+    "alkiln-langs": "./lib/utils/langs.js",
+    "alkiln-run": "./lib/run_cucumber.js"
   }
 }

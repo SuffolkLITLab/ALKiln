@@ -1,0 +1,83 @@
+---
+metadata:
+  title: Test random input
+  comment: Test trying to get through an interview by giving randomly generated answers
+---
+modules:
+  - docassemble.ALToolbox.ThreePartsDate
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+############# Interview order #############
+mandatory: True
+code: |
+  text
+  choices
+  signature
+  custom_data_types
+  end
+---
+id: text
+question: Text test
+fields:
+  - Random paragraph: textarea
+    input type: area
+  - Random text: text
+  - Random number: number
+    datatype: number
+  - Random date: date
+    datatype: date
+  - Random currency: currency
+    datatype: currency
+  - Random email: email
+    datatype: email
+  - Random password: password
+    datatype: password
+---
+id: Choices
+question: Choices test
+fields:
+  - Dropdown choices: select
+    choices:
+      - Dropdown 1
+      - Dropdown 2
+      - Dropdown 3
+  - Checkbox choices: checkbox
+    datatype: checkboxes
+    choices:
+      - Checkbox 1
+      - Checkbox 2
+      - Checkbox 3
+  - Radio button: radio
+    datatype: radio
+    choices:
+      - Radio 1
+      - Radio 2
+      - Radio 3
+continue button field: choices
+---
+# Cannot handle this right now. It has a type of "hidden",
+# like other special da fields that ALKiln shouldn't interact
+# with.
+id: custom_data_types
+question: |
+  `CustomDataType`s
+fields:
+  - ThreePartsDate: three_parts_date
+    datatype: ThreePartsDate
+  - Birth date: birth_date
+    datatype: BirthDate
+continue button field: custom_data_types
+---
+id: signature
+question: Signature
+signature: signature
+---
+id: end
+event: end
+question: The end
+---

@@ -1,3 +1,7 @@
+# .npmignore stuff specifically
+docassemble/ALKilnTests/*
+
+# Everything else should be an exact copy of .gitignore
 # Assembly Line
 #venv/*
 tests/chromedriver

@@ -1,0 +1,40 @@
+metadata:
+  title: Test testing AssemblyLine-specific Steps
+  short title: Test ALKiln for AL
+  comment: Test the AssemblyLine automated integrated testing library for packages that use AssemblyLine itself
+---
+include:
+  - docassemble.AssemblyLine:al_package.yml
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+id: interview order
+mandatory: True
+code: |
+  users[0].name.first
+  users[0].address.address
+  users[1].name.first
+  end
+---
+id: field code mix
+sets:
+  - users[i].name.first
+question: |
+  Mix of code and proxy var
+subquestion: |
+  The name fields variables will be using `users[0]` while the last field
+  will be using `users[i]`. The sought variable will be using
+  `users[0]`. The testing framework needs to be able to handle that.
+fields:
+  - code: |
+      users[i].name_fields()
+  - A proxy var: users[i].proxy_var
+---
+id: end
+event: end
+question: Great test!
+---

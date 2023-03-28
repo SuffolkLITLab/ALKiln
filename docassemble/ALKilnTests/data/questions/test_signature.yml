@@ -1,0 +1,25 @@
+metadata:
+  title: Signature screen test
+  short title: Siganture
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+mandatory: True
+id: interview order
+code: |
+  signature
+  end
+---
+id: signature
+question: |
+  Signature
+signature: signature
+---
+id: the end
+event: end
+question: |
+  Congratulations! Tests have passed!
