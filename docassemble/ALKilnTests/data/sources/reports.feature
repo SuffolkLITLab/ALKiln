@@ -407,7 +407,11 @@ Scenario: Fail to find var while keeping value secret
 @fast @rf27
 Scenario: Fail with missing docx
   Given the final Scenario status should be "failed"
-  Then I start the interview at "test_missing_template.yml"
+  And the Scenario report should include:
+  """
+  got "Missing docx template file letter_template.docx"
+  """
+  Then I start the interview at "test_missing_docx.yml"
 
 
 # scope.js
