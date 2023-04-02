@@ -404,6 +404,11 @@ Scenario: Fail to find var while keeping value secret
   And I start the interview at "test_secret_vars"
   And I set the var "missing_var" to the secret "SECRET_FOR_MISSING_FIELD"
 
+@fast @rf27
+Scenario: Fail with missing docx
+  Given the final Scenario status should be "failed"
+  Then I start the interview at "test_missing_template.yml"
+
 
 # scope.js
 # I upload "___" to "___"

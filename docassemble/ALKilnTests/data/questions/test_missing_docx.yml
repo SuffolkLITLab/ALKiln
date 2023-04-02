@@ -1,0 +1,14 @@
+---
+mandatory: True
+question: |
+  Here is your document.
+subquestion: |
+  Does it meet your approval?
+yesno: user_approves
+attachment:
+  name: Your letter
+  filename: letter
+  docx template file: letter_template.docx
+  valid formats:
+    - docx
+---
