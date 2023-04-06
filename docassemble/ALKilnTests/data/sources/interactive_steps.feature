@@ -162,5 +162,11 @@ Scenario: Fails as it doesn't try to 'continue' with a restart button
   And I get to "doesnt exist" with this data:
     | var | value | trigger |
     | user_choice | wrong | |
-  
 
+@fast @i7 @signature @screenshot
+Scenario: I take a screenshot of the signature
+  Given I start the interview at "test_signature.yml"
+  When I sign with the name "David"
+  And I take a screenshot
+  Then I tap to continue
+  Then the question id should be "the end"
