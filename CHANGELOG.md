@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [4.11.3] - 2023-04-06
 ### Changed
 - Project name prefix now includes ALKiln in it for clarity
 
