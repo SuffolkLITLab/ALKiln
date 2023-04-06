@@ -34,6 +34,7 @@ jobs:
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
       SECRET_FOR_MISSING_FIELD: secret for missing field
+      _ORIGIN: github
 
     name: Run Puppeteer tests
     steps:

@@ -43,6 +43,8 @@ Format:
 - added additional functionality to the sign method to allow developers to take a name argument to sign on canvas: issue #596
 - A new script: `alkiln-run`, which acts like `npm run cucumber`, but can
   be run in any directory, not just in an npm package.
+- Additional environment variables and their validation to allow for tests that run on a developer's server/Playground instead of through GitHub. Also, other functionality for that purpose. [Issue #661](https://github.com/SuffolkLITLab/ALKiln/issues/661)
+- Tests for new session_vars behavior and improve previous tests.
 
 ### Changed
 - upgraded cucumber v8.6.0
@@ -51,6 +53,7 @@ Format:
 - the github action no longer runs `npm run XYZ`; it directly calls scripts,
     e.g. `alkiln-setup`, `alkiln-run`, `alkiln-takedown`
 - don't print the ["publish this cucumber report" message](https://github.com/cucumber/cucumber-js/blob/main/docs/configuration.md#options)
+- Adjusted validation of some environment variables to account for Playground vs. GitHub or local test runs. [Issue #661](https://github.com/SuffolkLITLab/ALKiln/issues/661)
 - Projects created in da each have a unique name. https://github.com/SuffolkLITLab/ALKiln/issues/663
 - Project name prefix now includes ALKiln in it for clarity
 
