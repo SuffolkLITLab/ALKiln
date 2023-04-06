@@ -38,7 +38,12 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Changed
+- Project name prefix now includes ALKiln in it for clarity
+
+### Fixed
+- Projects created in da each have a unique name. https://github.com/SuffolkLITLab/ALKiln/issues/663
 
 ## [4.11.2] - 2023-03-22
 ### Security
