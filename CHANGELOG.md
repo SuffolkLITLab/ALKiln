@@ -54,8 +54,10 @@ Format:
     e.g. `alkiln-setup`, `alkiln-run`, `alkiln-takedown`
 - don't print the ["publish this cucumber report" message](https://github.com/cucumber/cucumber-js/blob/main/docs/configuration.md#options)
 - Adjusted validation of some environment variables to account for Playground vs. GitHub or local test runs. [Issue #661](https://github.com/SuffolkLITLab/ALKiln/issues/661)
-- Projects created in da each have a unique name. https://github.com/SuffolkLITLab/ALKiln/issues/663
 - Project name prefix now includes ALKiln in it for clarity
+
+### Fixed
+- Projects created in da each have a unique name. https://github.com/SuffolkLITLab/ALKiln/issues/663
 
 ### Security
 - Pass docassemble API keys through HTTP headers instead of as parameters.
