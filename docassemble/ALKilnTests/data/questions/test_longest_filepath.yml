@@ -1,0 +1,19 @@
+metadata:
+  title: Filepath length under 260
+  short title: Filepaths
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+mandatory: True
+id: interview order
+code: |
+  over_20_question_id
+---
+event: over_20_question_id
+id: 25 characters question id
+question: Longest filepath test
+---
