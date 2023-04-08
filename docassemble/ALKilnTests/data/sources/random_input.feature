@@ -1,5 +1,5 @@
 @random_input
-Feature: Assembly Line package-specific Steps
+Feature: Random input
 
 # In tag names, 'ri' is for 'random input'
 
