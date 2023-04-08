@@ -39,6 +39,12 @@ describe(`When I use scope.getSafeScenarioBaseFilename()`, function() {
     expect( result ).to.equal( names.colon_output );
   });
 
+  it(`shortens a name over 70 chars`, async function() {
+    let scenario = mock_scenario( names.long_input );
+    let result = await getSafeScenarioBaseFilename( scope, { scenario });
+    expect( result ).to.equal( names.long_output );
+  });
+
   // language
   it(`adds a language correctly to a description`, async function() {
     scope.language = names.non_english_chars;
