@@ -46,6 +46,7 @@ Format:
 
 ### Fixed
 - Projects created in da each have a unique name. https://github.com/SuffolkLITLab/ALKiln/issues/663
+- Shorten path names to try to accommodate limitations of windows systems while still keeping enough useful information to help devs identify the test outputs. https://github.com/SuffolkLITLab/ALKiln/issues/618
 
 ## [4.11.2] - 2023-03-22
 ### Security
