@@ -28,7 +28,7 @@ let test_filename = function ( expected_prefix, result ) {
  describe(`When I use scope.getSafeScenarioFilename()`, function() {
  
    beforeEach(function() {
-    scope.base_filename = names.description;
+    scope.safe_scenario_name = names.description;
    });
  
    it(`preserves chinese characters`, async function() {
@@ -94,7 +94,7 @@ let test_filename = function ( expected_prefix, result ) {
     let result = await getSafeScenarioFilename( scope );
     scope.examinePageID = old_examine;
 
-    let regext_str = `^${ names.long_id_output }-${ scope.base_filename }-\.*$`;
+    let regext_str = `^${ names.long_id_output }-${ scope.safe_scenario_name }-\.*$`;
     let regex = new RegExp( regext_str );
 
     // Log more info if it failed
