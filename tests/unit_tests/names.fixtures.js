@@ -1,6 +1,6 @@
 let names = {};
 
-names.base_filename = `a_safe_id`;
+names.description = `a_safe_scenario_description`;
 
 names.chinese_input = `是汉字`;
 names.chinese_output = `是汉字`;
@@ -31,5 +31,8 @@ names.two_consecutive_invalid_output = `two_consecutive__invalid`;
 
 names.numerical_input = `scenario_w1th_number00`;
 names.numerical_output = `scenario_w1th_number00`;
+
+names.long_id_input = `over_20_chars_123456789`;
+names.long_id_output = `over_20_chars_123456`;
 
 module.exports = names;

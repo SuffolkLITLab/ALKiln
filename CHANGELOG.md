@@ -58,6 +58,7 @@ Format:
 
 ### Fixed
 - Projects created in da each have a unique name. https://github.com/SuffolkLITLab/ALKiln/issues/663
+- Shorten path names to try to accommodate limitations of windows systems while still keeping enough useful information to help devs identify the test outputs. https://github.com/SuffolkLITLab/ALKiln/issues/618
 
 ### Security
 - Pass docassemble API keys through HTTP headers instead of as parameters.

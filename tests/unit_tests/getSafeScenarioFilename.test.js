@@ -5,13 +5,12 @@
  const names = require('./names.fixtures.js');
  const scope = require('../../lib/scope.js');
  const getSafeScenarioFilename = scope.getSafeScenarioFilename;
- 
- 
+
 let test_filename = function ( expected_prefix, result ) {
   /* Test a name to see if it's valid output with a language defined. */
-  let expected_name_regex_str = `^${ expected_prefix }-${ names.base_filename }-\.{32}$`;
+  let expected_name_regex_str = `^${ expected_prefix }-${ names.description }-\.{13}$`;
   if ( expected_prefix == `` ) {
-   expected_name_regex_str = `^${ names.base_filename }-\.{32}$`;
+   expected_name_regex_str = `^${ names.description }-\.{13}$`;
   }
   let regex = new RegExp( expected_name_regex_str );
  
@@ -29,7 +28,7 @@ let test_filename = function ( expected_prefix, result ) {
  describe(`When I use scope.getSafeScenarioFilename()`, function() {
  
    beforeEach(function() {
-    scope.base_filename = names.base_filename;
+    scope.base_filename = names.description;
    });
  
    it(`preserves chinese characters`, async function() {
@@ -81,6 +80,31 @@ let test_filename = function ( expected_prefix, result ) {
      let result = await getSafeScenarioFilename( scope, { prefix: names.numerical_input });
     test_filename( names.numerical_output, result );
    });
+
+  it(`handles a missing prefix`, async function() {
+    let result = await getSafeScenarioFilename( scope );
+    test_filename( ``, result );
+  });
+
+  it(`shortens ids over 20 chars long`, async function() {
+    // Necessary to set id correctly
+    scope.page = true;
+    let old_examine = scope.examinePageID;
+    scope.examinePageID = function () { return {id: names.long_id_input}; }
+    let result = await getSafeScenarioFilename( scope );
+    scope.examinePageID = old_examine;
+
+    let regext_str = `^${ names.long_id_output }-${ scope.base_filename }-\.*$`;
+    let regex = new RegExp( regext_str );
+
+    // Log more info if it failed
+    let found_match = regex.test( result );
+    if ( !found_match ) {
+      console.log( 'regex:', regex.source );
+      console.log( 'result:', result );
+    }
+    expect( found_match ).to.be.true;
+  });
  
  });
  
