@@ -60,7 +60,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run setup
-      - run: npm run test -- ${{ github.event.inputs.tags && format('"--tags" "{0}"', github.event.inputs.tags) }}
+      - run: npm run test ${{ github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
       # Artifacts
       - name: upload unit tests artifacts folder
         uses: actions/upload-artifact@v3
