@@ -401,7 +401,7 @@ Scenario: Fail to find var while keeping value secret
   """
   And the Scenario report should include:
   """
-  For security, ALKiln will avoid creating a picture for this error.
+  For security, ALKiln will avoid creating a picture of the page for this error.
   """
   And I start the interview at "test_secret_vars"
   And I set the var "missing_var" to the secret "SECRET_FOR_MISSING_FIELD"
