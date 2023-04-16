@@ -46,7 +46,7 @@ jobs:
         # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
         run: |
           echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
-          echo "UNIT_TESTS_ARTIFACT_NAME=_alkiln-misc-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u) UTC" >> $GITHUB_ENV
+          echo "UNIT_TESTS_ARTIFACT_NAME=_alkiln-misc-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
       - name: Set languages
         run: echo "EXTRA_LANGUAGES=${{ github.event.inputs.extra_languages }}" >> $GITHUB_ENV
         if: ${{ github.event.inputs.extra_languages != '' }}
