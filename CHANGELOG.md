@@ -45,6 +45,7 @@ Format:
   be run in any directory, not just in an npm package.
 - Additional environment variables and their validation to allow for tests that run on a developer's server/Playground instead of through GitHub. Also, other functionality for that purpose. [Issue #661](https://github.com/SuffolkLITLab/ALKiln/issues/661)
 - Tests for new session_vars behavior and improve previous tests.
+- Adds `npm-shrinkwrap.json`, so installs from npm will have fixed version dependencies
 
 ### Changed
 - upgraded cucumber v8.6.0
