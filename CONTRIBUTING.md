@@ -112,6 +112,12 @@ Our tests require the user/developer to have a docassemble server on which they 
 
 When the developer commits code to GitHub, their account triggers our code, passing along variables that our code needs, like their GitHub secret of the API key for their docassemble server developer account.
 
+## Updating dependencies
+
+Sometimes you will have to add dependencies to ALKiln. You can do so by adding the dependency in the `package.json` "dependencies" section, specifying an exact version. Then, run `npm install` to update `npm-shrinkwrap.json` to have the new dependency.
+
+If you have to update an existing dependency, you can change the version in `package.json`, and run `npm install` to update `npm-shrankwrap.json`.
+
 ## Very general architecture of files and folders
 
 An honest look at our current project architecture—some of our files and folders, what they do, and how they interact.
