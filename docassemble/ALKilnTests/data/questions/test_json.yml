@@ -1,0 +1,21 @@
+metadata:
+  title: Test working with json
+---
+# Necessary to tell us what the trigger var is on each page.
+# In future, this should not be needed here.
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+mandatory: True
+id: interview order
+code: |
+  multiline_val = 'This string contains.\nA new line character.'
+  multiline_block = '''This block is.
+  A multiline block.'''
+  end
+---
+id: end
+event: end
+question: The end!
+---
