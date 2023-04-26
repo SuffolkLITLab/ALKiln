@@ -40,6 +40,7 @@ Format:
 -->
 ## [Unreleased]
 ### Added
+- added a test for multiline json values
 - added additional functionality to the sign method to allow developers to take a name argument to sign on canvas: issue #596
 - A new script: `alkiln-run`, which acts like `npm run cucumber`, but can
   be run in any directory, not just in an npm package.
