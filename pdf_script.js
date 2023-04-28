@@ -17,4 +17,4 @@ async function testPdf(pdfPath) {
   return field_objects;
 }
 
-testPdf(pdfPath).then((objects) => 0);
+testPdf(pdfPath);
