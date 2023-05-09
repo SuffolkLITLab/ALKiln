@@ -37,10 +37,12 @@ Format:
 
 ### Security
 - 
+
+### Internal
+- 
 -->
 ## [Unreleased]
 ### Added
-- added a test for multiline json values (only ones set by code not by user input)
 - added additional functionality to the sign method to allow developers to take a name argument to sign on canvas: issue #596
 - A new script: `alkiln-run`, which acts like `npm run cucumber`, but can
   be run in any directory, not just in an npm package.
@@ -68,6 +70,9 @@ Format:
   - Parameters to certain HTTP requests are printed directly in docassemble's
     uWSGI log, leaking API keys to actors with log access on your docassemble
     server
+
+### Internal
+- added a test for multiline json values (only ones set by code not by user input)
 
 ## [4.11.1] - 2023-03-21
 ### Changed
