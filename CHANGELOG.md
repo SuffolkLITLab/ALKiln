@@ -45,7 +45,8 @@ Format:
   be run in any directory, not just in an npm package.
 - Additional environment variables and their validation to allow for tests that run on a developer's server/Playground instead of through GitHub. Also, other functionality for that purpose. [Issue #661](https://github.com/SuffolkLITLab/ALKiln/issues/661)
 - Tests for new session_vars behavior and improve previous tests.
-- Adds `npm-shrinkwrap.json`, so installs from npm will have fixed version dependencies
+- Adds `npm-shrinkwrap.json`, so installs from npm will have fixed version dependencies.
+- Allow author to specify loops with only `.target_number`. e.g. to leave out `.there_are_any`. See https://github.com/SuffolkLITLab/ALKiln/issues/706.
 
 ### Changed
 - BREAKING: the github action no longer runs `npm run XYZ`; it directly calls scripts,
@@ -66,6 +67,8 @@ Format:
 - Updated field decoding to handle new object field encoding. See [#711](https://github.com/SuffolkLITLab/ALKiln/issues/711)
 - Allow multiple languages to be tested again. See [#713](https://github.com/SuffolkLITLab/ALKiln/issues/713).
 - Fill in time fields correctly. See [#726](https://github.com/SuffolkLITLab/ALKiln/pull/726).
+- Allow `.target_number` to be 0. See https://github.com/SuffolkLITLab/ALKiln/issues/706.
+- Use the right number of loops for `.target_number`. See https://github.com/SuffolkLITLab/ALKiln/issues/706.
 
 ### Security
 - Pass docassemble API keys through HTTP headers instead of as parameters.
