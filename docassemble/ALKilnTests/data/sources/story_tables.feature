@@ -92,7 +92,7 @@ Scenario: I upload files with a table
 
 @slow @st5 @loops
 Scenario: 0 target_number for there_is_another and target_number lists
-  Given I start the interview at "http://localhost/interview?i=docassemble.playground1ALKilnLoops:test_loops.yml"
+  Given I start the interview at "test_loops.yml"
   And I get to "end1" with this data:
     | var | value | trigger |
     | another_people.target_number | 0 |  |
@@ -102,7 +102,7 @@ Scenario: 0 target_number for there_is_another and target_number lists
 
 @slow @st6 @loops
 Scenario: 2 target_number for there_is_another and target_number lists
-  Given I start the interview at "http://localhost/interview?i=docassemble.playground1ALKilnLoops:test_loops.yml"
+  Given I start the interview at "test_loops.yml"
   And I get to "end1" with this data:
     | var | value | trigger |
     | another_people.target_number | 2 |  |
