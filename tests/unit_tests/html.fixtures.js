@@ -831,30 +831,4 @@ html.mixed_quotes = `
 </div>`;
 
 
-// // ============================
-// // `.there_is_another`
-// // ============================
-// html.there_is_another = `
-// <div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
-//     <div data-variable="cHJveHlfbGlzdC50aGVyZV9pc19hbm90aGVy" id="trigger" aria-hidden="true" style="display: none;"></div>
-//     <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALTestingTestsNewDOM%3Aall_tests.yml" id="daform" method="POST" novalidate="novalidate">
-//         <div class="da-page-header">
-//             <h1 class="h3" id="daMainQuestion">Is there another proxy var?</h1>
-//             <div class="daclear"></div>
-//         </div>
-//         <fieldset class="da-button-set da-field-yesno">
-//             <legend class="visually-hidden">Press one of the following buttons:</legend>
-//             <button class="btn btn-primary btn-da" name="eC50aGVyZV9pc19hbm90aGVy" type="submit" value="True">Yes</button>
-//             <button class="btn btn-secondary btn-da" name="eC50aGVyZV9pc19hbm90aGVy" type="submit" value="False">No</button>
-//         </fieldset>
-//         <input type="hidden" name="csrf_token" value="IjdmYTE5MzE3ZjY5OTE0Y2MzMGQwYzVkNjJmZDViZjcyMDM4MDZmMWIi.YZ5KUQ.2ObHJubASqN4YqSlhzwDhdZxaoQ">
-//         <input type="hidden" name="_event" value="WyJwcm94eV9saXN0LnRoZXJlX2lzX2Fub3RoZXIiXQ">
-//         <input type="hidden" name="_question_name" value="ID is there another generic">
-//         <input type="hidden" name="_tracker" value="19">
-//         <input type="hidden" name="_datatypes" value="eyJlQzUwYUdWeVpWOXBjMTloYm05MGFHVnkiOiAiYm9vbGVhbiJ9">
-//         <input type="hidden" name="_visible" value="">
-//     </form>
-// </div>`;
-
-
 module.exports = html;
