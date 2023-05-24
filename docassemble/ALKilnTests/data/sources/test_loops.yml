@@ -1,0 +1,56 @@
+metadata:
+  title: Loop tests
+  description: Test loops like as with .there_is_another and .target_variable
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+objects:
+  - another_people: DAList.using(object_type=Individual)
+  - target_people: DAList.using(object_type=Individual, ask_number=True)
+---
+mandatory: True
+code: |
+  another_people.gather()
+  target_people.gather()
+  end1
+---
+id: there are any people
+question: Are there any `there_is_another` people?
+yesno: another_people.there_are_any
+---
+id: is there another person
+question: Are there more?
+yesno: another_people.there_is_another
+---
+id: target number
+question: How many target number people are there?
+fields:
+  - Number of other people: target_people.target_number
+    input type: number
+---
+id: person name
+generic object: Individual
+question: Name of ${ x.object_name() } person
+fields:
+  - Name: x.name.first
+---
+id: end1
+event: end1
+question: The end of part 1!
+subquestion: |
+  There is another people: ${ len(another_people.complete_elements()) }
+
+  % for person in another_people:
+  * ${ person }
+  % endfor
+  
+  Target number people: ${ len(target_people.complete_elements()) }
+
+  % for person in target_people:
+  * ${ person }
+  % endfor
+---

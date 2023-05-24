@@ -89,3 +89,31 @@ Scenario: I upload files with a table
     | upload_files_visible | some_png_1.png, some_png_2.png |  |
     | show_upload | True |  |
     | upload_files_hidden | some_png_2.png |  |
+
+@slow @st5 @loops
+Scenario: 0 target_number for there_is_another and target_number lists
+  Given I start the interview at "http://localhost/interview?i=docassemble.playground1ALKilnLoops:test_loops.yml"
+  And I get to "end1" with this data:
+    | var | value | trigger |
+    | another_people.target_number | 0 |  |
+    | target_people.target_number | 0 |  |
+  And I SHOULD see the phrase "There is another people: 0"
+  And I SHOULD see the phrase "Target number people: 0"
+
+@slow @st6 @loops
+Scenario: 2 target_number for there_is_another and target_number lists
+  Given I start the interview at "http://localhost/interview?i=docassemble.playground1ALKilnLoops:test_loops.yml"
+  And I get to "end1" with this data:
+    | var | value | trigger |
+    | another_people.target_number | 2 |  |
+    | x.name.first | AnotherPerson1 | another_people[0].name.first |
+    | x.name.first | AnotherPerson2 | another_people[1].name.first |
+    | target_people.target_number | 2 |  |
+    | x.name.first | TargetPerson1 | target_people[0].name.first |
+    | x.name.first | TargetPerson2 | target_people[1].name.first |
+  And I SHOULD see the phrase "There is another people: 2"
+  And I SHOULD see the phrase "Target number people: 2"
+
+
+# TODO: Test correct warning message appears when author sets `.there_is_another` to `True`
+
