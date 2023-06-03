@@ -423,6 +423,24 @@ Scenario: Warn when there are too many names
   And I set the name of "users[0]" to "Uli Udo User Sampson Jr"
   And I tap to continue
 
+@rw2 @table @loops
+Scenario: Warns about invalid `there_is_another | True` is in a table.
+  Given the final Scenario status should be "passed"
+  Given the Scenario report SHOULD include:
+  """
+  The attribute `.there_is_another` is invalid in story table tests
+  """
+  Given I start the interview at "test_loops.yml"
+  And the max seconds for each step is 5 seconds
+  And I set the var "x.there_are_any" to "True"
+  And I set the var "x[i].name.first" to "AnyPerson1"
+  And I tap to continue
+  # Should correctly get to "Name of the “first there is another people” person" question
+  And I get to "person name" with this data:
+    | var | value | trigger |
+    | x[i].name.first | AnyPerson2 | there_are_any_people[1].name.first |
+    | x.there_is_another | True | there_are_any_people.there_is_another |
+
 
 # ===============================
 # Reports for "passed" Scenarios
@@ -539,12 +557,18 @@ Scenario: Sign in to server successfully
   Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
 
 @rp4 @table
-Scenario: Report doesn't complain about `there_is_another | False` in a table.
-  Given the Scenario report should not include:
+Scenario: Passes with no warning when `there_is_another | False` is in a table.
+  Given the final Scenario status should be "passed"
+  Given the Scenario report should NOT include:
   """
   The attribute `.there_is_another` is invalid in story table tests
   """
-  Given I start the interview at "test_gather"
-  And I get to "end screen" with this data:
+  Given I start the interview at "test_loops.yml"
+  And the max seconds for each step is 5 seconds
+  And I set the var "x.there_are_any" to "True"
+  And I set the var "x[i].name.first" to "AnyPerson1"
+  And I tap to continue
+  And I get to "person name" with this data:
     | var | value | trigger |
-    | users.there_is_another | False | users.there_is_another |
+    | x[i].name.first | AnyPerson2 | there_are_any_people[1].name.first |
+    | x.there_is_another | False | there_are_any_people.there_is_another |

@@ -91,29 +91,49 @@ Scenario: I upload files with a table
     | upload_files_hidden | some_png_2.png |  |
 
 @slow @st5 @loops
-Scenario: 0 target_number for there_is_another and target_number lists
+Scenario: 0 target_number for there_are_any and target_number lists, 1 for there_is_another
   Given I start the interview at "test_loops.yml"
   And I get to "end1" with this data:
     | var | value | trigger |
-    | another_people.target_number | 0 |  |
+    | x.target_number | 0 | there_are_any_people.target_number |
+    | x.target_number | 1 | there_is_another_people.target_number |
+    | x[i].name.first | AnotherPerson1 | there_is_another_people[0].name.first |
     | target_people.target_number | 0 |  |
-  And I SHOULD see the phrase "There is another people: 0"
-  And I SHOULD see the phrase "Target number people: 0"
+  And I SHOULD see the phrase "there_are_any_people people: 0"
+  And I SHOULD see the phrase "there_is_another_people people: 1"
+  And I SHOULD see the phrase "target_people people: 0"
 
 @slow @st6 @loops
-Scenario: 2 target_number for there_is_another and target_number lists
+Scenario: target_number 2 for there_are_any, there_is_another, and target_number lists
   Given I start the interview at "test_loops.yml"
+  And I take a screenshot
   And I get to "end1" with this data:
     | var | value | trigger |
-    | another_people.target_number | 2 |  |
-    | x.name.first | AnotherPerson1 | another_people[0].name.first |
-    | x.name.first | AnotherPerson2 | another_people[1].name.first |
+    | x.target_number | 2 | there_are_any_people.target_number |
+    | x[i].name.first | AnyPerson1 | there_are_any_people[0].name.first |
+    | x[i].name.first | AnyPerson2 | there_are_any_people[1].name.first |
+    | x.target_number | 2 | there_is_another_people.target_number |
+    | x[i].name.first | AnotherPerson1 | there_is_another_people[0].name.first |
+    | x[i].name.first | AnotherPerson2 | there_is_another_people[1].name.first |
     | target_people.target_number | 2 |  |
-    | x.name.first | TargetPerson1 | target_people[0].name.first |
-    | x.name.first | TargetPerson2 | target_people[1].name.first |
-  And I SHOULD see the phrase "There is another people: 2"
-  And I SHOULD see the phrase "Target number people: 2"
+    | x[i].name.first | TargetPerson1 | target_people[0].name.first |
+    | x[i].name.first | TargetPerson2 | target_people[1].name.first |
+  And I SHOULD see the phrase "there_are_any_people people: 2"
+  And I SHOULD see the phrase "there_is_another_people people: 2"
+  And I SHOULD see the phrase "target_people people: 2"
 
-
-# TODO: Test correct warning message appears when author sets `.there_is_another` to `True`
-
+@slow @st7 @loops
+Scenario: target_number 1 for all people lists
+  Given I start the interview at "test_loops.yml"
+  And I take a screenshot
+  And I get to "end1" with this data:
+    | var | value | trigger |
+    | x.target_number | 1 | there_are_any_people.target_number |
+    | x[i].name.first | AnyPerson1 | there_are_any_people[0].name.first |
+    | x.target_number | 1 | there_is_another_people.target_number |
+    | x[i].name.first | AnotherPerson1 | there_is_another_people[0].name.first |
+    | target_people.target_number | 1 |  |
+    | x[i].name.first | TargetPerson1 | target_people[0].name.first |
+  And I SHOULD see the phrase "there_are_any_people people: 1"
+  And I SHOULD see the phrase "there_is_another_people people: 1"
+  And I SHOULD see the phrase "target_people people: 1"
