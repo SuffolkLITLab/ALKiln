@@ -17,6 +17,6 @@ it("normalizes a table with standard formatting correctly", async function() {
 });
 
 it("normalizes a table with missng `trigger` column correctly", async function() {
-  let result = await normalizeTable( scope, { var_data: tables.missing_sought });
-  expect( result ).to.deep.equal( tables.missing_sought_to_normalized_formatting );
+  let result = await normalizeTable( scope, { var_data: tables.missing_trigger });
+  expect( result ).to.deep.equal( tables.missing_trigger_to_normalized_formatting );
 });
