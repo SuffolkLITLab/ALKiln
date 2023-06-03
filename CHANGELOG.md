@@ -46,7 +46,7 @@ Format:
 - Additional environment variables and their validation to allow for tests that run on a developer's server/Playground instead of through GitHub. Also, other functionality for that purpose. [Issue #661](https://github.com/SuffolkLITLab/ALKiln/issues/661)
 - Tests for new session_vars behavior and improve previous tests.
 - Adds `npm-shrinkwrap.json`, so installs from npm will have fixed version dependencies.
-- Allow author to specify loops with only `.target_number`. e.g. to leave out `.there_are_any`. See https://github.com/SuffolkLITLab/ALKiln/issues/706.
+- Allow author to specify loops with only `.target_number`. e.g. to leave out `.there_are_any`. See [issue #706](https://github.com/SuffolkLITLab/ALKiln/issues/706) and Story Table documentation in docs folder.
 
 ### Changed
 - BREAKING: the github action no longer runs `npm run XYZ`; it directly calls scripts,
