@@ -48,18 +48,19 @@ Format:
 - Adds `npm-shrinkwrap.json`, so installs from npm will have fixed version dependencies
 
 ### Changed
+- BREAKING: the github action no longer runs `npm run XYZ`; it directly calls scripts,
+    e.g. `alkiln-setup`, `alkiln-run`, `alkiln-takedown`
 - upgraded cucumber v8.6.0
 - using cucumber's JS API to run tests. For more details on how it works,
     see [the cucumber-js docs](https://github.com/cucumber/cucumber-js/blob/main/docs/javascript_api.md).
-- the github action no longer runs `npm run XYZ`; it directly calls scripts,
-    e.g. `alkiln-setup`, `alkiln-run`, `alkiln-takedown`
 - don't print the ["publish this cucumber report" message](https://github.com/cucumber/cucumber-js/blob/main/docs/configuration.md#options)
 - Adjusted validation of some environment variables to account for Playground vs. GitHub or local test runs. [Issue #661](https://github.com/SuffolkLITLab/ALKiln/issues/661)
-- Project name prefix now includes ALKiln in it for clarity
+- Docassemble Project name prefix now includes ALKiln in it for clarity
 
 ### Fixed
 - Projects created in da each have a unique name. https://github.com/SuffolkLITLab/ALKiln/issues/663
 - Shorten path names to try to accommodate limitations of windows systems while still keeping enough useful information to help devs identify the test outputs. https://github.com/SuffolkLITLab/ALKiln/issues/618
+- Updated field decoding to handle new object field encoding. See [#711](https://github.com/SuffolkLITLab/ALKiln/issues/711)
 
 ### Security
 - Pass docassemble API keys through HTTP headers instead of as parameters.
