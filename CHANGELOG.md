@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Fixed
+- Updated field decoding to handle new object field encoding. See [#711](https://github.com/SuffolkLITLab/ALKiln/issues/711)
 
 ## [4.11.4] - 2023-04-19
 ### Fixed
