@@ -73,6 +73,7 @@ Format:
 
 ### Internal
 - added a test for multiline json values (only ones set by code not by user input)
+- added an internal section to the change log
 
 ## [4.11.1] - 2023-03-21
 ### Changed
