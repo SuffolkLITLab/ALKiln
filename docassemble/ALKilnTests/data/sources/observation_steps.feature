@@ -98,7 +98,7 @@ Scenario: Test "Then I don’t continue" with an apostrophe
   Then I don’t continue
   And I will be told an answer is invalid
 
-@fast @o9 @table @json
+@fast @o9 @json
 Scenario: I can match JSON page vars
   Given I start the interview at "test_json.yml"
   Then the text in the JSON variable "multiline_val" should be
@@ -115,10 +115,6 @@ Scenario: I can match JSON page vars
   """
   This is one line.
   """
-  #Then the text in the JSON variable "number_val" should be
-  #"""
-  #25
-  #"""
 
 # Maybe this one should be in the report tests (as well?)
 @fast @o10 @json

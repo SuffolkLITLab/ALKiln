@@ -14,7 +14,6 @@ code: |
   multiline_block = '''This block is.
   A multiline block.'''
   single_line_val = 'This is one line.'
-  number_val = 25
   end
 ---
 id: end
