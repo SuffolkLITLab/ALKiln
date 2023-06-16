@@ -1,6 +1,6 @@
 metadata:
   title: Loop tests
-  description: Test loops like as with .there_is_another and .target_number
+  description: Test loops with .there_is_another and .target_number
 ---
 # Necessary to tell us what the sought var is on each page
 # Every interview that wants testing will need to have an element like this
