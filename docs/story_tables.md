@@ -6,7 +6,7 @@ When the robot arrives on each interview page, it finds all the fields on the pa
 
 Here's some [documentation on the use of Story Table rows](https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/#story-tables).
 
-# Tracking use of rows
+## Tracking use of rows
 
 Why do we track how many times each Story Table row was used to set a form's fields?
 
@@ -60,23 +60,23 @@ First, the very basic flow for setting a variable. Note: every variable that is 
 
 1. If this isn't a Story Table step, transform the given arguments into a Story Table structure - a list of row objects.
 2. For each row object
-  1. Create a new object with almost the same properties. It contains the original object in a property called `original` so the original can be used to print stuff for the user's report.
-  2. In this new object transform some stuff if needed. For example, substitute environment variables the author gave into actual values. They may do this to keep a value (like a password) secret.
-  3. Add ways to accumulate the number of times the row is used.
+    1. Create a new object with almost the same properties. It contains the original object in a property called `original` so the original can be used to print stuff for the user's report.
+    2. In this new object substitute environment variables the author gave into actual values. They may do this to keep a value (like a password) secret.
+    3. Add ways to accumulate the number of times the row is used.
 3. For each page
-  1. Identify and store all the fields on the page and all the variables they set.
-  2. Shallowly clone the Story Table row list.
-    1. Create a new object almost the same as the old object
-    2. Print a warning to the user if they've created a `.there_is_another` row with a value of `'True'` and change that value to `'False'`.
-    3. Add artificial rows - rows we create - which is currently just used for `.target_number`.
-    4. This new list will be used to actually put answers into fields.
-  3. For each field
-    1. Find which Story Table row, if any, matches that field.
-    2. Set the field to the given value.
-    3. Increment the row's accumulators.
-      1. Increment all relevant `.times_used` by 1.
-      2. Increment the relevant `.used_for['foo']` by 1.
-  4. Try to continue.
+    1. Identify and store all the fields on the page and all the variables they set.
+    2. Shallowly clone the Story Table row list.
+        1. Create a new object almost the same as the old object
+        2. Print a warning to the user if they've created a `.there_is_another` row with a value of `'True'` and change that value to `'False'`.
+        3. If there is a `.target_number` row, use it to create new rows for `.there_is_another` and `.there_are_any`
+        4. This new list will be used to actually put answers into fields.
+    3. For each field on the page
+        1. Find which Story Table row, if any, matches that field.
+        2. Set the field to the given value.
+        3. Increment the row's accumulators.
+            1. Increment all relevant `.times_used` by 1.
+            2. Increment the relevant `.used_for['foo']` by 1.
+    4. Try to continue.
 
 Now some details.
 
