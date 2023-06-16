@@ -93,7 +93,7 @@ Scenario: I upload files with a table
 @slow @st5 @loops
 Scenario: 0 target_number for there_are_any and target_number lists, 1 for there_is_another
   Given I start the interview at "test_loops.yml"
-  And I get to "end1" with this data:
+  And I get to "end" with this data:
     | var | value | trigger |
     | x.target_number | 0 | there_are_any_people.target_number |
     | x.target_number | 1 | there_is_another_people.target_number |
@@ -107,7 +107,7 @@ Scenario: 0 target_number for there_are_any and target_number lists, 1 for there
 Scenario: target_number 2 for there_are_any, there_is_another, and target_number lists
   Given I start the interview at "test_loops.yml"
   And I take a screenshot
-  And I get to "end1" with this data:
+  And I get to "end" with this data:
     | var | value | trigger |
     | x.target_number | 2 | there_are_any_people.target_number |
     | x[i].name.first | AnyPerson1 | there_are_any_people[0].name.first |
@@ -126,7 +126,7 @@ Scenario: target_number 2 for there_are_any, there_is_another, and target_number
 Scenario: target_number 1 for all people lists
   Given I start the interview at "test_loops.yml"
   And I take a screenshot
-  And I get to "end1" with this data:
+  And I get to "end" with this data:
     | var | value | trigger |
     | x.target_number | 1 | there_are_any_people.target_number |
     | x[i].name.first | AnyPerson1 | there_are_any_people[0].name.first |
