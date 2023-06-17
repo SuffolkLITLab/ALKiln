@@ -63,6 +63,7 @@ Format:
 - Shorten path names to try to accommodate limitations of windows systems while still keeping enough useful information to help devs identify the test outputs. https://github.com/SuffolkLITLab/ALKiln/issues/618
 - Updated field decoding to handle new object field encoding. See [#711](https://github.com/SuffolkLITLab/ALKiln/issues/711)
 - Allow multiple languages to be tested again. See [#713](https://github.com/SuffolkLITLab/ALKiln/issues/713).
+- Allows ALKilnInThePlayground to upload files. See https://github.com/SuffolkLITLab/docassemble-ALKilnInThePlayground/issues/18.
 
 ### Security
 - Pass docassemble API keys through HTTP headers instead of as parameters.
