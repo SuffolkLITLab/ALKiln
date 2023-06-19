@@ -81,7 +81,7 @@ Scenario: Story table accidentally uses the opposite double or single quotes
     | double_quote_dict['double_quote_key']["dq_two"] | true |  |
     | single_quote_dict["single_quote_key"]['sq_two'] | true |  |
 
-@fast @st4 @quotes
+@fast @st4 @upload
 Scenario: I upload files with a table
   Given I start the interview at "all_tests"
   And I get to "group of complex fields" with this data:
