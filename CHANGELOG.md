@@ -64,6 +64,7 @@ Format:
 - Updated field decoding to handle new object field encoding. See [#711](https://github.com/SuffolkLITLab/ALKiln/issues/711)
 - Allow multiple languages to be tested again. See [#713](https://github.com/SuffolkLITLab/ALKiln/issues/713).
 - Allows ALKilnInThePlayground to upload files. See https://github.com/SuffolkLITLab/docassemble-ALKilnInThePlayground/issues/18.
+- Conform upload file behavior to that of other Story Table rows - avoid erroring when field isn't set properly unless using all variables is required.
 
 ### Security
 - Pass docassemble API keys through HTTP headers instead of as parameters.

@@ -380,7 +380,7 @@ Scenario: Fail with could not find files
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
-  Could not find "nonexistant1.pdf, nonexistant2.pdf"
+  ALKiln could not find "nonexistant1.pdf", "nonexistant2.pdf"
   """
   Given I start the interview at "all_tests"
   And I upload "nonexistant1.pdf, nonexistant2.pdf" to "upload_files_visible"
