@@ -59,6 +59,8 @@ Format:
 - Change interface for testing languages. See [#713](https://github.com/SuffolkLITLab/ALKiln/issues/713).
 
 ### Fixed
+- DOCKER UPDATE (for ALKilnInThePlayground): Allows ALKilnInThePlayground to upload files. See https://github.com/SuffolkLITLab/docassemble-ALKilnInThePlayground/issues/18. This may require some developers to update their system (updating their docker image) as described in [the documentation](https://suffolklitlab.org/legal-tech-class/docs/practical-guide-docassemble/maintaining-docassemble#updates-to-the-docassemble-container). Updating to a new docker images is something that all docassemble users will have to do sometime anyway, sometimes for security.
+- Conform upload file behavior to that of other Story Table rows - avoid erroring when field isn't set properly unless using all variables is required.
 - Projects created in da each have a unique name. https://github.com/SuffolkLITLab/ALKiln/issues/663
 - Shorten path names to try to accommodate limitations of windows systems while still keeping enough useful information to help devs identify the test outputs. https://github.com/SuffolkLITLab/ALKiln/issues/618
 - Updated field decoding to handle new object field encoding. See [#711](https://github.com/SuffolkLITLab/ALKiln/issues/711)
