@@ -14,7 +14,7 @@ First, it lets us give the author useful information. We can show the author whi
 
 Second, in some cases we need to actually throw an error if any row was left unused, so we have to keep track of that.
 
-Third, looping questions that gather multiple items in a list are tricky when the interview answers need the `.there_is_another` attribute. We can't use that attribute. Instead, we handle all gathering with `target_number` rows. What's the problem with that attribute? How do we solve it? And what's the architecture of that code?
+Third, looping questions that gather multiple items in a list are tricky when the interview answers need the `.there_is_another` attribute. We can't use that attribute. Instead, we handle all gathering with `target_number` rows. Next we'll discuss what problem the `.there_is_another` attribute creates and our approach to solving it.
 
 ## The loop problem
 
@@ -28,7 +28,7 @@ Page 3: Do you have any other moms? (Set `moms.there_is_another` to `True`)
 Page 4: What is your second mom's name? (Set `mom[1].name.first`)
 Page 5: Do you have any other moms? (Set `moms.there_is_another` to `False`)
 
-See that on page 3, `moms.there_is_another` is set to `True` and on page 5 it's set to `False`. How can we represent that in a Story Table? Pro tip: we can't.
+See that on page 3, `moms.there_is_another` is set to `True` and on page 5 it's set to `False`. We can't represent this in a Story Table.
 
 ```
 | x.there_is_another | True | moms.there_is_another |
@@ -50,9 +50,7 @@ The target number row looks like this:
 | x.target_number | 2 | moms.target_number |
 ```
 
-That's no problem at all for our code. It has three unique variables. How can that help us with `.there_is_another`, though?
-
-Good question. If we require our users to use `.target_number`[^1] we have one unique variable to tell us how many times to say "Yes" to a `.there_is_another` question. We just have to do a bit of extra work to make that happen.
+That's no problem at all for our code. If we require our users to use `.target_number`[^1] we have one unique variable to tell us how many times to say "Yes" to a `.there_is_another` question, letting us know when to answer "No" and stop the loop. We just also have to do a bit of extra work to make that happen.
 
 ## The loop architecture
 
