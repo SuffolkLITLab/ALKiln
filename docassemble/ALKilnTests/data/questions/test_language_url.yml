@@ -1,0 +1,31 @@
+metadata:
+  title: Language url
+---
+comment: |
+  https://apps-dev.suffolklitlab.org/interview?i=docassemble.playgroundIDproject:lang.yml&new_session=1&lang=en
+  https://apps-dev.suffolklitlab.org/interview?i=docassemble.playgroundIDproject:lang.yml&new_session=1&lang=es
+---
+translations:
+  - es.xlsx
+---
+initial: True
+code: |
+  log(user_language, 'console')
+  set_language(user_language)
+---
+code: |
+  log(url_args, 'console')
+  if 'lang' in url_args:
+    user_language = url_args['lang']
+  else:
+    user_language = 'en'
+---
+mandatory: True
+id: interview order
+code: |
+  multi_language_page
+---
+event: multi_language_page
+# This title should get translated
+question: English page
+---
