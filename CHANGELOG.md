@@ -56,11 +56,13 @@ Format:
 - don't print the ["publish this cucumber report" message](https://github.com/cucumber/cucumber-js/blob/main/docs/configuration.md#options)
 - Adjusted validation of some environment variables to account for Playground vs. GitHub or local test runs. [Issue #661](https://github.com/SuffolkLITLab/ALKiln/issues/661)
 - Docassemble Project name prefix now includes ALKiln in it for clarity
+- Change interface for testing languages. See [#713](https://github.com/SuffolkLITLab/ALKiln/issues/713).
 
 ### Fixed
 - Projects created in da each have a unique name. https://github.com/SuffolkLITLab/ALKiln/issues/663
 - Shorten path names to try to accommodate limitations of windows systems while still keeping enough useful information to help devs identify the test outputs. https://github.com/SuffolkLITLab/ALKiln/issues/618
 - Updated field decoding to handle new object field encoding. See [#711](https://github.com/SuffolkLITLab/ALKiln/issues/711)
+- Allow multiple languages to be tested again. See [#713](https://github.com/SuffolkLITLab/ALKiln/issues/713).
 
 ### Security
 - Pass docassemble API keys through HTTP headers instead of as parameters.
