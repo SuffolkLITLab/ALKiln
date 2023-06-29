@@ -16,32 +16,37 @@ Feature: Multi-language tests
 # @al_language # for all languages
 # @al_language @es # to isolate one language
 
-#@temp
-#Scenario Outline: language url
-#  Given I start the interview at "<url>"
-#  Then I SHOULD see the phrase "<text>"
-#
+#Background:
 #  @en
 #  Examples: english
-#    | lang | url | text |
-#    | en | https://interviews.gbls.org/?i=docassemble.MAEvictionDefense%3Adata/questions/#eviction.yml | I accept |
+#    | lang | arg | text |
+#    | en | &new_session=1&lang=en | English page |
 #
-#  @language @es
+#  @al_language @es
 #  Examples: spanish
-#    | lang | url | text |
-#    | es | https://interviews.gbls.org/?i=docassemble.MAEvictionDefense%3Adata/questions/#eviction.yml&new_session=1&lang=es | Acepto |
+#    | lang | arg | text |
+#    | es | &new_session=1&lang=es | Español page |
 
+
+# The screenshot will help us check manually that the right stuff is
+# going on
 @l1
 Scenario Outline: language url
   Given I start the interview at "test_languages.yml<arg>"
   Then I SHOULD see the phrase "<text>"
+  And I take a screenshot
 
   @en
   Examples: english
-    | lang | arg | text |
-    | en | &new_session=1&lang=en | English page |
+    | arg | text |
+    | &new_session=1&lang=en | English page |
 
-  @language @es
+  @al_language @es
   Examples: spanish
-    | lang | arg | text |
-    | es | &new_session=1&lang=es | Español page |
+    | arg | text |
+    | &new_session=1&lang=es | Español page |
+
+  @al_language @ar
+  Examples: arabic
+    | arg | text |
+    | &new_session=1&lang=ar | عربي page |
