@@ -16,18 +16,6 @@ Feature: Multi-language tests
 # @al_language # for all languages
 # @al_language @es # to isolate one language
 
-#Background:
-#  @en
-#  Examples: english
-#    | lang | arg | text |
-#    | en | &new_session=1&lang=en | English page |
-#
-#  @al_language @es
-#  Examples: spanish
-#    | lang | arg | text |
-#    | es | &new_session=1&lang=es | Español page |
-
-
 # The screenshot will help us check manually that the right stuff is
 # going on
 @l1
