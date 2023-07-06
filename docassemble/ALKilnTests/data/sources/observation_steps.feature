@@ -163,3 +163,30 @@ Scenario: I take a screenshot of the signature
   And I sign
   And I take a screenshot
   Then I tap to continue
+
+@fast @o14 @verify
+Scenario: I can match JSON page var to str
+  Given I start the interview at "all_tests.yml"
+  And I get to "showifs" with this data:
+    | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
+    | date_input | today | |
+  Then the text in the JSON variable "dropdown_test" should be
+    """
+    dropdown_opt_2
+    """
+  Then the text in the JSON variable "radio_other" should be
+    """
+    radio_other_opt_3
+    """
+  Then the text in the JSON variable "text_input" should be
+    """
+    Regular text input field value
+    """
