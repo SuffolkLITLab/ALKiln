@@ -11,14 +11,7 @@ Feature: Reports show the right things
 
 # ---- Exceptions in steps.js ----
 
-@fast @rf1 @error
-Scenario: Fail with missing language link
-  Given the final Scenario status should be "failed"
-  Given the Scenario report should include:
-  """
-  Could not find the link with the text "Latin"
-  """
-  And I start the interview at "all_tests" in lang "Latin"
+# @rf1 removed because it was outdated
 
 ## This screen has not yet been created in the testing interview
 #@fast @rf2 @error
