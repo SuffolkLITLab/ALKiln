@@ -8,9 +8,6 @@ Feature: Multi-language tests
 # and check that the automatic tests didn't trigger the language
 # tests
 
-# Not sure how to test urls like this: http://es.<other stuff>interview.yml
-# That's how wikipedia does it.
-
 # Tag use examples:
 # # No tags for default language only
 # @al_language # for all languages
@@ -29,12 +26,12 @@ Scenario Outline: language url
     | arg | text |
     | &new_session=1&lang=en | English page |
 
-  @al_language @es
+  @es
   Examples: spanish
     | arg | text |
     | &new_session=1&lang=es | Español page |
 
-  @al_language @ar
+  @ar
   Examples: arabic
     | arg | text |
     | &new_session=1&lang=ar | عربي page |
