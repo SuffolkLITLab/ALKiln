@@ -9,9 +9,8 @@ Feature: Multi-language tests
 # tests
 
 # Tag use examples:
-# # No tags for default language only
-# @al_language # for all languages
-# @al_language @es # to isolate one language
+# # No tags to test all languages
+# @es # language tag to isolate one language
 
 # The screenshot will help us check manually that the right stuff is
 # going on
