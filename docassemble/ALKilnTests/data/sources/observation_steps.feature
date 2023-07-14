@@ -164,3 +164,11 @@ Scenario: I take a screenshot of the signature
   And I sign
   And I take a screenshot
   Then I tap to continue
+
+@fast @o14 @date @time
+Scenario: I enter the date and time
+  Given I start the interview at "test_date_and_time.yml"
+  And I get to "the end" with this data:
+    | date_input | today | |
+    | time_input | 12:34 PM | |
+  

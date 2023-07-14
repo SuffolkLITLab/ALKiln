@@ -1,0 +1,34 @@
+metadata:
+  title: Test testing library - date and time
+  short title: Test ALKiln
+---
+features:
+  css:
+    - styles.css
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+mandatory: True
+id: interview order
+code: |
+  date_and_time
+  end
+---
+id: date and time
+continue button field: date_and_time
+question: |
+  Date and time
+fields:
+  - date field: date_input
+    datatype: date
+  - time field: time_input
+    datatype: time
+---
+id: the end
+event: end
+question: |
+  Congratulations! Tests have passed!
