@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [4.11.7] - 2023-07-14
+### Security
+- Updated dependency security vulnerabilities. See [#728](https://github.com/SuffolkLITLab/ALKiln/pull/728).
+
 ## [4.11.5] - 2023-06-12
 ### Fixed
 - Updated field decoding to handle new object field encoding. See [#711](https://github.com/SuffolkLITLab/ALKiln/issues/711)
