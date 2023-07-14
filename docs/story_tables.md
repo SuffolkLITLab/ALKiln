@@ -50,136 +50,40 @@ The target number row looks like this:
 | x.target_number | 2 | moms.target_number |
 ```
 
-That's no problem at all for our code. If we require our users to use `.target_number`[^1] we have one unique variable to tell us how many times to say "Yes" to a `.there_is_another` question, letting us know when to answer "No" and stop the loop. We just also have to do a bit of extra work to make that happen.
+If authors use `.target_number`, that's no problem at all for our code. We can't require authors to use that method to ask their questions, though. That may make their form questions confusing to their end users sometimes. Fortunately, we _can_ require developers to use `.target_number`[^1] in their Story Tables. We can use a `.target_number` table value to calculate what to answer for `.there_are_any` and to know how many times to set `.there_is_another` to `'True'`.
 
 ## The loop architecture
 
-First, the very basic flow for setting a variable. Note: every variable that is set uses the same code that handles Story Table rows.
+First, the very basic flow for setting a variable. Note: whatever Step the dev uses to set a variable's value, we send it to this loop. It may be useful to follow along in the code here.
 
 1. If this isn't a Story Table step, transform the given arguments into a Story Table structure - a list of row objects.
-2. For each row object
+2. For each row object (see `scope.normalizeTable()`)
     1. Create a new object with almost the same properties. It contains the original object in a property called `original` so the original can be used to print stuff for the user's report.
-    2. In this new object substitute environment variables the author gave into actual values. They may do this to keep a value (like a password) secret.
+    2. In this new object, substitute environment variables the author gave into actual values. They may have done this to keep a sensitive value (like a password) secret.
     3. Add ways to accumulate the number of times the row is used.
-3. For each page
+3. For each page (see `scope.setFields()`)
     1. Identify and store all the fields on the page and all the variables they set.
     2. Shallowly clone the Story Table row list.
         1. Create a new object almost the same as the old object
         2. Print a warning to the user if they've created a `.there_is_another` row with a value of `'True'` and change that value to `'False'`.
-        3. If there is a `.target_number` row, use it to create new rows for `.there_is_another` and `.there_are_any`
+        3. If there is a `.target_number` row, use it to create new artificial rows for `.there_is_another` and `.there_are_any`.
         4. This new list will be used to actually put answers into fields.
     3. For each field on the page
         1. Find which Story Table row, if any, matches that field.
         2. Set the field to the given value.
         3. Increment the row's accumulators.
-            1. Increment all relevant `.times_used` by 1.
-            2. Increment the relevant `.used_for['foo']` by 1.
+            1. Increment the relevant `.used_for['foo']` by 1.
+            2. Increment all relevant `.times_used`[^2] by 1.
     4. Try to continue.
 
-Now some details.
+<!-- From feedback, I'm not sure how to clarify this part or if readers will need it
+Why make artificial rows? Well, that way when we loop through to match a page's fields to the variables in the Story Table structure, we don't have to do anything special for these rows. If they're not needed, they won't be triggered.
 
-A row object can have two different structures (sorry). The first is for non-artificial rows:
-
-```js
-{
-  original: {
-    trigger: `moms.target_number`,
-    var: `x.target_number`,
-    value: `SECRET_NUMBER_OF_MOMS`,
-  },
-  trigger: `moms.target_number`,
-  var: `x.target_number`,
-  // These are different
-  value: `2`,
-  is_artificial: false,
-  times_used: 0,
-  used_for: { `x.target_number`: 0 },
-}
-```
-
-The second is for artificial rows. An example of a `.there_are_any` row:
-
-```js
-{
-  source: {
-    // The contents of the previous outer object, with one change:  
-    used_for: {
-      `x.target_number`: 0,
-      `x.there_are_any`: 0,
-      `x.there_is_another`: 0,
-    }
-  }
-  is_artificial: true,
-  var: `x.there_are_any`,
-  value: `True`,
-  trigger: `moms.there_are_any`,
-  used_for: { `x.there_are_any`: 0 }
-  // `.times_used` is the same
-}
-```
-
-An example of a `.there_is_another` row:
-
-```js
-{
-  source: {
-    // The contents of the previous outer object, with one change:  
-    used_for: {
-      `x.target_number`: 0,
-      `x.there_are_any`: 0,
-      `x.there_is_another`: 0,
-    }
-  }
-  is_artificial: true,
-  var: `x.there_is_another`,
-  value: `True`,
-  trigger: `moms.there_is_another`,
-  used_for: { `x.there_is_another`: 0 }
-  //`.times_used` is the same
-}
-```
-
-Why is it all so nested? That's just how it evolved. It could probably use some refactoring.
-
-The parts relevant to loops for gathering multiple items in a list are the `.target_number` accumulators and the artificial rows. Whenever a `.there_is_another` row is used to set an answer to a field, we add 1 to its `source.times_used`. That is, we mutate the `.target_number` object's `.times_used` property. We alsoadd 1 to its `source.used_for['x.there_is_another']` value. That mutates the `'x.there_is_another'` property of the `.used_for` of the `.target_number` object. We do the same for `.there_is_another` rows, but that doesn't matter for now.
-
-Why do we increment both the `.times_used` property and the `.used_for` properties? Have patience and read on.
-
-We set the value of a `.there_are_any` row using its `source` row's `value`.  If it's greater than `0`, the value is `'True'`, otherwise it's `'False'`.
-
-When this comes from a `.target_number` row (which I think is currently the only way we get to this stage), we set the value of a `.there_is_another` row using the `.there_is_another` accumulator in the `source` row. Three scenarios are possible.
-
-1. If the `.source.value` is `0` and its `.used_for['x.there_is_another']` is `0`, set the `.there_is_another` `value` to `'False'`.
-3. This also sounds weird, but if the `.source.value` is `> 0` and the `.source.used_for['x.there_is_another'] >= (.source.value - 1)`, return `False`. For example, if `.source.value` is `2` and `.source.used_for['x.there_is_another']` is `1`, return `False`. (We will explain this further down.)
-2. Otherwise, return `True`.
-
-Why `value - 1`? That's a wierd calculation. But think about the questions the user is being asked again:
-
-Page 1: Do you have any moms? (Set `moms.there_are_any` to `True`)
-Page 2: What is your first mom's name? (Set `mom[0].name.first`)
-
-We just set our 1st entry in the loop and `.there_is_another` wasn't used at all.
-
-Page 3: Do you have any other moms? (Set `moms.there_is_another` to `True` because `.source.used_for['x.there_is_another'] == 0`)
-Page 4: What is your second mom's name? (Set `mom[1].name.first`)
-
-`.there_is_another` is being used for the 1st time, even though this is actually the 2nd item in the list.
-
-Page 5: Do you have any other moms? (Set `moms.there_is_another` to `False` because `.source.used_for['x.there_is_another'] == 1`)
-This is the 2nd time `.there_is_another` is being used, but this would cause a 3rd loop if we didn't use the weird math.
-
-We did consider other options, though.
-
-One option: have the test author set their `.target_number` value to 1 less than the number of items they want. This follows the tradition of 0 indexed languages. Unfortunately (or fortunately), the authors are generally human, not computers, and that doesn't really make sense. Also, the pattern we chose is the pattern docassemble uses for `.target_number` already.
-
-Another option: we could just use `.times_used`. That gets incremented with `.there_are_any` as well as with `.there_is_another` and we don't need to do the weird math. The problem with this option is that sometimes the `.there_are_any` question is never asked. The author of the interview can set that ahead of time so that the user doesn't have to bother with it. In a form that's definitely about children, the author may assume the user already has children. They may exclude, "Do you have any children?" They would just ask for the first child's name right away. `.times_used` would then be off by one.
-
-That's why we chose the weird math instead. That leaves us with a couple more questions.
-
-`.times_used`. Why have `.times_used` at all? That's a stylistic choice. It makes later code less complicated. When we print the test report at the end and want to show the author which `.target_number` rows were actually used during the test, we need to know the total number of times the `.target_number` was used. We could add up the `used_for` values, but for now we're avoiding doing that extra math and the etra refactoring. The choice has its pros and cons.
-
-Also, why make artificial rows? Well, that way when we loop through to match a page's fields to the variables in the Story Table structure, we don't have to do anything special for these rows. Why not calculate the `.there_are_any` and `.there_is_another` values in the row-matching loop? That's another stylistic choice. There's more logic to the `.there_is_another` value than we've talked about here and that method seems like it would add a lot more cruft and complexity in that match-finding loop. We may eventually change our minds.
+Why not calculate the `.there_are_any` and `.there_is_another` values in the row-matching loop? That's another stylistic choice. There's more logic to the `.there_is_another` value than we've talked about here and that method seems like it would add a lot more cruft and complexity in that match-finding loop. We may eventually change our minds.
+ -->
 
 ---
 
-[^1] Why use `target_number`? We count on our users being at least a bit familiar with docassemble variables and to have access to the docassemble docs, so the `target_number` variable is something they should be able to recognize or easily find information about. We decided to take advantage of that. 
+[^1] Why use `target_number`? We count on our users being at least a bit familiar with docassemble variables and to have access to the docassemble docs, so the `target_number` variable is something they should be able to recognize or easily find information about. We decided to take advantage of that. Also, we chose to avoid 0 indexing so that the number starts at 1 and feels like human language, not computer language as our users are generally more human than computer. It's also the way docassemble does it.
+
+[^2] It would seem like the `.times_used` property is redundant, but it has a different purpose that the `.used_for` properties. It lets us show the dev whether the `target_number` table row was used at all during the test to let us give appropriate feedback to the user. We could add up the `used_for` values, but for now we're avoiding doing that extra math and the extra refactoring. The choice has its pros and cons.
