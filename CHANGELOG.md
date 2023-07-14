@@ -65,12 +65,14 @@ Format:
 - Shorten path names to try to accommodate limitations of windows systems while still keeping enough useful information to help devs identify the test outputs. https://github.com/SuffolkLITLab/ALKiln/issues/618
 - Updated field decoding to handle new object field encoding. See [#711](https://github.com/SuffolkLITLab/ALKiln/issues/711)
 - Allow multiple languages to be tested again. See [#713](https://github.com/SuffolkLITLab/ALKiln/issues/713).
+- Fill in time fields correctly. See [#726](https://github.com/SuffolkLITLab/ALKiln/pull/726).
 
 ### Security
 - Pass docassemble API keys through HTTP headers instead of as parameters.
   - Parameters to certain HTTP requests are printed directly in docassemble's
     uWSGI log, leaking API keys to actors with log access on your docassemble
     server
+- Update dependencies. See [#727](https://github.com/SuffolkLITLab/ALKiln/pull/727).
 
 ## [4.11.1] - 2023-03-21
 ### Changed
