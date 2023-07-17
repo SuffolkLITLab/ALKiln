@@ -4,11 +4,8 @@
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "npm run unit && npm run langs_setup && npm run cucumber",
+    "test": "npm run unit && npm run cucumber",
     "cucumber": "./lib/run_cucumber.js",
-    "langs": "npm run langs_setup && npm run cucumber",
-    "langs_setup": "./lib/utils/langs.js 'docassemble/*/data/sources/*.feature'",
-    "langs_local": "npm run langs_setup && npm run local",
     "local": "npm run setup && npm run cucumber; npm run takedown",
     "setup": "./lib/docassemble/setup.js",
     "takedown": "./lib/docassemble/takedown.js",
@@ -52,7 +49,6 @@
   "bin": {
     "alkiln-setup": "./lib/docassemble/setup.js",
     "alkiln-takedown": "./lib/docassemble/takedown.js",
-    "alkiln-langs": "./lib/utils/langs.js",
     "alkiln-run": "./lib/run_cucumber.js"
   }
 }
