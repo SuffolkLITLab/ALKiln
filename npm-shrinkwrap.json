@@ -1,21 +1,21 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.0.0-pre-8",
+  "version": "5.0.0",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
       "name": "@suffolklitlab/alkiln",
-      "version": "5.0.0-pre-8",
+      "version": "5.0.0",
       "license": "MIT",
       "dependencies": {
         "@axe-core/puppeteer": "4.7.3",
         "@cucumber/cucumber": "9.3.0",
-        "@faker-js/faker": "^7.3.0",
+        "@faker-js/faker": "7.3.0",
         "axios": "0.24.0",
         "chai": "4.2.0",
         "cheerio": "1.0.0-rc.10",
-        "deep-equal-in-any-order": "^2.0.0",
+        "deep-equal-in-any-order": "2.0.0",
         "dotenv": "8.2.0",
         "fast-glob": "3.2.12",
         "minimatch": "3.0.5",
