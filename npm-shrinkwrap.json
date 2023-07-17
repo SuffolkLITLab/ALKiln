@@ -1,12 +1,12 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.0.0",
+  "version": "5.0.0-pre-11",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
       "name": "@suffolklitlab/alkiln",
-      "version": "5.0.0",
+      "version": "5.0.0-pre-11",
       "license": "MIT",
       "dependencies": {
         "@axe-core/puppeteer": "4.7.3",
@@ -26,7 +26,6 @@
         "uuid": "8.3.2"
       },
       "bin": {
-        "alkiln-langs": "lib/utils/langs.js",
         "alkiln-run": "lib/run_cucumber.js",
         "alkiln-setup": "lib/docassemble/setup.js",
         "alkiln-takedown": "lib/docassemble/takedown.js"

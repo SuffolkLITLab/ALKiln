@@ -204,7 +204,7 @@ If you want to know the commands, you can go to the [instructions for running te
 
 ### Files that you don't need to look at
 
-`index.js` and `world.js` are short files that cucumber needs. `./lib/utils/langs.js` used to work, but we're not sure it does anymore. No one has used it yet, so we're waiting to experiment until someone expresses a need or we have some extra time.
+`index.js` and `world.js` are short files that cucumber needs.
 
 ## Footnotes
 
