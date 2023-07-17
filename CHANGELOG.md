@@ -58,6 +58,7 @@ Format:
 - Adjusted validation of some environment variables to account for Playground vs. GitHub or local test runs. [Issue #661](https://github.com/SuffolkLITLab/ALKiln/issues/661)
 - Docassemble Project name prefix now includes ALKiln in it for clarity
 - Change interface for testing languages. See [#713](https://github.com/SuffolkLITLab/ALKiln/issues/713).
+- Freeze all npm package versions.
 
 ### Fixed
 - DOCKER UPDATE (for ALKilnInThePlayground): Allows ALKilnInThePlayground to upload files. See https://github.com/SuffolkLITLab/docassemble-ALKilnInThePlayground/issues/18. This may require some developers to update their system (updating their docker image) if they are below [docassemble-os 1.0.8](https://github.com/jhpyle/docassemble-os/releases/tag/v1.0.8). You can tell if you are below docassemble-os 1.0.8 if you run `docker image inspect jhpyle/docassemble | grep Created` on your host server (Lightsail, etc.) and the created date is before 2023-04-09. You can update as described in [the documentation](https://suffolklitlab.org/legal-tech-class/docs/practical-guide-docassemble/maintaining-docassemble#updates-to-the-docassemble-container). Updating to a new docker images is something that all docassemble users will have to do sometime anyway, sometimes for security.
