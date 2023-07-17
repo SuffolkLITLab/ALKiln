@@ -51,6 +51,7 @@ Format:
 ### Changed
 - BREAKING: the github action no longer runs `npm run XYZ`; it directly calls scripts,
     e.g. `alkiln-setup`, `alkiln-run`, `alkiln-takedown`
+- BREAKING: Remove EXTRA_LANGUAGES env var as languages are being handled through cucumber `Examples` now.
 - upgraded cucumber v8.6.0
 - using cucumber's JS API to run tests. For more details on how it works,
     see [the cucumber-js docs](https://github.com/cucumber/cucumber-js/blob/main/docs/javascript_api.md).

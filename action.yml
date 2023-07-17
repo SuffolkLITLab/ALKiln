@@ -17,10 +17,6 @@ inputs:
   DOCASSEMBLE_DEVELOPER_API_KEY:
     description: 'API key of the testing account with developer permissions on your docassemble server.'
     required: true
-  EXTRA_LANGUAGES:
-    description: 'Other languages you want to test. This should be in your GitHub SECRETS or the SECRETS of your org.'
-    required: false
-    default: ''
   # This is necessary to test pre-releases at the very least. It does seem
   # strange considering we're controlling everything through the action, but
   # that actually doesn't touch the npm version that's pulled in.
@@ -38,20 +34,10 @@ runs:
   steps:
     # Set environment variables
     - name: "ALKiln: Set environment variables"
-      # If extra languages were set manually, override the repository
-      # EXTRA_LANGUAGES secret with the manually set values
       # Human-readable date/time:
       # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
       run: |
         echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
-        if ${{ github.event.inputs.extra_languages != '' }}
-        then
-          echo "Manually set languages: ${{ github.event.inputs.extra_languages }}"
-          echo "EXTRA_LANGUAGES=${{ github.event.inputs.extra_languages }}" >> $GITHUB_ENV
-        else
-          echo "Use EXTRA_LANGUAGES secret: ${{ inputs.EXTRA_LANGUAGES }}"
-          echo "EXTRA_LANGUAGES=${{ inputs.EXTRA_LANGUAGES }}" >> $GITHUB_ENV
-        fi
         echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
         echo "BRANCH_PATH=${{ github.ref }}" >> $GITHUB_ENV
         echo "BASE_URL=${{ inputs.SERVER_URL }}" >> $GITHUB_ENV
@@ -65,8 +51,7 @@ runs:
       shell: bash
     - name: "ALKiln: confirm info"
       run: |
-        echo -e "\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nManually added languages are $EXTRA_LANGUAGES\nAll other data is secret\n"
-        echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nManually added languages are $EXTRA_LANGUAGES\n"
+        echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\n"
       shell: bash
 
     # Install node
@@ -113,9 +98,6 @@ runs:
 #   push:
 #   workflow_dispatch:
 #     inputs:
-#       extra_languages:
-#         description: 'Optional. A list of comma separated language names visible on buttons or links in the interview that change the language of the interview. Overrides the EXTRA_LANGUAGES GitHub secret.'
-#         default: ''
 #       tags:
 #         description: 'Optional. Use a "tag expression" specify which tagged tests to run. See https://cucumber.io/docs/cucumber/api/#tag-expressions for syntax.'
 #         default: ''
