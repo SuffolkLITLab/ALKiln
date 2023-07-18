@@ -23,7 +23,7 @@ inputs:
   ALKILN_VERSION:
     description: 'Version of ALKiln to get from npm.'
     required: false
-    default: '^4.0.0'
+    default: '^5.0.0'
   MAX_SECONDS_FOR_SETUP:
     description: "Amount of time to give the Project to upload your package's GitHub code."
     required: false
@@ -61,7 +61,7 @@ runs:
         node-version: "18"
     - name: Install ALKiln directly from npm
       run: |
-        npm install -g github:SuffolkLITLab/ALKiln#v5
+        npm install -g @suffolklitlab/alkiln
       shell: bash
 
     # Run tests

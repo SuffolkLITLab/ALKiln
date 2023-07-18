@@ -40,6 +40,10 @@ Format:
 -->
 <!-- ## [Unreleased] -->
 
+## [5.0.1] - 2023-07-18
+### Changed
+- Increment version of ALKiln that action.yml is using.
+
 ## [5.0.0] - 2023-07-18
 ### Added
 - added additional functionality to the sign method to allow developers to take a name argument to sign on canvas: issue #596
