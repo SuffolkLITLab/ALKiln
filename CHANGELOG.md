@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.0.0] - 2023-07-18
 ### Added
 - added additional functionality to the sign method to allow developers to take a name argument to sign on canvas: issue #596
 - A new script: `alkiln-run`, which acts like `npm run cucumber`, but can
