@@ -38,7 +38,9 @@ Format:
 ### Security
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Fixed
+- Accept `SERVER_RELOAD_TIMEOUT_SECONDS` as an env var input in GitHub.
 
 ## [5.0.1] - 2023-07-18
 ### Changed

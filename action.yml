@@ -28,6 +28,10 @@ inputs:
     description: "Amount of time to give the Project to upload your package's GitHub code."
     required: false
     default: '120'
+  SERVER_RELOAD_TIMEOUT_SECONDS:
+    description: "Max amount of time to give the server to reload if it needs to"
+    required: false
+    # no default to let the custom Scenario timeouts create the reload timeout
 
 runs:
   using: "composite"
@@ -47,11 +51,12 @@ runs:
         echo "DOCASSEMBLE_DEVELOPER_API_KEY=${{ inputs.DOCASSEMBLE_DEVELOPER_API_KEY }}" >> $GITHUB_ENV
         echo "ALKILN_VERSION=${{ inputs.ALKILN_VERSION }}" >> $GITHUB_ENV
         echo "MAX_SECONDS_FOR_SETUP=${{ inputs.MAX_SECONDS_FOR_SETUP }}" >> $GITHUB_ENV
+        echo "SERVER_RELOAD_TIMEOUT_SECONDS=${{ inputs.SERVER_RELOAD_TIMEOUT_SECONDS }}" >> $GITHUB_ENV
         echo "_ORIGIN=github" >> $GITHUB_ENV
       shell: bash
     - name: "ALKiln: confirm info"
       run: |
-        echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\n"
+        echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\SERVER_RELOAD_TIMEOUT_SECONDS is $SERVER_RELOAD_TIMEOUT_SECONDS\n"
       shell: bash
 
     # Install node
@@ -90,10 +95,10 @@ runs:
 
 # ##################################
 # # A developer's workflow should look similar to the below
-# # In place of `uses: suffolkLITLab/ALKiln@releases/v4`, they
+# # In place of `uses: suffolkLITLab/ALKiln@v5`, they
 # # might use another version.
 #
-# name: Use the ALKiln testing framework v4 to run tests
+# name: ALKiln v5 tests
 # on:
 #   push:
 #   workflow_dispatch:
@@ -108,9 +113,9 @@ runs:
 #     runs-on: ubuntu-latest
 #     name: Run interview tests
 #     steps:
-#       - uses: actions/checkout@v2
+#       - uses: actions/checkout@v3
 #       - name: Use ALKiln to run tests
-#         uses: suffolkLITLab/ALKiln@releases/v4
+#         uses: suffolkLITLab/ALKiln@v5
 #         with:
 #           SERVER_URL: "${{ secrets.SERVER_URL }}"
 #           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}"
