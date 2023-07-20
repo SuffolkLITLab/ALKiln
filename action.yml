@@ -60,9 +60,9 @@ runs:
     - name: "ALKiln: Install project dependencies on server"
       run: alkiln-startserver
       shell: bash
-    - name: "ALKiln: Create a Project and pull the package from GitHub"
-      run: alkiln-setup
-      shell: bash
+    #- name: "ALKiln: Create a Project and pull the package from GitHub"
+    #  run: alkiln-setup
+    #  shell: bash
     - name: "ALKiln: Run tests"
       if: ${{ success() }}
       run: alkiln-run ${{ github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
