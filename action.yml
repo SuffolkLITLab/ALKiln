@@ -32,7 +32,7 @@ runs:
       # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
       run: |
         echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
-        echo "REPO_URL=https://github.com/SuffolkLITLab/docassemble-ALToolbox" >> $GITHUB_ENV
+        echo "REPO_URL=https://github.com/SuffolkLITLab/docassemble-AssemblyLine" >> $GITHUB_ENV
         echo "BRANCH_PATH=main" >> $GITHUB_ENV
         echo "BASE_URL=${{ inputs.SERVER_URL }}" >> $GITHUB_ENV
         echo "DOCASSEMBLE_DEVELOPER_API_KEY=${{ inputs.DOCASSEMBLE_DEVELOPER_API_KEY }}" >> $GITHUB_ENV
