@@ -7,13 +7,13 @@ inputs:
     required: true
   PLAYGROUND_EMAIL:
     description: 'The email of your docassemble testing account. This should be in your GitHub SECRETS or the SECRETS of your org.'
-    required: true
+    required: false
   PLAYGROUND_PASSWORD:
     description: 'The password of your docassemble testing account. This should be in your GitHub SECRETS or the SECRETS of your org.'
-    required: true
+    required: false
   PLAYGROUND_ID:
     description: 'The id of your docassemble testing account. This should be in your GitHub SECRETS or the SECRETS of your org.'
-    required: true
+    required: false
   DOCASSEMBLE_DEVELOPER_API_KEY:
     description: 'API key of the testing account with developer permissions on your docassemble server.'
     required: true
