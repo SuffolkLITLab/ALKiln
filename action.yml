@@ -27,7 +27,6 @@ inputs:
   MAX_SECONDS_FOR_SETUP:
     description: "Amount of time to give the Project to upload your package's GitHub code."
     required: false
-    default: '120'
   SERVER_RELOAD_TIMEOUT_SECONDS:
     description: "Max amount of time to give the server to reload if it needs to"
     required: false
