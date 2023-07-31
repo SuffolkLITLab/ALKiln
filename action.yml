@@ -5,15 +5,6 @@ inputs:
   SERVER_URL:
     description: 'The url of your docassemble server. This should be in your GitHub SECRETS or the SECRETS of your org.'
     required: true
-  PLAYGROUND_EMAIL:
-    description: 'The email of your docassemble testing account. This should be in your GitHub SECRETS or the SECRETS of your org.'
-    required: false
-  PLAYGROUND_PASSWORD:
-    description: 'The password of your docassemble testing account. This should be in your GitHub SECRETS or the SECRETS of your org.'
-    required: false
-  PLAYGROUND_ID:
-    description: 'The id of your docassemble testing account. This should be in your GitHub SECRETS or the SECRETS of your org.'
-    required: false
   DOCASSEMBLE_DEVELOPER_API_KEY:
     description: 'API key of the testing account with developer permissions on your docassemble server.'
     required: true
@@ -45,9 +36,6 @@ runs:
         echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
         echo "BRANCH_PATH=${{ github.ref }}" >> $GITHUB_ENV
         echo "BASE_URL=${{ inputs.SERVER_URL }}" >> $GITHUB_ENV
-        echo "PLAYGROUND_EMAIL=${{ inputs.PLAYGROUND_EMAIL }}" >> $GITHUB_ENV
-        echo "PLAYGROUND_PASSWORD=${{ inputs.PLAYGROUND_PASSWORD }}" >> $GITHUB_ENV
-        echo "PLAYGROUND_ID=${{ inputs.PLAYGROUND_ID }}" >> $GITHUB_ENV
         echo "DOCASSEMBLE_DEVELOPER_API_KEY=${{ inputs.DOCASSEMBLE_DEVELOPER_API_KEY }}" >> $GITHUB_ENV
         echo "ALKILN_VERSION=${{ inputs.ALKILN_VERSION }}" >> $GITHUB_ENV
         echo "MAX_SECONDS_FOR_SETUP=${{ inputs.MAX_SECONDS_FOR_SETUP }}" >> $GITHUB_ENV
