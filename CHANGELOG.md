@@ -37,6 +37,9 @@ Format:
 
 ### Security
 - 
+
+### Internal
+- 
 -->
 <!-- ## [Unreleased] -->
 
@@ -88,6 +91,10 @@ Format:
     uWSGI log, leaking API keys to actors with log access on your docassemble
     server
 - Update dependencies. See [#727](https://github.com/SuffolkLITLab/ALKiln/pull/727).
+
+### Internal
+- added a test for multiline json values (only ones set by code not by user input)
+- added an internal section to the change log
 
 ## [4.11.1] - 2023-03-21
 ### Changed
