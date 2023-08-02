@@ -7,7 +7,7 @@
  const getSafeScenarioFilename = scope.getSafeScenarioFilename;
 
 let test_filename = function ( expected_prefix, result ) {
-  /* Test a name to see if it's valid output with a language defined. */
+  /* Test a name to see if it's valid output with a prefix defined, like `aXe`. */
   let expected_name_regex_str = `^${ expected_prefix }-${ names.description }-\.{13}$`;
   if ( expected_prefix == `` ) {
    expected_name_regex_str = `^${ names.description }-\.{13}$`;

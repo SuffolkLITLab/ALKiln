@@ -1,0 +1,66 @@
+metadata:
+  title: Loop tests
+  description: Test loops with .there_is_another and .target_number
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+objects:
+  - there_are_any_people: DAList.using(object_type=Individual)
+  - there_is_another_people: DAList.using(object_type=Individual, there_are_any=True)
+  - target_people: DAList.using(object_type=Individual, ask_number=True)
+---
+mandatory: True
+code: |
+  there_are_any_people.gather()
+  there_is_another_people.gather()
+  target_people.gather()
+  end
+---
+id: there are any people
+generic object: DAList
+question: Are there any "${ x.object_name() }" people?
+yesno: x.there_are_any
+---
+id: is there another person
+generic object: DAList
+question: Are there more "${ x.object_name() }" people?
+yesno: x.there_is_another
+---
+id: target number
+question: How many "target_number" people are there?
+fields:
+  - Number of other people: target_people.target_number
+    input type: number
+---
+id: person name
+generic object: DAList
+question: Name of the "${ x[ i ].object_name() }" person
+fields:
+  - Name: x[i].name.first
+---
+id: end
+event: end
+question: The end!
+subquestion: |
+  `there_are_any_people` people: ${ len(there_are_any_people.complete_elements()) }
+
+  % for person in there_are_any_people:
+  * ${ person }
+  % endfor
+  
+  `there_is_another_people` people: ${ len(there_is_another_people.complete_elements()) }
+
+  % for person in there_is_another_people:
+  * ${ person }
+  % endfor
+  
+  `target_people` people: ${ len(target_people.complete_elements()) }
+
+  % for person in target_people:
+  * ${ person }
+  % endfor
+---

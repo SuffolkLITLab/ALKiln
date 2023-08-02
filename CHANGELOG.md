@@ -41,35 +41,56 @@ Format:
 ### Internal
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.0.2] - 2023-07-20
+### Fixed
+- Accept `SERVER_RELOAD_TIMEOUT_SECONDS` as an env var input in GitHub.
+
+## [5.0.1] - 2023-07-18
+### Changed
+- Increment version of ALKiln that action.yml is using.
+
+## [5.0.0] - 2023-07-18
 ### Added
 - added additional functionality to the sign method to allow developers to take a name argument to sign on canvas: issue #596
 - A new script: `alkiln-run`, which acts like `npm run cucumber`, but can
   be run in any directory, not just in an npm package.
 - Additional environment variables and their validation to allow for tests that run on a developer's server/Playground instead of through GitHub. Also, other functionality for that purpose. [Issue #661](https://github.com/SuffolkLITLab/ALKiln/issues/661)
 - Tests for new session_vars behavior and improve previous tests.
-- Adds `npm-shrinkwrap.json`, so installs from npm will have fixed version dependencies
+- Adds `npm-shrinkwrap.json`, so installs from npm will have fixed version dependencies.
+- Allow author to specify loops with only `.target_number`. e.g. to leave out `.there_are_any`. See [issue #706](https://github.com/SuffolkLITLab/ALKiln/issues/706) and Story Table documentation in docs folder.
 
 ### Changed
 - BREAKING: the github action no longer runs `npm run XYZ`; it directly calls scripts,
     e.g. `alkiln-setup`, `alkiln-run`, `alkiln-takedown`
+- BREAKING: Remove EXTRA_LANGUAGES env var as languages are being handled through cucumber `Examples` now.
 - upgraded cucumber v8.6.0
 - using cucumber's JS API to run tests. For more details on how it works,
     see [the cucumber-js docs](https://github.com/cucumber/cucumber-js/blob/main/docs/javascript_api.md).
 - don't print the ["publish this cucumber report" message](https://github.com/cucumber/cucumber-js/blob/main/docs/configuration.md#options)
 - Adjusted validation of some environment variables to account for Playground vs. GitHub or local test runs. [Issue #661](https://github.com/SuffolkLITLab/ALKiln/issues/661)
 - Docassemble Project name prefix now includes ALKiln in it for clarity
+- Change interface for testing languages. See [#713](https://github.com/SuffolkLITLab/ALKiln/issues/713).
+- Freeze all npm package versions.
 
 ### Fixed
+- DOCKER UPDATE (for ALKilnInThePlayground): Allows ALKilnInThePlayground to upload files. See https://github.com/SuffolkLITLab/docassemble-ALKilnInThePlayground/issues/18. This may require some developers to update their system (updating their docker image) if they are below [docassemble-os 1.0.8](https://github.com/jhpyle/docassemble-os/releases/tag/v1.0.8). You can tell if you are below docassemble-os 1.0.8 if you run `docker image inspect jhpyle/docassemble | grep Created` on your host server (Lightsail, etc.) and the created date is before 2023-04-09. You can update as described in [the documentation](https://suffolklitlab.org/legal-tech-class/docs/practical-guide-docassemble/maintaining-docassemble#updates-to-the-docassemble-container). Updating to a new docker images is something that all docassemble users will have to do sometime anyway, sometimes for security.
+- Conform upload file behavior to that of other Story Table rows - avoid erroring when field isn't set properly unless using all variables is required.
 - Projects created in da each have a unique name. https://github.com/SuffolkLITLab/ALKiln/issues/663
 - Shorten path names to try to accommodate limitations of windows systems while still keeping enough useful information to help devs identify the test outputs. https://github.com/SuffolkLITLab/ALKiln/issues/618
 - Updated field decoding to handle new object field encoding. See [#711](https://github.com/SuffolkLITLab/ALKiln/issues/711)
+- Allow multiple languages to be tested again. See [#713](https://github.com/SuffolkLITLab/ALKiln/issues/713).
+- Fill in time fields correctly. See [#726](https://github.com/SuffolkLITLab/ALKiln/pull/726).
+- Allow `.target_number` to be 0. See https://github.com/SuffolkLITLab/ALKiln/issues/706.
+- Use the right number of loops for `.target_number`. See https://github.com/SuffolkLITLab/ALKiln/issues/706.
 
 ### Security
 - Pass docassemble API keys through HTTP headers instead of as parameters.
   - Parameters to certain HTTP requests are printed directly in docassemble's
     uWSGI log, leaking API keys to actors with log access on your docassemble
     server
+- Update dependencies. See [#727](https://github.com/SuffolkLITLab/ALKiln/pull/727).
 
 ### Internal
 - added a test for multiline json values (only ones set by code not by user input)

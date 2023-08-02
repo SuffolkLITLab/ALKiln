@@ -17,41 +17,31 @@ inputs:
   DOCASSEMBLE_DEVELOPER_API_KEY:
     description: 'API key of the testing account with developer permissions on your docassemble server.'
     required: true
-  EXTRA_LANGUAGES:
-    description: 'Other languages you want to test. This should be in your GitHub SECRETS or the SECRETS of your org.'
-    required: false
-    default: ''
   # This is necessary to test pre-releases at the very least. It does seem
   # strange considering we're controlling everything through the action, but
   # that actually doesn't touch the npm version that's pulled in.
   ALKILN_VERSION:
     description: 'Version of ALKiln to get from npm.'
     required: false
-    default: '^4.0.0'
+    default: '^5.0.0'
   MAX_SECONDS_FOR_SETUP:
     description: "Amount of time to give the Project to upload your package's GitHub code."
     required: false
     default: '120'
+  SERVER_RELOAD_TIMEOUT_SECONDS:
+    description: "Max amount of time to give the server to reload if it needs to"
+    required: false
+    # no default to let the custom Scenario timeouts create the reload timeout
 
 runs:
   using: "composite"
   steps:
     # Set environment variables
     - name: "ALKiln: Set environment variables"
-      # If extra languages were set manually, override the repository
-      # EXTRA_LANGUAGES secret with the manually set values
       # Human-readable date/time:
       # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
       run: |
         echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
-        if ${{ github.event.inputs.extra_languages != '' }}
-        then
-          echo "Manually set languages: ${{ github.event.inputs.extra_languages }}"
-          echo "EXTRA_LANGUAGES=${{ github.event.inputs.extra_languages }}" >> $GITHUB_ENV
-        else
-          echo "Use EXTRA_LANGUAGES secret: ${{ inputs.EXTRA_LANGUAGES }}"
-          echo "EXTRA_LANGUAGES=${{ inputs.EXTRA_LANGUAGES }}" >> $GITHUB_ENV
-        fi
         echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
         echo "BRANCH_PATH=${{ github.ref }}" >> $GITHUB_ENV
         echo "BASE_URL=${{ inputs.SERVER_URL }}" >> $GITHUB_ENV
@@ -61,12 +51,12 @@ runs:
         echo "DOCASSEMBLE_DEVELOPER_API_KEY=${{ inputs.DOCASSEMBLE_DEVELOPER_API_KEY }}" >> $GITHUB_ENV
         echo "ALKILN_VERSION=${{ inputs.ALKILN_VERSION }}" >> $GITHUB_ENV
         echo "MAX_SECONDS_FOR_SETUP=${{ inputs.MAX_SECONDS_FOR_SETUP }}" >> $GITHUB_ENV
+        echo "SERVER_RELOAD_TIMEOUT_SECONDS=${{ inputs.SERVER_RELOAD_TIMEOUT_SECONDS }}" >> $GITHUB_ENV
         echo "_ORIGIN=github" >> $GITHUB_ENV
       shell: bash
     - name: "ALKiln: confirm info"
       run: |
-        echo -e "\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nManually added languages are $EXTRA_LANGUAGES\nAll other data is secret\n"
-        echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nManually added languages are $EXTRA_LANGUAGES\n"
+        echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nSERVER_RELOAD_TIMEOUT_SECONDS is $SERVER_RELOAD_TIMEOUT_SECONDS\n"
       shell: bash
 
     # Install node
@@ -76,7 +66,7 @@ runs:
         node-version: "18"
     - name: Install ALKiln directly from npm
       run: |
-        npm install -g github:SuffolkLITLab/ALKiln#v5
+        npm install -g @suffolklitlab/alkiln
       shell: bash
 
     # Run tests
@@ -105,17 +95,14 @@ runs:
 
 # ##################################
 # # A developer's workflow should look similar to the below
-# # In place of `uses: suffolkLITLab/ALKiln@releases/v4`, they
+# # In place of `uses: suffolkLITLab/ALKiln@v5`, they
 # # might use another version.
 #
-# name: Use the ALKiln testing framework v4 to run tests
+# name: ALKiln v5 tests
 # on:
 #   push:
 #   workflow_dispatch:
 #     inputs:
-#       extra_languages:
-#         description: 'Optional. A list of comma separated language names visible on buttons or links in the interview that change the language of the interview. Overrides the EXTRA_LANGUAGES GitHub secret.'
-#         default: ''
 #       tags:
 #         description: 'Optional. Use a "tag expression" specify which tagged tests to run. See https://cucumber.io/docs/cucumber/api/#tag-expressions for syntax.'
 #         default: ''
@@ -126,9 +113,9 @@ runs:
 #     runs-on: ubuntu-latest
 #     name: Run interview tests
 #     steps:
-#       - uses: actions/checkout@v2
+#       - uses: actions/checkout@v3
 #       - name: Use ALKiln to run tests
-#         uses: suffolkLITLab/ALKiln@releases/v4
+#         uses: suffolkLITLab/ALKiln@v5
 #         with:
 #           SERVER_URL: "${{ secrets.SERVER_URL }}"
 #           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}"

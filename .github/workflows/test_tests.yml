@@ -4,10 +4,6 @@ on:
   push:
   workflow_dispatch:
     inputs:
-      extra_languages:
-        required: False
-        description: 'Optional. A list of comma separated language names visible on buttons or links that change the language of the interview. Overrides the EXTRA_LANGUAGES repo secret.'
-        default: ''
       tags:
         required: False
         description: 'Optional. Use a "tag expression" specify which tagged tests to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)'
@@ -28,7 +24,6 @@ jobs:
       PLAYGROUND_PASSWORD: ${{ secrets.PLAYGROUND_PASSWORD }}
       PLAYGROUND_ID: ${{ secrets.PLAYGROUND_ID }}
       DOCASSEMBLE_DEVELOPER_API_KEY: ${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}
-      EXTRA_LANGUAGES: ${{ secrets.EXTRA_LANGUAGES }}
       USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
       USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
       SECRET_VAR1: secret-var1-value
@@ -47,9 +42,6 @@ jobs:
         run: |
           echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
           echo "UNIT_TESTS_ARTIFACT_NAME=_alkiln-misc-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
-      - name: Set languages
-        run: echo "EXTRA_LANGUAGES=${{ github.event.inputs.extra_languages }}" >> $GITHUB_ENV
-        if: ${{ github.event.inputs.extra_languages != '' }}
       # For the testing repo, the `REPO_URL` is that of a different repo and is created in `env:`
       - run: echo "Repo address is $REPO_URL"
       - name: Checkout

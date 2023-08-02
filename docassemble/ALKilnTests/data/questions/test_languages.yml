@@ -1,0 +1,26 @@
+metadata:
+  title: Language url
+---
+translations:
+  - es.xlsx
+  - ar.xlsx
+---
+initial: True
+code: |
+  set_language(user_language)
+---
+code: |
+  if 'lang' in url_args:
+    user_language = url_args['lang']
+  else:
+    user_language = 'en'
+---
+mandatory: True
+id: interview order
+code: |
+  multi_language_page
+---
+event: multi_language_page
+# This title should get translated
+question: English page
+---
