@@ -112,6 +112,12 @@ fields:
   - date field: date_input
     datatype: date
     required: False
+  - combobox field: combobox_input
+    datatype: combobox
+    # The answer can be any text input
+    choices:
+      - combobox opt 1: combobox_opt_1
+      - combobox opt 2: combobox_opt_2
   - dropdown: dropdown_test
     datatype: dropdown
     choices:
@@ -169,6 +175,12 @@ fields:
     show if: show_3
   - showif dropdown: showif_dropdown  
     show if: show_3
+  - combobox field: showif_combobox_input
+    datatype: combobox
+    # The answer can be any text input
+    choices:
+      - showif combobox opt 1: showif_combobox_opt_1
+      - showif combobox opt 2: showif_combobox_opt_2
     choices: 
     - showif dropdown opt 1: showif_dropdown_1
     - showif dropdown opt 2: showif_dropdown_2
