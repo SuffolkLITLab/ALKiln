@@ -79,6 +79,7 @@ Feature: Errors caused by server reload
 #  And I tap to continue
 #  When I set the var "checkboxes_yesno" to "True"
 #  And I set the var "checkboxes_other['checkbox_other_opt_1']" to "true"
+#  And I set the var "combobox_input" to "Custom combobox option"
 #  And I set the var "dropdown_test" to "dropdown_opt_2"
 #  And I set the var "radio_yesno" to "False"
 #  And I set the var "radio_other" to "radio_other_opt_3"
@@ -96,6 +97,7 @@ Feature: Errors caused by server reload
 #  And I tap to continue
 #  When I set the var "checkboxes_yesno" to "True"
 #  And I set the var "checkboxes_other['checkbox_other_opt_1']" to "true"
+#  And I set the var "combobox_input" to "Custom combobox option"
 #  And I set the var "dropdown_test" to "dropdown_opt_2"
 #  And I set the var "radio_yesno" to "False"
 #  And I set the var "radio_other" to "radio_other_opt_3"

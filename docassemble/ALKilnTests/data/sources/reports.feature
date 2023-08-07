@@ -144,6 +144,7 @@ Scenario: Fail with link with given text does not lead to correct url
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
     | radio_other | radio_other_opt_3 | |
@@ -174,6 +175,7 @@ Scenario: Fail with link unexpectedly opens in same window
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
     | radio_other | radio_other_opt_3 | |
@@ -204,6 +206,7 @@ Scenario: Fail with link unexpectedly opens in a new window
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
     | radio_other | radio_other_opt_3 | |
@@ -235,6 +238,7 @@ Scenario: Fail with link unexpectedly opens in a new window
 #    | var | value | trigger |
 #    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
 #    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+#    | combobox_input | Custom combobox option |  |
 #    | dropdown_test | dropdown_opt_2 | |
 #    | radio_yesno | False | false |
 #    | radio_other | radio_other_opt_3 | |
@@ -332,6 +336,7 @@ Scenario: I can't match JSON page var to str
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
     | radio_other | radio_other_opt_3 | |
@@ -463,6 +468,7 @@ Scenario: Report still shows page id when I tap to continue without setting any 
     screen id: direct-standard-fields
           | checkboxes_yesno | True |  |
           | checkboxes_other['checkbox_other_opt_1'] | true |  |
+          | combobox_input | Custom combobox option |  |
           | dropdown_test | dropdown_opt_2 |  |
           | radio_yesno | False |  |
           | radio_other | radio_other_opt_3 |  |
@@ -481,6 +487,7 @@ Scenario: Report still shows page id when I tap to continue without setting any 
   # Next page
   When I set the var "checkboxes_yesno" to "True"
   And I set the var "checkboxes_other['checkbox_other_opt_1']" to "true"
+  And I set the var "combobox_input" to "Custom combobox option"
   And I set the var "dropdown_test" to "dropdown_opt_2"
   And I set the var "radio_yesno" to "False"
   And I set the var "radio_other" to "radio_other_opt_3"
@@ -531,6 +538,7 @@ Scenario: Report lists unused table rows
     | var | value | trigger |
     | extra_3 | extra 3 |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
     | extra_4 | extra 4 |  |

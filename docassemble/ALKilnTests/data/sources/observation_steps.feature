@@ -36,6 +36,7 @@ Scenario: I check navigation
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
     | radio_other | radio_other_opt_3 | |
@@ -143,6 +144,7 @@ Scenario: I check the pages for accessibility
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
     | radio_other | radio_other_opt_3 | |
@@ -171,6 +173,7 @@ Scenario: I can match JSON page var to str
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
     | radio_other | radio_other_opt_3 | |
@@ -178,6 +181,10 @@ Scenario: I can match JSON page var to str
     | text_input | Regular text input field value | |
     | textarea | Multiline text\narea value | |
     | date_input | today | |
+  Then the text in the JSON variable "combobox_input" should be
+    """
+    Custom combobox option
+    """
   Then the text in the JSON variable "dropdown_test" should be
     """
     dropdown_opt_2
