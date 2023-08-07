@@ -1,0 +1,42 @@
+metadata:
+  title: Test combobox
+  short title: Combobox
+---
+mandatory: True
+id: interview order
+code: |
+  jira_user
+  end
+---
+code: |
+  user_list = [
+    {
+      "label": "Person One", 
+      "value": "person1value"
+    },
+    {
+      "label": "Person Two", 
+      "value": "person2value"
+    }
+  ]
+---
+id: initial_questions
+question: Combobox
+fields:
+  - Start Date: start_date
+    datatype: date
+    default: |
+      ${ today() }
+  - End Date: end_date
+    datatype: date
+    default: |
+      ${ today() }
+  - User: jira_user
+    datatype: combobox
+    code: | 
+      user_list
+---
+id: the end
+event: end
+question: |
+  Congradulations! Combobox tests have passed!
