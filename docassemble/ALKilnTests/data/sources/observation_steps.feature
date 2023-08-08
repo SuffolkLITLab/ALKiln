@@ -141,6 +141,7 @@ Scenario: I check the pages for accessibility
   And I tap to continue
   Then I get to "screen features" with this data:
     | var | value | trigger |
+    | combobox_input | Custom combobox option |  |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
     | dropdown_test | dropdown_opt_2 | |
