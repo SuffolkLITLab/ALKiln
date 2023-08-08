@@ -109,9 +109,17 @@ fields:
   - text input: text_input
   - textarea: textarea
     input type: area
+  # To check for a known bug, ensure date input is above combobox
   - date field: date_input
     datatype: date
     required: False
+  # To check for a known bug, ensure date input is above combobox
+  - combobox field: combobox_input
+    input type: combobox
+    # The answer can be any text input
+    choices:
+      - combobox opt 1: combobox_opt_1
+      - combobox opt 2: combobox_opt_2
   - dropdown: dropdown_test
     datatype: dropdown
     choices:
@@ -167,6 +175,13 @@ fields:
   - showif text input: showif_textarea
     datatype: area
     show if: show_3
+  - showif combobox field: showif_combobox_input
+    input type: combobox 
+    show if: show_3
+    # The answer can be any text input
+    choices:
+      - showif combobox opt 1: showif_combobox_opt_1
+      - showif combobox opt 2: showif_combobox_opt_2
   - showif dropdown: showif_dropdown  
     show if: show_3
     choices: 

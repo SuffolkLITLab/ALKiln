@@ -5,7 +5,7 @@ Feature: Observational steps
 
 @fast @o1
 Scenario: I observe things on a single page when I arrive
-  Given I start the interview at "all_tests"
+  Given I start the interview at "all_tests"
   And I tap to continue
   Then the question id should be "group of complex fields"
   And I should see the phrase "Some complex fields"
@@ -17,7 +17,7 @@ Scenario: I observe things on a single page when I arrive
 @fast @o2
 Scenario: I see user errors.
 #  They're everywhere.  Some don't even know they are errors.
-  Given I start the interview at "all_tests"
+  Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
   And I tap to continue
@@ -26,16 +26,17 @@ Scenario: I see user errors.
 
 @fast @o3
 Scenario: I can include .yml in the filename
-  Given I start the interview at "all_tests.yml"
+  Given I start the interview at "all_tests.yml"
 
 @slow @o4
 Scenario: I check navigation
-  Given I start the interview at "all_tests"
+  Given I start the interview at "all_tests"
   And I tap to continue
-  And I get to "showifs" with this data:
+  And I get to "showifs" with this data:
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
     | radio_other | radio_other_opt_3 | |
@@ -44,7 +45,7 @@ Scenario: I check navigation
     | textarea | Multiline text\narea value | |
     | date_input | today | |
   Then I arrive at the next page
-  Then I get to "screen features" with this data:
+  Then I get to "screen features" with this data:
     | var | value | trigger |
     | object_checkboxes_test["obj_chkbx_opt_1"] | True | |
     | object_dropdown | obj_opt_2 | |
@@ -55,7 +56,7 @@ Scenario: I check navigation
 
 @fast @o4
 Scenario: Test "Then I don't continue" with a single quote
-  Given I start the interview at "all_tests"
+  Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
   And I tap to continue
@@ -64,7 +65,7 @@ Scenario: Test "Then I don't continue" with a single quote
 
 @fast @o5
 Scenario: Test "Then I cannot continue"
-  Given I start the interview at "all_tests"
+  Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
   And I tap to continue
@@ -73,7 +74,7 @@ Scenario: Test "Then I cannot continue"
 
 @fast @o6
 Scenario: Test "Then I do not continue"
-  Given I start the interview at "all_tests"
+  Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
   And I tap to continue
@@ -82,7 +83,7 @@ Scenario: Test "Then I do not continue"
 
 @fast @o7
 Scenario: Test "Then I can’t continue" with an apostrophe
-  Given I start the interview at "all_tests"
+  Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
   And I tap to continue
@@ -91,7 +92,7 @@ Scenario: Test "Then I can’t continue" with an apostrophe
 
 @fast @o8
 Scenario: Test "Then I don’t continue" with an apostrophe
-  Given I start the interview at "all_tests"
+  Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
   And I tap to continue
@@ -124,13 +125,13 @@ Scenario: I get the page's JSON
 
 @fast @o11a @screenshot
 Scenario: I take a screenshot
-  Given I start the interview at "all_tests"
+  Given I start the interview at "all_tests"
   Then I take a screenshot
   Then I take a screenshot named "some-screenshot"
 
 @fast @o11b @screenshot
 Scenario: I take a pic
-  Given I start the interview at "all_tests"
+  Given I start the interview at "all_tests"
   Then I take a pic
   Then I take a pic named "some-pic"
 
@@ -139,10 +140,11 @@ Scenario: I check the pages for accessibility
   Given I start the interview at "all_tests"
   And I check all pages for accessibility issues
   And I tap to continue
-  Then I get to "screen features" with this data:
+  Then I get to "screen features" with this data:
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
     | radio_other | radio_other_opt_3 | |
@@ -171,6 +173,7 @@ Scenario: I can match JSON page var to str
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 | |
     | radio_yesno | False | false |
     | radio_other | radio_other_opt_3 | |
@@ -178,6 +181,10 @@ Scenario: I can match JSON page var to str
     | text_input | Regular text input field value | |
     | textarea | Multiline text\narea value | |
     | date_input | today | |
+  Then the text in the JSON variable "combobox_input" should be
+    """
+    Custom combobox option
+    """
   Then the text in the JSON variable "dropdown_test" should be
     """
     dropdown_opt_2
