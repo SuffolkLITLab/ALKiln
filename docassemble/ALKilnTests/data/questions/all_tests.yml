@@ -174,7 +174,8 @@ fields:
     datatype: area
     show if: show_3
   - showif combobox field: showif_combobox_input
-    input type: combobox
+    input type: combobox 
+    show if: show_3
     # The answer can be any text input
     choices:
       - showif combobox opt 1: showif_combobox_opt_1
