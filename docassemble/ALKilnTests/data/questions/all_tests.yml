@@ -113,7 +113,7 @@ fields:
     datatype: date
     required: False
   - combobox field: combobox_input
-    datatype: combobox
+    input type: combobox
     # The answer can be any text input
     choices:
       - combobox opt 1: combobox_opt_1
@@ -173,14 +173,14 @@ fields:
   - showif text input: showif_textarea
     datatype: area
     show if: show_3
-  - showif dropdown: showif_dropdown  
-    show if: show_3
-  - combobox field: showif_combobox_input
-    datatype: combobox
+  - showif combobox field: showif_combobox_input
+    input type: combobox
     # The answer can be any text input
     choices:
       - showif combobox opt 1: showif_combobox_opt_1
       - showif combobox opt 2: showif_combobox_opt_2
+  - showif dropdown: showif_dropdown  
+    show if: show_3
     choices: 
     - showif dropdown opt 1: showif_dropdown_1
     - showif dropdown opt 2: showif_dropdown_2
