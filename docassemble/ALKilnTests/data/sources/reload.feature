@@ -45,7 +45,7 @@ Feature: Errors caused by server reload
 #@reload1a
 #Scenario: The server reloads while I navigate to the server sign in page
 #  Given the max seconds for each step in this scenario is 5
-#  Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
+#  Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
 #
 #@reload1b
 ##Scenario: The server reloads while I'm submitting my signin (impossible)
@@ -79,6 +79,7 @@ Feature: Errors caused by server reload
 #  And I tap to continue
 #  When I set the var "checkboxes_yesno" to "True"
 #  And I set the var "checkboxes_other['checkbox_other_opt_1']" to "true"
+#  And I set the var "combobox_input" to "Custom combobox option"
 #  And I set the var "dropdown_test" to "dropdown_opt_2"
 #  And I set the var "radio_yesno" to "False"
 #  And I set the var "radio_other" to "radio_other_opt_3"
@@ -96,6 +97,7 @@ Feature: Errors caused by server reload
 #  And I tap to continue
 #  When I set the var "checkboxes_yesno" to "True"
 #  And I set the var "checkboxes_other['checkbox_other_opt_1']" to "true"
+#  And I set the var "combobox_input" to "Custom combobox option"
 #  And I set the var "dropdown_test" to "dropdown_opt_2"
 #  And I set the var "radio_yesno" to "False"
 #  And I set the var "radio_other" to "radio_other_opt_3"
@@ -109,10 +111,10 @@ Feature: Errors caused by server reload
 ### has a continue button field that sets a variable.
 ##@reload4c
 ##Scenario: The server reloads while I run a story table
-##  Given I start the interview at "all_tests"
+##  Given I start the interview at "all_tests"
 ##  And I wait 18 seconds
 ##  Given the max seconds for each step in this scenario is 3
-##  And I get to "id of second page" with this data:
+##  And I get to "id of second page" with this data:
 ##    | var | value | trigger |
 ##    | some_continue_button_var_on_first_page | true |  |
 #
@@ -131,10 +133,10 @@ Feature: Errors caused by server reload
 #
 #@reload6b
 #Scenario: The server reloads while I run a story table
-#  Given I start the interview at "all_tests"
+#  Given I start the interview at "all_tests"
 #  And I wait 18 seconds
 #  Given the max seconds for each step in this scenario is 3
-#  And I get to "direct standard fields" with this data:
+#  And I get to "direct standard fields" with this data:
 #    | var | value | trigger |
 #    | double_quote_dict['double_quote_key']["dq_two"] | true |  |
 #    | single_quote_dict["single_quote_key"]['sq_two'] | true |  |

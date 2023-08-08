@@ -17,11 +17,12 @@ NOTE:
 ## TODO: Test og table with `trigger` col added?
 #@fast @stf1
 #Scenario: Table is format 1 (og three cols)
-#  Given I start the interview at "all_tests"
-#  And I get to "showifs" with this data:
+#  Given I start the interview at "all_tests"
+#  And I get to "showifs" with this data:
 #    | var | choice | value |
 #    | checkboxes_other['checkbox_other_opt_1'] |  | true |
 #    | checkboxes_yesno | True | true |
+#    | combobox_input | Custom combobox option |  |
 #    | dropdown_test | | dropdown_opt_2 |
 #    | radio_other | | radio_other_opt_3 |
 #    | radio_yesno | False | true |
@@ -30,11 +31,12 @@ NOTE:
 #
 #@fast @stf2
 #Scenario: Table is format 2 (no trigger column)
-#  Given I start the interview at "all_tests"
-#  And I get to "showifs" with this data:
+#  Given I start the interview at "all_tests"
+#  And I get to "showifs" with this data:
 #    | var | value | checked |
 #    | checkboxes_other['checkbox_other_opt_2'] | true |  |
 #    | checkboxes_yesno | True | true |
+#    | combobox_input | Custom combobox option |  |
 #    | dropdown_test | dropdown_opt_2 |  |
 #    | radio_other | radio_other_opt_3 |  |
 #    | radio_yesno | False | false |
@@ -44,14 +46,15 @@ NOTE:
 # TODO: Only go up to the x[i] pages
 @slow @stf3
 Scenario: Table has trigger column
-  Given I start the interview at "all_tests"
-  And I get to "showifs" with this data:
+  Given I start the interview at "all_tests"
+  And I get to "showifs" with this data:
     | var | value | trigger |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
     | checkboxes_other['checkbox_other_opt_2'] | true |  |
     | checkboxes_other['checkbox_other_opt_3'] | false |  |
     | checkboxes_yesno | True |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 |  |
     | radio_other | radio_other_opt_3 |  |
     | radio_yesno | False |  |
@@ -62,12 +65,13 @@ Scenario: Table has trigger column
 # TODO: Only go up to the x[i] pages
 @slow @stf4
 Scenario: Table MISSING trigger column
-  Given I start the interview at "all_tests"
-  And I get to "showifs" with this data:
+  Given I start the interview at "all_tests"
+  And I get to "showifs" with this data:
     | var | value |
     | double_quote_dict["double_quote_key"]['dq_two'] | true |
     | checkboxes_other['checkbox_other_opt_2'] | true |
     | checkboxes_yesno | True |
+    | combobox_input | Custom combobox option |
     | dropdown_test | dropdown_opt_2 |
     | radio_other | radio_other_opt_3 |
     | radio_yesno | False |
@@ -77,13 +81,14 @@ Scenario: Table MISSING trigger column
 
 @fast @stf5
 Scenario: Table has no header row, has trigger column
-  Given I start the interview at "all_tests"
-  And I get to "showifs" with this data:
+  Given I start the interview at "all_tests"
+  And I get to "showifs" with this data:
     | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
     | checkboxes_other['checkbox_other_opt_1'] | true |  |
     | checkboxes_other['checkbox_other_opt_2'] | true |  |
     | checkboxes_other['checkbox_other_opt_3'] | false |  |
     | checkboxes_yesno | True |  |
+    | combobox_input | Custom combobox option |  |
     | dropdown_test | dropdown_opt_2 |  |
     | radio_other | radio_other_opt_3 |  |
     | radio_yesno | False |  |
@@ -93,11 +98,12 @@ Scenario: Table has no header row, has trigger column
 
 @fast @stf6
 Scenario: Table has no header row, MISSING trigger column
-  Given I start the interview at "all_tests"
-  And I get to "showifs" with this data:
+  Given I start the interview at "all_tests"
+  And I get to "showifs" with this data:
     | double_quote_dict["double_quote_key"]['dq_two'] | true |
     | checkboxes_other['checkbox_other_opt_2'] | true |
     | checkboxes_yesno | True |
+    | combobox_input | Custom combobox option |
     | dropdown_test | dropdown_opt_2 |
     | radio_other | radio_other_opt_3 |
     | radio_yesno | False |
@@ -112,11 +118,12 @@ Scenario: Fails when table has no header row and rows have only one column
   """
   Your Story Table definition needs to be changed.
   """
-  Given I start the interview at "all_tests"
-  And I get to "showifs" with this data:
+  Given I start the interview at "all_tests"
+  And I get to "showifs" with this data:
     | double_quote_dict["double_quote_key"]['dq_two'] |
     | checkboxes_other['checkbox_other_opt_2'] |
     | checkboxes_yesno |
+    | combobox_input |
     | dropdown_test |
     | radio_other |
     | radio_yesno |
