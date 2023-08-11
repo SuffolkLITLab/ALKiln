@@ -43,7 +43,7 @@ Format:
 -->
 ## [Unreleased]
 ### Fixed
-- Can't fill in combobox
+- Can now fill in comboboxes on the latest Docassemble.
 - Filling out a hidden field right after a date field triggered the date's calendar popup, which I believe ate the input for the next visible field.
 
 ## [5.0.2] - 2023-07-20
