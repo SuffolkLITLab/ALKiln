@@ -41,9 +41,13 @@ Format:
 ### Internal
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.1.0] - 2023-08-12
+### Added
+- Comboboxes - can now fill in comboboxes on the latest Docassemble.
+
 ### Fixed
-- Can now fill in comboboxes on the latest Docassemble.
 - Filling out a hidden field right after a date field triggered the date's calendar popup, which I believe ate the input for the next visible field.
 
 ## [5.0.2] - 2023-07-20
