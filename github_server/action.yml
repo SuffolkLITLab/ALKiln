@@ -1,5 +1,5 @@
 name: "ALKiln/github_server: Isolated docassemble tests"
-description: "Automatically test docassemble interviews on GitHub's servers, in an isolated environment. Avoids docassemble reload errors and other external factors"
+description: "Automatically test docassemble interviews on GitHub's servers, in an isolated environment. Avoids docassemble reload errors and other external factors."
 
 
 inputs:
@@ -30,17 +30,23 @@ runs:
         run: |
           echo "DA_ADMIN_API_KEY=abcd1234abcd1234abcd5678abdc5678" >> $GITHUB_ENV
         shell: bash
-      - name: Download and start docker
+      - name: "github_server: Download and start docker"
         run: |
           mkdir /tmp/config
           echo "$CONFIG_CONTENTS" > /tmp/config/myconfig.yml 
           docker pull brycewilley/smoldocassemble
           docker run --env DA_ADMIN_EMAIL="admin@example.com" --env DA_ADMIN_PASSWORD="password" --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" --env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config --cap-add SYS_PTRACE --memory="4gb" -d -p 80:80 jhpyle/docassemble
           # TODO before merge: do a while loop here until `localhost` shows "It's ready"
-          sleep 480
+          sleep 700
           curl localhost
         shell: bash
-      - name: Run Kiln
+      - name: "github_server: Install ALKiln"
+        run: npm install -g @suffolklitlab/alkiln@${{ inputs.ALKILN_VERSION }}
+        shell: bash
+      - name: "github_server: Install this package"
+        run: alkiln-startserver
+        shell: bash
+      - name: "github_server: Run Kiln"
         # TODO: Research how to get this to always be the same branch we're on
         uses: SuffolkLITLab/ALKiln@v5
         with:

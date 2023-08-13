@@ -1,0 +1,37 @@
+name: GitHub server tests
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      tags:
+        required: False
+        description: 'Optional. Use a "tag expression" specify which tagged tests to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)'
+        # Only test 2 tests - one uses an env var, the other uses AL.
+        # They test if env vars get set correctly and depencencies get
+        # pulled in correctly.
+        default: '@e6 or @al1'
+
+jobs:
+
+  github-server-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    env:
+      USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
+      USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
+      SECRET_VAR1: secret-var1-value
+      SECRET_VAR2: secret-var2-value
+      SECRET_FOR_MISSING_FIELD: secret for missing field
+      
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run ALKiln on the GitHub server
+        uses: SuffolkLITLab/ALKiln/github_server@start_server_workflow
+        with:
+          CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
+          ALKILN_VERSION: 5.0.2-feat-github-server-1
+      - run: echo "Finished running on the GitHub server"
