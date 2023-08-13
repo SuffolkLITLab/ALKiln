@@ -140,7 +140,8 @@ Scenario: I take a pic
 # TODO: Create an actual failing a11y test, maybe using custom html
 @slow @o12 @accessibility @a11y
 Scenario: I check the pages for accessibility
-  Given I start the interview at "all_tests"
+  Given the final Scenario status should be "failed"
+  And I start the interview at "all_tests"
   And I check all pages for accessibility issues
   And I tap to continue
   Then I get to "screen features" with this data:
