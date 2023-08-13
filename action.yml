@@ -32,8 +32,8 @@ runs:
       # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
       run: |
         echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
-        echo "REPO_URL=https://github.com/SuffolkLITLab/docassemble-AssemblyLine" >> $GITHUB_ENV
-        echo "BRANCH_PATH=main" >> $GITHUB_ENV
+        echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
+        echo "BRANCH_PATH=${{ github.ref }}" >> $GITHUB_ENV
         echo "BASE_URL=${{ inputs.SERVER_URL }}" >> $GITHUB_ENV
         echo "DOCASSEMBLE_DEVELOPER_API_KEY=${{ inputs.DOCASSEMBLE_DEVELOPER_API_KEY }}" >> $GITHUB_ENV
         echo "ALKILN_VERSION=${{ inputs.ALKILN_VERSION }}" >> $GITHUB_ENV
@@ -53,16 +53,13 @@ runs:
         node-version: "18"
     - name: Install ALKiln directly from npm
       run: |
-        npm install -g github:SuffolkLITLab/ALKiln#start_server_take_2
+        npm install -g @suffolklitlab/alkiln
       shell: bash
 
     # Run tests
-    - name: "ALKiln: Install project dependencies on server"
-      run: alkiln-startserver
+    - name: "ALKiln: Create a Project and pull the package from GitHub"
+      run: alkiln-setup
       shell: bash
-    #- name: "ALKiln: Create a Project and pull the package from GitHub"
-    #  run: alkiln-setup
-    #  shell: bash
     - name: "ALKiln: Run tests"
       if: ${{ success() }}
       run: alkiln-run ${{ github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
@@ -70,10 +67,10 @@ runs:
     - run: echo -e "\n\n====ALKiln could not create a project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
       if: ${{ failure() }}
       shell: bash
-    #- name: "ALKiln: Delete project from docassemble test account"
-    #  if: ${{ always() }}
-    #  run: alkiln-takedown
-    #  shell: bash
+    - name: "ALKiln: Delete project from docassemble test account"
+      if: ${{ always() }}
+      run: alkiln-takedown
+      shell: bash
     
     # Upload artifacts that subscribers can download on the Actions summary page
     - name: "ALKiln: Upload artifacts folder"
