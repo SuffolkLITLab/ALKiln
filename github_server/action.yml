@@ -35,7 +35,7 @@ runs:
           mkdir /tmp/config
           echo "$CONFIG_CONTENTS" > /tmp/config/myconfig.yml 
           docker pull brycewilley/smoldocassemble
-          docker run --env DA_ADMIN_EMAIL="admin@example.com" --env DA_ADMIN_PASSWORD="password" --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" --env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config --cap-add SYS_PTRACE --memory="4gb" -d -p 80:80 jhpyle/docassemble
+          docker run --env DA_ADMIN_EMAIL="admin@example.com" --env DA_ADMIN_PASSWORD="password" --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" --env DA_CONFIG=/tmp/config/myconfig.yml --env _ORIGIN=github_server --volume /tmp/config:/tmp/config --cap-add SYS_PTRACE --memory="4gb" -d -p 80:80 jhpyle/docassemble
           # TODO before merge: do a while loop here until `localhost` shows "It's ready"
           sleep 480
           curl localhost
