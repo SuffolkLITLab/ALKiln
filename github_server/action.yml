@@ -16,7 +16,6 @@ inputs:
   MAX_SECONDS_FOR_SETUP:
     description: "Amount of time to give the Project to upload your package's GitHub code."
     required: false
-    default: '120'
   SERVER_RELOAD_TIMEOUT_SECONDS:
     description: "Max amount of time to give the server to reload if it needs to"
     required: false
@@ -53,6 +52,7 @@ runs:
           SERVER_URL: "http://localhost"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ env.DA_ADMIN_API_KEY }}"
       - name: Docker logs
+        if: ${{ always() }}
         # TODO: create an arifact for this instead
         run: |
           docker logs $(docker ps --filter "ancestor=jhpyle/docassemble" --format {{.ID}})
