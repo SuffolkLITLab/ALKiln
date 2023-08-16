@@ -11,6 +11,11 @@ on:
         # They test if env vars get set correctly and depencencies get
         # pulled in correctly.
         default: '@e6 or @al1'
+      console_enabled:
+        type: boolean
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: true
 
 jobs:
 
@@ -29,9 +34,21 @@ jobs:
       
     steps:
       - uses: actions/checkout@v3
-      - name: Run ALKiln on the GitHub server
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+        with:
+          detached: true
+        #if: ${{ inputs.console_enabled }}
+        #with:
+        #  sudo: false
+      - name: Start the temporary GitHub server
+        id: github_server
         uses: SuffolkLITLab/ALKiln/github_server@start_server_workflow
         with:
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
-          ALKILN_VERSION: 5.0.2-feat-github-server-1
-      - run: echo "Finished running on the GitHub server"
+          #ALKILN_VERSION: 5.0.2-feat-github-server-1
+      - name: Print GitHub server vars
+        run: |
+          echo "key ${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
+          echo "url ${{ steps.github_server.outputs.SERVER_URL }}"
+      - run: echo "Finished starting the GitHub server"
