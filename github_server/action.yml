@@ -53,15 +53,18 @@ runs:
         shell: bash
       - name: "github_server: Wait for server to start"
         run: |
-          # TODO before merge: do a while loop here until `localhost` shows "It's ready"
-          # Wait 2 minutes before pinging the server constantly
-          sleep 120
+          # Wait 1 minute before pinging the server constantly
+          sleep 60
 
-          result=""
+          # Use a variable we can control to avoid race conditions from
+          # preventing the success log message.
+          ready="false"
           # Reset the SECONDS variable
-          SECONDS=0
+          SECONDS=60
 
-          while [[ $result == *"Docassemble is starting"* ]]; do
+          while [[ $ready == "false" ]]; do
+            echo "Time ellapsed: $SECONDS seconds"
+
             # Get input for max number of seconds to wait
             # ${{ inputs.MAX_SECONDS_FOR_DOCKER }} as a number? Bash doesn't have types, just strings
             # Check if max seconds till loading has passed
@@ -76,14 +79,13 @@ runs:
             # Check if the string includes the desired text
             if [[ ! $result == *"Docassemble is starting"* ]]; then
               echo "Success! The docker container is ready!"
+              ready="true"
             else
-              curl localhost
-              sleep 30
               echo "The docker container isn't ready yet. Will check again in 30 seconds."
+              sleep 30
             fi
 
           done
-          curl localhost
         shell: bash
       #- name: "github_server: Install ALKiln"
       #  run: npm install -g @suffolklitlab/alkiln@${{ inputs.ALKILN_VERSION }}

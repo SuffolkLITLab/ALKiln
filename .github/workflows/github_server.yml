@@ -16,6 +16,7 @@ on:
         description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
         default: true
+      # TODO: alkiln_version:
 
 jobs:
 
@@ -46,9 +47,17 @@ jobs:
         uses: SuffolkLITLab/ALKiln/github_server@start_server_workflow
         with:
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
-          #ALKILN_VERSION: 5.0.2-feat-github-server-1
-      - name: Print GitHub server vars
-        run: |
-          echo "key ${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
-          echo "url ${{ steps.github_server.outputs.SERVER_URL }}"
+          #
       - run: echo "Finished starting the GitHub server"
+      - name: "Run ALKiln tests"
+        if: ${{ success() }}
+        # TODO: Research how to get this to always be the same branch we're on
+        # Would ${{ ref or whatever }} work?
+        uses: SuffolkLITLab/ALKiln@start_server_workflow
+        with:
+          SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
+          DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
+          INSTALL_METHOD: "server"
+          ALKILN_VERSION: "5.0.2-feat-github-server-1"
+      - run: echo "Finished running ALKiln tests"
+
