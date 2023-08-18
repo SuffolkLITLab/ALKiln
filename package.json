@@ -1,6 +1,6 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.0.2-feat-github-server-1",
+  "version": "5.0.2-feat-github-server-11",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "local": "npm run setup && npm run cucumber; npm run takedown",
     "setup": "./lib/docassemble/setup.js",
     "takedown": "./lib/docassemble/takedown.js",
-    "startserver": "./lib/docassemble/startserver.js",
+    "server_install": "./lib/docassemble/server_install.js",
     "unit": "mocha tests/unit_tests/*.test.*"
   },
   "repository": {
@@ -51,7 +51,7 @@
     "diff": "5.0.0"
   },
   "bin": {
-    "alkiln-startserver": "./lib/docassemble/startserver.js",
+    "alkiln-server-install": "./lib/docassemble/server_install.js",
     "alkiln-setup": "./lib/docassemble/setup.js",
     "alkiln-takedown": "./lib/docassemble/takedown.js",
     "alkiln-run": "./lib/run_cucumber.js"

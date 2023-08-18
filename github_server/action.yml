@@ -1,6 +1,22 @@
 name: "ALKiln/github_server: Isolated docassemble tests"
 description: "Download and start up a temporary docassemble server on GitHub's servers, in an isolated environment. Avoids docassemble reload errors and other external factors."
 
+# Wat? Exit with 52
+# https://github.com/SuffolkLITLab/ALKiln/actions/runs/5912900256/job/16036751264#step:4:188
+# Had no completion messages, but it exited with an error anyway
+# Took 121 seconds
+# The rerun of the test completed that step just fine, though it took less time
+# Took 120 and was fine: https://github.com/SuffolkLITLab/ALKiln/actions/runs/5913167036/job/16037288791
+# 150 secs with exit code 56:
+# https://github.com/SuffolkLITLab/ALKiln/actions/runs/5914677262/job/16040233419#step:4:196
+# 120 sec with exit code 56:
+# https://github.com/SuffolkLITLab/ALKiln/actions/runs/5914963614/job/16040773624#step:4:206
+
+# If we want to control the version of the docassemble image, we'd have
+# to make our own image:
+# You can build your own image by doing git clone jhpyle/docassemble  and then
+# using git checkout to select a particular version, and then using docker build
+# to build an image.
 
 inputs:
   CONFIG_CONTENTS:
@@ -18,54 +34,71 @@ outputs:
   SERVER_URL:
     description: "Use this inside `with:` for the ALKiln step. URL of the temporary docassemble server."
     value: "http://localhost"
+  DA_ADMIN_EMAIL:
+    value: ${{ steps.api_key_output_step.outputs.DA_ADMIN_EMAIL }}
+  DA_ADMIN_PASSWORD:
+    value: ${{ steps.api_key_output_step.outputs.DA_ADMIN_PASSWORD }}
 
 
 runs:
   using: "composite"
   steps:
-      - name: "github_server: Set environment variables"
+      - uses: actions/checkout@v3
+
+      - name: "ALKiln github_server: Set environment variables"
         run: |
           echo "DA_ADMIN_API_KEY=abcd1234abcd1234abcd5678abdc5678" >> $GITHUB_ENV
+          echo "MAX_SECONDS_FOR_DOCKER=${{ inputs.MAX_SECONDS_FOR_DOCKER }}" >> $GITHUB_ENV
+          echo "CLONE_URL=${{ github.server_url }}/${{ github.repository }}.git" >> $GITHUB_ENV
+          echo "OWNER_AND_REPO_NAME=${{ github.repository }}" >> $GITHUB_ENV
+          echo "BRANCH_REF=${{ github.ref }}" >> $GITHUB_ENV
+          echo "DA_ADMIN_EMAIL=admin@example.com" >> $GITHUB_ENV
+          # Login will fail if this is "password"
+          echo "DA_ADMIN_PASSWORD=@123abcdefg" >> $GITHUB_ENV
         shell: bash
       - id: api_key_output_step
-        run: echo "::set-output name=DOCASSEMBLE_DEVELOPER_API_KEY::$DA_ADMIN_API_KEY"
+        run: |
+          echo "DOCASSEMBLE_DEVELOPER_API_KEY=$DA_ADMIN_API_KEY" >> "$GITHUB_OUTPUT"
+          echo "DA_ADMIN_EMAIL=$DA_ADMIN_EMAIL" >> "$GITHUB_OUTPUT"
+          echo "DA_ADMIN_PASSWORD=$DA_ADMIN_PASSWORD" >> "$GITHUB_OUTPUT"
         shell: bash
-      - name: "github_server: Download and start docker"
+
+      - name: "ALKiln github_server: Download and start docker"
         run: |
           mkdir /tmp/config
-          echo "${{ inputs.CONFIG_CONTENTS }}" > /tmp/config/myconfig.yml 
+          echo "${{ inputs.CONFIG_CONTENTS }}" > /tmp/config/myconfig.yml
           docker pull jhpyle/docassemble
-          docker run --env DA_ADMIN_EMAIL="admin@example.com" --env DA_ADMIN_PASSWORD="password" --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" --env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config --cap-add SYS_PTRACE --memory="4gb" -d -p 80:80 jhpyle/docassemble
+          docker run --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" --env DA_ADMIN_PASSWORD="${{ env.DA_ADMIN_PASSWORD }}" --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" --env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config --cap-add SYS_PTRACE --memory="4gb" -d -p 80:80 jhpyle/docassemble
         shell: bash
-      - name: "github_server: Wait for server to start"
+      - name: "ALKiln github_server: Wait for server to start"
         run: |
           # github_server: Wait for server to start
 
+          # Reset the SECONDS variable
+          SECONDS=0
           # Wait 1 minute before pinging the server constantly
           sleep 60
 
-          # Use a variable we can control to avoid race conditions from
-          # preventing the success log message.
+          # Use a variable instead of checking $response so we can control to avoid race
+          # conditions from preventing the success log message.
           ready="false"
-          # Reset the SECONDS variable
-          SECONDS=60
 
           while [[ $ready == "false" ]]; do
             echo "Time ellapsed: $SECONDS seconds"
 
-            # Get input for max number of seconds to wait
-            # ${{ inputs.MAX_SECONDS_FOR_DOCKER }} as a number? Bash doesn't have types, just strings
             # Check if max seconds till loading has passed
-            if [[ $SECONDS -ge 600 ]]; then
-              echo "Error: Timed out waiting for docker container to serve the site."
+            if [[ $SECONDS -ge $MAX_SECONDS_FOR_DOCKER ]]; then
+              echo "ALKiln GitHub Server Error: Timed out waiting for docker container to serve the site. If you want to give your docker container more timem to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
+              # Exit with failure, or allow this to keep going?
               break
             fi
 
             # Set the variable to a new string value in each iteration
-            result=$(curl -s localhost)
+            response=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:80/health_check?ready=1)
+            echo "response is $response"
 
             # Check if the string includes the desired text
-            if [[ ! $result == *"Docassemble is starting"* ]]; then
+            if [[ $response == *"200"* ]]; then
               echo "Success! The docker container is ready!"
               ready="true"
             else
@@ -75,9 +108,35 @@ runs:
 
           done
         shell: bash
-      - name: Docker logs
-        if: ${{ always() }}
-        # TODO: create an arifact for this instead
-        run: |
-          docker logs $(docker ps --filter "ancestor=jhpyle/docassemble" --format {{.ID}})
+
+      # Don't rely on the environment's version of python
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - run: pip install docassemblecli
         shell: bash
+      # Install the current directory into docassemble
+      - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
+        shell: bash
+
+      # Upload artifacts that subscribers can download on the Actions summary page
+      - name: "ALKiln github_server: Docker logs"
+        if: ${{ always() }}
+        run: |
+          docker_logs=$(docker logs $(docker ps --filter "ancestor=jhpyle/docassemble" --format {{.ID}}))
+          # Should this name have a date/time attached? The logs themselves have timestamps
+          echo "$docker_logs" > /tmp/alkiln_docker_logs.txt
+        shell: bash
+    
+      # Should this date/time be created at the start of this action?
+      - name: "ALKiln github_server: Get folder name with date and time"
+        if: ${{ always() }}
+        run: |
+          echo "GITHUB_SERVER_ARTIFACT_NAME=alkiln-github-server-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
+        shell: bash
+      - name: "ALKiln github_server: Upload artifacts folder"
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.GITHUB_SERVER_ARTIFACT_NAME }}
+          path: /tmp/alkiln_docker_logs.txt

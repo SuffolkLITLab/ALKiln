@@ -42,7 +42,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
                 out.setdefault(package, []).append(prefix+name)
     return out
 
-setup(name='docassemble.ALKilnTests',
+setup(name='docassemble.ALKiln',
       version='1.0.0',
       description=('A docassemble extension for testing the ALKiln integrated testing framework.'),
       long_description='# ALKiln support package\r\n\r\nAssembly Line Kiln (ALKiln) is a framework for automatically testing **any** [docassemble](https://docassemble.org/) package using GitHub. ALKiln is being developed as part of the SuffolkLITLab Document Assembly Line project. See [documentation for kiln](https://suffolklitlab.github.io/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing).\r\n\r\nThis package supports ALKiln in different ways.\r\n\r\n## Tool to set up testing\r\n\r\n[Tap here to set up automated integrated testing for your docassemble interview](https://apps-dev.suffolklitlab.org/start/test-setup/).\r\n\r\nThis repo contains a step-by-step form that a developer can use to set up automated integrated testing for **any** docassemble package. It requires, among other things, a docassemble account and a temporary GitHub personal access token with correct permissions. It will add necessary GitHub secrets, make a new branch, push necessary files to that branch, and make a PR with that branch.\r\n\r\n',
@@ -53,8 +53,8 @@ setup(name='docassemble.ALKilnTests',
       url='https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing',
       packages=find_packages(),
       namespace_packages=['docassemble'],
-      install_requires=['docassemble.ALToolbox>=0.5.1'],
+      install_requires=['docassemble.ALToolbox>=0.8.2', 'docassemble.AssemblyLine>=2.24.0'],
       zip_safe=False,
-      package_data=find_package_data(where='docassemble/ALKilnTests/', package='docassemble.ALKilnTests'),
+      package_data=find_package_data(where='docassemble/ALKiln/', package='docassemble.ALKiln'),
      )
 

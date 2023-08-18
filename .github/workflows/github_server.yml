@@ -8,15 +8,15 @@ on:
       tags:
         required: False
         description: 'Optional. Use a "tag expression" specify which tagged tests to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)'
-        # Only test 2 tests - one uses an env var, the other uses AL.
-        # They test if env vars get set correctly and depencencies get
-        # pulled in correctly.
-        default: '@e6 or @al1'
+        # # Only test 2 tests - one uses an env var, the other uses AL.
+        # # They test if env vars get set correctly and depencencies get
+        # # pulled in correctly.
+        # default: '@al1'
       enable_tmate:
         type: boolean
         description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
-        default: true
+        default: false
       # TODO: alkiln_version:
 
 jobs:
@@ -28,26 +28,47 @@ jobs:
         node-version: [18.x]
 
     env:
-      USER1_EMAIL: admin@example.com
-      USER1_PASSWORD: password
+      # How would a dev make another user/password if they wanted to?
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
       SECRET_FOR_MISSING_FIELD: secret for missing field
+      #_ALKILN_DANGEROUS_DEBUG: true
       
     steps:
+      # Place the root directory in this branch
       - uses: actions/checkout@v3
+
+      # Debugging. Maybe add a long sleep after whatever it is we want to check
+      # to give us time to explore.
       - name: Setup tmate session
         if: ${{ inputs.enable_tmate }}
         uses: mxschmitt/action-tmate@v3
         with:
           detached: true
-          
+
       - name: Start the temporary GitHub server
         id: github_server
         uses: ./github_server
         with:
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
       - run: echo "Finished starting the GitHub server"
+
+      # Debugging on failure
+      # Trying to catch that intermittent bug mentioned in ./github_server/action.yml
+      - name: Docker failure tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
+
+      - name: Set more env vars
+        run: |
+          echo "USER1_EMAIL=${{ steps.github_server.outputs.DA_ADMIN_EMAIL }}" >> $GITHUB_ENV
+          echo "USER1_PASSWORD=${{ steps.github_server.outputs.DA_ADMIN_PASSWORD }}" >> $GITHUB_ENV
+      #- name: Work with docker
+      #  run: |
+      #    # Authors can use this to do more with the docker container.
+      #    # There may be a better way. Would take research. A docker action?
+      #    container_name=$(docker ps --format '{{.Names}}' | head -n 1)
+      #    echo "container_name is $container_name"
 
       - name: "Run ALKiln tests"
         if: ${{ success() }}
@@ -56,6 +77,7 @@ jobs:
           SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
-          ALKILN_VERSION: "5.0.2-feat-github-server-1"
+          # TODO: See what happens if this is an empty string
+          ALKILN_VERSION: "5.0.2-feat-github-server-11"
       - run: echo "Finished running ALKiln tests"
 
