@@ -2,7 +2,7 @@ name: GitHub server tests
 
 on:
   push:
-  # why is workflow dispatch not showing up in actions?
+  # why is workflow dispatch not showing up in github?
   workflow_dispatch:
     inputs:
       tags:
@@ -28,8 +28,8 @@ jobs:
         node-version: [18.x]
 
     env:
-      USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
-      USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
+      USER1_EMAIL: admin@example.com
+      USER1_PASSWORD: password
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
       SECRET_FOR_MISSING_FIELD: secret for missing field
@@ -41,19 +41,16 @@ jobs:
         uses: mxschmitt/action-tmate@v3
         with:
           detached: true
+          
       - name: Start the temporary GitHub server
         id: github_server
-        # TODO: Research how to get this to always be the same branch we're on
-        #uses: ${{ github.workspace }}/github_server/action.yml
         uses: ./github_server
         with:
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
-          #
       - run: echo "Finished starting the GitHub server"
+
       - name: "Run ALKiln tests"
         if: ${{ success() }}
-        # TODO: Research how to get this to always be the same branch we're on
-        # Would ${{ ref or whatever }} work?
         uses: ./
         with:
           SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
