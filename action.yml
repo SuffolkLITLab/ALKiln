@@ -80,10 +80,14 @@ runs:
       if: ${{ inputs.INSTALL_METHOD == 'server' && failure() }}
       shell: bash
 
+    ###########
+    #### !!! WARNING: RESTORE CODE FOR TAGS
+    ###########
     # run tests
     - name: "ALKiln: Run tests"
       if: ${{ success() }}
-      run: alkiln-run ${{ github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
+      run: alkiln-run @e6 or @al1
+      #run: alkiln-run ${{ github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
       shell: bash
 
     # on playground, delete project

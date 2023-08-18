@@ -6,24 +6,10 @@ inputs:
   CONFIG_CONTENTS:
     description: "The contents of the config file of the docassemble server"
     required: false
-  # This is necessary to test pre-releases at the very least. It does seem
-  # strange considering we're controlling everything through the action, but
-  # that actually doesn't touch the npm version that's pulled in.
-  #ALKILN_VERSION:
-  #  description: 'Version of ALKiln to get from npm.'
-  #  required: false
-  #  default: '^5.0.0'
   MAX_SECONDS_FOR_DOCKER:
     description: "Maximum amount of seconds to give the docassemble docker container to serve the site."
     required: false
     default: 600  # 10 min
-  #MAX_SECONDS_FOR_SETUP:
-  #  description: "Amount of seconds to give the Project to upload your package's GitHub code."
-  #  required: false
-  #SERVER_RELOAD_TIMEOUT_SECONDS:
-  #  description: "Max amount of seconds to give the server to reload if it needs to"
-  #  required: false
-  #  # no default to let the custom Scenario timeouts create the reload timeout
 
 outputs:
   DOCASSEMBLE_DEVELOPER_API_KEY:
@@ -53,6 +39,8 @@ runs:
         shell: bash
       - name: "github_server: Wait for server to start"
         run: |
+          # github_server: Wait for server to start
+
           # Wait 1 minute before pinging the server constantly
           sleep 60
 
@@ -87,19 +75,6 @@ runs:
 
           done
         shell: bash
-      #- name: "github_server: Install ALKiln"
-      #  run: npm install -g @suffolklitlab/alkiln@${{ inputs.ALKILN_VERSION }}
-      #  shell: bash
-      #- name: "github_server: Install this package"
-      #  run: alkiln-startserver
-      #  shell: bash
-      #- name: "github_server: Run Kiln"
-      #  # TODO: Research how to get this to always be the same branch we're on
-      #  # Would ${{ ref or whatever }} work?
-      #  uses: SuffolkLITLab/ALKiln@start_server_workflow
-      #  with:
-      #    SERVER_URL: "http://localhost"
-      #    DOCASSEMBLE_DEVELOPER_API_KEY: "${{ env.DA_ADMIN_API_KEY }}"
       - name: Docker logs
         if: ${{ always() }}
         # TODO: create an arifact for this instead

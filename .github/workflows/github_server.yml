@@ -2,6 +2,7 @@ name: GitHub server tests
 
 on:
   push:
+  # why is workflow dispatch not showing up in actions?
   workflow_dispatch:
     inputs:
       tags:
@@ -11,7 +12,7 @@ on:
         # They test if env vars get set correctly and depencencies get
         # pulled in correctly.
         default: '@e6 or @al1'
-      console_enabled:
+      enable_tmate:
         type: boolean
         description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
@@ -36,15 +37,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Setup tmate session
+        if: ${{ inputs.enable_tmate }}
         uses: mxschmitt/action-tmate@v3
         with:
           detached: true
-        #if: ${{ inputs.console_enabled }}
-        #with:
-        #  sudo: false
       - name: Start the temporary GitHub server
         id: github_server
-        uses: SuffolkLITLab/ALKiln/github_server@start_server_workflow
+        # TODO: Research how to get this to always be the same branch we're on
+        #uses: ${{ github.workspace }}/github_server/action.yml
+        uses: ./github_server
         with:
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
           #
@@ -53,7 +54,7 @@ jobs:
         if: ${{ success() }}
         # TODO: Research how to get this to always be the same branch we're on
         # Would ${{ ref or whatever }} work?
-        uses: SuffolkLITLab/ALKiln@start_server_workflow
+        uses: ./
         with:
           SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
