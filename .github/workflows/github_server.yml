@@ -78,6 +78,6 @@ jobs:
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
           # TODO: See what happens if this is an empty string
-          ALKILN_VERSION: "5.0.2-feat-github-server-11"
+          ALKILN_VERSION: "5.0.2-feat-github-server-12"
       - run: echo "Finished running ALKiln tests"
 

@@ -16,7 +16,11 @@ description: "Download and start up a temporary docassemble server on GitHub's s
 # to make our own image:
 # You can build your own image by doing git clone jhpyle/docassemble  and then
 # using git checkout to select a particular version, and then using docker build
-# to build an image.
+# to build an image. https://docassemble.org/docs/docker.html#downgrading
+# If we just want to use an older version of da (as long as it works with
+# the latest image):
+# If you have an existing container you can use dainstall from the command
+# line to install docassemble.webapp==1.4.68
 
 inputs:
   CONFIG_CONTENTS:
