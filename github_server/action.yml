@@ -1,7 +1,7 @@
 name: "ALKiln/github_server: Isolated docassemble tests"
 description: "Download and start up a temporary docassemble server on GitHub's servers, in an isolated environment. Avoids docassemble reload errors and other external factors."
 
-# Wat? Exit with 52
+# Bug? Race condition? Exit with 52 when waiting for container to finish starting
 # https://github.com/SuffolkLITLab/ALKiln/actions/runs/5912900256/job/16036751264#step:4:188
 # Had no completion messages, but it exited with an error anyway
 # Took 121 seconds
@@ -53,9 +53,6 @@ runs:
         run: |
           echo "DA_ADMIN_API_KEY=abcd1234abcd1234abcd5678abdc5678" >> $GITHUB_ENV
           echo "MAX_SECONDS_FOR_DOCKER=${{ inputs.MAX_SECONDS_FOR_DOCKER }}" >> $GITHUB_ENV
-          echo "CLONE_URL=${{ github.server_url }}/${{ github.repository }}.git" >> $GITHUB_ENV
-          echo "OWNER_AND_REPO_NAME=${{ github.repository }}" >> $GITHUB_ENV
-          echo "BRANCH_REF=${{ github.ref }}" >> $GITHUB_ENV
           echo "DA_ADMIN_EMAIL=admin@example.com" >> $GITHUB_ENV
           # Login will fail if this is "password"
           echo "DA_ADMIN_PASSWORD=@123abcdefg" >> $GITHUB_ENV
@@ -76,7 +73,7 @@ runs:
         shell: bash
       - name: "ALKiln github_server: Wait for server to start"
         run: |
-          # github_server: Wait for server to start
+          # ALKiln github_server: Wait for server to start
 
           # Reset the SECONDS variable
           SECONDS=0

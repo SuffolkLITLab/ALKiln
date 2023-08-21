@@ -59,7 +59,7 @@ jobs:
         if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3
 
-      - name: Set more env vars
+      - name: Env vars from server output
         run: |
           echo "USER1_EMAIL=${{ steps.github_server.outputs.DA_ADMIN_EMAIL }}" >> $GITHUB_ENV
           echo "USER1_PASSWORD=${{ steps.github_server.outputs.DA_ADMIN_PASSWORD }}" >> $GITHUB_ENV
@@ -78,6 +78,6 @@ jobs:
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
           # TODO: See what happens if this is an empty string
-          ALKILN_VERSION: "5.0.2-feat-github-server-12"
+          ALKILN_VERSION: "5.0.2-feat-github-server-13"
       - run: echo "Finished running ALKiln tests"
 
