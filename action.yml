@@ -28,6 +28,9 @@ inputs:
     description: "Default is 'playground'. Other option: 'server'. How to install the package onto the server."
     required: false
     default: "playground"
+  ALKILN_TAG_EXPRESSION:
+    description: "The tag expression to use to limit which tests to run. Default is no tag expression."
+    required: false
 
 runs:
   using: "composite"
@@ -83,7 +86,7 @@ runs:
     # run tests
     - name: "ALKiln: Run tests"
       if: ${{ success() }}
-      run: alkiln-run ${{ github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
+      run: alkiln-run ${{ inputs.ALKILN_TAG_EXPRESSION || github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
       shell: bash
     
     # on playground, delete project

@@ -1,6 +1,5 @@
 # .npmignore stuff specifically
 docassemble/ALKilnTests/*
-docassemble/ALKiln/*
 
 # Everything else should be an exact copy of .gitignore
 # Assembly Line

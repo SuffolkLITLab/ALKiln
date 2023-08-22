@@ -116,8 +116,30 @@ runs:
           python-version: '3.10'
       - run: pip install docassemblecli
         shell: bash
-      # Install the current directory into docassemble
-      - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
+      # Install the current directory onto the docassemble server
+
+      #- name: Setup tmate session
+      #  uses: mxschmitt/action-tmate@v3
+      
+      ## da doesn't need to know the name of the folder
+      ## alkiln does so it can locate the Project or package installed on the server
+      - run: |
+          # if `docassemble` cd `docassemble`
+          #cd docassemble
+          ## Get the name of the package folder
+          #dirs2=(*/)
+          #len=${#dirs2[@]}
+          #if (( $len > 1 ));
+          #then echo There are multiple files in your repo's `docassemble` folder. ALkiln will use the first one;
+          #fi
+          #folder=5
+          #
+          #
+          ## Get back out of the docassemble folder
+          #cd ..
+          ## Install on server
+
+          dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
         shell: bash
 
       # Upload artifacts that subscribers can download on the Actions summary page

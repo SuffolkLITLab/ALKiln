@@ -2,7 +2,8 @@ name: GitHub server tests
 
 on:
   push:
-  # why is workflow dispatch not showing up in github?
+  # `workflow dispatch` isn't showing up in github because it's not the default branch
+  # See https://stackoverflow.com/a/75250828
   workflow_dispatch:
     inputs:
       tags:
@@ -78,6 +79,7 @@ jobs:
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
           # TODO: See what happens if this is an empty string
-          ALKILN_VERSION: "5.0.2-feat-github-server-13"
+          ALKILN_VERSION: "server"
+          ALKILN_TAG_EXPRESSION: "@al1"
       - run: echo "Finished running ALKiln tests"
 
