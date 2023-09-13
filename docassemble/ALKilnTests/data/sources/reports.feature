@@ -575,7 +575,7 @@ Scenario: Passes with no warning when `there_is_another | False` is in a table.
   And the max seconds for each step is 5 seconds
   And I set the var "x.there_are_any" to "True"
   And I set the var "x[i].name.first" to "AnyPerson1"
-  And I tap to continue
+  And I tap to Continue
   And I get to "person name" with this data:
     | var | value | trigger |
     | x[i].name.first | AnyPerson2 | there_are_any_people[1].name.first |
