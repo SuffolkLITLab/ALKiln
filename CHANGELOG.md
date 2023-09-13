@@ -68,6 +68,8 @@ Format:
 ### Changed
 - Make `I tap to continue` case insensitive to allow the author to match the capitalization of the button in Docassemble.
 
+- Allow `I tap to Continue` to match the capitalization of the button in Docassemble.
+
 ## [5.1.0] - 2023-08-12
 
 ### Added
