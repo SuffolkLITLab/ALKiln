@@ -44,7 +44,7 @@ Format:
 -->
 ## [Unreleased]
 ### Changed
-- Can now take the location of the "sources" folder or folders as an argument in the command line. The formats are `npm run cucumber @tags -- --sources=./foo` and `alkiln-run @tags --sources=./foo`. As discussed, acceptably breaks ALKilnInThePlayground v1.1.0 as that project is still exploratory.
+- Can now take the location of the "sources" folder or folders as an argument in the command line. The formats are `npm run cucumber @tags -- --sources=./foo` and `alkiln-run @tags --sources=./foo`. As discussed, acceptably breaks ALKilnInThePlayground v1.2.0 and below as that project is still exploratory.
 
 ## [5.4.0] - 2023-10-14
 
