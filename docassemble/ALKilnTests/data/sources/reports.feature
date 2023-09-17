@@ -310,7 +310,7 @@ Scenario: Fail with system error after Step using wrong file name as trigger
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
-  Reference to invalid playground path
+  ERROR: On final attempt to load interview, got
   """
   And I start the interview at "wrong_yaml_filename"
 
