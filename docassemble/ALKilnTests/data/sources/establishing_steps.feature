@@ -41,7 +41,7 @@ Scenario: I want to go to a full arbitrary url
   Given the max seconds for each step in this scenario is 5
   And the Scenario report should include:
   """
-  Trying to load the interview
+  Trying to load the interview at "https://apps-test.suffolklitlab.org/start/demo/questions"
   """
   Given I start the interview at "https://apps-test.suffolklitlab.org/start/demo/questions"
   Then I should see the phrase "What language do you speak?"
@@ -52,7 +52,7 @@ Scenario: Fail with no interview at arbitrary url
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
-  Trying to load the interview
+  Trying to load the interview at "https://apps-test.suffolklitlab.org/list"
   """
   And the Scenario report should include:
   """
