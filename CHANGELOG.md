@@ -42,7 +42,9 @@ Format:
 ### Internal
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+### Changed
+- Told the user the interview url. See https://github.com/SuffolkLITLab/ALKiln/issues/696.
 
 ## [5.2.0] - 2023-09-16
 ### Changed
