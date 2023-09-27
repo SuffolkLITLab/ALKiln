@@ -41,3 +41,11 @@ Scenario: I have four name parts
   And I set the var "users[i].proxy_var" to "Mixed proxy var step test"
   And I tap to continue
   Then the question id should be "end"
+
+@al4
+Scenario: I set three part dates and use "today" with custom datatypes
+  Given I start the interview at "AL_custom_dates"
+  And I set the var "three_parts_date" to "today"
+  And I set the var "birth_date" to "today"
+  And I tap to continue
+  Then the question id should be "end"

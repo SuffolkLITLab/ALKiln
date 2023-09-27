@@ -42,7 +42,14 @@ Format:
 ### Internal
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+- New warning message to the developer when their date string doesn't have a `/` in it.
+
+### Fixed
+- Restored Assembly Line custom datatype three-parts dates functionality. See https://github.com/SuffolkLITLab/ALKiln/issues/764.
+- Fixed "today" not being converted into a date for custom datatypes.
 
 ## [5.2.0] - 2023-09-16
 ### Changed

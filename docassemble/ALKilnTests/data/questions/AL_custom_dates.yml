@@ -17,9 +17,9 @@ code: |
   three_parts_date
   end
 ---
-id: three part dates
+id: three parts dates
 question: |
-  Three part custom dates
+  Three parts custom dates
 fields:
   - ThreePartsDate: three_parts_date
     datatype: ThreePartsDate
