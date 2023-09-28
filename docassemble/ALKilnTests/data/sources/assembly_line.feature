@@ -46,6 +46,6 @@ Scenario: I have four name parts
 Scenario: I set three part dates and use "today" with custom datatypes
   Given I start the interview at "AL_custom_dates"
   And I set the var "three_parts_date" to "today"
-  And I set the var "birth_date" to "today"
+  And I set the var "birth_date" to "today - 2"
   And I tap to continue
   Then the question id should be "end"
