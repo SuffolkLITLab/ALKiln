@@ -43,10 +43,19 @@ Format:
 - 
 -->
 ## [Unreleased]
+
+### Added
+- New warning message to the developer when their date string doesn't have a `/` in it.
+
 ### Changed
 - Told the user the interview url. See https://github.com/SuffolkLITLab/ALKiln/issues/696.
 
+### Fixed
+- Restored Assembly Line custom datatype three-parts dates functionality. See https://github.com/SuffolkLITLab/ALKiln/issues/764.
+- Fixed "today" not being converted into a date for custom datatypes.
+
 ## [5.2.0] - 2023-09-16
+
 ### Changed
 - Make `I tap to continue` case insensitive to allow the author to match the capitalization of the button in Docassemble.
 

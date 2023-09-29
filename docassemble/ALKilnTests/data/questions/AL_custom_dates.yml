@@ -1,0 +1,32 @@
+metadata:
+  title: Test AssemblyLine custom datatypes for 3-part dates
+  short title: AL custom dates
+---
+include:
+  - docassemble.AssemblyLine:al_package.yml
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+id: interview order
+mandatory: True
+code: |
+  three_parts_date
+  end
+---
+id: three parts dates
+question: |
+  Three parts custom dates
+fields:
+  - ThreePartsDate: three_parts_date
+    datatype: ThreePartsDate
+  - Birth date: birth_date
+    datatype: BirthDate
+---
+id: end
+event: end
+question: Great test!
+---
