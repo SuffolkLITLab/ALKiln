@@ -42,13 +42,15 @@ Format:
 ### Internal
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.2.1] - 2023-09-29
 
 ### Added
 - New warning message to the developer when their date string doesn't have a `/` in it.
 
 ### Changed
-- Told the user the interview url. See https://github.com/SuffolkLITLab/ALKiln/issues/696.
+- Told the user the url of the interview ALKiln tried to load. See https://github.com/SuffolkLITLab/ALKiln/issues/696.
 
 ### Fixed
 - Fixed and improved error for accessibility failures. See [#744](https://github.com/SuffolkLITLab/ALKiln/issues/744).
