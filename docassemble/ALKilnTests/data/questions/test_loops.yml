@@ -34,7 +34,7 @@ id: target number
 question: How many "target_number" people are there?
 fields:
   - Number of other people: target_people.target_number
-    input type: number
+    datatype: number
 ---
 id: person name
 generic object: DAList
