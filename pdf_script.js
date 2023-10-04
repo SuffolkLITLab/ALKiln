@@ -10,6 +10,7 @@ async function testPdf(pdfPath) {
   const loadingTask = await pdfjsLib.getDocument(pdfPath);
 
   const doc = await loadingTask.promise;
+  console.log(doc.getPage)
   const contents = await (await doc.getPage(1)).getTextContent();
   console.log(contents.items.map((item) => item.str).join(" "));
   const field_objects = await doc.getFieldObjects();

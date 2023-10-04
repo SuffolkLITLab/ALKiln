@@ -44,7 +44,9 @@
     "puppeteer": "20.8.2",
     "qs": "6.10.3",
     "sanitize-filename": "1.6.3",
-    "uuid": "8.3.2"
+    "uuid": "8.3.2",
+    "pdfjs-dist": "3.2.146",
+    "diff": "5.0.0"
   },
   "bin": {
     "alkiln-setup": "./lib/docassemble/setup.js",
