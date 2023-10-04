@@ -42,7 +42,10 @@ Format:
 ### Internal
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Internal
+- Refatored report functions into their own file. See https://github.com/SuffolkLITLab/ALKiln/issues/770.
 
 ## [5.2.1] - 2023-09-29
 
