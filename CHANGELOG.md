@@ -48,23 +48,8 @@ Format:
 - Fixed and improved error for accessibility failures. See [#744](https://github.com/SuffolkLITLab/ALKiln/issues/744).
 
 ### Internal
-- Refactored report functions into their own file. See https://github.com/SuffolkLITLab/ALKiln/issues/770.
-
-## [5.2.1] - 2023-09-29
-
-### Added
-- New warning message to the developer when their date string doesn't have a `/` in it.
-
-### Changed
-- Told the user the url of the interview ALKiln tried to load. See https://github.com/SuffolkLITLab/ALKiln/issues/696.
-
-### Fixed
-- Fixed and improved error for accessibility failures. See [#744](https://github.com/SuffolkLITLab/ALKiln/issues/744).
-
-
-### Internal
-- Changed the format of the aXe file name to shorten it by avoiding repeating the scenario name.
 - Refatored report functions into their own file. See https://github.com/SuffolkLITLab/ALKiln/issues/770.
+- Changed the format of the aXe file name to shorten it by avoiding repeating the scenario name.
 
 ## [5.2.1] - 2023-09-29
 
@@ -82,18 +67,6 @@ Format:
 
 ### Changed
 - Make `I tap to continue` case insensitive to allow the author to match the capitalization of the button in Docassemble.
-
-### Fixed
-- Restored Assembly Line custom datatype three-parts dates functionality. See https://github.com/SuffolkLITLab/ALKiln/issues/764.
-- Fixed "today" not being converted into a date for custom datatypes.
-
-## [5.2.0] - 2023-09-16
-
-### Changed
-- Make `I tap to continue` case insensitive to allow the author to match the capitalization of the button in Docassemble.
-
-### Internal
-- Changed the format of the aXe file name to shorten it by avoiding repeating the scenario name.
 
 ## [5.1.0] - 2023-08-12
 
