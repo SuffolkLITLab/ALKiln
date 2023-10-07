@@ -44,8 +44,12 @@ Format:
 -->
 ## [Unreleased]
 
+### Fixed
+- Fixed and improved error for accessibility failures. See [#744](https://github.com/SuffolkLITLab/ALKiln/issues/744).
+
 ### Internal
 - Refatored report functions into their own file. See https://github.com/SuffolkLITLab/ALKiln/issues/770.
+- Changed the format of the aXe file name to shorten it by avoiding repeating the scenario name.
 
 ## [5.2.1] - 2023-09-29
 
