@@ -135,32 +135,33 @@ Scenario: I take a pic
   Then I take a pic
   Then I take a pic named "some-pic"
 
-# Restore when combobox is accessible, or as a failing test
-# once we get a11y failures working
-# TODO: Create failing a11y test, maybe using custom html
-#@slow @o12 @accessibility @a11y
-#Scenario: I check the pages for accessibility
-#  Given I start the interview at "all_tests"
-#  And I check all pages for accessibility issues
-#  And I tap to continue
-#  Then I get to "screen features" with this data:
-#    | var | value | trigger |
-#    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
-#    | checkboxes_other['checkbox_other_opt_1'] | true |  |
-#    | combobox_input | Custom combobox option |  |
-#    | dropdown_test | dropdown_opt_2 | |
-#    | radio_yesno | False | false |
-#    | radio_other | radio_other_opt_3 | |
-#    | object_checkboxes_test["obj_chkbx_opt_1"] | True | |
-#    | object_dropdown | obj_opt_2 | |
-#    | object_select_test | obj_chkbx_opt_2 | |
-#    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
-#    | text_input | Regular text input field value | |
-#    | textarea | Multiline text\narea value | |
-#    | date_input | today | |
-#    | button_continue | True |  |
-#    | buttons_other | button_2 |  |
-#    | buttons_yesnomaybe | True |  |
+# Remove `should be "failed"` when docassemble styles are improved
+# for comboboxes.
+# TODO: Create an actual failing a11y test, maybe using custom html
+@slow @o12 @accessibility @a11y
+Scenario: I check the pages for accessibility
+  Given the final Scenario status should be "failed"
+  And I start the interview at "all_tests"
+  And I check all pages for accessibility issues
+  And I tap to continue
+  Then I get to "screen features" with this data:
+    | var | value | trigger |
+    | double_quote_dict["double_quote_key"]['dq_two'] | true |  |
+    | checkboxes_other['checkbox_other_opt_1'] | true |  |
+    | combobox_input | Custom combobox option |  |
+    | dropdown_test | dropdown_opt_2 | |
+    | radio_yesno | False | false |
+    | radio_other | radio_other_opt_3 | |
+    | object_checkboxes_test["obj_chkbx_opt_1"] | True | |
+    | object_dropdown | obj_opt_2 | |
+    | object_select_test | obj_chkbx_opt_2 | |
+    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
+    | text_input | Regular text input field value | |
+    | textarea | Multiline text\narea value | |
+    | date_input | today | |
+    | button_continue | True |  |
+    | buttons_other | button_2 |  |
+    | buttons_yesnomaybe | True |  |
 
 @fast @o13 @signature @screenshot
 Scenario: I take a screenshot of the signature
