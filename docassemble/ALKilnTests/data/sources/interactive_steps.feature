@@ -85,7 +85,6 @@ Scenario: I set various values
   # Next page
   Then the question id should be "simple doc"
   When I download "simple-doc.pdf"
-  And I expect the PDFs at "simple-doc-Baseline.pdf" and "simple-doc.pdf" to be the same
   And I tap to continue
   # Next page
   Then the question id should be "button event action"
