@@ -1,0 +1,64 @@
+metadata:
+  title: Test testing library
+  short title: Test ALKiln
+  comment: Test the automated integrated testing library created with the AssemblyLine project
+---
+features:
+  css:
+    - styles.css
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+---
+mandatory: True
+code: |
+  proxy_list.gather()
+  see_simple_doc
+---
+objects:
+  - proxy_list: DAList.using(object_type=Individual, ask_number=True, target_number=1, complete_attribute="complete")
+---
+code: |
+  proxy_list[i].name.first
+  proxy_list[i].signature
+  proxy_list[i].complete = True
+---
+id: proxy vars
+generic object: DAList
+question: |
+  Proxy var ${ i + 1 }
+fields:
+  - ${ ordinal(i) } proxy name: x[i].name.first
+---
+id: is there another generic
+generic object: DAList
+question: |
+  Is there another proxy var?
+yesno: x.there_is_another
+---
+id: signature
+generic object: DAList
+question: |
+  Signature
+signature: x[i].signature
+---
+id: simple doc
+question: |
+  Document
+subquestion: |
+  [Tap to download](${ simple_doc.pdf.url_for( attachment=True ) })
+event: see_simple_doc
+---
+id: simple attachment
+attachment:
+    variable name: simple_doc
+    pdf template file: simple.pdf
+    filename: simple-doc
+    skip undefined: True
+    editable: False
+    fields:
+      - "proxy1_name_first": ${ proxy_list[0].name.first }
+      - "proxy1_signature": ${ proxy_list[0].signature }
