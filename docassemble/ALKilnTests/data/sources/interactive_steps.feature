@@ -193,7 +193,15 @@ Scenario: I set compare different PDFs
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
-  The PDFs were not the same: The new PDF added " diff"
+  The PDFs were not the same.
+  """
+  And the Scenario report should include: 
+  """
+  The new PDF added:
+  """
+  And the Scenario report should include:
+  """
+  -  diff
   """
   Given I start the interview at "test_pdf"
   Then the question id should be "proxy vars"
