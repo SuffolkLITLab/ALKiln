@@ -188,7 +188,7 @@ Scenario: I set compare the same PDFs
   When I download "simple-doc.pdf"
   And I expect the baseline PDF "simple-doc-Baseline.pdf" and the new PDF "simple-doc.pdf" to be the same
 
-@slow @i8
+@slow @i9
 Scenario: I set compare different PDFs
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
