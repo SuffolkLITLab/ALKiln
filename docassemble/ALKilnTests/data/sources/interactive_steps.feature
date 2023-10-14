@@ -193,6 +193,10 @@ Scenario: I set compare different PDFs
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
+  Could not find the existing PDF at DOES_NOT_EXIST.pdf
+  """
+  And the Scenario report should include:
+  """
   The PDFs were not the same.
   """
   And the Scenario report should include: 
@@ -213,4 +217,5 @@ Scenario: I set compare different PDFs
   # Next page
   Then the question id should be "simple doc"
   When I download "simple-doc.pdf"
+  And I expect the baseline PDF "DOES_NOT_EXIST.pdf" and the new PDF "simple-doc.pdf" to be the same
   And I expect the baseline PDF "simple-doc-Baseline.pdf" and the new PDF "simple-doc.pdf" to be the same
