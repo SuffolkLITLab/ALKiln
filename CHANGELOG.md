@@ -42,7 +42,12 @@ Format:
 ### Internal
 - 
 -->
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.3.0] - 2023-10-14
+
+### Added
+- Screenshots now come with an HTML file of the same page. Pages can be examined for their full errors and for accessibility details. Note that styles are weird because we don't control the page with js like docassemble does. Otherwise hidden elements are visible, etc. See [#763](https://github.com/SuffolkLITLab/ALKiln/issues/763).
 
 ### Fixed
 - Fixed and improved error for accessibility failures. See [#744](https://github.com/SuffolkLITLab/ALKiln/issues/744).
