@@ -173,3 +173,49 @@ Scenario: I take a screenshot of the signature
   And I take a screenshot
   Then I tap to continue
   Then the question id should be "the end"
+
+@slow @i8
+Scenario: I set compare the same PDFs
+  Given I start the interview at "test_pdf"
+  Then the question id should be "proxy vars"
+  When I set the var "x[i].name.first" to "Proxyname1"
+  And I tap to continue
+  # Next page
+  Then I sign
+  And I tap to continue
+  # Next page
+  Then the question id should be "simple doc"
+  When I download "simple-doc.pdf"
+  And I expect the baseline PDF "simple-doc-Baseline.pdf" and the new PDF "simple-doc.pdf" to be the same
+
+@slow @i9
+Scenario: I set compare different PDFs
+  Given the final Scenario status should be "failed"
+  And the Scenario report should include:
+  """
+  Could not find the existing PDF at DOES_NOT_EXIST.pdf
+  """
+  And the Scenario report should include:
+  """
+  The PDFs were not the same.
+  """
+  And the Scenario report should include: 
+  """
+  The new PDF added:
+  """
+  And the Scenario report should include:
+  """
+  -  diff
+  """
+  Given I start the interview at "test_pdf"
+  Then the question id should be "proxy vars"
+  When I set the var "x[i].name.first" to "Proxyname1 diff"
+  And I tap to continue
+  # Next page
+  Then I sign
+  And I tap to continue
+  # Next page
+  Then the question id should be "simple doc"
+  When I download "simple-doc.pdf"
+  And I expect the baseline PDF "DOES_NOT_EXIST.pdf" and the new PDF "simple-doc.pdf" to be the same
+  And I expect the baseline PDF "simple-doc-Baseline.pdf" and the new PDF "simple-doc.pdf" to be the same
