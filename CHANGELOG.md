@@ -44,6 +44,12 @@ Format:
 -->
 ## [Unreleased]
 
+### Added
+
+- New step to compare PDFs!
+    - An example: `I expect the baseline PDF "something-in-sources.pdf" and the new PDF "downloaded.pdf" to be the same`
+    - See [#774](https://github.com/SuffolkLITLab/ALKiln/pull/774) for more details.
+
 ### Fixed
 - Fixed and improved error for accessibility failures. See [#744](https://github.com/SuffolkLITLab/ALKiln/issues/744).
 
