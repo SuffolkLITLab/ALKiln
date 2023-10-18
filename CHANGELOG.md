@@ -42,7 +42,10 @@ Format:
 ### Internal
 - 
 -->
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Internal
+- BREAKS ALKilnInThePlayground v1.2.0 and below (as we discussed) as that project is still exploratory. Can now take the location of the "sources" folder or folders as an argument in the command line. The formats are `npm run cucumber @tags -- --sources=./foo` and `alkiln-run @tags --sources=./foo`.
 
 ## [5.4.0] - 2023-10-14
 

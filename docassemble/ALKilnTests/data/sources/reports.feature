@@ -275,7 +275,7 @@ Scenario: Fail with var not on page
   """
   And the Scenario report should include:
   """
-  Missing variable or variables on page
+  Error on page "
   """
   And I start the interview at "all_tests"
   And I set the var "missing_var_1" to "missing value 1"

@@ -207,3 +207,57 @@ Scenario: I enter the date and time
   And I get to "the end" with this data:
     | date_input | today | |
     | time_input | 12:34 PM | |
+
+@fast @o16 @signature @screenshot
+Scenario: I take a screenshot of the signature
+  Given I start the interview at "test_signature.yml"
+  When I sign with the name "David"
+  And I take a screenshot
+  Then I tap to continue
+  Then the question id should be "the end"
+
+@slow @017
+Scenario: I compare the same PDFs
+  Given I start the interview at "test_pdf"
+  Then the question id should be "proxy vars"
+  When I set the var "x[i].name.first" to "Proxyname1"
+  And I tap to continue
+  # Next page
+  Then I sign
+  And I tap to continue
+  # Next page
+  Then the question id should be "simple doc"
+  When I download "simple-doc.pdf"
+  And I expect the baseline PDF "simple-doc-Baseline.pdf" and the new PDF "simple-doc.pdf" to be the same
+
+@slow @o18
+Scenario: I compare different PDFs
+  Given the final Scenario status should be "failed"
+  And the Scenario report should include:
+  """
+  Could not find the existing PDF at DOES_NOT_EXIST.pdf
+  """
+  And the Scenario report should include:
+  """
+  The PDFs were not the same.
+  """
+  And the Scenario report should include: 
+  """
+  The new PDF added:
+  """
+  And the Scenario report should include:
+  """
+  -  diff
+  """
+  Given I start the interview at "test_pdf"
+  Then the question id should be "proxy vars"
+  When I set the var "x[i].name.first" to "Proxyname1 diff"
+  And I tap to continue
+  # Next page
+  Then I sign
+  And I tap to continue
+  # Next page
+  Then the question id should be "simple doc"
+  When I download "simple-doc.pdf"
+  And I expect the baseline PDF "DOES_NOT_EXIST.pdf" and the new PDF "simple-doc.pdf" to be the same
+  And I expect the baseline PDF "simple-doc-Baseline.pdf" and the new PDF "simple-doc.pdf" to be the same
