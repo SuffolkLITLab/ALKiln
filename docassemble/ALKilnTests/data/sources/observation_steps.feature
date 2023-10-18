@@ -216,7 +216,7 @@ Scenario: I take a screenshot of the signature
   Then I tap to continue
   Then the question id should be "the end"
 
-@slow @017
+@slow @o17
 Scenario: I compare the same PDFs
   Given I start the interview at "test_pdf"
   Then the question id should be "proxy vars"
