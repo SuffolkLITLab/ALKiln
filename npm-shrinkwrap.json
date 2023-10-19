@@ -1,12 +1,12 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.1.0-sources-7",
+  "version": "5.4.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@suffolklitlab/alkiln",
-      "version": "5.1.0-sources-7",
+      "version": "5.4.0",
       "license": "MIT",
       "dependencies": {
         "@axe-core/puppeteer": "4.7.3",
