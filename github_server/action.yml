@@ -1,17 +1,6 @@
 name: "ALKiln/github_server: Isolated docassemble tests"
 description: "Download and start up a temporary docassemble server on GitHub's servers, in an isolated environment. Avoids docassemble reload errors and other external factors."
 
-# Bug? Race condition? Exit with 52 when waiting for container to finish starting
-# https://github.com/SuffolkLITLab/ALKiln/actions/runs/5912900256/job/16036751264#step:4:188
-# Had no completion messages, but it exited with an error anyway
-# Took 121 seconds
-# The rerun of the test completed that step just fine, though it took less time
-# Took 120 and was fine: https://github.com/SuffolkLITLab/ALKiln/actions/runs/5913167036/job/16037288791
-# 150 secs with exit code 56:
-# https://github.com/SuffolkLITLab/ALKiln/actions/runs/5914677262/job/16040233419#step:4:196
-# 120 sec with exit code 56:
-# https://github.com/SuffolkLITLab/ALKiln/actions/runs/5914963614/job/16040773624#step:4:206
-
 # If we want to control the version of the docassemble image, we'd have
 # to make our own image:
 # You can build your own image by doing git clone jhpyle/docassemble  and then
@@ -80,11 +69,9 @@ runs:
           # Wait 1 minute before pinging the server constantly
           sleep 60
 
-          # Use a variable instead of checking $response so we can control to avoid race
-          # conditions from preventing the success log message.
-          ready="false"
+          response="start"
 
-          while [[ $ready == "false" ]]; do
+          while [[ $response != *"200"* ]]; do
             echo "Time elapsed: $SECONDS seconds"
 
             # Check if max seconds till loading has passed
@@ -100,7 +87,6 @@ runs:
             # Check if the string includes the desired text
             if [[ $response == *"200"* ]]; then
               echo "Success! The docker container is ready!"
-              ready="true"
             else
               echo "The docker container isn't ready yet. Will check again in 30 seconds."
               sleep 30
@@ -116,40 +102,17 @@ runs:
       - run: pip install docassemblecli
         shell: bash
       # Install the current directory onto the docassemble server
-
-      #- name: Setup tmate session
-      #  uses: mxschmitt/action-tmate@v3
-      
-      ## da doesn't need to know the name of the folder
-      ## alkiln does so it can locate the Project or package installed on the server
-      - run: |
-          # if `docassemble` cd `docassemble`
-          #cd docassemble
-          ## Get the name of the package folder
-          #dirs2=(*/)
-          #len=${#dirs2[@]}
-          #if (( $len > 1 ));
-          #then echo There are multiple files in your repo's `docassemble` folder. ALkiln will use the first one;
-          #fi
-          #folder=5
-          #
-          #
-          ## Get back out of the docassemble folder
-          #cd ..
-          ## Install on server
-
-          dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
+      - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
         shell: bash
 
-      # Upload artifacts that subscribers can download on the Actions summary page
+      # TODO: Upload artifacts that subscribers can download on the Actions summary page
       - name: "ALKiln github_server: Docker logs"
         if: ${{ always() }}
         run: |
           # Should this name have a date/time attached? The logs themselves have timestamps
           echo "$(docker logs docassemble_container)" > /tmp/alkiln_docker_logs.txt
         shell: bash
-    
-      # Should this date/time be created at the start of this action?
+      
       - name: "ALKiln github_server: Get folder name with date and time"
         if: ${{ always() }}
         run: |

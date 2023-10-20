@@ -2,17 +2,11 @@ name: GitHub server tests
 
 on:
   push:
-  # `workflow dispatch` isn't showing up in github because it's not the default branch
-  # See https://stackoverflow.com/a/75250828
   workflow_dispatch:
     inputs:
       tags:
         required: False
         description: 'Optional. Use a "tag expression" specify which tagged tests to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)'
-        # # Only test 2 tests - one uses an env var, the other uses AL.
-        # # They test if env vars get set correctly and depencencies get
-        # # pulled in correctly.
-        # default: '@al1'
       enable_tmate:
         type: boolean
         description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
@@ -29,11 +23,10 @@ jobs:
         node-version: [18.x]
 
     env:
-      # How would a dev make another user/password if they wanted to?
+      # TODO: Must solve - how would a dev make another user/password if they wanted to?
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
       SECRET_FOR_MISSING_FIELD: secret for missing field
-      #_ALKILN_DANGEROUS_DEBUG: true
       
     steps:
       # Place the root directory in this branch
@@ -64,10 +57,9 @@ jobs:
         run: |
           echo "USER1_EMAIL=${{ steps.github_server.outputs.DA_ADMIN_EMAIL }}" >> $GITHUB_ENV
           echo "USER1_PASSWORD=${{ steps.github_server.outputs.DA_ADMIN_PASSWORD }}" >> $GITHUB_ENV
+      ## Example of working with the docker container after it's been started
       #- name: Work with docker
       #  run: |
-      #    # Authors can use this to do more with the docker container.
-      #    # There may be a better way. Would take research. A docker action?
       #    container_name=$(docker ps --format '{{.Names}}' | head -n 1)
       #    echo "container_name is $container_name"
 
