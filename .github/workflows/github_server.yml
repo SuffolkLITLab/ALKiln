@@ -72,6 +72,6 @@ jobs:
           INSTALL_METHOD: "server"
           # TODO: See what happens if this is an empty string
           ALKILN_VERSION: "server"
-          #ALKILN_TAG_EXPRESSION: "@al1"
+          ALKILN_TAG_EXPRESSION: "@al1"
       - run: echo "Finished running ALKiln tests"
 

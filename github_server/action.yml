@@ -58,7 +58,7 @@ runs:
           mkdir /tmp/config
           echo "${{ inputs.CONFIG_CONTENTS }}" > /tmp/config/myconfig.yml
           docker pull jhpyle/docassemble
-          docker run --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" --env DA_ADMIN_PASSWORD="${{ env.DA_ADMIN_PASSWORD }}" --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" --env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config --cap-add SYS_PTRACE --memory="4gb" -d -p 80:80 jhpyle/docassemble
+          docker run --name docassemble_container --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" --env DA_ADMIN_PASSWORD="${{ env.DA_ADMIN_PASSWORD }}" --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" --env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config --cap-add SYS_PTRACE --memory="4gb" -d -p 80:80 jhpyle/docassemble
         shell: bash
       - name: "ALKiln github_server: Wait for server to start"
         run: |
