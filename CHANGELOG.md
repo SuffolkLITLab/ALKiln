@@ -42,7 +42,10 @@ Format:
 ### Internal
 - 
 -->
-<!-- ## [Unreleased] -->
+
+## [Unreleased]
+
+- Downloads are now faster! You won't have to wait for the full duration of a step (30 seconds) to download a file anymore. See [this PR](https://github.com/SuffolkLITLab/ALKiln/pull/798) for more details.
 
 ## [5.4.1] - 2023-10-18
 
