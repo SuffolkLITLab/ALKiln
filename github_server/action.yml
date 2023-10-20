@@ -85,13 +85,12 @@ runs:
           ready="false"
 
           while [[ $ready == "false" ]]; do
-            echo "Time ellapsed: $SECONDS seconds"
+            echo "Time elapsed: $SECONDS seconds"
 
             # Check if max seconds till loading has passed
             if [[ $SECONDS -ge $MAX_SECONDS_FOR_DOCKER ]]; then
               echo "ALKiln GitHub Server Error: Timed out waiting for docker container to serve the site. If you want to give your docker container more timem to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
-              # Exit with failure, or allow this to keep going?
-              break
+              exit 1
             fi
 
             # Set the variable to a new string value in each iteration
@@ -146,9 +145,8 @@ runs:
       - name: "ALKiln github_server: Docker logs"
         if: ${{ always() }}
         run: |
-          docker_logs=$(docker logs $(docker ps --filter "ancestor=jhpyle/docassemble" --format {{.ID}}))
           # Should this name have a date/time attached? The logs themselves have timestamps
-          echo "$docker_logs" > /tmp/alkiln_docker_logs.txt
+          echo "$(docker logs docassemble_container)" > /tmp/alkiln_docker_logs.txt
         shell: bash
     
       # Should this date/time be created at the start of this action?
