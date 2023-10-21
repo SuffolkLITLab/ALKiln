@@ -12,7 +12,6 @@ on:
         description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
         default: false
-      # TODO: alkiln_version:
 
 jobs:
 
@@ -23,7 +22,6 @@ jobs:
         node-version: [18.x]
 
     env:
-      # TODO: Must solve - how would a dev make another user/password if they wanted to?
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
       SECRET_FOR_MISSING_FIELD: secret for missing field
@@ -49,6 +47,7 @@ jobs:
           echo "USER1_EMAIL=${{ steps.github_server.outputs.DA_ADMIN_EMAIL }}" >> $GITHUB_ENV
           echo "USER1_PASSWORD=${{ steps.github_server.outputs.DA_ADMIN_PASSWORD }}" >> $GITHUB_ENV
       ## Example of working with the docker container after it's been started
+      ## For example, you can make more users with different permissions and passwords
       #- name: Work with docker
       #  run: |
       #    container_name=$(docker ps --format '{{.Names}}' | head -n 1)
@@ -61,8 +60,9 @@ jobs:
           SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
-          # TODO: See what happens if this is an empty string
+          # Temporary while in pre-release
           ALKILN_VERSION: "server"
-          ALKILN_TAG_EXPRESSION: "@al1"
+          # Has been useful for development. Can remove when more stable.
+          ALKILN_TAG_EXPRESSION: ""
       - run: echo "Finished running ALKiln tests"
 

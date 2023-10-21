@@ -58,11 +58,11 @@ runs:
           mkdir /tmp/config
           if [ -n "${{ inputs.CONFIG_CONTENTS }}" ]
           then
-            echo "The developer did provided a custom docassemble config file as an input into this action."
+            echo "ALKiln github_server: The developer did provided a custom docassemble config file as an input into this action."
             echo "${{ inputs.CONFIG_CONTENTS }}" > /tmp/config/myconfig.yml
             echo "CONFIG_ARGS=--env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config " >> $GITHUB_ENV
           else
-            echo "The developer did not provide a custom docassemble config file as an input into this action. Docassemble will use its default config."
+            echo "ALKiln github_server: The developer did not provide a custom docassemble config file as an input into this action. Docassemble will use its default config."
             echo "CONFIG_ARGS=" >> $GITHUB_ENV
           fi
         shell: bash
