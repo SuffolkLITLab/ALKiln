@@ -56,9 +56,25 @@ runs:
       - name: "ALKiln github_server: Download and start docker"
         run: |
           mkdir /tmp/config
-          echo "${{ inputs.CONFIG_CONTENTS }}" > /tmp/config/myconfig.yml
+          if [ -n "${{ inputs.CONFIG_CONTENTS }}" ]
+          then
+            echo "The developer did provided a custom docassemble config file as an input into this action."
+            echo "${{ inputs.CONFIG_CONTENTS }}" > /tmp/config/myconfig.yml
+            echo "CONFIG_ARGS=--env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config " >> $GITHUB_ENV
+          else
+            echo "The developer did not provide a custom docassemble config file as an input into this action. Docassemble will use its default config."
+            echo "CONFIG_ARGS=" >> $GITHUB_ENV
+          fi
+        shell: bash
+      - run: |
           docker pull jhpyle/docassemble
-          docker run --name docassemble_container --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" --env DA_ADMIN_PASSWORD="${{ env.DA_ADMIN_PASSWORD }}" --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" --env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config --cap-add SYS_PTRACE --memory="4gb" -d -p 80:80 jhpyle/docassemble
+          docker run --name docassemble_container \
+                     --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" \
+                     --env DA_ADMIN_PASSWORD="${{ env.DA_ADMIN_PASSWORD }}" \
+                     --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" \
+                     ${{ env.CONFIG_ARGS }} \
+                     --cap-add SYS_PTRACE \
+                     --memory="4gb" -d -p 80:80 jhpyle/docassemble
         shell: bash
       - name: "ALKiln github_server: Wait for server to start"
         run: |
@@ -105,11 +121,12 @@ runs:
       - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
         shell: bash
 
-      # TODO: Upload artifacts that subscribers can download on the Actions summary page
+      # Upload artifacts that subscribers can download on the Actions summary page
       - name: "ALKiln github_server: Docker logs"
         if: ${{ always() }}
         run: |
           # Should this name have a date/time attached? The logs themselves have timestamps
+          # Maybe. This is what will be unzipped into the user's folder.
           echo "$(docker logs docassemble_container)" > /tmp/alkiln_docker_logs.txt
         shell: bash
       

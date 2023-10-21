@@ -32,14 +32,6 @@ jobs:
       # Place the root directory in this branch
       - uses: actions/checkout@v3
 
-      # Debugging. Maybe add a long sleep after whatever it is we want to check
-      # to give us time to explore.
-      - name: Setup tmate session
-        if: ${{ inputs.enable_tmate }}
-        uses: mxschmitt/action-tmate@v3
-        with:
-          detached: true
-
       - name: Start the temporary GitHub server
         id: github_server
         uses: ./github_server
@@ -47,8 +39,7 @@ jobs:
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
       - run: echo "Finished starting the GitHub server"
 
-      # Debugging on failure
-      # Trying to catch that intermittent bug mentioned in ./github_server/action.yml
+      # Debugging on failure to explore things like config issues
       - name: Docker failure tmate session
         if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3
