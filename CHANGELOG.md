@@ -42,7 +42,6 @@ Format:
 ### Internal
 - 
 -->
-<<<<<<< HEAD
 
 <!-- ## [Unreleased] -->
 
