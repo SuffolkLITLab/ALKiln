@@ -88,23 +88,23 @@ runs:
           response="start"
 
           while [[ $response != *"200"* ]]; do
-            echo "Time elapsed: $SECONDS seconds"
+            echo "ALKiln github_server: Time elapsed: $SECONDS seconds"
 
             # Check if max seconds till loading has passed
             if [[ $SECONDS -ge $MAX_SECONDS_FOR_DOCKER ]]; then
-              echo "ALKiln GitHub Server Error: Timed out waiting for docker container to serve the site. If you want to give your docker container more timem to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
+              echo "ALKiln github_server Error: Timed out waiting for docker container to serve the site. If you want to give your docker container more timem to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
               exit 1
             fi
 
             # Set the variable to a new string value in each iteration
             response=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:80/health_check?ready=1)
-            echo "response is $response"
+            echo "ALKiln github_server: response is $response"
 
             # Check if the string includes the desired text
             if [[ $response == *"200"* ]]; then
-              echo "Success! The docker container is ready!"
+              echo "ALKiln github_server: Success! The docker container is ready!"
             else
-              echo "The docker container isn't ready yet. Will check again in 30 seconds."
+              echo "ALKiln github_server: The docker container isn't ready yet. Will check again in 30 seconds."
               sleep 30
             fi
 
@@ -125,15 +125,12 @@ runs:
       - name: "ALKiln github_server: Docker logs"
         if: ${{ always() }}
         run: |
-          # Should this name have a date/time attached? The logs themselves have timestamps
-          # Maybe. This is what will be unzipped into the user's folder.
-          echo "$(docker logs docassemble_container)" > /tmp/alkiln_docker_logs.txt
+          echo "$(docker logs docassemble_container)" > /tmp/alkiln_docker_logs-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC.txt
         shell: bash
-      
       - name: "ALKiln github_server: Get folder name with date and time"
         if: ${{ always() }}
         run: |
-          echo "GITHUB_SERVER_ARTIFACT_NAME=alkiln-github-server-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
+          echo "GITHUB_SERVER_ARTIFACT_NAME=alkiln_github_server-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
         shell: bash
       - name: "ALKiln github_server: Upload artifacts folder"
         if: ${{ always() }}

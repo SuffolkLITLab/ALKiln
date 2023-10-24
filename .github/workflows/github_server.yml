@@ -30,19 +30,19 @@ jobs:
       # Place the root directory in this branch
       - uses: actions/checkout@v3
 
-      - name: Start the temporary GitHub server
+      - name: Run ALKiln - Start the temporary GitHub server
         id: github_server
-        uses: ./github_server
+        uses: ./action_for_github_server
         with:
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
-      - run: echo "Finished starting the GitHub server"
+      - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
 
       # Debugging on failure to explore things like config issues
-      - name: Docker failure tmate session
+      - name: Run ALKiln - Docker failure tmate session
         if: ${{ failure() }}
         uses: mxschmitt/action-tmate@v3
 
-      - name: Env vars from server output
+      - name: Run ALKiln - Env vars from server output
         run: |
           echo "USER1_EMAIL=${{ steps.github_server.outputs.DA_ADMIN_EMAIL }}" >> $GITHUB_ENV
           echo "USER1_PASSWORD=${{ steps.github_server.outputs.DA_ADMIN_PASSWORD }}" >> $GITHUB_ENV
@@ -64,5 +64,5 @@ jobs:
           ALKILN_VERSION: "server"
           # Has been useful for development. Can remove when more stable.
           ALKILN_TAG_EXPRESSION: ""
-      - run: echo "Finished running ALKiln tests"
+      - run: echo "ALkiln finished running ALKiln tests"
 
