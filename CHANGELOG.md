@@ -43,7 +43,10 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Fixed
+- Continuing development of random input test: Deal with non-existent elements, add a default input `type` of 'text', only press 'Back' 10% of the time instead of potentially 50%, navigate back to the interview from an external link (that goes outside the server) if necessary. Also add more debug logs to help diagnose problems. https://github.com/SuffolkLITLab/ALKiln/pull/633
 
 ## [5.4.2] - 2023-10-22
 
