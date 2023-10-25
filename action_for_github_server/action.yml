@@ -122,19 +122,20 @@ runs:
         shell: bash
 
       # Upload artifacts that subscribers can download on the Actions summary page
+      - name: "ALKiln github_server: Get path names with date and time"
+        if: ${{ always() }}
+        run: |
+          echo "GITHUB_SERVER_LOG_FILE_NAME=/tmp/alkiln_docker_logs-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC.txt" >> $GITHUB_ENV
+          echo "GITHUB_SERVER_ARTIFACT_NAME=alkiln_github_server-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
+        shell: bash
       - name: "ALKiln github_server: Docker logs"
         if: ${{ always() }}
         run: |
-          echo "$(docker logs docassemble_container)" > /tmp/alkiln_docker_logs-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC.txt
-        shell: bash
-      - name: "ALKiln github_server: Get folder name with date and time"
-        if: ${{ always() }}
-        run: |
-          echo "GITHUB_SERVER_ARTIFACT_NAME=alkiln_github_server-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
+          echo "$(docker logs docassemble_container)" > "${{ env.GITHUB_SERVER_LOG_FILE_NAME }}"
         shell: bash
       - name: "ALKiln github_server: Upload artifacts folder"
         if: ${{ always() }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.GITHUB_SERVER_ARTIFACT_NAME }}
-          path: /tmp/alkiln_docker_logs.txt
+          path: ${{ env.GITHUB_SERVER_LOG_FILE_NAME }}
