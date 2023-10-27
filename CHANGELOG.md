@@ -43,7 +43,9 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.5.0] - 2023-10-27
 
 ### Added
 - Added a github action that allows authors to run tests on an isolated server that ALKiln creates on GitHub. They will need to create a new GitHub workflow to run the action. This reduces flakiness that authors' servers can create during server reload caused by updating their config, pulling in a package with a module, and other such things. As with all tests, especially with end to end test, there will always be some flakiness.
