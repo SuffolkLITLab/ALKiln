@@ -61,8 +61,8 @@ jobs:
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
           # Temporary while in pre-release
-          ALKILN_VERSION: "server"
+          #ALKILN_VERSION: "server"
           # Has been useful for development. Can remove when more stable.
-          ALKILN_TAG_EXPRESSION: ""
+          #ALKILN_TAG_EXPRESSION: ""
       - run: echo "ALkiln finished running ALKiln tests"
 
