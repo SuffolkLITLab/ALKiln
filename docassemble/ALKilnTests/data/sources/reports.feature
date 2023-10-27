@@ -303,14 +303,17 @@ Scenario: Fail with cannot find missing document
 
 # ---- Exceptions in scope.js ----
 
-# This can have a ton of different error messages depending on the DA error
-# that was triggered. We'll make do with one for now.
+# This can have a ton of different error messages depending on the DA
+# error that was triggered. Even for a missing file, there are two:
+# "Reference to invalid playground path" is for package installed in the playground
+# "DANotFoundError" is for a package installed on the server or a
+# playground id (user) that doesn't exist
 @fast @rf20 @error
 Scenario: Fail with system error after Step using wrong file name as trigger
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
-  ERROR: On final attempt to load interview, got
+  ERROR: On final attempt to load interview
   """
   And I start the interview at "wrong_yaml_filename"
 

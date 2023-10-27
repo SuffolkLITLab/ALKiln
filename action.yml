@@ -22,6 +22,15 @@ inputs:
     description: "Max amount of time to give the server to reload if it needs to"
     required: false
     # no default to let the custom Scenario timeouts create the reload timeout
+  # INSTALL_LOCATION? Will that get confused with the location passed into the command line?
+  # Maybe `INSTALL_LOCATION` could be "playground", "server", or a custom path and we could handle all those.
+  INSTALL_METHOD:
+    description: "Default is 'playground'. Other option: 'server'. How to install the package onto the server."
+    required: false
+    default: "playground"
+  ALKILN_TAG_EXPRESSION:
+    description: "The tag expression to use to limit which tests to run. Default is no tag expression."
+    required: false
 
 runs:
   using: "composite"
@@ -46,29 +55,43 @@ runs:
         echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nSERVER_RELOAD_TIMEOUT_SECONDS is $SERVER_RELOAD_TIMEOUT_SECONDS\n"
       shell: bash
 
-    # Install node
+    # Install
     - name: "ALKiln: Install node packages"
       uses: actions/setup-node@v3
       with:
         node-version: "18"
     - name: Install ALKiln directly from npm
       run: |
-        npm install -g @suffolklitlab/alkiln
+        npm install -g @suffolklitlab/alkiln@$ALKILN_VERSION
       shell: bash
 
-    # Run tests
+    # Install on playground
     - name: "ALKiln: Create a Project and pull the package from GitHub"
+      if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       run: alkiln-setup
       shell: bash
+    - run: echo -e "\n\n====\nALKiln could not create a project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
+      if: ${{ inputs.INSTALL_METHOD == 'playground' && failure() }}
+      shell: bash
+
+    # Install on server
+    - name: "ALKiln: Install the GitHub package onto the server"
+      if: ${{ inputs.INSTALL_METHOD == 'server' }}
+      run: alkiln-server-install
+      shell: bash
+    - run: echo -e "\n\n====\nALKiln could not install the package on the temporary GitHub docassemble server. Check the steps above this line.\n\n"
+      if: ${{ inputs.INSTALL_METHOD == 'server' && failure() }}
+      shell: bash
+
+    # run tests
     - name: "ALKiln: Run tests"
       if: ${{ success() }}
-      run: alkiln-run ${{ github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
+      run: alkiln-run ${{ inputs.ALKILN_TAG_EXPRESSION || github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
       shell: bash
-    - run: echo -e "\n\n====ALKiln could not create a project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
-      if: ${{ failure() }}
-      shell: bash
-    - name: "ALKiln: Delete project from docassemble test account"
-      if: ${{ always() }}
+    
+    # on playground, delete project
+    - name: "ALKiln: Try to delete the project from the playground of the docassemble test account."
+      if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       run: alkiln-takedown
       shell: bash
     
@@ -81,7 +104,7 @@ runs:
         path: ./alkiln-*
 
 # ##################################
-# # A developer's workflow should look similar to the below
+# # A developer's workflow should look similar to the below.
 # # In place of `uses: suffolkLITLab/ALKiln@v5`, they
 # # might use another version.
 #

@@ -1,0 +1,68 @@
+name: GitHub server tests
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      tags:
+        required: False
+        description: 'Optional. Use a "tag expression" specify which tagged tests to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)'
+      enable_tmate:
+        type: boolean
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: false
+
+jobs:
+
+  github-server-tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    env:
+      SECRET_VAR1: secret-var1-value
+      SECRET_VAR2: secret-var2-value
+      SECRET_FOR_MISSING_FIELD: secret for missing field
+      
+    steps:
+      # Place the root directory in this branch
+      - uses: actions/checkout@v3
+
+      - name: Run ALKiln - Start the temporary GitHub server
+        id: github_server
+        uses: ./action_for_github_server
+        with:
+          CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
+      - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
+
+      # Debugging on failure to explore things like config issues
+      - name: Run ALKiln - Docker failure tmate session
+        if: ${{ failure() }}
+        uses: mxschmitt/action-tmate@v3
+
+      - name: Run ALKiln - Env vars from server output
+        run: |
+          echo "USER1_EMAIL=${{ steps.github_server.outputs.DA_ADMIN_EMAIL }}" >> $GITHUB_ENV
+          echo "USER1_PASSWORD=${{ steps.github_server.outputs.DA_ADMIN_PASSWORD }}" >> $GITHUB_ENV
+      ## Example of working with the docker container after it's been started
+      ## For example, you can make more users with different permissions and passwords
+      #- name: Work with docker
+      #  run: |
+      #    container_name=$(docker ps --format '{{.Names}}' | head -n 1)
+      #    echo "container_name is $container_name"
+
+      - name: "Run ALKiln tests"
+        if: ${{ success() }}
+        uses: ./
+        with:
+          SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
+          DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
+          INSTALL_METHOD: "server"
+          # Temporary while in pre-release
+          ALKILN_VERSION: "server"
+          # Has been useful for development. Can remove when more stable.
+          ALKILN_TAG_EXPRESSION: ""
+      - run: echo "ALkiln finished running ALKiln tests"
+

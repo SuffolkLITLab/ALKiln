@@ -45,6 +45,9 @@ Format:
 
 ## [Unreleased]
 
+### Added
+- Added a github action that allows authors to run tests on an isolated server that ALKiln creates on GitHub. They will need to create a new GitHub workflow to run the action. This reduces flakiness that authors' servers can create during server reload caused by updating their config, pulling in a package with a module, and other such things. As with all tests, especially with end to end test, there will always be some flakiness.
+
 ### Fixed
 - Continuing development of random input test: Deal with non-existent elements, add a default input `type` of 'text', only press 'Back' 10% of the time instead of potentially 50%, navigate back to the interview from an external link (that goes outside the server) if necessary. Also add more debug logs to help diagnose problems. https://github.com/SuffolkLITLab/ALKiln/pull/633
 
