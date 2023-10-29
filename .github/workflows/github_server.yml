@@ -12,6 +12,11 @@ on:
         description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
         default: false
+      show_docker_logs:
+        required: false
+        default: false
+        type: boolean
+        description: 'Show the docker logs while building the GitHub server container. It will also save the docker log artifact. This might show sensitive config information.'
 
 jobs:
 

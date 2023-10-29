@@ -13,10 +13,14 @@ description: "Download and start up a temporary docassemble server on GitHub's s
 
 inputs:
   CONFIG_CONTENTS:
-    description: "The contents of the config file of the docassemble server"
+    description: "The contents of the config file of the docassemble server."
+    required: false
+  SHOW_DOCKER_LOGS:
+    description: "Default is `false` to keep logs hidden and prevent making the GitHub docker logs artifact. When set to `true`, this will log the docker output in the GitHub job and create the log artifact. It will be visible to those who can see the logs, like admins and contributors."
+    default: false
     required: false
   MAX_SECONDS_FOR_DOCKER:
-    description: "Maximum amount of seconds to give the docassemble docker container to serve the site."
+    description: "Default is 600 seconds. Maximum amount of seconds to give the docassemble docker container to serve the site."
     required: false
     default: 600  # 10 min
 
@@ -53,6 +57,23 @@ runs:
           echo "DA_ADMIN_PASSWORD=$DA_ADMIN_PASSWORD" >> "$GITHUB_OUTPUT"
         shell: bash
 
+      # GitHub masks secret values like the config, so we don't really
+      # need to hide yet, but we may start using variables, so a question:
+      # If in future we allow using a variable instead of a secret,
+      # should we let those be visible?
+      # Show or hide config and docker logs the first time
+      - name: Generate unique token for hiding logs
+        if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
+        id: hide-token1
+        run: echo "::set-output name=token::$(openssl rand -hex 20"
+      - name: Hide config and docker logs
+        if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
+        run: |
+          echo "ALKiln github_server: GitHub will now stop showing logs to avoid possibly showing details about your config. If you want to show the logs here, use `with:` and set `SHOW_DOCKER_LOGS` to `true`. They will only be visible to those who can already see the action logs, like admins or collaborators."
+      # Do these need to be 2 separate steps? I think the log doesn't
+      # get made until after the `run`, so I think they do
+      - run: echo "::stop-commands::${{ steps.hide-token1.outputs.token }}"
+
       - name: "ALKiln github_server: Download and start docker"
         run: |
           mkdir /tmp/config
@@ -76,6 +97,14 @@ runs:
                      --cap-add SYS_PTRACE \
                      --memory="4gb" -d -p 80:80 jhpyle/docassemble
         shell: bash
+
+      # Show the time it takes to start the server.
+      - name: Temporarily show logs
+        if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
+        run: echo "::${{ steps.hide-token1.outputs.token }}::"
+      - run: |
+          echo "ALKiln github_server: ALKiln will show safe logs temporarily as ALKiln waits for the server to start"
+
       - name: "ALKiln github_server: Wait for server to start"
         run: |
           # ALKiln github_server: Wait for server to start
@@ -111,31 +140,50 @@ runs:
           done
         shell: bash
 
+      # Show or hide docker logs again
+      - name: Generate unique token for hiding logs
+        if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
+        id: hide-token2
+        run: echo "::set-output name=token::$(openssl rand -hex 20"
+      - name: Hide config and docker logs
+        if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
+        run: |
+          echo "ALKiln github_server: ALKiln will now hide logs again"
+      - run: echo "::stop-commands::${{ steps.hide-token2.outputs.token }}"
+
       # Don't rely on the environment's version of python
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
       - run: pip install docassemblecli
         shell: bash
-      # Install the current directory onto the docassemble server
+      # Install the current directory (.) onto the docassemble server
       - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
         shell: bash
 
-      # Upload artifacts that subscribers can download on the Actions summary page
+      # Upload artifacts that devs can download on the Actions summary page
+      # Only if the developer wants to get that info, though
       - name: "ALKiln github_server: Get path names with date and time"
-        if: ${{ always() }}
+        if: ${{ always() && github.event.inputs.SHOW_DOCKER_LOGS == 'true' }}
         run: |
           echo "GITHUB_SERVER_LOG_FILE_NAME=/tmp/alkiln_docker_logs-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC.txt" >> $GITHUB_ENV
           echo "GITHUB_SERVER_ARTIFACT_NAME=alkiln_github_server-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
         shell: bash
       - name: "ALKiln github_server: Docker logs"
-        if: ${{ always() }}
+        if: ${{ always() && github.event.inputs.SHOW_DOCKER_LOGS == 'true' }}
         run: |
           echo "$(docker logs docassemble_container)" > "${{ env.GITHUB_SERVER_LOG_FILE_NAME }}"
         shell: bash
       - name: "ALKiln github_server: Upload artifacts folder"
-        if: ${{ always() }}
+        if: ${{ always() && github.event.inputs.SHOW_DOCKER_LOGS == 'true' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.GITHUB_SERVER_ARTIFACT_NAME }}
           path: ${{ env.GITHUB_SERVER_LOG_FILE_NAME }}
+
+      # Show logs again, in case that's necessary
+      - name: Show other GitHub logs
+        if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
+        run: echo "::${{ steps.hide-token2.outputs.token }}::"
+      - run: |
+          echo "ALKiln github_server: ALKiln will show logs again"
