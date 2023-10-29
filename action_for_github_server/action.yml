@@ -65,7 +65,7 @@ runs:
       - name: Generate unique token for hiding logs
         if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
         id: hide-token1
-        run: echo "::set-output name=token::$(openssl rand -hex 20"
+        run: echo "::set-output name=token::$(openssl rand -hex 20)"
         shell: bash
       - name: Hide config and docker logs
         if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
@@ -149,7 +149,7 @@ runs:
       - name: Generate unique token for hiding logs
         if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
         id: hide-token2
-        run: echo "::set-output name=token::$(openssl rand -hex 20"
+        run: echo "::set-output name=token::$(openssl rand -hex 20)"
         shell: bash
       - name: Hide config and docker logs
         if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
