@@ -41,6 +41,7 @@ jobs:
         with:
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
       - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
+        shell: bash
 
       # Debugging on failure to explore things like config issues
       - name: Run ALKiln - Docker failure tmate session
@@ -70,4 +71,5 @@ jobs:
           # Has been useful for development. Can remove when more stable.
           #ALKILN_TAG_EXPRESSION: ""
       - run: echo "ALkiln finished running ALKiln tests"
+        shell: bash
 

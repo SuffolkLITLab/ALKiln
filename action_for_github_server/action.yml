@@ -66,13 +66,16 @@ runs:
         if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
         id: hide-token1
         run: echo "::set-output name=token::$(openssl rand -hex 20"
+        shell: bash
       - name: Hide config and docker logs
         if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
         run: |
           echo "ALKiln github_server: GitHub will now stop showing logs to avoid possibly showing details about your config. If you want to show the logs here, use `with:` and set `SHOW_DOCKER_LOGS` to `true`. They will only be visible to those who can already see the action logs, like admins or collaborators."
+        shell: bash
       # Do these need to be 2 separate steps? I think the log doesn't
       # get made until after the `run`, so I think they do
       - run: echo "::stop-commands::${{ steps.hide-token1.outputs.token }}"
+        shell: bash
 
       - name: "ALKiln github_server: Download and start docker"
         run: |
@@ -102,8 +105,10 @@ runs:
       - name: Temporarily show logs
         if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
         run: echo "::${{ steps.hide-token1.outputs.token }}::"
+        shell: bash
       - run: |
           echo "ALKiln github_server: ALKiln will show safe logs temporarily as ALKiln waits for the server to start"
+        shell: bash
 
       - name: "ALKiln github_server: Wait for server to start"
         run: |
@@ -145,11 +150,14 @@ runs:
         if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
         id: hide-token2
         run: echo "::set-output name=token::$(openssl rand -hex 20"
+        shell: bash
       - name: Hide config and docker logs
         if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
         run: |
           echo "ALKiln github_server: ALKiln will now hide logs again"
+        shell: bash
       - run: echo "::stop-commands::${{ steps.hide-token2.outputs.token }}"
+        shell: bash
 
       # Don't rely on the environment's version of python
       - uses: actions/setup-python@v4
@@ -185,5 +193,7 @@ runs:
       - name: Show other GitHub logs
         if: ${{ inputs.SHOW_DOCKER_LOGS == 'false' }}
         run: echo "::${{ steps.hide-token2.outputs.token }}::"
+        shell: bash
       - run: |
           echo "ALKiln github_server: ALKiln will show logs again"
+        shell: bash
