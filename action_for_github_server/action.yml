@@ -76,17 +76,18 @@ runs:
       - name: Generate unique token for hiding output
         if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
         id: stop-output-token1
-        run: echo "::set-output name=token::$(openssl rand -hex 20)"
+        #run: echo "::set-output name=token::$(openssl rand -hex 20)"
+        run: echo "token=$(openssl rand -hex 20)" >> $GITHUB_OUTPUT
         shell: bash
       - name: Prevent config and docker output
         if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
         run: |
-          echo '===\nALKiln github_server: GitHub will now stop showing output to avoid possibly showing details about your config. If you want to get output to see more of what's going on, use "with:"" and set the input "SHOW_DOCKER_OUTPUT" to "true". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
+          echo '===\nALKiln github_server: GitHub will now stop showing output to avoid possibly showing details about your config. If you want to get output to see more of what is going on, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "true". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
         shell: bash
       - name: Inform user about visible docker output
         if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
         run: |
-          echo '===\nALKiln github_server: GitHub will now show the output of docker creation. ALKiln can't guarantee that this output won't show senstive information. If you want to prevent output, use "with:"" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
+          echo '===\nALKiln github_server: GitHub will now show the output of docker creation. ALKiln cannot control this output. If you want to prevent output, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
         shell: bash
       # Do these need to be 2 separate steps? I think the log doesn't
       # get made until after the `run`, so I think they do
@@ -154,7 +155,7 @@ runs:
             if [[ $response == *"200"* ]]; then
               echo "ALKiln github_server: Success! The docker container is ready!"
             else
-              echo "ALKiln github_server: The docker container isn't ready yet. Will check again in 30 seconds."
+              echo "ALKiln github_server: The docker container is not yet ready. Will check again in 30 seconds."
               sleep 30
             fi
 
@@ -165,7 +166,8 @@ runs:
       - name: Generate unique token for preventing output
         if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
         id: stop-output-token2
-        run: echo "::set-output name=token::$(openssl rand -hex 20)"
+        #run: echo "::set-output name=token::$(openssl rand -hex 20)"
+        run: echo "token=$(openssl rand -hex 20)" >> $GITHUB_OUTPUT
         shell: bash
       - name: Prevent config and docker output
         if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
