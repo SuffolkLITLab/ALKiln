@@ -72,30 +72,22 @@ runs:
           fi
         shell: bash
 
-      # Prevent config and docker output the first time
-      - name: Generate unique token for hiding output
-        if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
-        id: stop-output-token1
-        #run: echo "::set-output name=token::$(openssl rand -hex 20)"
-        run: echo "token=$(openssl rand -hex 20)" >> $GITHUB_OUTPUT
-        shell: bash
-      - name: Prevent config and docker output
-        if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
+      # Messages about output
+      - if: ${{ env.OUTPUT_DOCKER == 'false' }}
         run: |
+          # Info: no output
           printf '===\nALKiln github_server: GitHub will now stop showing output to avoid possibly showing details about your config. If you want to get output to see more of what is going on, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "true". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
         shell: bash
-      - name: Inform user about visible docker output
-        if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
+      - if: ${{ env.OUTPUT_DOCKER == 'true' }}
         run: |
+          # Info: show output
           printf '===\nALKiln github_server: GitHub will now show the output of docker creation. ALKiln cannot control this output. If you want to prevent output, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
         shell: bash
-      # Do these need to be 2 separate steps? I think the log doesn't
-      # get made until after the `run`, so I think they do
-      - run: echo "::stop-commands::${{ steps.stop-output-token1.outputs.token }}"
-        shell: bash
 
+      # Can't prevent config output afaik. It's just present in the environment.
       - name: "ALKiln github_server: Download and start docker"
         run: |
+          # Info: Silent config values
           mkdir /tmp/config
           if [ -n "${{ inputs.CONFIG_CONTENTS }}" ]
           then
@@ -107,7 +99,10 @@ runs:
             echo "CONFIG_ARGS=" >> $GITHUB_ENV
           fi
         shell: bash
-      - run: |
+      # No output
+      - if: ${{ env.OUTPUT_DOCKER == 'false' }}
+        run: |
+          # Info: Silent docker pull/run
           docker pull jhpyle/docassemble > /dev/null 2>&1
           docker run --name docassemble_container \
                      --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" \
@@ -117,13 +112,24 @@ runs:
                      --cap-add SYS_PTRACE \
                      --memory="4gb" -d -p 80:80 jhpyle/docassemble > /dev/null 2>&1
         shell: bash
+      # With output
+      - if: ${{ env.OUTPUT_DOCKER == 'true' }}
+        run: |
+          # Info: Docker pull/run
+          docker pull jhpyle/docassemble > /dev/null 2>&1
+          docker run --name docassemble_container \
+                     --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" \
+                     --env DA_ADMIN_PASSWORD="${{ env.DA_ADMIN_PASSWORD }}" \
+                     --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" \
+                     ${{ env.CONFIG_ARGS }} \
+                     --cap-add SYS_PTRACE \
+                     --memory="4gb" -d -p 80:80 jhpyle/docassemble
+        shell: bash
 
       # Show the time it takes to start the server.
-      - name: Temporarily show output
-        if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
-        run: echo "::${{ steps.stop-output-token1.outputs.token }}::"
-        shell: bash
-      - run: |
+      - if: ${{ env.OUTPUT_DOCKER == 'false' }}
+        run: |
+          # Info: temporary visible logs
           echo "ALKiln github_server: ALKiln will show safe ALKiln-only output temporarily as ALKiln waits for the server to start"
         shell: bash
 
@@ -137,7 +143,6 @@ runs:
           sleep 60
 
           response="start"
-
           while [[ $response != *"200"* ]]; do
             echo "ALKiln github_server: Time elapsed: $SECONDS seconds"
 
@@ -162,29 +167,33 @@ runs:
           done
         shell: bash
 
-      # Prevent docker output again
-      - name: Generate unique token for preventing output
-        if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
-        id: stop-output-token2
-        #run: echo "::set-output name=token::$(openssl rand -hex 20)"
-        run: echo "token=$(openssl rand -hex 20)" >> $GITHUB_OUTPUT
-        shell: bash
-      - name: Prevent config and docker output
-        if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
+      # Output visibility message
+      - name: Message about docassemble install output
+        if: ${{ env.OUTPUT_DOCKER == 'false' }}
         run: |
+          # Info: Silent install message
           echo "ALKiln github_server: ALKiln will now prevent output again"
-        shell: bash
-      - run: echo "::stop-commands::${{ steps.stop-output-token2.outputs.token }}"
         shell: bash
 
       # Don't rely on the environment's version of python
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
+      # No output
       - run: pip install docassemblecli > /dev/null 2>&1
+        if: ${{ env.OUTPUT_DOCKER == 'false' }}
         shell: bash
       # Install the package, the current directory (.), onto the docassemble server
       - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY > /dev/null 2>&1
+        if: ${{ env.OUTPUT_DOCKER == 'false' }}
+        shell: bash
+      # With output
+      - run: pip install docassemblecli
+        if: ${{ env.OUTPUT_DOCKER == 'true' }}
+        shell: bash
+      # Install the package, the current directory (.), onto the docassemble server
+      - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
+        if: ${{ env.OUTPUT_DOCKER == 'true' }}
         shell: bash
 
       # Upload artifacts that devs can download on the Actions summary page
@@ -207,11 +216,8 @@ runs:
           name: ${{ env.GITHUB_SERVER_ARTIFACT_NAME }}
           path: ${{ env.GITHUB_SERVER_LOG_FILE_NAME }}
 
-      # Show output again, in case that's necessary
-      - name: Show other GitHub output
-        if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
-        run: echo "::${{ steps.stop-output-token2.outputs.token }}::"
-        shell: bash
       - run: |
+          # Info: End silent output
           echo "ALKiln github_server: ALKiln will show output again"
+        if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
         shell: bash
