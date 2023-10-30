@@ -82,12 +82,12 @@ runs:
       - name: Prevent config and docker output
         if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
         run: |
-          echo '===\nALKiln github_server: GitHub will now stop showing output to avoid possibly showing details about your config. If you want to get output to see more of what is going on, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "true". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
+          printf '===\nALKiln github_server: GitHub will now stop showing output to avoid possibly showing details about your config. If you want to get output to see more of what is going on, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "true". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
         shell: bash
       - name: Inform user about visible docker output
         if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
         run: |
-          echo '===\nALKiln github_server: GitHub will now show the output of docker creation. ALKiln cannot control this output. If you want to prevent output, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
+          printf '===\nALKiln github_server: GitHub will now show the output of docker creation. ALKiln cannot control this output. If you want to prevent output, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
         shell: bash
       # Do these need to be 2 separate steps? I think the log doesn't
       # get made until after the `run`, so I think they do
@@ -115,7 +115,7 @@ runs:
                      --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" \
                      ${{ env.CONFIG_ARGS }} \
                      --cap-add SYS_PTRACE \
-                     --memory="4gb" -d -p 80:80 jhpyle/docassemble
+                     --memory="4gb" -d -p 80:80 jhpyle/docassemble > /dev/null 2>&1
         shell: bash
 
       # Show the time it takes to start the server.
@@ -155,7 +155,7 @@ runs:
             if [[ $response == *"200"* ]]; then
               echo "ALKiln github_server: Success! The docker container is ready!"
             else
-              echo "ALKiln github_server: The docker container is not yet ready. Will check again in 30 seconds."
+              echo "ALKiln github_server: The docker container is not ready yet. Will check again in 30 seconds."
               sleep 30
             fi
 
@@ -184,7 +184,7 @@ runs:
       - run: pip install docassemblecli
         shell: bash
       # Install the package, the current directory (.), onto the docassemble server
-      - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
+      - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY > /dev/null 2>&1
         shell: bash
 
       # Upload artifacts that devs can download on the Actions summary page
