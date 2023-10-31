@@ -67,7 +67,7 @@ runs:
         run: |
           # Info: Docker logs visibility decision
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            echo "OUTPUT_DOCKER=${{ github.event.inputs.SHOW_DOCKER_OUTPUT }}" >> $GITHUB_ENV
+            echo "OUTPUT_DOCKER=${{ inputs.SHOW_DOCKER_OUTPUT }}" >> $GITHUB_ENV
           else
             echo "OUTPUT_DOCKER=false" >> $GITHUB_ENV
           fi
