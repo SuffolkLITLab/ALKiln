@@ -40,6 +40,7 @@ jobs:
         uses: ./action_for_github_server
         with:
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
+          SHOW_DOCKER_OUTPUT: "${{ github.event.inputs.show_docker_logs }}"
       - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
         shell: bash
 

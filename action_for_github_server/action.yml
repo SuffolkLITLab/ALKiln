@@ -65,6 +65,7 @@ runs:
       # Define the var to prevent/show docker output
       - name: Env var for showing docker output
         run: |
+          # Info: Docker logs visibility decision
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "OUTPUT_DOCKER=${{ github.event.inputs.SHOW_DOCKER_OUTPUT }}" >> $GITHUB_ENV
           else
