@@ -57,6 +57,22 @@ runs:
           echo "DA_ADMIN_PASSWORD=$DA_ADMIN_PASSWORD" >> "$GITHUB_OUTPUT"
         shell: bash
 
+      # Can't prevent config output afaik. It's just present in the environment.
+      - name: "ALKiln github_server: Get config"
+        run: |
+          # Info: config values
+          mkdir /tmp/config
+          if [ -n "${{ inputs.CONFIG_CONTENTS }}" ]
+          then
+            echo "ALKiln github_server: The developer did provide a custom docassemble config file as an input into this action."
+            echo "${{ inputs.CONFIG_CONTENTS }}" > /tmp/config/myconfig.yml
+            echo "CONFIG_ARGS=--env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config " >> $GITHUB_ENV
+          else
+            echo "ALKiln github_server: The developer did NOT provide a custom docassemble config file as an input into this action. Docassemble will use its default config."
+            echo "CONFIG_ARGS=" >> $GITHUB_ENV
+          fi
+        shell: bash
+
       # GitHub masks secret values like the config, so we don't really
       # need to stop that yet, but users may start using variables, so
       # a question: If in future we allow variables instead of just secrets,
@@ -85,23 +101,9 @@ runs:
           printf '===\nALKiln github_server: GitHub will now show the output of docker creation. ALKiln cannot control this output. If you want to prevent output, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
         shell: bash
 
-      # Can't prevent config output afaik. It's just present in the environment.
-      - name: "ALKiln github_server: Download and start docker"
-        run: |
-          # Info: Silent config values
-          mkdir /tmp/config
-          if [ -n "${{ inputs.CONFIG_CONTENTS }}" ]
-          then
-            echo "ALKiln github_server: The developer did provide a custom docassemble config file as an input into this action."
-            echo "${{ inputs.CONFIG_CONTENTS }}" > /tmp/config/myconfig.yml
-            echo "CONFIG_ARGS=--env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config " >> $GITHUB_ENV
-          else
-            echo "ALKiln github_server: The developer did NOT provide a custom docassemble config file as an input into this action. Docassemble will use its default config."
-            echo "CONFIG_ARGS=" >> $GITHUB_ENV
-          fi
-        shell: bash
       # No output
-      - if: ${{ env.OUTPUT_DOCKER == 'false' }}
+      - name: "ALKiln github_server: Download and start docker silently"
+        if: ${{ env.OUTPUT_DOCKER == 'false' }}
         run: |
           # Info: Silent docker pull/run
           docker pull jhpyle/docassemble > /dev/null 2>&1
@@ -114,10 +116,11 @@ runs:
                      --memory="4gb" -d -p 80:80 jhpyle/docassemble > /dev/null 2>&1
         shell: bash
       # With output
-      - if: ${{ env.OUTPUT_DOCKER == 'true' }}
+      - name: "ALKiln github_server: Download and start docker"
+        if: ${{ env.OUTPUT_DOCKER == 'true' }}
         run: |
           # Info: Docker pull/run
-          docker pull jhpyle/docassemble > /dev/null 2>&1
+          docker pull jhpyle/docassemble
           docker run --name docassemble_container \
                      --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" \
                      --env DA_ADMIN_PASSWORD="${{ env.DA_ADMIN_PASSWORD }}" \
