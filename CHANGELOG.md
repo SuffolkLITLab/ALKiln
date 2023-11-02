@@ -43,7 +43,11 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Changed
+
+- For isolated GitHub server, only show GitHub action console logs when `SHOW_DOCKER_LOGS` input is set to `true`. Same for creating the docker logs GitHub artifact. See [#819](https://github.com/SuffolkLITLab/ALKiln/issues/819).
 
 ## [5.5.0] - 2023-10-27
 

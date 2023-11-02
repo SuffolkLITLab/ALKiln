@@ -13,19 +13,23 @@ description: "Download and start up a temporary docassemble server on GitHub's s
 
 inputs:
   CONFIG_CONTENTS:
-    description: "The contents of the config file of the docassemble server"
+    description: "The contents of the config file of the docassemble server."
+    required: false
+  SHOW_DOCKER_OUTPUT:
+    description: 'Default is "false" to prevent docker from showing output in GitHub, like logs and artifacts. When set to "true", this will give you the docker output. It will be visible to those who can see the output, like people with admin or write permissions.'
+    default: false
     required: false
   MAX_SECONDS_FOR_DOCKER:
-    description: "Maximum amount of seconds to give the docassemble docker container to serve the site."
+    description: "Default is 600 seconds. Maximum amount of seconds to give the docassemble docker container to serve the site."
     required: false
     default: 600  # 10 min
 
 outputs:
   DOCASSEMBLE_DEVELOPER_API_KEY:
-    description: "Use this inside `with:` for the ALKiln step. Temporary admin api key. It will be destroyed after the tests are done."
+    description: 'Use this inside "with:" for the ALKiln step. Temporary admin api key. It will be destroyed after the tests are done.'
     value: ${{ steps.api_key_output_step.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}
   SERVER_URL:
-    description: "Use this inside `with:` for the ALKiln step. URL of the temporary docassemble server."
+    description: 'Use this inside "with:" for the ALKiln step. URL of the temporary docassemble server.'
     value: "http://localhost"
   DA_ADMIN_EMAIL:
     value: ${{ steps.api_key_output_step.outputs.DA_ADMIN_EMAIL }}
@@ -38,7 +42,7 @@ runs:
   steps:
       - uses: actions/checkout@v3
 
-      - name: "ALKiln github_server: Set environment variables"
+      - name: "ALKiln github_server - Set environment variables"
         run: |
           echo "DA_ADMIN_API_KEY=abcd1234abcd1234abcd5678abdc5678" >> $GITHUB_ENV
           echo "MAX_SECONDS_FOR_DOCKER=${{ inputs.MAX_SECONDS_FOR_DOCKER }}" >> $GITHUB_ENV
@@ -53,20 +57,72 @@ runs:
           echo "DA_ADMIN_PASSWORD=$DA_ADMIN_PASSWORD" >> "$GITHUB_OUTPUT"
         shell: bash
 
-      - name: "ALKiln github_server: Download and start docker"
+      - name: "ALKiln github_server - Get config"
         run: |
+          # Info: config values
           mkdir /tmp/config
+          # Worth making this silent by defining a variable with > /dev/null...?
           if [ -n "${{ inputs.CONFIG_CONTENTS }}" ]
           then
-            echo "ALKiln github_server: The developer did provided a custom docassemble config file as an input into this action."
+            echo "ALKiln github_server - The developer did provide a custom docassemble config file as an input into this action."
             echo "${{ inputs.CONFIG_CONTENTS }}" > /tmp/config/myconfig.yml
             echo "CONFIG_ARGS=--env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config " >> $GITHUB_ENV
           else
-            echo "ALKiln github_server: The developer did not provide a custom docassemble config file as an input into this action. Docassemble will use its default config."
+            echo "ALKiln github_server - The developer did NOT provide a custom docassemble config file as an input into this action. Docassemble will use its default config."
             echo "CONFIG_ARGS=" >> $GITHUB_ENV
           fi
         shell: bash
-      - run: |
+
+      # GitHub masks secret values like the config, so we don't really
+      # need to stop that yet, but users may start using variables, so
+      # a question: If in future we allow variables instead of just secrets,
+      # should we let those be visible or prevent them along with the docker logs?
+
+      # Also, does this leave GitHub job environment output While just
+      # hiding the output from the job console?
+
+      # Define the var to prevent/show docker output
+      - name: Env var for showing docker output
+        run: |
+          # Info: Docker logs visibility decision
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "OUTPUT_DOCKER=${{ inputs.SHOW_DOCKER_OUTPUT }}" >> $GITHUB_ENV
+          else
+            echo "OUTPUT_DOCKER=false" >> $GITHUB_ENV
+          fi
+        shell: bash
+
+      # Messages about output
+      - if: ${{ env.OUTPUT_DOCKER == 'false' }}
+        run: |
+          # Info: no output
+          printf '===\nALKiln github_server - GitHub will now stop showing output to avoid possibly showing details about your config. If you want to get output to see more of what is going on, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "true". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
+        shell: bash
+      - if: ${{ env.OUTPUT_DOCKER == 'true' }}
+        run: |
+          # Info: show output
+          printf '===\nALKiln github_server - GitHub will now show the output of docker creation. ALKiln cannot control this output. If you want to prevent output, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
+        shell: bash
+
+      # No output
+      - name: "ALKiln github_server - Download and start docker silently"
+        if: ${{ env.OUTPUT_DOCKER == 'false' }}
+        run: |
+          # Info: Silent docker pull/run
+          docker pull jhpyle/docassemble > /dev/null 2>&1
+          docker run --name docassemble_container \
+                     --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" \
+                     --env DA_ADMIN_PASSWORD="${{ env.DA_ADMIN_PASSWORD }}" \
+                     --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" \
+                     ${{ env.CONFIG_ARGS }} \
+                     --cap-add SYS_PTRACE \
+                     --memory="4gb" -d -p 80:80 jhpyle/docassemble > /dev/null 2>&1
+        shell: bash
+      # With output
+      - name: "ALKiln github_server - Download and start docker"
+        if: ${{ env.OUTPUT_DOCKER == 'true' }}
+        run: |
+          # Info: Docker pull/run
           docker pull jhpyle/docassemble
           docker run --name docassemble_container \
                      --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" \
@@ -76,9 +132,17 @@ runs:
                      --cap-add SYS_PTRACE \
                      --memory="4gb" -d -p 80:80 jhpyle/docassemble
         shell: bash
-      - name: "ALKiln github_server: Wait for server to start"
+
+      # Show the time it takes to start the server.
+      - if: ${{ env.OUTPUT_DOCKER == 'false' }}
         run: |
-          # ALKiln github_server: Wait for server to start
+          # Info: temporary visible logs
+          echo "ALKiln github_server - ALKiln will show safe ALKiln-only output temporarily as ALKiln waits for the server to start"
+        shell: bash
+
+      - name: "ALKiln github_server - Wait for server to start"
+        run: |
+          # ALKiln github_server - Wait for server to start
 
           # Reset the SECONDS variable
           SECONDS=0
@@ -86,9 +150,8 @@ runs:
           sleep 60
 
           response="start"
-
           while [[ $response != *"200"* ]]; do
-            echo "ALKiln github_server: Time elapsed: $SECONDS seconds"
+            echo "ALKiln github_server - Time elapsed: $SECONDS seconds"
 
             # Check if max seconds till loading has passed
             if [[ $SECONDS -ge $MAX_SECONDS_FOR_DOCKER ]]; then
@@ -98,44 +161,71 @@ runs:
 
             # Set the variable to a new string value in each iteration
             response=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:80/health_check?ready=1)
-            echo "ALKiln github_server: response is $response"
+            echo "ALKiln github_server - response is $response"
 
             # Check if the string includes the desired text
             if [[ $response == *"200"* ]]; then
-              echo "ALKiln github_server: Success! The docker container is ready!"
+              echo "ALKiln github_server - Success! The docker container is ready!"
             else
-              echo "ALKiln github_server: The docker container isn't ready yet. Will check again in 30 seconds."
+              echo "ALKiln github_server - The docker container is not ready yet. Will check again in 30 seconds."
               sleep 30
             fi
 
           done
         shell: bash
 
+      # Output visibility message
+      - name: Message about docassemble install output
+        if: ${{ env.OUTPUT_DOCKER == 'false' }}
+        run: |
+          # Info: Silent install message
+          echo "ALKiln github_server - ALKiln will now prevent output again"
+        shell: bash
+
       # Don't rely on the environment's version of python
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-      - run: pip install docassemblecli
+      # No output
+      - run: pip install docassemblecli > /dev/null 2>&1
+        if: ${{ env.OUTPUT_DOCKER == 'false' }}
         shell: bash
-      # Install the current directory onto the docassemble server
-      - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
+      # Install the package, the current directory (.), onto the docassemble server
+      - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY > /dev/null 2>&1
+        if: ${{ env.OUTPUT_DOCKER == 'false' }}
         shell: bash
 
-      # Upload artifacts that subscribers can download on the Actions summary page
-      - name: "ALKiln github_server: Get path names with date and time"
-        if: ${{ always() }}
+      # With output
+      - run: pip install docassemblecli
+        if: ${{ env.OUTPUT_DOCKER == 'true' }}
+        shell: bash
+      # Install the package, the current directory (.), onto the docassemble server
+      - run: dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
+        if: ${{ env.OUTPUT_DOCKER == 'true' }}
+        shell: bash
+
+      # Upload artifacts that devs can download on the Actions summary page
+      # Only if the developer wants to get that info, though
+      - name: "ALKiln github_server - Get path names with date and time"
+        if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
         run: |
           echo "GITHUB_SERVER_LOG_FILE_NAME=/tmp/alkiln_docker_logs-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC.txt" >> $GITHUB_ENV
           echo "GITHUB_SERVER_ARTIFACT_NAME=alkiln_github_server-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
         shell: bash
-      - name: "ALKiln github_server: Docker logs"
-        if: ${{ always() }}
+      - name: "ALKiln github_server - Docker output"
+        if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
         run: |
-          echo "$(docker logs docassemble_container)" > "${{ env.GITHUB_SERVER_LOG_FILE_NAME }}"
+          echo "$(docker output docassemble_container)" > "${{ env.GITHUB_SERVER_LOG_FILE_NAME }}"
         shell: bash
-      - name: "ALKiln github_server: Upload artifacts folder"
-        if: ${{ always() }}
+      - name: "ALKiln github_server - Upload artifacts folder"
+        if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
         uses: actions/upload-artifact@v3
         with:
           name: ${{ env.GITHUB_SERVER_ARTIFACT_NAME }}
           path: ${{ env.GITHUB_SERVER_LOG_FILE_NAME }}
+
+      - run: |
+          # Info: End silent output
+          echo "ALKiln github_server - ALKiln will show output again"
+        if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
+        shell: bash
