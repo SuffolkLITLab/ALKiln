@@ -79,6 +79,7 @@ runs:
       run: |
         # ALKiln setup info: Create a Project and install the package from GitHub
         pip3 install docassemblecli
+        echo $(dainstall -h)
         alkiln-setup
       # run: |
       #   # Check API key with a script I've already written for it
