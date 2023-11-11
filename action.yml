@@ -36,10 +36,11 @@ runs:
   using: "composite"
   steps:
     # Set environment variables
-    - name: "ALKiln: Set environment variables"
+    - name: "ALKiln setup info: Set environment variables"
       # Human-readable date/time:
       # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
       run: |
+        # ALKiln setup info: Set environment variables
         echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
         echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
         echo "BRANCH_PATH=${{ github.ref }}" >> $GITHUB_ENV
@@ -50,53 +51,79 @@ runs:
         echo "SERVER_RELOAD_TIMEOUT_SECONDS=${{ inputs.SERVER_RELOAD_TIMEOUT_SECONDS }}" >> $GITHUB_ENV
         echo "_ORIGIN=github" >> $GITHUB_ENV
       shell: bash
-    - name: "ALKiln: confirm info"
+    - name: "ALKiln setup info: confirm environment variables"
       run: |
+        # ALKiln setup info: confirm environment variables
         echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nSERVER_RELOAD_TIMEOUT_SECONDS is $SERVER_RELOAD_TIMEOUT_SECONDS\n"
       shell: bash
 
     # Install
-    - name: "ALKiln: Install node packages"
+    - name: "ALKiln setup info: Install node packages"
       uses: actions/setup-node@v3
       with:
         node-version: "18"
     - name: Install ALKiln directly from npm
       run: |
+        # ALKiln setup info: Install ALKiln directly from npm
         npm install -g @suffolklitlab/alkiln@$ALKILN_VERSION
       shell: bash
 
     # Install on playground
-    - name: "ALKiln: Create a Project and pull the package from GitHub"
+
+    # Don't rely on the environment's version of python
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: "ALKiln: Create a Project and install the package from GitHub"
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
-      run: alkiln-setup
+      run: |
+        # ALKiln setup info: Create a Project and install the package from GitHub
+        pip3 install docassemblecli
+        alkiln-setup
+      # run: |
+      #   # Check API key with a script I've already written for it
+      #   alkiln-setup
+      #   # Validate developer API key? Or shall we rely on catching an error later?
+      #   # Loop to create valid project name
+      #   # Save the project name by passing it in as a command line arg
+      #   # Install the project in the Playground Projects folder using an env var that was already created
+      #   dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
+      #   # Wait for install to finish? Give it enough time? Or will bash wait?
+      #   # How do we get the response?
+      #   # If installation was successful
+      #   echo ALKiln setup: Success! Test setup has finished successfully.
+      #   # Otherwise show error
+      #   printf ALKiln ERROR:\nthe_actual_error
       shell: bash
-    - run: echo -e "\n\n====\nALKiln could not create a project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
+    - name: "ALKiln setup ERROR"
+      run: echo -e "\n\n====\nALKiln ERROR - could not create a project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
       if: ${{ inputs.INSTALL_METHOD == 'playground' && failure() }}
       shell: bash
 
-    # Install on server
-    - name: "ALKiln: Install the GitHub package onto the server"
+    # Server installations - find folders and save session vars
+    - name: "ALKiln setup info: Install the GitHub package onto the server"
       if: ${{ inputs.INSTALL_METHOD == 'server' }}
       run: alkiln-server-install
       shell: bash
-    - run: echo -e "\n\n====\nALKiln could not install the package on the temporary GitHub docassemble server. Check the steps above this line.\n\n"
+    - name: "ALKiln setup ERROR"
+      run: echo -e "\n\n====\nALKiln ERROR - could not install the package on the temporary GitHub docassemble server. Check the steps above this line.\n\n"
       if: ${{ inputs.INSTALL_METHOD == 'server' && failure() }}
       shell: bash
 
     # run tests
-    - name: "ALKiln: Run tests"
+    - name: "ALKiln info: Run tests"
       if: ${{ success() }}
       run: alkiln-run ${{ inputs.ALKILN_TAG_EXPRESSION || github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
       shell: bash
     
     # on playground, delete project
-    - name: "ALKiln: Try to delete the project from the playground of the docassemble test account."
+    - name: "ALKiln info: Try to delete the project from the playground of the docassemble test account."
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       run: alkiln-takedown
       shell: bash
     
     # Upload artifacts that subscribers can download on the Actions summary page
-    - name: "ALKiln: Upload artifacts folder"
+    - name: "ALKiln info: Upload artifacts folder"
       if: ${{ always() }}
       uses: actions/upload-artifact@v3
       with:
