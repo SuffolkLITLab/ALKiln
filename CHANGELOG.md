@@ -43,7 +43,16 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+- Allow tests to run when a PR is made. Switches to `dainstall`. See [#760](https://github.com/SuffolkLITLab/ALKiln/issues/760).
+
+### Internal
+- Workflows:
+  - Split unit tests into their own file
+  - Use our own action in the tests that install on the playground
+  - Rename files
 
 ## [5.6.0] - 2023-10-27
 
