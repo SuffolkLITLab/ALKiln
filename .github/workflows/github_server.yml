@@ -33,6 +33,11 @@ jobs:
       SECRET_FOR_MISSING_FIELD: secret for missing field
       
     steps:
+      #### Developer note: You probably dont' need this
+      # Place the root directory in this branch to access action
+      # relative filepaths
+      - uses: actions/checkout@v3
+
       - name: ALKiln - Start the isolated temporary docassemble server on GitHub
         id: github_server
         #### Developer note: you'll need to replace `.` with the path to
