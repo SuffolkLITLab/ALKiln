@@ -36,9 +36,9 @@ jobs:
 
     name: Run ALKiln tests
     steps:
-      #### Developer note: You probably dont' need this
-      # Place the root directory in this branch to access action
-      # relative filepaths
+      #### Developer note: You probably don't need this
+      # Place the root directory in this branch to access
+      # relative paths to action files
       - uses: actions/checkout@v3
 
       #### Developer note: you'll need to replace `.` with the path to
