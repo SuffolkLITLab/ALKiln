@@ -35,6 +35,9 @@ inputs:
 runs:
   using: "composite"
   steps:
+    # Place the root directory in this branch
+    - uses: actions/checkout@v3
+
     # Set environment variables
     - name: "ALKiln setup info: Set environment variables"
       # Human-readable date/time:
@@ -80,20 +83,6 @@ runs:
         # ALKiln setup info: Create a Project and install the package from GitHub
         pip3 install docassemblecli
         alkiln-setup
-      # run: |
-      #   # Check API key with a script I've already written for it
-      #   alkiln-setup
-      #   # Validate developer API key? Or shall we rely on catching an error later?
-      #   # Loop to create valid project name
-      #   # Save the project name by passing it in as a command line arg
-      #   # Install the project in the Playground Projects folder using an env var that was already created
-      #   dainstall . --apiurl http://localhost --apikey $DA_ADMIN_API_KEY
-      #   # Wait for install to finish? Give it enough time? Or will bash wait?
-      #   # How do we get the response?
-      #   # If installation was successful
-      #   echo ALKiln setup: Success! Test setup has finished successfully.
-      #   # Otherwise show error
-      #   printf ALKiln ERROR:\nthe_actual_error
       shell: bash
     - name: "ALKiln setup ERROR"
       run: echo -e "\n\n====\nALKiln ERROR - could not create a project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
@@ -130,6 +119,9 @@ runs:
         name: ${{ env.ARTIFACT_NAME }}
         path: ./alkiln-*
 
+    - run: echo "ALkiln finished running tests"
+      shell: bash
+
 # ##################################
 # # A developer's workflow should look similar to the below.
 # # In place of `uses: suffolkLITLab/ALKiln@v5`, they
@@ -150,10 +142,8 @@ runs:
 #     runs-on: ubuntu-latest
 #     name: Run interview tests
 #     steps:
-#       - uses: actions/checkout@v3
 #       - name: Use ALKiln to run tests
 #         uses: suffolkLITLab/ALKiln@v5
 #         with:
 #           SERVER_URL: "${{ secrets.SERVER_URL }}"
 #           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}"
-#       - run: echo "Finished running ALKiln tests"
