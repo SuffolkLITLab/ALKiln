@@ -2,6 +2,8 @@ name: Playground installation
 
 on:
   push:
+  # Default opened, reopened, synchronize. "edited" is something else.
+  pull_request_target:
   workflow_dispatch:
     inputs:
       tags:
