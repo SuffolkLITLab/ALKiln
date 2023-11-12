@@ -1,0 +1,35 @@
+name: Test the tests
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    name: Run unit tests
+    steps:
+      - name: Set name of artifact folder with date and UTC time
+        # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
+        run: |
+          echo "UNIT_TESTS_ARTIFACT_NAME=_alkiln-misc-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm install
+      - run: npm run unit
+      # Artifacts
+      - name: upload unit tests artifacts folder
+        uses: actions/upload-artifact@v3
+        # This will upload even if a previous step has failed
+        if: ${{ always() }}
+        with:
+          name: ${{ env.UNIT_TESTS_ARTIFACT_NAME }}
+          path: ./_alkiln-*

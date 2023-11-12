@@ -19,59 +19,66 @@ jobs:
         node-version: [18.x]
 
     env:
-      BASE_URL: ${{ secrets.SERVER_URL }}
+      # Required
+      SERVER_URL: ${{ secrets.SERVER_URL }}
+      DOCASSEMBLE_DEVELOPER_API_KEY: ${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}
+      # Specific to our repo's tests
       PLAYGROUND_EMAIL: ${{ secrets.PLAYGROUND_EMAIL }}
       PLAYGROUND_PASSWORD: ${{ secrets.PLAYGROUND_PASSWORD }}
       PLAYGROUND_ID: ${{ secrets.PLAYGROUND_ID }}
-      DOCASSEMBLE_DEVELOPER_API_KEY: ${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}
       USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
       USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
       SECRET_FOR_MISSING_FIELD: secret for missing field
+      # Internal
       _ORIGIN: github
 
-    name: Run Puppeteer tests
+    name: Run ALKiln tests
     steps:
-      - name: Set Github-related environment variables
-        run: |
-          echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
-          echo "BRANCH_PATH=${{ github.ref }}" >> $GITHUB_ENV
-      - name: Set name of artifact folder with date and UTC time
-        # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
-        run: |
-          echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
-          echo "UNIT_TESTS_ARTIFACT_NAME=_alkiln-misc-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
-      # For the testing repo, the `REPO_URL` is that of a different repo and is created in `env:`
-      - run: echo "Repo address is $REPO_URL"
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup environment
-        uses: actions/setup-node@v3
+      # - name: Set Github-related environment variables
+      #   run: |
+      #     echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
+      #     echo "BRANCH_PATH=${{ github.ref }}" >> $GITHUB_ENV
+      # - name: Set name of artifact folder with date and UTC time
+      #   # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
+      #   run: |
+      #     echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
+      # # For the testing repo, the `REPO_URL` is that of a different repo and is created in `env:`
+      # - run: echo "Repo address is $REPO_URL"
+
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+
+      #### Developer note: you'll need to replace `.` with the path to
+      #### the repo and branch and leave off the trailing `/`
+      #### For example suffolkLITLab/ALKiln@v5
+      - uses: ./
         with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm install
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-      - run: pip3 install docassemblecli
-      - run: npm run setup
-      - run: npm run test ${{ github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
-      # Artifacts
-      - name: upload unit tests artifacts folder
-        uses: actions/upload-artifact@v3
-        # This will upload even if a previous step has failed
-        if: ${{ always() }}
-        with:
-          name: ${{ env.UNIT_TESTS_ARTIFACT_NAME }}
-          path: ./_alkiln-*
-      - name: upload integration tests artifacts folder
-        uses: actions/upload-artifact@v3
-        if: ${{ always() }}
-        with:
-          name: ${{ env.ARTIFACT_NAME }}
-          path: ./alkiln-*
-      # Delete Playground Project and project name file
-      - name: Cleanup
-        if: ${{ always() }}
-        run: npm run takedown
+          SERVER_URL: "${{ env.SERVER_URL }}"
+          DOCASSEMBLE_DEVELOPER_API_KEY: "${{ env.DOCASSEMBLE_DEVELOPER_API_KEY }}"
+          #### Developer note: Useful for temporarily shortening ALKiln tests
+          #### to debug the docker install step
+          # ALKILN_TAG_EXPRESSION: @onetest
+      - run: echo "ALkiln finished running ALKiln tests"
+        shell: bash
+
+      #   with:
+      #     node-version: ${{ matrix.node-version }}
+      # - uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.10'
+      # - run: pip3 install docassemblecli
+      # - run: npm run setup
+      # - run: npm run cucumber ${{ github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
+      # # Artifacts
+      # - name: upload integration tests artifacts folder
+      #   uses: actions/upload-artifact@v3
+      #   if: ${{ always() }}
+      #   with:
+      #     name: ${{ env.ARTIFACT_NAME }}
+      #     path: ./alkiln-*
+      # # Delete Playground Project and project name file
+      # - name: Cleanup
+      #   if: ${{ always() }}
+      #   run: npm run takedown
