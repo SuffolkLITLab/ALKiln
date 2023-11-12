@@ -53,6 +53,7 @@ Format:
   - Split unit tests into their own file
   - Use our own action in the tests that install on the playground
   - Rename files
+  - See [#822](https://github.com/SuffolkLITLab/ALKiln/issues/822)
 
 ## [5.6.0] - 2023-10-27
 
