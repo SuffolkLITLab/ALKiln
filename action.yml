@@ -75,6 +75,7 @@ runs:
 
     # Don't rely on the environment's version of python
     - uses: actions/setup-python@v4
+      if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       with:
         python-version: '3.10'
     - name: "ALKiln: Create a Project and install the package from GitHub"
