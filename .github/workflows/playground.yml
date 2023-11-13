@@ -2,7 +2,7 @@ name: Playground installation
 
 on:
   push:
-  # Default opened, reopened, synchronize. "edited" is something else.
+  # Default: opened, reopened, synchronize. "edited" is not what we want.
   pull_request_target:
   workflow_dispatch:
     inputs:
@@ -24,6 +24,7 @@ jobs:
       #### Developer note: Required
       SERVER_URL: ${{ secrets.SERVER_URL }}
       DOCASSEMBLE_DEVELOPER_API_KEY: ${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}
+      #### Developer note: you don't need any of these
       # Specific to our repo's tests
       PLAYGROUND_EMAIL: ${{ secrets.PLAYGROUND_EMAIL }}
       PLAYGROUND_PASSWORD: ${{ secrets.PLAYGROUND_PASSWORD }}
