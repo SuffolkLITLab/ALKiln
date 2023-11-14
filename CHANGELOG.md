@@ -43,7 +43,17 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+- Allow tests to run when a PR is made by switching to docassemblecli's `dainstall` to upload packagese to the Playground. See [#760](https://github.com/SuffolkLITLab/ALKiln/issues/760).
+
+### Internal
+- Workflows:
+  - Split unit tests into their own file. They have to use `npm install` in our repo and we don't want to use that for Playground tests. It avoids trying to push all the node modules to the Playground which would otherwise cause error 413 "too large".
+  - Use our own action in the tests that install on the Playground, to avoid duplicating edits to the action - see [#822](https://github.com/SuffolkLITLab/ALKiln/issues/822).
+  - Rename files
+  - Also see [#822](https://github.com/SuffolkLITLab/ALKiln/issues/822)
 
 ## [5.6.0] - 2023-10-27
 

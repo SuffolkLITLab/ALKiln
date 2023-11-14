@@ -1,7 +1,9 @@
-name: GitHub server tests
+name: GitHub server installation
 
 on:
   push:
+  # Default opened, reopened, synchronize. "edited" is something else.
+  pull_request_target:
   workflow_dispatch:
     inputs:
       tags:
@@ -33,7 +35,9 @@ jobs:
       SECRET_FOR_MISSING_FIELD: secret for missing field
       
     steps:
-      # Place the root directory in this branch
+      #### Developer note: You probably don't need this
+      # Place the root directory in this branch to access
+      # relative paths to action files
       - uses: actions/checkout@v3
 
       - name: ALKiln - Start the isolated temporary docassemble server on GitHub
@@ -83,7 +87,5 @@ jobs:
           INSTALL_METHOD: "server"
           #### Developer note: Useful for temporarily shortening ALKiln tests
           #### to debug the docker install step
-          # ALKILN_TAG_EXPRESSION: @onetest
-      - run: echo "ALkiln finished running ALKiln tests"
-        shell: bash
+          # ALKILN_TAG_EXPRESSION: @a_tag_expression
 
