@@ -43,7 +43,9 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.7.0] - 2023-11-14
 
 ### Added
 - Allow tests to run when a PR is made by switching to docassemblecli's `dainstall` to upload packagese to the Playground. See [#760](https://github.com/SuffolkLITLab/ALKiln/issues/760).
