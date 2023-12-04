@@ -40,7 +40,7 @@ jobs:
       # relative paths to action files
       - uses: actions/checkout@v3
 
-      - run: echo ${{ fromJSON(github.event.inputs.enable_tmate) }}
+      - run: echo ${{ fromJSON(inputs.enable_tmate) }}
         shell: bash
 
       - name: ALKiln - Start the isolated temporary docassemble server on GitHub
@@ -60,7 +60,7 @@ jobs:
       #### Developer note: You probably don't need this
       # Optional debugging to explore things like config issues
       - name: Docker debug tmate session
-        if: fromJSON(github.event.inputs.enable_tmate)
+        if: fromJSON(inputs.enable_tmate)
         uses: mxschmitt/action-tmate@v3
 
       #### Developer note: You probably don't need this
