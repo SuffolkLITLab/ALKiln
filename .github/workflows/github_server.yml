@@ -40,7 +40,7 @@ jobs:
       # relative paths to action files
       - uses: actions/checkout@v3
 
-      - run: echo ${{ fromJSON(inputs.enable_tmate) }}
+      - run: echo ${{ toJSON(inputs.enable_tmate) }}
         shell: bash
 
       - name: ALKiln - Start the isolated temporary docassemble server on GitHub
