@@ -43,7 +43,15 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+- Step to tap an element without navigating. See [#834](https://github.com/SuffolkLITLab/ALKiln/issues/834).
+
+### Internal
+- Use puppeteer `.click()`` again
+- Re-activate looking for terms on the page.
+
 
 ## [5.7.0] - 2023-11-14
 
