@@ -43,7 +43,9 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.8.0] - 2023-12-18
 
 ### Added
 - Step to tap an element without navigating. See [#834](https://github.com/SuffolkLITLab/ALKiln/issues/834).
