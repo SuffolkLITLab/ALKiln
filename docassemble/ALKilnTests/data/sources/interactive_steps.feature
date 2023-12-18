@@ -5,7 +5,7 @@ Feature: Interactive steps
 
 @slow @i1
 Scenario: I set various values
-  Given I start the interview at "all_tests"
+  Given I start the interview at "all_tests"
   Then the question id should be "upload files"
   When I set the var "upload_files_visible" to "some_png_1.png, some_png_2.png"
   And I set the var "show_upload" to "True"
@@ -59,6 +59,8 @@ Scenario: I set various values
   When I set the var "button_continue" to "True"
   # Next page
   Then the question id should be "screen features"
+  And I tap the defined text link "Term"
+  Then I SHOULD see the phrase "definition"
   When I tap to continue
   # Next page
   Then the question id should be "proxy vars"
@@ -115,7 +117,7 @@ Scenario: handles settings from Github secrets
   And I set the variable "third_text_entry" to secret "SECRET_NOT_THERE"
 
 @i3 @tap-elements @tabs
-Scenario: tap elements
+Scenario: tap tabs and tap and wait
   Given I start the interview at "test_taps"
   And I tap the "Tests-first_template-tab" tab
   Then I see the phrase "Mechanics"
@@ -165,3 +167,16 @@ Scenario: Fails as it doesn't try to 'continue' with a restart button
   And I get to "doesnt exist" with this data:
     | var | value | trigger |
     | user_choice | wrong | |
+
+@i7 @tap-selector @tabs
+Scenario: tap selectors with & without navigating
+  Given I start the interview at "test_taps"
+  When I tap the "#Tests-first_template-tab" element and stay on the same page
+  And I wait .6 seconds
+  Then I see the phrase "Mechanics"
+  When I tap the "#Tests-second_template-tab" element and stay
+  And I wait .6 seconds
+  Then I see the phrase "villify"
+  When I tap the "#special_event" element and go to a new page
+  And I wait 1 second
+  Then I see the phrase "Portishead"
