@@ -43,7 +43,10 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Internal
+- Freeze `docassemblecli` version at 0.0.17. See [#827](https://github.com/SuffolkLITLab/ALKiln/issues/827).
 
 ## [5.8.0] - 2023-12-18
 

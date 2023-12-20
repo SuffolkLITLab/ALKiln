@@ -23,6 +23,10 @@ inputs:
     description: "Default is 600 seconds. Maximum amount of seconds to give the docassemble docker container to serve the site."
     required: false
     default: 600  # 10 min
+  DOCASSEMBLECLI_VERSION:
+    description: 'Where to get the docassemblecli package. E.g. a GitHub zip or a pypi version.'
+    required: false
+    default: "0.0.17"
 
 outputs:
   DOCASSEMBLE_DEVELOPER_API_KEY:
@@ -50,6 +54,7 @@ runs:
           echo "DA_ADMIN_EMAIL=admin@example.com" >> $GITHUB_ENV
           # Login will fail if this is "password"
           echo "DA_ADMIN_PASSWORD=@123abcdefg" >> $GITHUB_ENV
+          echo "DOCASSEMBLECLI_VERSION=${{ inputs.DOCASSEMBLECLI_VERSION }}" >> $GITHUB_ENV
         shell: bash
       - id: api_key_output_step
         run: |
@@ -188,7 +193,7 @@ runs:
         with:
           python-version: '3.10'
       # No output
-      - run: pip install docassemblecli > /dev/null 2>&1
+      - run: pip install docassemblecli==$DOCASSEMBLECLI_VERSION > /dev/null 2>&1
         if: ${{ env.OUTPUT_DOCKER == 'false' }}
         shell: bash
       # Install the package, the current directory (.), onto the docassemble server
@@ -197,7 +202,7 @@ runs:
         shell: bash
 
       # With output
-      - run: pip install docassemblecli
+      - run: pip install docassemblecli==$DOCASSEMBLECLI_VERSION
         if: ${{ env.OUTPUT_DOCKER == 'true' }}
         shell: bash
       # Install the package, the current directory (.), onto the docassemble server
