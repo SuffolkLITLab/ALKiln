@@ -31,6 +31,10 @@ inputs:
   ALKILN_TAG_EXPRESSION:
     description: "The tag expression to use to limit which tests to run. Default is no tag expression."
     required: false
+  DOCASSEMBLECLI_VERSION:
+    description: 'Where to get the docassemblecli package. E.g. a GitHub zip or a pypi version.'
+    required: false
+    default: "0.0.17"
 
 runs:
   using: "composite"
@@ -52,6 +56,7 @@ runs:
         echo "ALKILN_VERSION=${{ inputs.ALKILN_VERSION }}" >> $GITHUB_ENV
         echo "MAX_SECONDS_FOR_SETUP=${{ inputs.MAX_SECONDS_FOR_SETUP }}" >> $GITHUB_ENV
         echo "SERVER_RELOAD_TIMEOUT_SECONDS=${{ inputs.SERVER_RELOAD_TIMEOUT_SECONDS }}" >> $GITHUB_ENV
+        echo "DOCASSEMBLECLI_VERSION=${{ inputs.DOCASSEMBLECLI_VERSION }}" >> $GITHUB_ENV
         echo "_ORIGIN=github" >> $GITHUB_ENV
       shell: bash
     - name: "ALKiln setup info: confirm environment variables"
@@ -82,7 +87,7 @@ runs:
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       run: |
         # ALKiln setup info: Create a Project and install the package from GitHub
-        pip3 install docassemblecli
+        pip install docassemblecli==$DOCASSEMBLECLI_VERSION
         alkiln-setup
       shell: bash
     - name: "ALKiln setup ERROR"
