@@ -46,6 +46,7 @@ Format:
 ## [Unreleased]
 
 ### Internal
+- Allow complete flexibility with the docassemblecli installer. See [PR review comment](https://github.com/SuffolkLITLab/ALKiln/pull/841#pullrequestreview-1792199320).
 - Freeze `docassemblecli` version at 0.0.17. See [#827](https://github.com/SuffolkLITLab/ALKiln/issues/827).
 
 ## [5.8.0] - 2023-12-18
