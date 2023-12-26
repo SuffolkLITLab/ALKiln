@@ -23,10 +23,10 @@ inputs:
     description: "Default is 600 seconds. Maximum amount of seconds to give the docassemble docker container to serve the site."
     required: false
     default: 600  # 10 min
-  DOCASSEMBLECLI_INSTALLER:
-    description: 'The requirement specifier for the docassemblecli package. E.g. a GitHub zip or a pypi version. Include the "==" or "@".'
+  DOCASSEMBLECLI_VERSION:
+    description: "The version of docassemblecli to install."
     required: false
-    default: "pip install docassemblecli==0.0.17"
+    default: "0.0.17"
 
 outputs:
   DOCASSEMBLE_DEVELOPER_API_KEY:
@@ -48,13 +48,17 @@ runs:
       - uses: actions/checkout@v3
 
       - name: "ALKiln GitHub server - Set environment variables"
+        env:
+          MAX_SECONDS_FOR_DOCKER: ${{ inputs.MAX_SECONDS_FOR_DOCKER }}
+          DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
         run: |
+          # ALKiln GitHub server info: Set environment variables
+          echo "MAX_SECONDS_FOR_DOCKER=$MAX_SECONDS_FOR_DOCKER" >> $GITHUB_ENV
+          echo "DOCASSEMBLECLI_VERSION=$DOCASSEMBLECLI_VERSION" >> $GITHUB_ENV
           echo "DA_ADMIN_API_KEY=abcd1234abcd1234abcd5678abdc5678" >> $GITHUB_ENV
-          echo "MAX_SECONDS_FOR_DOCKER=${{ inputs.MAX_SECONDS_FOR_DOCKER }}" >> $GITHUB_ENV
           echo "DA_ADMIN_EMAIL=admin@example.com" >> $GITHUB_ENV
-          # Login will fail if this is "password"
+          # Login will fail if this value is "password"
           echo "DA_ADMIN_PASSWORD=@123abcdefg" >> $GITHUB_ENV
-          echo "DOCASSEMBLECLI_INSTALLER=${{ inputs.DOCASSEMBLECLI_INSTALLER }}" >> $GITHUB_ENV
         shell: bash
       - id: api_key_output_step
         run: |
@@ -64,14 +68,16 @@ runs:
         shell: bash
 
       - name: "ALKiln GitHub server - Get config"
+        env:
+          CONFIG: ${{ inputs.CONFIG_CONTENTS }}
         run: |
           # ALKiln GitHub server info: config values
           mkdir /tmp/config
           # Worth making this silent by defining a variable with > /dev/null...?
-          if [ -n "${{ inputs.CONFIG_CONTENTS }}" ]
+          if [ -n "$CONFIG" ]
           then
             echo "ALKiln GitHub server - The developer did provide a custom docassemble config file as an input into this action."
-            echo "${{ inputs.CONFIG_CONTENTS }}" > /tmp/config/myconfig.yml
+            echo "$CONFIG" > /tmp/config/myconfig.yml
             echo "CONFIG_ARGS=--env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config " >> $GITHUB_ENV
           else
             echo "ALKiln GitHub server - The developer did NOT provide a custom docassemble config file as an input into this action. Docassemble will use its default config."
@@ -79,20 +85,20 @@ runs:
           fi
         shell: bash
 
-      # GitHub masks secret values like the config, so we don't really
-      # need to stop that yet, but users may start using variables, so
-      # a question: If in future we allow variables instead of just secrets,
+      # Question: If in future we allow GitHub variables instead of just secrets,
       # should we let those be visible or prevent them along with the docker logs?
-
-      # Also, does this leave GitHub job environment output While just
-      # hiding the output from the job console?
+      # Also, does GitHub hide job environment output of secrets as well as
+      # hiding the secrets' output from the job console?
 
       # Define the var to prevent/show docker output
+      # TODO: Why are we only doing this for manually triggered workflows?
       - name: Env var for showing docker output
+        env:
+          SHOW_DOCKER_OUTPUT: ${{ inputs.SHOW_DOCKER_OUTPUT }}
         run: |
           # ALKiln GitHub server info: Docker logs visibility decision
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            echo "OUTPUT_DOCKER=${{ inputs.SHOW_DOCKER_OUTPUT }}" >> $GITHUB_ENV
+            echo "OUTPUT_DOCKER=$SHOW_DOCKER_OUTPUT" >> $GITHUB_ENV
           else
             echo "OUTPUT_DOCKER=false" >> $GITHUB_ENV
           fi
@@ -110,6 +116,7 @@ runs:
           printf '===\nALKiln GitHub server - GitHub will now show the output of docker creation. ALKiln cannot control this output. If you want to prevent output, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
         shell: bash
 
+      # TODO: Reduce these to 1 block by putting ` > /dev/null 2>&1` into an env var
       # No output
       - name: "ALKiln GitHub server - Download and start docker silently"
         if: ${{ env.OUTPUT_DOCKER == 'false' }}
@@ -193,7 +200,7 @@ runs:
         with:
           python-version: '3.10'
       # No output
-      - run: $DOCASSEMBLECLI_INSTALLER > /dev/null 2>&1
+      - run: pip install docassemblecli==$DOCASSEMBLECLI_VERSION > /dev/null 2>&1
         if: ${{ env.OUTPUT_DOCKER == 'false' }}
         shell: bash
       # Install the package, the current directory (.), onto the docassemble server
@@ -202,7 +209,7 @@ runs:
         shell: bash
 
       # With output
-      - run: $DOCASSEMBLECLI_INSTALLER
+      - run: pip install docassemblecli==$DOCASSEMBLECLI_VERSION
         if: ${{ env.OUTPUT_DOCKER == 'true' }}
         shell: bash
       # Install the package, the current directory (.), onto the docassemble server

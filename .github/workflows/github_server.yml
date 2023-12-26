@@ -44,7 +44,7 @@ jobs:
         id: github_server
         #### Developer note: you'll need to replace `.` with the path to
         #### the repo and branch. For example:
-        #### suffolkLITLab/ALKiln@v5/action_for_github_server
+        #### suffolkLITLab/ALKiln/action_for_github_server@v5
         uses: ./action_for_github_server
         with:
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
