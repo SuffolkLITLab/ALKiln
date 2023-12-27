@@ -45,6 +45,10 @@ Format:
 
 ## [Unreleased]
 
+### Fixed
+- Restored previous behavior - Projects are now deleted even when a workflow fails. See [#831](https://github.com/SuffolkLITLab/ALKiln/issues/831).
+- Fixed typo of comment explaining how to reference the isolated GitHub server action.
+
 ### Security
 - Harden security for action input handling. That said, the source of the problem would come from author workflows, so there's a lot more authors can do to help this situation than we can. Workflows triggered by pull requests are a specific place to watch. GitHub already has [some default safeguards](https://docs.github.com/en/actions/managing-workflow-runs/approving-workflow-runs-from-public-forks#about-workflow-runs-from-public-forks) to prevent strangers, specifically first-time contributors, from triggering workflows like that. They can also set their [org](https://docs.github.com/en/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization#configuring-required-approval-for-workflows-from-public-forks) or [repo](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository#controlling-changes-from-forks-to-workflows-in-public-repositories) to be more strict about pull requests from outside collaborators.
 
