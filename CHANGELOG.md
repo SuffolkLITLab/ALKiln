@@ -43,7 +43,9 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.8.1] - 2023-12-28
 
 ### Fixed
 - Restored previous behavior - Projects are now deleted even when a workflow fails. See [#831](https://github.com/SuffolkLITLab/ALKiln/issues/831).
