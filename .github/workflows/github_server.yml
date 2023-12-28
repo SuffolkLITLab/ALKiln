@@ -2,7 +2,7 @@ name: GitHub server installation
 
 on:
   push:
-  # Default opened, reopened, synchronize. "edited" is something else.
+  # Default "opened", "reopened", "synchronize". "edited" fires when the PR title gets edited, etc.
   pull_request_target:
   workflow_dispatch:
     inputs:

@@ -120,28 +120,32 @@ runs:
       # No output
       - name: "ALKiln GitHub server - Download and start docker silently"
         if: ${{ env.OUTPUT_DOCKER == 'false' }}
+        env:
+          CONFIG_ARGS: ${{ env.CONFIG_ARGS }}
         run: |
           # ALKiln GitHub server info: Silent docker pull/run
           docker pull jhpyle/docassemble > /dev/null 2>&1
           docker run --name docassemble_container \
-                     --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" \
-                     --env DA_ADMIN_PASSWORD="${{ env.DA_ADMIN_PASSWORD }}" \
-                     --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" \
-                     ${{ env.CONFIG_ARGS }} \
+                     --env DA_ADMIN_EMAIL="$DA_ADMIN_EMAIL" \
+                     --env DA_ADMIN_PASSWORD="$DA_ADMIN_PASSWORD" \
+                     --env DA_ADMIN_API_KEY="$DA_ADMIN_API_KEY" \
+                     $CONFIG_ARGS \
                      --cap-add SYS_PTRACE \
                      --memory="4gb" -d -p 80:80 jhpyle/docassemble > /dev/null 2>&1
         shell: bash
       # With output
       - name: "ALKiln GitHub server - Download and start docker"
         if: ${{ env.OUTPUT_DOCKER == 'true' }}
+        env:
+          CONFIG_ARGS: ${{ env.CONFIG_ARGS }}
         run: |
           # ALKiln GitHub server info: Docker pull/run
           docker pull jhpyle/docassemble
           docker run --name docassemble_container \
-                     --env DA_ADMIN_EMAIL="${{ env.DA_ADMIN_EMAIL }}" \
-                     --env DA_ADMIN_PASSWORD="${{ env.DA_ADMIN_PASSWORD }}" \
-                     --env DA_ADMIN_API_KEY="${{ env.DA_ADMIN_API_KEY }}" \
-                     ${{ env.CONFIG_ARGS }} \
+                     --env DA_ADMIN_EMAIL="$DA_ADMIN_EMAIL" \
+                     --env DA_ADMIN_PASSWORD="$DA_ADMIN_PASSWORD" \
+                     --env DA_ADMIN_API_KEY="$DA_ADMIN_API_KEY" \
+                     $CONFIG_ARGS \
                      --cap-add SYS_PTRACE \
                      --memory="4gb" -d -p 80:80 jhpyle/docassemble
         shell: bash
@@ -200,7 +204,7 @@ runs:
         with:
           python-version: '3.10'
       # No output
-      - run: pip install docassemblecli==$DOCASSEMBLECLI_VERSION > /dev/null 2>&1
+      - run: pip install "docassemblecli==$DOCASSEMBLECLI_VERSION" > /dev/null 2>&1
         if: ${{ env.OUTPUT_DOCKER == 'false' }}
         shell: bash
       # Install the package, the current directory (.), onto the docassemble server
@@ -209,7 +213,7 @@ runs:
         shell: bash
 
       # With output
-      - run: pip install docassemblecli==$DOCASSEMBLECLI_VERSION
+      - run: pip install "docassemblecli==$DOCASSEMBLECLI_VERSION"
         if: ${{ env.OUTPUT_DOCKER == 'true' }}
         shell: bash
       # Install the package, the current directory (.), onto the docassemble server
