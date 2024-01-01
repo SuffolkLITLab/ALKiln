@@ -22,8 +22,6 @@ inputs:
     description: "Max amount of time to give the server to reload if it needs to"
     required: false
     # no default to let the custom Scenario timeouts create the reload timeout
-  # INSTALL_LOCATION? Will that get confused with the location passed into the command line?
-  # Maybe `INSTALL_LOCATION` could be "playground", "server", or a custom path and we could handle all those.
   INSTALL_METHOD:
     description: "Default is 'playground'. Other option: 'server'. How to install the package onto the server."
     required: false
@@ -31,6 +29,10 @@ inputs:
   ALKILN_TAG_EXPRESSION:
     description: "The tag expression to use to limit which tests to run. Default is no tag expression."
     required: false
+  DOCASSEMBLECLI_VERSION:
+    description: "The version of docassemblecli to install."
+    required: false
+    default: "0.0.17"
 
 runs:
   using: "composite"
@@ -40,18 +42,29 @@ runs:
 
     # Set environment variables
     - name: "ALKiln setup info: Set environment variables"
-      # Human-readable date/time:
-      # https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
+      # Safe input handling. Avoid evaluating in bash.
+      env:
+        BRANCH_PATH: ${{ github.ref }}
+        BASE_URL: ${{ inputs.SERVER_URL }}
+        DOCASSEMBLE_DEVELOPER_API_KEY: ${{ inputs.DOCASSEMBLE_DEVELOPER_API_KEY }}
+        ALKILN_VERSION: ${{ inputs.ALKILN_VERSION }}
+        MAX_SECONDS_FOR_SETUP: ${{ inputs.MAX_SECONDS_FOR_SETUP }}
+        SERVER_RELOAD_TIMEOUT_SECONDS: ${{ inputs.SERVER_RELOAD_TIMEOUT_SECONDS }}
+        DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
       run: |
         # ALKiln setup info: Set environment variables
+        # Human-readable date/time: https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
         echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
         echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
-        echo "BRANCH_PATH=${{ github.ref }}" >> $GITHUB_ENV
-        echo "BASE_URL=${{ inputs.SERVER_URL }}" >> $GITHUB_ENV
-        echo "DOCASSEMBLE_DEVELOPER_API_KEY=${{ inputs.DOCASSEMBLE_DEVELOPER_API_KEY }}" >> $GITHUB_ENV
-        echo "ALKILN_VERSION=${{ inputs.ALKILN_VERSION }}" >> $GITHUB_ENV
-        echo "MAX_SECONDS_FOR_SETUP=${{ inputs.MAX_SECONDS_FOR_SETUP }}" >> $GITHUB_ENV
-        echo "SERVER_RELOAD_TIMEOUT_SECONDS=${{ inputs.SERVER_RELOAD_TIMEOUT_SECONDS }}" >> $GITHUB_ENV
+        echo "BRANCH_PATH=$BRANCH_PATH" >> $GITHUB_ENV
+        # Workflow inputs
+        echo "BASE_URL=$BASE_URL" >> $GITHUB_ENV
+        echo "DOCASSEMBLE_DEVELOPER_API_KEY=$DOCASSEMBLE_DEVELOPER_API_KEY" >> $GITHUB_ENV
+        echo "ALKILN_VERSION=$ALKILN_VERSION" >> $GITHUB_ENV
+        echo "MAX_SECONDS_FOR_SETUP=$MAX_SECONDS_FOR_SETUP" >> $GITHUB_ENV
+        echo "SERVER_RELOAD_TIMEOUT_SECONDS=$SERVER_RELOAD_TIMEOUT_SECONDS" >> $GITHUB_ENV
+        echo "DOCASSEMBLECLI_VERSION=$DOCASSEMBLECLI_VERSION" >> $GITHUB_ENV
+        # Hard-coded internal ALKiln vars
         echo "_ORIGIN=github" >> $GITHUB_ENV
       shell: bash
     - name: "ALKiln setup info: confirm environment variables"
@@ -68,7 +81,7 @@ runs:
     - name: Install ALKiln directly from npm
       run: |
         # ALKiln setup info: Install ALKiln directly from npm
-        npm install -g @suffolklitlab/alkiln@$ALKILN_VERSION
+        npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
       shell: bash
 
     # Install on playground
@@ -82,7 +95,7 @@ runs:
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       run: |
         # ALKiln setup info: Create a Project and install the package from GitHub
-        pip3 install docassemblecli
+        pip install "docassemblecli==$DOCASSEMBLECLI_VERSION"
         alkiln-setup
       shell: bash
     - name: "ALKiln setup ERROR"
@@ -103,12 +116,14 @@ runs:
     # run tests
     - name: "ALKiln info: Run tests"
       if: ${{ success() }}
-      run: alkiln-run ${{ inputs.ALKILN_TAG_EXPRESSION || github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
+      env:
+        ALKILN_TAG_EXPRESSION: ${{ inputs.ALKILN_TAG_EXPRESSION || github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
+      run: alkiln-run $ALKILN_TAG_EXPRESSION
       shell: bash
     
     # on playground, delete project
     - name: "ALKiln info: Try to delete the project from the playground of the docassemble test account."
-      if: ${{ inputs.INSTALL_METHOD == 'playground' }}
+      if: ${{ always() && inputs.INSTALL_METHOD == 'playground' }}
       run: alkiln-takedown
       shell: bash
     

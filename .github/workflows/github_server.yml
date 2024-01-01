@@ -2,7 +2,7 @@ name: GitHub server installation
 
 on:
   push:
-  # Default opened, reopened, synchronize. "edited" is something else.
+  # Default "opened", "reopened", "synchronize". "edited" fires when the PR title gets edited, etc.
   pull_request_target:
   workflow_dispatch:
     inputs:
@@ -44,7 +44,7 @@ jobs:
         id: github_server
         #### Developer note: you'll need to replace `.` with the path to ALKiln’s
         #### repo and branch. For example, for version 5, put
-        #### suffolkLITLab/ALKiln@v5/action_for_github_server
+        #### suffolkLITLab/ALKiln/action_for_github_server@v5
         #### Come back and update this version later if you want the latest
         uses: ./action_for_github_server
         with:
