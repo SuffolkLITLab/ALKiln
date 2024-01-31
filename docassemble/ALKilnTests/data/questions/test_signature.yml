@@ -7,6 +7,12 @@ metadata:
 default screen parts:
   post: |
     <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <div id="alkiln_proxy_var_values"
+      data-generic_object="${ encode_name(str( x.instanceName if defined('x') else '' )) }"
+      % for letter in [ 'i', 'j', 'k', 'l', 'm', 'n' ]:
+      data-index_var_${ letter }="${ encode_name(str( value( letter ) if defined( letter ) else '' )) }"
+      % endfor
+      aria-hidden="true" style="display: none;"></div>
 ---
 mandatory: True
 id: interview order
