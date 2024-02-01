@@ -116,7 +116,7 @@ Scenario: Fails when table has no header row and rows have only one column
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
-  Your Story Table definition needs to be changed.
+  Your Story Table should have more than 1 columns.
   """
   Given I start the interview at "all_tests"
   And I get to "showifs" with this data:
