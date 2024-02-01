@@ -52,11 +52,11 @@ Scenario: Fail with no interview at arbitrary url
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
-  Trying to load the interview at "https://apps-test.suffolklitlab.org/list"
+  Trying to load the interview at "https://retractionwatch.com"
   """
   And the Scenario report should include:
   """
   ALKiln could not find any interview question page
   """
   And the max seconds for each step in this scenario is 5
-  Then I start the interview at "https://apps-test.suffolklitlab.org/list"
+  Then I start the interview at "https://retractionwatch.com"
