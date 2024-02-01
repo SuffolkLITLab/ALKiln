@@ -218,7 +218,7 @@ Scenario: I take a screenshot of the signature
 
 @slow @o17
 Scenario: I compare the same PDFs
-  Given I start the interview at "test_pdf"
+  Given I start the interview at "test_pdf"
   Then the question id should be "proxy vars"
   When I set the var "x[i].name.first" to "Proxyname1"
   And I tap to continue
@@ -249,7 +249,7 @@ Scenario: I compare different PDFs
   """
   -  diff
   """
-  Given I start the interview at "test_pdf"
+  Given I start the interview at "test_pdf"
   Then the question id should be "proxy vars"
   When I set the var "x[i].name.first" to "Proxyname1 diff"
   And I tap to continue

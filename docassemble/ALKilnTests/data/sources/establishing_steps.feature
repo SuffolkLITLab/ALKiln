@@ -18,8 +18,8 @@ Scenario: I am able to set a custom wait time before an interview has been loade
 
 @fast @e3 @urlargs
 Scenario: Interview name includes url args
-  Given I start the interview at "url_args.yml&from=theinternets&random=zoo"
-  Then I should see the phrase "zoo"
+  Given I start the interview at "url_args.yml&from=theinternets&random=zoo"
+  Then I should see the phrase "zoo"
 
 @slow @e4 @wait_first
 Scenario: I can wait as a first step in a test
@@ -33,7 +33,7 @@ Scenario: Interview name includes url args with a wait
 
 @fast @e6 @signin
 Scenario: I sign in
-  Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
+  Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
   And I start the interview at "all_tests"
 
 @fast @e7 @arbitraryurl
@@ -43,8 +43,8 @@ Scenario: I want to go to a full arbitrary url
   """
   Trying to load the interview at "https://apps-test.suffolklitlab.org/start/demo/questions"
   """
-  Given I start the interview at "https://apps-test.suffolklitlab.org/start/demo/questions"
-  Then I should see the phrase "What language do you speak?"
+  Given I start the interview at "https://apps-test.suffolklitlab.org/start/demo/questions"
+  Then I should see the phrase "What language do you speak?"
 
 # WARNING: This Scenario may fail if the file moves or changes too much
 @fast @failing @e8 @rfe8 @arbitraryurl

@@ -8,7 +8,7 @@ Feature: Assembly Line package-specific Steps
 @fast @al1
 Scenario: I have two name parts
   Given the max secs for each step is 120
-  Given I start the interview at "AL_tests"
+  Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli User"
   And I tap to continue
   And I set the address of "users[0]" to "120 Tremont Street, Unit 2, Boston, MA 02108"
@@ -20,7 +20,7 @@ Scenario: I have two name parts
 
 @fast @al2
 Scenario: I have three name parts
-  Given I start the interview at "AL_tests"
+  Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli Udo User"
   And I tap to continue
   And I set the address of "users[0]" to "120 Tremont Street, Unit 2, Boston, MA 02108"
@@ -32,7 +32,7 @@ Scenario: I have three name parts
 
 @fast @al3
 Scenario: I have four name parts
-  Given I start the interview at "AL_tests"
+  Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli Udo User Sr"
   And I tap to continue
   And I set the address of "users[0]" to "120 Tremont Street, Unit 2, Boston, MA 02108"
