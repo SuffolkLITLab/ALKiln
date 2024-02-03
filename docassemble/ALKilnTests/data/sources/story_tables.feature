@@ -105,6 +105,19 @@ Scenario: 0 target_number for there_are_any and target_number lists, 1 for there
   And I SHOULD see the phrase "there_is_another_people people: 1"
   And I SHOULD see the phrase "target_people people: 0"
 
+@st5_no_proxy @loops @no_proxy
+Scenario: 0 target_number for there_are_any and target_number lists, 1 for there_is_another
+  Given I start the interview at "test_loops.yml"
+  And I get to "end" with this data:
+    | var | value |
+    | there_are_any_people.target_number | 0 |
+    | there_is_another_people.target_number | 1 |
+    | there_is_another_people[0].name.first | AnotherPerson1 |
+    | target_people.target_number | 0 |
+  And I SHOULD see the phrase "there_are_any_people people: 0"
+  And I SHOULD see the phrase "there_is_another_people people: 1"
+  And I SHOULD see the phrase "target_people people: 0"
+
 @slow @st6 @loops
 Scenario: target_number 2 for there_are_any, there_is_another, and target_number lists
   Given I start the interview at "test_loops.yml"
@@ -120,6 +133,25 @@ Scenario: target_number 2 for there_are_any, there_is_another, and target_number
     | target_people.target_number | 2 |  |
     | x[i].name.first | TargetPerson1 | target_people[0].name.first |
     | x[i].name.first | TargetPerson2 | target_people[1].name.first |
+  And I SHOULD see the phrase "there_are_any_people people: 2"
+  And I SHOULD see the phrase "there_is_another_people people: 2"
+  And I SHOULD see the phrase "target_people people: 2"
+
+@slow @st6_no_proxy @loops @no_proxy
+Scenario: target_number 2 for there_are_any, there_is_another, and target_number lists
+  Given I start the interview at "test_loops.yml"
+  And I take a screenshot
+  And I get to "end" with this data:
+    | var | value |
+    | there_are_any_people.target_number | 2 |
+    | there_are_any_people[0].name.first | AnyPerson1 |
+    | there_are_any_people[1].name.first | AnyPerson2 |
+    | there_is_another_people.target_number | 2 |
+    | there_is_another_people[0].name.first | AnotherPerson1 |
+    | there_is_another_people[1].name.first | AnotherPerson2 |
+    | target_people.target_number | 2 |
+    | target_people[0].name.first | TargetPerson1 |
+    | target_people[1].name.first | TargetPerson2 |
   And I SHOULD see the phrase "there_are_any_people people: 2"
   And I SHOULD see the phrase "there_is_another_people people: 2"
   And I SHOULD see the phrase "target_people people: 2"
