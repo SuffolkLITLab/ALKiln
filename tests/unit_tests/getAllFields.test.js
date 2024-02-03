@@ -33,8 +33,8 @@ chai.config.truncateThreshold = 0
 it(`creates the right data for standard fields`, async function() {
   // 18 fields (03/15/21)
   let result = await getAllFields( scope, { html: html.standard });
-  //console.log(`${ JSON.stringify(result) }`);
-  //console.log(`-----------------\n${ JSON.stringify(fields.standard) }`);
+//   console.log(`=================\n${ JSON.stringify(fields.standard, null, 2) }`);
+//   console.log(`-----------------\n${ JSON.stringify(result, null, 2) }`);
   expect( result ).to.deep.equalInAnyOrder( fields.standard );
 });
 
@@ -94,14 +94,17 @@ it(`creates the right data for a multi-proxy name (x[i]) again for consistency`,
 });
 
 
-// ============================
-// Signature
-// ============================
-it(`creates the right data for a signature field`, async function() {
-  // `field:` and `action buttons:`
-  let result = await getAllFields( scope, { html: html.signature });
-  expect( result ).to.deep.equalInAnyOrder( fields.signature );
-});
+// Passing, but shouldn't be. Must implement poxie substitution for this too
+// // ============================
+// // Signature
+// // ============================
+// it(`creates the right data for a signature field`, async function() {
+//   // `field:` and `action buttons:`
+//   let result = await getAllFields( scope, { html: html.signature });
+//   console.log(`=================\n${ JSON.stringify(fields.signature, null, 2) }`);
+//   console.log(`-----------------\n${ JSON.stringify(result, null, 2) }`);
+//   expect( result ).to.deep.equalInAnyOrder( fields.signature );
+// });
 
 
 // ============================
