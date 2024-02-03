@@ -17,15 +17,16 @@ default screen parts:
       % for letter in [ 'i', 'j', 'k', 'l', 'm', 'n' ]:
       data-index_var_${ letter }="${ encode_name(str( value( letter ) if defined( letter ) else '' )) }"
       % endfor
-      aria-hidden="true" style="display: none;"></div>
+      aria-hidden="true" style="display: none;">
+    </div>
 ---
 mandatory: True
 code: |
   proxy_list.gather()
-  see_simple_doc
+  doc_with_2_signatures
 ---
 objects:
-  - proxy_list: DAList.using(object_type=Individual, ask_number=True, target_number=1, complete_attribute="complete")
+  - proxy_list: DAList.using(object_type=Individual, ask_number=True, target_number=2, complete_attribute="complete")
 ---
 code: |
   proxy_list[i].name.first
@@ -51,20 +52,22 @@ question: |
   Signature
 signature: x[i].signature
 ---
-id: simple doc
+id: 2_signature download
 question: |
   Document
 subquestion: |
-  [Tap to download](${ simple_doc.pdf.url_for( attachment=True ) })
-event: see_simple_doc
+  [Tap to download](${ doc_with_2_signatures.pdf.url_for( attachment=True ) })
+event: doc_with_2_signatures
 ---
-id: simple attachment
+id: 2_signature attachment
 attachment:
-    variable name: simple_doc
-    pdf template file: simple.pdf
-    filename: simple-doc
+    variable name: doc_with_2_signatures
+    pdf template file: 2_signature.pdf
+    filename: 2_signature
     skip undefined: True
     editable: False
     fields:
       - "proxy1_name_first": ${ proxy_list[0].name.first }
       - "proxy1_signature": ${ proxy_list[0].signature }
+      - "proxy2_name_first": ${ proxy_list[1].name.first }
+      - "proxy2_signature": ${ proxy_list[1].signature }

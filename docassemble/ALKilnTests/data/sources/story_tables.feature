@@ -171,3 +171,16 @@ Scenario: target_number 1 for all people lists
   And I SHOULD see the phrase "there_are_any_people people: 1"
   And I SHOULD see the phrase "there_is_another_people people: 1"
   And I SHOULD see the phrase "target_people people: 1"
+
+@st8 @no_proxy @2_column @compare
+Scenario: No proxies when I sign twice with a 2-column table
+  Given I start the interview at "test_pdf"
+  And I get to "simple doc" with this data:
+  | var | value |
+  | proxy_list.target_number | 2 |
+  | proxy_list[0].name.first | 2 column name 1 |
+  | proxy_list[1].name.first | 2 column name 2 |
+  | proxy_list[0].signature |  |
+  | proxy_list[1].signature |  |
+  When I download "2_signature.pdf"
+  #Then I expect the baseline PDF "2_signature-Baseline.pdf" and the new PDF "2_signature.pdf" to be the same

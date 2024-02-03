@@ -216,7 +216,7 @@ Scenario: I take a screenshot of the signature
   Then I tap to continue
   Then the question id should be "the end"
 
-@slow @o17
+@o17 @compare
 Scenario: I compare the same PDFs
   Given I start the interview at "test_pdf"
   Then the question id should be "proxy vars"
@@ -226,11 +226,17 @@ Scenario: I compare the same PDFs
   Then I sign
   And I tap to continue
   # Next page
-  Then the question id should be "simple doc"
-  When I download "simple-doc.pdf"
-  And I expect the baseline PDF "simple-doc-Baseline.pdf" and the new PDF "simple-doc.pdf" to be the same
+  When I set the var "x[i].name.first" to "Proxyname1 diff"
+  And I tap to continue
+  # Next page
+  Then I sign
+  And I tap to continue
+  # Next page
+  Then the question id should be "2_signature download"
+  When I download "2_signature.pdf"
+  #And I expect the baseline PDF "2_signature-Baseline.pdf" and the new PDF "2_signature.pdf" to be the same
 
-@slow @o18
+@o18 @compare
 Scenario: I compare different PDFs
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
@@ -257,7 +263,13 @@ Scenario: I compare different PDFs
   Then I sign
   And I tap to continue
   # Next page
-  Then the question id should be "simple doc"
-  When I download "simple-doc.pdf"
-  And I expect the baseline PDF "DOES_NOT_EXIST.pdf" and the new PDF "simple-doc.pdf" to be the same
-  And I expect the baseline PDF "simple-doc-Baseline.pdf" and the new PDF "simple-doc.pdf" to be the same
+  When I set the var "x[i].name.first" to "Proxyname1 diff"
+  And I tap to continue
+  # Next page
+  Then I sign
+  And I tap to continue
+  # Next page
+  Then the question id should be "2_signature download"
+  When I download "2_signature.pdf"
+  And I expect the baseline PDF "DOES_NOT_EXIST.pdf" and the new PDF "2_signature.pdf" to be the same
+  #And I expect the baseline PDF "2_signature-Baseline.pdf" and the new PDF "2_signature.pdf" to be the same

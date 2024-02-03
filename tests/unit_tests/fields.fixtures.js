@@ -799,20 +799,23 @@ fields.proxies_multi = [
 // Signature page continue buttons are contained in a different DOM structure than regular ones
 // Also, there's an additional hidden continue button on the page with similar selectors
 fields.signature = [
-    {
-      "trigger": "signature_1",
-      "selector": "#daquestion canvas",
-      "tag": "canvas",
-      "guesses": [
-        {
-          "var": "signature_1",
-          "value": "/sign",
-        }
-      ],
-      "type": ""
-    },
-    
-  ];
+  {
+    "selector": "#daquestion canvas",
+    "tag": "canvas",
+    "guesses": [
+      {
+        "var": "c2lnbmF0dXJlXzE",
+        "value": ""
+      },
+      {
+        "var": "signature_1",
+        "value": ""
+      }
+    ],
+    "type": "",
+    "trigger": "signature_1"
+  }
+];
 
 
 // ============================
