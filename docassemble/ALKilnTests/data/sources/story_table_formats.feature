@@ -130,3 +130,5 @@ Scenario: Fails when table has no header row and rows have only one column
     | single_quote_dict['single_quote_key']['sq_two'] |
     | text_input |
     | textarea |
+
+# Tables with 2 columns and proxy substitution are in other files
