@@ -79,18 +79,32 @@ it(`creates the right data for an event action button`, async function() {
 // ============================
 // Proxy vars (x, i, j, ...)
 // ============================
-// x[i].name.first
-it(`creates the right data for a multi-proxy name (x[i])`, async function() {
+// x[i].name.first where i = 0
+it(`creates the right data for x[i] target variable where "i" is 0`, async function() {
   let result = await getAllFields( scope, { html: html.proxies_xi });
   expect( result ).to.deep.equalInAnyOrder( fields.proxies_xi );
 });
 
-// Multiple proxies by the same name are on the list (because of a loop)
-// x[i].name.first
-it(`creates the right data for a multi-proxy name (x[i]) again for consistency`, async function() {
-  // same data as `proxies_xi`, but have this here for consistency
+// x[i].name.first where i = 1
+it(`creates the right data for x[i] target variable where "i" is 1`, async function() {
   let result = await getAllFields( scope, { html: html.proxies_multi });
   expect( result ).to.deep.equalInAnyOrder( fields.proxies_multi );
+});
+
+
+// ============================
+// Proxy vars (x, i, j, ...)
+// ============================
+// x[i].name.first where i = 0
+it(`creates the right data for x[i] proxy substitution where "i" is 0`, async function() {
+  let result = await getAllFields( scope, { html: html.proxy_substitution_i_is_0 });
+  expect( result ).to.deep.equalInAnyOrder( fields.proxy_substitution_i_is_0 );
+});
+
+// x[i].name.first where i = 1
+it(`creates the right data for x[i] target variable where "i" is 1`, async function() {
+  let result = await getAllFields( scope, { html: html.proxy_substitution_i_is_1 });
+  expect( result ).to.deep.equalInAnyOrder( fields.proxy_substitution_i_is_1 );
 });
 
 

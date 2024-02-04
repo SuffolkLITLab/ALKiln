@@ -1,5 +1,10 @@
 let fields =  {};
 
+/** The fixtures in here are used in at least 2 types of tests:
+ * - getAllFields
+ * - getMatchignRows
+ * */
+
 // ============================
 // Standard fields - no proxies, no showifs.
 // ============================
@@ -736,7 +741,8 @@ fields.buttons_event_action = [
 // ============================
 // Proxy vars (x, i, j, ...)
 // ============================
-// x[i].name.first
+// First loop (first time this question is asked)
+// x[i].name.first where i = 0
 fields.proxies_xi = [
   {
     "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"][id=\"eFtpXS5uYW1lLmZpcnN0\"][class=\"form-control\"]",
@@ -764,8 +770,8 @@ fields.proxies_xi = [
 ];
 
 // Multiple proxies by the same name are in the story table (because of a loop)
-// Second loop (second page where this question is asked)
-// x[i].name.first
+// Second loop (second time this question is asked)
+// x[i].name.first where i = 1
 fields.proxies_multi = [
   {
     "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"][id=\"eFtpXS5uYW1lLmZpcnN0\"][class=\"form-control\"]",
@@ -792,6 +798,89 @@ fields.proxies_multi = [
   }
 ];
 
+// Proxy substitution instead of target variable
+// First loop (first time this question is asked)
+// x[i].name.first where i = 0
+fields.proxy_substitution_i_is_0 = [
+  {
+    "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"][id=\"eFtpXS5uYW1lLmZpcnN0\"][class=\"form-control\"]",
+    "tag": "input",
+    "guesses": [
+      {
+        "var": "eFtpXS5uYW1lLmZpcnN0",
+        "value": ""
+      },
+      {
+        "var": "x[i].name.first",
+        "value": ""
+      },
+      {
+        "var": "proxy_list[0].name.first",
+        "value": ""
+      }
+    ],
+    "type": "text",
+    "trigger": ""
+  },
+  {
+    "selector": "#daquestion button[id=\"da-continue-button\"][class=\"btn btn-da btn-primary\"]",
+    "tag": "button",
+    "guesses": [
+      {
+        "var": "da-continue-button",
+        "value": ""
+      },
+      {
+        "var": "u���{b��n�m�",
+        "value": ""
+      }
+    ],
+    "type": "submit",
+    "trigger": ""
+  }
+]
+
+// Proxy substitution instead of target variable
+// Second loop (second time this question is asked)
+// x[i].name.first where i = 1
+fields.proxy_substitution_i_is_1 = [
+  {
+    "selector": "#daquestion input[name=\"eFtpXS5uYW1lLmZpcnN0\"][id=\"eFtpXS5uYW1lLmZpcnN0\"][class=\"form-control\"]",
+    "tag": "input",
+    "guesses": [
+      {
+        "var": "eFtpXS5uYW1lLmZpcnN0",
+        "value": ""
+      },
+      {
+        "var": "x[i].name.first",
+        "value": ""
+      },
+      {
+        "var": "proxy_list[1].name.first",
+        "value": ""
+      }
+    ],
+    "type": "text",
+    "trigger": ""
+  },
+  {
+    "selector": "#daquestion button[id=\"da-continue-button\"][class=\"btn btn-da btn-primary\"]",
+    "tag": "button",
+    "guesses": [
+      {
+        "var": "da-continue-button",
+        "value": ""
+      },
+      {
+        "var": "u���{b��n�m�",
+        "value": ""
+      }
+    ],
+    "type": "submit",
+    "trigger": ""
+  }
+]
 
 // ============================
 // Signature

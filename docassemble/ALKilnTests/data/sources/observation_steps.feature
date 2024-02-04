@@ -216,7 +216,7 @@ Scenario: I take a screenshot of the signature
   Then I tap to continue
   Then the question id should be "the end"
 
-@o17 @compare
+@o17 @compare_docs
 Scenario: I compare the same PDFs
   Given I start the interview at "test_pdf"
   Then the question id should be "proxy vars"
@@ -226,7 +226,7 @@ Scenario: I compare the same PDFs
   Then I sign
   And I tap to continue
   # Next page
-  When I set the var "x[i].name.first" to "Proxyname1 diff"
+  When I set the var "x[i].name.first" to "Proxyname2"
   And I tap to continue
   # Next page
   Then I sign
@@ -234,9 +234,9 @@ Scenario: I compare the same PDFs
   # Next page
   Then the question id should be "2_signature download"
   When I download "2_signature.pdf"
-  #And I expect the baseline PDF "2_signature-Baseline.pdf" and the new PDF "2_signature.pdf" to be the same
+  And I expect the baseline PDF "linear_2_signature-Baseline.pdf" and the new PDF "2_signature.pdf" to be the same
 
-@o18 @compare
+@o18 @compare_docs
 Scenario: I compare different PDFs
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
@@ -263,7 +263,7 @@ Scenario: I compare different PDFs
   Then I sign
   And I tap to continue
   # Next page
-  When I set the var "x[i].name.first" to "Proxyname1 diff"
+  When I set the var "x[i].name.first" to "Proxyname2 diff"
   And I tap to continue
   # Next page
   Then I sign
@@ -272,4 +272,4 @@ Scenario: I compare different PDFs
   Then the question id should be "2_signature download"
   When I download "2_signature.pdf"
   And I expect the baseline PDF "DOES_NOT_EXIST.pdf" and the new PDF "2_signature.pdf" to be the same
-  #And I expect the baseline PDF "2_signature-Baseline.pdf" and the new PDF "2_signature.pdf" to be the same
+  And I expect the baseline PDF "linear_2_signature-Baseline.pdf" and the new PDF "2_signature.pdf" to be the same

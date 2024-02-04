@@ -139,22 +139,39 @@ tables.proxies_xi = [
   { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
 ];
 
-// Multiple proxies by the same name are on the list (because of a loop)
+// Multiple proxies by the same name are on the list because of a loop (3 loops possible)
 // x[i].name.first
 tables.proxies_multi = [
-  { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", },
-  { "trigger": "proxy_list[1].name.first", "var": "x[i].name.first", "value": "Firstname", },
-  { "trigger": "proxy_list[2].name.first", "var": "x[i].name.first", "value": "Firstname", },
+  { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "1 Firstname", },
+  { "trigger": "proxy_list[1].name.first", "var": "x[i].name.first", "value": "2 Firstname", },
+  { "trigger": "proxy_list[2].name.first", "var": "x[i].name.first", "value": "3 Firstname", },
 ];
 
 // Missing table row for second loop
-tables.proxies_missing_loop = [
+tables.proxies_missing_table_row = [
   { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname", "original": { "trigger": "proxy_list[0].name.first", "var": "x[i].name.first", "value": "Firstname" } },
 ];
 
 // Missing trigger matches second loop
 tables.proxies_missing_trigger = [
   { "trigger": "", "var": "x[i].name.first", "value": "Firstname", "original": { "trigger": "", "var": "x[i].name.first", "value": "Firstname" }},
+];
+
+// Proxy substitutes (no trigger) i = 0
+tables.proxy_substitution_i_is_0 = [
+  { "trigger": "", "var": "proxy_list[0].name.first", "value": "Firstname", },
+];
+
+// Proxy substitutes (no trigger) i = 1 (3 loops possible)
+tables.proxy_substitution_i_is_1 = [
+  { "trigger": "", "var": "proxy_list[0].name.first", "value": "1 Firstname", },
+  { "trigger": "", "var": "proxy_list[1].name.first", "value": "2 Firstname", },
+  { "trigger": "", "var": "proxy_list[2].name.first", "value": "3 Firstname", },
+];
+
+// Proxy substitution (no trigger) missing table row for second loop (i = 1)
+tables.proxy_substitution_missing_table_row = [
+  { "trigger": "", "var": "proxy_list[0].name.first", "value": "Firstname", "original": { "trigger": "", "var": "proxy_list[0].name.first", "value": "Firstname" } },
 ];
 
 

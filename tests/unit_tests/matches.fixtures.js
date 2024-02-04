@@ -107,12 +107,12 @@ matches.proxies_xi = [
 // Multiple proxies by the same name are on the list (because of a loop)
 // x[i].name.first
 matches.proxies_multi = [
-  [{"trigger":"proxy_list[1].name.first","var":"x[i].name.first","value":"Firstname"}],
+  [{"trigger":"proxy_list[1].name.first","var":"x[i].name.first","value":"2 Firstname"}],
   []
 ];
 
 // Missing table row for second loop
-matches.proxies_missing_loop = [
+matches.proxies_missing_table_row = [
   [],
   []
 ];
@@ -120,6 +120,24 @@ matches.proxies_missing_loop = [
 // Missing trigger matches second loop
 matches.proxies_missing_trigger = [
   [{ "trigger": "", "var": "x[i].name.first", "value": "Firstname", "original": { "trigger": "", "var": "x[i].name.first", "value": "Firstname" }}],
+  []
+];
+
+// Proxy substitutes (no trigger) i = 0
+matches.proxy_substitution_i_is_0 = [
+  [{"trigger": "","var": "proxy_list[0].name.first","value":"Firstname"}],
+  []
+];
+
+// Proxy substitutes (no trigger) i = 1 (3 loops possible)
+matches.proxy_substitution_i_is_1 = [
+  [{"trigger": "","var":"proxy_list[1].name.first","value":"2 Firstname"}],
+  []
+];
+
+// Proxy substitution (no trigger) missing table row for second loop (i = 1)
+matches.proxy_substitution_missing_table_row = [
+  [],
   []
 ];
 

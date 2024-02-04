@@ -38,6 +38,8 @@ describe("Matches: For standard fields", async function() {
     let name = getSafeName( field );
     let result = await getMatchingRows( scope, { field, var_data: tables.standard });
     it( `finds the right matches for ${ name }`, async function() {
+      // console.log(`=================\n${ JSON.stringify(curr_matches) }`);
+      // console.log(`-----------------\n${ JSON.stringify(result) }`);
       expect( result ).to.deep.equal( curr_matches );
     });
   }
@@ -194,10 +196,10 @@ describe(`For mulitple rows with the same proxies`, async function() {
 describe(`For a second proxy loop page,`, async function() {
   for ( let test_i = 0; test_i < fields.proxies_multi.length; test_i++ ) {
     let field = fields.proxies_multi[ test_i ];
-    let curr_matches = matches.proxies_missing_loop[ test_i ];
+    let curr_matches = matches.proxies_missing_table_row[ test_i ];
     let name = getSafeName( field );
     it( `does not find any matches when table row for second loop page is missing`, async function() {
-      let result = await getMatchingRows( scope, { field, var_data: tables.proxies_missing_loop });
+      let result = await getMatchingRows( scope, { field, var_data: tables.proxies_missing_table_row });
       expect( result ).to.deep.equal( curr_matches );
     });
   }
@@ -211,6 +213,46 @@ describe(`For a second proxy loop page,`, async function() {
     let name = getSafeName( field );
     it( `matches with a missing trigger row with the correct variable name`, async function() {
       let result = await getMatchingRows( scope, { field, var_data: tables.proxies_missing_trigger });
+      expect( result ).to.deep.equal( curr_matches );
+    });
+  }
+});
+
+// Proxy substitutes (no trigger) first loop (i = 0)
+describe(`For proxy substitution where "i" = 0`, async function() {
+  for ( let test_i = 0; test_i < fields.proxy_substitution_i_is_0.length; test_i++ ) {
+    let field = fields.proxy_substitution_i_is_0[ test_i ];
+    let curr_matches = matches.proxy_substitution_i_is_0[ test_i ];
+    let name = getSafeName( field );
+    it( `finds the right matches for ${ name }`, async function() {
+      let result = await getMatchingRows( scope, { field, var_data: tables.proxy_substitution_i_is_0 });
+      expect( result ).to.deep.equal( curr_matches );
+    });
+  }
+});
+
+// Multiple proxies by the same name are on the list (because of a loop)
+// Proxy substitutes (no trigger) second loop (i = 1)
+describe(`For proxy substitutions with mulitple rows of "i" where "i" = 1`, async function() {
+  for ( let test_i = 0; test_i < fields.proxy_substitution_i_is_1.length; test_i++ ) {
+    let field = fields.proxy_substitution_i_is_1[ test_i ];
+    let curr_matches = matches.proxy_substitution_i_is_1[ test_i ];
+    let name = getSafeName( field );
+    it( `finds the right matches for ${ name }`, async function() {
+      let result = await getMatchingRows( scope, { field, var_data: tables.proxy_substitution_i_is_1 });
+      expect( result ).to.deep.equal( curr_matches );
+    });
+  }
+});
+
+// Proxy substitution (no trigger) missing table row for second loop (i = 1)
+describe(`For a second loop page with a proxy substitution Story Table,`, async function() {
+  for ( let test_i = 0; test_i < fields.proxies_multi.length; test_i++ ) {
+    let field = fields.proxies_multi[ test_i ];
+    let curr_matches = matches.proxy_substitution_missing_table_row[ test_i ];
+    let name = getSafeName( field );
+    it( `finds no matches when the Story Table row for that loop is missing`, async function() {
+      let result = await getMatchingRows( scope, { field, var_data: tables.proxy_substitution_missing_table_row });
       expect( result ).to.deep.equal( curr_matches );
     });
   }

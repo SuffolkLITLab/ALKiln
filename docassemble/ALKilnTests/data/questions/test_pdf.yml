@@ -17,13 +17,12 @@ default screen parts:
       % for letter in [ 'i', 'j', 'k', 'l', 'm', 'n' ]:
       data-index_var_${ letter }="${ encode_name(str( value( letter ) if defined( letter ) else '' )) }"
       % endfor
-      aria-hidden="true" style="display: none;">
-    </div>
+      aria-hidden="true" style="display: none;"></div>
 ---
 mandatory: True
 code: |
   proxy_list.gather()
-  doc_with_2_signatures
+  download_2_signatures
 ---
 objects:
   - proxy_list: DAList.using(object_type=Individual, ask_number=True, target_number=2, complete_attribute="complete")
@@ -57,7 +56,7 @@ question: |
   Document
 subquestion: |
   [Tap to download](${ doc_with_2_signatures.pdf.url_for( attachment=True ) })
-event: doc_with_2_signatures
+event: download_2_signatures
 ---
 id: 2_signature attachment
 attachment:
