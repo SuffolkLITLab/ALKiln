@@ -45,6 +45,10 @@ Format:
 
 <!-- ## [Unreleased] -->
 
+### Added
+
+- 2-column Story Tables that work without the trigger variable. Now column 1, "var", should only contain the actual variable name with no proxies (x, i, j, etc). For example, instead of `x[i].name.first` the var column should now contain `users[0].name.first`. Column 2 is the same as it was before - the answer for the field. See [#582](https://github.com/SuffolkLITLab/ALKiln/issues/582).
+
 ## [5.8.1] - 2023-12-28
 
 ### Fixed
