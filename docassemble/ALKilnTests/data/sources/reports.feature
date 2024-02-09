@@ -416,6 +416,16 @@ Scenario: Fail with missing docx
   """
   Then I start the interview at "test_missing_docx.yml"
 
+@rf28
+Scenario: Fail with page missing a linear Step's value
+  Given the final Scenario status should be "failed"
+  And the Scenario report should include:
+  """
+  ALKiln was unable to find a field on the page
+  """
+  And I start the interview at "AL_tests"
+  Then I set the name of "users[0]" to "Uli Udo User Sr"
+
 
 # scope.js
 # I upload "___" to "___"
