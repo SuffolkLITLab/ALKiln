@@ -255,8 +255,9 @@ Scenario: Fail with link unexpectedly opens in a new window
 #  Then the "Link to external page" link opens a working page
 
 # 'I tap to continue'
-# Tapping to continue should not ever fail for its own sake. We
-# have Steps that check the consequences of tapping to continue.
+# Tapping to continue should not ever fail for its own sake. For example,
+# an author might want to check that their validation fails correctly.
+# We have Steps that check the consequences of tapping to continue.
 
 # Below is test from scope.js, which makes this of place. Maybe this is the
 # wrong way to organize things. Or maybe we shouldn't give tests unique ids
@@ -267,15 +268,15 @@ Scenario: Fail with link unexpectedly opens in a new window
 # possible to hand in multiple vars and require that all rows be used, but it
 # has been confirmed by hand for now.
 @fast @rf17 @error
-Scenario: Fail with var not on page
+Scenario: Fail with value not on page
   Given the final Scenario status should be "failed"
-  Given the Scenario report should include:
+  And the Scenario report should include:
   """
-  Did not find a field on this page for the variable
+  ERROR
   """
   And the Scenario report should include:
   """
-  Error on page "
+  ALKiln was unable to find a field on the page
   """
   And I start the interview at "all_tests"
   And I set the var "missing_var_1" to "missing value 1"
@@ -398,7 +399,7 @@ Scenario: Fail to find var while keeping value secret
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
-  Did not find a field on this page for the variable "missing_var" that could be set to "SECRET_FOR_MISSING_FIELD"
+  ALKiln was unable to find a field on the page
   """
   And the Scenario report should include:
   """
@@ -416,16 +417,6 @@ Scenario: Fail with missing docx
   """
   Then I start the interview at "test_missing_docx.yml"
 
-@rf28
-Scenario: Fail with page missing a linear Step's value
-  Given the final Scenario status should be "failed"
-  And the Scenario report should include:
-  """
-  ALKiln was unable to find a field on the page
-  """
-  And I start the interview at "AL_tests"
-  Then I set the name of "users[0]" to "Uli Udo User Sr"
-
 
 # scope.js
 # I upload "___" to "___"
@@ -434,6 +425,16 @@ Scenario: Fail with page missing a linear Step's value
 # How to test non-existant directory?
 #
 # I sign
+
+@temp1
+Scenario: Warn when there are too many names
+  Given the Scenario report should include:
+  """
+  The name "Uli Udo User Sampson Jr" has more than 4 parts, but 4 is the maximum allowed. The test will set the name to "Uli Udo User Jr"
+  """
+  Given I start the interview at "AL_tests"
+  And I set the name of "users[0]" to "Uli Udo User Sampson Jr"
+  And I tap to continue
 
 
 # ===============================
@@ -444,10 +445,14 @@ Scenario: Fail with page missing a linear Step's value
 Scenario: Warn when there are too many names
   Given the Scenario report should include:
   """
-  The name "Uli Udo User Sampson Jr" has more than 4 parts, but 4 is the maximum allowed. The test will set the name to "Uli Udo User Jr"
+  The name "Uli Udo User Sampson III" has more than 4 parts, but 4 is the maximum allowed. The test will set the name to "Uli Udo User III"
+  """
+  Given the Scenario report should NOT include:
+  """
+  ERROR
   """
   Given I start the interview at "AL_tests"
-  And I set the name of "users[0]" to "Uli Udo User Sampson Jr"
+  And I set the name of "users[0]" to "Uli Udo User Sampson III"
   And I tap to continue
 
 @rw2 @table @loops
