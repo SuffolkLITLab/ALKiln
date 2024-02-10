@@ -417,6 +417,17 @@ Scenario: Fail with missing docx
   """
   Then I start the interview at "test_missing_docx.yml"
 
+@rf28
+Scenario: Fail on unexpected status even when report is as expected
+  # We ran into this internal bug
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  The name "Uli Udo User Sampson Jr" has more than 4 parts, but 4 is the maximum allowed. The test will set the name to "Uli Udo User Jr"
+  """
+  Given I start the interview at "AL_tests"
+  And I set the name of "users[0]" to "Uli Udo User Sampson Jr"
+
 
 # scope.js
 # I upload "___" to "___"
@@ -425,16 +436,6 @@ Scenario: Fail with missing docx
 # How to test non-existant directory?
 #
 # I sign
-
-@temp1
-Scenario: Warn when there are too many names
-  Given the Scenario report should include:
-  """
-  The name "Uli Udo User Sampson Jr" has more than 4 parts, but 4 is the maximum allowed. The test will set the name to "Uli Udo User Jr"
-  """
-  Given I start the interview at "AL_tests"
-  And I set the name of "users[0]" to "Uli Udo User Sampson Jr"
-  And I tap to continue
 
 
 # ===============================
