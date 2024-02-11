@@ -88,5 +88,5 @@ jobs:
           #### Developer note: Useful for temporarily shortening ALKiln tests
           #### to debug the docker install step
           # ALKILN_TAG_EXPRESSION: @a_tag_expression
-          ALKILN_VERSION: 2columns
+          ALKILN_VERSION: 2column
 
