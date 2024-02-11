@@ -3,7 +3,7 @@ name: GitHub server installation
 on:
   push:
   # Default "opened", "reopened", "synchronize". "edited" fires when the PR title gets edited, etc.
-  pull_request_target:
+  pull_request:
   workflow_dispatch:
     inputs:
       tags:
