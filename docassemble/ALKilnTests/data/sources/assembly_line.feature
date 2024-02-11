@@ -33,7 +33,7 @@ Scenario: I have three name parts
 @fast @al3
 Scenario: I have four name parts
   Given I start the interview at "AL_tests"
-  And I set the name of "users[0]" to "Uli Udo User Sr"
+  And I set the name of "users[0]" to "Uli Udo User II"
   And I tap to continue
   And I set the address of "users[0]" to "120 Tremont Street, Unit 2, Boston, MA 02108"
   And I tap to continue
