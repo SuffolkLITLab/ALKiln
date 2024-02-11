@@ -423,10 +423,10 @@ Scenario: Fail on unexpected status even when report is as expected
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
-  The name "Uli Udo User Sampson Jr" has more than 4 parts, but 4 is the maximum allowed. The test will set the name to "Uli Udo User Jr"
+  The name "Uli Udo User Sampson NotASuffix" has more than 4 parts, but 4 is the maximum allowed. The test will set the name to "Uli Udo User NotASuffix"
   """
   Given I start the interview at "AL_tests"
-  And I set the name of "users[0]" to "Uli Udo User Sampson Jr"
+  And I set the name of "users[0]" to "Uli Udo User Sampson NotASuffix"
 
 
 # scope.js
