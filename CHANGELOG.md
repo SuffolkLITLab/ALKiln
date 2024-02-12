@@ -45,9 +45,22 @@ Format:
 
 <!-- ## [Unreleased] -->
 
+## [5.9.0] - 2024-02-11
+
 ### Added
 
-- 2-column Story Tables that work without the trigger variable. Now column 1, "var", should only contain the actual variable name with no proxies (x, i, j, etc). For example, instead of `x[i].name.first` the var column should now contain `users[0].name.first`. Column 2 is the same as it was before - the answer for the field. See [#582](https://github.com/SuffolkLITLab/ALKiln/issues/582).
+- New feature: 2-column Story Tables that work without the trigger variable. Now column 1, "var", should only contain the actual variable name with no proxies (x, i, j, etc). For example, instead of `x[i].name.first` the var column should now contain `users[0].name.first`. Column 2 is the same as it was before - the answer for the field. See [#582](https://github.com/SuffolkLITLab/ALKiln/issues/582).
+- Added console logs enhancing the "progress dots". You don't usually see those till after the tests run. Now more of them should show up during the test run and the name of the Scenario being tested should appear there as well. Unfortunately, the first Scenario behaves differently. We're consulting with the creators of cucumber to understand why that's happening.
+
+### Changed
+- Reduced a couple error messages. See [#573](https://github.com/SuffolkLITLab/ALKiln/issues/573) and [#452](https://github.com/SuffolkLITLab/ALKiln/issues/452).
+
+### Internal
+- Internal tests: Fixed Scenarios that had failed but had correct reports were instead passing.
+- Internal tests: Allow more types of "expected status" for when we test dealing with "undefined", "skipped", etc.
+- Internal tests: Changed name suffix values in tests. Assembly Line changed its punctuation a while ago.
+- Added doc explaining what internal test results we expect to see as people new to the project are surprised by all our red Fs and yet passing tests.
+- Changed our workflow's `on: pull_request_target` to `on: pull_request`. When the former runs tests, `checkout` checks out the target branch's files. It was unhelpful to test the files of the old branch with the new version of ALKiln. The latter checks out the head branch's files. We should be good now.
 
 ## [5.8.1] - 2023-12-28
 

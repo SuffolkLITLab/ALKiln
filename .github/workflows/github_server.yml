@@ -91,5 +91,5 @@ jobs:
           #### to debug the docker install step
           #### Use a "tag expression" to specify which tagged tests to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)
           # ALKILN_TAG_EXPRESSION: @a_tag_expression
-          ALKILN_VERSION: 2column
+          # ALKILN_VERSION: 2column
 
