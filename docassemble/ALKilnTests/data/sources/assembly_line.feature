@@ -8,7 +8,7 @@ Feature: Assembly Line package-specific Steps
 @fast @al1
 Scenario: I have two name parts
   Given the max secs for each step is 120
-  Given I start the interview at "AL_tests"
+  Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli User"
   And I tap to continue
   And I set the address of "users[0]" to "120 Tremont Street, Unit 2, Boston, MA 02108"
@@ -18,9 +18,22 @@ Scenario: I have two name parts
   And I tap to continue
   Then the question id should be "end"
 
+@fast @al1_no_proxy @no_proxy
+Scenario: I have two name parts
+  Given the max secs for each step is 120
+  Given I start the interview at "AL_tests"
+  And I set the name of "users[0]" to "Uli User"
+  And I tap to continue
+  And I set the address of "users[0]" to "120 Tremont Street, Unit 2, Boston, MA 02108"
+  And I tap to continue
+  And I set the name of "users[1]" to "Uli2 User2"
+  And I set the var "users[1].proxy_var" to "Mixed proxy var step test"
+  And I tap to continue
+  Then the question id should be "end"
+
 @fast @al2
 Scenario: I have three name parts
-  Given I start the interview at "AL_tests"
+  Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli Udo User"
   And I tap to continue
   And I set the address of "users[0]" to "120 Tremont Street, Unit 2, Boston, MA 02108"
@@ -32,7 +45,7 @@ Scenario: I have three name parts
 
 @fast @al3
 Scenario: I have four name parts
-  Given I start the interview at "AL_tests"
+  Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli Udo User II"
   And I tap to continue
   And I set the address of "users[0]" to "120 Tremont Street, Unit 2, Boston, MA 02108"

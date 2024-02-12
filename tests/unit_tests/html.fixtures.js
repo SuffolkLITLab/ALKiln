@@ -505,7 +505,8 @@ html.buttons_event_action = `
 // proxies correctly, but we don't need to worry about guessing the proxy
 // name. See https://github.com/plocket/docassemble-cucumber/pull/221
 
-// x[i].name.first
+// First loop (first time this question appears)
+// x[i].name.first (i = 0)
 html.proxies_xi = `
 <div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
     <div data-variable="cHJveHlfbGlzdFswXS5uYW1lLmZpcnN0" id="trigger" aria-hidden="true" style="display: none;"></div>
@@ -534,9 +535,8 @@ html.proxies_xi = `
     </form>
 </div>`;
 
-// Second page of above
-// Multiple proxies by the same name are on the list (because of a loop)
-// x[i].name.first
+// Second loop (second time this question appears)
+// x[i].name.first (i = 1)
 html.proxies_multi = `
 <div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
     <div data-variable="cHJveHlfbGlzdFsxXS5uYW1lLmZpcnN0" id="trigger" aria-hidden="true" style="display: none;"></div>
@@ -559,6 +559,68 @@ html.proxies_multi = `
         <input type="hidden" name="_event" value="WyJwcm94eV9saXN0WzFdLm5hbWUuZmlyc3QiXQ">
         <input type="hidden" name="_question_name" value="ID proxy vars">
         <input type="hidden" name="_tracker" value="20">
+        <input type="hidden" name="_datatypes" value="eyJlRnRwWFM1dVlXMWxMbVpwY25OMCI6ICJ0ZXh0In0">
+        <input type="hidden" name="_visible" value="">
+        <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlRnRwWFM1dVlXMWxMbVpwY25OMCJ9">
+    </form>
+</div>`;
+
+// Proxy substitution, no target variable
+// First loop (first time this question appears)
+// x[i].name.first (i = 0)
+html.proxy_substitution_i_is_0 = `
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-lg-3 col-lg-6 offset-md-2 col-md-8">
+  <div id="alkiln_proxy_var_values" data-generic_object="cHJveHlfbGlzdA" data-index_var_i="MA" data-index_var_j="" data-index_var_k="" data-index_var_l="" data-index_var_m="" data-index_var_n="" aria-hidden="true" style="display: none;"></div>
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALKilnTestALKiln5822columns1706994311264:test_pdf.yml" id="daform" class="form-horizontal daformfields" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">Proxy var 1</h1>
+      <div class="daclear"></div>
+    </div>
+    <div class="da-container da-form-group row darequired da-field-container da-field-container-datatype-text">
+      <label for="eFtpXS5uYW1lLmZpcnN0" class="col-md-4 col-form-label da-form-label datext-right" >first proxy name</label>
+      <div class="col-md-8 dafieldpart">
+        <input alt="Input box" class="form-control" type="text" name="eFtpXS5uYW1lLmZpcnN0" id="eFtpXS5uYW1lLmZpcnN0" required=""/>
+      </div>
+    </div>
+    <fieldset class="da-button-set da-field-buttons">
+      <legend class="visually-hidden">Press one of the following buttons:</legend>
+      <button class="btn btn-da btn-primary" id="da-continue-button" type="submit">Continue</button>
+    </fieldset>
+    <input type="hidden" name="csrf_toke" value="ImNlMGRmOWY5NmQ4MGRjMjI0ZDQyNGFjMWRiYjdiODAzOTk2ZThhY2Ui.Zb7dOA.Fvil0jDP4mebaBoPmtM7sXv6wSQ"/>
+    <input type="hidden" name="_event" value="WyJwcm94eV9saXN0WzBdLm5hbWUuZmlyc3QiXQ"/>
+    <input type="hidden" name="_question_name" value="ID proxy vars"/>
+    <input type="hidden" name="_tracker" value="3"/>
+    <input type="hidden" name="_datatypes" value="eyJlRnRwWFM1dVlXMWxMbVpwY25OMCI6ICJ0ZXh0In0"/>
+    <input type="hidden" name="_visible" value="" />
+    <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlRnRwWFM1dVlXMWxMbVpwY25OMCJ9"/>
+  </form>
+</div>`;
+
+// Proxy substitution, no target variable
+// Second loop (second time this question appears)
+// x[i].name.first (i = 1)
+html.proxy_substitution_i_is_1 = `
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-lg-3 col-lg-6 offset-md-2 col-md-8">
+    <div id="alkiln_proxy_var_values" data-generic_object="cHJveHlfbGlzdA" data-index_var_i="MQ" data-index_var_j="" data-index_var_k="" data-index_var_l="" data-index_var_m="" data-index_var_n="" aria-hidden="true" style="display: none;"></div>
+    <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.playground12ALKilnTestALKiln5822columns1706994311264:test_pdf.yml" id="daform" class="form-horizontal daformfields" method="POST" novalidate="novalidate">
+        <div class="da-page-header">
+            <h1 class="h3" id="daMainQuestion">Proxy var 2</h1>
+            <div class="daclear"></div>
+        </div>
+        <div class="da-container da-form-group row  darequired da-field-container da-field-container-datatype-text">
+          <label for="eFtpXS5uYW1lLmZpcnN0" class="col-md-4 col-form-label da-form-label datext-right">second proxy name</label>
+          <div class="col-md-8 dafieldpart">
+            <input alt="Input box" class="form-control" type="text" name="eFtpXS5uYW1lLmZpcnN0" id="eFtpXS5uYW1lLmZpcnN0" required="">
+          </div>
+        </div>
+        <fieldset class="da-button-set da-field-buttons">
+          <legend class="visually-hidden">Press one of the following buttons:</legend>
+          <button class="btn btn-da btn-primary" id="da-continue-button" type="submit">Continue</button>
+        </fieldset>
+        <input type="hidden" name="csrf_token" value="ImNlMGRmOWY5NmQ4MGRjMjI0ZDQyNGFjMWRiYjdiODAzOTk2ZThhY2Ui.Zb7fVw.D9gMWkXreNYpd_eKkSXwMUybSZ4">
+        <input type="hidden" name="_event" value="WyJwcm94eV9saXN0WzFdLm5hbWUuZmlyc3QiXQ">
+        <input type="hidden" name="_question_name" value="ID proxy vars">
+        <input type="hidden" name="_tracker" value="7">
         <input type="hidden" name="_datatypes" value="eyJlRnRwWFM1dVlXMWxMbVpwY25OMCI6ICJ0ZXh0In0">
         <input type="hidden" name="_visible" value="">
         <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJlRnRwWFM1dVlXMWxMbVpwY25OMCJ9">

@@ -98,12 +98,12 @@ Scenario: I set various values
   # Next page
   Then the question id should be "the end"
 
-@fast @i2 @secret
+@fast @i2 @secret @fail
 Scenario: handles settings from Github secrets
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
-  The GitHub SECRET "SECRET_NOT_THERE" doesn't exist
+  ALKiln could not find the GitHub secret "SECRET_NOT_THERE"
   """
   Given I start the interview at "test_secret_vars"
   When I set the var "first_text_entry" to the secret "SECRET_VAR1"

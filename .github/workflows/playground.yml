@@ -3,7 +3,7 @@ name: Playground installation
 on:
   push:
   # Default: opened, reopened, synchronize. "edited" is not what we want.
-  pull_request_target:
+  pull_request:
   workflow_dispatch:
     inputs:
       tags:
@@ -55,4 +55,4 @@ jobs:
           #### to debug the docker install step
           # ALKILN_TAG_EXPRESSION: @a_tag_expression
           #### Developer note: you probalby don't need this
-          # ALKILN_VERSION: 5.7.0-feature-tap1
+          ALKILN_VERSION: 2column

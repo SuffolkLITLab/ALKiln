@@ -11,6 +11,13 @@ include:
 default screen parts:
   post: |
     <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <div id="alkiln_proxy_var_values"
+      data-generic_object="${ encode_name(str( x.instanceName if defined('x') else '' )) }"
+      % for letter in [ 'i', 'j', 'k', 'l', 'm', 'n' ]:
+      data-index_var_${ letter }="${ encode_name(str( value( letter ) if defined( letter ) else '' )) }"
+      % endfor
+      aria-hidden="true" style="display: none;">
+    </div>
 ---
 id: interview order
 mandatory: True
@@ -26,9 +33,9 @@ sets:
 question: |
   Mix of code and proxy var
 subquestion: |
-  The name fields variables will be using `users[0]` while the last field
+  The name fields variables will be using `users[1]` while the last field
   will be using `users[i]`. The sought variable will be using
-  `users[0]`. The testing framework needs to be able to handle that.
+  `users[1]`. The testing framework needs to be able to handle that.
 fields:
   - code: |
       users[i].name_fields()
