@@ -55,4 +55,4 @@ jobs:
           #### to debug the docker install step
           # ALKILN_TAG_EXPRESSION: @a_tag_expression
           #### Developer note: you probalby don't need this
-          # ALKILN_VERSION: 2column
+          ALKILN_VERSION: url
