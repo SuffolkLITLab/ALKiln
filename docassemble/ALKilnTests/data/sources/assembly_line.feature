@@ -19,7 +19,7 @@ Scenario: I have two name parts
   Then the question id should be "end"
 
 @fast @al1_no_proxy @no_proxy
-Scenario: I have two name parts
+Scenario: I use no proxies and have two name parts
   Given the max secs for each step is 120
   Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli User"

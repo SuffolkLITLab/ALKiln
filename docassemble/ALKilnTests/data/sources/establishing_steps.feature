@@ -36,19 +36,20 @@ Scenario: I sign in
   Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
   And I start the interview at "all_tests"
 
-@fast @e7 @arbitraryurl
-Scenario: I want to go to a full arbitrary url
+# WARNING: This Scenario may fail if the file moves or changes too much
+@fast @e7 @arbitrary
+Scenario: I go to an arbitrary interview
   Given the max seconds for each step in this scenario is 5
   And the Scenario report should include:
   """
-  Trying to load the interview at "https://apps-test.suffolklitlab.org/start/demo/questions"
+  Trying to load the interview at "https://demo.docassemble.org/run/legal/#/1"
   """
-  Given I start the interview at "https://apps-test.suffolklitlab.org/start/demo/questions"
+  Given I start the interview at "https://demo.docassemble.org/run/legal/#/1"
   Then I should see the phrase "What language do you speak?"
 
-# WARNING: This Scenario may fail if the file moves or changes too much
-@fast @failing @e8 @rfe8 @arbitraryurl
-Scenario: Fail with no interview at arbitrary url
+# WARNING: This Scenario may fail incorrectly if the url moves
+@fast @failing @e8 @rfe8 @arbitrary
+Scenario: Fail with no interview at fully arbitrary url
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
@@ -60,3 +61,13 @@ Scenario: Fail with no interview at arbitrary url
   """
   And the max seconds for each step in this scenario is 5
   Then I start the interview at "https://retractionwatch.com"
+
+# A completely arbitrary url doesn't have to have the structure of a da page
+@fast @e9 @arbitrary
+Scenario: I go to a fully arbitrary url
+  Given the max seconds for each step in this scenario is 5
+  And the Scenario report should include:
+  """
+  Successfully went to "https://retractionwatch.com"
+  """
+  Given I go to "https://retractionwatch.com"
