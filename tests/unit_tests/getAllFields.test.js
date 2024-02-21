@@ -33,8 +33,8 @@ chai.config.truncateThreshold = 0
 it(`creates the right data for standard fields`, async function() {
   // 18 fields (03/15/21)
   let result = await getAllFields( scope, { html: html.standard });
-//   console.log(`=================\n${ JSON.stringify(fields.standard, null, 2) }`);
-//   console.log(`-----------------\n${ JSON.stringify(result, null, 2) }`);
+  // console.log(`=================\n${ JSON.stringify(fields.standard, null, 2) }`);
+  // console.log(`-----------------\n${ JSON.stringify(result, null, 2) }`);
   expect( result ).to.deep.equalInAnyOrder( fields.standard );
 });
 
@@ -146,6 +146,14 @@ it(`creates the right data for a 'choices:' field`, async function() {
 it(`creates the right data for a dropdown created with an object`, async function() {
   let result = await getAllFields( scope, { html: html.object_dropdown });
   expect( result ).to.deep.equalInAnyOrder(fields.object_dropdown );
+});
+
+// Ajax
+it('creates the right data for an `ajax` combobox', async function() {
+  let result = await getAllFields( scope, { html: html.ajax });
+  console.log(`=================\n${ JSON.stringify(fields.ajax, null, 2) }`);
+  console.log(`-----------------\n${ JSON.stringify(result, null, 2) }`);
+  expect( result ).to.deep.equalInAnyOrder(fields.ajax );
 });
 
 // ============================

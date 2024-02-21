@@ -99,7 +99,7 @@ Scenario: I set various values
   Then the question id should be "the end"
 
 @fast @i2 @secret @fail
-Scenario: handles settings from Github secrets
+Scenario: Fail with missing secret and succeed with correct ones
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
@@ -129,7 +129,7 @@ Scenario: tap tabs and tap and wait
   Then I see the phrase "Portishead"
 
 @i4 @tap-elements @tabs @error
-Scenario: tap element with an error
+Scenario: Fail with tab selector missing
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """

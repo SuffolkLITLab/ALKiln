@@ -789,6 +789,62 @@ html.object_dropdown = `
     </form>
 </div>`;
 
+html.ajax = `
+<div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-lg-3 col-lg-6 offset-md-2 col-md-8">
+  <form aria-labelledby="daMainQuestion" action="/interview?i=docassemble.base:data/questions/examples/fields-ajax.yml" id="daform" class="form-horizontal daformfields" method="POST" novalidate="novalidate">
+    <div class="da-page-header">
+      <h1 class="h3" id="daMainQuestion">What is your favorite word?</h1>
+      <div class="daclear"></div>
+    </div>
+    <div
+      class="da-container da-form-group row darequired da-field-container da-field-container-datatype-text da-field-container-inputtype-ajax">
+      <label for="ZmF2b3JpdGVfd29yZA" class="col-md-4 col-form-label da-form-label datext-right" >Word</label>
+      <div class="col-md-8 dafieldpart">
+        <div class="combobox-container">
+          <input type="hidden" name="ZmF2b3JpdGVfd29yZA" value="" />
+          <div class="input-group">
+            <input type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-activedescendant="" autocomplete="off" id="ZmF2b3JpdGVfd29yZA" aria-controls="ZmF2b3JpdGVfd29yZAmenu" aria-owns="ZmF2b3JpdGVfd29yZAmenu" placeholder="" required="required" class="form-control da-ajax-combobox"/>
+            <ul role="listbox" class="typeahead typeahead-long dropdown-menu" id="ZmF2b3JpdGVfd29yZAmenu"></ul>
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary dacomboboxtoggle" type="button" tabindex="-1" aria-label="Dropdown" aria-expanded="false" aria-controls="ZmF2b3JpdGVfd29yZAmenu">
+                <svg class="svg-inline--fa fa-caret-down"></svg
+                ><!-- <span class="fas fa-xmark"></span> Font Awesome fontawesome.com -->
+              </button>
+            </div>
+          </div>
+        </div>
+        <select data-action="wordlist" data-trig="4" alt="Input box" class="form-control da-ajax-combobox" id="ZmF2b3JpdGVfd29yZAcombobox" required="" style="display: none;">
+          <option selected="selected"></option>
+        </select>
+      </div>
+    </div>
+    <fieldset class="da-button-set da-field-buttons">
+      <legend class="visually-hidden">
+        Press one of the following buttons:
+      </legend>
+      <button class="btn btn-da btn-primary" id="da-continue-button" type="submit">
+        Continue
+      </button>
+    </fieldset>
+    <input
+      type="hidden"
+      name="csrf_token"
+      value="ImI4NDAyMmI3Mjc4NGY3MDlkMTRiNGE5OTQzZDhmZTVhYWY5NzQwNzUi.ZdVoHQ.GLQUgOWjNag9f7jGSiO9ZvHDoEc"
+    />
+    <input type="hidden" name="_question_name" value="Question_0" />
+    <input type="hidden" name="_tracker" value="2" />
+    <input type="hidden" name="_visible" value="" />
+    <input
+      type="hidden"
+      name="_varnames"
+      value="eyJYMlpwWld4a1h6QSI6ICJabUYyYjNKcGRHVmZkMjl5WkEifQ"
+    />
+  </form>
+</div>`;
+
+// ============================
+// quotes
+// ============================
 html.mixed_quotes = `
 <div id="daquestion" aria-labelledby="dapagetitle" role="main" class="tab-pane fade show active offset-xl-3 offset-lg-3 col-xl-6 col-lg-6 offset-md-2 col-md-8">
     <div data-variable="ZG91YmxlX3F1b3RlX2RpY3RbJ2RvdWJsZV9xdW90ZV9rZXknXQ" id="trigger" aria-hidden="true" style="display: none;"></div>
@@ -891,6 +947,5 @@ html.mixed_quotes = `
         <input type="hidden" name="_varnames" value="eyJYMlpwWld4a1h6QSI6ICJjMmx1WjJ4bFgzRjFiM1JsWDJScFkzUmJKM05wYm1kc1pWOXhkVzkwWlY5clpYa25YUSIsICJYMlpwWld4a1h6RSI6ICJaRzkxWW14bFgzRjFiM1JsWDJScFkzUmJJbVJ2ZFdKc1pWOXhkVzkwWlY5clpYa2lYUSJ9">
     </form>
 </div>`;
-
 
 module.exports = html;

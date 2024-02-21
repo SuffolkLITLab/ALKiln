@@ -56,6 +56,7 @@ Format:
 
 - Handle non-existence of `elem` more robustly when checking for `elem.disabled`
 - Add a pause between pull request tests and push tests when the PR is coming from our own repo
+- Make getting page field values more robust by doing more to ensure that undefined values don't cause errors
 
 ## [5.9.0] - 2024-02-11
 

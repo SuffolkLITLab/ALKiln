@@ -1108,6 +1108,76 @@ fields.object_multiselect = [
   }, 
 ];
 
+// ============================
+// Ajax combobox
+// ============================
+fields.ajax = [
+  {
+    "selector": "#daquestion input[name=\"ZmF2b3JpdGVfd29yZA\"]",
+    "tag": "input",
+    "guesses": [
+      {
+        "var": "ZmF2b3JpdGVfd29yZA",
+        "value": ""
+      },
+      {
+        "var": "favorite_word",
+        "value": ""
+      }
+    ],
+    "type": "hidden",
+    "trigger": ""
+  },
+  {
+    "selector": "#daquestion input[id=\"ZmF2b3JpdGVfd29yZA\"][class=\"form-control da-ajax-combobox\"]",
+    "tag": "input",
+    "guesses": [
+      {
+        "var": "ZmF2b3JpdGVfd29yZA",
+        "value": ""
+      },
+      {
+        "var": "favorite_word",
+        "value": ""
+      }
+    ],
+    "type": "text",
+    "trigger": ""
+  },
+  {
+    "selector": "#daquestion select[id=\"ZmF2b3JpdGVfd29yZAcombobox\"][class=\"form-control da-ajax-combobox\"]",
+    "tag": "select",
+    "guesses": [
+      {
+        "var": "ZmF2b3JpdGVfd29yZAcombobox",
+        "value": ""
+      },
+      {
+        "var": "favorite_word\u0007(��\u001b�",
+        "value": ""
+      }
+    ],
+    "type": "",
+    "trigger": ""
+  },
+  {
+    "selector": "#daquestion button[id=\"da-continue-button\"][class=\"btn btn-da btn-primary\"]",
+    "tag": "button",
+    "guesses": [
+      {
+        "var": "da-continue-button",
+        "value": ""
+      },
+      {
+        "var": "u���{b��n�m�",
+        "value": ""
+      }
+    ],
+    "type": "submit",
+    "trigger": ""
+  }
+];
+
 
 // ============================
 // mixed quotes
