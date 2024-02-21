@@ -310,7 +310,7 @@ Scenario: Fail with cannot find missing document
 # "DANotFoundError" is for a package installed on the server or a
 # playground id (user) that doesn't exist
 @fast @rf20 @error
-Scenario: Fail with system error after Step using wrong file name as trigger
+Scenario: Fail with wrong interview YAML filename
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
@@ -329,7 +329,7 @@ Scenario: Fail with system error after Step using wrong file name as trigger
 #  And I start the interview at "wrong_yaml_filename"
 
 @fast @rf22 @table
-Scenario: I can't match JSON page var to str
+Scenario: Fail with I can't match JSON page var to str
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
