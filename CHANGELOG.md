@@ -49,8 +49,12 @@ Format:
 
 - New Step: 'I go to ""' to go to any arbitrary url, not just arbitrary interview urls.
 - New navigation report messages.
+- Allow non-local environments to get debug logs. For example, the GitHub console during a workflow run.
+
+### Changed
+
 - Avoid waiting for "success" on sign in. Not everyone has it.
-- Allow non-local environments to get debug logs.
+- Detect signature page variable names with the trigger variable name as a fallback to the `_save_as` input. If a server's config has its `restrict input variables` value set to `True`, the #trigger value is the only way for ALKiln to know which variable the signature is setting. Add an error to the report if ALKiln is unable to find either of those.
 
 ### Internal
 
