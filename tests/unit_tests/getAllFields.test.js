@@ -151,8 +151,6 @@ it(`creates the right data for a dropdown created with an object`, async functio
 // Ajax
 it('creates the right data for an `ajax` combobox', async function() {
   let result = await getAllFields( scope, { html: html.ajax });
-  console.log(`=================\n${ JSON.stringify(fields.ajax, null, 2) }`);
-  console.log(`-----------------\n${ JSON.stringify(result, null, 2) }`);
   expect( result ).to.deep.equalInAnyOrder(fields.ajax );
 });
 
