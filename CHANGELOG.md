@@ -43,9 +43,11 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
 
-### Fixed
+## [5.10.1] - 2024-02-23
+
+### Changed
 
 - Fixes the issue that typing is too fast for some fields, like Ajax comboboxes. See [#857](https://github.com/SuffolkLITLab/ALKiln/issues/857).
 
