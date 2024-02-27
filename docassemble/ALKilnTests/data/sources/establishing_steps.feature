@@ -48,7 +48,7 @@ Scenario: I go to an arbitrary interview
   Then I should see the phrase "What language do you speak?"
 
 # WARNING: This Scenario may fail incorrectly if the url moves
-@fast @failing @e8 @rfe8 @arbitrary
+@fast @failure @e8 @rfe8 @arbitraryurl
 Scenario: Fail with no interview at fully arbitrary url
   Given the final Scenario status should be "failed"
   And the Scenario report should include:

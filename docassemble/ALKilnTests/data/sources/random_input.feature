@@ -28,7 +28,7 @@ Scenario: I answer randomly till the end twice
   Given I start the interview at "test_random_input"
   And I answer randomly for at most 50 pages
 
-@fast @ri4 @random @error
+@fast @ri4 @random @failure
 Scenario: Fail with error page from random input
   Given the final Scenario status should be "failed"
   Given I start the interview at "test_missing_var_error_screen"
