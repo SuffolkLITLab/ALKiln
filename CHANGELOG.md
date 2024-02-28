@@ -43,7 +43,11 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Fixed
+
+- Fixed dates only being part-way filled.
 
 ## [5.10.1] - 2024-02-23
 
