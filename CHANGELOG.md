@@ -43,7 +43,16 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Changed
+
+- Error messages now contain error codes. See [#730](https://github.com/SuffolkLITLab/ALKiln/issues/730).
+
+### Internal
+
+- Made sure tests for testing failure all had the same failure tags. Same for warnings.
+- Added "Fail" to the start of each test that tests failure.
 
 ## [5.10.1] - 2024-02-23
 
