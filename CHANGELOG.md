@@ -43,7 +43,9 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.10.2] - 2024-02-29
 
 ### Fixed
 
