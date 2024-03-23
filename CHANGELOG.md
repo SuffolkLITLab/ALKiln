@@ -43,7 +43,15 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Fixed
+
+- Fixes undefined var name when setting long text or ajax combobox value
+
+### Internal
+
+- Removes test for text on error pages. That keeps changing every now and then. It would be nice to test that we're catching some text, which we can't do right now. Maybe we should be broader with where we get the text since authors can also change the DOM. At least there are screenshots when possible.
 
 ## [5.10.2] - 2024-02-29
 
