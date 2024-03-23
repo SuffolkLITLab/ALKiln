@@ -43,7 +43,11 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Fixed
+
+- Fixes undefined var name when setting long text or ajax combobox value
 
 ## [5.10.2] - 2024-02-29
 
