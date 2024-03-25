@@ -43,7 +43,11 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Fixed
+
+- Fixes text fields did not get cleared before entering new text. Created problems with text fields that had pre-existing answers, like default answers.
 
 ## [5.10.3] - 2024-03-23
 
