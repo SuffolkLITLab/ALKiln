@@ -185,7 +185,7 @@ Scenario: tap selectors with & without navigating
 Scenario: I replace a default value
   Given I start the interview at "test_default_value"
   And I get the page's JSON variables and values
-  And I set "new_input" to "Something new!"
+  And I set the variable "new_input" to "Something new!"
   And I tap to continue
   Then the text in the JSON variable "new_input" should be
   """
