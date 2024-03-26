@@ -56,8 +56,8 @@ jobs:
         with:
           SERVER_URL: "${{ env.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ env.DOCASSEMBLE_DEVELOPER_API_KEY }}"
-          #### Developer note: Useful for temporarily shortening ALKiln tests
-          #### to debug the docker install step
+          #### Developer note: Use a "tag expression" to specify which tagged tests
+          #### to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)
           # ALKILN_TAG_EXPRESSION: @a_tag_expression
-          #### Developer note: you probalby don't need this
-          ALKILN_VERSION: url
+          #### Developer note: you probably don't need this
+          # ALKILN_VERSION: url
