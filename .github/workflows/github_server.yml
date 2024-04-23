@@ -2,7 +2,6 @@ name: GitHub server installation
 
 on:
   push:
-  # Default "opened", "reopened", "synchronize". "edited" fires when the PR title gets edited, etc.
   pull_request:
   workflow_dispatch:
     inputs:
@@ -14,7 +13,7 @@ on:
         default: false
         type: boolean
         description: 'Show the docker logs while building the GitHub server container. It will also save the docker log artifact. This might show sensitive config information.'
-      #### Developer note: You probably don't need this
+      #### Developer note: You can probably leave this out
       enable_tmate:
         type: boolean
         description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
@@ -29,9 +28,10 @@ jobs:
       matrix:
         node-version: [18.x]
 
-    #### Developer note: You probably don't need these specific
+    #### Developer note: You can probably leave out these specific
     #### environment variables. You may not even need the `env`
-    #### keyword or values at all
+    #### keyword or values at all. See
+    #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing#env-vars
     env:
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
@@ -44,26 +44,27 @@ jobs:
 
       - name: ALKiln - Start the isolated temporary docassemble server on GitHub
         id: github_server
-        #### Developer note: you'll need to replace `.` with the path to ALKiln’s
-        #### repo and branch. For example, for version 5, put
-        #### suffolkLITLab/ALKiln/action_for_github_server@v5
-        #### Come back and update this version later if you want the latest
+        #### Developer note: you'll need to replace `uses: ./action_for_github_server`
+        #### with the path to ALKiln’s repository name and branch name. For example,
+        #### for version 5, use the branch name `v5`:
+        #### `uses: suffolkLITLab/ALKiln/action_for_github_server@v5`
         uses: ./action_for_github_server
         with:
-          CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
-          #### Developer note: Set this to true to show docker logs and
+          #### Developer note: Set this to "true" to show docker logs and
           #### allow ALKiln to create the docker logs output artifact.
           SHOW_DOCKER_OUTPUT: "${{ github.event.inputs.show_docker_output }}"
+          #### Developer note: You can probably leave this out
+          CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
       - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
         shell: bash
 
-      #### Developer note: You probably don't need this
-      # Optional debugging to explore things like config issues
+      #### Developer note: You can probably leave this out
+      # Optional debugging to explore things like docker issues
       - name: Docker debug tmate session
         if: ${{ github.event.inputs.enable_tmate }}
         uses: mxschmitt/action-tmate@v3
 
-      #### Developer note: You probably don't need this
+      #### Developer note: You can probably leave this out
       - name: Run ALKiln - Env vars for our own tests from server output
         run: |
           echo "USER1_EMAIL=${{ steps.github_server.outputs.DA_ADMIN_EMAIL }}" >> $GITHUB_ENV
@@ -80,18 +81,18 @@ jobs:
 
       - name: "Run ALKiln tests"
         if: ${{ success() }}
-        #### Developer note: you'll need to replace `.` with the path to ALKiln’s
-        #### repo and branch and leave off the trailing `/`
-        #### For example, for version 5 put suffolkLITLab/ALKiln@v5
-        #### Come back and update this version later if you want the latest
+        #### Developer note: you'll need to replace `uses: ./`
+        #### with the path to ALKiln’s repository name and branch name. For example,
+        #### for version 5, use the branch name `v5`: `uses: suffolkLITLab/ALKiln@v5`
         uses: ./
         with:
+          #### Developer note: Required inputs. See
+          #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#sandbox-inputs
           SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
-          #### Developer note: Use a "tag expression" to specify which tagged tests
-          #### to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)
+          #### Developer note: See https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#optional-inputs
           # ALKILN_TAG_EXPRESSION: @a_tag_expression
-          #### Developer note: you probably don't need this
+          #### Developer note: You can probably leave this out
           # ALKILN_VERSION: url
 
