@@ -23,6 +23,16 @@ on:
 jobs:
 
   github-server-tests:
+    #### Developer note: If under `on` (above) you have both `push` and
+    #### `pull_request`, this avoids running double tests when someone
+    #### makes a pull request
+    if: (
+          github.event_name != 'pull_request'
+          && ! github.event.pull_request.head.repo.fork
+        ) || (
+          github.event_name == 'pull_request'
+          && github.event.pull_request.head.repo.fork
+        )
     runs-on: ubuntu-latest
     strategy:
       matrix:

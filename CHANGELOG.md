@@ -49,6 +49,7 @@ Format:
 
 - Stopped using ALKiln version "url".
 - Added and edited documentation comments to the workflow files
+- Avoid running double tests when someone makes a pull request
 
 ## [5.10.4] - 2024-03-25
 
