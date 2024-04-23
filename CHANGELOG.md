@@ -49,7 +49,8 @@ Format:
 
 - Stopped using ALKiln version "url".
 - Added and edited documentation comments to the workflow files
-- Avoid running double tests when someone makes a pull request
+- Avoid running double tests when someone makes a pull request. See [#869](https://github.com/SuffolkLITLab/ALKiln/issues/869).
+- Update dependency action versions. See [#844](https://github.com/SuffolkLITLab/ALKiln/issues/844) and [#871](https://github.com/SuffolkLITLab/ALKiln/issues/871).
 
 ## [5.10.4] - 2024-03-25
 
