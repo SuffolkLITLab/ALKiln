@@ -90,8 +90,7 @@ runs:
       # Also, does GitHub hide job environment output of secrets as well as
       # hiding the secrets' output from the job console?
 
-      # Define the var to prevent/show docker output
-      # TODO: Why are we only doing this for manually triggered workflows?
+      # Define the var to prevent/show docker output based on action input
       - name: Env var for showing docker output
         env:
           SHOW_DOCKER_OUTPUT: ${{ inputs.SHOW_DOCKER_OUTPUT }}
