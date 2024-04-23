@@ -2,7 +2,6 @@ name: Playground installation
 
 on:
   push:
-  # Default: opened, reopened, synchronize. "edited" is not what we want.
   pull_request:
   workflow_dispatch:
     inputs:
@@ -15,17 +14,18 @@ jobs:
 
   puppeteer-tests:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [18.x]
 
     env:
-      #### Developer note: Required
+      #### Developer note: We recommend turning these into environment
+      #### variables before using them as inputs later
       SERVER_URL: ${{ secrets.SERVER_URL }}
       DOCASSEMBLE_DEVELOPER_API_KEY: ${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}
-      #### Developer note: you don't need any of these
-      # Specific to our repo's tests
+
+      #### Developer note: You can probably leave out these specific
+      #### environment variables.
       PLAYGROUND_EMAIL: ${{ secrets.PLAYGROUND_EMAIL }}
       PLAYGROUND_PASSWORD: ${{ secrets.PLAYGROUND_PASSWORD }}
       PLAYGROUND_ID: ${{ secrets.PLAYGROUND_ID }}
@@ -39,25 +39,25 @@ jobs:
 
     name: Run ALKiln tests
     steps:
-      #### Developer note: You probably don't need this
-      # Place the root directory in this branch to access
-      # relative paths to action files
+      #### Developer note: You can probably leave this out
+      # Place the root directory in this branch to access relative paths to action files
       - uses: actions/checkout@v3
 
       - name: Pause between triggers
         if: (github.event_name == 'pull_request' && ! github.event.pull_request.head.repo.fork)
         shell: bash
-        run: sleep 30
+        run: sleep 60
 
-      #### Developer note: you'll need to replace `.` with the path to
-      #### the repo and branch and leave off the trailing `/`
-      #### For example suffolkLITLab/ALKiln@v5
+      #### Developer note: you'll need to replace `uses: ./`
+      #### with the path to ALKiln’s repository name and branch name. For example,
+      #### for version 5, use the branch name `v5`: `uses: suffolkLITLab/ALKiln@v5`
       - uses: ./
         with:
+          #### Developer note: Required ALKiln inputs. You can read more at
+          #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#githubNyou-inputs
           SERVER_URL: "${{ env.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ env.DOCASSEMBLE_DEVELOPER_API_KEY }}"
-          #### Developer note: Useful for temporarily shortening ALKiln tests
-          #### to debug the docker install step
+          #### Developer note: See https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#optional-inputs
           # ALKILN_TAG_EXPRESSION: @a_tag_expression
-          #### Developer note: you probalby don't need this
-          ALKILN_VERSION: url
+          #### Developer note: You can probably leave this out
+          # ALKILN_VERSION: url
