@@ -26,12 +26,12 @@ jobs:
     #### Developer note: If under `on` (above) you have both `push` and
     #### `pull_request`, this avoids running double tests when someone
     #### on the team makes a pull request
+    # 1: Trigger job on push or dispatch from this repository
+    # 2: Trigger job on pull request from a fork
     if: (
-          # push or dispatch from this repository
           github.event_name != 'pull_request'
           && ! github.event.pull_request.head.repo.fork
         ) || (
-          # pull request from a fork
           github.event_name == 'pull_request'
           && github.event.pull_request.head.repo.fork
         )
