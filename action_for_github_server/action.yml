@@ -90,8 +90,7 @@ runs:
       # Also, does GitHub hide job environment output of secrets as well as
       # hiding the secrets' output from the job console?
 
-      # Define the var to prevent/show docker output
-      # TODO: Why are we only doing this for manually triggered workflows?
+      # Define the var to prevent/show docker output based on action input
       - name: Env var for showing docker output
         env:
           SHOW_DOCKER_OUTPUT: ${{ inputs.SHOW_DOCKER_OUTPUT }}
@@ -200,7 +199,7 @@ runs:
         shell: bash
 
       # Don't rely on the environment's version of python
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.10'
       # No output
@@ -236,7 +235,7 @@ runs:
         shell: bash
       - name: "ALKiln GitHub server - Upload artifacts folder"
         if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ env.GITHUB_SERVER_ARTIFACT_NAME }}
           path: ${{ env.GITHUB_SERVER_LOG_FILE_NAME }}

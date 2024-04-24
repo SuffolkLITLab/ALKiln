@@ -51,8 +51,35 @@ Format:
 
 ### Internal
 
+- Stopped using ALKiln version "url".
+- Added and edited documentation comments to the workflow files
+- Avoid running double tests when someone makes a pull request. See [#869](https://github.com/SuffolkLITLab/ALKiln/issues/869).
+- Update dependency action versions. See [#844](https://github.com/SuffolkLITLab/ALKiln/issues/844) and [#871](https://github.com/SuffolkLITLab/ALKiln/issues/871).
 - Made sure tests for testing failure all had the same failure tags. Same for warnings.
 - Added "Fail" to the start of each test that tests failure.
+
+## [5.10.4] - 2024-03-25
+
+### Fixed
+
+- Fixes text fields did not get cleared before entering new text. Created problems with text fields that had pre-existing answers, like default answers.
+
+## [5.10.3] - 2024-03-23
+
+### Fixed
+
+- Fixes undefined var name when setting long text or ajax combobox value
+
+### Internal
+
+- Removes test for text on error pages. That keeps changing every now and then. It would be nice to test that we're catching some text, which we can't do right now. Maybe we should be broader with where we get the text since authors can also change the DOM. At least there are screenshots when possible.
+
+## [5.10.2] - 2024-02-29
+
+### Fixed
+
+- Fixed dates only being part-way filled.
+>>>>>>> v5
 
 ## [5.10.1] - 2024-02-23
 

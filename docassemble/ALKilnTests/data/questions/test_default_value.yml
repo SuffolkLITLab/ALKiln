@@ -1,0 +1,33 @@
+metadata:
+  title: Test default value gets replaced
+  short title: Default value
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <div id="alkiln_proxy_var_values"
+      data-generic_object="${ encode_name(str( x.instanceName if defined('x') else '' )) }"
+      % for letter in [ 'i', 'j', 'k', 'l', 'm', 'n' ]:
+      data-index_var_${ letter }="${ encode_name(str( value( letter ) if defined( letter ) else '' )) }"
+      % endfor
+      aria-hidden="true" style="display: none;"></div>
+---
+mandatory: True
+id: interview order
+code: |
+  new_input
+  end
+---
+id: input with default value
+question: |
+  Input with default value
+fields:
+  - Give any new value: new_input
+    default: Old value
+---
+id: the end
+event: end
+question: |
+  Congratulations! Tests have passed!
