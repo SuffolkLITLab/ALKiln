@@ -13,10 +13,22 @@ on:
 jobs:
 
   puppeteer-tests:
+    #### Developer note: If under `on` (above) you have both `push` and
+    #### `pull_request`, this avoids running double tests when someone
+    #### editing the repository makes a pull request
+    # 1: Trigger job on push or dispatch from this repository
+    # 2: Trigger job on pull request from a fork
+    if: (
+          github.event_name != 'pull_request'
+          && ! github.event.pull_request.head.repo.fork
+        ) || (
+          github.event_name == 'pull_request'
+          && github.event.pull_request.head.repo.fork
+        )
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [20.x]
 
     env:
       #### Developer note: We recommend turning these into environment
