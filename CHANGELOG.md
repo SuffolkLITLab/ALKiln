@@ -48,6 +48,7 @@ Format:
 ### Changed
 
 - Error messages now contain error codes. See [#730](https://github.com/SuffolkLITLab/ALKiln/issues/730).
+- Removed extra warning from sources path checking. We currently check a bunch of paths to be flexible and forgiving, so almost every test will get this warning and it will mislead users. Users do get an error message if we found no paths at all.
 
 ### Internal
 

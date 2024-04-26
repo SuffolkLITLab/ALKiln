@@ -171,7 +171,7 @@ runs:
 
             # Check if max seconds till loading has passed
             if [[ $SECONDS -ge $MAX_SECONDS_FOR_DOCKER ]]; then
-              echo "ALKiln GitHub server Error: Timed out waiting for docker container to serve the site. If you want to give your docker container more timem to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
+              echo "ALK0@@@ ALKiln GitHub server Error: Timed out waiting for docker container to serve the site. If you want to give your docker container more timem to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
               exit 1
             fi
 
