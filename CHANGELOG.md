@@ -58,6 +58,7 @@ Format:
 - Update dependency action versions. See [#844](https://github.com/SuffolkLITLab/ALKiln/issues/844) and [#871](https://github.com/SuffolkLITLab/ALKiln/issues/871).
 - Made sure tests for testing failure all had the same failure tags. Same for warnings.
 - Added "Fail" to the start of each test that tests failure.
+- Removed "example" code from bottom of ./action.yml page since we have our own file as an example now.
 
 ## [5.10.4] - 2024-03-25
 
