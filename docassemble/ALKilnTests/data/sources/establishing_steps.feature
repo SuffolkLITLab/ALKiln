@@ -53,14 +53,14 @@ Scenario: Fail with no interview at fully arbitrary url
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
-  Trying to load the interview at "https://retractionwatch.com"
+  Trying to load the interview at "https://www.usa.gov/"
   """
   And the Scenario report should include:
   """
   ALKiln could not find any interview question page
   """
   And the max seconds for each step in this scenario is 5
-  Then I start the interview at "https://retractionwatch.com"
+  Then I start the interview at "https://www.usa.gov/"
 
 # A completely arbitrary url doesn't have to have the structure of a da page
 @fast @e9 @arbitrary

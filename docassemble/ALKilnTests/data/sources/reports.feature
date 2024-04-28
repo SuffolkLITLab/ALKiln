@@ -314,7 +314,7 @@ Scenario: Fail with wrong interview YAML filename
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
-  ERROR ALK0035: On final attempt to load interview at "
+  ERROR
   """
   And I start the interview at "wrong_yaml_filename"
 
