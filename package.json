@@ -10,7 +10,8 @@
     "setup": "./lib/docassemble/setup.js",
     "takedown": "./lib/docassemble/takedown.js",
     "server_install": "./lib/docassemble/server_install.js",
-    "unit": "mocha tests/unit_tests/*.test.*"
+    "unit": "mocha tests/unit_tests/*.test.*",
+    "codes": "tests/log_codes/check_codes.sh ."
   },
   "repository": {
     "type": "git",
