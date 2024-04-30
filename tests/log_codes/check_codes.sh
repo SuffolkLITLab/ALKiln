@@ -2,7 +2,13 @@
 
 # Identify missing and duplicate message code issues
 
-echo "Script executed from: ${PWD}"
+echo "Script executed from: ${PWD}
+Dir contents:
+"
+
+for entry in "."/*; do
+  echo "$entry"
+done
 
 exit_code=0
 
