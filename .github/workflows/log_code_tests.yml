@@ -24,6 +24,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: "Make sure seq is installed"
-      - run: sudo apt-get update && sudo apt-get install -y coreutils
+        run: sudo apt-get update && sudo apt-get install -y coreutils
       - run: npm install
       - run: npm run codes
