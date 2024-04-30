@@ -16,17 +16,20 @@ fi
 # The grepped files will include the list of all the codes that have been
 # removed and are no longer used.
 lines=$(grep -roh --exclude-dir="check_codes.sh" --exclude-dir="node_modules" --exclude-dir="alkiln-*" --exclude-dir="_alkiln*" "ALK\d\d\d\d" "$directory")
-cleaned=$(grep -v '0000' <(echo "$lines"))
-sorted=$(echo "$cleaned" | sort -n)
-leading_zeros=$(echo "$sorted" | sed 's/^ALK//')
+four_zeros_codes_removed=$(grep -v '0000' <(echo "$lines"))
+sorted=$(echo "$four_zeros_codes_removed" | sort -n)
+# 0's in front of numbers confuses bash about the number format
+just_numbers=$(echo "$sorted" | sed 's/^ALK0*//')
 
 
 echo "=== Missing codes ==="
 
-# More understandable version that doesn't yet come out with a final variable
-# Keeping it here for discussion
+# # -- Version 1 --
+# # More understandable version that doesn't yet come out with a final variable
+# # Keeping it here for discussion
 # nums=$(echo "$sorted" | sed 's/^ALK0*//')
 
+# missing_numbers=()
 # prev_number=0
 # echo "$nums" | while read -r current_number; do
 
@@ -34,30 +37,41 @@ echo "=== Missing codes ==="
 #   # If the difference is more than 1, print the missing
 #   # numbers until we catch up with the current number
 #   if [ $diff -gt 1 ]; then
-#     echo "Start listing missing numbers"
 #     for ((i=prev_number+1; i<current_number; i++)); do
 #       printf -v missing_number "ALK%04d" $i
+#       missing_numbers+=("$missing_number")
 #       echo $missing_number
-#       # echo $i
+#       # missing_numbers+=$(echo "%04d\n" $missing_number)
 #     done
-#     echo "End listing missing numbers"
+#     echo "---"
 #   fi
 
 #   prev_number=$current_number
 
 # done
 
+# missing_numbers_str=$(printf '%s' "${missing_numbers[@]}")
+# echo "missing: $missing_numbers_str"
+
+# -- Version 2 --
 # Version that is opaque, but generates a variable to check at the end
 # Convert the list into an array
-IFS=$'\n' read -rd '' -a num_array <<<"$leading_zeros"
-# Find the minimum and maximum numbers in the array, considering leading zeros
+IFS=$'\n' read -rd '' -a num_array <<<"$just_numbers"
+# Find the minimum and maximum numbers in the array
 min_num=$(printf "%s\n" "${num_array[@]}" | sort -n | head -n 1)
 max_num=$(printf "%s\n" "${num_array[@]}" | sort -n | tail -n 1)
-# Generate a sequence of numbers from min to max with leading zeros
-expected_sequence=$(printf "%04d\n" $(seq $min_num $max_num))
-# Compare the expected sequence with the actual numbers
-missing_numbers=$(comm -23 <(printf "%s\n" $expected_sequence | sort -n) <(printf "%s\n" "$leading_zeros"))
 
+# Generate a sequence of numbers from min to max with leading zeros
+expected_sequence=$(printf "ALK%04d\n" $(seq $min_num $max_num))
+# # (seq doesn't exist everywhere. Keep this till we look up installing seq to avoid loop)
+# expected_sequence=""
+# for ((i=$min_num; i<=$max_num; i++)); do
+#     # Make sure these won't look like numbers to avoid confusing bash
+#     expected_sequence+=$(printf "ALK%04d" $i)$'\n'
+# done
+
+# Compare the expected sequence with the actual numbers
+missing_numbers=$(comm -23 <(printf "%s\n" "$expected_sequence" | sort -n) <(printf "%s\n" "$sorted"))
 if [ -z "$missing_numbers" ]; then
   echo "None"
 else
