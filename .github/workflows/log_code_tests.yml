@@ -23,11 +23,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - run: which seq
-      - name: "Make sure seq is installed"
-        run: sudo apt-get update && sudo apt-get install -y coreutils
-      - run: which seq
-      - name: Debug with tmate session
-        uses: mxschmitt/action-tmate@v3
+      #- run: which seq
+      ##- name: "Make sure seq is installed"
+      ##  run: sudo apt-get update && sudo apt-get install -y coreutils
+      #- run: which seq
+      #- name: Debug with tmate session
+      #  uses: mxschmitt/action-tmate@v3
       - run: npm install
       - run: npm run codes
