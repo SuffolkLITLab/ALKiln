@@ -45,7 +45,7 @@ runs:
   using: "composite"
   steps:
       # Place the root directory in this branch
-      - uses: actions/ checkout@v4
+      - uses: actions/checkout@v4
 
       - shell: bash
         env:
