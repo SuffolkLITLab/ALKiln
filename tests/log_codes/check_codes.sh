@@ -2,6 +2,8 @@
 
 # Identify missing and duplicate message code issues
 
+echo "Script executed from: ${PWD}"
+
 exit_code=0
 
 # Check if the caller sent an argument to the script
@@ -70,6 +72,10 @@ for ((i=min_num; i<=max_num; i++)); do
     # Make sure these won't look like numbers to avoid confusing bash
     expected_sequence+=$(printf "ALK%04d" $i)$'\n'
 done
+echo "sorted $sorted
+"
+echo "expected $expected_sequence
+"
 
 # Compare the expected sequence with the actual numbers
 missing_numbers=$(comm -23 <(printf "%s\n" "$expected_sequence" | sort -n) <(printf "%s\n" "$sorted"))
@@ -100,8 +106,8 @@ ALK0022
 ALK0023
 ALK0025
 ALK0026
-ALK0027
-ALK0029"
+ALK0027"
+# ALK0029"
 
 # Use a sorted list. `uniq` only detects consecutive duplicates
 duplicates=$(echo "$sorted" | uniq -d)
