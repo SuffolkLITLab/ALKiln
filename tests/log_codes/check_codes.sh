@@ -24,10 +24,22 @@ fi
 # The grepped files will include the list of all the codes that have been
 # removed and are no longer used.
 lines=$(grep -roh --exclude-dir="check_codes.sh" --exclude-dir="node_modules" --exclude-dir="alkiln-*" --exclude-dir="_alkiln*" "ALK\d\d\d\d" "$directory")
+echo "lines: $lines
+
+"
 four_zeros_codes_removed=$(grep -v '0000' <(echo "$lines"))
+echo "4 zeros removed: $four_zeros_codes_removed
+
+"
 sorted=$(echo "$four_zeros_codes_removed" | sort -n)
+echo "sorted: $sorted
+
+"
 # 0's in front of numbers confuses bash about the number format
 just_numbers=$(echo "$sorted" | sed 's/^ALK0*//')
+echo "just_numbers: $just_numbers
+
+"
 
 
 echo "=== Missing codes ==="
