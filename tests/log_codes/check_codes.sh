@@ -66,7 +66,7 @@ max_num=$(printf "%s\n" "${num_array[@]}" | sort -n | tail -n 1)
 # # (seq doesn't exist everywhere. Keep this till we look up installing seq to avoid loop)
 # expected_sequence=$(printf "ALK%04d\n" $(seq $min_num $max_num))
 expected_sequence=""
-for ((i=$min_num; i<=$max_num; i++)); do
+for ((i=min_num; i<=max_num; i++)); do
     # Make sure these won't look like numbers to avoid confusing bash
     expected_sequence+=$(printf "ALK%04d" $i)$'\n'
 done
@@ -81,6 +81,7 @@ else
 fi
 
 
+echo ""
 echo "=== Duplicate codes ==="
 
 # We know these duplicates are ok
@@ -114,10 +115,12 @@ else
 fi
 
 # === Final messages ===
+echo ""
 echo "Exit code meanings:
 - code 2: missing codes
 - code 20: duplicate codes
 - code 22: both"
+echo ""
 
 if test $exit_code -eq 0; then
   echo "🌈 Passed! The codes for logs are as they should be."
