@@ -53,6 +53,7 @@ echo "=== Missing codes ==="
 # missing_numbers_str=$(printf '%s' "${missing_numbers[@]}")
 # echo "missing: $missing_numbers_str"
 
+
 # -- Version 2 --
 # Version that is opaque, but generates a variable to check at the end
 # Convert the list into an array
@@ -62,13 +63,13 @@ min_num=$(printf "%s\n" "${num_array[@]}" | sort -n | head -n 1)
 max_num=$(printf "%s\n" "${num_array[@]}" | sort -n | tail -n 1)
 
 # Generate a sequence of numbers from min to max with leading zeros
-expected_sequence=$(printf "ALK%04d\n" $(seq $min_num $max_num))
 # # (seq doesn't exist everywhere. Keep this till we look up installing seq to avoid loop)
-# expected_sequence=""
-# for ((i=$min_num; i<=$max_num; i++)); do
-#     # Make sure these won't look like numbers to avoid confusing bash
-#     expected_sequence+=$(printf "ALK%04d" $i)$'\n'
-# done
+# expected_sequence=$(printf "ALK%04d\n" $(seq $min_num $max_num))
+expected_sequence=""
+for ((i=$min_num; i<=$max_num; i++)); do
+    # Make sure these won't look like numbers to avoid confusing bash
+    expected_sequence+=$(printf "ALK%04d" $i)$'\n'
+done
 
 # Compare the expected sequence with the actual numbers
 missing_numbers=$(comm -23 <(printf "%s\n" "$expected_sequence" | sort -n) <(printf "%s\n" "$sorted"))
@@ -123,7 +124,7 @@ if test $exit_code -eq 0; then
   highest=$(echo "$sorted" | tail -n 1)
   echo "The highest log code is $highest"
 else
-  echo "😞 Log codes are messed up. Exited with exit code $exit_code. See above for more details."
+  echo "🤕 ERROR: Log codes are messed up. Exited with exit code $exit_code. See above for more details."
 fi
 
 exit $exit_code

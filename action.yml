@@ -38,7 +38,7 @@ runs:
   using: "composite"
   steps:
     # Place the root directory in this branch
-    - uses: actions/ checkout@v4
+    - uses: actions/checkout@v4
 
     # Set environment variables
     - name: "💡 ALK0022 INFO: Set environment variables"
@@ -98,22 +98,22 @@ runs:
         # 💡 ALK0026 INFO: Create a Project and install the package from GitHub
         pip install "docassemblecli==$DOCASSEMBLECLI_VERSION"
         alkiln-setup
-    - name: "😞 ALK0027 ERROR: Unable to create a Project"
+    - name: "🤕 ALK0027 ERROR: Unable to create a Project"
       if: ${{ inputs.INSTALL_METHOD == 'playground' && failure() }}
       shell: bash
       run: |
-        echo -e "\n\n====\n😞 ALK0027 ERROR: Unable to create a Project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
+        echo -e "\n\n====\n🤕 ALK0027 ERROR: Unable to create a Project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
 
     # Server installations - find folders and save session vars
     - name: "💡 ALK0028 INFO: Install the GitHub package onto the server"
       if: ${{ inputs.INSTALL_METHOD == 'server' }}
       shell: bash
       run: alkiln-server-install
-    - name: "😞 ALK0029 ERROR: Unable to install the package"
+    - name: "🤕 ALK0029 ERROR: Unable to install the package"
       if: ${{ inputs.INSTALL_METHOD == 'server' && failure() }}
       shell: bash
       run: |
-        echo -e "\n\n====\n😞 ALK0029 ERROR: Unable to install the package on the temporary GitHub docassemble server. Check the steps above this line.\n\n"
+        echo -e "\n\n====\n🤕 ALK0029 ERROR: Unable to install the package on the temporary GitHub docassemble server. Check the steps above this line.\n\n"
 
     # run tests
     - name: "💡 ALK0030 INFO: Run tests"
