@@ -23,8 +23,12 @@ fi
 
 # The grepped files will include the list of all the codes that have been
 # removed and are no longer used.
-lines=$(grep -roh --exclude="tests/log_codes/check_codes.sh" --exclude-dir="node_modules" --exclude-dir='alkiln-*' --exclude-dir='_alkiln*' 'ALK\d\d\d\d' "$directory")
 #lines=$(grep -roh --exclude="tests/log_codes/check_codes.sh" --exclude-dir="node_modules" --exclude-dir="alkiln-*" --exclude-dir="_alkiln*" "ALK\d\d\d\d" "$directory")
+# lines=$(grep -roh --exclude="tests/log_codes/check_codes.sh" --exclude-dir="node_modules" --exclude-dir='alkiln-*' --exclude-dir='_alkiln*' 'ALK\d\d\d\d' "$directory")
+# lines=$(git grep -n -? --exclude="tests/log_codes/check_codes.sh" --exclude-dir="node_modules" --exclude-dir='alkiln-*' --exclude-dir='_alkiln*' 'ALK\d\d\d\d' "$directory")
+
+# https://stackoverflow.com/a/6901221
+lines=$(grep -roh --exclude="tests/log_codes/check_codes.sh" --exclude-dir="node_modules" --exclude-dir='alkiln-*' --exclude-dir='_alkiln*' 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' "$directory")
 echo "lines: $lines
 
 "
