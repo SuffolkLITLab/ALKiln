@@ -237,6 +237,11 @@ runs:
           path: ${{ env.GITHUB_SERVER_LOG_FILE_NAME }}
 
       - shell: bash
-        if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
+        if: ${{ success() }}
         run: |
           echo "🌈 ALK0021 SUCCESS: ALKiln created the docker container and started the server!"
+
+      - shell: bash
+        if: ${{ failure() }}
+        run: |
+          echo "🤕 ALK0182 ERROR: ALKiln created the docker container and started the server!"
