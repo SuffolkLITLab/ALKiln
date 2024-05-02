@@ -52,13 +52,17 @@ Format:
 
 ### Internal
 
-- Stopped using ALKiln version "url".
-- Added and edited documentation comments to the workflow files
-- Avoid running double tests when someone makes a pull request. See [#869](https://github.com/SuffolkLITLab/ALKiln/issues/869).
-- Update dependency action versions. See [#844](https://github.com/SuffolkLITLab/ALKiln/issues/844) and [#871](https://github.com/SuffolkLITLab/ALKiln/issues/871).
-- Made sure tests for testing failure all had the same failure tags. Same for warnings.
-- Added "Fail" to the start of each test that tests failure.
-- Removed "example" code from bottom of ./action.yml page since we have our own file as an example now.
+- Added: Added script to validate log codes (error, warning, info, success, debug logs). Check for duplicate codes, with some exceptions for actions. Check for missing codes - removed codes are stored in another file, allowing this test to work properly.
+- Added: The above script also reports what the highest log code is (if tests pass), letting the developer see what log code they can add next when they need to add a new log code.
+- Added: Added code validation tests to package.json `test` script.
+- Change: Added and edited documentation comments to the workflow files
+- Change: Avoid running double tests when someone makes a pull request. See [#869](https://github.com/SuffolkLITLab/ALKiln/issues/869).
+- Change: Made sure tests for testing failure all had the same failure tags. Same for warnings.
+- Change: Added "Fail" to the start of the Scenario descriptions of each test that tests failure.
+- Change: Removed "example" code from bottom of ./action.yml page since we have our own file as an example now.
+- Change: Switch a11y tests to only run manually since docassemble changes sometimes cause our tests to fail (which isn't actually relevant to our tests). This may be a temporary fix
+- Fix: Stopped using ALKiln version "url".
+- Fix: Update dependency action versions. See [#844](https://github.com/SuffolkLITLab/ALKiln/issues/844) and [#871](https://github.com/SuffolkLITLab/ALKiln/issues/871).
 
 ## [5.10.4] - 2024-03-25
 

@@ -64,12 +64,19 @@ jobs:
       #### with the path to ALKiln’s repository name and branch name. For example,
       #### for version 5, use the branch name `v5`: `uses: suffolkLITLab/ALKiln@v5`
       - uses: ./
+        #### Developer note: You can probably leave this out
+        env:
+          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || 'not @a11y' }}"
         with:
           #### Developer note: Required ALKiln inputs. You can read more at
           #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#githubNyou-inputs
           SERVER_URL: "${{ env.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ env.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           #### Developer note: See https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#optional-inputs
-          # ALKILN_TAG_EXPRESSION: @a_tag_expression
+          #### You can probably leave this out
+          # Internal: docassemble changes sometimes break @a11y tests. That is
+          # a da problem, not ours. We will trigger these tests manually when we
+          # want to check up on this.
+          ALKILN_TAG_EXPRESSION: $ALKILN_TAG_EXPRESSION
           #### Developer note: You can probably leave this out
           # ALKILN_VERSION: url
