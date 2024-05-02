@@ -242,6 +242,7 @@ runs:
           echo "🌈 ALK0021 SUCCESS: ALKiln created the docker container and started the server!"
 
       - shell: bash
-        if: ${{ failure() }}
+        if: ${{ success() }}
         run: |
-          echo "🤕 ALK0182 ERROR: ALKiln created the docker container and started the server!"
+          echo "🤕 ALK0182 ERROR: Something went wrong. See above for more details."
+
