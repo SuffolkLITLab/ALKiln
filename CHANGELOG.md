@@ -45,6 +45,10 @@ Format:
 
 ## [Unreleased]
 
+### Added
+
+- Add logs for "success" and also non-coded logs for logs that are simply cosmetic - adding a new log to space messages out or show separators.
+
 ### Changed
 
 - Error messages now contain error codes. See [#730](https://github.com/SuffolkLITLab/ALKiln/issues/730).
@@ -85,7 +89,6 @@ Format:
 ### Fixed
 
 - Fixed dates only being part-way filled.
->>>>>>> v5
 
 ## [5.10.1] - 2024-02-23
 
