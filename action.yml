@@ -41,7 +41,7 @@ runs:
     - uses: actions/checkout@v4
 
     # Set environment variables
-    - name: "💡 ALK0022 INFO: Set environment variables"
+    - name: "💡 ALK0023 INFO: Set environment variables"
       # Safe input handling. Avoid evaluating in bash.
       env:
         BRANCH_PATH: ${{ github.ref }}
@@ -53,7 +53,7 @@ runs:
         DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
       shell: bash
       run: |
-        # 💡 ALK0022 INFO: Set environment variables
+        # 💡 ALK0023 INFO: Set environment variables
         # Human-readable date/time: https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
         echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
         echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
@@ -67,21 +67,21 @@ runs:
         echo "DOCASSEMBLECLI_VERSION=$DOCASSEMBLECLI_VERSION" >> $GITHUB_ENV
         # Hard-coded internal ALKiln vars
         echo "_ORIGIN=github" >> $GITHUB_ENV
-    - name: "💡 ALK0023 INFO: Confirm environment variables"
+    - name: "💡 ALK0024 INFO: Confirm environment variables"
       shell: bash
       run: |
-        # 💡 ALK0023 INFO: Confirm environment variables
+        # 💡 ALK0024 INFO: Confirm environment variables
         echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nSERVER_RELOAD_TIMEOUT_SECONDS is $SERVER_RELOAD_TIMEOUT_SECONDS\n"
 
     # Install
-    - name: "💡 ALK0024 INFO: Install node packages"
+    - name: "💡 ALK0025 INFO: Install node packages"
       uses: actions/setup-node@v4
       with:
         node-version: "18"
-    - name: "💡 ALK0025 INFO: Install ALKiln directly from npm"
+    - name: "💡 ALK0026 INFO: Install ALKiln directly from npm"
       shell: bash
       run: |
-        # 💡 ALK0025 INFO: Install ALKiln directly from npm
+        # 💡 ALK0026 INFO: Install ALKiln directly from npm
         npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
 
     # Install on playground
@@ -91,32 +91,32 @@ runs:
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       with:
         python-version: '3.10'
-    - name: "💡 ALK0026 INFO: Create a Project and install the package from GitHub"
+    - name: "💡 ALK0027 INFO: Create a Project and install the package from GitHub"
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       shell: bash
       run: |
-        # 💡 ALK0026 INFO: Create a Project and install the package from GitHub
+        # 💡 ALK0027 INFO: Create a Project and install the package from GitHub
         pip install "docassemblecli==$DOCASSEMBLECLI_VERSION"
         alkiln-setup
-    - name: "🤕 ALK0027 ERROR: Unable to create a Project"
+    - name: "😞 ALK0028 ERROR: Unable to create a Project"
       if: ${{ inputs.INSTALL_METHOD == 'playground' && failure() }}
       shell: bash
       run: |
-        echo -e "\n\n====\n🤕 ALK0027 ERROR: Unable to create a Project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
+        echo -e "\n\n====\n😞 ALK0028 ERROR: Unable to create a Project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
 
     # Server installations - find folders and save session vars
-    - name: "💡 ALK0028 INFO: Install the GitHub package onto the server"
+    - name: "💡 ALK0029 INFO: Install the GitHub package onto the server"
       if: ${{ inputs.INSTALL_METHOD == 'server' }}
       shell: bash
       run: alkiln-server-install
-    - name: "🤕 ALK0029 ERROR: Unable to install the package"
+    - name: "😞 ALK0030 ERROR: Unable to install the package"
       if: ${{ inputs.INSTALL_METHOD == 'server' && failure() }}
       shell: bash
       run: |
-        echo -e "\n\n====\n🤕 ALK0029 ERROR: Unable to install the package on the temporary GitHub docassemble server. Check the steps above this line.\n\n"
+        echo -e "\n\n====\n😞 ALK0030 ERROR: Unable to install the package on the temporary GitHub docassemble server. Check the steps above this line.\n\n"
 
     # run tests
-    - name: "💡 ALK0030 INFO: Run tests"
+    - name: "💡 ALK0031 INFO: Run tests"
       if: ${{ success() }}
       env:
         ALKILN_TAG_EXPRESSION: ${{ inputs.ALKILN_TAG_EXPRESSION || github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
@@ -124,13 +124,13 @@ runs:
       run: alkiln-run $ALKILN_TAG_EXPRESSION
     
     # on playground, delete project
-    - name: "💡 ALK0031 INFO: Delete the Project from the Playground"
+    - name: "💡 ALK0032 INFO: Delete the Project from the Playground"
       if: ${{ always() && inputs.INSTALL_METHOD == 'playground' }}
       run: alkiln-takedown
       shell: bash
     
     # Upload artifacts that subscribers can download on the Actions summary page
-    - name: "💡 ALK0032 INFO: Upload artifacts folder"
+    - name: "💡 ALK0033 INFO: Upload artifacts folder"
       if: ${{ always() }}
       uses: actions/upload-artifact@v4
       with:
@@ -139,4 +139,4 @@ runs:
 
     - shell: bash
       run: |
-        echo "💡 ALK0033 INFO: ALkiln finished running tests"
+        echo "💡 ALK0034 INFO: ALkiln finished running tests"

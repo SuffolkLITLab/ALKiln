@@ -244,5 +244,5 @@ runs:
       - shell: bash
         if: ${{ success() }}
         run: |
-          echo "🤕 ALK0182 ERROR: Something went wrong. See above for more details."
+          echo "🤕 ALK0022 ERROR: Something went wrong. See above for more details."
 

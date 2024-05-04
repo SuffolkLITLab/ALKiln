@@ -16,9 +16,8 @@ fi
 # The grepped files will include the list of all the codes that have been
 # removed and are no longer used. Syntax used works with GitHub cli ([[:digit:]])
 # https://stackoverflow.com/a/6901221
-lines=$(grep -roh --exclude="tests/log_codes/check_codes.sh" --exclude-dir="node_modules" --exclude-dir='alkiln-*' --exclude-dir='_alkiln*' 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' "$directory")
-four_zeros_codes_removed=$(grep -v '0000' <(echo "$lines"))
-sorted=$(echo "$four_zeros_codes_removed" | sort -n)
+lines=$(grep -roh --exclude="tests/log_codes/check_codes.sh" --exclude="debug_log.txt" --exclude-dir="node_modules" --exclude-dir='alkiln-*' --exclude-dir='_alkiln*' 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' "$directory")
+sorted=$(echo "$lines" | sort -n)
 
 
 echo "=== Missing codes ==="
@@ -89,7 +88,8 @@ echo "
 === Duplicate codes ==="
 
 # We know these duplicates are ok
-accepted_duplicates="ALK0002
+accepted_duplicates="ALK0000
+ALK0002
 ALK0003
 ALK0006
 ALK0007
@@ -100,12 +100,12 @@ ALK0011
 ALK0012
 ALK0018
 ALK0019
-ALK0022
 ALK0023
-ALK0025
+ALK0024
 ALK0026
 ALK0027
-ALK0029
+ALK0028
+ALK0030
 ALK0049"
 
 # Use a sorted list. `uniq` only detects consecutive duplicates
