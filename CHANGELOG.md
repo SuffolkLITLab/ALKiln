@@ -43,7 +43,9 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.11] - 2024-04-05
 
 ### Added
 
@@ -52,7 +54,7 @@ Format:
 ### Changed
 
 - Error messages now contain error codes. See [#730](https://github.com/SuffolkLITLab/ALKiln/issues/730).
-- Removed extra warning from sources path checking. We currently check a bunch of paths to be flexible and forgiving, so almost every test will get this warning and it will mislead users. Users do get an error message if we found no paths at all.
+- Removed extra warning from sources path checking. We currently check a bunch of paths to be flexible and forgiving, so almost every test has been get this warning and it can mislead users. Users do still get an error message if we found no paths at all.
 
 ### Internal
 
