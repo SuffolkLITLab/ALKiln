@@ -135,8 +135,6 @@ Scenario: I take a pic
   Then I take a pic
   Then I take a pic named "some-pic"
 
-# Remove `should be "failed"` when docassemble styles are improved
-# for comboboxes.
 # TODO: Create an actual failing a11y test, maybe using custom html
 @slow @o12 @accessibility @a11y
 Scenario: I check the pages for accessibility

@@ -19,8 +19,9 @@ Scenario: I fill in random input for 1 page
   Given I start the interview at "test_random_input"
   And I answer randomly for at most 1 page
 
+# TODO: Use a shorter file to test this one
 # Should create two unique folders for random step screenshots which
-# must be checked manually
+# must be checked manually. Maybe this should use `Examples`.
 @fast @ri3 @random
 Scenario: I answer randomly till the end twice
   Given I start the interview at "test_random_input"
@@ -28,7 +29,7 @@ Scenario: I answer randomly till the end twice
   Given I start the interview at "test_random_input"
   And I answer randomly for at most 50 pages
 
-@fast @ri4 @random @error
+@fast @ri4 @random @failure
 Scenario: Fail with error page from random input
   Given the final Scenario status should be "failed"
   Given I start the interview at "test_missing_var_error_screen"

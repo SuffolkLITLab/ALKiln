@@ -45,45 +45,46 @@ runs:
   using: "composite"
   steps:
       # Place the root directory in this branch
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: "ALKiln GitHub server - Set environment variables"
+      - shell: bash
         env:
           MAX_SECONDS_FOR_DOCKER: ${{ inputs.MAX_SECONDS_FOR_DOCKER }}
           DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
         run: |
-          # ALKiln GitHub server info: Set environment variables
+          # 💡ALK0001 INFO: Set environment variables
           echo "MAX_SECONDS_FOR_DOCKER=$MAX_SECONDS_FOR_DOCKER" >> $GITHUB_ENV
           echo "DOCASSEMBLECLI_VERSION=$DOCASSEMBLECLI_VERSION" >> $GITHUB_ENV
           echo "DA_ADMIN_API_KEY=abcd1234abcd1234abcd5678abdc5678" >> $GITHUB_ENV
           echo "DA_ADMIN_EMAIL=admin@example.com" >> $GITHUB_ENV
           # Login will fail if this value is "password"
           echo "DA_ADMIN_PASSWORD=@123abcdefg" >> $GITHUB_ENV
+      - name: "💡 ALK0002 INFO: Prepare GitHub step output variables"
+        id: api_key_output_step
         shell: bash
-      - id: api_key_output_step
         run: |
+          # 💡 ALK0002 INFO: Create GitHub step output variables
           echo "DOCASSEMBLE_DEVELOPER_API_KEY=$DA_ADMIN_API_KEY" >> "$GITHUB_OUTPUT"
           echo "DA_ADMIN_EMAIL=$DA_ADMIN_EMAIL" >> "$GITHUB_OUTPUT"
           echo "DA_ADMIN_PASSWORD=$DA_ADMIN_PASSWORD" >> "$GITHUB_OUTPUT"
-        shell: bash
 
-      - name: "ALKiln GitHub server - Get config"
+      - name: "💡 ALK0003 INFO: Get config"
         env:
           CONFIG: ${{ inputs.CONFIG_CONTENTS }}
+        shell: bash
         run: |
-          # ALKiln GitHub server info: config values
+          # 💡 ALK0003 INFO: Get config
           mkdir /tmp/config
           # Worth making this silent by defining a variable with > /dev/null...?
           if [ -n "$CONFIG" ]
           then
-            echo "ALKiln GitHub server - The developer did provide a custom docassemble config file as an input into this action."
+            echo "💡 ALK0004 INFO: The developer did provide a custom docassemble config file as an input into this action."
             echo "$CONFIG" > /tmp/config/myconfig.yml
             echo "CONFIG_ARGS=--env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config " >> $GITHUB_ENV
           else
-            echo "ALKiln GitHub server - The developer did NOT provide a custom docassemble config file as an input into this action. Docassemble will use its default config."
+            echo "💡 ALK0005 INFO: The developer did NOT provide a custom docassemble config file as an input into this action. Docassemble will use its default config."
             echo "CONFIG_ARGS=" >> $GITHUB_ENV
           fi
-        shell: bash
 
       # Question: If in future we allow GitHub variables instead of just secrets,
       # should we let those be visible or prevent them along with the docker logs?
@@ -91,38 +92,39 @@ runs:
       # hiding the secrets' output from the job console?
 
       # Define the var to prevent/show docker output based on action input
-      - name: Env var for showing docker output
+      - name: "💡 ALK0006 INFO: Determine docker logs visibility"
         env:
           SHOW_DOCKER_OUTPUT: ${{ inputs.SHOW_DOCKER_OUTPUT }}
+        shell: bash
         run: |
-          # ALKiln GitHub server info: Docker logs visibility decision
+          # 💡 ALK0006 INFO: Determine docker logs visibility
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "OUTPUT_DOCKER=$SHOW_DOCKER_OUTPUT" >> $GITHUB_ENV
           else
             echo "OUTPUT_DOCKER=false" >> $GITHUB_ENV
           fi
-        shell: bash
 
       # Messages about output
-      - if: ${{ env.OUTPUT_DOCKER == 'false' }}
-        run: |
-          # ALKiln GitHub server info: no output
-          printf '===\nALKiln GitHub server - GitHub will now stop showing output to avoid possibly showing details about your config. If you want to get output to see more of what is going on, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "true". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
+      - name: "💡 ALK0007 INFO: ALKiln will now hide docker output"
+        if: ${{ env.OUTPUT_DOCKER == 'false' }}
         shell: bash
-      - if: ${{ env.OUTPUT_DOCKER == 'true' }}
         run: |
-          # ALKiln GitHub server info: show output
-          printf '===\nALKiln GitHub server - GitHub will now show the output of docker creation. ALKiln cannot control this output. If you want to prevent output, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
+          echo '===\n💡 ALK0007 INFO: ALKiln will now hide docker output to avoid possibly showing details about your config. If you want to get output to see more of what is going on, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "true". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
+      - name: "💡 ALK0008 INFO: ALKiln will show docker output"
+        if: ${{ env.OUTPUT_DOCKER == 'true' }}
         shell: bash
+        run: |
+          echo '===\n💡 ALK0008 INFO: ALKiln will show docker output. ALKiln cannot control this output. If you want to prevent output, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
 
       # TODO: Reduce these to 1 block by putting ` > /dev/null 2>&1` into an env var
-      # No output
-      - name: "ALKiln GitHub server - Download and start docker silently"
+      # No docker output
+      - name: "💡 ALK0009 INFO: Download and start docker silently"
         if: ${{ env.OUTPUT_DOCKER == 'false' }}
         env:
           CONFIG_ARGS: ${{ env.CONFIG_ARGS }}
+        shell: bash
         run: |
-          # ALKiln GitHub server info: Silent docker pull/run
+          # 💡 ALK0009 INFO: Download and start docker silently
           docker pull jhpyle/docassemble > /dev/null 2>&1
           docker run --name docassemble_container \
                      --env DA_ADMIN_EMAIL="$DA_ADMIN_EMAIL" \
@@ -131,14 +133,14 @@ runs:
                      $CONFIG_ARGS \
                      --cap-add SYS_PTRACE \
                      --memory="4gb" -d -p 80:80 jhpyle/docassemble > /dev/null 2>&1
-        shell: bash
       # With output
-      - name: "ALKiln GitHub server - Download and start docker"
+      - name: "💡 ALK0010 INFO: Download and start docker"
         if: ${{ env.OUTPUT_DOCKER == 'true' }}
         env:
           CONFIG_ARGS: ${{ env.CONFIG_ARGS }}
+        shell: bash
         run: |
-          # ALKiln GitHub server info: Docker pull/run
+          # 💡 ALK0010 INFO: Download and start docker
           docker pull jhpyle/docassemble
           docker run --name docassemble_container \
                      --env DA_ADMIN_EMAIL="$DA_ADMIN_EMAIL" \
@@ -147,18 +149,19 @@ runs:
                      $CONFIG_ARGS \
                      --cap-add SYS_PTRACE \
                      --memory="4gb" -d -p 80:80 jhpyle/docassemble
-        shell: bash
 
-      # Show the time it takes to start the server.
-      - if: ${{ env.OUTPUT_DOCKER == 'false' }}
-        run: |
-          # ALKiln GitHub server info: temporary visible logs
-          echo "ALKiln GitHub server - ALKiln will show safe ALKiln-only output temporarily as ALKiln waits for the server to start"
-        shell: bash
+      # Section for showing the time it takes to start the server.
 
-      - name: "ALKiln GitHub server - Wait for server to start"
+      - name: "💡 ALK0011 INFO: The following messages are not docker output"
+        if: ${{ env.OUTPUT_DOCKER == 'false' }}
+        shell: bash
         run: |
-          # ALKiln GitHub server - Wait for server to start
+          echo "💡 ALK0011 INFO: The following messages are not docker output, just ALKiln waiting for the server to start"
+
+      - name: "💡 ALK0012 INFO: Waiting for server to start"
+        shell: bash
+        run: |
+          # 💡 ALK0012 INFO: Waiting for server to start
 
           # Reset the SECONDS variable
           SECONDS=0
@@ -167,36 +170,27 @@ runs:
 
           response="start"
           while [[ $response != *"200"* ]]; do
-            echo "ALKiln GitHub server - Time elapsed: $SECONDS seconds"
+            echo "💡 ALK0013 INFO: Time elapsed: $SECONDS seconds"
 
             # Check if max seconds till loading has passed
             if [[ $SECONDS -ge $MAX_SECONDS_FOR_DOCKER ]]; then
-              echo "ALKiln GitHub server Error: Timed out waiting for docker container to serve the site. If you want to give your docker container more timem to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
+              echo "🤕 ALK0014 ERROR: Timed out waiting for docker container to serve the site. If you want to give your docker container more timem to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
               exit 1
             fi
 
             # Set the variable to a new string value in each iteration
             response=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:80/health_check?ready=1)
-            echo "ALKiln GitHub server - response is $response"
+            echo "💡 ALK0015 INFO: Response is $response"
 
             # Check if the string includes the desired text
             if [[ $response == *"200"* ]]; then
-              echo "ALKiln GitHub server - Success! The docker container is ready!"
+              echo "🌈 ALK0016 SUCCESS: Success! The docker container is ready!"
             else
-              echo "ALKiln GitHub server - The docker container is not ready yet. Will check again in 30 seconds."
+              echo "💡 ALK0017 INFO: The docker container is not ready yet. Will check again in 30 seconds."
               sleep 30
             fi
 
           done
-        shell: bash
-
-      # Output visibility message
-      - name: Message about docassemble install output
-        if: ${{ env.OUTPUT_DOCKER == 'false' }}
-        run: |
-          # ALKiln GitHub server info: Silent install message
-          echo "ALKiln GitHub server - ALKiln will now prevent output again"
-        shell: bash
 
       # Don't rely on the environment's version of python
       - uses: actions/setup-python@v5
@@ -222,32 +216,33 @@ runs:
 
       # Upload artifacts that devs can download on the Actions summary page
       # Only if the developer wants to get that info, though
-      - name: "ALKiln GitHub server - Get path names with date and time"
+      - name: "💡 ALK0018 INFO: Get path names with date and time"
         if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
+        shell: bash
         run: |
+          # 💡 ALK0018 INFO: Get path names with date and time
           echo "GITHUB_SERVER_LOG_FILE_NAME=/tmp/alkiln_docker_logs-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC.txt" >> $GITHUB_ENV
           echo "GITHUB_SERVER_ARTIFACT_NAME=alkiln_github_server-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
-        shell: bash
-      - name: "ALKiln GitHub server - Docker output"
+      - name: "💡 ALK0019 INFO: Create docker artifact data"
         if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
-        run: |
-          echo "$(docker output docassemble_container)" > "${{ env.GITHUB_SERVER_LOG_FILE_NAME }}"
         shell: bash
-      - name: "ALKiln GitHub server - Upload artifacts folder"
+        run: |
+          # 💡 ALK0019 INFO: Create docker artifact data
+          echo "$(docker output docassemble_container)" > "${{ env.GITHUB_SERVER_LOG_FILE_NAME }}"
+      - name: "💡 ALK0020 INFO: Upload artifacts folder"
         if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.GITHUB_SERVER_ARTIFACT_NAME }}
           path: ${{ env.GITHUB_SERVER_LOG_FILE_NAME }}
 
-      - run: |
-          # ALKiln GitHub server info: End silent output
-          echo "ALKiln GitHub server - ALKiln will show output again"
-        if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
-        shell: bash
+      - shell: bash
+        if: ${{ success() }}
+        run: |
+          echo "🌈 ALK0021 SUCCESS: ALKiln created the docker container and started the server!"
 
-      - run: |
-          # ALKiln GitHub server info: Done
-          echo "ALKiln GitHub server - ALKiln will show output again"
-        if: ${{ always() && env.OUTPUT_DOCKER == 'false' }}
-        shell: bash
+      - shell: bash
+        if: ${{ failure() }}
+        run: |
+          echo "🤕 ALK0022 ERROR: Something went wrong. See above for more details."
+

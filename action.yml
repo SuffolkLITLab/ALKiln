@@ -38,10 +38,10 @@ runs:
   using: "composite"
   steps:
     # Place the root directory in this branch
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     # Set environment variables
-    - name: "ALKiln setup info: Set environment variables"
+    - name: "💡 ALK0023 INFO: Set environment variables"
       # Safe input handling. Avoid evaluating in bash.
       env:
         BRANCH_PATH: ${{ github.ref }}
@@ -51,8 +51,9 @@ runs:
         MAX_SECONDS_FOR_SETUP: ${{ inputs.MAX_SECONDS_FOR_SETUP }}
         SERVER_RELOAD_TIMEOUT_SECONDS: ${{ inputs.SERVER_RELOAD_TIMEOUT_SECONDS }}
         DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
+      shell: bash
       run: |
-        # ALKiln setup info: Set environment variables
+        # 💡 ALK0023 INFO: Set environment variables
         # Human-readable date/time: https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
         echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
         echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
@@ -66,23 +67,22 @@ runs:
         echo "DOCASSEMBLECLI_VERSION=$DOCASSEMBLECLI_VERSION" >> $GITHUB_ENV
         # Hard-coded internal ALKiln vars
         echo "_ORIGIN=github" >> $GITHUB_ENV
+    - name: "💡 ALK0024 INFO: Confirm environment variables"
       shell: bash
-    - name: "ALKiln setup info: confirm environment variables"
       run: |
-        # ALKiln setup info: confirm environment variables
+        # 💡 ALK0024 INFO: Confirm environment variables
         echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nSERVER_RELOAD_TIMEOUT_SECONDS is $SERVER_RELOAD_TIMEOUT_SECONDS\n"
-      shell: bash
 
     # Install
-    - name: "ALKiln setup info: Install node packages"
-      uses: actions/setup-node@v3
+    - name: "💡 ALK0025 INFO: Install node packages"
+      uses: actions/setup-node@v4
       with:
         node-version: "18"
-    - name: Install ALKiln directly from npm
-      run: |
-        # ALKiln setup info: Install ALKiln directly from npm
-        npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
+    - name: "💡 ALK0026 INFO: Install ALKiln directly from npm"
       shell: bash
+      run: |
+        # 💡 ALK0026 INFO: Install ALKiln directly from npm
+        npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
 
     # Install on playground
 
@@ -91,75 +91,52 @@ runs:
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       with:
         python-version: '3.10'
-    - name: "ALKiln: Create a Project and install the package from GitHub"
+    - name: "💡 ALK0027 INFO: Create a Project and install the package from GitHub"
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
+      shell: bash
       run: |
-        # ALKiln setup info: Create a Project and install the package from GitHub
+        # 💡 ALK0027 INFO: Create a Project and install the package from GitHub
         pip install "docassemblecli==$DOCASSEMBLECLI_VERSION"
         alkiln-setup
-      shell: bash
-    - name: "ALKiln setup ERROR"
-      run: echo -e "\n\n====\nALKiln ERROR - could not create a project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
+    - name: "😞 ALK0028 ERROR: Unable to create a Project"
       if: ${{ inputs.INSTALL_METHOD == 'playground' && failure() }}
       shell: bash
+      run: |
+        echo -e "\n\n====\n😞 ALK0028 ERROR: Unable to create a Project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
 
     # Server installations - find folders and save session vars
-    - name: "ALKiln setup info: Install the GitHub package onto the server"
+    - name: "💡 ALK0029 INFO: Install the GitHub package onto the server"
       if: ${{ inputs.INSTALL_METHOD == 'server' }}
-      run: alkiln-server-install
       shell: bash
-    - name: "ALKiln setup ERROR"
-      run: echo -e "\n\n====\nALKiln ERROR - could not install the package on the temporary GitHub docassemble server. Check the steps above this line.\n\n"
+      run: alkiln-server-install
+    - name: "😞 ALK0030 ERROR: Unable to install the package"
       if: ${{ inputs.INSTALL_METHOD == 'server' && failure() }}
       shell: bash
+      run: |
+        echo -e "\n\n====\n😞 ALK0030 ERROR: Unable to install the package on the temporary GitHub docassemble server. Check the steps above this line.\n\n"
 
     # run tests
-    - name: "ALKiln info: Run tests"
+    - name: "💡 ALK0031 INFO: Run tests"
       if: ${{ success() }}
       env:
         ALKILN_TAG_EXPRESSION: ${{ inputs.ALKILN_TAG_EXPRESSION || github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
-      run: alkiln-run $ALKILN_TAG_EXPRESSION
       shell: bash
+      run: alkiln-run $ALKILN_TAG_EXPRESSION
     
     # on playground, delete project
-    - name: "ALKiln info: Try to delete the project from the playground of the docassemble test account."
+    - name: "💡 ALK0032 INFO: Delete the Project from the Playground"
       if: ${{ always() && inputs.INSTALL_METHOD == 'playground' }}
       run: alkiln-takedown
       shell: bash
     
     # Upload artifacts that subscribers can download on the Actions summary page
-    - name: "ALKiln info: Upload artifacts folder"
+    - name: "💡 ALK0033 INFO: Upload artifacts folder"
       if: ${{ always() }}
       uses: actions/upload-artifact@v4
       with:
         name: ${{ env.ARTIFACT_NAME }}
         path: ./alkiln-*
 
-    - run: echo "ALkiln finished running tests"
-      shell: bash
-
-# ##################################
-# # A developer's workflow should look similar to the below.
-# # In place of `uses: suffolkLITLab/ALKiln@v5`, they
-# # might use another version.
-#
-# name: ALKiln v5 tests
-# on:
-#   push:
-#   workflow_dispatch:
-#     inputs:
-#       tags:
-#         description: 'Optional. Use a "tag expression" specify which tagged tests to run. See https://cucumber.io/docs/cucumber/api/#tag-expressions for syntax.'
-#         default: ''
-#
-# jobs:
-#
-#   interview-testing:
-#     runs-on: ubuntu-latest
-#     name: Run interview tests
-#     steps:
-#       - name: Use ALKiln to run tests
-#         uses: suffolkLITLab/ALKiln@v5
-#         with:
-#           SERVER_URL: "${{ secrets.SERVER_URL }}"
-#           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}"
+    - shell: bash
+      run: |
+        echo "💡 ALK0034 INFO: ALkiln finished running tests"

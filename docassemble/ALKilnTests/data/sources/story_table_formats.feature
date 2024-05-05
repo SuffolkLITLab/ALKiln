@@ -111,7 +111,7 @@ Scenario: Table has no header row, MISSING trigger column
     | text_input | Regular text input field value |
     | textarea | Multiline text\narea value |
 
-@fast @stf7
+@fast @stf7 @failure
 Scenario: Fails when table has no header row and rows have only one column
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
