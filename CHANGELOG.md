@@ -43,7 +43,22 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+
+- Added new debug log/code to reflect difference between a expected status mismatch and a cucumber status mismatch.
+
+### Changed
+
+- Changed text of error to make it more clear.
+- Changed logic of error finding to use expected status for users as well as internal tests. That needs discussion.
+- Refactored code in that section.
+- Wait till the end to throw some errors so the user can get as much info as possible about the failures.
+
+### Internal
+
+- Exclude another file from code checking (cucumber-report.txt)
 
 ## [5.11.1] - 2024-04-06
 

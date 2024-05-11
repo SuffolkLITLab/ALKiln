@@ -16,7 +16,7 @@ fi
 # The grepped files will include the list of all the codes that have been
 # removed and are no longer used. Syntax used works with GitHub cli ([[:digit:]])
 # https://stackoverflow.com/a/6901221
-lines=$(grep -roh --exclude="tests/log_codes/check_codes.sh" --exclude="debug_log.txt" --exclude-dir="node_modules" --exclude-dir='alkiln-*' --exclude-dir='_alkiln*' 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' "$directory")
+lines=$(grep -roh --exclude="tests/log_codes/check_codes.sh" --exclude="debug_log.txt" --exclude="cucumber-report.txt" --exclude-dir="node_modules" --exclude-dir='alkiln-*' --exclude-dir='_alkiln*' 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' "$directory")
 sorted=$(echo "$lines" | sort -n)
 
 
