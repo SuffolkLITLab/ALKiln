@@ -34,6 +34,18 @@ inputs:
     required: false
     default: "0.0.17"
 
+
+outputs:
+  REPORT:
+    description: 'report.txt contents or "false" if the file is missing'
+    value: ${{ steps.files.outputs.REPORT }}
+  UNEXPECTED_RESULTS:
+    description: 'unexpected_results.txt contents or "false" if the file is missing'
+    value: ${{ steps.files.outputs.UNEXPECTED_RESULTS }}
+  DEBUG_LOG:
+    description: 'debug_log.txt contents or "false" if the file is missing'
+    value: ${{ steps.files.outputs.DEBUG_LOG }}
+
 runs:
   using: "composite"
   steps:
@@ -136,6 +148,43 @@ runs:
       with:
         name: ${{ env.ARTIFACT_NAME }}
         path: ./alkiln-*
+
+    # Download artifacts folder internally to create action output
+    - name: "💡 ALK0182 INFO: Get uploaded artifacts folder"
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
+
+    # Create output
+    - shell: bash
+      id: files
+      run: |
+        # 💡 ALK0183 INFO: Give file contents or 'false' to interview authors
+        REPORT_PATH="${ARTIFACT_NAME}/report.txt"
+        UNEXPECTED_RESULTS_PATH="${ARTIFACT_NAME}/unexpected_results.txt"
+        DEBUG_LOG_PATH="${ARTIFACT_NAME}/debug_log.txt"
+
+        # Get contents of files if they exist
+        if [ -f "$REPORT_PATH" ]; then
+          REPORT=$(cat "$REPORT_PATH")
+        else
+          REPORT="false"
+        fi
+        if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
+          UNEXPECTED_RESULTS_PATH=$(cat "$UNEXPECTED_RESULTS_PATH")
+        else
+          UNEXPECTED_RESULTS_PATH="false"
+        fi
+        if [ -f "$DEBUG_LOG_PATH" ]; then
+          DEBUG_LOG_PATH=$(cat "$DEBUG_LOG_PATH")
+        else
+          DEBUG_LOG_PATH="false"
+        fi
+
+        # Create the outputs
+        echo "REPORT=$REPORT" >> "$GITHUB_OUTPUT"
+        echo "UNEXPECTED_RESULTS=$UNEXPECTED_RESULTS" >> "$GITHUB_OUTPUT"
+        echo "DEBUG_LOG=$DEBUG_LOG" >> "$GITHUB_OUTPUT"
 
     - shell: bash
       run: |

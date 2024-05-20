@@ -93,25 +93,50 @@ jobs:
 
       - name: "Run ALKiln tests"
         if: ${{ success() }}
+        id: alkiln
         #### Developer note: you'll need to replace `uses: ./`
         #### with the path to ALKiln’s repository name and branch name. For example,
         #### for version 5, use the branch name `v5`: `uses: suffolkLITLab/ALKiln@v5`
         uses: ./
-        #### Developer note: You can probably leave this out
+        #### Developer note: You can probably leave out this `env` section
         env:
-          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || 'not @a11y' }}"
+          # Internal: docassemble changes sometimes break @a11y tests. That is
+          # a da problem, not ours. We will trigger these tests manually when we
+          # want to check up on this.
+          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '(not @a11y) and (not @error)' }}"
         with:
           #### Developer note: Required inputs. See
           #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#sandbox-inputs
           SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
-          #### Developer note: See https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#optional-inputs
-          #### You can probably leave this out
-          # Internal: docassemble changes sometimes break @a11y tests. That is
-          # a da problem, not ours. We will trigger these tests manually when we
-          # want to check up on this.
+          #### Developer note: You can probably leave the rest out
+          #### To learn more, see https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#optional-inputs
           ALKILN_TAG_EXPRESSION: $ALKILN_TAG_EXPRESSION
-          #### Developer note: You can probably leave this out
           # ALKILN_VERSION: url
 
+      #### Developer note: Example of making an issue when tests fail, part 1
+      - name: Get ALKiln output files
+        run: |
+          echo "REPORT=${{ steps.alkiln.outputs.REPORT }}" >> $GITHUB_ENV
+          echo "UNEXPECTED_RESULTS=${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}" >> $GITHUB_ENV
+          echo "DEBUG_LOG=${{ steps.alkiln.outputs.DEBUG_LOG }}" >> $GITHUB_ENV
+
+      #### Developer note: Example of making an issue when tests fail, part 2
+      #### You can do this with any type of GitHub test
+      #### Change the name, title, body, and labels
+      #### To learn more, search online for actions-ecosystem/action-create-issue
+      - name: "If tests failed, create an issue"
+        if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
+        uses: actions-ecosystem/action-create-issue@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          title: "ALKiln tests failed"
+          body: |
+            An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
+
+            ### Report of unexpected results:
+
+            ${{ env.UNEXPECTED_RESULTS }}
+          labels: |
+            testing
