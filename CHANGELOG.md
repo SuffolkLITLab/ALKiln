@@ -43,7 +43,15 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+
+- New file with just failure results, including cucumber results when possible. It accumulates Scenario info as the tests run. Even if a test run stops early, there will still be some results.
+
+### Changed
+
+- report.txt should accumulate over time instead of being created all at once at the end. Even if a test run stops early, there will still be some results.
 
 ## [5.11.2] - 2024-05-17
 
