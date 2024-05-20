@@ -55,18 +55,13 @@ jobs:
       # Place the root directory in this branch to access relative paths to action files
       - uses: actions/checkout@v4
 
-      - name: Pause between triggers
-        if: (github.event_name == 'pull_request' && ! github.event.pull_request.head.repo.fork)
-        shell: bash
-        run: sleep 60
-
       #### Developer note: you'll need to replace `uses: ./`
       #### with the path to ALKiln’s repository name and branch name. For example,
       #### for version 5, use the branch name `v5`: `uses: suffolkLITLab/ALKiln@v5`
       - uses: ./
         #### Developer note: You can probably leave this out
         env:
-          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || 'not @a11y' }}"
+          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '\(not @a11y\) and \(not @error\)' }}"
         with:
           #### Developer note: Required ALKiln inputs. You can read more at
           #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#githubNyou-inputs
@@ -77,6 +72,6 @@ jobs:
           # Internal: docassemble changes sometimes break @a11y tests. That is
           # a da problem, not ours. We will trigger these tests manually when we
           # want to check up on this.
-          ALKILN_TAG_EXPRESSION: $ALKILN_TAG_EXPRESSION
+          ALKILN_TAG_EXPRESSION: "${{ $ALKILN_TAG_EXPRESSION }}"
           #### Developer note: You can probably leave this out
           # ALKILN_VERSION: url

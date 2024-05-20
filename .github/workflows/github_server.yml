@@ -70,11 +70,11 @@ jobs:
       - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
         shell: bash
 
-      #### Developer note: You can probably leave this out
-      # Optional debugging to explore things like docker issues
-      - name: Docker debug tmate session
-        if: ${{ github.event.inputs.enable_tmate }}
-        uses: mxschmitt/action-tmate@v3
+      # #### Developer note: You can probably leave this out
+      # # Optional debugging to explore things like docker issues
+      # - name: Docker debug tmate session
+      #   if: ${{ failure() && github.event.inputs.enable_tmate == 'true' }}
+      #   uses: mxschmitt/action-tmate@v3
 
       #### Developer note: You can probably leave this out
       - name: Run ALKiln - Env vars for our own tests from server output
@@ -103,7 +103,7 @@ jobs:
           # Internal: docassemble changes sometimes break @a11y tests. That is
           # a da problem, not ours. We will trigger these tests manually when we
           # want to check up on this.
-          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '(not @a11y) and (not @error)' }}"
+          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '\(not @a11y\) and \(not @error\)' }}"
         with:
           #### Developer note: Required inputs. See
           #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#sandbox-inputs
@@ -112,8 +112,8 @@ jobs:
           INSTALL_METHOD: "server"
           #### Developer note: You can probably leave the rest out
           #### To learn more, see https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#optional-inputs
-          ALKILN_TAG_EXPRESSION: $ALKILN_TAG_EXPRESSION
-          # ALKILN_VERSION: url
+          ALKILN_TAG_EXPRESSION: "${{ $ALKILN_TAG_EXPRESSION }}"
+          ALKILN_VERSION: output
 
       #### Developer note: Example of making an issue when tests fail, part 1
       - name: Get ALKiln output files

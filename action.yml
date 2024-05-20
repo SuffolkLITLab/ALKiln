@@ -168,17 +168,17 @@ runs:
         if [ -f "$REPORT_PATH" ]; then
           REPORT=$(cat "$REPORT_PATH")
         else
-          REPORT="false"
+          REPORT="report.txt does not exist"
         fi
         if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
           UNEXPECTED_RESULTS_PATH=$(cat "$UNEXPECTED_RESULTS_PATH")
         else
-          UNEXPECTED_RESULTS_PATH="false"
+          UNEXPECTED_RESULTS_PATH="unexpected_results.txt does not exist"
         fi
         if [ -f "$DEBUG_LOG_PATH" ]; then
           DEBUG_LOG_PATH=$(cat "$DEBUG_LOG_PATH")
         else
-          DEBUG_LOG_PATH="false"
+          DEBUG_LOG_PATH="debug_log.txt does not exist"
         fi
 
         # Create the outputs

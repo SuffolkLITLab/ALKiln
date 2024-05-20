@@ -47,11 +47,23 @@ Format:
 
 ### Added
 
+- New outputs from the ALKiln action - `REPORT`, `UNEXPECTED_RESULTS_PATH`, and `DEBUG_LOG_PATH`. Authors can choose to use these as they wish. For example, they can put the contents of these in issues they create from their workflow. Closes [#701](https://github.com/SuffolkLITLab/ALKiln/issues/701).
 - New file with just failure results, including cucumber results when possible. It accumulates Scenario info as the tests run. Even if a test run stops early, there will still be some results.
 
 ### Changed
 
 - report.txt should accumulate over time instead of being created all at once at the end. Even if a test run stops early, there will still be some results.
+- report.txt includes the cucumber output at the bottom as well.
+
+### Fixed
+
+- Tag expression not being used correctly. This requires the author to wrap some tag expressions in quotes - those using complex syntax that includes things like parenthesis. For example, "(" or ")".
+
+### Internal
+
+- Removed our own workflow's pause between triggers
+- Improved our use of ALKIN_TAG_EXPRESSION env var
+- 
 
 ## [5.11.2] - 2024-05-17
 
