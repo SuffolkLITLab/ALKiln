@@ -133,7 +133,7 @@ runs:
       env:
         ALKILN_TAG_EXPRESSION: ${{ inputs.ALKILN_TAG_EXPRESSION || github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
       shell: bash
-      run: alkiln-run $ALKILN_TAG_EXPRESSION
+      run: alkiln-run "$ALKILN_TAG_EXPRESSION"
     
     # on playground, delete project
     - name: "💡 ALK0032 INFO: Delete the Project from the Playground"

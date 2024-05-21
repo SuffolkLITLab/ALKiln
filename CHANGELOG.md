@@ -57,7 +57,7 @@ Format:
 
 ### Fixed
 
-- Tag expression not being used correctly. This requires the author to wrap some tag expressions in quotes - those using complex syntax that includes things like parenthesis. For example, "(" or ")".
+- Tag expression not being parsed correctly. Surrounded `ALKILN_TAG_EXPRESSION` with `"`.
 
 ### Internal
 
