@@ -151,12 +151,14 @@ runs:
 
     # Download artifacts folder internally to create action output
     - name: "💡 ALK0182 INFO: Get uploaded artifacts folder"
+      if: ${{ always() }}
       uses: actions/download-artifact@v4
       with:
         name: ${{ env.ARTIFACT_NAME }}
 
     # Create output
     - shell: bash
+      if: ${{ always() }}
       id: files
       run: |
         # 💡 ALK0183 INFO: Give file contents or 'false' to interview authors

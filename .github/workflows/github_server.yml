@@ -146,6 +146,6 @@ jobs:
       - name: Create issue
         if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
         run: |
-          gh issue create --title "ALKiln tests failed" --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. ### Report of unexpected results:${{ env.UNEXPECTED_RESULTS }}" --repo "$GITHUB_REPOSITORY"
-          env:
-            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          gh issue create --title "ALKiln tests failed" --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. ### Report of unexpected results: ${{ env.UNEXPECTED_RESULTS }}" --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
