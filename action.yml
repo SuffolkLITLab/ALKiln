@@ -155,6 +155,9 @@ runs:
       uses: actions/download-artifact@v4
       with:
         name: ${{ env.ARTIFACT_NAME }}
+        # For private repos possibly
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        if_no_artifact_found: warn
 
     # Create output
     - shell: bash
@@ -163,9 +166,9 @@ runs:
       run: |
         # 💡 ALK0183 INFO: Give file contents or 'false' to interview authors
         FOLDER=$(ls -d */ | grep -E '^alkiln-*')
-        REPORT_PATH="/${ARTIFACT_NAME}/${FOLDER}report.txt"
-        UNEXPECTED_RESULTS_PATH="/${ARTIFACT_NAME}/${FOLDER}unexpected_results.txt"
-        DEBUG_LOG_PATH="/${ARTIFACT_NAME}/${FOLDER}debug_log.txt"
+        REPORT_PATH="${FOLDER}report.txt"
+        UNEXPECTED_RESULTS_PATH="${FOLDER}unexpected_results.txt"
+        DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
 
         echo "REPORT_PATH=$REPORT_PATH" >> $GITHUB_ENV
         echo "UNEXPECTED_RESULTS_PATH=$UNEXPECTED_RESULTS_PATH" >> $GITHUB_ENV
