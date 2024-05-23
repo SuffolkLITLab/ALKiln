@@ -166,6 +166,12 @@ runs:
         UNEXPECTED_RESULTS_PATH="${ARTIFACT_NAME}/unexpected_results.txt"
         DEBUG_LOG_PATH="${ARTIFACT_NAME}/debug_log.txt"
 
+        echo "${ARTIFACT_NAME}/report.txt" >> $GITHUB_ENV
+        echo "${ARTIFACT_NAME}/unexpected_results.txt" >> $GITHUB_ENV
+        echo "${ARTIFACT_NAME}/debug_log.txt" >> $GITHUB_ENV
+
+        echo "$UNEXPECTED_RESULTS_PATH"
+
         # Get contents of files if they exist
         if [ -f "$REPORT_PATH" ]; then
           REPORT=$(cat "$REPORT_PATH")
@@ -173,12 +179,12 @@ runs:
           REPORT="report.txt does not exist"
         fi
         if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
-          UNEXPECTED_RESULTS_PATH=$(cat "$UNEXPECTED_RESULTS_PATH")
+          UNEXPECTED_RESULTS=$(cat "$UNEXPECTED_RESULTS_PATH")
         else
           UNEXPECTED_RESULTS_PATH="unexpected_results.txt does not exist"
         fi
         if [ -f "$DEBUG_LOG_PATH" ]; then
-          DEBUG_LOG_PATH=$(cat "$DEBUG_LOG_PATH")
+          DEBUG_LOG=$(cat "$DEBUG_LOG_PATH")
         else
           DEBUG_LOG_PATH="debug_log.txt does not exist"
         fi
@@ -188,6 +194,13 @@ runs:
         echo "UNEXPECTED_RESULTS=$UNEXPECTED_RESULTS" >> "$GITHUB_OUTPUT"
         echo "DEBUG_LOG=$DEBUG_LOG" >> "$GITHUB_OUTPUT"
         echo "unexpected_results:\n$UNEXPECTED_RESULTS"
+
+        echo "REPORT=$REPORT" >> $GITHUB_ENV
+        echo "UNEXPECTED_RESULTS=$UNEXPECTED_RESULTS" >> $GITHUB_ENV
+        echo "DEBUG_LOG=$DEBUG_LOG" >> $GITHUB_ENV
+
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
 
     - shell: bash
       if: ${{ always() }}
