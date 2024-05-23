@@ -162,13 +162,14 @@ runs:
       id: files
       run: |
         # 💡 ALK0183 INFO: Give file contents or 'false' to interview authors
-        REPORT_PATH="/${ARTIFACT_NAME}/report.txt"
-        UNEXPECTED_RESULTS_PATH="/${ARTIFACT_NAME}/unexpected_results.txt"
-        DEBUG_LOG_PATH="/${ARTIFACT_NAME}/debug_log.txt"
+        FOLDER=$(ls -d */ | grep -E '^alkiln-*')
+        REPORT_PATH="/${ARTIFACT_NAME}/${FOLDER}report.txt"
+        UNEXPECTED_RESULTS_PATH="/${ARTIFACT_NAME}/${FOLDER}unexpected_results.txt"
+        DEBUG_LOG_PATH="/${ARTIFACT_NAME}/${FOLDER}debug_log.txt"
 
-        echo "REPORT_PATH=${ARTIFACT_NAME}/report.txt" >> $GITHUB_ENV
-        echo "UNEXPECTED_RESULTS_PATH=${ARTIFACT_NAME}/unexpected_results.txt" >> $GITHUB_ENV
-        echo "DEBUG_LOG_PATH=${ARTIFACT_NAME}/debug_log.txt" >> $GITHUB_ENV
+        echo "REPORT_PATH=$REPORT_PATH" >> $GITHUB_ENV
+        echo "UNEXPECTED_RESULTS_PATH=$UNEXPECTED_RESULTS_PATH" >> $GITHUB_ENV
+        echo "DEBUG_LOG_PATH=$DEBUG_LOG_PATH" >> $GITHUB_ENV
 
         echo "$UNEXPECTED_RESULTS_PATH"
 
@@ -198,10 +199,6 @@ runs:
         echo "REPORT=$REPORT" >> $GITHUB_ENV
         echo "UNEXPECTED_RESULTS=$UNEXPECTED_RESULTS" >> $GITHUB_ENV
         echo "DEBUG_LOG=$DEBUG_LOG" >> $GITHUB_ENV
-
-    - name: Setup tmate session
-      if: ${{ always() }}
-      uses: mxschmitt/action-tmate@v3
 
     - shell: bash
       if: ${{ always() }}
