@@ -119,6 +119,7 @@ jobs:
       - name: Get ALKiln output files
         if: ${{ failure() }}
         run: |
+          # Get ALKiln output files
           echo "REPORT=${{ steps.alkiln.outputs.REPORT }}" >> $GITHUB_ENV
           echo "UNEXPECTED_RESULTS=${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}" >> $GITHUB_ENV
           echo "DEBUG_LOG=${{ steps.alkiln.outputs.DEBUG_LOG }}" >> $GITHUB_ENV
@@ -145,7 +146,13 @@ jobs:
       # Step to create an issue with the file content
       - name: Create issue
         if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
-        run: |
-          gh issue create --title "ALKiln tests failed" --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. ### Report of unexpected results: ${{ env.UNEXPECTED_RESULTS }}" --repo "$GITHUB_REPOSITORY"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          UNEXPECTED_RESULTS_3: "${{ steps.alkiln.outputs.DEBUG_LOG }}"
+        run: |
+          UNEXPECTED_RESULTS_2="${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
+          echo "env.UNEXPECTED_RESULTS: ${{ env.UNEXPECTED_RESULTS }}"
+          echo "dollar UNEXPECTED_RESULTS: $UNEXPECTED_RESULTS"
+          echo "dollar UNEXPECTED_RESULTS_2: $UNEXPECTED_RESULTS_2"
+          echo "dollar UNEXPECTED_RESULTS_3: $UNEXPECTED_RESULTS_3"
+          gh issue create --title "ALKiln tests failed" --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. ### Report of unexpected results:=====dollar UNEXPECTED_RESULTS_2===== $UNEXPECTED_RESULTS_2" --repo "$GITHUB_REPOSITORY"

@@ -187,7 +187,9 @@ runs:
         echo "REPORT=$REPORT" >> "$GITHUB_OUTPUT"
         echo "UNEXPECTED_RESULTS=$UNEXPECTED_RESULTS" >> "$GITHUB_OUTPUT"
         echo "DEBUG_LOG=$DEBUG_LOG" >> "$GITHUB_OUTPUT"
+        echo "unexpected_results:\n$UNEXPECTED_RESULTS"
 
     - shell: bash
+      if: ${{ always() }}
       run: |
         echo "💡 ALK0034 INFO: ALkiln finished running tests"
