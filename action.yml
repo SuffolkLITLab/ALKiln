@@ -155,9 +155,6 @@ runs:
       uses: actions/download-artifact@v4
       with:
         name: ${{ env.ARTIFACT_NAME }}
-        # For private repos possibly
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        if_no_artifact_found: warn
 
     # Create output
     - shell: bash
