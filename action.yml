@@ -166,28 +166,25 @@ runs:
         # ex: "alkiln-2024-05-23 at 11h35m09sUTC/"
         FOLDER=$(ls -d */ | grep -E '^alkiln-*')
 
+        REPORT_PATH="${FOLDER}report.txt"
         UNEXPECTED_RESULTS_PATH="${FOLDER}unexpected_results.txt"
-        echo "$UNEXPECTED_RESULTS_PATH"
-
-        #REPORT_PATH="${FOLDER}report.txt"
-        #UNEXPECTED_RESULTS_PATH="${FOLDER}unexpected_results.txt"
-        #DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
+        DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
         #echo "REPORT_PATH=$REPORT_PATH" >> $GITHUB_ENV
         #echo "UNEXPECTED_RESULTS_PATH=$UNEXPECTED_RESULTS_PATH" >> $GITHUB_ENV
         #echo "DEBUG_LOG_PATH=$DEBUG_LOG_PATH" >> $GITHUB_ENV
 
         # Get contents of files if they exist
-        if [ -f "${FOLDER}report.txt" ]; then
+        if [ -f "$REPORT_PATH" ]; then
           REPORT=$(cat "$REPORT_PATH")
         else
           REPORT="report.txt does not exist"
         fi
-        if [ -f "${FOLDER}unexpected_results.txt" ]; then
+        if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
           UNEXPECTED_RESULTS=$(cat "$UNEXPECTED_RESULTS_PATH")
         else
           UNEXPECTED_RESULTS_PATH="unexpected_results.txt does not exist"
         fi
-        if [ -f "${FOLDER}debug_log.txt" ]; then
+        if [ -f "$DEBUG_LOG_PATH" ]; then
           DEBUG_LOG=$(cat "$DEBUG_LOG_PATH")
         else
           DEBUG_LOG_PATH="debug_log.txt does not exist"
@@ -211,10 +208,9 @@ runs:
         echo $DEBUG_LOG >> $GITHUB_OUTPUT
         echo 'EOF' >> $GITHUB_OUTPUT
 
-
-        echo "REPORT:\n$REPORT"
-        echo "unexpected_results:\n$UNEXPECTED_RESULTS"
-        echo "DEBUG_LOG:\n$DEBUG_LOG"
+        #echo "REPORT:\n$REPORT"
+        #echo "unexpected_results:\n$UNEXPECTED_RESULTS"
+        #echo "DEBUG_LOG:\n$DEBUG_LOG"
 
     - shell: bash
       if: ${{ always() }}
