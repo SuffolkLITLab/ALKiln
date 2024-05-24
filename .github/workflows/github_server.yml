@@ -116,46 +116,48 @@ jobs:
           ALKILN_VERSION: output
 
       #### Developer note: Example of making an issue when tests fail, part 1
-      - name: Get ALKiln output files
-        if: ${{ failure() }}
-        run: |
-          # Get ALKiln output files
-          echo "REPORT=${{ steps.alkiln.outputs.REPORT }}" >> $GITHUB_ENV
-          echo "UNEXPECTED_RESULTS=${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}" >> $GITHUB_ENV
-          echo "DEBUG_LOG=${{ steps.alkiln.outputs.DEBUG_LOG }}" >> $GITHUB_ENV
-
-      # #### Developer note: Example of making an issue when tests fail, part 2
-      # #### You can do this with any type of GitHub test
-      # #### Change the name, title, body, and labels
-      # #### To learn more, search online for actions-ecosystem/action-create-issue
-      # - name: "If tests failed, create an issue"
-      #   if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
-      #   uses: actions-ecosystem/action-create-issue@v1
-      #   with:
-      #     github_token: ${{ secrets.github_token }}
-      #     title: "ALKiln tests failed"
-      #     body: |
-      #       An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
-
-      #       ### Report of unexpected results:
-
-      #       ${{ env.UNEXPECTED_RESULTS }}
-      #     labels: |
-      #       testing
+      #- name: Get ALKiln output files
+      #  if: ${{ failure() }}
+      #  run: |
+      #    # Get ALKiln output files
+      #    echo "REPORT=${{ steps.alkiln.outputs.REPORT }}" >> $GITHUB_ENV
+      #    echo "UNEXPECTED_RESULTS=${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}" >> $GITHUB_ENV
+      #    echo "DEBUG_LOG=${{ steps.alkiln.outputs.DEBUG_LOG }}" >> $GITHUB_ENV
 
       # Step to create an issue with the file content
       - name: Create issue
         if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          UNEXPECTED_RESULTS_3: "${{ steps.alkiln.outputs.DEBUG_LOG }}"
+          UNEXPECTED_RESULTS: "${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
         run: |
-          echo "env.UNEXPECTED_RESULTS: ${{ env.UNEXPECTED_RESULTS }}"
-          echo "dollar UNEXPECTED_RESULTS: $UNEXPECTED_RESULTS"
-          UNEXPECTED_RESULTS_2="UNEXPECTED_RESULTS_2: ${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
-          echo "dollar UNEXPECTED_RESULTS_2: $UNEXPECTED_RESULTS_2"
-          echo "dollar UNEXPECTED_RESULTS_3: $UNEXPECTED_RESULTS_3"
-          #gh issue create --title "ALKiln tests failed" --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. ### Report of unexpected results:=====dollar UNEXPECTED_RESULTS_2===== $UNEXPECTED_RESULTS_2" --repo "$GITHUB_REPOSITORY"
+          #echo "env.UNEXPECTED_RESULTS: ${{ env.UNEXPECTED_RESULTS }}"
+          #echo "dollar UNEXPECTED_RESULTS: $UNEXPECTED_RESULTS"
+          #UNEXPECTED_RESULTS_2="UNEXPECTED_RESULTS_2: ${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
+          #echo "dollar UNEXPECTED_RESULTS_2: $UNEXPECTED_RESULTS_2"
+          #echo "dollar UNEXPECTED_RESULTS_3: $UNEXPECTED_RESULTS_3"
+          gh issue create --title "ALKiln tests failed" --body "1: An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. ### Report of unexpected results:=====dollar UNEXPECTED_RESULTS_2===== $UNEXPECTED_RESULTS_2" --repo "$GITHUB_REPOSITORY"
+
+      #### Developer note: Example of making an issue when tests fail, part 2
+      #### You can do this with any type of GitHub test
+      #### Change the name, title, body, and labels
+      #### To learn more, search online for actions-ecosystem/action-create-issue
+      - name: "If tests failed, create an issue"
+        if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
+        uses: actions-ecosystem/action-create-issue@v1
+        env:
+          UNEXPECTED_RESULTS: "${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
+        with:
+          github_token: ${{ secrets.github_token }}
+          title: "ALKiln tests failed"
+          body: |
+            An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
+
+            ### Report of unexpected results:
+
+            $UNEXPECTED_RESULTS
+          labels: |
+            testing
 
       - name: Setup tmate session
         if: ${{ always() }}
