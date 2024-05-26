@@ -117,6 +117,7 @@ runs:
       if: ${{ inputs.INSTALL_METHOD == 'playground' && failure() }}
       shell: bash
       run: |
+        # 😞 ALK0028 ERROR: Unable to create a Project
         echo -e "\n\n====\n😞 ALK0028 ERROR: Unable to create a Project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
 
     # Server installations - find folders and save session vars

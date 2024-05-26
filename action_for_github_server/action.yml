@@ -109,12 +109,14 @@ runs:
         if: ${{ env.OUTPUT_DOCKER == 'false' }}
         shell: bash
         run: |
-          echo '===\n💡 ALK0007 INFO: ALKiln will now hide docker output to avoid possibly showing details about your config. If you want to get output to see more of what is going on, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "true". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
+          # 💡 ALK0007 INFO: ALKiln will now hide docker output
+          echo -e '===\n💡 ALK0007 INFO: ALKiln will now hide docker output to avoid possibly showing details about your config. If you want to get output to see more of what is going on, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "true". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
       - name: "💡 ALK0008 INFO: ALKiln will show docker output"
         if: ${{ env.OUTPUT_DOCKER == 'true' }}
         shell: bash
         run: |
-          echo '===\n💡 ALK0008 INFO: ALKiln will show docker output. ALKiln cannot control this output. If you want to prevent output, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
+          # 💡 ALK0008 INFO: ALKiln will show docker output
+          echo -e '===\n💡 ALK0008 INFO: ALKiln will show docker output. ALKiln cannot control this output. If you want to prevent output, use "with:" and set the input "SHOW_DOCKER_OUTPUT" to "false". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==='
 
       # TODO: Reduce these to 1 block by putting ` > /dev/null 2>&1` into an env var
       # No docker output
@@ -156,6 +158,7 @@ runs:
         if: ${{ env.OUTPUT_DOCKER == 'false' }}
         shell: bash
         run: |
+          # 💡 ALK0011 INFO: The following messages are not docker output
           echo "💡 ALK0011 INFO: The following messages are not docker output, just ALKiln waiting for the server to start"
 
       - name: "💡 ALK0012 INFO: Waiting for server to start"
