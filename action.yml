@@ -211,8 +211,7 @@ runs:
         echo $DEBUG_LOG >> $GITHUB_OUTPUT
         echo 'EOF' >> $GITHUB_OUTPUT
 
-        B64=$(echo -n "$DEBUG_LOG" | base64)
-        echo "B64=$B64" >> "$GITHUB_OUTPUT"
+        B64="paused"
 
         #echo "REPORT:\n$REPORT"
         #echo "unexpected_results:\n$UNEXPECTED_RESULTS"
