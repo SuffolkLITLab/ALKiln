@@ -115,7 +115,7 @@ jobs:
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
           ALKILN_VERSION: output
 
-      #### Developer note: Example of making an issue when tests fail, part 1
+      ### Developer note: Example of making an issue when tests fail, part 1
       #- name: Get ALKiln output files
       #  if: ${{ failure() }}
       #  run: |
@@ -125,28 +125,31 @@ jobs:
       #    echo "DEBUG_LOG=${{ steps.alkiln.outputs.DEBUG_LOG }}" >> $GITHUB_ENV
 
       # Step to create an issue with the file content
-      - name: Create issue
+      - name: 1 Create issue
         if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           UNEXPECTED_RESULTS: "${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
+          B64: "${{ steps.alkiln.outputs.B64 }}"
         run: |
           #echo "env.UNEXPECTED_RESULTS: ${{ env.UNEXPECTED_RESULTS }}"
           #echo "dollar UNEXPECTED_RESULTS: $UNEXPECTED_RESULTS"
           #UNEXPECTED_RESULTS_2="UNEXPECTED_RESULTS_2: ${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
           #echo "dollar UNEXPECTED_RESULTS_2: $UNEXPECTED_RESULTS_2"
           #echo "dollar UNEXPECTED_RESULTS_3: $UNEXPECTED_RESULTS_3"
-          gh issue create --title "Test if failed tests make issue" --body "1: An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. ### Report of unexpected results:=====dollar UNEXPECTED_RESULTS_2===== $UNEXPECTED_RESULTS" --repo "$GITHUB_REPOSITORY"
+          # This will probably break because of new lines
+          gh issue create --title "Test if failed tests make issue" --body "1: An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. ### Report of unexpected results:=====dollar UNEXPECTED_RESULTS_2===== $UNEXPECTED_RESULTS @@@@@@@ $(echo "$B64" | base64 --decode)" --repo "$GITHUB_REPOSITORY"
 
       #### Developer note: Example of making an issue when tests fail, part 2
       #### You can do this with any type of GitHub test
       #### Change the name, title, body, and labels
       #### To learn more, search online for actions-ecosystem/action-create-issue
-      - name: "If tests failed, create an issue"
+      - name: "2 If tests failed, create an issue"
         if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
         uses: actions-ecosystem/action-create-issue@v1
         env:
           UNEXPECTED_RESULTS: "${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
+          B64: "$(echo steps.alkiln.outputs.B64 | base64 --decode)"
         with:
           github_token: ${{ secrets.github_token }}
           title: "Test if failed tests make issue"
@@ -155,10 +158,34 @@ jobs:
 
             ### Report of unexpected results:
 
-            ${{ env. UNEXPECTED_RESULTS }}
+            ${{ env.UNEXPECTED_RESULTS }}
+
+            ${{ env.B64 }}
           labels: |
             testing
 
-      - name: Setup tmate session
-        if: ${{ always() }}
-        uses: mxschmitt/action-tmate@v3
+      #### Developer note: Example of making an issue when tests fail, part 2
+      #### You can do this with any type of GitHub test
+      #### Change the name, title, body, and labels
+      #### To learn more, search online for actions-ecosystem/action-create-issue
+      - name: "3 If tests failed, create an issue"
+        if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
+        uses: actions-ecosystem/action-create-issue@v1
+        env:
+          UNEXPECTED_RESULTS: "${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
+          B64: "${{ steps.alkiln.outputs.B64 }}"
+        with:
+          github_token: ${{ secrets.github_token }}
+          title: "Test if failed tests make issue"
+          body: |
+            An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
+
+            ### Report of unexpected results:
+
+            $(echo $B64 | base64 --decode)
+          labels: |
+            testing
+
+      #- name: Setup tmate session
+      #  if: ${{ always() }}
+      #  uses: mxschmitt/action-tmate@v3
