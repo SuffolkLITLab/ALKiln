@@ -134,10 +134,14 @@ jobs:
           if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
             UNEXPECTED_RESULTS=$(cat "$UNEXPECTED_RESULTS_PATH")
           else
-            UNEXPECTED_RESULTS="unexpected_results.txt does not exist. The tests themselves probably didn't fail."
+            UNEXPECTED_RESULTS="unexpected_results.txt does not exist. Something other than the tests may have failed."
           fi
 
-          gh issue create --title "Parse file in workflow: Test if failed tests make issue" --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. \n### Report of unexpected results: \n=====dollar UNEXPECTED_RESULTS===== \n$UNEXPECTED_RESULTS" --repo "$GITHUB_REPOSITORY"
+          gh issue create --title "Parse file in workflow: Test if failed tests make issue" --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
+
+          ### Results:
+
+          $UNEXPECTED_RESULTS" --repo "$GITHUB_REPOSITORY" --add-label "testing"
 
       # ### Developer note: Example of making an issue when tests fail, part 1
       # #- name: Get ALKiln output files
