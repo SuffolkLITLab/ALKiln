@@ -138,10 +138,10 @@ jobs:
           fi
 
           gh issue create --title "Parse file in workflow: Test if failed tests make issue" --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
-
+          
           ### Results:
 
-          $UNEXPECTED_RESULTS" --repo "$GITHUB_REPOSITORY" --add-label "testing"
+          $UNEXPECTED_RESULTS" --repo "$GITHUB_REPOSITORY" --label "testing"
 
       # ### Developer note: Example of making an issue when tests fail, part 1
       # #- name: Get ALKiln output files
