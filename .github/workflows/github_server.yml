@@ -115,20 +115,22 @@ jobs:
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
           ALKILN_VERSION: output
 
-
+      #### Developer note: Example of making an issue when tests fail
       - shell: bash
         if: ${{ failure() }}
         id: files
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          # Make an issue with file contents or 'no file' as part of the body
+          # Make an issue with file contents or 'no file' message as part of the body
 
-          # ex: "alkiln-2024-05-23 at 11h35m09sUTC/"
+          # ex: "alkiln-2024-05-23 at 10h35m08sUTC/"
           FOLDER=$(ls -d */ | grep -E '^alkiln-*')
 
-          # REPORT_PATH="${FOLDER}report.txt"
+          # Tests that failed or had typos in the Step instructions
           UNEXPECTED_RESULTS_PATH="${FOLDER}unexpected_results.txt"
+          # Other possibly useful files
+          # REPORT_PATH="${FOLDER}report.txt"
           # DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
 
           if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
@@ -137,83 +139,8 @@ jobs:
             UNEXPECTED_RESULTS="unexpected_results.txt does not exist. Something other than the tests may have failed."
           fi
 
-          gh issue create --title "Parse file in workflow: Test if failed tests make issue" --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
-          
+          gh issue create --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
+
           ### Results:
 
-          $UNEXPECTED_RESULTS" --repo "$GITHUB_REPOSITORY" --label "testing"
-
-      # ### Developer note: Example of making an issue when tests fail, part 1
-      # #- name: Get ALKiln output files
-      # #  if: ${{ failure() }}
-      # #  run: |
-      # #    # Get ALKiln output files
-      # #    echo "REPORT=${{ steps.alkiln.outputs.REPORT }}" >> $GITHUB_ENV
-      # #    echo "UNEXPECTED_RESULTS=${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}" >> $GITHUB_ENV
-      # #    echo "DEBUG_LOG=${{ steps.alkiln.outputs.DEBUG_LOG }}" >> $GITHUB_ENV
-
-      # # Step to create an issue with the file content
-      # - name: 1 Create issue
-      #   if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
-      #   env:
-      #     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     UNEXPECTED_RESULTS: "${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
-      #     B64: "${{ steps.alkiln.outputs.B64 }}"
-      #   run: |
-      #     #echo "env.UNEXPECTED_RESULTS: ${{ env.UNEXPECTED_RESULTS }}"
-      #     #echo "dollar UNEXPECTED_RESULTS: $UNEXPECTED_RESULTS"
-      #     #UNEXPECTED_RESULTS_2="UNEXPECTED_RESULTS_2: ${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
-      #     #echo "dollar UNEXPECTED_RESULTS_2: $UNEXPECTED_RESULTS_2"
-      #     #echo "dollar UNEXPECTED_RESULTS_3: $UNEXPECTED_RESULTS_3"
-      #     # This will probably break because of new lines
-      #     gh issue create --title "Decode in bash: Test if failed tests make issue" --body "1: An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}. ### Report of unexpected results:=====dollar UNEXPECTED_RESULTS_2===== $UNEXPECTED_RESULTS @@@@@@@ $(echo "$B64" | base64 --decode)" --repo "$GITHUB_REPOSITORY"
-
-      # #### Developer note: Example of making an issue when tests fail, part 2
-      # #### You can do this with any type of GitHub test
-      # #### Change the name, title, body, and labels
-      # #### To learn more, search online for actions-ecosystem/action-create-issue
-      # - name: "2 If tests failed, create an issue"
-      #   if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
-      #   uses: actions-ecosystem/action-create-issue@v1
-      #   env:
-      #     UNEXPECTED_RESULTS: "${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
-      #     B64: "$(echo steps.alkiln.outputs.B64 | base64 --decode)"
-      #   with:
-      #     github_token: ${{ secrets.github_token }}
-      #     title: "Decode in env var: Test if failed tests make issue"
-      #     body: |
-      #       An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
-
-      #       ### Report of unexpected results:
-
-      #       ${{ env.UNEXPECTED_RESULTS }}
-
-      #       ${{ env.B64 }}
-      #     labels: |
-      #       testing
-
-      # #### Developer note: Example of making an issue when tests fail, part 2
-      # #### You can do this with any type of GitHub test
-      # #### Change the name, title, body, and labels
-      # #### To learn more, search online for actions-ecosystem/action-create-issue
-      # - name: "3 If tests failed, create an issue"
-      #   if: ${{ failure() && '$UNEXPECTED_RESULTS' != 'false' }}
-      #   uses: actions-ecosystem/action-create-issue@v1
-      #   env:
-      #     UNEXPECTED_RESULTS: "${{ steps.alkiln.outputs.UNEXPECTED_RESULTS }}"
-      #     B64: "${{ steps.alkiln.outputs.B64 }}"
-      #   with:
-      #     github_token: ${{ secrets.github_token }}
-      #     title: "Decode inline: Test if failed tests make issue"
-      #     body: |
-      #       An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
-
-      #       ### Report of unexpected results:
-
-      #       $(echo $B64 | base64 --decode)
-      #     labels: |
-      #       testing
-
-      #- name: Setup tmate session
-      #  if: ${{ always() }}
-      #  uses: mxschmitt/action-tmate@v3
+          $UNEXPECTED_RESULTS" --repo "$GITHUB_REPOSITORY" --label "testing" --title "Parse file in outer workflow: Test if failed tests make issue"

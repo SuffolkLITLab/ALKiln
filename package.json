@@ -1,6 +1,6 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.11.2-feat-output-2",
+  "version": "5.11.2-feat-output-4",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {

@@ -34,21 +34,6 @@ inputs:
     required: false
     default: "0.0.17"
 
-
-outputs:
-  REPORT:
-    description: 'report.txt contents or "false" if the file is missing'
-    value: ${{ steps.files.outputs.REPORT }}
-  UNEXPECTED_RESULTS:
-    description: 'unexpected_results.txt contents or "false" if the file is missing'
-    value: ${{ steps.files.outputs.UNEXPECTED_RESULTS }}
-  DEBUG_LOG:
-    description: 'debug_log.txt contents or "false" if the file is missing'
-    value: ${{ steps.files.outputs.DEBUG_LOG }}
-  B64:
-    description: 'test'
-    value: ${{ steps.files.outputs.B64 }}
-
 runs:
   using: "composite"
   steps:
@@ -160,63 +145,8 @@ runs:
       with:
         name: ${{ env.ARTIFACT_NAME }}
 
-    # Create output
-    - shell: bash
-      if: ${{ always() }}
-      id: files
-      run: |
-        # 💡 ALK0183 INFO: Give file contents or 'false' to interview authors
-
-        # ex: "alkiln-2024-05-23 at 11h35m09sUTC/"
-        FOLDER=$(ls -d */ | grep -E '^alkiln-*')
-
-        REPORT_PATH="${FOLDER}report.txt"
-        UNEXPECTED_RESULTS_PATH="${FOLDER}unexpected_results.txt"
-        DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
-        #echo "REPORT_PATH=$REPORT_PATH" >> $GITHUB_ENV
-        #echo "UNEXPECTED_RESULTS_PATH=$UNEXPECTED_RESULTS_PATH" >> $GITHUB_ENV
-        #echo "DEBUG_LOG_PATH=$DEBUG_LOG_PATH" >> $GITHUB_ENV
-
-        # Get contents of files if they exist
-        if [ -f "$REPORT_PATH" ]; then
-          REPORT=$(cat "$REPORT_PATH")
-        else
-          REPORT="report.txt does not exist"
-        fi
-        if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
-          UNEXPECTED_RESULTS=$(cat "$UNEXPECTED_RESULTS_PATH")
-        else
-          UNEXPECTED_RESULTS_PATH="unexpected_results.txt does not exist"
-        fi
-        if [ -f "$DEBUG_LOG_PATH" ]; then
-          DEBUG_LOG=$(cat "$DEBUG_LOG_PATH")
-        else
-          DEBUG_LOG_PATH="debug_log.txt does not exist"
-        fi
-
-        ## Create the outputs
-        #echo "REPORT=$REPORT" >> "$GITHUB_OUTPUT"
-        #echo "UNEXPECTED_RESULTS=$UNEXPECTED_RESULTS" >> "$GITHUB_OUTPUT"
-        #echo "DEBUG_LOG=$DEBUG_LOG" >> "$GITHUB_OUTPUT"
-
-        # Create the outputs
-        echo 'REPORT<<EOF' >> $GITHUB_OUTPUT
-        echo $REPORT >> $GITHUB_OUTPUT
-        echo 'EOF' >> $GITHUB_OUTPUT
-
-        echo 'UNEXPECTED_RESULTS<<EOF' >> $GITHUB_OUTPUT
-        echo $UNEXPECTED_RESULTS >> $GITHUB_OUTPUT
-        echo 'EOF' >> $GITHUB_OUTPUT
-
-        echo 'DEBUG_LOG<<EOF' >> $GITHUB_OUTPUT
-        echo $DEBUG_LOG >> $GITHUB_OUTPUT
-        echo 'EOF' >> $GITHUB_OUTPUT
-
-        B64="paused"
-
-        #echo "REPORT:\n$REPORT"
-        #echo "unexpected_results:\n$UNEXPECTED_RESULTS"
-        #echo "DEBUG_LOG:\n$DEBUG_LOG"
+    # Don't create output from files
+    # Cannot properly create outputs with multi-line text. Collapses onto one line.
 
     - shell: bash
       if: ${{ always() }}
