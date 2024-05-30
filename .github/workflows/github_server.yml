@@ -54,6 +54,11 @@ jobs:
       # relative paths to action files
       - uses: actions/checkout@v4
 
+      - shell: bash
+        run: |
+          # Set initial status code
+          echo "AL_SERVER_STATUS=Good" >> $GITHUB_ENV
+
       - name: ALKiln - Start the isolated temporary docassemble server on GitHub
         id: github_server
         #### Developer note: you'll need to replace `uses: ./action_for_github_server`
@@ -69,6 +74,14 @@ jobs:
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
       - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
         shell: bash
+
+      # Test failing to see what happens with issue creation
+      - run: exit 55
+        shell: bash
+
+      - shell: bash
+        if: ${{ failure() }}
+        run: echo "AL_SERVER_STATUS=Server setup failed" >> $GITHUB_ENV
 
       # #### Developer note: You can probably leave this out
       # # Optional debugging to explore things like docker issues
@@ -115,7 +128,12 @@ jobs:
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
           ALKILN_VERSION: output
 
+      - shell: bash
+        if: ${{ failure() && env.AL_SERVER_STATUS == 'Good' }}  # only if not already failed
+        run: echo "AL_SERVER_STATUS=Tests failed" >> $GITHUB_ENV
+
       #### Developer note: Example of making an issue when tests fail
+      # if: ${{ failure() && env.AL_SERVER_STATUS == 'Tests failed' }}  # only for test failure
       - shell: bash
         if: ${{ failure() }}
         id: files
@@ -123,24 +141,34 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           # Make an issue with file contents or 'no file' message as part of the body
+          echo '1'
 
           # ex: "alkiln-2024-05-23 at 10h35m08sUTC/"
           FOLDER=$(ls -d */ | grep -E '^alkiln-*')
+          echo "$FOLDER"
 
           # Tests that failed or had typos in the Step instructions
           UNEXPECTED_RESULTS_PATH="${FOLDER}unexpected_results.txt"
           # Other possibly useful files
           # REPORT_PATH="${FOLDER}report.txt"
           # DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
+          echo "$UNEXPECTED_RESULTS_PATH"
 
-          if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
-            UNEXPECTED_RESULTS=$(cat "$UNEXPECTED_RESULTS_PATH")
-          else
-            UNEXPECTED_RESULTS="unexpected_results.txt does not exist. Something other than the tests may have failed."
+          if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then \
+            UNEXPECTED_RESULTS=$(cat "$UNEXPECTED_RESULTS_PATH") \
+          else \
+            UNEXPECTED_RESULTS="unexpected_results.txt does not exist. Something other than the tests may have failed." \
           fi
+          echo "$UNEXPECTED_RESULTS"
 
           gh issue create --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
 
           ### Results:
 
           $UNEXPECTED_RESULTS" --repo "$GITHUB_REPOSITORY" --label "testing" --title "Parse file in outer workflow: Test if failed tests make issue"
+
+          echo "10"
+
+      - shell: bash
+        if: ${{ failure() && env.AL_SERVER_STATUS == 'Good' }}  # only if not already failed
+        run: echo "AL_SERVER_STATUS=Issue creation failed" >> $GITHUB_ENV
