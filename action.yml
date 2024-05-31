@@ -166,9 +166,11 @@ runs:
         FOLDER=$(ls -d */ | grep -E '^alkiln-*' || true)
 
         echo "Folder is $FOLDER"
+        echo "FOLDER=$FOLDER" >> $GITHUB_ENV
 
-        if [ "$FOLDER"="" ]; then
+        if [[ "$FOLDER" == "" ]]; then
           OUTPUT_FOLDER_EXISTS="false"
+          echo "Artifacts folder is missing. The path is an empty string: '$FOLDER'"
 
         else
           OUTPUT_FOLDER_EXISTS="true"
@@ -210,6 +212,7 @@ runs:
 
 
     - name: Docker debug tmate session
+      if: ${{ failure() }}
       uses: mxschmitt/action-tmate@v3
 
     # Avoid creating output from text in files
