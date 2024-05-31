@@ -169,38 +169,48 @@ runs:
 
         if [ "$FOLDER"="" ]; then
           OUTPUT_FOLDER_EXISTS="false"
-        else
 
+        else
           OUTPUT_FOLDER_EXISTS="true"
           REPORT_PATH="${FOLDER}report.txt"
           UNEXPECTED_RESULTS_PATH="${FOLDER}unexpected_results.txt"
           DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
 
+          # if [ -f "alkiln-2024-05-30 at 23h40m53sUTC/report.txt" ]; then echo "exists"
+          echo "UNEXPECTED_RESULTS_PATH before is $UNEXPECTED_RESULTS_PATH"
+
           if [ -f "$REPORT_PATH" ]; then
             echo "$REPORT_PATH exists"
           else
+            echo "$REPORT_PATH is missing"
             REPORT_PATH=""
           fi
 
           if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
             echo "$UNEXPECTED_RESULTS_PATH exists"
           else
+            echo "$UNEXPECTED_RESULTS_PATH is missing"
             UNEXPECTED_RESULTS_PATH=""
           fi
 
           if [ -f "$DEBUG_LOG_PATH" ]; then
             echo "$DEBUG_LOG_PATH exists"
           else
+            echo "$DEBUG_LOG_PATH is missing"
             DEBUG_LOG_PATH=""
           fi
 
         fi
 
-        echo "UNEXPECTED_RESULTS_PATH is $UNEXPECTED_RESULTS_PATH"
+        echo "UNEXPECTED_RESULTS_PATH after is $UNEXPECTED_RESULTS_PATH"
 
         echo "PATH_TO_REPORT_FILE=$REPORT_PATH" >> "$GITHUB_OUTPUT"
         echo "PATH_TO_UNEXPECTED_RESULTS_FILE=$UNEXPECTED_RESULTS_PATH" >> "$GITHUB_OUTPUT"
         echo "PATH_TO_DEBUG_LOG_FILE=$DEBUG_LOG_PATH" >> "$GITHUB_OUTPUT"
+
+
+    - name: Docker debug tmate session
+      uses: mxschmitt/action-tmate@v3
 
     # Avoid creating output from text in files
     # Cannot properly create outputs with multi-line text. Collapses onto one line.
