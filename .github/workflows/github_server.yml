@@ -140,6 +140,9 @@ jobs:
         id: files
         env:
           GH_TOKEN: ${{ github.token }}
+          PATH_TO_REPORT_FILE: "${{ steps.alkiln.outputs.PATH_TO_REPORT_FILE }}"
+          PATH_TO_UNEXPECTED_RESULTS_FILE: "${{ steps.alkiln.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}"
+          PATH_TO_DEBUG_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_DEBUG_LOG_FILE }}"
         run: |
           # Make an issue with file contents or 'no file' message as part of the body
           echo '1'
@@ -171,15 +174,34 @@ jobs:
           else
             UNEXPECTED_RESULTS="unexpected_results.txt does not exist. Something other than the tests may have failed."
           fi
-          echo "$UNEXPECTED_RESULTS"
+          #echo "UNEXPECTED_RESULTS is $UNEXPECTED_RESULTS"
 
           gh issue create --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
 
           ### Results:
 
-          $UNEXPECTED_RESULTS" --repo "$GITHUB_REPOSITORY" --label "testing" --title "Parse file in outer workflow: Test if failed tests make issue"
+          $UNEXPECTED_RESULTS" --repo "$GITHUB_REPOSITORY" --label "testing" --title "Parse file in outer workflow 1 internal: Test if failed tests make issue"
 
           echo "10"
+
+          #####################################################
+          # Version that uses the ALKiln step output file names
+          if [ -f "PATH_TO_UNEXPECTED_RESULTS_FILE" ]; then
+            UNEXPECTED_2=$(cat "$PATH_TO_UNEXPECTED_RESULTS_FILE")
+          else
+            UNEXPECTED_2="unexpected_results.txt does not exist. Something other than the tests may have failed."
+          fi
+          echo "100"
+          #echo "UNEXPECTED_2 is $UNEXPECTED_2"
+
+          gh issue create --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
+
+          ### Results:
+
+          $UNEXPECTED_2" --repo "$GITHUB_REPOSITORY" --label "testing" --title "Parse file in outer workflow 2 from output: Test if failed tests make issue"
+
+          echo "101"
+
 
       - shell: bash
         if: ${{ failure() && env.AL_SERVER_STATUS == 'Good' }}  # only if not already failed

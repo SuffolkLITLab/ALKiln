@@ -34,6 +34,17 @@ inputs:
     required: false
     default: "0.0.17"
 
+outputs:
+  PATH_TO_UNEXPECTED_RESULTS_FILE:
+    description: 'An empty string ("") or the path to unexpected_results.txt. Remember to check for the existence of the file before using it.'
+    value: ${{ steps.alkiln_outputs.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}
+  PATH_TO_REPORT_FILE:
+    description: 'An empty string ("") or the path to report.txt. Remember to check for the existence of the file before using it.'
+    value: ${{ steps.alkiln_outputs.outputs.PATH_TO_REPORT_FILE }}
+  PATH_TO_DEBUG_LOG_FILE:
+    description: 'An empty string ("") or the path to debug_log.txt. Remember to check for the existence of the file before using it.'
+    value: ${{ steps.alkiln_outputs.outputs.PATH_TO_DEBUG_LOG_FILE }}
+
 runs:
   using: "composite"
   steps:
@@ -145,7 +156,53 @@ runs:
       with:
         name: ${{ env.ARTIFACT_NAME }}
 
-    # Don't create output from files
+    - name: "💡 ALK0183 INFO: Prepare ALKiln output file paths"
+      if: ${{ always() }}
+      id: alkiln_outputs
+      shell: bash
+      run: |
+        # 💡 ALK0183 INFO: Prepare ALKiln output file paths
+
+        FOLDER=$(ls -d */ | grep -E '^alkiln-*' || true)
+
+        echo "Folder is $FOLDER"
+
+        if [ "$FOLDER"="" ]; then
+          OUTPUT_FOLDER_EXISTS="false"
+        else
+
+          OUTPUT_FOLDER_EXISTS="true"
+          REPORT_PATH="${FOLDER}report.txt"
+          UNEXPECTED_RESULTS_PATH="${FOLDER}unexpected_results.txt"
+          DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
+
+          if [ -f "$REPORT_PATH" ]; then
+            echo "$REPORT_PATH exists"
+          else
+            REPORT_PATH=""
+          fi
+
+          if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
+            echo "$UNEXPECTED_RESULTS_PATH exists"
+          else
+            UNEXPECTED_RESULTS_PATH=""
+          fi
+
+          if [ -f "$DEBUG_LOG_PATH" ]; then
+            echo "$DEBUG_LOG_PATH exists"
+          else
+            DEBUG_LOG_PATH=""
+          fi
+
+        fi
+
+        echo "UNEXPECTED_RESULTS_PATH is $UNEXPECTED_RESULTS_PATH"
+
+        echo "PATH_TO_REPORT_FILE=$REPORT_PATH" >> "$GITHUB_OUTPUT"
+        echo "PATH_TO_UNEXPECTED_RESULTS_FILE=$UNEXPECTED_RESULTS_PATH" >> "$GITHUB_OUTPUT"
+        echo "PATH_TO_DEBUG_LOG_FILE=$DEBUG_LOG_PATH" >> "$GITHUB_OUTPUT"
+
+    # Avoid creating output from text in files
     # Cannot properly create outputs with multi-line text. Collapses onto one line.
 
     - shell: bash
