@@ -196,13 +196,15 @@ jobs:
 
           #####################################################
           # Version that uses the ALKiln step output file names
-          if [ -f "$PATH_TO_UNEXPECTED_RESULTS_FILE" ]; then
-            UNEXPECTED_2=$(cat "$PATH_TO_UNEXPECTED_RESULTS_FILE")
+          if [ -f "${{ env.PATH_TO_UNEXPECTED_RESULTS_FILE }}" ]; then
+            UNEXPECTED_2=$(cat "${{ env.PATH_TO_UNEXPECTED_RESULTS_FILE }}")
           else
             UNEXPECTED_2="unexpected_results.txt does not exist. Something other than the tests may have failed."
           fi
           echo "100"
-          #echo "UNEXPECTED_2 is $UNEXPECTED_2"
+          echo "PATH_TO_UNEXPECTED_RESULTS_FILE is $PATH_TO_UNEXPECTED_RESULTS_FILE"
+          echo "env PATH_TO_UNEXPECTED_RESULTS_FILE is ${{ env.PATH_TO_UNEXPECTED_RESULTS_FILE }}"
+          echo "UNEXPECTED_2 is $UNEXPECTED_2"
 
           gh issue create --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
 
