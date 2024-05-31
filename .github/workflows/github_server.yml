@@ -59,9 +59,9 @@ jobs:
           # Set initial status code
           echo "AL_SERVER_STATUS=Good" >> $GITHUB_ENV
 
-      # Test failing to see what happens with issue creation
-      - run: exit 55
-        shell: bash
+      ## Test failing to see what happens with issue creation
+      #- run: exit 55
+      #  shell: bash
 
       - name: ALKiln - Start the isolated temporary docassemble server on GitHub
         id: github_server
