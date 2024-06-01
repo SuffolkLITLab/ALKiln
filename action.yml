@@ -35,12 +35,12 @@ inputs:
     default: "0.0.17"
 
 outputs:
-  PATH_TO_UNEXPECTED_RESULTS_FILE:
-    description: 'An empty string ("") or the path to unexpected_results.txt. Remember to check for the existence of the file before using it.'
-    value: ${{ steps.alkiln_outputs.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}
   PATH_TO_REPORT_FILE:
     description: 'An empty string ("") or the path to report.txt. Remember to check for the existence of the file before using it.'
     value: ${{ steps.alkiln_outputs.outputs.PATH_TO_REPORT_FILE }}
+  PATH_TO_UNEXPECTED_RESULTS_FILE:
+    description: 'An empty string ("") or the path to unexpected_results.txt. Remember to check for the existence of the file before using it.'
+    value: ${{ steps.alkiln_outputs.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}
   PATH_TO_DEBUG_LOG_FILE:
     description: 'An empty string ("") or the path to debug_log.txt. Remember to check for the existence of the file before using it.'
     value: ${{ steps.alkiln_outputs.outputs.PATH_TO_DEBUG_LOG_FILE }}
@@ -165,10 +165,9 @@ runs:
 
         FOLDER=$(ls -d */ | grep -E '^alkiln-*' || true)
 
-        echo "Folder is $FOLDER"
-        echo "FOLDER=$FOLDER" >> $GITHUB_ENV
+        echo "Test results folder is $FOLDER"
 
-        if [[ "$FOLDER" == "" ]]; then
+        if [[ "$FOLDER" = "" ]]; then
           OUTPUT_FOLDER_EXISTS="false"
           echo "Artifacts folder is missing. The path is an empty string: '$FOLDER'"
 
@@ -177,9 +176,6 @@ runs:
           REPORT_PATH="${FOLDER}report.txt"
           UNEXPECTED_RESULTS_PATH="${FOLDER}unexpected_results.txt"
           DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
-
-          # if [ -f "alkiln-2024-05-30 at 23h40m53sUTC/report.txt" ]; then echo "exists"
-          echo "UNEXPECTED_RESULTS_PATH before is $UNEXPECTED_RESULTS_PATH"
 
           if [ -f "$REPORT_PATH" ]; then
             echo "$REPORT_PATH exists"
@@ -204,16 +200,9 @@ runs:
 
         fi
 
-        echo "UNEXPECTED_RESULTS_PATH after is $UNEXPECTED_RESULTS_PATH"
-
         echo "PATH_TO_REPORT_FILE=$REPORT_PATH" >> "$GITHUB_OUTPUT"
         echo "PATH_TO_UNEXPECTED_RESULTS_FILE=$UNEXPECTED_RESULTS_PATH" >> "$GITHUB_OUTPUT"
         echo "PATH_TO_DEBUG_LOG_FILE=$DEBUG_LOG_PATH" >> "$GITHUB_OUTPUT"
-
-
-    - name: Docker debug tmate session
-      if: ${{ failure() }}
-      uses: mxschmitt/action-tmate@v3
 
     # Avoid creating output from text in files
     # Cannot properly create outputs with multi-line text. Collapses onto one line.
