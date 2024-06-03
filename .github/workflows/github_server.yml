@@ -54,6 +54,9 @@ jobs:
       # relative paths to action files
       - uses: actions/checkout@v4
 
+      - shell: bash
+        run: exit 55
+
       - name: ALKiln - Start the isolated temporary docassemble server on GitHub
         id: github_server
         #### Developer note: you'll need to replace `uses: ./action_for_github_server`
