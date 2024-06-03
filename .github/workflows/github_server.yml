@@ -23,8 +23,8 @@ on:
 jobs:
 
   github-server-tests:
-    #### Developer note: If under `on` (above) you have both `push` and
-    #### `pull_request`, this avoids running double tests when someone
+    #### Developer note: If you have both `push` and `pull_request` in the
+    #### `on` section (above), this avoids running double tests when someone
     #### on the team makes a pull request
     # 1: Trigger job on push or dispatch from this repository
     # 2: Trigger job on pull request from a fork
@@ -71,10 +71,10 @@ jobs:
         shell: bash
 
       #### Developer note: You can probably leave this out
-      # Optional debugging to explore things like docker issues
-      - name: Docker debug tmate session
-        if: ${{ github.event.inputs.enable_tmate }}
-        uses: mxschmitt/action-tmate@v3
+      # # Optional debugging to explore things like docker issues
+      # - name: Docker debug tmate session
+      #   if: ${{ failure() && github.event.inputs.enable_tmate == 'true' }}
+      #   uses: mxschmitt/action-tmate@v3
 
       #### Developer note: You can probably leave this out
       - name: Run ALKiln - Env vars for our own tests from server output
@@ -93,25 +93,49 @@ jobs:
 
       - name: "Run ALKiln tests"
         if: ${{ success() }}
+        id: alkiln
         #### Developer note: you'll need to replace `uses: ./`
         #### with the path to ALKiln’s repository name and branch name. For example,
         #### for version 5, use the branch name `v5`: `uses: suffolkLITLab/ALKiln@v5`
         uses: ./
-        #### Developer note: You can probably leave this out
+        #### Developer note: You can probably leave out this `env` section
         env:
-          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || 'not @a11y' }}"
+          # Internal: docassemble changes sometimes break @a11y tests. That is
+          # a da problem, not ours. We will trigger these tests manually when we
+          # want to check up on this.
+          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '(not @a11y) and (not @error)' }}"
         with:
           #### Developer note: Required inputs. See
           #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#sandbox-inputs
           SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
-          #### Developer note: See https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#optional-inputs
-          #### You can probably leave this out
-          # Internal: docassemble changes sometimes break @a11y tests. That is
-          # a da problem, not ours. We will trigger these tests manually when we
-          # want to check up on this.
-          ALKILN_TAG_EXPRESSION: $ALKILN_TAG_EXPRESSION
-          #### Developer note: You can probably leave this out
-          # ALKILN_VERSION: url
+          #### Developer note: You can probably leave the rest out
+          #### To learn more, see https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#optional-inputs
+          ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
+          ALKILN_VERSION: output
 
+      #### Developer note: Example of making an issue when tests fail
+      #### that includes the text of the failure output file
+      #### See https://cli.github.com/manual/gh_issue_create for more details
+      - shell: bash
+        if: ${{ failure() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PATH_TO_REPORT_FILE: "${{ steps.alkiln.outputs.PATH_TO_REPORT_FILE }}"
+          PATH_TO_UNEXPECTED_RESULTS_FILE: "${{ steps.alkiln.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}"
+          PATH_TO_DEBUG_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_DEBUG_LOG_FILE }}"
+        run: |
+          # Make an issue with file contents or 'no file' message as part of the body
+
+          if [ -f "${{ env.PATH_TO_UNEXPECTED_RESULTS_FILE }}" ]; then
+            UNEXPECTED_2=$(cat "${{ env.PATH_TO_UNEXPECTED_RESULTS_FILE }}")
+          else
+            UNEXPECTED_2="unexpected_results.txt does not exist. Something other than the interview tests may have failed."
+          fi
+
+          gh issue create --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
+
+          ### Results:
+
+          $UNEXPECTED_2" --repo "$GITHUB_REPOSITORY" --label "testing" --title "ALKiln tests failed"
