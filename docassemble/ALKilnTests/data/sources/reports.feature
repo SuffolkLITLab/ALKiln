@@ -480,10 +480,10 @@ Scenario: Report still shows page id when I tap to continue without setting any 
   Given the final Scenario status should be "passed"
   Given the Scenario report should include:
     """
-    ---------------
+    ―――――――――――――――
     Scenario: Report still shows page id when I tap to continue without setting any fields
     Tags: @reports @fast @rp1
-    ---------------
+    ―――――――――――――――
     Trying to load the interview at "
     """
   Given the Scenario report should include:
