@@ -1,12 +1,14 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.11.2",
+  "version": "5.11.2-feat-output-7",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run unit && npm run codes && npm run cucumber",
     "cucumber": "./lib/run_cucumber.js",
     "local": "npm run setup && npm run cucumber; npm run takedown",
+    "pass": "npm run cucumber 'not @error'",
+    "fail": "npm run cucumber '@error'",
     "setup": "./lib/docassemble/setup.js",
     "takedown": "./lib/docassemble/takedown.js",
     "server_install": "./lib/docassemble/server_install.js",

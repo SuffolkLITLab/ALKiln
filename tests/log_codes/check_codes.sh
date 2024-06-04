@@ -106,7 +106,8 @@ ALK0026
 ALK0027
 ALK0028
 ALK0030
-ALK0049"
+ALK0049
+ALK0184"
 
 # Use a sorted list. `uniq` only detects consecutive duplicates
 duplicates=$(echo "$sorted" | uniq -d)
