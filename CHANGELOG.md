@@ -48,7 +48,8 @@ Format:
 ### Added
 
 - New file with just failure results, including cucumber results when possible. It accumulates Scenario info as the tests run. Even if a test run stops early, there will still be some results.
-- New outputs from the ALKiln action - `PATH_TO_REPORT_FILE`, `PATH_TO_UNEXPECTED_RESULTS_FILE`, and `PATH_TO_DEBUG_LOG_FILE`. Authors can choose to use these as they wish. For example, they can put the contents of these files in issues they create from their workflow. Closes [#701](https://github.com/SuffolkLITLab/ALKiln/issues/701).
+- New output from ALKiln action - `PATH_TO_ARTIFACTS`. The value is `""` or the path to the folder that contains the output of the test run, if the test run actually happened. Sometimes this folder doesn't get created. For example, if there was a typo in one or more `.feature` file. For example, `"alkiln-2024-06-03 at 02h29m44sUTC"`.
+- New outputs from the ALKiln action - `PATH_TO_REPORT_FILE`, `PATH_TO_UNEXPECTED_RESULTS_FILE`, and `PATH_TO_DEBUG_LOG_FILE`.  For example, `"alkiln-2024-06-03 at 02h29m44sUTC/report.txt"`. Authors can choose to use these as they wish. For example, they can put the contents of these files in issues they create from their workflow. Closes [#701](https://github.com/SuffolkLITLab/ALKiln/issues/701).
 - Added cucumber output to report.txt.
 - Added more explanation for the logs that appear when test runs error in a way that prevents debug_log.txt and such files from being created. We will watch for feedback about the error data itself. It may still be too confusing.
 
@@ -63,8 +64,9 @@ Format:
 ### Internal
 
 - Download ALKiln's artifacts back into the running job.
-- Removed our own workflow's pause between triggers
-- Improved our use of ALKIN_TAG_EXPRESSION env var
+- Removed our own workflow's pause between triggers.
+- Improved our use of ALKIN_TAG_EXPRESSION env var.
+- Exclude tests that we are aware fail. We will test those manually.
 
 ## [5.11.2] - 2024-05-17
 

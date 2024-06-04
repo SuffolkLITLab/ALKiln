@@ -34,6 +34,20 @@ inputs:
     required: false
     default: "0.0.17"
 
+outputs:
+  PATH_TO_ARTIFACTS:
+    description: 'An empty string ("") or the path to the artifacts folder that contains the test run output. Remember to check for the existence of the folder before using it.'
+    value: ${{ steps.alkiln_outputs.outputs.PATH_TO_ARTIFACTS }}
+  PATH_TO_REPORT_FILE:
+    description: 'An empty string ("") or the path to report.txt. Remember to check for the existence of the file before using it.'
+    value: ${{ steps.alkiln_outputs.outputs.PATH_TO_REPORT_FILE }}
+  PATH_TO_UNEXPECTED_RESULTS_FILE:
+    description: 'An empty string ("") or the path to unexpected_results.txt. Remember to check for the existence of the file before using it.'
+    value: ${{ steps.alkiln_outputs.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}
+  PATH_TO_DEBUG_LOG_FILE:
+    description: 'An empty string ("") or the path to debug_log.txt. Remember to check for the existence of the file before using it.'
+    value: ${{ steps.alkiln_outputs.outputs.PATH_TO_DEBUG_LOG_FILE }}
+
 runs:
   using: "composite"
   steps:
@@ -102,6 +116,7 @@ runs:
       if: ${{ inputs.INSTALL_METHOD == 'playground' && failure() }}
       shell: bash
       run: |
+        # 😞 ALK0028 ERROR: Unable to create a Project
         echo -e "\n\n====\n😞 ALK0028 ERROR: Unable to create a Project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
 
     # Server installations - find folders and save session vars
@@ -121,7 +136,7 @@ runs:
       env:
         ALKILN_TAG_EXPRESSION: ${{ inputs.ALKILN_TAG_EXPRESSION || github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
       shell: bash
-      run: alkiln-run $ALKILN_TAG_EXPRESSION
+      run: alkiln-run "$ALKILN_TAG_EXPRESSION"
     
     # on playground, delete project
     - name: "💡 ALK0032 INFO: Delete the Project from the Playground"
@@ -137,6 +152,64 @@ runs:
         name: ${{ env.ARTIFACT_NAME }}
         path: ./alkiln-*
 
+    # Download artifacts folder internally to create action output
+    - name: "💡 ALK0183 INFO: Get uploaded artifacts folder"
+      if: ${{ always() }}
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ env.ARTIFACT_NAME }}
+
+    - name: "💡 ALK0184 INFO: Prepare ALKiln output file paths"
+      if: ${{ always() }}
+      id: alkiln_outputs
+      shell: bash
+      run: |
+        # 💡 ALK0184 INFO: Prepare ALKiln output file paths
+
+        FOLDER=$(ls -d */ | grep -E '^alkiln-*' || true)
+
+        echo "Test results artifacts folder is $FOLDER"
+
+        if [[ "$FOLDER" = "" ]]; then
+          echo "Artifacts folder is missing. The path is an empty string: '$FOLDER'"
+
+        else
+          REPORT_PATH="${FOLDER}report.txt"
+          UNEXPECTED_RESULTS_PATH="${FOLDER}unexpected_results.txt"
+          DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
+
+          if [ -f "$REPORT_PATH" ]; then
+            echo "$REPORT_PATH exists"
+          else
+            echo "$REPORT_PATH is missing"
+            REPORT_PATH=""
+          fi
+
+          if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
+            echo "$UNEXPECTED_RESULTS_PATH exists"
+          else
+            echo "$UNEXPECTED_RESULTS_PATH is missing"
+            UNEXPECTED_RESULTS_PATH=""
+          fi
+
+          if [ -f "$DEBUG_LOG_PATH" ]; then
+            echo "$DEBUG_LOG_PATH exists"
+          else
+            echo "$DEBUG_LOG_PATH is missing"
+            DEBUG_LOG_PATH=""
+          fi
+
+        fi
+
+        echo "PATH_TO_ARTIFACTS=$FOLDER" >> "$GITHUB_OUTPUT"
+        echo "PATH_TO_REPORT_FILE=$REPORT_PATH" >> "$GITHUB_OUTPUT"
+        echo "PATH_TO_UNEXPECTED_RESULTS_FILE=$UNEXPECTED_RESULTS_PATH" >> "$GITHUB_OUTPUT"
+        echo "PATH_TO_DEBUG_LOG_FILE=$DEBUG_LOG_PATH" >> "$GITHUB_OUTPUT"
+
+    # Avoid creating output from text in files
+    # Cannot properly create outputs with multi-line text. Collapses onto one line.
+
     - shell: bash
+      if: ${{ always() }}
       run: |
         echo "💡 ALK0034 INFO: ALkiln finished running tests"
