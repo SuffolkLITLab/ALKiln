@@ -4,7 +4,7 @@ The Story Table is a very flexible tool. It lets the author answer interview (fo
 
 When the robot arrives on each interview page, it finds all the fields on the page and loops through the whole Story Table trying to match rows with fields.
 
-Here's some [documentation on the use of Story Table rows](https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/#story-tables).
+Here's some [documentation on the use of Story Table rows](https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing#story-table).
 
 ## Tracking use of rows
 

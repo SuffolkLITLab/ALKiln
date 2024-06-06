@@ -12,7 +12,7 @@ https://github.com/18F/open-source-guide/blob/18f-pages/pages/making-readmes-rea
 
 ## Use ALKiln
 
-Read about how to use this framework in [Assembly Line's documentation](https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing/).
+Read about how to use [this framework in Assembly Line's documentation](https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/intro).
 
 If you have questions or need to report a bug, [start a new issue](https://github.com/SuffolkLITLab/ALKiln/issues/new).
 

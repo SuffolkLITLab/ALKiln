@@ -43,7 +43,11 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Changed
+
+- Update links in logs to new Suffolk docs pages
 
 ## [5.12.0] - 2024-06-06
 
