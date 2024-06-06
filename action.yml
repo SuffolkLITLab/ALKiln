@@ -1,5 +1,5 @@
 name: "ALKiln: Automated docassemble tests"
-description: "Automatically test any docassemble interview in a any branch on your GitHub repository whenever you commit or push. See https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/automated_integrated_testing."
+description: "Automatically test any docassemble interview in a any branch on your GitHub repository whenever you commit or push. See https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/setup/#types."
 
 inputs:
   SERVER_URL:
