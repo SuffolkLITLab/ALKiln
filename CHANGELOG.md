@@ -49,6 +49,14 @@ Format:
 
 - Update links in logs to new Suffolk docs pages
 
+### Fixed
+
+- Now delete interviews upon interview completion
+
+### Internal
+
+- Test deleting interviews upon interview completion
+
 ## [5.12.0] - 2024-06-06
 
 ### Added

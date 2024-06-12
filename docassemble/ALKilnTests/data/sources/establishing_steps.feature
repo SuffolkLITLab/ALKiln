@@ -35,6 +35,7 @@ Scenario: Interview name includes url args with a wait
 Scenario: I sign in
   Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
   And I start the interview at "all_tests"
+  And I tap to continue
 
 # WARNING: This Scenario may fail if the file moves or changes too much
 @fast @e7 @arbitrary
