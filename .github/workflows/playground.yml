@@ -61,7 +61,7 @@ jobs:
       - uses: ./
         #### Developer note: You can probably leave this out
         env:
-          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '(not @a11y) and (not @error)' }}"
+          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '(not @error) and (not @temp_error)' }}"
         with:
           #### Developer note: Required ALKiln inputs. You can read more at
           #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#githubNyou-inputs

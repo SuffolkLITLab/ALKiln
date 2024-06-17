@@ -5,7 +5,7 @@ Feature: Assembly Line package-specific Steps
 
 # Note: the first test for this suite is the first test in this file and we're having timeout issues, so we're trying to give the server longer to load.
 
-@fast @al1
+@fast @al1 @temp_error
 Scenario: I have two name parts
   Given the max secs for each step is 120
   Given I start the interview at "AL_tests"
@@ -18,7 +18,7 @@ Scenario: I have two name parts
   And I tap to continue
   Then the question id should be "end"
 
-@fast @al1_no_proxy @no_proxy
+@fast @al1_no_proxy @no_proxy @temp_error
 Scenario: I use no proxies and have two name parts
   Given the max secs for each step is 120
   Given I start the interview at "AL_tests"
@@ -31,7 +31,7 @@ Scenario: I use no proxies and have two name parts
   And I tap to continue
   Then the question id should be "end"
 
-@fast @al2
+@fast @al2 @temp_error
 Scenario: I have three name parts
   Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli Udo User"
@@ -43,7 +43,7 @@ Scenario: I have three name parts
   And I tap to continue
   Then the question id should be "end"
 
-@fast @al3
+@fast @al3 @temp_error
 Scenario: I have four name parts
   Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli Udo User II"

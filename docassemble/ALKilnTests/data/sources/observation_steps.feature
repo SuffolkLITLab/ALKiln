@@ -136,7 +136,7 @@ Scenario: I take a pic
   Then I take a pic named "some-pic"
 
 # TODO: Create an actual failing a11y test, maybe using custom html
-@slow @o12 @accessibility @a11y
+@slow @o12 @accessibility @a11y @temp_error
 Scenario: I check the pages for accessibility
   Given I start the interview at "all_tests"
   And I check all pages for accessibility issues

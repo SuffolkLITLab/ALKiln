@@ -6,6 +6,7 @@ Scenario: I sign in
   And I start the interview at "all_tests"
   # Must continue to get interview into "My interviews" list
   And I tap to continue
+  And I start the interview at "all_tests"
   # Must continue to get interview into "My interviews" list
   And I tap to continue
-  And of two interviews, one is deleted
+  And of two interviews, one is deleted __internal__

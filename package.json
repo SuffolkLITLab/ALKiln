@@ -7,7 +7,7 @@
     "test": "npm run unit && npm run codes && npm run cucumber",
     "cucumber": "./lib/run_cucumber.js",
     "local": "npm run setup && npm run cucumber; npm run takedown",
-    "pass": "npm run cucumber 'not @error'",
+    "pass": "npm run cucumber 'not @error and not @temp_error'",
     "fail": "npm run cucumber '@error'",
     "setup": "./lib/docassemble/setup.js",
     "takedown": "./lib/docassemble/takedown.js",

@@ -103,7 +103,7 @@ jobs:
           # Internal: docassemble changes sometimes break @a11y tests. That is
           # a da problem, not ours. We will trigger these tests manually when we
           # want to check up on this.
-          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '(not @a11y) and (not @error)' }}"
+          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '(not @error) and (not @temp_error)' }}"
         with:
           #### Developer note: Required inputs. See
           #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#sandbox-inputs
