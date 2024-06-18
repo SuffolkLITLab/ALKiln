@@ -28,6 +28,8 @@ code: |
   end
 ---
 id: AL-type name fields
+sets:
+  - users[0].name.first
 question: |
   AL-type name fields
 fields:
