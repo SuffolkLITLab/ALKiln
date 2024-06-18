@@ -113,7 +113,7 @@ jobs:
           #### Developer note: You can probably leave the rest out
           #### To learn more, see https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#optional-inputs
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
-          ALKILN_VERSION: output
+          ALKILN_VERSION: delete
 
       #### Developer note: Example of making an issue when tests fail
       #### that includes the text of the failure output file

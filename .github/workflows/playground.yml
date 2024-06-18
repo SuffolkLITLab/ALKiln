@@ -74,4 +74,4 @@ jobs:
           # want to check up on this.
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
           #### Developer note: You can probably leave this out
-          ALKILN_VERSION: output
+          ALKILN_VERSION: delete

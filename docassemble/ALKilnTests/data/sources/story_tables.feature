@@ -4,7 +4,7 @@ Feature: Story tables
 NOTE:
     Unit tests make sure that all things that are supposed to match do match.
 
-@fast @st1 @mixed @temp_error
+@fast @st1 @mixed
 Scenario: Proxy and regular vars are mixed
   Given I start the interview at "AL_tests"
   And I get to "end" with this data:

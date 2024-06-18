@@ -27,7 +27,14 @@ code: |
   users[1].name.first
   end
 ---
-id: field code mix
+id: AL-type name fields
+question: |
+  AL-type name fields
+fields:
+  - code: |
+      users[0].name_fields()
+---
+id: field code mix as well as AL-type name fields
 sets:
   - users[i].name.first
 question: |
