@@ -51,11 +51,11 @@ Format:
 
 ### Fixed
 
-- Now delete interviews upon interview completion
+- Now delete interviews upon interview completion for signed in users
 
 ### Internal
 
-- Test deleting interviews upon interview completion
+- Test deleting interviews upon interview completion for signed in users
 - Added @temp_error to neutralize tests that are getting undesired errors right now, but which we anticipate being fixed soon. We want to ignore them for a short while. For example, an upstream change temporarily breaking some tests.
 
 ## [5.12.0] - 2024-06-06
