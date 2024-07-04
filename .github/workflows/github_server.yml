@@ -81,6 +81,11 @@ jobs:
         run: |
           echo "USER1_EMAIL=${{ steps.github_server.outputs.DA_ADMIN_EMAIL }}" >> $GITHUB_ENV
           echo "USER1_PASSWORD=${{ steps.github_server.outputs.DA_ADMIN_PASSWORD }}" >> $GITHUB_ENV
+          echo "USER_NO_PERMISSIONS_EMAIL=${{ steps.github_server.outputs.DA_ADMIN_EMAIL }}" >> $GITHUB_ENV
+          echo "USER_NO_PERMISSIONS_PASSWORD=${{ steps.github_server.outputs.DA_ADMIN_PASSWORD }}" >> $GITHUB_ENV
+          echo "USER_NO_PERMISSIONS_API_KEY=${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}" >> $GITHUB_ENV
+          echo "INVALID_API_KEY=invalidAPIkey" >> $GITHUB_ENV
+          echo "EMPTY_STRING=''" >> $GITHUB_ENV
 
       #### Developer note:
       #### Example of working with the docker container after it's been

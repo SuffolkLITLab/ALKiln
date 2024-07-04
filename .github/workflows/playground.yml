@@ -43,6 +43,11 @@ jobs:
       PLAYGROUND_ID: ${{ secrets.PLAYGROUND_ID }}
       USER1_EMAIL: ${{ secrets.USER1_EMAIL }}
       USER1_PASSWORD: ${{ secrets.USER1_PASSWORD }}
+      USER_NO_PERMISSIONS_EMAIL: ${{ secrets.USER_NO_PERMISSIONS_EMAIL }}
+      USER_NO_PERMISSIONS_PASSWORD: ${{ secrets.USER_NO_PERMISSIONS_PASSWORD }}
+      USER_NO_PERMISSIONS_API_KEY: ${{ secrets.USER_NO_PERMISSIONS_API_KEY }}
+      INVALID_API_KEY: invalidAPIkey
+      EMPTY_STRING: ""
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
       SECRET_FOR_MISSING_FIELD: secret for missing field
