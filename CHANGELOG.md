@@ -51,11 +51,12 @@ Format:
 
 ### Fixed
 
-- Now delete interviews upon interview completion for signed in users
+- Now ALKiln deletes interviews upon interview completion for [signed in users](https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#sign-in) as long as the user has an API key. Also, the author must have used the ["start interview" Step](https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#start-interview) to get to the interview. Admins can give a regular user an API key with https://docassemble.org/docs/api.html#api_user_user_id_api_post. See [#831](https://github.com/SuffolkLITLab/ALKiln/issues/831).
 
 ### Internal
 
-- Test deleting interviews upon interview completion for signed in users
+- Test deleting interviews upon interview completion for signed in users.
+- Switch to mostly using a lowest-access-level user account for actually running interviews.
 - Added @temp_error to neutralize tests that are getting undesired errors right now, but which we anticipate being fixed soon. We want to ignore them for a short while. For example, an upstream change temporarily breaking some tests.
 
 ## [5.12.0] - 2024-06-06
