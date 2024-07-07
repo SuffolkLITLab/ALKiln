@@ -58,6 +58,7 @@ Format:
 - Test deleting interviews upon interview completion for signed in users.
 - Switch to mostly using a lowest-access-level user account for actually running interviews.
 - Added @temp_error to neutralize tests that are getting undesired errors right now, but which we anticipate being fixed soon. We want to ignore them for a short while. For example, an upstream change temporarily breaking some tests.
+- Excluded docassemble/ALKiln files from log code checks.
 
 ## [5.12.0] - 2024-06-06
 

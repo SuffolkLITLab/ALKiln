@@ -69,10 +69,10 @@ jobs:
           ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '(not @error) and (not @temp_error)' }}"
         with:
           #### Developer note: Required ALKiln inputs. You can read more at
-          #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#githubNyou-inputs
+          #### https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#githubNyou-inputs
           SERVER_URL: "${{ env.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ env.DOCASSEMBLE_DEVELOPER_API_KEY }}"
-          #### Developer note: See https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#optional-inputs
+          #### Developer note: See https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           #### You can probably leave this out
           # Internal: docassemble changes sometimes break @a11y tests. That is
           # a da problem, not ours. We will trigger these tests manually when we
