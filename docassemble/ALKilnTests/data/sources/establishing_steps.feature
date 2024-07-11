@@ -33,7 +33,7 @@ Scenario: Interview name includes url args with a wait
 
 @fast @e6 @signin
 Scenario: I sign in
-  Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
+  Given I sign in with the email "USER_NO_PERMISSIONS_EMAIL", the password "USER_NO_PERMISSIONS_PASSWORD", and the API key "USER_NO_PERMISSIONS_API_KEY"
   And I start the interview at "all_tests"
 
 # WARNING: This Scenario may fail if the file moves or changes too much

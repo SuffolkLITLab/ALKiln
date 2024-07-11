@@ -43,18 +43,22 @@ jobs:
     #### Developer note: You can probably leave out these specific
     #### environment variables. You may not even need the `env`
     #### keyword or values at all. See
-    #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing#env-vars
+    #### https://assemblyline.suffolklitlab.org/docs/alkiln/writing#env-vars
     env:
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
       SECRET_FOR_MISSING_FIELD: secret for missing field
+      INVALID_API_KEY: invalidAPIkey
+      EMPTY_STRING: ""
+      USER_NO_PERMISSIONS_EMAIL: alkiln@example.com
+      USER_NO_PERMISSIONS_PASSWORD: User123^
       
     steps:
       # Place the root directory in this branch to access
       # relative paths to action files
       - uses: actions/checkout@v4
 
-      - name: ALKiln - Start the isolated temporary docassemble server on GitHub
+      - name: "ALKiln - Start the isolated temporary docassemble server on GitHub"
         id: github_server
         #### Developer note: you'll need to replace `uses: ./action_for_github_server`
         #### with the path to ALKiln’s repository name and branch name. For example,
@@ -71,13 +75,54 @@ jobs:
         shell: bash
 
       #### Developer note: You can probably leave this out
-      # # Optional debugging to explore things like docker issues
-      # - name: Docker debug tmate session
-      #   if: ${{ failure() && github.event.inputs.enable_tmate == 'true' }}
-      #   uses: mxschmitt/action-tmate@v3
+      - name: "Add a low-level user and their API key (in an env var)"
+        env:
+          SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
+          KEY: ${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}
+        run: |
+          # Create user and their API key
+
+          # Install json processor
+          sudo apt-get install jq
+
+          # https://docassemble.org/docs/api.html#user_new
+          user_data=$(curl -X POST \
+            ${{ env.SERVER_URL }}/api/user/new \
+            -H 'Content-Type: application/json' \
+            -d '{
+              "key": "${{ env.KEY }}",
+              "username": "${{ env.USER_NO_PERMISSIONS_EMAIL }}",
+              "password": "${{ env.USER_NO_PERMISSIONS_PASSWORD }}"
+            }')
+          echo "User data:"
+          echo "$user_data"
+
+          user_id=$(echo "$user_data" | jq '.user_id' -r)
+
+          # https://docassemble.org/docs/api.html#api_user_user_id_api_post
+          new_key_with_quotes=$(curl -X POST \
+            ${{ env.SERVER_URL }}/api/user/"$user_id"/api \
+            -H 'Content-Type: application/json' \
+            -d '{
+              "key": "${{ env.KEY }}",
+              "name": "alkiln_key",
+              "method": "none"
+            }')
+          echo "new key (watch out, this contains actual quotation marks): $new_key_with_quotes"
+          no_end_quote="${new_key_with_quotes%\"}"
+          unquoted="${no_end_quote#\"}"
+          echo "unquoted: $unquoted"
+
+          echo "USER_NO_PERMISSIONS_API_KEY=$unquoted" >> "$GITHUB_ENV"
 
       #### Developer note: You can probably leave this out
-      - name: Run ALKiln - Env vars for our own tests from server output
+      ## Optional debugging to explore things like docker issues
+      #- name: Docker debug tmate session
+      #  #if: ${{ failure() && github.event.inputs.enable_tmate == 'true' }}
+      #  uses: mxschmitt/action-tmate@v3
+
+      #### Developer note: You can probably leave this out
+      - name: "Create other env vars for our own tests from server output"
         run: |
           echo "USER1_EMAIL=${{ steps.github_server.outputs.DA_ADMIN_EMAIL }}" >> $GITHUB_ENV
           echo "USER1_PASSWORD=${{ steps.github_server.outputs.DA_ADMIN_PASSWORD }}" >> $GITHUB_ENV
@@ -103,17 +148,17 @@ jobs:
           # Internal: docassemble changes sometimes break @a11y tests. That is
           # a da problem, not ours. We will trigger these tests manually when we
           # want to check up on this.
-          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '(not @a11y) and (not @error)' }}"
+          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '(not @error) and (not @temp_error)' }}"
         with:
           #### Developer note: Required inputs. See
-          #### https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#sandbox-inputs
+          #### https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#sandbox-inputs
           SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
           #### Developer note: You can probably leave the rest out
-          #### To learn more, see https://suffolklitlab.org/docassemble-AssemblyLine-documentation/docs/alkiln/writing/#optional-inputs
+          #### To learn more, see https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
-          ALKILN_VERSION: output
+          ALKILN_VERSION: delete
 
       #### Developer note: Example of making an issue when tests fail
       #### that includes the text of the failure output file
