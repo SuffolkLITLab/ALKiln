@@ -1,22 +1,6 @@
 @delete @da_api
 Feature: I use the docassemble API
 
-# API tests, no warnings
-# - [x] Not logged in
-# - [x] No API key present fails silently
-# - [x] (All valid) From local/github tests, type string, valid
-
-# - [ ] ~~From playground, type string (no attempt to delete).~~ This is a hard one to test because it would have to be done manually or with a cron job or something. We don't have that set up yet.
-# API with warnings
-# - [ ] ~~Test from playground, type non-string~~ (maybe not this one?)
-# - [ ] ~~Test from local/github, type string, other error~~ (not sure how to trigger)
-
-# - [ ] API key var with missing env var (undefined/non-string)
-# - [ ] Test from local/github, type non-string (warning handled elsewhere)
-# - [ ] API key var is an empty string (is this one necessary or useful?)
-# - [ ] API key has no access on server
-# - [ ] Test from local/github, type string, 403 (access denied, warning handled elsewhere)
-
 @fast @del1 @sessions
 Scenario: As an anonymous user, I silently fail to delete an interview
   Given I start the interview at "all_tests"

@@ -43,7 +43,13 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.13.0] - 2024-07-11
+
+## Added
+
+- Authors can now make sure that ALKiln deletes the interviews it creates for an ALKiln testing account. They can add a new (optional) value, an API key, to [the "sign in" Step](https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#sign-in) and use the ["start interview" Step](https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#start-interview) to go to the interview. The API key must belong to the user who signs in. Example: `Given I sign in with the email "<username env var>", the password "<password env var>", and the API key "<user API key>`. Admins can create an API key for a regular user with https://docassemble.org/docs/api.html#api_user_user_id_api_post. We will add this to the documentation for the "sign in" Step.
 
 ### Changed
 
@@ -51,14 +57,15 @@ Format:
 
 ### Fixed
 
-- Now ALKiln deletes interviews upon interview completion for [signed in users](https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#sign-in) as long as the user has an API key. Also, the author must have used the ["start interview" Step](https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#start-interview) to get to the interview. Admins can give a regular user an API key with https://docassemble.org/docs/api.html#api_user_user_id_api_post. See [#831](https://github.com/SuffolkLITLab/ALKiln/issues/831).
+- Now ALKiln deletes interviews upon interview completion for [signed in users](https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#sign-in) as long as the user has an API key. Also, the author must have used the ["start interview" Step](https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#start-interview) to get to the interview. Admins can give an API key to a regular user with https://docassemble.org/docs/api.html#api_user_user_id_api_post. See [#831](https://github.com/SuffolkLITLab/ALKiln/issues/831).
 
 ### Internal
 
-- Test deleting interviews upon interview completion for signed in users.
-- Switch to mostly using a lowest-access-level user account for actually running interviews.
-- Added @temp_error to neutralize tests that are getting undesired errors right now, but which we anticipate being fixed soon. We want to ignore them for a short while. For example, an upstream change temporarily breaking some tests.
-- Excluded docassemble/ALKiln files from log code checks.
+- Tests deleting interviews upon interview completion for signed in users.
+- Switches to mostly using a lowest-access-level user account for actually running interviews.
+- Switches to adding our own `users[0]` question because of changes in Assembly Line.
+- Adds @temp_error to neutralize tests that are getting undesired errors right now, but which we anticipate being fixed soon. We want to ignore them for a short while. For example, an upstream change temporarily breaking some tests.
+- Excludes docassemble/ALKiln files from log code checks.
 
 ## [5.12.0] - 2024-06-06
 
