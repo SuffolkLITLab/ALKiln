@@ -1,139 +1,193 @@
 #!/bin/bash
 
-# Identify missing and duplicate message code issues
+# Identify missing and/or duplicate log codes
+
+# Profiling performance
+# set -x
+# PS4='+ $EPOCHREALTIME ($LINENO) '
+# alias echo='time echo'
 
 exit_code=0
 
-# Check if the caller sent an argument to the script
-if [ $# -eq 0 ]; then
-    # If there was no argument, set a default value
-    directory="../.."
-else
-    # If there was an argument, use it
-    directory="$1"
-fi
+echo " -------------------------------------------------------
+| Usage:                                                |
+| bash $(basename $0) [dir] [c file] [c folder] [-l arg]
+| dir:      The directory in which to search for logs   |
+| c file:   Name of the log instance counter file       |
+| c folder: Path to the folder of the log counter file  |
+| -l arg:   \"1\" prints extra logs                       |
+ -------------------------------------------------------"
 
-# The grepped files will include the list of all the codes that have been
-# removed and are no longer used. Syntax used works with GitHub cli ([[:digit:]])
-# https://stackoverflow.com/a/6901221
-lines=$(grep -roh --exclude="tests/log_codes/check_codes.sh" --exclude="debug_log.txt" --exclude="cucumber-report.txt" --exclude-dir="ALKilnTests" --exclude-dir="node_modules" --exclude-dir='alkiln-*' --exclude-dir='_alkiln*' 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' "$directory")
-sorted=$(echo "$lines" | sort -n)
-
-
-echo "=== Missing codes ==="
-
-# # -- Version 1 --
-# # More understandable version that doesn't yet come out with a final variable
-# # Keeping it here for discussion
-# nums=$(echo "$sorted" | sed 's/^ALK0*//')
-
-# missing_numbers=()
-# prev_number=0
-# echo "$nums" | while read -r current_number; do
-
-#   diff=$((current_number - prev_number))
-#   # If the difference is more than 1, print the missing
-#   # numbers until we catch up with the current number
-#   if [ $diff -gt 1 ]; then
-#     for ((i=prev_number+1; i<current_number; i++)); do
-#       printf -v missing_number "ALK%04d" $i
-#       missing_numbers+=("$missing_number")
-#       echo $missing_number
-#       # missing_numbers+=$(echo "%04d\n" $missing_number)
-#     done
-#     echo "---"
-#   fi
-
-#   prev_number=$current_number
-
-# done
-
-# missing_numbers_str=$(printf '%s' "${missing_numbers[@]}")
-# echo "missing: $missing_numbers_str"
-
-
-# -- Version 2 --
-# Version that is opaque, but generates a variable to check at the end
-
-# 0's in front of numbers confuses bash about the number format. Remove them.
-just_numbers=$(echo "$sorted" | sed 's/^ALK0*//')
-
-# Convert the list into an array
-IFS=$'\n' read -rd '' -a num_array <<<"$just_numbers"
-# Find the minimum and maximum numbers in the array
-min_num=$(printf "%s\n" "${num_array[@]}" | sort -n | head -n 1)
-max_num=$(printf "%s\n" "${num_array[@]}" | sort -n | tail -n 1)
-
-# Generate a sequence of numbers from min to max with leading zeros
-expected_sequence=""
-for ((i=min_num; i<=max_num; i++)); do
-    # Make sure these won't look like numbers to avoid confusing bash
-    expected_sequence+=$(printf "ALK%04d" $i)$'\n'
+# Get flags and their values
+loudness="0"
+while getopts ':l:' opt; do
+  case "${opt}" in
+    l) loudness="${OPTARG}";;
+    \?) script_args+=("-$OPTARG");;
+  esac
 done
-# # Alternative code for above. seq doesn't exist everywhere. Keep this
-# till we look up installing seq to avoid loop)
-# expected_sequence=$(printf "ALK%04d\n" $(seq $min_num $max_num))
 
-# Compare the expected sequence with the actual numbers
-missing_numbers=$(comm -23 <(printf "%s\n" "$expected_sequence" | sort -n) <(printf "%s\n" "$sorted"))
-if [ -z "$missing_numbers" ]; then
-  echo "None"
-else
-  echo "$missing_numbers"
+# Use global "option index" to get the next args
+
+where_to_look=${@:$OPTIND:1}  # User's value
+if [ "$where_to_look" = "" ]; then
+    where_to_look="../.." # Default value
+fi
+
+expected_instances_file=${@:$OPTIND+1:1}  # User's value
+if [ "$expected_instances_file" = "" ]; then
+    expected_instances_file="log_code_expected_instances.txt" # Default value
+fi
+
+expected_instances_folder=${@:$OPTIND+2:1}  # User's value
+if [ "$expected_instances_folder" = "" ]; then
+    expected_instances_folder="$where_to_look/tests/log_codes" # Default value
+fi
+
+expected_instances_path="$expected_instances_folder/$expected_instances_file"
+
+if [[ "$loudness" != "0" ]]; then
+  echo "loudness: $loudness"
+  echo "where_to_look: $where_to_look"
+  echo "File showing expected instances of log codes: $expected_instances_path"
+fi
+
+
+# removed and are no longer used. Syntax used works with GitHub cli - [[:digit:]]
+# https://stackoverflow.com/a/6901221
+instances=$(find "$where_to_look" -type f ! -name "check_codes.sh" ! -name "$expected_instances_file" ! -name "debug_log.txt" ! -name "cucumber-report.txt" ! -path "*/node_modules/*" ! -path "*/ALKilnTests/*" ! -path "*/alkiln-*/*" ! -path "*/_alkiln*/*" -print0 | xargs -0 -P 4 grep -0 -ro 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' | grep -v -- '--' )
+
+if [[ "$loudness" != "0" ]]; then
+  total_instances=$(echo "$instances" | wc -l)
+  echo "Number 'ALK' logs found: $total_instances"
+fi
+
+# Get the unique paths for every code
+codes_unique_paths=()
+# Also get the actual highest code by its number
+highest_code="1"
+for one_code in $instances; do
+  # Format of the string is "the/path:ALK####"
+  # Split around the ":"
+  path=$(echo "$one_code" | cut -d ":" -f 1)
+  code=$(echo "$one_code" | cut -d ":" -f 2)
+  # Get the code as an integer
+  item_index=$(echo "$code" | sed 's/^ALK0*//')
+  if [[ $item_index == "" ]]; then
+    item_index=0
+  fi
+  # This name is bad. It's really each log code's
+  # unique appearance. We could just use any string,
+  # but the path name gives a little more info.
+  # ¯\_(ツ)_/¯
+  # Also, we really want a list here, but bash can't
+  # make nested lists, so we're using ";" as a safe
+  # delimiter. If the user wants verbose output,
+  # we can also use it to help format the output.
+  codes_unique_paths[$item_index]+=";$path"
+
+  if (( highest_code < item_index )); then
+    highest_code="$item_index"
+  fi
+done
+
+if [[ "$loudness" != "0" ]]; then
+  echo "Instance count: ${#codes_unique_paths[@]}"
+  echo ">>> highest_code <<<: $highest_code"
+  echo "Paths of ALK0000: ${codes_unique_paths[0]}"
+fi
+
+indx=0
+too_many=()
+missing=()
+while [ "$indx" -lt "$highest_code" ]; do
+  # Turn the index into a log code by prepending ALK and adding leading zeros
+  log_code=$(printf "ALK%04d" "$indx")
+  # Count ";" - a stand-in for the number of
+  # instances of the log code
+  num_paths=$(echo "${codes_unique_paths[$indx]}" | awk '{orig_len = length($0); gsub(/;/, "", $0); new_len = length($0); print orig_len - new_len}')
+  # The # of expected instances of the log code
+  # in all the relevant ALKiln files.
+  num_expected=($(grep -oh "$log_code:[[:digit:]]" "$expected_instances_path" | sed 's/^ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]://'))
+  # The file tracking the # of expected instances
+  # may have a typo. One likely typo is we can catch:
+  # Putting 2 entries for one log code in the file.
+  num_expectations_found=${#num_expected[@]}
+  if [[ "$num_expectations_found" -gt "1" ]]; then
+    echo "WARNING: Multiple entries of '$log_code' in $expected_instances_path. Using the first one because that's easiest: ${num_expected[0]}"
+    num_expected=${num_expected[0]}
+  fi
+
+  if [[ "$num_expected" == "" ]]; then
+    num_expected="1"
+  fi
+
+  # To add to the list of strings to print later
+  short_msg="$log_code $num_paths/$num_expected"
+  long_msg="$log_code act/exp "
+  long_msg+="$num_paths/$num_expected:"
+  long_msg+=$(echo "${codes_unique_paths[$indx]}" | sed 's/;/\n  - /g')
+
+  # missing
+  if [ "$num_paths" -lt "$num_expected" ]; then
+    if [[ "$loudness" != "0" ]]; then
+      missing+=("$long_msg")
+    else
+      missing+=("$short_msg")
+    fi
+
+  # too_many
+  elif [ "$num_paths" -gt "$num_expected" ]; then
+    if [[ "$loudness" != "0" ]]; then
+      too_many+=("$long_msg")
+    else
+      too_many+=("$short_msg")
+    fi
+  fi
+
+  let indx++
+done
+
+
+if [[ "$loudness" != "0" ]]; then
+  echo ""
+  echo "Missing count: ${#missing[@]}"
+  echo "Too many count: ${#too_many[@]}"
+fi
+
+# === Results ===
+
+printf "\n=== Missing instances (actual/expected) ===\n"
+if [[ "${#missing[@]}" > 0  ]]; then
+  printf '%s\n' "${missing[@]}"
   ((exit_code+=2))
-fi
-
-
-echo "
-=== Duplicate codes ==="
-
-# We know these duplicates are ok
-accepted_duplicates="ALK0000
-ALK0002
-ALK0003
-ALK0006
-ALK0007
-ALK0008
-ALK0009
-ALK0010
-ALK0011
-ALK0012
-ALK0018
-ALK0019
-ALK0023
-ALK0024
-ALK0026
-ALK0027
-ALK0028
-ALK0030
-ALK0049
-ALK0184"
-
-# Use a sorted list. `uniq` only detects consecutive duplicates
-duplicates=$(echo "$sorted" | uniq -d)
-unaccepted_duplicates=$(echo "$duplicates" | grep -v -f <(echo "$accepted_duplicates"))
-
-if [ -z "$unaccepted_duplicates" ]; then
-  echo "None"
 else
-  echo "$unaccepted_duplicates"
-  ((exit_code+=20))
+  printf "None"
 fi
 
-# === Final messages ===
-echo "
-Exit code meanings:
-- code 2: missing codes
-- code 20: duplicate codes
-- code 22: both
-"
+printf "\n\n=== Too many instances (actual/expected) ===\n"
+if [[ "${#too_many[@]}" > 0  ]]; then
+  printf '%s\n' "${too_many[@]}"
+  ((exit_code+=20))
+else
+  printf "None"
+fi
 
 if test $exit_code -eq 0; then
-  echo "🌈 Passed! The codes for logs are as they should be."
-  highest=$(echo "$sorted" | tail -n 1)
-  echo "The highest log code is $highest"
+  printf "\n\n🌈 Passed! The codes for logs are as they should be."
+  printf "\n\n💡 Highest log code: $highest_code\n"
 else
-  echo "🤕 ERROR: Log codes are messed up. Exited with exit code $exit_code. See above for more details."
+  printf "\n\n🤕 ERROR: "
+  if [[ "$exit_code" == "2" ]]; then
+    printf "Missing codes"
+  elif [[ "$exit_code" == "20" ]]; then
+    printf "Duplicate codes"
+  elif [[ "$exit_code" == "22" ]]; then
+    printf "Both missing and duplicate codes"
+  fi
+  echo ""
+  echo "Exit code: $exit_code"
 fi
+
 
 exit $exit_code

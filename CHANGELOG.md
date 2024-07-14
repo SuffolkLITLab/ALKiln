@@ -43,7 +43,11 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+## Internal
+
+- Check log codes more robustly and flexibly. See [#920](https://github.com/SuffolkLITLab/ALKiln/issues/920).
 
 ## [5.13.0] - 2024-07-11
 
