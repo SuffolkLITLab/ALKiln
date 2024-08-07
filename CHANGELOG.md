@@ -45,7 +45,11 @@ Format:
 
 ## [Unreleased]
 
-## Internal
+### Changed
+
+- Moved "expected" status error to just appear for internal tests. See #993.
+
+### Internal
 
 - Check log codes more robustly and flexibly. See [#920](https://github.com/SuffolkLITLab/ALKiln/issues/920).
 
