@@ -47,11 +47,16 @@ Format:
 
 ### Changed
 
-- Moved "expected" status error to just appear for internal tests. See #993.
+- Moves "expected" status error to just appear for internal tests. See #993.
+
+### Fixed
+
+- Detects failed sign in. See #918.
 
 ### Internal
 
-- Check log codes more robustly and flexibly. See [#920](https://github.com/SuffolkLITLab/ALKiln/issues/920).
+- Checks log codes more robustly and flexibly. See [#920](https://github.com/SuffolkLITLab/ALKiln/issues/920).
+- Returns report text from `.addToReport()` so it can be used again for error messages.
 
 ## [5.13.0] - 2024-07-11
 

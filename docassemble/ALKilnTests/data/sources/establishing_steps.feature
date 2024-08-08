@@ -71,3 +71,12 @@ Scenario: I go to a fully arbitrary url
   Successfully went to "https://retractionwatch.com"
   """
   Given I go to "https://retractionwatch.com"
+
+@fast @e10 @signin @failure
+Scenario: I fail to sign in with wrong email and password
+  Given the final Scenario status should be "failed"
+  Given the Scenario report should include:
+  """
+  ALK0208
+  """
+  And I sign in with "WRONG_EMAIL", "WRONG_PASSWORD"
