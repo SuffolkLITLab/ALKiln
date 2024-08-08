@@ -47,7 +47,7 @@ Format:
 
 ### Changed
 
-- Moves "expected" status error to just appear for internal tests. Closes [#993](https://github.com/SuffolkLITLab/ALKiln/issues/933).
+- Moves "expected" status error to only be visible to internal test errors. Closes [#993](https://github.com/SuffolkLITLab/ALKiln/issues/933).
 
 ### Fixed
 
@@ -55,6 +55,7 @@ Format:
 
 ### Internal
 
+- Adds decision docs
 - Checks log codes more robustly and flexibly. See [#920](https://github.com/SuffolkLITLab/ALKiln/issues/920).
 - Returns report text from `.addToReport()` so it can be used again for error messages.
 - Update puppeteer to v22.15.0. Closes [#930](https://github.com/SuffolkLITLab/ALKiln/issues/930).
