@@ -591,7 +591,7 @@ Scenario: Report lists unused table rows
 Scenario: Sign in to server successfully
   Given the Scenario report should include:
   """
-  Signed in
+  signed in
   """
   Given I sign in with the email "USER1_EMAIL" and the password "USER1_PASSWORD"
 
