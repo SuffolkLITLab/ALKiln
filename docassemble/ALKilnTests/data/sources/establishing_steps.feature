@@ -77,6 +77,6 @@ Scenario: I fail to sign in with wrong email and password
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
-  ALK0208
+  ALK0209
   """
   And I sign in with "WRONG_EMAIL", "WRONG_PASSWORD"
