@@ -45,7 +45,7 @@ Feature: Errors caused by server reload
 #@reload1a
 #Scenario: The server reloads while I navigate to the server sign in page
 #  Given the max seconds for each step in this scenario is 5
-#  Given I sign in with the email "USER_NO_PERMISSIONS_EMAIL", the password "USER_NO_PERMISSIONS_PASSWORD", and the API key "USER_NO_PERMISSIONS_API_KEY"
+#  Given I sign in with the email "NORMAL_USER_EMAIL", the password "NORMAL_USER_PASSWORD", and the API key "NORMAL_USER_API_KEY"
 #
 #@reload1b
 ##Scenario: The server reloads while I'm submitting my signin (impossible)

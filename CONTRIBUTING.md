@@ -33,90 +33,83 @@ Before making a pull request
 1. Wait for the GitHub tests to pass. You may have to re-run failing tests—server restarts or race conditions may interfere with them. We have reduced them greatly, but some are impossible to avoid.
 1. Make your pull request. Work in progress pull requests are great too. A pull request must be reviewed before it can be merged.
 
-## .env
-
-You need to make your own `.env` file. It contains sensitive variables, like passwords. We use them for our internal tests. The file should look something like the below:
-
-```bash
-# For everyone
-
-DOCASSEMBLE_DEVELOPER_API_KEY=<ask @niharikasingh>
-SERVER_URL=https://apps-dev.suffolklitlab.org
-REPO_URL=https://github.com/SuffolkLITLab/alkiln
-SERVER_RELOAD_TIMEOUT_SECONDS=
-MAX_SECONDS_FOR_SETUP=
-
-# For internal tests
-
-# Set DEBUG to 1 to run in non-headless mode and see the test run live
-DEBUG=
-# If you edit interview files (.yml files), you should push to a new 
-# branch and update BRANCH_PATH to that branch name
-BRANCH_PATH=v4
-USER1_EMAIL=<ask @niharikasingh>
-USER1_PASSWORD=<ask @niharikasingh>
-SECRET_VAR1=secret-var1-value
-SECRET_VAR2=secret-var2-value
-SECRET_FOR_MISSING_FIELD=secret for missing field
-SECRET_INVALID_THERE_IS_ANOTHER=invalid value for there_is_another
-```
-
 ## Running internal tests
 
-Only run this the first time you run tests in this repository to make the code available to test on the docassemble server:
+### Setup and takedown
+
+Only run this the first time you run our internal tests. That will install the code that you will test onto the docassemble server:
 
 ```bash
 npm run setup
 ```
 
-If you run `takedown`, you will then have to run `setup` again.
-
-Use the syntax below to trigger all tests (cucumber and unit tests):
-
-```bash
-npm run test
-```
-
-Run only cucumber tests:
-
-```bash
-npm run cucumber
-
-# To test Features or Scenarios specific tags:
-npm run cucumber -- "--tags" "@tagname"
-```
-
-To run the unit tests in isolation:
-
-```bash
-npm run unit
-```
-
-If you or someone else changes the interview code in `./docassemble`, you have to clean up the old data on the server before running `setup` again:
+If you run `takedown`, you will then have to run `setup` again:
 
 ```bash
 npm run takedown
 ```
 
-## How the tests run
+Use the syntax below to trigger all tests that should be passing[^1] (`pass` and unit tests):
 
-Our tests require the user/developer to have a docassemble server on which they host these interviews (online forms) and at least one developer account. With our help, our users set up the tests to run when they commit new code or to run manually. When GitHub runs the tests, it does the following:
+```bash
+npm run test
+```
 
-1. Sets up on the docassemble server. In a given developer account:
-   1. Creates a new interview for this particular branch of the repository.
-   1. Pulls in the code from that branch into the docassemble server.
-1. Runs the tests
-   1. Pretends to be an anonymous account that comes to the form and inputs answers.
-   1. Writes up reports and possibly takes screenshots to show to the developer.
-1. Cleans up by deleting the interview it created
+Run only cucumber tests that should pass:
 
-When the developer commits code to GitHub, their account triggers our code, passing along variables that our code needs, like their GitHub secret of the API key for their docassemble server developer account.
+```bash
+npm run pass
+```
+
+Run deliberately failing cucumber tests:
+
+```bash
+npm run fail
+```
+
+Run all cucumber tests, even those that are incorrectly failing:
+
+```bash
+npm run cucumber
+```
+
+Run tests with specific cucumber tags or tag expressions:
+
+```bash
+npm run cucumber @tagname
+```
+
+Run only unit tests:
+
+```bash
+npm run unit
+```
+
+If you or someone else changes the interview code in `./docassemble/ALKilnTests/data/questions/*.yml`, you have to clean up the old code on the server before running `setup` again:
+
+```bash
+npm run takedown
+```
 
 ## Updating dependencies
 
-Sometimes you will have to add dependencies to ALKiln. You can do so by adding the dependency in the `package.json` "dependencies" section, specifying an exact version. Then, run `npm install` to update `npm-shrinkwrap.json` to have the new dependency.
+To add or update a dependency, edit `package.json` with an exact version. That means avoid notations like `^`, `~`, and `x`. Then run `npm install` and `npm shrinkwrap` to update `npm-shrinkwrap.json`.
 
-If you have to update an existing dependency, you can change the version in `package.json`, and run `npm install` to update `npm-shrankwrap.json`.
+## How one type of GitHub setup runs tests
+
+Our tests require the user/interview author/developer to have a docassemble server on which they host these interviews (online forms) and at least one developer account. With our help, our users set up the tests to run when they commit new code to GitHub. When these GitHub tests run, ALKiln does the following:
+
+1. Sets up on the docassemble server.
+   1. In a given docassemble developer account's Playground it creates a new Project.
+   1. Pulls in the code from the given branch into the new Project.
+1. Runs the tests
+   1. Pretends to be an anonymous or signed-in account that comes to the form and inputs answers.
+   1. Writes up reports and creates other artifacts to show to the developer.
+1. Cleans up by deleting the Project it created.
+
+When the developer commits code to GitHub, their account triggers our code, passing along variables that our code needs, like their GitHub secret of the API key for their docassemble server developer account.
+
+There are [other kinds of test you can read more about in the user documentation](https://assemblyline.suffolklitlab.org/docs/alkiln/setup). The differences can be subtle and hard to explain, but they each have their pros and cons.
 
 ## Very general architecture of files and folders
 
@@ -124,24 +117,7 @@ An honest look at our current project architecture—some of our files and folde
 
 ### Logic architecture
 
-ALKiln uses [cucumber](https://cucumber.io/docs/installation/javascript/)[^1] with [Gherkin](https://cucumber.io/docs/gherkin/reference/) syntax, [puppeteer](https://pptr.dev/), and [chai](https://www.chaijs.com/).
-
-#### .feature files
-
-The `.feature` files are written in Gherkin, a syntax cucumber uses. The "code" in there relies on the functions set up in `./lib/steps.js`.
-
-```js
-// The test_something.feature file step
-Then I sign
-
-// relies on the code in steps.js
-Then('I sign', { timeout: -1 }, async () => {
-  return wrapPromiseWithTimeout(
-    scope.steps.sign( scope ),
-    scope.timeout
-  );
-});
-```
+ALKiln uses [cucumber](https://cucumber.io/docs/installation/javascript/)[^2] with [Gherkin](https://cucumber.io/docs/gherkin/reference/) syntax, [puppeteer](https://pptr.dev/), and [chai](https://www.chaijs.com/).
 
 #### steps.js
 
@@ -170,42 +146,81 @@ The file handles things like:
 * Checking for server restarts
 * Generating test report content
 
-### Logging
+#### Setup and takedown logic
 
-`./lib/utils/log.js` takes care of logging information of various kinds (normal, debug, error) to the command line in ways we hope are useful. We should probably find a logging library instead, but this is what we have for now. An important feature is that it ensures the messages clearly belong to ALKiln and not to some other process.
+All of the setup and takedown logic is in the `./lib/docassemble` directory. It is named after the docassemble API code that is in there. Setup and takedown interact very closely with docassemble and the docassemble server API.
 
-### session_vars.js
+### .env
 
-The `./lib/utils/session_var.js` file keeps track of what you might otherwise think of as environment variables. We like to think of them as constants, but some of them do need to go through functions, so for consistency we get them all through functions. Also because it was easier to test them when they are functions.
+You need to copy [our `.env.example` file](https://github.com/SuffolkLITLab/ALKiln/blob/HEAD/.env.example). It has sensitive variables, like passwords. It also has custom values our tests need. Contact us to get involved with the project and get the sensitive information. We need to use environment variables in the same way our users do when they run their workflow files in their GitHub action. At the moment, it is the only way to pass values into ALKiln from a GitHub action.
 
-### Setup and takedown logic
+### GitHub composite actions
 
-All of the setup and takedown logic is in the `./lib/docassemble` directory. It is named after the docassemble API code that is in there. Also, setup and takedown interact very closely with docassemble and the docassemble server.
-
-Other files also use the docassemble API functions, so this folder is in a bit of a messy position.
-
-### Bash commands
-
-When you `npm run` the scripts in our `./package.json` you can setup, run, or takedown tests. We are working on converting this to a command line tool to avoid some complexity in GitHub actions, increase security, and align more with what this framework has grown into. (TODO: Define this better)
-
-### GitHub composite action
-
-Our `./action.yml` is a [composite action](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action). The users/developers let it do most of the work for them. It installs npm, installs our repo, then uses our repo to set up the tests, run the tests, generate and save reports, errors, and screenshots, and clean up the tests.
+Our `./action.yml` and `action_for_github_server/action.yml` are [composite actions](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action). The GitHub workflow files are there to trigger the code in these files. These composite actions install npm, install ALKiln. They execute the scripts in our `package.json` to set up the tests, run them, save the output of the tests - artifacts reports, errors, screenshots, etc. - clean up the tests, and output the reports back to the author's workflow files.
 
 ### Internal tests
 
-We have our own docassemble package in our repo to test our own end-to-end tests. Most of what the package needs is in `./docassemble`. That docassemble package is what the test setup pulls into the docassemble server. Our internal end-to-end cucumber tests are `.feature` files that are stored in `./docassemble/ALKilnTests/data/sources`. The interview (online form) `.yml` files that those `.feature` files use are also deep in the `./docassemble` package. You probably won't be touching the interview files. If you get curious, feel free to ask us.
+We have our own docassemble package inside our repo `./docassemble` folder to test our own code with its own interview files and `.feature` test files.
 
 There are other files the docassemble package needs, like `./setup.py`, so if you see them around, don't worry about them.
 
-Our unit tests are in `./tests/unit_tests` and their filenames end in `.test.js`. Like the cucumber tests, they use chai for assertions. The fixtures for the tests are also contained in that folder and end in `.fixtures.js`.
+If you want to run the tests, you can go to the [instructions for running tests section](#running-internal-tests) in this README.
 
-If you want to know the commands, you can go to the [instructions for running tests](#running-internal-tests).
+#### .feature and .yml files
 
-### Files that you don't need to look at
+The `.feature` are in `./docassemble/ALKilnTests/data/sources/*.feature`. They're written in Gherkin, a syntax cucumber uses. The "code" in there relies on the functions set up in `./lib/steps.js`. For example:
+
+```js
+// The test_something.feature file Step
+Then I sign
+
+// relies on the code in steps.js
+Then('I sign', { timeout: -1 }, async () => {
+  return wrapPromiseWithTimeout(
+    scope.steps.sign( scope ),
+    scope.timeout
+  );
+});
+```
+
+See [the documentation](https://assemblyline.suffolklitlab.org/docs/alkiln/writing) for other examples.
+
+The `.yml` interviews (online forms) those tests go to are in `./docassemble/ALKilnTests/data/questions/*.yml`.
+
+#### Unit tests
+
+Our unit tests are in `./tests/unit_tests` and their filenames end in `.test.js`. Like some of the cucumber Steps, they use chai for assertions. The fixtures for the tests are also contained in that folder and end in `.fixtures.js`.
+
+We also validate our log codes. Log codes help identify specific messages the user gets. An example of a log code is `ALK0105`. We want to avoid repeating or leaving out log code numbers, so we check those log codes before pushing or merging. That test, a bash file, is also in `./tests/unit_tests`.
+
+#### GitHub workflow files
+
+Like our users, we use GitHub workflow files in `.github/workflows` to trigger the ALKiln composite actions. These files do their best to act as the most up-to-date demonstration of what an ALKiln workflow file can look like. They contain notes for our users to try to help them adjust the code to their purposes. It's not ideal, but they're the files that we can update most reliably.
+
+Those files use [environment variables that store sensitive information and custom variables](#env).
+
+We also use workflow files to trigger our unit tests and our log codes validation.
+
+### Logging
+
+`./lib/utils/log.js` and `./lib/utils/reports.js` take care of logging information of various kinds (normal, debug, error) to the command line in ways we hope are useful, as well as building files to store the same information. We should probably find a logging library instead, but this is what we have for now. An important feature is that it ensures the messages clearly belong to ALKiln and not to some other process.
+
+### session_vars.js
+
+The `./lib/utils/session_var.js` file keeps track of what you might otherwise think of as environment variables. We like to think of them as constants, but some of them do need to go through functions, so for consistency we get them all through functions. It is also easier to test them when they are functions.
+
+### Bash commands
+
+ALKiln is a command line tool to avoid some complexity in GitHub actions, increase security, and align with what this framework has grown into. When you `npm run` the scripts in our `./package.json` they will setup, run, or take down tests.
+
+### Files that you probably don't need to look at
 
 `index.js` and `world.js` are short files that cucumber needs.
 
 ## Footnotes
 
-[1] To be clear, our framework is a misuse of cucumberjs. cucumberjs is geared towards behavior driven development. We try to make BDD available to our developers, but it's not always possible and not necessarily our goal.
+[^1]: Some of our tests are sometimes in a failing state. For example, at times docassemble has changed its behavior and accessibility tests have failed. Those problems take a while to update and in the meantime we still need to continue development. For that reason, we sometimes mark tests with the tag `@temp_error`.
+</br></br>We have tests that pass when they cause errors. They let us test our own error messages and error behavior. They will log an `F` in the console and yet those Scenarios will still pass.
+</br></br>We also have some tests that cause actual errors so we can see their proper behavior. We have to run those manually and we avoid running them on GitHub. They have the tag `@error`.
+
+[^2]: To be clear, our framework is a misuse of cucumberjs. cucumberjs is geared towards behavior driven development. We try to make BDD available to our developers, but it's not always possible and not necessarily our goal.

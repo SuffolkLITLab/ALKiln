@@ -50,8 +50,8 @@ jobs:
       SECRET_FOR_MISSING_FIELD: secret for missing field
       INVALID_API_KEY: invalidAPIkey
       EMPTY_STRING: ""
-      USER_NO_PERMISSIONS_EMAIL: alkiln@example.com
-      USER_NO_PERMISSIONS_PASSWORD: User123^
+      NORMAL_USER_EMAIL: alkiln@example.com
+      NORMAL_USER_PASSWORD: User123^
       WRONG_EMAIL=wrong_email@example.com
       WRONG_PASSWORD=wrong_password
       
@@ -93,8 +93,8 @@ jobs:
             -H 'Content-Type: application/json' \
             -d '{
               "key": "${{ env.KEY }}",
-              "username": "${{ env.USER_NO_PERMISSIONS_EMAIL }}",
-              "password": "${{ env.USER_NO_PERMISSIONS_PASSWORD }}"
+              "username": "${{ env.NORMAL_USER_EMAIL }}",
+              "password": "${{ env.NORMAL_USER_PASSWORD }}"
             }')
           echo "User data:"
           echo "$user_data"
@@ -115,7 +115,7 @@ jobs:
           unquoted="${no_end_quote#\"}"
           echo "unquoted: $unquoted"
 
-          echo "USER_NO_PERMISSIONS_API_KEY=$unquoted" >> "$GITHUB_ENV"
+          echo "NORMAL_USER_API_KEY=$unquoted" >> "$GITHUB_ENV"
 
       #### Developer note: You can probably leave this out
       ## Optional debugging to explore things like docker issues

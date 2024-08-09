@@ -10,7 +10,7 @@ Scenario: As an anonymous user, I silently fail to delete an interview
 
 @fast @del2 @signin @sessions
 Scenario: Without an API key, I silently fail to delete an interview and trigger no warnings
-  Given I sign in with the email "USER_NO_PERMISSIONS_EMAIL" and the password "USER_NO_PERMISSIONS_PASSWORD"
+  Given I sign in with the email "NORMAL_USER_EMAIL" and the password "NORMAL_USER_PASSWORD"
   And I start the interview at "all_tests"
   # Must continue to theoretically get interview into "My interviews" list
   And I tap to continue
@@ -18,7 +18,7 @@ Scenario: Without an API key, I silently fail to delete an interview and trigger
 
 @fast @del3 @signin @sessions
 Scenario: I delete an interview after signing in
-  Given I sign in with the email "USER_NO_PERMISSIONS_EMAIL", "USER_NO_PERMISSIONS_PASSWORD", "USER_NO_PERMISSIONS_API_KEY"
+  Given I sign in with the email "NORMAL_USER_EMAIL", "NORMAL_USER_PASSWORD", "NORMAL_USER_API_KEY"
   And I start the interview at "all_tests"
   # Must continue to get interview into "My interviews" list
   And I tap to continue
@@ -29,7 +29,7 @@ Scenario: I delete an interview after signing in
 @fast @del4 @signin @sessions
 Scenario: I go to non-existent interview and only get that error
   Given the final Scenario status should be "failed"
-  Given I sign in with the email "USER_NO_PERMISSIONS_EMAIL", "USER_NO_PERMISSIONS_PASSWORD", "USER_NO_PERMISSIONS_API_KEY"
+  Given I sign in with the email "NORMAL_USER_EMAIL", "NORMAL_USER_PASSWORD", "NORMAL_USER_API_KEY"
   And I start the interview at "nonexistent_interview"
 
 @fast @del5 @signin @sessions
@@ -38,7 +38,7 @@ Scenario: I leave an API key undefined and get a warning
   """
   ALK0199
   """
-  Given I sign in with the email "USER_NO_PERMISSIONS_EMAIL", "USER_NO_PERMISSIONS_PASSWORD", "NONEXISTENT_API_KEY_VAR_NAME"
+  Given I sign in with the email "NORMAL_USER_EMAIL", "NORMAL_USER_PASSWORD", "NONEXISTENT_API_KEY_VAR_NAME"
   And I start the interview at "all_tests"
   And I tap to continue
   Then I fail to delete 1 detected interview and get no error __internal__
@@ -49,7 +49,7 @@ Scenario: My API key is an empty string and I get a warning
   """
   ALK0200
   """
-  Given I sign in with the email "USER_NO_PERMISSIONS_EMAIL", "USER_NO_PERMISSIONS_PASSWORD", "EMPTY_STRING"
+  Given I sign in with the email "NORMAL_USER_EMAIL", "NORMAL_USER_PASSWORD", "EMPTY_STRING"
   And I start the interview at "all_tests"
   And I tap to continue
   Then I fail to delete 1 detected interview and get no error __internal__
@@ -60,7 +60,7 @@ Scenario: With an invalid API key, I get a warning and silently fail to delete a
   """
   ALK0201
   """
-  Given I sign in with the email "USER_NO_PERMISSIONS_EMAIL", "USER_NO_PERMISSIONS_PASSWORD", "INVALID_API_KEY"
+  Given I sign in with the email "NORMAL_USER_EMAIL", "NORMAL_USER_PASSWORD", "INVALID_API_KEY"
   And I start the interview at "all_tests"
   And I tap to continue
   Then I fail to delete 1 detected interview and get no error __internal__

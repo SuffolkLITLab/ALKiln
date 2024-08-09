@@ -47,7 +47,7 @@ Format:
 
 ### Changed
 
-- Moves "expected" status error to only be visible to internal test errors. Closes [#993](https://github.com/SuffolkLITLab/ALKiln/issues/933).
+- Moves "expected" status error to only be visible to internal test errors. Closes [#933](https://github.com/SuffolkLITLab/ALKiln/issues/933).
 
 ### Fixed
 
@@ -55,15 +55,17 @@ Format:
 
 ### Internal
 
-- Adds decision docs
-- Checks log codes more robustly and flexibly. See [#920](https://github.com/SuffolkLITLab/ALKiln/issues/920).
+- Improved checks of log codes - more robust and flexible. See [#920](https://github.com/SuffolkLITLab/ALKiln/issues/920).
 - Returns report text from `.addToReport()` so it can be used again for error messages.
 - Update puppeteer to v22.15.0. Closes [#930](https://github.com/SuffolkLITLab/ALKiln/issues/930).
 - Update npm vulnerabilities except pdfjs-dist. See docs/decisions/pdfjs_version_2024_08_08.md.
+- Adds decision docs
+- Updated CONTRIBUTING.md
+- Added example.env, closes [#374](https://github.com/SuffolkLITLab/ALKiln/issues/374)
 
 ## [5.13.0] - 2024-07-11
 
-## Added
+### Added
 
 - Authors can now make sure that ALKiln deletes the interviews it creates for an ALKiln testing account. They can add a new (optional) value, an API key, to [the "sign in" Step](https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#sign-in) and use the ["start interview" Step](https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#start-interview) to go to the interview. The API key must belong to the user who signs in. Example: `Given I sign in with the email "<username env var>", the password "<password env var>", and the API key "<user API key>`. Admins can create an API key for a regular user with https://docassemble.org/docs/api.html#api_user_user_id_api_post. We will add this to the documentation for the "sign in" Step.
 
