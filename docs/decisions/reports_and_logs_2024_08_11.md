@@ -16,7 +16,7 @@ Overview:
 
 Details:
 
-- Log objects have statuses, icons, log codes (e.g. ALK0105), contextual info (e.g. `setup`, `takedown`, `invalid answer`), descriptive text, and data (like full error traces).
+- Log objects have statuses, icons, log codes (e.g. ALK0105), contextual info (e.g. `setup`, `takedown`, `invalid answer`), timestamps, descriptive text, and data (like full error traces).
 - These are the broad purposes of various logs:
 1. Setup and takedown messages.
 2. Test progress (a compact way to see what's happening/happened in each test):
@@ -37,8 +37,12 @@ Right now, a few of the logs, like for the test progress (item 2), are printed w
 Note: The progress logs printed to the console have color codes. We also may want a plain text version without any colors to save in the report log and show in the Playground[^1] "console" and/or a version converted to HTML that does have styles. The latter may be for something easier to digest in a browser and/or to show visually in the Playground version of the tests.
 
 Questions:
-- Should `log` throw errors? There are ways to manipulate the console trace to make the source of the error more clear.
-- How do we capture errors that are more subtle? For example, invalid answers on the form that are then assessed as valid behavior? Another example: abort errors of promises that should indeed have been aborted.
+- Should `log` throw errors? Otherwise everywhere we need to error, we need to use `log` and `throw`, but I am unable to find a way to remove the current function from an error stack/trace.
+- How do we capture "errors" that are more subtle? Keep the word "error" in the "context"/"types" list? For example, expected errors:
+  - Invalid answers on the form that are then assessed as valid behavior?
+  - `AbortError`s of promises that should indeed have been aborted.
+- Should we allow "in-between"s for all parts of the log? All together: pre-everything (new lines, dividers, etc), icon/context/etc., pre-logs, logs (the actual messages to print), pre-data, data, post-data? We can default to nothing for all of those.
+- How do we differentiate between methods that log to the console vs. methods that just store data?
 
 [^1]: Don't go down this rabbit hole. Broadly - with the "Playground" version, users see the results as a web page instead of in the GitHub job console or in the artifacts. The users run the tests on their own server. This has to do with the platform we built ALKiln for - [docassemble](https://docassemble.org/). It gives users a faster iteration cycle.
 
@@ -54,16 +58,16 @@ This design still seems a little complex and potentially too coupled with report
 ### System-context diagram
 
 ```
-logic code -> logger -> report -----------> console/stdout
-              ^     |-> console         |-> final report.txt
-  cucumber ---|     |-> running report
+logic code -> logger -> report -----------> console
+              ^     |-> console         |-> stdout/progress
+  cucumber ---|     |-> running report  |-> final report.txt
                     |-> verbose log
 ```
 
 ```
 logic code -> logger ------> report ------> final report.txt
               ^     |-> console
-  cucumber ---|     |-> stdout/inline print
+  cucumber ---|     |-> stdout/inline/progress
                     |-> running report
                     |-> verbose log
 ```
@@ -75,7 +79,7 @@ logic code -> logger -> report -----------> format prettily
               ^     |-> console
   cucumber ---|     |-> running report
                     |-> verbose log
-                    |-> stdout
+                    |-> stdout/progress
                     |-> final report.txt
 ```
 
