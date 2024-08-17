@@ -27,7 +27,7 @@ Details:
 5. Lots of other informational logs for internal development and debugging purposes.
 I want to do different things with different logs:
 - During the tests, always log items 1, 2, 3, and 4 to the console.
-- During the tests, save items 2, 3, and 4 to a log as they come with all the info in the log objects - `report_log.txt` maybe. If we have to stop the tests early because of an infinite loop or something, this will at least show some information.
+- During the tests, save items 2, 3, and 4 to a log as they come with all the info in the log objects - `report_log.txt`/`running_report.txt`/`report_run.txt` maybe. If we have to stop the tests early because of an infinite loop or something, this will at least show some information.
 - At the end of the tests, format items 2, 3, and 4, often with only part of the log object info, in a file called `report.txt`.
 - During the tests, save all of the items to a `verbose_log.txt` as they happen.
 - In debug mode, log all that stuff to the console while the tests are running.
@@ -97,8 +97,27 @@ Everything saves to the "verbose"/"debug" log. Aside from that:
 
 - `report.txt` - final pretty output for the user with headings, etc.
 - Each Scenario's `report.txt` - pretty output in each test's folder.
-- `running_report_log.txt` (name?) - ugly, but still sparse, giving the user some info about what happened without overwhelming them.
-- `verbose.txt` (name?) - very ugly and full of all the information from everywhere else and more. Useful for internal development and troubleshooting.
+- `running_report_log.txt` (name?) - ugly, but still sparse, giving the user some info about what happened during the tests without overwhelming them.
+- `verbose.txt` (name? `debug`?) - very ugly and full of all the information from everywhere else and more. Useful for internal development and troubleshooting. Includes setup and takedown.
+
+The storage for the verbose file will be a little more complex. In practice, to include setup and takedown, I believe we need to write to individual files then, when everything is done, copy the contents of those files into one final verbose file. Reasoning: I want to save actual console output into the files. I can do that with node's `console.Console` class. Unfortunately, that class currently has no way to append to a file[^2]. When a writeStream starts, it overwrites what's in the file. Because we don't use one continuous process for `setup`, `takedown`, and running the tests, we can't maintain the same writeStream for all of them and they would overwrite each other.
+
+Question: How do we handle intermediate verbose files so they don't get lost if the user stops early? Since `setup` and `takedown` mostly happen in GitHub, maybe we do this reconstructing mostly in the action. That makes local development behave a bit differently. If we find it's actually a problem, we can work on matching the behaviors in the future. Maybe it can be a combo:
+
+- Start the temp `setup` log file in the GitHub action.
+- If it exists, append to it in the `setup` script. Otherwise create it and append to it.
+- Continue appending in the GitHub action.
+- Create the verbose log file for the running tests.
+- Create the temp `takedown` file in the `takedown` script.
+- In the `takedown` script, combine the files.
+
+There aren't many logs in the GitHub action that ALKiln itself creates after `takedown`. Maybe that's sufficient. We may have to store the name of the artifacts folder and verbose file in the `runtime_config.json` (e.g. `this.temp_path = '${ path }/temp_lifecycle_logs';`). That's a pain to develop robustly.
+
+Note: we already `.gitignore` files with `*_report_*` in them, so maybe use that for the temp `setup` and `takedown` files.
+
+This is a lot of complexity to add just to see verbose logs of running tests. Some of this may be added to a future issue.
+
+[^2]: `fs.appendFile()` only takes strings and doesn't log exactly like the console. I want to log exactly like the console to make it easy to search for words I and others see in the console output.
 
 ### Code and pseudo-code
 
