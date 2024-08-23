@@ -111,7 +111,7 @@ runs:
       run: |
         # 💡 ALK0027 INFO: Create a Project and install the package from GitHub
         pip install "docassemblecli==$DOCASSEMBLECLI_VERSION"
-        alkiln-setup
+        alkiln-setup --path="$ARTIFACT_NAME"
     - name: "😞 ALK0028 ERROR: Unable to create a Project"
       if: ${{ inputs.INSTALL_METHOD == 'playground' && failure() }}
       shell: bash
@@ -136,12 +136,12 @@ runs:
       env:
         ALKILN_TAG_EXPRESSION: ${{ inputs.ALKILN_TAG_EXPRESSION || github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
       shell: bash
-      run: alkiln-run "$ALKILN_TAG_EXPRESSION"
+      run: alkiln-run "$ALKILN_TAG_EXPRESSION" --path="$ARTIFACT_NAME"
     
     # on playground, delete project
     - name: "💡 ALK0032 INFO: Delete the Project from the Playground"
       if: ${{ always() && inputs.INSTALL_METHOD == 'playground' }}
-      run: alkiln-takedown
+      run: alkiln-takedown --path="$ARTIFACT_NAME"
       shell: bash
     
     # Upload artifacts that subscribers can download on the Actions summary page
