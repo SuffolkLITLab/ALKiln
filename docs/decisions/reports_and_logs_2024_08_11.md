@@ -20,8 +20,10 @@ Details:
 - These are the broad purposes of various logs:
 1. Setup and takedown messages.
 2. Test progress (a compact way to see what's happening/happened in each test):
-    Test1: .............F--
-    Test 2: ..
+
+   Test1: .............F--
+   
+   Test 2: ..
 3. A pretty report at the end with details about each test. It has sections, like "failed" and "passed", headings, etc.
 4. cucumber's various console logs
 5. Lots of other informational logs for internal development and debugging purposes.
@@ -100,28 +102,26 @@ Everything saves to the "verbose"/"debug" log. Aside from that:
 - `running_report_log.txt` (name?) - ugly, but still sparse, giving the user some info about what happened during the tests without overwhelming them.
 - `verbose.txt` (name? `debug`?) - very ugly and full of all the information from everywhere else and more. Useful for internal development and troubleshooting. Includes setup and takedown.
 
-The storage for the verbose file will be a little more complex. In practice, to include setup and takedown, I believe we need to write to individual files then, when everything is done, copy the contents of those files into one final verbose file. Reasoning: I want to save actual console output into the files. I can do that with node's `console.Console` class. Unfortunately, that class currently has no way to append to a file[^2]. When a writeStream starts, it overwrites what's in the file. Because we don't use one continuous process for `setup`, `takedown`, and running the tests, we can't maintain the same writeStream for all of them and they would overwrite each other.
-
-Question: How do we handle intermediate verbose files so they don't get lost if the user stops early? Since `setup` and `takedown` mostly happen in GitHub, maybe we do this reconstructing mostly in the action. That makes local development behave a bit differently. If we find it's actually a problem, we can work on matching the behaviors in the future. Maybe it can be a combo:
-
-- Start the temp `setup` log file in the GitHub action.
-- If it exists, append to it in the `setup` script. Otherwise create it and append to it.
-- Continue appending in the GitHub action.
-- Create the verbose log file for the running tests.
-- Create the temp `takedown` file in the `takedown` script.
-- In the `takedown` script, combine the files.
-
-There aren't many logs in the GitHub action that ALKiln itself creates after `takedown`. Maybe that's sufficient. We may have to store the name of the artifacts folder and verbose file in the `runtime_config.json` (e.g. `this.temp_path = '${ path }/temp_lifecycle_logs';`). That's a pain to develop robustly.
-
-Note: we already `.gitignore` files with `*_report_*` in them, so maybe use that for the temp `setup` and `takedown` files.
-
-This is a lot of complexity to add just to see verbose logs of running tests. Some of this may be added to a future issue.
+It may be complex to store setup and takedown output in the verbose/debug file. `console.Console` cannot append to a file[^2], so we would have to figure out a work-around. One approach could be to always first copy from the existing verbose file and paste those contents back into the file as the first log. That may take setting up some fallbacks to avoid errors.
 
 [^2]: `fs.appendFile()` only takes strings and doesn't log exactly like the console. I want to log exactly like the console to make it easy to search for words I and others see in the console output.
 
 ### Code and pseudo-code
 
-N/A
+For capturing console output, look into how to get the `stdin` for capturing various console output. https://stackoverflow.com/a/54202970:
+
+```js
+const stdin = process.openStdin()
+
+process.stdout.write('Enter name: ')
+
+stdin.addListener('data', text => {
+  const name = text.toString().trim()
+  console.log('Your name is: ' + name)
+
+  stdin.pause() // stop reading
+})
+```
 
 ### Degree of constraint
 
@@ -132,9 +132,10 @@ I think this can basically be greenfield (designed from scratch). We do have a c
 - The `report` object saves to the running report and then sends that same information to the `log` object. Also prints the final report. This includes `stdout` logs. `log` remains otherwise the same as described above.
 - `log` handles `stdout` logs and leaves them out of the report.
 - For report content, `log` would call to `report`, which would do pretty formatting and then hand the format text back to `log` to be saved and/or printed to the console. I'm not sure how `log` could then know what to do with the output - leave out the codes/etc. when it logs to the console and/or saves to the final report.txt.
+- Avoid the complexity of storing setup and takedown output in the verbose/debug file. In GitHub, they're in the GitHub console. Locally, we see the results immediately. On the other hand, storing them ourselves lets us look for information in just one place.
 
 ## Cross-cutting concerns
 
 _Security, privacy, observability, etc._
 
-N/A
+The same ones we've already dealt with for our current logs.
