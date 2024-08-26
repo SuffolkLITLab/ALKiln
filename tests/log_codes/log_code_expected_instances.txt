@@ -4,6 +4,10 @@ Why we need duplicate codes sometimes: GitHub actions sometimes don't have ways 
 
 The script that tests the log codes will ignore this file (or any file with this name), and any file with these names: check_codes.sh, debug_log.txt, cucumber-report.txt. It will also ignore files in folders with these names:, node_modules, ALKilnTests, alkiln-*, _alkiln*. That list might get updated, so for an up-to-date list, always check the file check_codes.sh where we use `--exclude=` and such.
 
+Reasons for deletion:
+0053 - duplicate log
+0173 - redundant
+
 ALK0000:8
 ALK0001:1
 ALK0002:2
@@ -57,7 +61,7 @@ ALK0049:1
 ALK0050:1
 ALK0051:1
 ALK0052:1
-ALK0053:1
+ALK0053:0
 ALK0054:1
 ALK0055:1
 ALK0056:1
@@ -177,7 +181,7 @@ ALK0169:1
 ALK0170:1
 ALK0171:1
 ALK0172:1
-ALK0173:1
+ALK0173:0
 ALK0174:1
 ALK0175:1
 ALK0176:1
