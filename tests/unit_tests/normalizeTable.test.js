@@ -5,6 +5,11 @@ const expect = chai.expect;
 
 const tables = require('./tables.fixtures.js');
 const scope = require('../../lib/scope.js');
+
+const Log = require(`../../lib/utils/log.js`);
+const log = new Log({ context: `unit_tests normalizeTable` });
+scope.set_log({ log_obj: log });
+
 const normalizeTable = scope.normalizeTable;
 
 
