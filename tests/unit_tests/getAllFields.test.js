@@ -7,6 +7,11 @@ chai.use(deepEqualInAnyOrder);
 const html = require('./html.fixtures.js');
 const fields = require('./fields.fixtures.js');
 const scope = require('../../lib/scope.js');
+
+const Log = require(`../../lib/utils/log.js`);
+const log = new Log({ context: `unit_tests getAllFields` });
+scope.set_log({ log_obj: log });
+
 const getAllFields = scope.getAllFields;
 
 chai.config.truncateThreshold = 0
