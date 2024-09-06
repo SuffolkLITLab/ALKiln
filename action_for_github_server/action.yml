@@ -187,7 +187,7 @@ runs:
 
             # Check if the string includes the desired text
             if [[ $response == *"200"* ]]; then
-              echo "🌈 ALK0016 SUCCESS: Success! The docker container is ready!"
+              echo "💡 ALK0016 SUCCESS: Success! The docker container is ready!"
             else
               echo "💡 ALK0017 INFO: The docker container is not ready yet. Will check again in 30 seconds."
               sleep 30
@@ -242,7 +242,7 @@ runs:
       - shell: bash
         if: ${{ success() }}
         run: |
-          echo "🌈 ALK0021 SUCCESS: ALKiln created the docker container and started the server!"
+          echo "💡 ALK0021 SUCCESS: ALKiln created the docker container and started the server!"
 
       - shell: bash
         if: ${{ failure() }}
