@@ -41,6 +41,9 @@ outputs:
   PATH_TO_REPORT_FILE:
     description: 'An empty string ("") or the path to report.txt. Remember to check for the existence of the file before using it.'
     value: ${{ steps.alkiln_outputs.outputs.PATH_TO_REPORT_FILE }}
+  PATH_TO_REPORT_LOG_FILE:
+    description: 'An empty string ("") or the path to report_log.txt. Remember to check for the existence of the file before using it.'
+    value: ${{ steps.alkiln_outputs.outputs.PATH_TO_REPORT_LOG_FILE }}
   PATH_TO_UNEXPECTED_RESULTS_FILE:
     description: 'An empty string ("") or the path to unexpected_results.txt. Remember to check for the existence of the file before using it.'
     value: ${{ steps.alkiln_outputs.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}
@@ -175,6 +178,7 @@ runs:
 
         else
           REPORT_PATH="${FOLDER}report.txt"
+          REPORT_LOG_PATH="${FOLDER}report_log.txt"
           UNEXPECTED_RESULTS_PATH="${FOLDER}unexpected_results.txt"
           DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
 
@@ -183,6 +187,13 @@ runs:
           else
             echo "$REPORT_PATH is missing"
             REPORT_PATH=""
+          fi
+
+          if [ -f "$REPORT_LOG_PATH" ]; then
+            echo "$REPORT_LOG_PATH exists"
+          else
+            echo "$REPORT_LOG_PATH is missing"
+            REPORT_LOG_PATH=""
           fi
 
           if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
@@ -203,6 +214,7 @@ runs:
 
         echo "PATH_TO_ARTIFACTS=$FOLDER" >> "$GITHUB_OUTPUT"
         echo "PATH_TO_REPORT_FILE=$REPORT_PATH" >> "$GITHUB_OUTPUT"
+        echo "PATH_TO_REPORT_LOG_FILE=$REPORT_LOG_PATH" >> "$GITHUB_OUTPUT"
         echo "PATH_TO_UNEXPECTED_RESULTS_FILE=$UNEXPECTED_RESULTS_PATH" >> "$GITHUB_OUTPUT"
         echo "PATH_TO_DEBUG_LOG_FILE=$DEBUG_LOG_PATH" >> "$GITHUB_OUTPUT"
 
