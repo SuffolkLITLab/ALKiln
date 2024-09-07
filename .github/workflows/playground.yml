@@ -47,8 +47,8 @@ jobs:
       NORMAL_USER_PASSWORD: ${{ secrets.USER_NO_PERMISSIONS_PASSWORD }}
       NORMAL_USER_API_KEY: ${{ secrets.USER_NO_PERMISSIONS_API_KEY }}
       INVALID_API_KEY: invalidAPIkey
-      WRONG_EMAIL=wrong_email@example.com
-      WRONG_PASSWORD=wrong_password
+      WRONG_EMAIL: wrong_email@example.com
+      WRONG_PASSWORD: wrong_password
       EMPTY_STRING: ""
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
