@@ -8,7 +8,7 @@ Reasons for deletion:
 0053 - duplicate log
 0173 - redundant
 
-ALK0000:8
+ALK0000:0
 ALK0001:1
 ALK0002:2
 ALK0003:2
