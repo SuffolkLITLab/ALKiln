@@ -70,9 +70,16 @@ runs:
         DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
       shell: bash
       run: |
-        # 💡 ALK0023 INFO: Set environment variables
+        log="💡 ALK0023 INFO: Set environment variables"
+
         # Human-readable date/time: https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
-        echo "ARTIFACT_NAME=alkiln-$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)UTC" >> $GITHUB_ENV
+        timestamp="$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)"
+        artifact_folder="alkiln-${timestamp}UTC"
+        echo "ARTIFACT_FOLDER=$artifact_folder" >> $GITHUB_ENV
+        debug_path="${artifact_folder}/debug_log.txt"
+        echo "DEBUG_PATH=$debug_path" >> $GITHUB_ENV
+        echo "$log" >> "${debug_path}"
+
         echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
         echo "BRANCH_PATH=$BRANCH_PATH" >> $GITHUB_ENV
         # Workflow inputs
@@ -87,18 +94,21 @@ runs:
     - name: "💡 ALK0024 INFO: Confirm environment variables"
       shell: bash
       run: |
-        # 💡 ALK0024 INFO: Confirm environment variables
-        echo -e "\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nSERVER_RELOAD_TIMEOUT_SECONDS is $SERVER_RELOAD_TIMEOUT_SECONDS\n"
+        log="💡 ALK0024 INFO: Confirm environment variables"
+        echo -e "\n$log" >> "$DEBUG_PATH"
+        vars_log="\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nSERVER_RELOAD_TIMEOUT_SECONDS is $SERVER_RELOAD_TIMEOUT_SECONDS\n"
+        echo -e "$vars_log" >> "$DEBUG_PATH" && echo -e "$vars_log"
 
     # Install
-    - name: "💡 ALK0025 INFO: Install node packages"
+    - name: "💡 ALK0025 INFO: Set up node"
       uses: actions/setup-node@v4
       with:
         node-version: "18"
     - name: "💡 ALK0026 INFO: Install ALKiln directly from npm"
       shell: bash
       run: |
-        # 💡 ALK0026 INFO: Install ALKiln directly from npm
+        log="💡 ALK0026 INFO: Install ALKiln directly from npm"
+        echo -e "\n$log" >> "$DEBUG_PATH"
         npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
 
     # Install on playground
@@ -112,26 +122,32 @@ runs:
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       shell: bash
       run: |
-        # 💡 ALK0027 INFO: Create a Project and install the package from GitHub
+        log="💡 ALK0027 INFO: Create a Project and install the package from GitHub"
+        echo -e "\n$log" >> "$DEBUG_PATH"
         pip install "docassemblecli==$DOCASSEMBLECLI_VERSION"
-        alkiln-setup --path="$ARTIFACT_NAME"
+        alkiln-setup --path="$ARTIFACT_FOLDER"
     - name: "🤕 ALK0028 ERROR: Unable to create a Project"
       if: ${{ inputs.INSTALL_METHOD == 'playground' && failure() }}
       shell: bash
       run: |
-        # 🤕 ALK0028 ERROR: Unable to create a Project
-        echo -e "\n\n====\n🤕 ALK0028 ERROR: Unable to create a Project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
+        # "🤕 ALK0028 ERROR: Unable to create a Project"
+        long_log="\n\n―――\n🤕 ALK0028 ERROR: Unable to create a Project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
+        echo -e "$long_log" >> "$DEBUG_PATH" && echo -e "$long_log"
 
     # Server installations - find folders and save session vars
     - name: "💡 ALK0029 INFO: Install the GitHub package onto the server"
       if: ${{ inputs.INSTALL_METHOD == 'server' }}
       shell: bash
-      run: alkiln-server-install --path="$ARTIFACT_NAME"
+      run: |
+        log="💡 ALK0029 INFO: Install the GitHub package onto the server"
+        echo -e "\n$log" >> "$DEBUG_PATH"
+        alkiln-server-install --path="$ARTIFACT_FOLDER"
     - name: "🤕 ALK0030 ERROR: Unable to install the package"
       if: ${{ inputs.INSTALL_METHOD == 'server' && failure() }}
       shell: bash
       run: |
-        echo -e "\n\n====\n🤕 ALK0030 ERROR: Unable to install the package on the temporary GitHub docassemble server. Check the steps above this line.\n\n"
+        log="\n\n―――\n🤕 ALK0030 ERROR: Unable to install the package on the temporary GitHub docassemble server. Check the steps above this line.\n\n"
+        echo -e "$log" >> "$DEBUG_PATH" && echo -e "$log"
 
     # run tests
     - name: "💡 ALK0031 INFO: Run tests"
@@ -139,20 +155,26 @@ runs:
       env:
         ALKILN_TAG_EXPRESSION: ${{ inputs.ALKILN_TAG_EXPRESSION || github.event.inputs.tags && format('{0}', github.event.inputs.tags) }}
       shell: bash
-      run: alkiln-run "$ALKILN_TAG_EXPRESSION" --path="$ARTIFACT_NAME"
+      run: |
+        log="💡 ALK0031 INFO: Run tests"
+        echo -e "\n$log" >> "$DEBUG_PATH"
+        alkiln-run "$ALKILN_TAG_EXPRESSION" --path="$ARTIFACT_FOLDER"
     
     # on playground, delete project
     - name: "💡 ALK0032 INFO: Delete the Project from the Playground"
       if: ${{ always() && inputs.INSTALL_METHOD == 'playground' }}
-      run: alkiln-takedown --path="$ARTIFACT_NAME"
       shell: bash
+      run: |
+        log="💡 ALK0032 INFO: Delete the Project from the Playground"
+        echo -e "\n$log" >> "$DEBUG_PATH"
+        alkiln-takedown --path="$ARTIFACT_FOLDER"
     
     # Upload artifacts that subscribers can download on the Actions summary page
     - name: "💡 ALK0033 INFO: Upload artifacts folder"
       if: ${{ always() }}
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.ARTIFACT_NAME }}
+        name: ${{ env.ARTIFACT_FOLDER }}
         path: ./alkiln-*
 
     # Download artifacts folder internally to create action output
@@ -160,21 +182,24 @@ runs:
       if: ${{ always() }}
       uses: actions/download-artifact@v4
       with:
-        name: ${{ env.ARTIFACT_NAME }}
+        name: ${{ env.ARTIFACT_FOLDER }}
 
     - name: "💡 ALK0184 INFO: Prepare ALKiln output file paths"
       if: ${{ always() }}
       id: alkiln_outputs
       shell: bash
       run: |
-        # 💡 ALK0184 INFO: Prepare ALKiln output file paths
+        log="💡 ALK0184 INFO: Prepare ALKiln output file paths"
+        echo -e "\n$log" >> "$DEBUG_PATH" && echo "$log"
 
         FOLDER=$(ls -d */ | grep -E '^alkiln-*' || true)
 
-        echo "Test results artifacts folder is $FOLDER"
+        log_folder="Test results artifacts folder is $FOLDER"
+        echo -e "\n$log_folder" >> "$DEBUG_PATH" && echo "$log_folder"
 
         if [[ "$FOLDER" = "" ]]; then
-          echo "Artifacts folder is missing. The path is an empty string: '$FOLDER'"
+          log_missing="Artifacts folder is missing. The path is an empty string: '$FOLDER'"
+          echo -e "\n$log_missing" >> "$DEBUG_PATH" && echo "$log_missing"
 
         else
           REPORT_PATH="${FOLDER}report.txt"
@@ -183,30 +208,30 @@ runs:
           DEBUG_LOG_PATH="${FOLDER}debug_log.txt"
 
           if [ -f "$REPORT_PATH" ]; then
-            echo "$REPORT_PATH exists"
+            echo -e "\n$REPORT_PATH exists" >> "$DEBUG_PATH" && echo "$REPORT_PATH exists"
           else
-            echo "$REPORT_PATH is missing"
+            echo -e "\n$REPORT_PATH is missing" >> "$DEBUG_PATH" && echo "$REPORT_PATH is missing"
             REPORT_PATH=""
           fi
 
           if [ -f "$REPORT_LOG_PATH" ]; then
-            echo "$REPORT_LOG_PATH exists"
+            echo -e "\n$REPORT_LOG_PATH exists" >> "$DEBUG_PATH" && echo "$REPORT_LOG_PATH exists"
           else
-            echo "$REPORT_LOG_PATH is missing"
+            echo -e "\n$REPORT_LOG_PATH is missing" >> "$DEBUG_PATH" && echo "$REPORT_LOG_PATH is missing"
             REPORT_LOG_PATH=""
           fi
 
           if [ -f "$UNEXPECTED_RESULTS_PATH" ]; then
-            echo "$UNEXPECTED_RESULTS_PATH exists"
+            echo -e "\n$UNEXPECTED_RESULTS_PATH exists" >> "$DEBUG_PATH" && echo "$UNEXPECTED_RESULTS_PATH exists"
           else
-            echo "$UNEXPECTED_RESULTS_PATH is missing"
+            echo -e "\n$UNEXPECTED_RESULTS_PATH is missing" >> "$DEBUG_PATH" && echo "$UNEXPECTED_RESULTS_PATH is missing"
             UNEXPECTED_RESULTS_PATH=""
           fi
 
           if [ -f "$DEBUG_LOG_PATH" ]; then
-            echo "$DEBUG_LOG_PATH exists"
+            echo -e "\n$DEBUG_LOG_PATH exists" >> "$DEBUG_PATH" && echo "$DEBUG_LOG_PATH exists"
           else
-            echo "$DEBUG_LOG_PATH is missing"
+            echo -e "\n$DEBUG_LOG_PATH is missing" >> "$DEBUG_PATH" && echo "$DEBUG_LOG_PATH is missing"
             DEBUG_LOG_PATH=""
           fi
 
@@ -224,4 +249,5 @@ runs:
     - shell: bash
       if: ${{ always() }}
       run: |
-        echo "💡 ALK0034 INFO: ALkiln finished running tests"
+        log="💡 ALK0034 INFO: ALkiln finished running tests. See above for more details."
+        echo -e "\n$log" >> "$DEBUG_PATH" && echo "$log"
