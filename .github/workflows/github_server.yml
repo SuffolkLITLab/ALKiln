@@ -160,7 +160,7 @@ jobs:
           #### Developer note: You can probably leave the rest out
           #### To learn more, see https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
-          ALKILN_VERSION: delete
+          ALKILN_VERSION: logs
 
       #### Developer note: Example of making an issue when tests fail
       #### that includes the text of the failure output file
@@ -169,7 +169,7 @@ jobs:
         if: ${{ failure() }}
         env:
           GH_TOKEN: ${{ github.token }}
-          PATH_TO_REPORT_FILE: "${{ steps.alkiln.outputs.PATH_TO_REPORT_FILE }}"
+          PATH_TO_REPORT_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_REPORT_LOG_FILE }}"
           PATH_TO_UNEXPECTED_RESULTS_FILE: "${{ steps.alkiln.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}"
           PATH_TO_DEBUG_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_DEBUG_LOG_FILE }}"
         run: |
