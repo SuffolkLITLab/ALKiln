@@ -48,21 +48,19 @@ runs:
       - uses: actions/checkout@v4
 
       - shell: bash
-        if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
-        name: "💡 ALK0018 INFO: Create artifact paths with date and time"
         run: |
           log="💡 ALK0018 INFO: Get path names with date and time"
           timestamp="$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)"
           debug_dir="/tmp"
           debug_path="$debug_dir/alkiln_docker_logs-${timestamp}UTC.txt"
-          artifact_path="alkiln_github_server-${timestamp}UTC"
+          artifact_folder="alkiln_github_server-${timestamp}UTC"
 
           mkdir -p "$debug_dir"
-          mkdir -p "$artifact_path"
+          mkdir -p "$artifact_folder"
           echo -e "$log" >> "$debug_path"
 
           echo "DEBUG_PATH=$debug_path" >> $GITHUB_ENV
-          echo "GITHUB_SERVER_ARTIFACT_NAME=$artifact_path" >> $GITHUB_ENV
+          echo "GITHUB_SERVER_ARTIFACT_NAME=$artifact_folder" >> $GITHUB_ENV
 
       - shell: bash
         env:

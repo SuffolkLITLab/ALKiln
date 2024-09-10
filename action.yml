@@ -70,13 +70,13 @@ runs:
         DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
       shell: bash
       run: |
-        log="💡 ALK0023 INFO: Set environment variables"
+        log="💡 ALK0023 INFO: Set environment variables and create artifacts folder"
 
         # Human-readable date/time: https://www.shell-tips.com/linux/how-to-format-date-and-time-in-linux-macos-and-bash/#how-to-format-a-date-in-bash
         timestamp="$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)"
         artifact_folder="alkiln-${timestamp}UTC"
         debug_path="${artifact_folder}/debug_log.txt"
-        mkdir -p "$artifact_path"
+        mkdir -p "$artifact_folder"
         echo "$log" >> "$debug_path"
 
         # Action-specific vars
