@@ -78,7 +78,9 @@ runs:
         echo "ARTIFACT_FOLDER=$artifact_folder" >> $GITHUB_ENV
         debug_path="${artifact_folder}/debug_log.txt"
         echo "DEBUG_PATH=$debug_path" >> $GITHUB_ENV
-        echo "$log" >> "${debug_path}"
+
+        mkdir -p "$artifact_path"
+        echo "$log" >> "$debug_path"
 
         echo "REPO_URL=${{ github.server_url }}/${{ github.repository }}" >> $GITHUB_ENV
         echo "BRANCH_PATH=$BRANCH_PATH" >> $GITHUB_ENV
