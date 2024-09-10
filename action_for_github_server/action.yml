@@ -61,8 +61,8 @@ runs:
           mkdir -p "$artifact_path"
           echo -e "$log" >> "$debug_path"
 
-          echo "DEBUG_PATH=$debug_path" >> "$GITHUB_ENV"
-          echo "GITHUB_SERVER_ARTIFACT_NAME=$artifact_path" >> "$GITHUB_ENV"
+          echo "DEBUG_PATH=$debug_path" >> $GITHUB_ENV
+          echo "GITHUB_SERVER_ARTIFACT_NAME=$artifact_path" >> $GITHUB_ENV
 
       - shell: bash
         env:
