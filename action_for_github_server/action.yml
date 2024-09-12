@@ -153,14 +153,14 @@ runs:
           CONFIG_ARGS: ${{ env.CONFIG_ARGS }}
         shell: bash
         run: |
-          log="💡 ALK0009 INFO: Download and start docker silently"
-          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
+          #log="💡 ALK0009 INFO: Download and start docker silently"
+          #echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
           docker pull jhpyle/docassemble > /dev/null 2>&1
           docker run --name docassemble_container \
                      --env DA_ADMIN_EMAIL="$DA_ADMIN_EMAIL" \
                      --env DA_ADMIN_PASSWORD="$DA_ADMIN_PASSWORD" \
                      --env DA_ADMIN_API_KEY="$DA_ADMIN_API_KEY" \
-                     "$CONFIG_ARGS" \
+                     $CONFIG_ARGS \
                      --cap-add SYS_PTRACE \
                      --memory="4gb" -d -p 80:80 jhpyle/docassemble > /dev/null 2>&1
       # With output
