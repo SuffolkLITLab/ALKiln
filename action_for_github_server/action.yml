@@ -48,15 +48,19 @@ runs:
       - uses: actions/checkout@v4
 
       - shell: bash
-        if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
-        name: "💡 ALK0018 INFO: Get path names with date and time"
         run: |
           log="💡 ALK0018 INFO: Get path names with date and time"
           timestamp="$(date +'%Y-%m-%d at %Hh%Mm%Ss' -u)"
+          debug_dir="/tmp"
+          debug_path="$debug_dir/alkiln_docker_logs-${timestamp}UTC.txt"
+          artifact_folder="alkiln_github_server-${timestamp}UTC"
 
-          echo "DEBUG_PATH=/tmp/alkiln_docker_logs-${timestamp}UTC.txt" >> "$GITHUB_ENV"
-          echo "GITHUB_SERVER_ARTIFACT_NAME=alkiln_github_server-${timestamp}UTC" >> "$GITHUB_ENV"
-          echo -e "$log" >> "$DEBUG_PATH"
+          mkdir -p "$debug_dir"
+          mkdir -p "$artifact_folder"
+          echo -e "$log" >> "$debug_path"
+
+          echo "DEBUG_PATH=$debug_path" >> $GITHUB_ENV
+          echo "GITHUB_SERVER_ARTIFACT_NAME=$artifact_folder" >> $GITHUB_ENV
 
       - shell: bash
         env:
@@ -64,7 +68,7 @@ runs:
           DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
         run: |
           log="💡ALK0001 INFO: Set environment variables"
-          echo -e "\n$log" >> "$DEBUG_PATH" && echo "$log"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}" && echo "$log"
 
           echo "MAX_SECONDS_FOR_DOCKER=$MAX_SECONDS_FOR_DOCKER" >> $GITHUB_ENV
           echo "DOCASSEMBLECLI_VERSION=$DOCASSEMBLECLI_VERSION" >> $GITHUB_ENV
@@ -77,7 +81,7 @@ runs:
         shell: bash
         run: |
           log="💡 ALK0002 INFO: Create GitHub step output variables"
-          echo -e "\n$log" >> "$DEBUG_PATH"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
           echo "DOCASSEMBLE_DEVELOPER_API_KEY=$DA_ADMIN_API_KEY" >> "$GITHUB_OUTPUT"
           echo "DA_ADMIN_EMAIL=$DA_ADMIN_EMAIL" >> "$GITHUB_OUTPUT"
           echo "DA_ADMIN_PASSWORD=$DA_ADMIN_PASSWORD" >> "$GITHUB_OUTPUT"
@@ -88,19 +92,19 @@ runs:
         shell: bash
         run: |
           log="💡 ALK0003 INFO: Get config"
-          echo -e "\n$log" >> "$DEBUG_PATH"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
 
           mkdir /tmp/config
           # Worth making this silent by defining a variable with > /dev/null...?
           if [ -n "$CONFIG" ]
           then
             log2="💡 ALK0004 INFO: The developer did provide a custom docassemble config file as an input into this action."
-            echo -e "\n$log2" >> "$DEBUG_PATH" echo "$log2"
+            echo -e "\n$log2" >> "${{ env.DEBUG_PATH }}" echo "$log2"
             echo "$CONFIG" > /tmp/config/myconfig.yml
             echo "CONFIG_ARGS=--env DA_CONFIG=/tmp/config/myconfig.yml --volume /tmp/config:/tmp/config " >> $GITHUB_ENV
           else
             log3="💡 ALK0005 INFO: The developer did NOT provide a custom docassemble config file as an input into this action. Docassemble will use its default config."
-            echo -e "\n$log3" >> "$DEBUG_PATH" echo "$log3"
+            echo -e "\n$log3" >> "${{ env.DEBUG_PATH }}" echo "$log3"
             echo "CONFIG_ARGS=" >> $GITHUB_ENV
           fi
 
@@ -116,13 +120,13 @@ runs:
         shell: bash
         run: |
           log="💡 ALK0006 INFO: Determine docker logs visibility"
-          echo -e "\n$log" >> "$DEBUG_PATH"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "OUTPUT_DOCKER=$SHOW_DOCKER_OUTPUT" >> $GITHUB_ENV
-            echo -e "\n$SHOW_DOCKER_OUTPUT" >> "$DEBUG_PATH"
+            echo -e "\n$SHOW_DOCKER_OUTPUT" >> "${{ env.DEBUG_PATH }}"
           else
             echo "OUTPUT_DOCKER=false" >> $GITHUB_ENV
-            echo -e "\nfalse" >> "$DEBUG_PATH"
+            echo -e "\nfalse" >> "${{ env.DEBUG_PATH }}"
           fi
 
       # Messages about output
@@ -132,14 +136,14 @@ runs:
         run: |
           # 💡 ALK0007 INFO: ALKiln will now hide docker output
           log="===\n💡 ALK0007 INFO: ALKiln will now hide docker output to avoid possibly showing details about your config. If you want to get output to see more of what is going on, use \"with:\" and set the input \"SHOW_DOCKER_OUTPUT\" to \"true\". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==="
-          echo -e "\n$log" >> "$DEBUG_PATH" && echo -e "$log"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}" && echo -e "$log"
       - name: "💡 ALK0008 INFO: ALKiln will show docker output"
         if: ${{ env.OUTPUT_DOCKER == 'true' }}
         shell: bash
         run: |
           # 💡 ALK0008 INFO: ALKiln will show docker output
           log="===\n💡 ALK0008 INFO: ALKiln will show docker output. ALKiln cannot control this output. If you want to prevent output, use \"with:\" and set the input \"SHOW_DOCKER_OUTPUT\" to \"false\". This output will only be visible to those who can already see the action output, like people with admin or write permissions.\n==="
-          echo -e "\n$log" >> "$DEBUG_PATH" && echo -e "$log"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}" && echo -e "$log"
 
       # TODO: Reduce these to 1 block by putting ` > /dev/null 2>&1` into an env var
       # No docker output
@@ -150,13 +154,13 @@ runs:
         shell: bash
         run: |
           log="💡 ALK0009 INFO: Download and start docker silently"
-          echo -e "\n$log" >> "$DEBUG_PATH"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
           docker pull jhpyle/docassemble > /dev/null 2>&1
           docker run --name docassemble_container \
                      --env DA_ADMIN_EMAIL="$DA_ADMIN_EMAIL" \
                      --env DA_ADMIN_PASSWORD="$DA_ADMIN_PASSWORD" \
                      --env DA_ADMIN_API_KEY="$DA_ADMIN_API_KEY" \
-                     "$CONFIG_ARGS" \
+                     $CONFIG_ARGS \
                      --cap-add SYS_PTRACE \
                      --memory="4gb" -d -p 80:80 jhpyle/docassemble > /dev/null 2>&1
       # With output
@@ -167,13 +171,13 @@ runs:
         shell: bash
         run: |
           log="💡 ALK0010 INFO: Download and start docker"
-          echo -e "\n$log" >> "$DEBUG_PATH"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
           docker pull jhpyle/docassemble
           docker run --name docassemble_container \
                      --env DA_ADMIN_EMAIL="$DA_ADMIN_EMAIL" \
                      --env DA_ADMIN_PASSWORD="$DA_ADMIN_PASSWORD" \
                      --env DA_ADMIN_API_KEY="$DA_ADMIN_API_KEY" \
-                     "$CONFIG_ARGS" \
+                     $CONFIG_ARGS \
                      --cap-add SYS_PTRACE \
                      --memory="4gb" -d -p 80:80 jhpyle/docassemble
 
@@ -185,13 +189,13 @@ runs:
         run: |
           # 💡 ALK0011 INFO: The following messages are not docker output
           log="💡 ALK0011 INFO: The following messages are NOT docker output, just ALKiln waiting for the server to start"
-          echo -e "\n$log" >> "$DEBUG_PATH" && echo -e "$log"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}" && echo -e "$log"
 
       - name: "💡 ALK0012 INFO: Waiting for server to start"
         shell: bash
         run: |
           log="💡 ALK0012 INFO: Waiting for server to start"
-          echo -e "\n$log" >> "$DEBUG_PATH"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
 
           # Reset the SECONDS variable
           SECONDS=0
@@ -201,27 +205,27 @@ runs:
           response="start"
           while [[ $response != *"200"* ]]; do
             log2="💡 ALK0013 INFO: Time elapsed: $SECONDS seconds"
-            echo -e "\n$log2" >> "$DEBUG_PATH" && echo -e "$log2"
+            echo -e "\n$log2" >> "${{ env.DEBUG_PATH }}" && echo -e "$log2"
 
             # Check if max seconds till loading has passed
             if [[ $SECONDS -ge $MAX_SECONDS_FOR_DOCKER ]]; then
               log3="🤕 ALK0014 ERROR: Timed out waiting for docker container to serve the site. If you want to give your docker container more timem to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
-              echo -e "\n$log3" >> "$DEBUG_PATH" && echo -e "$log3"
+              echo -e "\n$log3" >> "${{ env.DEBUG_PATH }}" && echo -e "$log3"
               exit 1
             fi
 
             # Set the variable to a new string value in each iteration
             response=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:80/health_check?ready=1)
             log4="💡 ALK0015 INFO: Response is $response"
-            echo -e "\n$log4" >> "$DEBUG_PATH" && echo -e "$log4"
+            echo -e "\n$log4" >> "${{ env.DEBUG_PATH }}" && echo -e "$log4"
 
             # Check if the string includes the desired text
             if [[ $response == *"200"* ]]; then
               log5="💡 ALK0016 SUCCESS: Success! The docker container is ready!"
-              echo -e "\n$log5" >> "$DEBUG_PATH" && echo -e "$log5"
+              echo -e "\n$log5" >> "${{ env.DEBUG_PATH }}" && echo -e "$log5"
             else
               log6="💡 ALK0017 INFO: The docker container is not ready yet. Will check again in 30 seconds."
-              echo -e "\n$log6" >> "$DEBUG_PATH" && echo -e "$log6"
+              echo -e "\n$log6" >> "${{ env.DEBUG_PATH }}" && echo -e "$log6"
               sleep 30
             fi
 
@@ -256,7 +260,7 @@ runs:
         shell: bash
         run: |
           log="💡 ALK0019 INFO: Create docker artifact data"
-          echo -e "\n$log" >> "$DEBUG_PATH"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
           echo "$(docker output docassemble_container)" >> "${{ env.DEBUG_PATH }}"
       - name: "💡 ALK0020 INFO: Upload artifacts folder"
         if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
@@ -269,10 +273,10 @@ runs:
         if: ${{ success() }}
         run: |
           log="💡 ALK0021 SUCCESS: ALKiln created the docker container and started the server!"
-          echo -e "\n$log" >> "$DEBUG_PATH" && echo -e "$log"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}" && echo -e "$log"
 
       - shell: bash
         if: ${{ failure() }}
         run: |
           log="🤕 ALK0022 ERROR: Something went wrong. See above for more details."
-          echo -e "\n$log" >> "$DEBUG_PATH" && echo -e "$log"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}" && echo -e "$log"
