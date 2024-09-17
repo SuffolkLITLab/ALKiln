@@ -8,7 +8,7 @@ const matches = require('./matches.fixtures.js');
 const scope = require('../../lib/scope.js');
 
 const Log = require(`../../lib/utils/log.js`);
-const log = new Log({ path: `_alkiln-misc_artifacts`, context: `unit_tests getMatchingRows` });
+const log = new Log({ path: `_alkiln-misc_artifacts/matching_rows_${ Date.now() }`, context: `unit_tests getMatchingRows` });
 scope.set_log({ log_obj: log });
 
 const getMatchingRows = scope.getMatchingRows;

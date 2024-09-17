@@ -67,8 +67,8 @@ runs:
           MAX_SECONDS_FOR_DOCKER: ${{ inputs.MAX_SECONDS_FOR_DOCKER }}
           DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
         run: |
-          log="💡ALK0001 INFO: Set environment variables"
-          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}" && echo "$log"
+          log="💡 ALK0001 INFO: Set environment variables"
+          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
 
           echo "MAX_SECONDS_FOR_DOCKER=$MAX_SECONDS_FOR_DOCKER" >> $GITHUB_ENV
           echo "DOCASSEMBLECLI_VERSION=$DOCASSEMBLECLI_VERSION" >> $GITHUB_ENV
