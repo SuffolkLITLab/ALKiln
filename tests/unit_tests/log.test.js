@@ -41,8 +41,10 @@ describe(`An instance of log`, function () {
     fs.rmSync(temp_log_path, { recursive: true, force: true });
   });
 
-  /** Returns and/or stores the right values with the given arguments */
+  /** Returns and/or throws and/or stores the right values with the given arguments */
 
+  /** TODO: other logs can log an error with the `error` prop (both an Error
+   *  and a non-Error). */
   describe(`with an empty .debug`, function () {
     it(`returns the right values`, async function() {
       let returned = log.debug();
@@ -50,6 +52,28 @@ describe(`An instance of log`, function () {
     });
     it(`stores the right values in the debug file`, async function() {
       expect_debug_file_to_include(`🐛 ALK000d DEBUG`);
+    });
+  })
+
+  describe(`given totally custom metadata`, function () {
+    // TODO: ("uses `console.info` with a non-standard level". Needs a spy?)
+    it(`.debug returns the right values`, async function() {
+      let options = {
+        before: `custom_DEBUG_before~`,
+        level: `custom_DEBUG_level`,
+        icon: `custom_DEBUG_icon`,
+        code: `custom_DEBUG_code`,
+        context: `custom_DEBUG_context`,
+        // do_throw: true,  // This prevents returning a value
+      };
+      let returned = log.debug( options, `custom_DEBUG_log` );
+      // Note the intentional lack of space with `before`
+      expect( returned ).to.include(`custom_DEBUG_before~custom_DEBUG_icon custom_DEBUG_code custom_DEBUG_context CUSTOM_DEBUG_LEVEL`);
+      expect( returned ).to.include(`custom_DEBUG_log`);
+    });
+    it(`.debug stores the right text in the debug file`, async function() {
+      expect_debug_file_to_include(`custom_DEBUG_before~custom_DEBUG_icon custom_DEBUG_code custom_DEBUG_context CUSTOM_DEBUG_LEVEL`);
+      expect_debug_file_to_include(`custom_DEBUG_log`);
     });
   })
 
@@ -63,6 +87,27 @@ describe(`An instance of log`, function () {
     });
   })
 
+  describe(`given totally custom metadata`, function () {
+    it(`.console returns the right values`, async function() {
+      let options = {
+        before: `custom_CONSOLE_before~`,
+        level: `custom_CONSOLE_level`,
+        icon: `custom_CONSOLE_icon`,
+        code: `custom_CONSOLE_code`,
+        context: `custom_CONSOLE_context`,
+        // do_throw: true,  // This prevents returning a value
+      };
+      let returned = log.console( options, `custom_CONSOLE_log` );
+      // Note the intentional lack of space with `before`
+      expect( returned ).to.include(`custom_CONSOLE_before~custom_CONSOLE_icon custom_CONSOLE_code custom_CONSOLE_context CUSTOM_CONSOLE_LEVEL`);
+      expect( returned ).to.include(`custom_CONSOLE_log`);
+    });
+    it(`.console stores the right text in the debug file`, async function() {
+      expect_debug_file_to_include(`custom_CONSOLE_before~custom_CONSOLE_icon custom_CONSOLE_code custom_CONSOLE_context CUSTOM_CONSOLE_LEVEL`);
+      expect_debug_file_to_include(`custom_CONSOLE_log`);
+    });
+  })
+
   describe(`with an empty log.success`, function () {
     it(`returns the right values`, async function() {
       let returned = log.success();
@@ -73,6 +118,27 @@ describe(`An instance of log`, function () {
     });
   })
 
+  describe(`given totally custom metadata`, function () {
+    it(`.success only overwrites some values`, async function() {
+      let options = {
+        before: `custom_SUCCESS_before~`,
+        level: `custom_SUCCESS_level`,
+        icon: `custom_SUCCESS_icon`,
+        code: `custom_SUCCESS_code`,
+        context: `custom_SUCCESS_context`,
+        // do_throw: true,  // This prevents returning a value
+      };
+      let returned = log.success( options, `custom_SUCCESS_log` );
+      // Note the intentional lack of space with `before`
+      expect( returned ).to.include(`custom_SUCCESS_before~🌈 custom_SUCCESS_code custom_SUCCESS_context SUCCESS`);
+      expect( returned ).to.include(`custom_SUCCESS_log`);
+    });
+    it(`.success stores the right text in the debug file`, async function() {
+      expect_debug_file_to_include(`custom_SUCCESS_before~🌈 custom_SUCCESS_code custom_SUCCESS_context SUCCESS`);
+      expect_debug_file_to_include(`custom_SUCCESS_log`);
+    });
+  })
+
   describe(`with an empty log.info`, function () {
     it(`returns the right values`, async function() {
       let returned = log.info();
@@ -80,6 +146,28 @@ describe(`An instance of log`, function () {
     });
     it(`stores the right values in the debug file`, async function() {
       expect_debug_file_to_include(`💡 ALK000i INFO`);
+    });
+  })
+
+  describe(`given totally custom metadata`, function () {
+    it(`.info only overwrites some values`, async function() {
+      let options = {
+        before: `custom_INFO_before~`,
+        level: `custom_INFO_level`,
+        icon: `custom_INFO_icon`,
+        code: `custom_INFO_code`,
+        context: `custom_INFO_context`,
+        // do_throw: true,  // This prevents returning a value
+      };
+      let returned = log.info( options, `custom_INFO_log` );
+      // Note the intentional lack of space with `before`
+      expect( returned ).to.include(`custom_INFO_before~💡 custom_INFO_code custom_INFO_context INFO`);
+      expect( returned ).to.include(`custom_INFO_log`);
+    });
+    it(`.info stores the right text in the debug file`, async function() {
+      expect_debug_file_to_include(`custom_INFO_before~💡 custom_INFO_code custom_INFO_context INFO`);
+      expect_debug_file_to_include(`custom_INFO_log`);
+
     });
   })
 
@@ -96,91 +184,144 @@ describe(`An instance of log`, function () {
     });
   })
 
+  describe(`given totally custom metadata`, function () {
+    it(`.warn only overwrites some values`, async function() {
+      let options = {
+        before: `custom_WARN_before~`,
+        level: `custom_WARN_level`,
+        icon: `custom_WARN_icon`,
+        code: `custom_WARN_code`,
+        context: `custom_WARN_context`,
+        // do_throw: true,  // This prevents returning a value
+      };
+      let returned = log.warn( options, `custom_WARN_log` );
+      // Note the intentional lack of space with `before`
+      expect( returned ).to.include(`custom_WARN_before~🔎 custom_WARN_code custom_WARN_context WARNING`);
+      expect( returned ).to.include(`custom_WARN_log`);
+    });
+    it(`.warn stores the right text in the debug file`, async function() {
+      expect_debug_file_to_include(`custom_WARN_before~🔎 custom_WARN_code custom_WARN_context WARNING`);
+      expect_debug_file_to_include(`custom_WARN_log`);
+    });
+  })
+
   describe(`with an empty log.throw`, function () {
-    it(`throws null`, async function() {
-      let error_to_test = null;
+    it(`throws non_error message`, async function() {
+      let error_to_test;
       try {
         log.throw();
       } catch ( error ) {
         error_to_test = error;
       }
-      expect( error_to_test.message ).to.include(`null`);
+      expect( error_to_test.message ).to.include(log.non_error);
       expect( error_to_test.stack ).to.include(`at Log.throw`);
     });
     it(`stores an error message in the debug file`, async function() {
       expect_debug_file_to_include(`🤕 ALK000t ERROR`);
-      expect_debug_file_to_include(`null`);
+      expect_debug_file_to_include(log.non_error);
       expect_debug_file_to_include(`at Log.throw`);
     });
     it(`stores an error message in the unexpected output file`, async function() {
       expect_unexpected_output_file_to_include(`🤕 ALK000t ERROR`);
-      expect_unexpected_output_file_to_include(`null`);
+      expect_unexpected_output_file_to_include(log.non_error);
       expect_unexpected_output_file_to_include(`at Log.throw`);
     });
   })
 
-  describe(`when given 1 option and no logs`, function () {
-    it(`.console returns the right text`, async function() {
+  describe(`with totally custom data and string as error for .throw()`, function () {
+    it(`overrides some data and keeps other data`, async function() {
+      let error_to_test;
+      try {
+        let options = {
+          before: `custom_THROW_before~`,
+          level: `custom_THROW_level`,
+          icon: `custom_THROW_icon`,
+          code: `custom_THROW_code`,
+          context: `custom_THROW_context`,
+          error: `CUSTOM_THROW_ERROR`,
+          do_throw: true,  // Not really needed
+        };
+        log.throw( options, `custom_THROW_log` );
+      } catch ( error ) {
+        error_to_test = error;
+      }
+      // Note: No metadata is included in the error so that we don't have
+      // to re-throw every error that comes in and they can keep their nice
+      // stack traces.
+      // Note: Also excludes logs from error message
+      expect( error_to_test.message ).to.include(`CUSTOM_THROW_ERROR`);
+      expect( error_to_test.stack ).to.include(`at Log.throw`);
+    });
+    it(`stores an error message in the debug file`, async function() {
+      expect_debug_file_to_include(`custom_THROW_before~🤕 custom_THROW_code custom_THROW_context ERROR`);
+      expect_debug_file_to_include(`custom_THROW_log`);
+      expect_debug_file_to_include(`CUSTOM_THROW_ERROR`);
+      expect_debug_file_to_include(`at Log.throw`);  // a bit useless because it's a repeat
+    });
+    it(`stores an error message in the unexpected output file`, async function() {
+      expect_unexpected_output_file_to_include(`custom_THROW_before~🤕 custom_THROW_code custom_THROW_context ERROR`);
+      expect_unexpected_output_file_to_include(`custom_THROW_log`);
+      expect_unexpected_output_file_to_include(`CUSTOM_THROW_ERROR`);
+      expect_unexpected_output_file_to_include(`at Log.throw`);  // a bit useless because it's a repeat
+    });
+  })
+
+  describe(`.throw() with an actual error`, function () {
+    it(`doesn't include .Log in its stack`, async function() {
+      let error_to_test;
+      try {
+        let options = {
+          error: new Error(`No .Log should be in this stack`),
+          do_throw: true,  // Not really needed
+        };
+        log.throw( options, `custom_THROW_log` );
+      } catch ( error ) {
+        error_to_test = error;
+      }
+      expect( error_to_test.stack ).to.not.include(`at Log.throw`);
+    });
+  })
+
+  describe(`when given 1 option and no logs, .console()`, function () {
+    it(`returns the right text`, async function() {
       let returned = log.console({ icon: `test_icon` });
       expect( returned ).to.include(`test_icon ALK000c LOG`);
     });
-    it(`.console stores the right text in the debug log file`, async function() {
+    it(`stores the right text in the debug log file`, async function() {
       expect_debug_file_to_include(`test_icon ALK000c LOG`);
     });
   })
 
-  describe(`when given multiple logs of multiple types`, function () {
-    it(`console returns the right text`, async function() {
+  describe(`when given multiple logs of multiple types, .console()`, function () {
+    it(`returns the right text`, async function() {
       let returned = log.console({}, `log 1`, { log_2: `log_2` });
       expect( returned ).to.include(`log 1\n{ log_2: 'log_2' }`);
     });
-    it(`.console stores the right text in the debug log`, async function() {
+    it(`stores the right text in the debug log`, async function() {
       expect_debug_file_to_include(`log 1\n{ log_2: 'log_2' }`);
     });
   })
 
-  describe(`given totally custom metadata`, function () {
-    // TODO: ("uses `console.info` with a non-standard level". Needs a spy?)
-    // TODO: Should we test each individual option by itself?
-    it(`.console returns the right values`, async function() {
-      let options = {
-        before: `custom_before~`,
-        level: `custom_level`,
-        icon: `custom_icon`,
-        code: `custom_code`,
-        context: `custom_context`,
-        // do_throw: true,  // This prevents returning a value
-      };
+  describe(`with an error and no throwing with .console()`, function () {
+    it(`returns the right value`, async function() {
+      let options = { error: `custom_CONSOLE_non_thrown_error`, };
       let returned = log.console( options );
-      // Note the intentional lack of space with `before`
-      expect( returned ).to.include(`custom_before~custom_icon custom_code custom_context CUSTOM_LEVEL`);
-    });
-    it(`.console stores the right text in the debug file`, async function() {
-      expect_debug_file_to_include(`custom_before~custom_icon custom_code custom_context CUSTOM_LEVEL`);
-    });
-  })
-
-  describe(`with an error and no throwing`, function () {
-
-    it(`.console can return the right value`, async function() {
-      let options = { error: `custom_error`, };
-      let returned = log.console( options );
-      expect( returned ).to.include(`custom_error`);
+      expect( returned ).to.include(`custom_CONSOLE_non_thrown_error`);
       expect( returned ).to.include(`at Log.console`);
     });
-    it(`.console can store the right value in the debug file`, async function() {
-      expect_debug_file_to_include(`custom_error`);
+    it(`stores the right value in the debug file`, async function() {
+      expect_debug_file_to_include(`custom_CONSOLE_non_thrown_error`);
       expect_debug_file_to_include(`at Log.console`);
     });
-    it(`.console can store the right value in the unexpected output file`, async function() {
-      expect_unexpected_output_file_to_include(`custom_error`);
+    it(`stores the right value in the unexpected output file`, async function() {
+      expect_unexpected_output_file_to_include(`custom_CONSOLE_non_thrown_error`);
       expect_unexpected_output_file_to_include(`at Log.console`);
     });
   })
 
   describe(`with circular reference to .console`, function () {
-    it(`has no error`, function () {
-      let obj = { foo: [], test: `circular reference` };
+    it(`fails silently`, function () {
+      let obj = { foo: [], test: `.console circular reference log` };
       obj.foo.push(obj);
       let returned = log.console({}, obj);
       expect(returned).to.include(`<ref`);
@@ -192,19 +333,27 @@ describe(`An instance of log`, function () {
     });
   })
 
-  describe(`while throwing a circular reference with .throw`, function () {
-    it(`has no other error`, function () {
-      let obj = { foo: [], test: `circular reference` };
+  describe(`.throw()`, function () {
+    it(`throws a circular error without tripping another error`, function () {
+      let obj = { foo: [], test: `throw circular reference error` };
       obj.foo.push(obj);
-      let returned = log.throw({error: `circular error`}, obj);
-      expect(returned).to.include(`<ref`);
-      expect(returned).to.include(`Circular`);
+      obj.foo.push(obj);
+      try {
+        log.throw({error: obj}, `circular error`);
+      } catch (error) {
+        // Note: excludes metadata and logs from error
+        expect(error.message).to.include(`[Circular *1], [Circular *1]`);
+      }
     })
     it(`stores the right value in the debug file`, async function() {
+      expect_debug_file_to_include(`throw circular reference error`);
       expect_debug_file_to_include(`circular error`);
+      expect_debug_file_to_include(`[Circular *1], [Circular *1]`);
     });
     it(`stores the right value in the unexpected file`, async function() {
-      expect_unexpected_file_to_include(`circular error`);
+      expect_unexpected_output_file_to_include(`throw circular reference error`);
+      expect_unexpected_output_file_to_include(`circular error`);
+      expect_unexpected_output_file_to_include(`[Circular *1], [Circular *1]`);
     });
   })
 
@@ -212,7 +361,7 @@ describe(`An instance of log`, function () {
     it(`stores in debug log`, async function() {
       log.stdout({}, `test 1 stdout log~`);
       log.stdout({}, `test 2 stdout log\n`);
-      // console print: `test 1 stdout log~test 2 stdout log`. Spy? See notes below.
+      // Spy to see console contents (`test 1 stdout log~test 2 stdout log`? See notes below.
       expect_debug_file_to_include(`test 1 stdout log~`);
       expect_debug_file_to_include(`test 2 stdout log`);
     });
@@ -223,6 +372,7 @@ describe(`An instance of log`, function () {
   describe(`fails with a log instead of throwing an error with internal tests`, function () {
     it(`when a log file doesn't exist`, async function() {
       // // Spy on console.warn to make sure it gets called with the right value
+      // // This ruins console.warn for the rest of the test
       // let warning = ``;
       // let done_warning = false;
       // let original_warn = console.warn;
