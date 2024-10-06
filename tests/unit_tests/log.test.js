@@ -8,16 +8,30 @@ const path = `_alkiln-misc_artifacts/logs_${ Date.now() }`;
 const log = new Log({ path, context: `unit_tests log_tests` });
 const temp_log_path = `_alkiln-log_test_path`;
 
+// TODO: Stop our logs from showing up in the console
+// Note: neutralize_console/restore_console in before/after/each
+// hides chai's logs. Using neutralize_console/restore_console
+// in each `it` causes errors to stop chai execution.
+// let old_log;
+// let old_info;
+// let old_warn;
+// let old_error;
+// let old_stdout;
+// let old_stderr;
+
 describe(`An instance of log`, function () {
 
   /** Creates the right files and folders */
 
   it(`creates a folder at the given path`, async function() {
+    // neutralize_console();
+    // throw 'foo';  // with `neutralize_console`, stops chai execution
     const temp_log1 = new Log({ path: temp_log_path });
     const exists = fs.existsSync( temp_log_path );
     expect( exists ).to.be.true;
     // Clean up by deleting the folder
     fs.rmSync(temp_log_path, { recursive: true, force: true });
+    // restore_console();
   });
 
   it(`creates a debug file at the given path`, async function() {
@@ -43,8 +57,6 @@ describe(`An instance of log`, function () {
 
   /** Returns and/or throws and/or stores the right values with the given arguments */
 
-  /** TODO: other logs can log an error with the `error` prop (both an Error
-   *  and a non-Error). */
   describe(`with an empty .debug`, function () {
     it(`returns the right values`, async function() {
       let returned = log.debug();
@@ -206,24 +218,24 @@ describe(`An instance of log`, function () {
   })
 
   describe(`with an empty log.throw`, function () {
-    it(`throws non_error message`, async function() {
+    it(`throws default error message`, async function() {
       let error_to_test;
       try {
         log.throw();
       } catch ( error ) {
         error_to_test = error;
       }
-      expect( error_to_test.message ).to.include(log.non_error);
+      expect( error_to_test.message ).to.equal(`ALKiln default error`);
       expect( error_to_test.stack ).to.include(`at Log.throw`);
     });
     it(`stores an error message in the debug file`, async function() {
       expect_debug_file_to_include(`🤕 ALK000t ERROR`);
-      expect_debug_file_to_include(log.non_error);
+      expect_debug_file_to_include(`ALKiln default error`);
       expect_debug_file_to_include(`at Log.throw`);
     });
     it(`stores an error message in the unexpected output file`, async function() {
       expect_unexpected_output_file_to_include(`🤕 ALK000t ERROR`);
-      expect_unexpected_output_file_to_include(log.non_error);
+      expect_unexpected_output_file_to_include(`ALKiln default error`);
       expect_unexpected_output_file_to_include(`at Log.throw`);
     });
   })
@@ -238,8 +250,8 @@ describe(`An instance of log`, function () {
           icon: `custom_THROW_icon`,
           code: `custom_THROW_code`,
           context: `custom_THROW_context`,
-          error: `CUSTOM_THROW_ERROR`,
-          do_throw: true,  // Not really needed
+          error: `CUSTOM_THROW_ERROR_STRING`,
+          do_throw: false,  // Make sure it's overwritten
         };
         log.throw( options, `custom_THROW_log` );
       } catch ( error ) {
@@ -249,19 +261,19 @@ describe(`An instance of log`, function () {
       // to re-throw every error that comes in and they can keep their nice
       // stack traces.
       // Note: Also excludes logs from error message
-      expect( error_to_test.message ).to.include(`CUSTOM_THROW_ERROR`);
+      expect( error_to_test.message ).to.include(`CUSTOM_THROW_ERROR_STRING`);
       expect( error_to_test.stack ).to.include(`at Log.throw`);
     });
     it(`stores an error message in the debug file`, async function() {
       expect_debug_file_to_include(`custom_THROW_before~🤕 custom_THROW_code custom_THROW_context ERROR`);
       expect_debug_file_to_include(`custom_THROW_log`);
-      expect_debug_file_to_include(`CUSTOM_THROW_ERROR`);
+      expect_debug_file_to_include(`CUSTOM_THROW_ERROR_STRING`);
       expect_debug_file_to_include(`at Log.throw`);  // a bit useless because it's a repeat
     });
     it(`stores an error message in the unexpected output file`, async function() {
       expect_unexpected_output_file_to_include(`custom_THROW_before~🤕 custom_THROW_code custom_THROW_context ERROR`);
       expect_unexpected_output_file_to_include(`custom_THROW_log`);
-      expect_unexpected_output_file_to_include(`CUSTOM_THROW_ERROR`);
+      expect_unexpected_output_file_to_include(`CUSTOM_THROW_ERROR_STRING`);
       expect_unexpected_output_file_to_include(`at Log.throw`);  // a bit useless because it's a repeat
     });
   })
@@ -302,24 +314,26 @@ describe(`An instance of log`, function () {
     });
   })
 
-  describe(`with an error and no throwing with .console()`, function () {
+  describe(`with a value for \`error\` and no throw with .console()`, function () {
     it(`returns the right value`, async function() {
       let options = { error: `custom_CONSOLE_non_thrown_error`, };
       let returned = log.console( options );
-      expect( returned ).to.include(`custom_CONSOLE_non_thrown_error`);
-      expect( returned ).to.include(`at Log.console`);
+      expect( returned ).to.not.include(`custom_CONSOLE_non_thrown_error`);
+      expect( returned ).to.not.include(`at Log.throw`);
     });
-    it(`stores the right value in the debug file`, async function() {
-      expect_debug_file_to_include(`custom_CONSOLE_non_thrown_error`);
-      expect_debug_file_to_include(`at Log.console`);
+    it(`stores the warning in the debug file`, async function() {
+      expect_debug_file_to_not_include(`custom_CONSOLE_non_thrown_error`);
+      expect_debug_file_to_include(`ALK0223`);
     });
-    it(`stores the right value in the unexpected output file`, async function() {
-      expect_unexpected_output_file_to_include(`custom_CONSOLE_non_thrown_error`);
-      expect_unexpected_output_file_to_include(`at Log.console`);
+    it(`stores the warning in the unexpected output file`, async function() {
+      expect_unexpected_output_file_to_not_include(`custom_CONSOLE_non_thrown_error`);
+      expect_unexpected_output_file_to_include(`ALK0223`);
     });
   })
 
-  describe(`with circular reference to .console`, function () {
+  /** Circular references */
+
+  describe(`with circular reference to .console()`, function () {
     it(`fails silently`, function () {
       let obj = { foo: [], test: `.console circular reference log` };
       obj.foo.push(obj);
@@ -339,10 +353,10 @@ describe(`An instance of log`, function () {
       obj.foo.push(obj);
       obj.foo.push(obj);
       try {
-        log.throw({error: obj}, `circular error`);
-      } catch (error) {
+        log.throw({ error: obj }, `circular error`);
+      } catch ( error ) {
         // Note: excludes metadata and logs from error
-        expect(error.message).to.include(`[Circular *1], [Circular *1]`);
+        expect( error.message ).to.include(`[Circular *1], [Circular *1]`);
       }
     })
     it(`stores the right value in the debug file`, async function() {
@@ -399,7 +413,7 @@ describe(`An instance of log`, function () {
       // console.warn = original_warn;
 
       // Clean up
-      fs.rmSync(temp_log_path, { recursive: true, force: true });
+      fs.rmSync( temp_log_path, { recursive: true, force: true });
     })
     // No contents for log files since they don't exist.
   })
@@ -426,8 +440,43 @@ function expect_debug_file_to_include( text ) {
   let from_file = fs.readFileSync(`${path}/${log.debug_log_filename}`, 'utf8');
   expect( from_file ).to.include( text );
 };
+function expect_debug_file_to_not_include( text ) {
+  let from_file = fs.readFileSync(`${path}/${log.debug_log_filename}`, 'utf8');
+  expect( from_file ).to.not.include( text );
+};
+
 
 function expect_unexpected_output_file_to_include( text ) {
   let from_file = fs.readFileSync(`${path}/${log.unexpected_filename}`, 'utf8');
   expect( from_file ).to.include( text );
 };
+function expect_unexpected_output_file_to_not_include( text ) {
+  let from_file = fs.readFileSync(`${path}/${log.unexpected_filename}`, 'utf8');
+  expect( from_file ).to.not.include( text );
+};
+
+function neutralize_console() {
+  // old_log = console.log;
+  // old_info = console.info;
+  // old_warn = console.warn;
+  // old_error = console.error;
+  // console.log = function () { /* Do nothing */ };
+  // console.info = function () { /* Do nothing */ };
+  // console.warn = function () { /* Do nothing */ };
+  // console.error = function () { /* Do nothing */ };
+
+  // old_stdout = process.stdout.write;
+  // old_stderr = process.stderr.write;
+  // process.stdout.write = function() {};
+  // process.stderr.write = function() {};
+}
+
+function restore_console() {
+  // console.log = old_log;
+  // console.info = old_info;
+  // console.warn = old_warn;
+  // console.error = old_error;
+
+  // process.stdout.write = old_stdout;
+  // process.stderr.write = old_stderr;
+}
