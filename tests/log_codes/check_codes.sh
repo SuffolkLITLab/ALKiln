@@ -56,7 +56,7 @@ fi
 # removed and are no longer used. Syntax used works with GitHub cli - [[:digit:]]
 # https://stackoverflow.com/a/6901221
 # Exclude files and paths
-instances=$(find "$where_to_look" -type f ! -name "check_codes.sh" ! -name "CONTRIBUTING.md" ! -name "$expected_instances_file" ! -name "debug_log.txt" ! -name "cucumber-report.txt" ! -path "*/node_modules/*" ! -path "*/ALKilnTests/*" ! -path "*/alkiln-*/*" ! -path "*/_alkiln*/*" ! -path "*/docs/decisions/*" ! -path "*/\.*" -print0 | xargs -0 -P 4 grep -0 -ro 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' | grep -v -- '--' )
+instances=$(find "$where_to_look" -type f ! -name "CONTRIBUTING.md" ! -name "$expected_instances_file" ! -name "debug_log.txt" ! -name "cucumber-report.txt" ! -path "*/tests/*" ! -path "*/node_modules/*" ! -path "*/ALKilnTests/*" ! -path "*/alkiln-*/*" ! -path "*/_alkiln*/*" ! -path "*/docs/decisions/*" ! -path "*/\.*" -print0 | xargs -0 -P 4 grep -0 -ro 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' | grep -v -- '--' )
 
 if [[ "$loudness" != "0" ]]; then
   total_instances=$(echo "$instances" | wc -l)
