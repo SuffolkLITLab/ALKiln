@@ -373,12 +373,13 @@ describe(`An instance of log`, function () {
 
   describe(`.stdout`, function () {
     it(`stores in debug log`, async function() {
-      log.stdout({}, `test 1 stdout log~`);
-      log.stdout({}, `test 2 stdout log\n`);
+      log.stdout({}, `test 1 stdout log~`, `test 2 stdout log\n`);
       // Spy to see console contents (`test 1 stdout log~test 2 stdout log`? See notes below.
-      expect_debug_file_to_include(`test 1 stdout log~`);
-      expect_debug_file_to_include(`test 2 stdout log`);
+      expect_debug_file_to_include(`test 1 stdout log~test 2 stdout log\n`);  // Note no space.
     });
+    // Note: There's no way to test that multiple stdout calls
+    // would exclude a new line between them in the console. In
+    // debug, each gets its own metadata with its own line.
   })
 
   /** Internal errors */
