@@ -89,9 +89,11 @@ describe(`An instance of log`, function () {
     });
   })
 
-  describe(`with an empty .console`, function () {
+  // TODO: Given a log that's empty strings, returns and saves the right values - spaces
+
+  describe(`with an empty ._console`, function () {
     it(`returns the right values`, async function() {
-      let returned = log.console();
+      let returned = log._console();
       expect( returned ).to.include(`* ALK000c LOG`);
     });
     it(`stores the right values in the debug file`, async function() {
@@ -100,7 +102,7 @@ describe(`An instance of log`, function () {
   })
 
   describe(`given totally custom metadata`, function () {
-    it(`.console returns the right values`, async function() {
+    it(`._console returns the right values`, async function() {
       let options = {
         before: `custom_CONSOLE_before~`,
         level: `custom_CONSOLE_level`,
@@ -109,12 +111,12 @@ describe(`An instance of log`, function () {
         context: `custom_CONSOLE_context`,
         // do_throw: true,  // This prevents returning a value
       };
-      let returned = log.console( options, `custom_CONSOLE_log` );
+      let returned = log._console( options, `custom_CONSOLE_log` );
       // Note the intentional lack of space with `before`
       expect( returned ).to.include(`custom_CONSOLE_before~custom_CONSOLE_icon custom_CONSOLE_code custom_CONSOLE_context CUSTOM_CONSOLE_LEVEL`);
       expect( returned ).to.include(`custom_CONSOLE_log`);
     });
-    it(`.console stores the right text in the debug file`, async function() {
+    it(`._console stores the right text in the debug file`, async function() {
       expect_debug_file_to_include(`custom_CONSOLE_before~custom_CONSOLE_icon custom_CONSOLE_code custom_CONSOLE_context CUSTOM_CONSOLE_LEVEL`);
       expect_debug_file_to_include(`custom_CONSOLE_log`);
     });
@@ -294,9 +296,9 @@ describe(`An instance of log`, function () {
     });
   })
 
-  describe(`when given 1 option and no logs, .console()`, function () {
+  describe(`when given 1 option and no logs, ._console()`, function () {
     it(`returns the right text`, async function() {
-      let returned = log.console({ icon: `test_icon` });
+      let returned = log._console({ icon: `test_icon` });
       expect( returned ).to.include(`test_icon ALK000c LOG`);
     });
     it(`stores the right text in the debug log file`, async function() {
@@ -304,9 +306,9 @@ describe(`An instance of log`, function () {
     });
   })
 
-  describe(`when given multiple logs of multiple types, .console()`, function () {
+  describe(`when given multiple logs of multiple types, ._console()`, function () {
     it(`returns the right text`, async function() {
-      let returned = log.console({}, `log 1`, { log_2: `log_2` });
+      let returned = log._console({}, `log 1`, { log_2: `log_2` });
       expect( returned ).to.include(`log 1\n{ log_2: 'log_2' }`);
     });
     it(`stores the right text in the debug log`, async function() {
@@ -314,10 +316,10 @@ describe(`An instance of log`, function () {
     });
   })
 
-  describe(`with a value for \`error\` and no throw with .console()`, function () {
+  describe(`with a value for \`error\` and no throw with ._console()`, function () {
     it(`returns the right value`, async function() {
       let options = { error: `custom_CONSOLE_non_thrown_error`, };
-      let returned = log.console( options );
+      let returned = log._console( options );
       expect( returned ).to.not.include(`custom_CONSOLE_non_thrown_error`);
       expect( returned ).to.not.include(`at Log.throw`);
     });
@@ -333,11 +335,11 @@ describe(`An instance of log`, function () {
 
   /** Circular references */
 
-  describe(`with circular reference to .console()`, function () {
+  describe(`with circular reference to ._console()`, function () {
     it(`fails silently`, function () {
-      let obj = { foo: [], test: `.console circular reference log` };
+      let obj = { foo: [], test: `._console circular reference log` };
       obj.foo.push(obj);
-      let returned = log.console({}, obj);
+      let returned = log._console({}, obj);
       expect(returned).to.include(`<ref`);
       expect(returned).to.include(`Circular`);
     })
@@ -402,7 +404,7 @@ describe(`An instance of log`, function () {
       // Trigger an error that should be silent
       temp_log4.path = `non-existent`;
       // Doesn't throw
-      let returned = temp_log4.console({}, `No file, no save, no error` );
+      let returned = temp_log4._console({}, `No file, no save, no error` );
       expect( returned ).to.include( `No file, no save, no error` );
 
       // // Wait for the async console.warn to finish, then test its value
