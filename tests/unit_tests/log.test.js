@@ -66,7 +66,7 @@ describe(`An instance of log`, function () {
     } catch ( error ) {
       // Do nothing, go on to test the files
     }
-    const exists = fs.existsSync(`${temp_log3.path}/${temp_log3.unexpected_filename}`);
+    const exists = fs.existsSync(`${ temp_log3.path }/${ temp_log3.debug_unexpected_filename }`);
     expect( exists ).to.be.true;
     // Clean up by deleting the folder
     fs.rmSync(temp_log_path, { recursive: true, force: true });
@@ -522,11 +522,11 @@ function expect_debug_file_to_not_include( text ) {
 
 
 function expect_unexpected_output_file_to_include( text ) {
-  let from_file = fs.readFileSync(`${path}/${log.unexpected_filename}`, 'utf8');
+  let from_file = fs.readFileSync(`${path}/${log.debug_unexpected_filename}`, 'utf8');
   expect( from_file ).to.include( text );
 };
 function expect_unexpected_output_file_to_not_include( text ) {
-  let from_file = fs.readFileSync(`${path}/${log.unexpected_filename}`, 'utf8');
+  let from_file = fs.readFileSync(`${path}/${log.debug_unexpected_filename}`, 'utf8');
   expect( from_file ).to.not.include( text );
 };
 
