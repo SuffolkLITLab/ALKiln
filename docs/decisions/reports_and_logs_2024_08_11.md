@@ -1,5 +1,7 @@
 # Shape and behavior of the report and log objects
 
+<!-- We want to assume authors may see any of the logs. Through our formatting and output, we should give authors a sense of what to pay attention to. -->
+
 ## Context and scope
 
 We have reports and logs we show to the user in the console and as artifacts. We have logs we use for development. cucumber also has logs we want to include in the above until we are confident we are handling all cases ourselves.
