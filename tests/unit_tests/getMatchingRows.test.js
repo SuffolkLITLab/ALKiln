@@ -6,6 +6,11 @@ const tables = require('./tables.fixtures.js');
 const fields = require('./fields.fixtures.js');
 const matches = require('./matches.fixtures.js');
 const scope = require('../../lib/scope.js');
+
+const Log = require(`../../lib/utils/log.js`);
+const log = new Log({ path: `_alkiln-misc_artifacts/matching_rows_${ Date.now() }`, context: `unit_tests getMatchingRows` });
+scope.set_log({ log_obj: log });
+
 const getMatchingRows = scope.getMatchingRows;
 // Match state var instantiated in steps.js. TODO: Add tests for such rows.
 scope.row_needs_trigger_flag = `ALKiln: no trigger variable needed`;

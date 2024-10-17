@@ -45,15 +45,15 @@ jobs:
     #### keyword or values at all. See
     #### https://assemblyline.suffolklitlab.org/docs/alkiln/writing#env-vars
     env:
+      NORMAL_USER_EMAIL: alkiln@example.com
+      NORMAL_USER_PASSWORD: User123^
+      WRONG_EMAIL: wrong_email@example.com
+      WRONG_PASSWORD: wrong_password
+      INVALID_API_KEY: invalidAPIkey
+      EMPTY_STRING: ""
       SECRET_VAR1: secret-var1-value
       SECRET_VAR2: secret-var2-value
       SECRET_FOR_MISSING_FIELD: secret for missing field
-      INVALID_API_KEY: invalidAPIkey
-      EMPTY_STRING: ""
-      NORMAL_USER_EMAIL: alkiln@example.com
-      NORMAL_USER_PASSWORD: User123^
-      WRONG_EMAIL=wrong_email@example.com
-      WRONG_PASSWORD=wrong_password
       
     steps:
       # Place the root directory in this branch to access
@@ -160,7 +160,7 @@ jobs:
           #### Developer note: You can probably leave the rest out
           #### To learn more, see https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
-          ALKILN_VERSION: delete
+          ALKILN_VERSION: logs
 
       #### Developer note: Example of making an issue when tests fail
       #### that includes the text of the failure output file
@@ -169,7 +169,7 @@ jobs:
         if: ${{ failure() }}
         env:
           GH_TOKEN: ${{ github.token }}
-          PATH_TO_REPORT_FILE: "${{ steps.alkiln.outputs.PATH_TO_REPORT_FILE }}"
+          PATH_TO_REPORT_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_REPORT_LOG_FILE }}"
           PATH_TO_UNEXPECTED_RESULTS_FILE: "${{ steps.alkiln.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}"
           PATH_TO_DEBUG_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_DEBUG_LOG_FILE }}"
         run: |
