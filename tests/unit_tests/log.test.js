@@ -146,8 +146,8 @@ describe(`An instance of log`, function () {
     });
   })
 
-  // TODO: put `do_throw` value back into .info, etc. to show it gets
-  // overridden.
+  // TODO: test that passing an Error with `.error` prop to `._console()`
+  // doesn't save to the unexpected results file.
 
   describe(`with an empty log.success`, function () {
     it(`returns the right values`, async function() {
