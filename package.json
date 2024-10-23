@@ -1,6 +1,6 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.13.0",
+  "version": "5.13.1",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
@@ -47,7 +47,7 @@
     "minimatch": "3.0.5",
     "minimist": "1.2.8",
     "mocha": "9.2.2",
-    "pdfjs-dist": "3.2.146",
+    "pdfjs-dist": "3.11.174",
     "puppeteer": "22.15.0",
     "qs": "6.10.3",
     "sanitize-filename": "1.6.3",

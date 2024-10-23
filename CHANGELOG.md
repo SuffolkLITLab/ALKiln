@@ -52,6 +52,7 @@ Format:
 ### Fixed
 
 - Detects failed sign in. Closes [#918](https://github.com/SuffolkLITLab/ALKiln/issues/918).
+- Updates pdfjs-dist for node v20 and v22. See [#952](https://github.com/SuffolkLITLab/ALKiln/issues/952).
 
 ### Internal
 
