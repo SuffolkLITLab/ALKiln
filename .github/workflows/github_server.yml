@@ -52,8 +52,8 @@ jobs:
       EMPTY_STRING: ""
       NORMAL_USER_EMAIL: alkiln@example.com
       NORMAL_USER_PASSWORD: User123^
-      WRONG_EMAIL=wrong_email@example.com
-      WRONG_PASSWORD=wrong_password
+      WRONG_EMAIL: wrong_email@example.com
+      WRONG_PASSWORD: wrong_password
       
     steps:
       # Place the root directory in this branch to access
