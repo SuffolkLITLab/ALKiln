@@ -160,7 +160,7 @@ jobs:
           #### Developer note: You can probably leave the rest out
           #### To learn more, see https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
-          ALKILN_VERSION: delete
+          # ALKILN_VERSION: delete
 
       #### Developer note: Example of making an issue when tests fail
       #### that includes the text of the failure output file
