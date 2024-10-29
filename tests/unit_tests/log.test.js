@@ -473,8 +473,10 @@ describe(`An instance of log`, function () {
 
   /** Internal errors */
 
-  describe(`fails with a log instead of throwing an error with internal tests`, function () {
-    it(`when a log file doesn't exist`, async function() {
+  describe(`when a log file doesn't exist`, function () {
+    let temp_log4, returned, throw_behavior;
+
+    before(function () {
       // // Spy on console.warn to make sure it gets called with the right value
       // // This ruins console.warn for the rest of the test
       // let warning = ``;
@@ -487,12 +489,30 @@ describe(`An instance of log`, function () {
       //   done_warning = true;
       // }
 
-      const temp_log4 = new Log({ path: temp_log_path });
+      temp_log4 = new Log({ path: temp_log_path });
       // Trigger an error that should be silent
       temp_log4.path = `non-existent`;
-      // Doesn't throw
-      let returned = temp_log4.debug({}, `No file, no save, no error` );
-      expect( returned ).to.include( `No file, no save, no error` );
+
+      returned = null;
+      throw_behavior = `Did NOT throw.`;
+      try {
+        returned = temp_log4.debug({}, `No file, no save, no error` );
+      } catch ( this_should_not_error ) {
+        // Shouldn't throw
+        throw_behavior = `DID throw.`
+      }
+    })
+
+    it(`doesn't throw an error`, async function() {
+      expect( throw_behavior ).to.equal(`Did NOT throw.`);
+    })
+    it(`returns the error`, async function() {
+      expect( returned ).to.include(`No file, no save, no error`);
+    })
+    // No contents for log files since they don't exist.
+
+    after(function () {
+      fs.rmSync( temp_log_path, { recursive: true, force: true });
 
       // // Wait for the async console.warn to finish, then test its value
       // while ( !done_warning ) {
@@ -501,11 +521,7 @@ describe(`An instance of log`, function () {
       // expect( warning ).to.include(`no such file or directory, open '${ temp_log4.path }/debug_log.txt'`);
       // // Clean up
       // console.warn = original_warn;
-
-      // Clean up
-      fs.rmSync( temp_log_path, { recursive: true, force: true });
     })
-    // No contents for log files since they don't exist.
   })
 
 });
