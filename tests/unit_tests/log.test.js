@@ -31,7 +31,7 @@ const temp_log_path = `_alkiln-log_test_path`;
  * let old_stderr;
  * */
 
-// TODO: break out each `expect`
+// TODO: break out each `expect`?
 
 /** Discuss: Save a log folder for each of the tests? I'm not sure it would be
   practical to look through.*/
@@ -109,7 +109,17 @@ describe(`An instance of log`, function () {
     });
   })
 
-  // TODO: Given a log that's empty strings, returns and saves the right values - spaces
+  describe(`given logs with multiple empty strings`, function () {
+    it(`.debug returns multiple spaces`, async function() {
+      let returned = log.debug( {}, ``, ``, ``, `` );
+      expect( returned ).to.include(`    `);
+      expect( returned ).to.not.include(`Skip`);
+    });
+    it(`.debug stores the right text in the debug file`, async function() {
+      expect_debug_file_to_include(`    `);
+      expect_debug_file_to_not_include(`Skip`);
+    });
+  })
 
   describe(`with an empty ._console`, function () {
     it(`returns the right values`, async function() {
@@ -145,9 +155,6 @@ describe(`An instance of log`, function () {
       expect_debug_file_to_not_include(`Skip`);
     });
   })
-
-  // TODO: test that passing an Error with `.error` prop to `._console()`
-  // doesn't save to the unexpected results file.
 
   describe(`with an empty log.success`, function () {
     it(`returns the right values`, async function() {
@@ -331,11 +338,11 @@ describe(`An instance of log`, function () {
   })
 
   describe(`.throw() with an actual error`, function () {
-    it(`doesn't include .Log in its stack`, async function() {
+    it(`doesn't include ".Log" in its stack`, async function() {
       let error_to_test;
       try {
         let options = {
-          error: new Error(`No .Log should be in this stack`),
+          error: new Error(`No ".Log" should be in this stack`),
           do_throw: true,  // Not really needed
         };
         log.throw( options, `custom_THROW_log` );
@@ -345,7 +352,6 @@ describe(`An instance of log`, function () {
       expect( error_to_test.stack ).to.not.include(`at Log.throw`);
       expect( error_to_test.stack ).to.not.include(`Skip`);
     });
-    /** TODO: Add debug/unexpected output file tests? */
   })
 
   describe(`when given 1 option and no logs, ._console()`, function () {
@@ -418,11 +424,13 @@ describe(`An instance of log`, function () {
       expect_debug_file_to_include(`throw circular reference error`);
       expect_debug_file_to_include(`circular error`);
       expect_debug_file_to_include(`[Circular *1], [Circular *1]`);
+      expect_debug_file_to_include(`ALK0224`);
     });
     it(`stores the right value in the unexpected file`, async function() {
       expect_unexpected_output_file_to_include(`throw circular reference error`);
       expect_unexpected_output_file_to_include(`circular error`);
       expect_unexpected_output_file_to_include(`[Circular *1], [Circular *1]`);
+      expect_unexpected_output_file_to_include(`ALK0224`);
     });
   })
 
