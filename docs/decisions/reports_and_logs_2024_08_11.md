@@ -1,143 +1,161 @@
 # Shape and behavior of the report and log objects
 
-<!-- We want to assume authors may see any of the logs. Through our formatting and output, we should give authors a sense of what to pay attention to. -->
+<!-- TODO: turn this into a architecture design doc? -->
+<!-- TODO: Rename to just "logs" -->
 
 ## Context and scope
 
-We have reports and logs we show to the user in the console and as artifacts. We have logs we use for development. cucumber also has logs we want to include in the above until we are confident we are handling all cases ourselves.
+We show logs to the user in the console and as test suite artifacts. We have logs we use for development. cucumberjs also has logs we want to include in the above until we are confident we are handling all cases ourselves.
 
-Right now, the system for logging is fractured and scattered - reports log to the console and save completely separately from other logs. Logs that are not from the report don't get saved anywhere. Some logs only get shown in debug mode, which can be frustrating and unhelpful.
+Right now, the system for logging is fractured, scattered, and duplicated. Logs that are not from the report don't get saved anywhere. Some logs only get shown in debug mode in the console, which can be frustrating and unhelpful. We lack verbose output information for tests that authors run in the wild.
+
+This document excludes discussion of report architecture, but it is useful to note that at the moment they are completely separate from logs and yet save to some of the same files, so they influence our current choices.
 
 ## Goals
 
-Overview:
-
-- Unify the logging and report systems
-- Clarify their flow
-- Make log information more visible
-
-Details:
-
-- Log objects have statuses, icons, log codes (e.g. ALK0105), contextual info (e.g. `setup`, `takedown`, `invalid answer`), timestamps, descriptive text, and data (like full error traces).
-- These are the broad purposes of various logs:
-1. Setup and takedown messages.
-2. Test progress (a compact way to see what's happening/happened in each test):
-
-   Test1: .............F--
-   
-   Test 2: ..
-3. A pretty report at the end with details about each test. It has sections, like "failed" and "passed", headings, etc.
-4. cucumber's various console logs
-5. Lots of other informational logs for internal development and debugging purposes.
-I want to do different things with different logs:
-- During the tests, always log items 1, 2, 3, and 4 to the console.
-- During the tests, save items 2, 3, and 4 to a log as they come with all the info in the log objects - `report_log.txt`/`running_report.txt`/`report_run.txt` maybe. If we have to stop the tests early because of an infinite loop or something, this will at least show some information.
-- At the end of the tests, format items 2, 3, and 4, often with only part of the log object info, in a file called `report.txt`.
-- During the tests, save all of the items to a `verbose_log.txt` as they happen.
-- In debug mode, log all that stuff to the console while the tests are running.
-Right now, a few of the logs, like for the test progress (item 2), are printed with `stdout` inline while all others are logged with `console.log`.
-- Logs should accept multiple arguments to match console.log/etc. behavior.
-
-Note: The progress logs printed to the console have color codes. We also may want a plain text version without any colors to save in the report log and show in the Playground[^1] "console" and/or a version converted to HTML that does have styles. The latter may be for something easier to digest in a browser and/or to show visually in the Playground version of the tests.
-
-Questions:
-- Should `log` throw errors? Otherwise everywhere we need to error, we need to use `log` and `throw`, but I am unable to find a way to remove the current function from an error stack/trace.
-- How do we capture "errors" that are more subtle? Keep the word "error" in the "context"/"types" list? For example, expected errors:
-  - Invalid answers on the form that are then assessed as valid behavior?
-  - `AbortError`s of promises that should indeed have been aborted.
-- Should we allow "in-between"s for all parts of the log? All together: pre-everything (new lines, dividers, etc), icon/context/etc., pre-logs, logs (the actual messages to print), pre-data, data, post-data? We can default to nothing for all of those.
-- How do we differentiate between methods that log to the console vs. methods that just store data?
-
-[^1]: Don't go down this rabbit hole. Broadly - with the "Playground" version, users see the results as a web page instead of in the GitHub job console or in the artifacts. The users run the tests on their own server. This has to do with the platform we built ALKiln for - [docassemble](https://docassemble.org/). It gives users a faster iteration cycle.
+- Make log information persistent and visible
+- Add additional meaningful information to logs (e.g. metadata)
+- Make sure logs are clear without needing to read the surrounding code
+- Unify and clarify log flow
+- Make log behavior consistent
 
 ## Non/anti-goals
 
-- Spend a month on this
+- Disrupt the signals we're giving authors about their tests with the noise of internal ALKiln details
 - Create a complex and heavy system to try to abstract absolutely everything
+- Let the complexity of the relationship with report behavior too heavily influencing our log design goals
 
 ## The actual design
 
-This design still seems a little complex and potentially too coupled with reports.
+### `Log` internal errors
 
-### System-context diagram
+Logs are informational and not related to the behavior of authors' tests. Because of that, these logs should avoid adding noise to what an author sees. That is, internal warnings or errors should look different than authors' test errors. To help with this:
 
-```
-logic code -> logger -> report -----------> console
-              ^     |-> console         |-> stdout/progress
-  cucumber ---|     |-> running report  |-> final report.txt
-                    |-> verbose log
-```
+- All log methods` arguments have default values.
+- We use try/catch very aggressively in the `Log` class.
 
-```
-logic code -> logger ------> report ------> final report.txt
-              ^     |-> console
-  cucumber ---|     |-> stdout/inline/progress
-                    |-> running report
-                    |-> verbose log
-```
+Read more of the thoughts behind this choice in the decision doc on which log level to pick and the design doc on types of errors.
 
-```
-              |------------------------------------<|
-              v                                     |
-logic code -> logger -> report -----------> format prettily
-              ^     |-> console
-  cucumber ---|     |-> running report
-                    |-> verbose log
-                    |-> stdout/progress
-                    |-> final report.txt
-```
+### Purposes of methods
 
-### APIs
+Some of these notes have to do with reports because logs and reports are using some of the same files at the moment and yet are not integrated. We'll write a doc for reports when we integrate reports more fully with logs.
 
-Everything saves to the "verbose"/"debug" log. Aside from that:
+1. `Log`: Messages or errors from wrapping functionality, like setup and takedown messages.
+2. `Log`: Test progress (a compact way to see what's happening/happened in each test):
 
-`log.info/warning/success/error` methods log to console. This includes, e.g, setup, takedown which show up in GitHub workflow job logs.
+   Test1: .............F--.
 
-`log.report` saves to the running report then uses a report obj focused on cosmetics that has `.heading/table/header/error/etc` methods. Maybe a `.stdout/inlne` method, which then prints to the console immediately.
+   Test 2: ....
+3. Report: A pretty report at the end with details about each test. It has sections, like "failed" and "passed", headings, etc.
+4. Report: cucumberjs's various console logs.
+5. `Log`: Lots of other informational logs for internal development and debugging purposes.
 
-`log.verbose/debug` (name?) - Only save to verbose/debug log with log codes, etc.
+Different logs belong in different places:
 
-### Data storage
+- ALKiln always logs items 1, 2, 3, and 4 to the console.
+- Ideally save all items in a verbose debug file sequentially as the tests run.
+- During the tests, save items 2, 3, and 4 to a running report file sequentially as they come. Include metadata. Suggested filenames: `report_log.txt`/`running_report.txt`/`report_run.txt`. If we have to stop the tests early because of an infinite loop or something, this will at least show the test author some information.
+- At the end of the tests, format items 1, 2, 3, and 4 nicely in a file called `report.txt`. This will mostly exclude the metadata.
+- When there is a warning-level or error-level log, save 1, 3, 4, and 5 in an unexpected results file too.
+- In future, discuss the usefulness of having a debug mode where ALKiln logs all items to the console while the tests are running.
+
+We may also want copies of various files that have different formats for different environments (see docs on the different environments in which ALKiln runs).
+
+- Console logs with colors.
+- Plain text versions that exclude those color codes.
+- HTML versions to show with, for example ALKilnInThePlayground. Maybe in GitHub as well in the future.
+
+### Anatomy and behavior of logging methods
+
+Most of a `Log`'s logging methods add additional metadata to a log:
+
+1. The level of the log (success, info, warning, error, and custom values)
+2. An icon showing the level of a log
+3. A log code, like (e.g. ALK0105)
+4. Contextual info about where the log originated (e.g. "setup", "takedown", "invalid answer")
+9. A timestamp
+
+To be able to show that metadata, most methods will accept custom values for parts of that metadata. Most methods offer:
+
+- Log code
+- Contextual info
+- The error throwing information
+
+For the debug method, everything other than the timestamp can be customized.
+
+Callers can influence the content and formatting of most parts of the log message. For example, they can call `.warn` to show a warning icon and level metadata. The one exception would usually be the part before the metadata. Customizing that could be useful for things like creating a visual separator before ALKiln starts evaluating the fields of a web page. For that reason, the caller can add a `before` property to the metadata that a `Log` object will add before the metadata.
+
+A `Log` object should be able to throw errors so that it can log metadata and any additional styling and context along with the error. It can also make sure that the error will be an actual `Error` object (as opposed to a string or other object). Otherwise everywhere we needed to throw an error, we would need duplicate handling bad data (like objects with circular references), using `Log` to save to files (etc.), throwing the error, and other possible complications. For that, `Logs` also need to accept this additional information:
+
+- Whether to throw an error
+- The error to throw
+
+Those methods should also accept multiple individual log arguments the same way `console.log()` does. This lets the caller include strings separately from objects they want to log, including `Error` objects, so that a `Log` object can handle them safely and style them consistently. We could have required a list of logs instead, but the extra syntax was frustrating.
+
+Right now, the only way we differentiate methods that just store data vs. methods that also log to the console is with documentation. This seems less than ideal. Using the name `record` could be confusing because developers might think they need to log to the console separately from saving the information to debug files.
+
+## APIs
+
+Proposed external methods: `success`, `info`, `warn`, `throw`, `stdout`, `debug`. See the `Log` class and its tests for the most up-to-date API.
+
+<!-- Discuss: better name for `stdout`? -->
+
+## Data storage
 
 - `report.txt` - final pretty output for the user with headings, etc.
 - Each Scenario's `report.txt` - pretty output in each test's folder.
-- `running_report_log.txt` (name?) - ugly, but still sparse, giving the user some info about what happened during the tests without overwhelming them.
-- `verbose.txt` (name? `debug`?) - very ugly and full of all the information from everywhere else and more. Useful for internal development and troubleshooting. Includes setup and takedown.
+- `report_log.txt` (name?) - ugly, but still sparse, giving the user some info about what happened during the tests without overwhelming them.
+- `debug_log.txt` (name? `debug`?) - very ugly and full of all the information from everywhere else and more. Useful for internal development and troubleshooting. Includes setup, takedown, etc.
+- `temp_unexpected_results_debug_log.txt` - A file containing messages about unexpected behavior, like test warnings and errors, as well as internal ALKiln warnings. We don't output this in our GitHub actions - the file itself is temporary, we just add its contents to the final unexpected results file. All its information exists in the debug file too.
+- `unexpected_results.txt` - Logs for failures and other unexpected behavior. It has information about test warnings and errors, as well as internal ALKiln warnings. At first we only save report information there. When the tests finish, we add the contents of the specific debug file that contains only unexpected results.
 
-It may be complex to store setup and takedown output in the verbose/debug file. `console.Console` cannot append to a file[^2], so we would have to figure out a work-around. One approach could be to always first copy from the existing verbose file and paste those contents back into the file as the first log. That may take setting up some fallbacks to avoid errors.
+## Degree of constraint
 
-[^2]: `fs.appendFile()` only takes strings and doesn't log exactly like the console. I want to log exactly like the console to make it easy to search for words I and others see in the console output.
-
-### Code and pseudo-code
-
-For capturing console output, look into how to get the `stdin` for capturing various console output. https://stackoverflow.com/a/54202970:
-
-```js
-const stdin = process.openStdin()
-
-process.stdout.write('Enter name: ')
-
-stdin.addListener('data', text => {
-  const name = text.toString().trim()
-  console.log('Your name is: ' + name)
-
-  stdin.pause() // stop reading
-})
-```
-
-### Degree of constraint
-
-I think this can basically be greenfield (designed from scratch). We do have a current system, but I think we can easily convert our existing code to a new system.
+- Right now we're a bit limited by report functionality staying separate. Other than that, we can design as we want. We should avoid the current behavior of reports substantially influencing our design decisions here. We do have to keep in mind how reports might integrate with this in the future, but we will also need to change the design of the report behavior significantly in the future, so we should keep an open mind.
+- We have not yet approached saving logs from GitHub actions, though this should be fairly simple. It may add some complication.
+- We have not yet solved getting all logs from the console (e.g. cucumberjs logs).
 
 ## Alternatives considered
 
-- The `report` object saves to the running report and then sends that same information to the `log` object. Also prints the final report. This includes `stdout` logs. `log` remains otherwise the same as described above.
-- `log` handles `stdout` logs and leaves them out of the report.
-- For report content, `log` would call to `report`, which would do pretty formatting and then hand the format text back to `log` to be saved and/or printed to the console. I'm not sure how `log` could then know what to do with the output - leave out the codes/etc. when it logs to the console and/or saves to the final report.txt.
 - Avoid the complexity of storing setup and takedown output in the verbose/debug file. In GitHub, they're in the GitHub console. Locally, we see the results immediately. On the other hand, storing them ourselves lets us look for information in just one place.
+- Include GitHub action output in the debug files. Out of scope for the current iteration.
+- Catch cucumberjs's actual console output. Out of scope for the current iteration.
+
+### System-context diagram
+
+Current design before integration of reports, GitHub action logs, and other non-ALKiln console logs.
+
+```
+## `Log`
+
+console methods -> ._console() -> .debug() -> log to the console
+.stdout() -> .debug() -> sometimes write to stdout
+
+.debug() -> debug_log.txt with metadata
+         -> sometimes temp_unexpected_results_debug_log.txt with metadata
+
+## `Report`
+report and its methods -> report_log.txt (plain text)
+                       -> debug_log.txt (plain text)
+                       -> sometimes unexpected_results.txt (plain text)
+                       -> report summary at end of tests
+                          -> final report.txt (plain text summary)
+                          -> final console log (summary with console colors)
+                       -> individual Scenario reports at end of tests
+                          -> final individual report summary file in each Scenario's folder
+
+## takedown
+Add temp_unexpected_results_debug_log.txt to the end of  unexpected_results.txt
+```
 
 ## Cross-cutting concerns
 
 _Security, privacy, observability, etc._
 
-The same ones we've already dealt with for our current logs.
+Code that calls `Log` methods should avoid passing sensitive information. A `Log` object doesn't protect against exposing information.
+
+## Related documentation
+
+Decision doc about which log level to use.
+Architecture design doc about types of unexpected and expected "errors".
+Decision doc about getting and storing logs.

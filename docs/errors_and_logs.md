@@ -1,6 +1,6 @@
 # Errors
 
-<!-- TODO: rename - types_of_errors, kinds_of_errors, what_is_an_error, different_errors -->
+<!-- TODO: rename file - types_of_errors, kinds_of_errors, what_is_an_error, different_errors -->
 
 An `Error` instance can mean a lot of different things in the context of this testing framework. They're not all for an author's test failures.
 
@@ -19,4 +19,10 @@ An `Error` instance can mean a lot of different things in the context of this te
 
 1. **ALKiln un-handled bugs**: For example, we have forgotten to define a variable and none of our tests has yet triggered that code. These are unexpected errors that force processes to abort or force individual tests to fail in uninformative ways. To an author that runs into that error, it looks like their test has failed, but the fault is ours and we need to troubleshoot it. We should make that clear.
 1. **ALKiln silent bugs**: For example, a debug log has an object that causes an error when ALKiln tries to turn it into a string. ALKiln should record the failure somewhere, but should avoid throwing it. We can troubleshoot those if we see them and add new internal tests. See decisions docs on when to use which kind of log level.
-1. **ALKiln expected errors**: For example, one promise won a `Promise.race()`, so ALKiln aborted the other promises. That causes those aborted promises to error. ALKiln saves the "informational" Error to the debug files and it has a level of "info" or "debug".
+1. **ALKiln expected errors**: For example, one promise won a `Promise.race()`, so ALKiln aborted the other promises. That causes those aborted promises to error. That is why ALKiln saves the "informational" Error to the debug files and it has a level of "info" or "debug".
+
+## ALKiln's internal tests
+
+1. **ALKiln internal success-handling test failures**: For example, the test fails to fill out radio buttons correctly.
+1. **ALKiln internal failure-handling test successes**: For example, we test that the summary report shows a specific log code when an interview fails to load and the log code shows up correctly. The "test" fails - the interview fails to load - but *our* test passes - the right log code was in the summary report.
+1. **ALKiln internal failure-handling test failures**: For example, we test that the report shows a specific log code when an interview fails to load, but the log code is missing. The "test" fails and *our* test fails.

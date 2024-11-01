@@ -33,7 +33,7 @@ The flow for each environment is different.
 
 The temporary GitHub docasseble server action:
 
-Author workflow file > `./action_for_github/action.yml` > author workflow file > `./action.yml` > `alkiln-server-install` > `alkiln-run` > author workflow file
+1. Author workflow file > `./action_for_github/action.yml` > author workflow file > `./action.yml` > `alkiln-server-install` > `alkiln-run` > author workflow file
 
 <!-- Not sure how to represent this relationship. Trying to show what processes have access to what parts of the process. I'm not sure showing how `./action.yml` threads in and out is actually useful. I'm trying to show that the author's workflow has access in between `./action_for_github/action.yml` and `./action.yml` where they can do things so when someone reads about it later, they can understand.
 
@@ -58,7 +58,7 @@ Author workflow
 
 A GitHub action that installs tests in an author's account on their own docasseble server:
 
-Author workflow file > `./action.yml` > `alkiln-setup` > `alkiln-run` > `alkiln-takedown` > author workflow file
+1. Author workflow file > `./action.yml` > `alkiln-setup` > `alkiln-run` > `alkiln-takedown` > author workflow file
 
 <!-- Not sure how to represent this relationship
 Author workflow
@@ -71,19 +71,20 @@ Author workflow
 
 ALKilnInThePlayground:
 
-`alkiln-run`
+1. `alkiln-run`
 
 A local developer might customize these steps in various ways in their console. If they are using the default workflow, this is what it looks like functionally when they develop a feature:
 
-`alkiln-setup` once
-`alkiln-run` many times
-`alkiln-takedown` once
+1. Command line > `alkiln-setup` once
+2. Command line > `alkiln-run` many times
+3. Command line > `alkiln-takedown` once
 
 ### 4 environments we need to account for
 
 #### 2 GitHub options
 
 Authors or admins use GitHub workflows to run our GitHub composite actions if they:
+
 - Want to run tests every time an author commits code.
 - Want to run tests based on other triggers, like a schedule or manually triggering the workflow.
 - They want to require that all tests pass before they merge a branch.
@@ -91,11 +92,11 @@ Authors or admins use GitHub workflows to run our GitHub composite actions if th
 
 **Run on a temporary GitHub server**
 
-Author: commits code to GitHub.
-
-ALKiln: Creates a docassemble server, installs the docassemble package globally on the server, run the test suite once, and destroys the server.
+1. Author: commits code to GitHub.
+2. ALKiln: Creates a docassemble server, installs the docassemble package globally on the server, run the test suite once, and destroys the server.
 
 Authors use this if they:
+
 - Want less flake.
 - Want to test with latest version of da.
 - Don't mind extra setup time each test suite takes.
@@ -103,11 +104,11 @@ Authors use this if they:
 
 **Run from GitHub, but on their own server**
 
-Author: commits code to GitHub.
-
-ALKiln: Installs the docassemble package in the author's account on their own docassemble server, runs the test suite once, and deletes the docassemble package.
+1. Author: commits code to GitHub.
+2. ALKiln: Installs the docassemble package in the author's account on their own docassemble server, runs the test suite once, and deletes the docassemble package.
 
 Authors use this if they:
+
 - Want to Use data from SS3 and other remote databases.
 - Want to test with their own version of docassemble.
 - Don't want to have to be so careful with all their dependencies (like having to put all dependencies on pypi) because they have installed them on their server themselves.
@@ -118,29 +119,27 @@ A docassemble server doesn't just serve forms to end users. It also lets authors
 
 An author installs AlKilnInThePlayground package on their server. They run the online form that package has. That lets them install ALKiln on their server. The package can tell who the user is and offers the user a choice of which of their Playground development Projects to test, and they run the tests right their on their server.
 
-Author: Installs the package they want to test into their account on the docassemble server, edits their package, triggers the test run.
-
-ALKiln: Runs tests.
-
-Author: Edits, tests, and repeats. Finally, the author deletes the package in their account on the docassemble server.
+1. Author: Installs the package they want to test into their account on the docassemble 1. server, edits their package, triggers the test run.
+2. ALKiln: Runs tests.
+3. Author: Edits, tests, and repeats. Finally, the author deletes the package in their account on the docassemble server.
 
 Authors use this if they:
+
 - Want to run tests faster than the GitHub test flow allows (a faster iteration cycle).
 - Want to avoid server reloads (in the case of a package with python modules).
 - Feel uncomfortable with failures on GitHub - they can get tests passing before pushing to GitHub.
 - Have the right version of nodejs on their docassemble server, which is based on what Docker image they have installed.
 
-#### Internal development on a local machine
+#### Command line
 
 <!-- Do we mention that internal devs don't always use the bins? They use the package.json scripts? Seems like an unnecessary complication. -->
 
-Internal developer with ALKiln's help or with their own command line arguments: Installs the package on a specified docassemble server (local or remote).
-
-Internal developer with ALKiln's help: runs the tests as many times as they need while they develop the framework code.
-
-Internal developer with ALKiln's help or with their own command line arguments: deletes the package from the docassemble server.
+1. Internal developer with ALKiln's help or with their own command line arguments: Installs the package on a specified docassemble server (local or remote).
+2. Internal developer with ALKiln's help: runs the tests as many times as they need while they develop the framework code.
+3. Internal developer with ALKiln's help or with their own command line arguments: deletes the package from the docassemble server.
 
 Internal developers do this if they:
+
 - Have to edit ALKiln's own code.
 - Want to run tests faster than the GitHub test flow allows (a faster iteration cycle).
 - Want to run tests on a local server.
@@ -160,30 +159,28 @@ ALKiln needs to pass information between its different processes to do things li
 
 **`runtime_config.json`**
 
-Since different runtime processes can't pass information between them any other way, we create and modify `runtime_config.json` as each process runs to store information that other processes need. Different environments need to save different information.
+Since different runtime processes can't pass information between them any other way, we create and modify `runtime_config.json` as each process runs to store information that other processes need. Different environments need to save different information or to save information differently.
 
 For example, `alkiln-setup` needs to create a Project on an author's Playground[^1] to store the code of the online forms and show the forms online. Later, `alkiln-run` needs to know how to find the URL for that specific Project on the server so it can interact with the forms.
 
-<!-- Do we need to list the specific possible values here? These aren't recorded anywhere else, so it's worth considering, but it doesn't feel like the right place. -->
+The name of the artifacts folder is an example of using `runtime_config.json` and how the complexity of these 4 environments invades ALKiln's core code. See the doc about the artifacts folder name.
 
-<!-- This is incomplete. Holding off until we decide where it goes.
-
-It has:
-
-For everything:
+<!-- Do we need to list the specific possible values here? These aren't recorded anywhere else, so it's worth considering, but it doesn't feel like the right place. This is incomplete. Holding off until we decide where it goes.
+Everything uses these:
 
 - `artifacts_path`
 
-For temp GitHub docassemble server install:
+Temp GitHub docassemble server install uses these:
 
 `da_install_method` - `server` or `playground`
 `da_repo_folder_name` - For example, EvictionDefense in the docassemble-EvictionDefense repo. (see session_vars.js)
 
-For installation in an author's account on their own docassemble server and for local testing: -->
+Installation in an author's account on their own docassemble server and command line uses these:
 
-<!-- Does ALKilnInThePlayground also use the below? -->
+Does ALKilnInThePlayground also use the below?
 
-<!-- - `da_project_name` - The name of the docassemble project. Helps get the url of the interview. In local internal development, this lets developers keep using the same Project over and over so they don't need to make a new Project, and upload the package code, every time they run a test. -->
+- `da_project_name` - The name of the docassemble project. Helps get the url of the interview. In local internal development, this lets developers keep using the same Project over and over so they don't need to make a new Project, and upload the package code, every time they run a test.
+-->
 
 **Env vars**
 
@@ -205,8 +202,8 @@ The rest of the details and API are in the files themselves and in the author-fa
 ALKiln's `package.json` offers 4 command-line commands:
 
 1. `alkiln-server-install` - Stores `runtime_config.json` variables of a temporary GitHub docassemble server for the core framework code[^2].
-2. `alkiln-setup` - Installs the docassemble package on the author's account and stores `runtime_config.json` variables for core framework code[^2].
-3. `alkiln-run` - Wraps and then runs the framework's core code[^2] to run the tests.
+2. `alkiln-setup` - Installs the docassemble package on the author's account and stores `runtime_config.json` variables for core framework code.
+3. `alkiln-run` - Wraps and then runs the framework's core code to run the tests.
 4. `alkiln-takedown` - Deletes the package there.
 
 ### GitHub composite actions API
@@ -222,8 +219,6 @@ This design is working within systems that limit how we can do what we need to d
 - cucumberjs's inability to pass non-primitives to core framework code[^2].
 - 3rd party database storage systems, like S3, are hard to integrate into GitHub temporary server tests. We have excluded this feature at the moment. Authors would need to write their own workflow or composite action to access remote databases.
 
-<!-- Discuss: Any others that specifically influence the 4-environment design? -->
-
 ## Alternatives considered
 
 Alternative: Get rid of our support for some of these environments. The temporary GitHub docassemble server environment hasn't been used by a lot of authors. Other than that, the other environments have gotten a lot of use. Even though authors have not yet used the temporary GitHub environment much, they say they want that functionality. The trouble there seems to be complexity with initial set up.
@@ -232,41 +227,17 @@ Alternative: Instead of dealing with separate runtimes, have one command and scr
 
 <!-- Discuss: How to articulate the entanglement with more specifics and examples. -->
 
-<!-- Discuss: The below is a bit out of the blue, but where else can we put this? -->
-Alternative to managing artifacts folder name, including dates, in multiple places:
-
-Make a script that saves the folder name to the ALKiln `runtime_config.json`. Then everyone, for example, `Log`, would always use `runtime_config.json`. All processes would use that script first. That could be in `setup` script, in the ALKilnInThePlayground, and potentially in the `package.json` script that developers usually use. Developers that customize their setup and takedown behavior would have to do this by hand. Is that really less complicated? It at least adds another point of complication where we go back and forth between the caller (GitHub action/ALKilnInThePlayground/the command line/local scripts) and this new javascript file.
-
 Alternative script names: `install_package`, `save_server`, `delete_package`.
 
 ## Cross-cutting concerns
 
-- Core ALKiln code[^2] ends up needing to handle some of the complexity of the 4 environments. Example - the `Log` class `path` takes an optional initial argument to set the artifacts path at the beginning of that runtime process. Other parts of the process have to assume that this path already exists. We have tried to abstract environment complexity out to `run_cucumber.js`, the script that wraps the core code[^2], but there is still logic that the core code handles.
-<!-- Discuss: The below is a bit out of the blue, but where else can we put this? -->
-- Among the data we have to pass between processes, we have to format filenames (with specific date formats) the same way in multiple places - the GitHub action (or, in future, both actions) and in the core code. This is fragile.
+_Security, privacy, observability, etc._
+
+- Some tests need to use sensitive information. For example, some tests need a logged-in user and thus ALKiln needs the login info for a user. Different environments store this information differently and there is documentation about how to use sensitive information securely and privately.
+- Core ALKiln code[^2] ends up needing to handle some of the complexity of the 4 environments. Example - the `Log` class `path` takes an optional initial argument to set the artifacts path at the beginning of that runtime process. Other parts of the process have to assume that this path already exists. We have tried to abstract environment complexity out to `run_cucumber.js`, the script that wraps the core code, but there is still logic that the core code handles.
 
 ---
 
 [^1]: A docassemble server can have multiple purposes. One is to contain the packages for online forms which end users then use. Those packages are stored in a special place on the server and admins configure the server to give end users a list of those forms. Another purpose of the docassemble server is to be a development environment in which to create the forms. An author/developer of the forms has a developer account on the server. That account can store multiple packages and versions of packages. It also has an IDE that authors can use to work on those packages. They can push those files to GitHub from that IDE. They can also pull those packages from GitHub using that IDE.
 
 [^2]: **Core framework code/core code:** the code that implements the Steps in the `.feature` test files.
-
-<!--
-Discuss: I could see breaking this up into separate documents:
-
-- General description of the 4 environments
-- The code involved in the different flow of the 4 environments
-   - Create temporary docassemble server (which is an action, so it muddies the water a bit)
-   - Install the package
-   - Save metadata about the temporary server environment
-   - Run tests
-   - Delete the package
-   (Some of these are used in GitHub actions - different ones for different actions - and used without actions, so we'd need to represent that complexity there, which would lengthen that document anyway)
-- Storing data in between processes
-   - runtime_config.json
-   - GitHub actions that pass env. vars and artifact path.
-   - Dates
-- Core code that needs to use different information from different environments
-
-Is it useful to break up these concepts into different files?
--->

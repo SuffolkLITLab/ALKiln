@@ -37,7 +37,7 @@ Use fs.appendFileSync with node's `util.inspect`. In future, we might explore ca
 
 ### Listen for write to `stdout`
 
-We'd listen for `stdout` and `stderr` events. We haven't yet experimented with detecting which logs are cucumber's and storing only those.
+We'd listen for `stdout` and `stderr` events. We haven't yet experimented with detecting which logs are cucumber's and storing only those. See pseudo code in the supplementary material section.
 
 **Pros:**
 
@@ -156,5 +156,24 @@ log.with_flush( run );
 ```
 
 `Log` would handle creating the promises. `log.with_flush()` would handle the try/catch logic to wait for the listeners and close the streams.
+
+### Listen for write to `stdout`
+
+For capturing console output, look into how to get the `stdin` for capturing various console output. https://stackoverflow.com/a/54202970:
+
+```js
+const stdin = process.openStdin()
+
+process.stdout.write('Enter name: ')
+
+stdin.addListener('data', text => {
+  const name = text.toString().trim()
+  console.log('Your name is: ' + name)
+
+  stdin.pause() // stop reading
+})
+```
+
+We couldn't figure out how to handle decoding emoji.
 
 [^3]: I'm not sure of good names to differentiate the code in run_cucumber.js, which triggers the rest of the test running, but is separate from it, and the code that handles the nitty gritty - like index.js, steps.js, scope.js, etc. "Running cucumber" is ambiguous. I'm calling run_cucumber.js code the "cucumber runner" and I'm calling the code that handles the actual tests the "tests handler".
