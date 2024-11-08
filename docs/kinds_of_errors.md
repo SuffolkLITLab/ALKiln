@@ -1,8 +1,6 @@
-# Errors
+# Kinds of Errors
 
-<!-- TODO: rename file - types_of_errors, kinds_of_errors, what_is_an_error, different_errors -->
-
-An `Error` instance can mean a lot of different things in the context of this testing framework. They're not all for an author's test failures.
+An error, or even an `Error` instance, can mean a lot of different things in the context of this testing framework. Throwing errors for failing tests is what we are most familiar with, but it is just one kind of error.
 
 ## Interview `Error`s
 
