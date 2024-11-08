@@ -37,7 +37,9 @@ Neither of the last 2 can depend on the `runtime_config.json` folder name that `
 
 A future goal is to remove the need to store the name in the runtime configuration file to reduce that complexity a bit. These flows are up for discussion.
 
-Here are more detailed descriptions of the different paths the folder name takes in the different environments. Where the folder name is created, gets passed, gets saved, and gets used. Note that there's a little glossing over the details. For example, everything saves to `runtime_config.json`, but only the core code[^1] ever uses the value there.
+Below are more detailed descriptions of the different paths the folder name takes in the different environments. Where the folder name is created, gets passed, gets saved, and gets used. Note that there's a little glossing over the details. For example, everything saves to `runtime_config.json`, but only the core code[^1] ever uses the value there.
+
+The diagrams highlight `Log` to help visualize a common point in all the flows.
 
 ### GitHub action
 
@@ -47,26 +49,27 @@ Here are more detailed descriptions of the different paths the folder name takes
 
 ```mermaid
 flowchart LR
-    action[action part 1] -- create/pass to --> setup
-    setup["setup"] -- pass to/use --> log1["#96;Log#96;"]:::log
-    log1 -- store in/ignore --> runtime1["runtime config file"]
-    log1 -- create/use --> folder1[folder]
+    action[action part 1] -- create/pass name to --> setup
+    setup["setup"] -- pass name to --> log1["#96;Log#96;"]:::log
+    log1 -- store name in/ignore --> runtime1["runtime config file"]
+    log1 -- create with name --> folder1[folder]
 
-    action2[action part 2] -- pass to --> run["run"]
-    run -- pass to/use --> log2["#96;Log#96;"]:::log
-    log2 -- store in/ignore --> runtime2["runtime config file"]
-    log2 -- use --> folder2[folder]
+    action2[action part 2] -- pass name to --> run["run"]
+    run -- pass name to --> log2["#96;Log#96;"]:::log
+    log2 -- store name in/ignore --> runtime2["runtime config file"]
+    log2 -- use with name --> folder2[folder]
     run --> core["core code"]
-    core -- pass to/use --> log3["#96;Log#96;"]:::log
-    core -- use --> folder2
-    core -- get from --> runtime2
-    log3 -- use --> folder2
+    core -- pass name to --> log3["#96;Log#96;"]:::log
+    core -- use with name --> folder2
+    core -- get name from <--> runtime2
+    log3 -- use with name --> folder2
+    log3 -- store name in/ignore --> runtime2
 
-    action3[action part 3] -- pass to --> takedown["takedown"]
-    takedown -- pass to/use --> log4["#96;Log#96;"]:::log
+    action3[action part 3] -- pass name to --> takedown["takedown"]
+    takedown -- pass name to --> log4["#96;Log#96;"]:::log
     log4 -- reader ignore/chart formatting hack --> takedown
-    log4 -- store in/ignore --> runtime3["runtime config file"]
-    log4 -- create --> folder5[folder]
+    log4 -- store name in/ignore --> runtime3["runtime config file"]
+    log4 -- create with name --> folder5[folder]
 
 classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 ```
@@ -78,14 +81,15 @@ classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 ```mermaid
 flowchart LR
     ALKilnInThePlayground --> run["run"]
-    run -- use --> log2["#96;Log#96;"]:::log
-    log2 -- store in/ignore --> runtime2["runtime config file"]
-    log2 -- create --> folder2[folder]
-    run -- pass to --> core["core code"]
-    core -- pass to/use --> log3["#96;Log#96;"]:::log
-    core -- use --> folder2
-    core -- get from --> runtime2
-    log3 -- use --> folder2
+    run --> log2["#96;Log#96;"]:::log
+    log2 -- store name in/ignore --> runtime2["runtime config file"]
+    log2 -- create with name --> folder2[folder]
+    run --> core["core code"]
+    core --> log3["#96;Log#96;"]:::log
+    core -- use with name --> folder2
+    core -- get name from <--> runtime2
+    log3 -- use with name --> folder2
+    log3 -- store name in/ignore --> runtime2
 
 classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 ```
@@ -99,25 +103,26 @@ classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 ```mermaid
 flowchart LR
     cmd1[command line] --> setup
-    setup["setup"] -- use --> log1["#96;Log#96;"]:::log
-    log1 -- store in/ignore --> runtime1["runtime config file"]
-    log1 -- create/use --> folder1[folder]
+    setup["setup"] --> log1["#96;Log#96;"]:::log
+    log1 -- store name in/ignore --> runtime1["runtime config file"]
+    log1 -- create with/use with name --> folder1[folder]
 
     cmd2[command line] --> run["run"]
-    run -- use --> log2["#96;Log#96;"]:::log
-    log2 -- store in/ignore --> runtime2["runtime config file"]
-    log2 -- create --> folder2[folder]
-    run -- pass to--> core["core code"]
-    core -- pass to/use --> log3["#96;Log#96;"]:::log
-    core -- use --> folder2
-    core -- get from --> runtime2
-    log3 -- use --> folder2
+    run --> log2["#96;Log#96;"]:::log
+    log2 -- store name in/ignore --> runtime2["runtime config file"]
+    log2 -- create with name --> folder2[folder]
+    run --> core["core code"]
+    core --> log3["#96;Log#96;"]:::log
+    core -- use with name --> folder2
+    core -- get name from <--> runtime2
+    log3 -- use with name --> folder2
+    log3 -- store name in/ignore --> runtime2
 
     cmd3[command line] --> takedown["takedown"]
-    takedown -- use --> log4["#96;Log#96;"]:::log
+    takedown --> log4["#96;Log#96;"]:::log
     log4 -- reader ignore/chart formatting hack --> takedown
-    log4 -- store in/ignore --> runtime3["runtime config file"]
-    log4 -- create/use --> folder5[folder]
+    log4 -- store name in/ignore --> runtime3["runtime config file"]
+    log4 -- create with name --> folder5[folder]
 
 classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 ```
