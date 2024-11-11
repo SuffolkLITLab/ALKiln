@@ -48,28 +48,29 @@ The diagrams highlight `Log` to help visualize a common point in all the flows.
 3. GitHub action creates the folder name, passes that same name to `takedown`, which passes that same name when instantiating its `Log`. The takedown `Log` uses the name to store logs in the folder.
 
 ```mermaid
+%% "pass name too" has 2 o's at the end because mermaid makes one of them disappear
+
 flowchart LR
-    action[action part 1] -- create/pass name to --> setup
-    setup["setup"] -- pass name to --> log1["#96;Log#96;"]:::log
-    log1 -- store name in/ignore --> runtime1["runtime config file"]
-    log1 -- create with name --> folder1[folder]
+    action[action part 1] --create/pass name too--> setup
+    setup["setup"] --pass name too--> log1["#96;Log#96;"]:::log
+    log1 --store name in/ignore--> runtime1["runtime config file"]
+    log1 --create with name--> folder1[folder]
 
-    action2[action part 2] -- pass name to --> run["run"]
-    run -- pass name to --> log2["#96;Log#96;"]:::log
-    log2 -- store name in/ignore --> runtime2["runtime config file"]
-    log2 -- use with name --> folder2[folder]
+    action2[action part 2] --pass name too--> run["run"]
+    run --pass name too--> log2["#96;Log#96;"]:::log
+    log2 --store name in/ignore--> runtime2["runtime config file"]
+    log2 --use with name--> folder2[folder]
     run --> core["core code"]
-    core -- pass name to --> log3["#96;Log#96;"]:::log
-    core -- use with name --> folder2
-    core -- get name from <--> runtime2
-    log3 -- use with name --> folder2
-    log3 -- store name in/ignore --> runtime2
+    core --pass name too--> log3["#96;Log#96;"]:::log
+    core --use with name--> folder2
+    core --get name from--> runtime2
+    log3 --use with name--> folder2
+    log3 --store name in/ignore--> runtime2
 
-    action3[action part 3] -- pass name to --> takedown["takedown"]
-    takedown -- pass name to --> log4["#96;Log#96;"]:::log
-    log4 -- reader ignore/chart formatting hack --> takedown
-    log4 -- store name in/ignore --> runtime3["runtime config file"]
-    log4 -- create with name --> folder5[folder]
+    action3[action part 3] --pass name too--> takedown["takedown"]
+    takedown --pass name too--> log4["#96;Log#96;"]:::log
+    log4 --store name in/ignore--> runtime3["runtime config file"]
+    log4 --create with name--> folder5[folder]
 
 classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 ```
@@ -82,14 +83,14 @@ classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 flowchart LR
     ALKilnInThePlayground --> run["run"]
     run --> log2["#96;Log#96;"]:::log
-    log2 -- store name in/ignore --> runtime2["runtime config file"]
-    log2 -- create with name --> folder2[folder]
+    log2 --store name in/ignore--> runtime2["runtime config file"]
+    log2 --create with name--> folder2[folder]
     run --> core["core code"]
     core --> log3["#96;Log#96;"]:::log
-    core -- use with name --> folder2
-    core -- get name from <--> runtime2
-    log3 -- use with name --> folder2
-    log3 -- store name in/ignore --> runtime2
+    core --use with name--> folder2
+    core --get name from--> runtime2
+    log3 --use with name--> folder2
+    log3 --store name in/ignore--> runtime2
 
 classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 ```
@@ -104,25 +105,24 @@ classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 flowchart LR
     cmd1[command line] --> setup
     setup["setup"] --> log1["#96;Log#96;"]:::log
-    log1 -- store name in/ignore --> runtime1["runtime config file"]
-    log1 -- create with/use with name --> folder1[folder]
+    log1 --store name in/ignore--> runtime1["runtime config file"]
+    log1 --create with/use with name--> folder1[folder]
 
     cmd2[command line] --> run["run"]
     run --> log2["#96;Log#96;"]:::log
-    log2 -- store name in/ignore --> runtime2["runtime config file"]
-    log2 -- create with name --> folder2[folder]
+    log2 --store name in/ignore--> runtime2["runtime config file"]
+    log2 --create with name--> folder2[folder]
     run --> core["core code"]
     core --> log3["#96;Log#96;"]:::log
-    core -- use with name --> folder2
-    core -- get name from <--> runtime2
-    log3 -- use with name --> folder2
-    log3 -- store name in/ignore --> runtime2
+    core --use with name--> folder2
+    core --get name from--> runtime2
+    log3 --use with name--> folder2
+    log3 --store name in/ignore--> runtime2
 
     cmd3[command line] --> takedown["takedown"]
     takedown --> log4["#96;Log#96;"]:::log
-    log4 -- reader ignore/chart formatting hack --> takedown
-    log4 -- store name in/ignore --> runtime3["runtime config file"]
-    log4 -- create with name --> folder5[folder]
+    log4 --store name in/ignore--> runtime3["runtime config file"]
+    log4 --create with name--> folder5[folder]
 
 classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 ```

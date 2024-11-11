@@ -52,6 +52,8 @@ Format:
 ### Fixed
 
 - Detects failed sign in. Closes [#918](https://github.com/SuffolkLITLab/ALKiln/issues/918).
+- Fixes undefined `errors` var in `After()`
+- Closes [#924](https://github.com/SuffolkLITLab/ALKiln/issues/924), remove extra interview url print
 
 ### Internal
 
@@ -62,6 +64,10 @@ Format:
 - Adds decision docs
 - Updated CONTRIBUTING.md
 - Added example.env, closes [#374](https://github.com/SuffolkLITLab/ALKiln/issues/374)
+- Closes [#805](https://github.com/SuffolkLITLab/ALKiln/issues/805), create verbose-type log
+- Closes [#659](https://github.com/SuffolkLITLab/ALKiln/issues/659), abstract adding to debug_log
+- Closes [#925](https://github.com/SuffolkLITLab/ALKiln/issues/925), allow a `Log` to throw an error
+- Addresses [#461](https://github.com/SuffolkLITLab/ALKiln/issues/461), setup and takedown reports
 
 ## [5.13.0] - 2024-07-11
 
