@@ -239,19 +239,19 @@ Scenario: I compare different PDFs
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
-  Could not find the existing PDF at DOES_NOT_EXIST.pdf
+  ALK0156
   """
   And the Scenario report should include:
   """
-  The PDFs were not the same.
-  """
-  And the Scenario report should include: 
-  """
-  The new PDF added:
+  ALK0157
   """
   And the Scenario report should include:
   """
   -  diff
+  """
+  And the Scenario report should include:
+  """
+  ALK0093
   """
   Given I start the interview at "test_pdf"
   Then the question id should be "proxy vars"
@@ -268,6 +268,7 @@ Scenario: I compare different PDFs
   And I tap to continue
   # Next page
   Then the question id should be "2_signature download"
-  When I download "2_signature.pdf"
+  # Match a partial name
+  When I download "2_signatu"
   And I expect the baseline PDF "DOES_NOT_EXIST.pdf" and the new PDF "2_signature.pdf" to be the same
   And I expect the baseline PDF "linear_2_signature-Baseline.pdf" and the new PDF "2_signature.pdf" to be the same
