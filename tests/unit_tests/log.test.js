@@ -2,7 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const fs = require(`fs`);
 
-const Log = require('../../lib/utils/log.js');
+const Log = require('../../lib/utils/Log.js');
 
 const path = `_alkiln-misc_artifacts/logs_${ Date.now() }`;
 const log = new Log({ path, context: `unit_tests log_tests` });
