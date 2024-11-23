@@ -45,7 +45,7 @@ Format:
 
 ## [Unreleased]
 
-<!-- ## [5.13.2] - 2024-11-21 -->
+## [5.13.2] - 2024-11-23
 
 ### Fixed
 - Fixes download Step unable to use a partial filename match. The Step needed the whole name, including the extension. See [#725](https://github.com/SuffolkLITLab/ALKiln/issues/725).
