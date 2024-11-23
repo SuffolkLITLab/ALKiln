@@ -45,6 +45,13 @@ Format:
 
 ## [Unreleased]
 
+<!-- ## [5.13.2] - 2024-11-21 -->
+
+### Fixed
+- Fixes download Step unable to use a partial filename match. The Step needed the whole name, including the extension. See [#725](https://github.com/SuffolkLITLab/ALKiln/issues/725).
+
+## [5.13.1] - 2024-10-23
+
 ### Changed
 
 - Moves "expected" status error to only be visible to internal test errors. Closes [#933](https://github.com/SuffolkLITLab/ALKiln/issues/933).
@@ -52,7 +59,6 @@ Format:
 ### Fixed
 
 - Detects failed sign in. Closes [#918](https://github.com/SuffolkLITLab/ALKiln/issues/918).
-- Updates pdfjs-dist for node v20 and v22. See [#952](https://github.com/SuffolkLITLab/ALKiln/issues/952).
 
 ### Internal
 
@@ -63,6 +69,7 @@ Format:
 - Adds decision docs
 - Updated CONTRIBUTING.md
 - Added example.env, closes [#374](https://github.com/SuffolkLITLab/ALKiln/issues/374)
+- Updates pdfjs-dist for node v20 and v22. See [#952](https://github.com/SuffolkLITLab/ALKiln/issues/952).
 
 ## [5.13.0] - 2024-07-11
 
