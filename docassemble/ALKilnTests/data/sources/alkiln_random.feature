@@ -1,5 +1,5 @@
 @random_tests
-Feature: kdlsjf
+Feature: I generate some random tests
 
 TODO: get tags from Scenarios so authors can skip them
 TODO: add random test tags to Feature and Scenarios
