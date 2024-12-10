@@ -3,6 +3,7 @@ Feature: I generate some random tests
 
 This does not get parsed as a Scenario: despite the Scenario keyword
 TODO: can probably remove url and let dev do that as a first Step
+TODO: Warn if Feature is missing? Maybe just let the test fail?
 TODO: Make sure folks don't put semicolons on the end of answer
 choices/variations when they don't mean to. Maybe warn about that, though still
 use the value.
