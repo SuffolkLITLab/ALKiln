@@ -2,6 +2,7 @@
 Feature: I generate successful random tests
 
 This line does not get parsed as a Scenario despite the Scenario: keyword
+This line doesn't get added either
 
 ## TODO: can probably remove url and let dev do that as a first Step
 ## TODO: Warn if Feature is missing? Maybe just let the test fail?
@@ -17,127 +18,96 @@ This line does not get parsed as a Scenario despite the Scenario: keyword
 ## TODO: Table row has more than 2 columns and has no var in column 1
 ## TODO: Table row has more than 2 columns and has no value choices in column 2
 
-Scenario: normal random input data
-  Given I start the interview at "all_tests"
-  And number: 1
-  And url: all_tests
-  And ids: ["group of complex fields"]
-  And options:
+## Regex
+## TODO: handle "test" and "tests"
+## TODO: allow missing number
+## TODO: Trim extra whitespace in list of ids
+
+Scenario: simplest random input Steps
+  Given I start the interview at "test_kickout"
+  And I generate 2 random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
-    | upload_files_visible | some_png_1.png;; some_png_2.png |
-  Then the question id should be "group of complex fields"
+    | user_choice | correct;; wrong |
 
   @random_scenario_tag @rs_2
 Scenario: tag starts a random input data Scenario
-  Given I start the interview at "all_tests"
-  And number: 1
-  And url: all_tests
-  And ids: ["group of complex fields"]
-  And options:
+  Given I start the interview at "test_kickout"
+  And I generate 1 random test and I get to any of ["kickout screen", "success screen"] when I use these constraints:
     | var | possible_values |
-    | upload_files_visible | some_png_1.png;; some_png_2.png |
-  Then the question id should be "group of complex fields"
+    | user_choice | correct;; wrong |
 
-Scenario: comment in random input data
-  Given I start the interview at "all_tests"
-  #And number: 2
-  And number: 1
-  And url: all_tests
-  And ids: ["group of complex fields"]
-  And options:
+Scenario: line at end of random input data
+  Given I start the interview at "test_kickout"
+  And I generate 1 constrained random test and I get to any of "kickout screen" or "success screen" with:
     | var | possible_values |
-    | upload_files_visible | some_png_1.png;; some_png_2.png |
+    | user_choice | correct;; wrong |
+  Then I wait .01 seconds
+
+Scenario: comment has Step text
+  Given I start the interview at "test_kickout"
+  # And I generate 1 constrained random test and I get to ["kickout screen", "success screen"] when I pick from these possible answers:
+  And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+    | var | possible_values |
+    | user_choice | correct;; wrong |
 
 Scenario: unindented random input data
-Given I start the interview at "all_tests"
-And number: 1
-And url: all_tests
-And ids: ["group of complex fields"]
-And options:
+Given I start the interview at "test_kickout"
+And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
 | var | possible_values |
-| upload_files_visible | some_png_1.png;; some_png_2.png |
-
-Scenario: out of order random input data
-  Given I start the interview at "all_tests"
-  And url: all_tests
-  And options:
-    | var | possible_values |
-    | upload_files_visible | some_png_1.png;; some_png_2.png |
-  And ids: ["group of complex fields"]
-  And number: 1
-
-Scenario: Random rows in between random input data constraint lines
-  Given I start the interview at "all_tests"
-  And number: 1
-  And This row should be ignored
-  And url: all_tests
-  And ids: ["group of complex fields"]
-  And options:
-    | var | possible_values |
-    | upload_files_visible | some_png_1.png;; some_png_2.png |
-  Then the question id should be "group of complex fields"
+| user_choice | correct;; wrong |
 
 Scenario: Comments and empty rows in random input data options table
-  Given I start the interview at "all_tests"
-  And number: 1
-  And url: all_tests
-  And ids: ["group of complex fields"]
-  And options:
-    #
+  Given I start the interview at "test_kickout"
+  And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+    # comment in table 1
     | var | possible_values |
-    #
+    # comment in table 2
 
-    | upload_files_visible | some_png_1.png;; some_png_2.png |
-  Then the question id should be "group of complex fields"
+    | user_choice | correct;; wrong |
 
 ## TODO: As users: Behavior? In this case just let the test fail during the test
 ##  run?
 Scenario: Non-table row in random input data options table
-  Given I start the interview at "all_tests"
-  And number: 1
-  And url: all_tests
-  And ids: ["group of complex fields"]
-  And options:
+  Given I start the interview at "test_kickout"
+  And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
     | var | possible_values |
     Then Non-table text
-    | upload_files_visible | some_png_1.png;; some_png_2.png |
-  Then the question id should be "group of complex fields"
+    | user_choice | correct;; wrong |
 
 ## =====================
 ## Warnings
 ## =====================
 
+## Not sure what to do in this case. Delete second appearance?
 Scenario: duplicate keys in random input data
-  Given I start the interview at "all_tests"
-  And number: 3
-  And number: 1
-  And url: other_url
-  And url: all_tests
-  And ids: ["other id"]
-  And ids: ["group of complex fields"]
-  And options:
+  Given I start the interview at "test_kickout"
+  And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
     | var | possible_values |
     | other_var | val1;; val2;; val3 |
-  And options:
+  And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
-    | upload_files_visible | some_png_1.png;; some_png_2.png |
-  Then the question id should be "group of complex fields"
+    | user_choice | correct;; wrong |
 
 Scenario: number is not a number in random input tests
-  Given I start the interview at "all_tests"
-  And number: not a number
-  And url: all_tests
-  And ids: ["group of complex fields"]
-  And options:
+  Given I start the interview at "test_kickout"
+  And I generate not a number random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
-    | upload_files_visible | some_png_1.png;; some_png_2.png |
-  Then the question id should be "group of complex fields"
+    | user_choice | correct;; wrong |
 
 ## Check that this file was indeed created
+## Check that it created 1 constrained random test even if it used the word "tests".
+## Alternative behavior: make diferent # of tests based on grammar - 1 (internal) test for "test" and 2 tests for "tests".
 Scenario: missing number in random input data
-  Given I start the interview at "all_tests"
-  And url: all_tests
-  And ids: ["group of complex fields"]
-  And options:
+  Given I start the interview at "test_kickout"
+  And I generate random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
-    | upload_files_visible | some_png_1.png;; some_png_2.png |
+    | user_choice | correct;; wrong |
+
+Scenario: too many numbers in random input data
+  Given I start the interview at "test_kickout"
+  And I generate 4 1 random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+
+## TODO: Test no spaces between options
+
