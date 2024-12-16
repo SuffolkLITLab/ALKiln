@@ -17,6 +17,7 @@ This line doesn't get added either
 ## TODO: Table row has more than 2 columns
 ## TODO: Table row has more than 2 columns and has no var in column 1
 ## TODO: Table row has more than 2 columns and has no value choices in column 2
+## TODO: Test 3-column table & 4-column table
 
 ## Regex
 ## TODO: handle "test" and "tests"
@@ -79,9 +80,9 @@ Scenario: Non-table row in random input data options table
 ## =====================
 
 ## Not sure what to do in this case. Delete second appearance?
-Scenario: duplicate keys in random input data
+Scenario: I include 2 random answers Steps
   Given I start the interview at "test_kickout"
-  And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+  And I generate 2 constrained random answer test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
     | var | possible_values |
     | other_var | val1;; val2;; val3 |
   And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
