@@ -79,8 +79,8 @@ Scenario: Non-table row in random input data options table
 ## Warnings
 ## =====================
 
-## Not sure what to do in this case. Delete second appearance?
-Scenario: I include 2 random answers Steps
+## Not sure what to do in this case. Delete incorrect instances of Step?
+Scenario: I'm warned with multiple random answers Steps
   Given I start the interview at "test_kickout"
   And I generate 2 constrained random answer test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
     | var | possible_values |
@@ -89,7 +89,7 @@ Scenario: I include 2 random answers Steps
     | var | possible_values |
     | user_choice | correct;; wrong |
 
-Scenario: number is not a number in random input tests
+Scenario: I'm warned with number is not a number in random input tests
   Given I start the interview at "test_kickout"
   And I generate not a number random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
@@ -98,13 +98,13 @@ Scenario: number is not a number in random input tests
 ## Check that this file was indeed created
 ## Check that it created 1 constrained random test even if it used the word "tests".
 ## Alternative behavior: make diferent # of tests based on grammar: 1 (internal) test for "test" and 2 tests for "tests".
-Scenario: missing number in random input data
+Scenario: I'm warned with missing number in random input data
   Given I start the interview at "test_kickout"
   And I generate random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
-Scenario: too many numbers in random input data
+Scenario: I'm warned with too many numbers in random input data
   Given I start the interview at "test_kickout"
   And I generate 1 4 random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
