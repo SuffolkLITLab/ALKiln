@@ -96,7 +96,7 @@ Scenario: number is not a number in random input tests
 
 ## Check that this file was indeed created
 ## Check that it created 1 constrained random test even if it used the word "tests".
-## Alternative behavior: make diferent # of tests based on grammar - 1 (internal) test for "test" and 2 tests for "tests".
+## Alternative behavior: make diferent # of tests based on grammar: 1 (internal) test for "test" and 2 tests for "tests".
 Scenario: missing number in random input data
   Given I start the interview at "test_kickout"
   And I generate random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
@@ -105,7 +105,7 @@ Scenario: missing number in random input data
 
 Scenario: too many numbers in random input data
   Given I start the interview at "test_kickout"
-  And I generate 4 1 random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+  And I generate 1 4 random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
