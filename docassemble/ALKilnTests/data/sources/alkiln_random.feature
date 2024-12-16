@@ -106,7 +106,7 @@ Scenario: I'm warned with missing number in random input data
 
 Scenario: I'm warned with too many numbers in random input data
   Given I start the interview at "test_kickout"
-  And I generate 1 4 random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+  And I generate 4 1 random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
