@@ -35,3 +35,9 @@ Scenario: Fail with error page from random input
   Given I start the interview at "test_missing_var_error_screen"
   And the max seconds for each step in this scenario is 10
   And I answer randomly for at most 3 pages
+
+@ri5 @constrained @random
+Scenario: I run a constrained random input test
+  Given I pick answers from these options 2 times at the interview at "all_tests" to get to any of the question ids ["group of complex fields", "use kickout for tests after we allow multiple ids"]:
+    | var | possible_values |
+    | upload_files_visible | some_png_1.png;; some_png_2.png |
