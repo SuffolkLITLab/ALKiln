@@ -16,11 +16,11 @@ Scenario: I fail with missing Step start in random input data
 
 Scenario: I fail with missing options table in random input data
   Given I start the interview at "test_kickout"
-  And I generate 1 random test and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+  And I generate 1 random test that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
   And no options table
 
 Scenario: I fail with missing ids in random input data
   Given I start the interview at "test_kickout"
-  And I generate 1 random test and I get to any of [] when I pick from these constraints:
+  And I generate 1 random test that get to any of [] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |

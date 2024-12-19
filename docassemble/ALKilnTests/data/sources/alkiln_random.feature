@@ -18,48 +18,51 @@ This line doesn't get added either
 ## TODO: Table row has more than 2 columns and has no var in column 1
 ## TODO: Table row has more than 2 columns and has no value choices in column 2
 ## TODO: Test 3-column table & 4-column table
+## TODO: Test that 1 invalid constraints test doesn't stop us from creating
+   other tests
 
 ## Regex
 ## TODO: handle "test" and "tests"
 ## TODO: allow missing number
 ## TODO: Trim extra whitespace in list of ids
+## TODO: Test answers that have extra whitespace in them
 
 Scenario: simplest random input Steps
   Given I start the interview at "test_kickout"
-  And I generate 2 random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+  And I generate 2 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
   @random_scenario_tag @rs_2
 Scenario: tag starts a random input data Scenario
   Given I start the interview at "test_kickout"
-  And I generate 1 random test and I get to any of ["kickout screen", "success screen"] when I use these constraints:
+  And I generate 1 random test that get to any of ["kickout screen", "success screen"] when I use these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
 Scenario: line at end of random input data
   Given I start the interview at "test_kickout"
-  And I generate 1 constrained random test and I get to any of "kickout screen" or "success screen" with:
+  And I generate 1 constrained random test that get to any of "kickout screen" or "success screen" with:
     | var | possible_values |
     | user_choice | correct;; wrong |
   Then I wait .01 seconds
 
 Scenario: comment has Step text
   Given I start the interview at "test_kickout"
-  # And I generate 1 constrained random test and I get to ["kickout screen", "success screen"] when I pick from these possible answers:
-  And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+  # And I generate 1 constrained random test that get to ["kickout screen", "success screen"] when I pick from these possible answers:
+  And I generate 1 constrained random test that get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
 Scenario: unindented random input data
 Given I start the interview at "test_kickout"
-And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+And I generate 1 constrained random test that get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
 | var | possible_values |
 | user_choice | correct;; wrong |
 
 Scenario: Comments and empty rows in random input data options table
   Given I start the interview at "test_kickout"
-  And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+  And I generate 1 constrained random test that get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
     # comment in table 1
     | var | possible_values |
     # comment in table 2
@@ -70,7 +73,7 @@ Scenario: Comments and empty rows in random input data options table
 ##  run?
 Scenario: Non-table row in random input data options table
   Given I start the interview at "test_kickout"
-  And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+  And I generate 1 constrained random test that get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
     | var | possible_values |
     Then Non-table text
     | user_choice | correct;; wrong |
@@ -82,16 +85,16 @@ Scenario: Non-table row in random input data options table
 ## Not sure what to do in this case. Delete incorrect instances of Step?
 Scenario: I'm warned with multiple random answers Steps
   Given I start the interview at "test_kickout"
-  And I generate 2 constrained random answer test and I get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+  And I generate 2 constrained random answer test that get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
     | var | possible_values |
     | other_var | val1;; val2;; val3 |
-  And I generate 1 constrained random test and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+  And I generate 1 constrained random test that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
 Scenario: I'm warned with number is not a number in random input tests
   Given I start the interview at "test_kickout"
-  And I generate not a number random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+  And I generate not a number random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
@@ -100,13 +103,13 @@ Scenario: I'm warned with number is not a number in random input tests
 ## Alternative behavior: make diferent # of tests based on grammar: 1 (internal) test for "test" and 2 tests for "tests".
 Scenario: I'm warned with missing number in random input data
   Given I start the interview at "test_kickout"
-  And I generate random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+  And I generate random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
 Scenario: I'm warned with too many numbers in random input data
   Given I start the interview at "test_kickout"
-  And I generate 4 1 random tests and I get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+  And I generate 4 1 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
