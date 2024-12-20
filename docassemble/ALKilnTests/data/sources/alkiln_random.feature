@@ -11,15 +11,14 @@ This line doesn't get added either
 ##   still use the value.
 
 ## tests to add:
-## TODO: Table row is missing var name
-## TODO: Table row is missing value choices
-## TODO: Table row only has pipes
-## TODO: Table row has more than 2 columns
-## TODO: Table row has more than 2 columns and has no var in column 1
-## TODO: Table row has more than 2 columns and has no value choices in column 2
-## TODO: Test 3-column table & 4-column table
-## TODO: Test that 1 invalid constraints test doesn't stop us from creating
-   other tests
+## Table row is missing var name
+## Table row is missing value choices
+## Table row only has pipes
+## Table row has more than 2 columns
+## Table row has more than 2 columns and has no var in column 1
+## Table row has more than 2 columns and has no value choices in column 2
+## Test 3-column table & 4-column table
+## 1 invalid constraints test doesn't stop us from creating other tests
 
 ## Regex
 ## TODO: handle "test" and "tests"
@@ -30,6 +29,12 @@ This line doesn't get added either
 Scenario: simplest random input Steps
   Given I start the interview at "test_kickout"
   And I generate 2 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+
+Scenario: I ask for too many unique tests
+  Given I start the interview at "test_kickout"
+  And I generate 3 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
