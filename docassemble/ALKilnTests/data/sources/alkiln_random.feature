@@ -4,27 +4,24 @@ Feature: I generate successful random tests
 This line does not get parsed as a Scenario despite the Scenario: keyword
 This line doesn't get added either
 
-## TODO: can probably remove url and let dev do that as a first Step
-## TODO: Warn if Feature is missing? Maybe just let the test fail?
-## TODO: Make sure folks don't put semicolons on the end of answer
-## choices/variations when they don't mean to. Maybe warn about that, though
-##   still use the value.
+## TODO: Double or triple up on some of these tests if possible. Adds a lot of
+##    time to tests to visit a new interview each time, which is unavoidable
+##    with only one constraints Step allowed in each Scenario
 
-## tests to add:
+## Tests to add:
 ## Table row is missing var name
 ## Table row is missing value choices
 ## Table row only has pipes
-## Table row has more than 2 columns
-## Table row has more than 2 columns and has no var in column 1
-## Table row has more than 2 columns and has no value choices in column 2
-## Test 3-column table & 4-column table
+## Table row has 3 columns with a target var in the 3rd column and we add the
+##    3rd column correctly
+## Table row has more than 3 columns (and gets warning? nothing?)
 ## 1 invalid constraints test doesn't stop us from creating other tests
 
-## Regex
+## Regex tests to add:
 ## TODO: handle "test" and "tests"
-## TODO: allow missing number
-## TODO: Trim extra whitespace in list of ids
-## TODO: Test answers that have extra whitespace in them
+## TODO: Test answers that have extra whitespace in them preserve the
+##    whitespace. Except for extra whitespace at the start and end of the cell
+##    value. Gherkin removes that automatically.
 
 Scenario: simplest random input Steps
   Given I start the interview at "test_kickout"
