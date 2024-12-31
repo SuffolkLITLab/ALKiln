@@ -9,59 +9,94 @@ This line doesn't get added either
 ##    with only one constraints Step allowed in each Scenario
 
 ## Tests to add:
-## Table row is missing var name
-## Table row is missing value choices
-## Table row only has pipes
-## Table row has 3 columns with a target var in the 3rd column and we add the
-##    3rd column correctly
-## Table row has more than 3 columns (and gets warning? nothing?)
-## 1 invalid constraints test doesn't stop us from creating other tests
+## 1 invalid constraints Scenario doesn't stop us from creating tests after that
 
 ## Regex tests to add:
-## TODO: handle "test" and "tests"
 ## TODO: Test answers that have extra whitespace in them preserve the
 ##    whitespace. Except for extra whitespace at the start and end of the cell
 ##    value. Gherkin removes that automatically.
 
+### Done: Both unit and integrated
 Scenario: simplest random input Steps
   Given I start the interview at "test_kickout"
   And I generate 2 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
-Scenario: I ask for too many unique tests
+## TODO: Just unit
+Scenario: random answer choices have no extra whitespace
   Given I start the interview at "test_kickout"
-  And I generate 3 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+  And I generate 2 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
-    | user_choice | correct;; wrong |
+    | user_choice | correct;;wrong |
 
-  @random_scenario_tag @rs_2
-Scenario: tag starts a random input data Scenario
-  Given I start the interview at "test_kickout"
+###  @random_scenario_tag   @rs_2
+###Scenario: tag starts a random input data Scenario
+###  Given I start the interview at "test_kickout"
+###  And I generate 1 random test that get to any of ["kickout screen", "success screen"] when I use these constraints:
+###    | var | possible_values |
+###    | user_choice | correct;; wrong |
+
+## TODO: Just unit
+Scenario: 3-column random answer table
+  Given I start the interview at "test_kickout"And I generate 1 random test that get to any of ["kickout screen", "success screen"] when I use these constraints:
+    | var | possible_values | column 3 becomes "target" |
+    | user_choice | correct;; wrong | user_choice |
+
+## TODO: Just unit
+Scenario: 4-column random answer table
+  Given I start the interview at "test_kickout"And I generate 1 random test that get to any of ["kickout screen", "success screen"] when I use these constraints:
+    | var | possible_values | column 3 becomes "target" | column 4 is ignored |
+    | user_choice | correct;; wrong | user_choice | is_ignored |
+
+## TODO: unit too
+Scenario: random answers table is missing a var name
+  Given the final Scenario status should be "failed"
+  And the max seconds for each Step is 5 seconds
+  And I start the interview at "test_kickout"
   And I generate 1 random test that get to any of ["kickout screen", "success screen"] when I use these constraints:
     | var | possible_values |
-    | user_choice | correct;; wrong |
+    |  | correct;; wrong |
 
-Scenario: line at end of random input data
-  Given I start the interview at "test_kickout"
-  And I generate 1 constrained random test that get to any of "kickout screen" or "success screen" with:
+## TODO: unit too
+Scenario: random answers table is missing values
+  Given the final Scenario status should be "failed"
+  And the max seconds for each Step is 5 seconds
+  And I start the interview at "test_kickout"
+  And I generate 1 random test that get to any of ["kickout screen", "success screen"] when I use these constraints:
     | var | possible_values |
-    | user_choice | correct;; wrong |
-  Then I wait .01 seconds
+    | user_choice |  |
 
-Scenario: comment has Step text
-  Given I start the interview at "test_kickout"
-  # And I generate 1 constrained random test that get to ["kickout screen", "success screen"] when I pick from these possible answers:
-  And I generate 1 constrained random test that get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+## TODO: unit too
+Scenario: random answers table rows are empty
+  Given the final Scenario status should be "failed"
+  And the max seconds for each Step is 5 seconds
+  And I start the interview at "test_kickout"
+  And I generate 1 random test that get to any of ["kickout screen", "success screen"] when I use these constraints:
     | var | possible_values |
-    | user_choice | correct;; wrong |
+    |  |  |
 
-Scenario: unindented random input data
-Given I start the interview at "test_kickout"
-And I generate 1 constrained random test that get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
-| var | possible_values |
-| user_choice | correct;; wrong |
+###Scenario: line at end of random input data
+###  Given I start the interview at "test_kickout"
+###  And I generate 1 constrained random test that get to any of "kickout screen" or "success screen" with:
+###    | var | possible_values |
+###    | user_choice | correct;; wrong |
+###  Then I wait .01 seconds
+###
+###Scenario: comment has Step text
+###  Given I start the interview at "test_kickout"
+###  # And I generate 1 constrained random test that get to ["kickout screen", "success screen"] when I pick from these possible answers:
+###  And I generate 1 constrained random test that get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+###    | var | possible_values |
+###    | user_choice | correct;; wrong |
+###
+###Scenario: unindented random input data
+###Given I start the interview at "test_kickout"
+###And I generate 1 constrained random test that get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+###| var | possible_values |
+###| user_choice | correct;; wrong |
 
+## TODO: Just unit
 Scenario: Comments and empty rows in random input data options table
   Given I start the interview at "test_kickout"
   And I generate 1 constrained random test that get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
@@ -73,7 +108,10 @@ Scenario: Comments and empty rows in random input data options table
 
 ## TODO: As users: Behavior? In this case just let the test fail during the test
 ##  run?
+## This might cause a failure from "undefined"
+## TODO: Both unit and integrated
 Scenario: Non-table row in random input data options table
+  Given the final Scenario status should be "undefined"
   Given I start the interview at "test_kickout"
   And I generate 1 constrained random test that get to any of ["kickout screen", "success screen"] when I pick from these possible answers:
     | var | possible_values |
@@ -82,7 +120,14 @@ Scenario: Non-table row in random input data options table
 
 ## =====================
 ## Warnings
+## TODO: Both unit and integrated
 ## =====================
+
+Scenario: I ask for too many unique tests
+  Given I start the interview at "test_kickout"
+  And I generate 3 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+    | var | possible_values |
+    | user_choice | correct;; wrong |
 
 ## Not sure what to do in this case. Delete incorrect instances of Step?
 Scenario: I'm warned with multiple random answers Steps
@@ -114,6 +159,4 @@ Scenario: I'm warned with too many numbers in random input data
   And I generate 4 1 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
-
-## TODO: Test no spaces between options
 
