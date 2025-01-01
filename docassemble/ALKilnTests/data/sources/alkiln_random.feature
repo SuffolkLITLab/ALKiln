@@ -17,6 +17,7 @@ This line doesn't get added either
 ##    value. Gherkin removes that automatically.
 
 ### Done: Both unit and integrated
+@temp_constrained
 Scenario: simplest random input Steps
   Given I start the interview at "test_kickout"
   And I generate 2 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:

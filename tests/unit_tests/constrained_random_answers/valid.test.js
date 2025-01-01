@@ -4,6 +4,13 @@ const expect = chai.expect;
 // chai.use(deepEqualInAnyOrder);
 // We need jest or something for managing snapshots more easily
 
+/**
+ * Discuss:
+ * - Test making more than one file?
+ * - Test deleting the files from the sources folder?
+ * - Test having multiple sources folders? (overdue)
+ * */
+
 const generator = require(`../../../lib/utils/make_random_input_files.js`);
 const parse_file = generator.parse_file;
 const fixtures = require(`./constrained_valid.fixtures.js`);
