@@ -76,12 +76,6 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     it(`retains the text after the Feature`, function () {
       expect( passes, `Incorrect generated text. See below.` ).to.be.true
     });
-    it(`retains weird tag spacing`, function () {
-      expect( passes, `Incorrect generated text. See below.` ).to.be.true
-    });
-    it(`retains weird table indentation`, function () {
-      expect( passes, `Incorrect generated text. See below.` ).to.be.true
-    });
     it(`retains the Step after the table`, function () {
       expect( passes, `Incorrect generated text. See below.` ).to.be.true
     });
@@ -99,6 +93,43 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       expect( comparable ).to.equal( fixture.expected );
     });
 
+  });  // ends complex
+
+  describe(`with author's tags`, function () {
+    let fixture = fixtures.tags;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    it(`keeps those tags`, function () {
+      expect( comparable_text( actual_string ) ).to.equal( fixture.expected );
+    });
   });
+
+  describe(`with author's tags on line 2`, function () {
+    let fixture = fixtures.weird_spacing.tags_line_2;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    it(`keeps those tags`, function () {
+      expect( comparable_text( actual_string ) ).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`with weird spacing in author's tags`, function () {
+    let fixture = fixtures.weird_spacing.tags;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    it(`keeps that spacing`, function () {
+      expect( comparable_text( actual_string ) ).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`with weird indentations`, function () {
+    let fixture = fixtures.weird_spacing.indents;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    it(`keeps those indentation levels`, function () {
+      expect( comparable_text( actual_string ) ).to.equal( fixture.expected );
+    });
+  });
+
 
 });
