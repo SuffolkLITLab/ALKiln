@@ -1,8 +1,5 @@
 const chai = require(`chai`);
 const expect = chai.expect;
-// const deepEqualInAnyOrder = require(`deep-equal-in-any-order`);
-// chai.use(deepEqualInAnyOrder);
-// We need jest or something for managing snapshots more easily
 
 /**
  * Discuss:
@@ -53,8 +50,6 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     it(`has the right non-random text`, function () {
       expect( comparable_text( actual_string ) ).to.equal( fixture.expected );
     });
-    // TODO: Test it has generates both options of the 2 choices - generates
-    //    unique Scenarios (use .split()?)
   });
 
   describe(`that has various complexities with 2 generators and 3 generated`, function () {

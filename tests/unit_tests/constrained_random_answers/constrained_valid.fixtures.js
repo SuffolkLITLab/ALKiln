@@ -1,7 +1,7 @@
-/** Actual and expected values for constrained random answer tests. */
+/** Actual and expected values for valid constrained random answer tests. */
 
 // const GENERATOR_STEP_STANDARD = `And I generate 2 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:`
-const GO_TO = `Given I start the interview at "test_kickout"`;
+// const GO_TO = `Given I start the interview at "test_kickout"`;
 // const STORY_TABLE_STEP = `And I get to any of the question ids ["kickout screen", "success screen"] with this data:`;
 // const STORY_TABLE_HEADER = `| var | value |`;
 // const F_TAG = `alkiln_randomized`;
