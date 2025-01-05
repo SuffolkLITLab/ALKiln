@@ -9,10 +9,12 @@ const expect = chai.expect;
  * - Test making more than one file?
  * - Test deleting the files from the sources folder?
  * - Test having multiple sources folders? (overdue)
+ * 
+ * TODO: Test no double semicolons are in the generated text
  * */
 
-const generator = require(`../../../lib/utils/make_random_input_files.js`);
-const parse_file = generator.parse_file;
+const constrained_random_tests = require(`../../../lib/utils/constrained_random_tests.js`);
+const parse_file = constrained_random_tests.parse_file;
 const fixtures = require(`./constrained_valid.fixtures.js`);
 
 
@@ -95,7 +97,7 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   });  // ends complex
 
-  describe(`with author's tags`, function () {
+  describe(`with an author's tags`, function () {
     let fixture = fixtures.tags;
     let actual_string = parse_file({ file_text: fixture.arg });
 
@@ -108,7 +110,7 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     let fixture = fixtures.weird_spacing.tags_line_2;
     let actual_string = parse_file({ file_text: fixture.arg });
 
-    it(`keeps those tags`, function () {
+    it(`keeps those tags and spacing`, function () {
       expect( comparable_text( actual_string ) ).to.equal( fixture.expected );
     });
   });
@@ -131,5 +133,130 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     });
   });
 
+  describe(`with no spacing in choices`, function () {
+    let fixture = fixtures.weird_spacing.choices;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    it(`gets a choice correctly`, function () {
+      expect( actual_string ).to.match( fixture.find_1 );
+    });
+  });
+
+  describe(`with 3 columns`, function () {
+    let fixture = fixtures.columns_3;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    it(`adds a "trigger" column with those values`, function () {
+      expect( actual_string ).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`with 4 columns`, function () {
+    let fixture = fixtures.columns_4;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    it(`ignores the 4th column`, function () {
+      expect( actual_string ).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`with comments before and in the table`, function () {
+    let fixture = fixtures.rows_comments;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    it(`removes the comments`, function () {
+      expect( comparable_text( actual_string )).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`with a comment after the table`, function () {
+    let fixture = fixtures.comment_after_last_row;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    it(`keeps and repeats the comment`, function () {
+      expect( comparable_text( actual_string )).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`with empty rows before and in the table`, function () {
+    let fixture = fixtures.rows_empty;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    it(`removes the empty rows`, function () {
+      expect( comparable_text( actual_string )).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`with table interrupted by a regular line after the header`, function () {
+    let fixture = fixtures.warnings.only_row_is_header;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    // it(`TODO: adds a warning`, function () {
+    //   `The generator table only has a header row`
+    // });
+    it(`keeps the text, including the table, as is`, function () {
+      expect( actual_string ).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`with an author asking for 3 tests when only 2 unique tests can exist`, function () {
+    let fixture = fixtures.warnings.too_many_requested;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    // it(`TODO: adds a warning about not being able to make that many tests`, function () {
+    //   `Could only make _ unique tests out of the _ you asked for`
+    // });
+
+    it(`only makes 2 tests`, function () {
+      let matches = actual_string.match( /^Scenario:/gm );
+      expect( matches ).to.be.an(`array`);
+      expect( matches.length ).to.equal( 2 );
+    });
+
+    let text_1_regex = new RegExp( fixture.find_2[0], `g`);
+    let text_2_regex = new RegExp( fixture.find_2[1], `g`);
+    describe(`both tests are unique from each other`, function () {
+
+      it(`for ${ fixture.find_2[0] }`, function () {
+        let matches = actual_string.match( text_1_regex );
+        expect( matches ).to.be.an(`array`);
+        expect( matches.length ).to.equal( 1 );
+      })
+      it(`for ${ fixture.find_2[1] }`, function () {
+        let matches = actual_string.match( text_2_regex );
+        expect( matches ).to.be.an(`array`);
+        expect( matches.length ).to.equal( 1 );
+      })
+      it(`and all else to be standard`, function () {
+        expect( comparable_text( actual_string )).to.equal( fixture.expected );
+      })
+      
+    });
+
+  });
+
+  describe(`with no number value`, function () {
+    let fixture = fixtures.warnings.no_number;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    // it(`TODO: adds a warning`, function () {
+    //   `You gave no number. ALKiln will generate 1 test`
+    // });
+    it(`generates 1 test`, function () {
+      expect( comparable_text( actual_string )).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`with too many number values`, function () {
+    let fixture = fixtures.warnings.multiple_numbers;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    // it(`TODO: adds a warning`, function () {
+    //   `You gave multiple numbers. ALKiln will use the second one and generate 2 test(s)`
+    // });
+    it(`uses the last number given`, function () {
+      expect( comparable_text( actual_string )).to.equal( fixture.expected );
+    });
+  });
 
 });
