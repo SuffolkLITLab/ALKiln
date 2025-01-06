@@ -43,11 +43,18 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.13.3] - 2025-01-05
+
+### Fixed
+
+- Updates to latest docassemble HTML. See [#960](https://github.com/SuffolkLITLab/ALKiln/issues/960). Changes all appearances of `fieldset` to keep the code consistent.
 
 ## [5.13.2] - 2024-11-23
 
 ### Fixed
+
 - Fixes download Step unable to use a partial filename match. The Step needed the whole name, including the extension. See [#725](https://github.com/SuffolkLITLab/ALKiln/issues/725).
 
 ## [5.13.1] - 2024-10-23
