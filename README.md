@@ -41,25 +41,46 @@ Read about contributing in our [CONTRIBUTING.md document](CONTRIBUTING.md). Here
 ## Cheat sheet
 
 *Once you've already read the contributing documentation, you can use these as quick reminders for running our internal tests.*
-To set up for the integration tests, create the project on the server:
+
+### `setup` before starting development of a feature/fix
+
+Set up for the cucumber integration tests.
+
+Add the feature branch name to your `.env` file:
+
+```
+BRANCH=42_feat_life_the_univers_and_everything
+```
+
+Then create the project on the server:
 
 ```bash
 npm run setup
 ```
 
-Use the syntax below to trigger specific tags:
+### Run tests repeatedly
+
+Run all cucumber tests that are not currently blocked by upstream changes:
 
 ```bash
-npm run cucumber -- "--tags" "@tagname"
+npm run pass
 ```
 
-To run the unit tests in isolation:
+Trigger cucumber tests with specific tags:
+
+```bash
+npm run cucumber "@tagname"
+```
+
+Run the unit tests:
 
 ```bash
 npm run unit
 ```
 
-If you or someone else changes the interview code in `./docassemble`, you have to clean up the old data on the server before running `setup` again:
+### Always run `takedown` before running `setup` again
+
+If you or someone else changes the interview code in our `./docassemble` directory, you have to delete the code currently on the testing server before running `setup` again. Also do this when you're done with the feature/fix or starting a new feature/fix.
 
 ```bash
 npm run takedown

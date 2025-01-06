@@ -43,7 +43,21 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.13.3] - 2025-01-05
+
+### Fixed
+
+- Updates to latest docassemble HTML. See [#960](https://github.com/SuffolkLITLab/ALKiln/issues/960). Changes all appearances of `fieldset` to keep the code consistent.
+
+## [5.13.2] - 2024-11-23
+
+### Fixed
+
+- Fixes download Step unable to use a partial filename match. The Step needed the whole name, including the extension. See [#725](https://github.com/SuffolkLITLab/ALKiln/issues/725).
+
+## [5.13.1] - 2024-10-23
 
 ### Changed
 
@@ -68,6 +82,7 @@ Format:
 - Closes [#659](https://github.com/SuffolkLITLab/ALKiln/issues/659), abstract adding to debug_log
 - Closes [#925](https://github.com/SuffolkLITLab/ALKiln/issues/925), allow a `Log` to throw an error
 - Addresses [#461](https://github.com/SuffolkLITLab/ALKiln/issues/461), setup and takedown reports
+- Updates pdfjs-dist for node v20 and v22. See [#952](https://github.com/SuffolkLITLab/ALKiln/issues/952).
 
 ## [5.13.0] - 2024-07-11
 

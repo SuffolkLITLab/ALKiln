@@ -22,7 +22,7 @@
         "minimatch": "3.0.5",
         "minimist": "1.2.8",
         "mocha": "9.2.2",
-        "pdfjs-dist": "3.2.146",
+        "pdfjs-dist": "3.11.174",
         "puppeteer": "22.15.0",
         "qs": "6.10.3",
         "sanitize-filename": "1.6.3",
@@ -2908,6 +2908,16 @@
         "node": ">=0.10.0"
       }
     },
+    "node_modules/path2d-polyfill": {
+      "version": "2.0.1",
+      "resolved": "https://registry.npmjs.org/path2d-polyfill/-/path2d-polyfill-2.0.1.tgz",
+      "integrity": "sha512-ad/3bsalbbWhmBo0D6FZ4RNMwsLsPpL6gnvhuSaU5Vm7b06Kr5ubSltQQ0T7YKsiJQO+g22zJ4dJKNTXIyOXtA==",
+      "license": "MIT",
+      "optional": true,
+      "engines": {
+        "node": ">=8"
+      }
+    },
     "node_modules/pathval": {
       "version": "1.1.1",
       "resolved": "https://registry.npmjs.org/pathval/-/pathval-1.1.1.tgz",
@@ -2917,14 +2927,16 @@
       }
     },
     "node_modules/pdfjs-dist": {
-      "version": "3.2.146",
-      "resolved": "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-3.2.146.tgz",
-      "integrity": "sha512-wy1OB/v75usRD1LqgxBUWC+ZOiKTmG5J8c2z9XVFrVSSWiVbSuseNojmvFa/TT0pYtcFmkL4zn6KaxvqfPYMRg==",
-      "dependencies": {
-        "web-streams-polyfill": "^3.2.1"
+      "version": "3.11.174",
+      "resolved": "https://registry.npmjs.org/pdfjs-dist/-/pdfjs-dist-3.11.174.tgz",
+      "integrity": "sha512-TdTZPf1trZ8/UFu5Cx/GXB7GZM30LT+wWUNfsi6Bq8ePLnb+woNKtDymI2mxZYBpMbonNFqKmiz684DIfnd8dA==",
+      "license": "Apache-2.0",
+      "engines": {
+        "node": ">=18"
       },
       "optionalDependencies": {
-        "canvas": "^2.11.0"
+        "canvas": "^2.11.2",
+        "path2d-polyfill": "^2.0.1"
       }
     },
     "node_modules/pend": {
@@ -3780,14 +3792,6 @@
         "assert-plus": "^1.0.0",
         "core-util-is": "1.0.2",
         "extsprintf": "^1.2.0"
-      }
-    },
-    "node_modules/web-streams-polyfill": {
-      "version": "3.3.3",
-      "resolved": "https://registry.npmjs.org/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz",
-      "integrity": "sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw==",
-      "engines": {
-        "node": ">= 8"
       }
     },
     "node_modules/webidl-conversions": {
