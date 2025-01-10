@@ -38,3 +38,19 @@ Scenario: I fail with missing ids in random input data
   And I generate 1 random test that get to any of [] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
+
+## TODO: Both unit and integration tests
+Scenario: I'm maybe warned with non-table row in random input data options table after header
+  Given the Scenario status should be "failed"
+  Given I start the interview at "test_kickout"
+  And I generate 1 constrained random test that gets to any of ["kickout screen", "success screen"] when I pick from these possible answers:
+    | var | possible_values |
+    Then Non-table text
+    | user_choice | correct;; wrong |
+
+## TODO: Both unit and integration tests
+Scenario: I'm warned with too many numbers in random input data
+  Given I start the interview at "test_kickout"
+  And I generate 4 1 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+    | var | possible_values |
+    | user_choice | correct;; wrong |

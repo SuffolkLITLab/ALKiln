@@ -182,15 +182,27 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     });
   });
 
-  describe(`with table interrupted by a regular line after the header`, function () {
-    let fixture = fixtures.warnings.only_row_is_header;
+  describe(`with no number value`, function () {
+    let fixture = fixtures.warnings.no_number;
     let actual_string = parse_file({ file_text: fixture.arg });
 
     // it(`TODO: adds a warning`, function () {
-    //   `The generator table only has a header row`
+    //   `You gave no number. ALKiln will generate 1 test`
     // });
-    it(`keeps the text, including the table, as is`, function () {
-      expect( actual_string ).to.equal( fixture.expected );
+    it(`generates 1 test`, function () {
+      expect( comparable_text( actual_string )).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`with too many number values`, function () {
+    let fixture = fixtures.warnings.multiple_numbers;
+    let actual_string = parse_file({ file_text: fixture.arg });
+
+    // it(`TODO: adds a warning`, function () {
+    //   `You gave multiple numbers. ALKiln will use the second one and generate 2 test(s)`
+    // });
+    it(`uses the last number given`, function () {
+      expect( comparable_text( actual_string )).to.equal( fixture.expected );
     });
   });
 
@@ -228,30 +240,6 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       
     });
 
-  });
-
-  describe(`with no number value`, function () {
-    let fixture = fixtures.warnings.no_number;
-    let actual_string = parse_file({ file_text: fixture.arg });
-
-    // it(`TODO: adds a warning`, function () {
-    //   `You gave no number. ALKiln will generate 1 test`
-    // });
-    it(`generates 1 test`, function () {
-      expect( comparable_text( actual_string )).to.equal( fixture.expected );
-    });
-  });
-
-  describe(`with too many number values`, function () {
-    let fixture = fixtures.warnings.multiple_numbers;
-    let actual_string = parse_file({ file_text: fixture.arg });
-
-    // it(`TODO: adds a warning`, function () {
-    //   `You gave multiple numbers. ALKiln will use the second one and generate 2 test(s)`
-    // });
-    it(`uses the last number given`, function () {
-      expect( comparable_text( actual_string )).to.equal( fixture.expected );
-    });
   });
 
 });

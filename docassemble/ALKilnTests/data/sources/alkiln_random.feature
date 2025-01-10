@@ -122,23 +122,6 @@ Scenario: random answers table rows are empty
 ## Both unit and integration tests tests
 ## =====================
 
-## TODO: Warn the user? Test will definitely time out.
-## Done: Both unit and integration tests
-Scenario: I'm maybe warned with non-table row in random input data options table after header
-  Given the Scenario status should be "failed"
-  Given I start the interview at "test_kickout"
-  And I generate 1 constrained random test that gets to any of ["kickout screen", "success screen"] when I pick from these possible answers:
-    | var | possible_values |
-    Then Non-table text
-    | user_choice | correct;; wrong |
-
-## Done: Both unit and integration tests
-Scenario: I'm warned when I ask for too many unique tests
-  Given I start the interview at "test_kickout"
-  And I generate 3 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
-    | var | possible_values |
-    | user_choice | correct;; wrong |
-
 ## Done: Both unit and integration tests
 Scenario: I'm warned with missing number in random answers generator
   Given I start the interview at "test_kickout"
@@ -146,10 +129,10 @@ Scenario: I'm warned with missing number in random answers generator
     | var | possible_values |
     | user_choice | correct;; wrong |
 
-## TODO: Both unit and integration tests
-Scenario: I'm warned with too many numbers in random input data
+## Done: Both unit and integration tests
+Scenario: I'm warned when I ask for too many unique tests
   Given I start the interview at "test_kickout"
-  And I generate 4 1 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+  And I generate 3 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
