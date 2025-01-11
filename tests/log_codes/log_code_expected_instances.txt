@@ -4,7 +4,11 @@ Why we need duplicate codes sometimes: GitHub actions sometimes don't have ways 
 
 The script that tests the log codes will ignore this file (or any file with this name), and any file with these names: check_codes.sh, debug_log.txt, cucumber-report.txt. It will also ignore files in folders with these names:, node_modules, ALKilnTests, alkiln-*, _alkiln*. That list might get updated, so for an up-to-date list, always check the file check_codes.sh where we use `--exclude=` and such.
 
-ALK0000:8
+Reasons for deletion:
+0053 - duplicate log
+0173 - redundant
+
+ALK0000:0
 ALK0001:1
 ALK0002:2
 ALK0003:2
@@ -22,7 +26,7 @@ ALK0014:1
 ALK0015:1
 ALK0016:1
 ALK0017:1
-ALK0018:2
+ALK0018:1
 ALK0019:2
 ALK0020:1
 ALK0021:1
@@ -33,10 +37,10 @@ ALK0025:1
 ALK0026:2
 ALK0027:2
 ALK0028:3
-ALK0029:1
+ALK0029:2
 ALK0030:2
-ALK0031:1
-ALK0032:1
+ALK0031:2
+ALK0032:2
 ALK0033:1
 ALK0034:1
 ALK0035:1
@@ -57,7 +61,7 @@ ALK0049:1
 ALK0050:1
 ALK0051:1
 ALK0052:1
-ALK0053:1
+ALK0053:0
 ALK0054:1
 ALK0055:1
 ALK0056:1
@@ -177,7 +181,7 @@ ALK0169:1
 ALK0170:1
 ALK0171:1
 ALK0172:1
-ALK0173:1
+ALK0173:0
 ALK0174:1
 ALK0175:1
 ALK0176:1
@@ -185,7 +189,7 @@ ALK0177:1
 ALK0178:1
 ALK0179:1
 ALK0180:1
-ALK0181:1
+ALK0181:0
 ALK0182:1
 ALK0183:1
 ALK0184:2
@@ -207,3 +211,23 @@ ALK0199:1
 ALK0200:1
 ALK0201:1
 ALK0202:1
+ALK0203:1
+ALK0204:1
+ALK0205:1
+ALK0206:1
+ALK0207:1
+ALK0208:1
+ALK0209:1
+ALK0210:1
+ALK0211:1
+ALK0212:1
+ALK0213:1
+ALK0214:1
+ALK0215:1
+ALK0216:1
+ALK0217:1
+ALK0218:1
+ALK0219:1
+ALK0220:1
+ALK0221:1
+ALK0222:1
