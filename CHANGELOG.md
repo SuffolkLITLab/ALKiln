@@ -45,6 +45,24 @@ Format:
 
 <!-- ## [Unreleased] -->
 
+## [5.13.4] - 2025-01-11
+
+### Changed
+
+- Removed an extraneous log
+
+### Fixed
+
+- Final error showed an undefined var instead of a more useful error message
+
+### Internal
+
+- Refactored `log` into a class that works with ALKiln's 4 possible environments
+- Refactored `Log` class to handle throwing errors
+- Now store debug information in debug log instead of printing it live
+- Removed debug flag so debug logs always get stored
+- Added decision/design docs
+
 ## [5.13.3] - 2025-01-05
 
 ### Fixed
