@@ -45,6 +45,24 @@ Format:
 
 <!-- ## [Unreleased] -->
 
+## [5.13.4] - 2025-01-11
+
+### Changed
+
+- Removed an extraneous log
+
+### Fixed
+
+- Final error showed an undefined var instead of a more useful error message
+
+### Internal
+
+- Refactored `log` into a class that works with ALKiln's 4 possible environments
+- Refactored `Log` class to handle throwing errors
+- Now store debug information in debug log instead of printing it live
+- Removed debug flag so debug logs always get stored
+- Added decision/design docs
+
 ## [5.13.3] - 2025-01-05
 
 ### Fixed
@@ -66,6 +84,8 @@ Format:
 ### Fixed
 
 - Detects failed sign in. Closes [#918](https://github.com/SuffolkLITLab/ALKiln/issues/918).
+- Fixes undefined `errors` var in `After()`
+- Closes [#924](https://github.com/SuffolkLITLab/ALKiln/issues/924), remove extra interview url print
 
 ### Internal
 
@@ -76,6 +96,10 @@ Format:
 - Adds decision docs
 - Updated CONTRIBUTING.md
 - Added example.env, closes [#374](https://github.com/SuffolkLITLab/ALKiln/issues/374)
+- Closes [#805](https://github.com/SuffolkLITLab/ALKiln/issues/805), create verbose-type log
+- Closes [#659](https://github.com/SuffolkLITLab/ALKiln/issues/659), abstract adding to debug_log
+- Closes [#925](https://github.com/SuffolkLITLab/ALKiln/issues/925), allow a `Log` to throw an error
+- Addresses [#461](https://github.com/SuffolkLITLab/ALKiln/issues/461), setup and takedown reports
 - Updates pdfjs-dist for node v20 and v22. See [#952](https://github.com/SuffolkLITLab/ALKiln/issues/952).
 
 ## [5.13.0] - 2024-07-11
