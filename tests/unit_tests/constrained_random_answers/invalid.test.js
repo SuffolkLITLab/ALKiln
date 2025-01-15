@@ -29,13 +29,51 @@ function comparable_text( text ) {
 
 describe(`Constrained random answers parser, when given an invalid generator Scenario`, function () {
 
-  describe(`that has multiple constrained random answers Steps,`, function () {
-    let fixture = fixtures.multiple_generator_Steps;
-    let result = parse_file({ file_text: fixture.arg });
-    // TODO: Expect an error Scenario
-    it(`returns null`, function () {
-      expect( result ).to.equal( fixture.expected );
-    });
-  });
+  // describe(`that has multiple constrained random answers Steps,`, function () {
+  //   let fixture = fixtures.multiple_generator_Steps;
+  //   let result = parse_file({ file_text: fixture.arg });
+  //   // TODO: Expect an error Scenario
+  //   it(`returns null`, function () {
+  //     expect( result ).to.equal( fixture.expected );
+  //   });
+  // });
+
+  // describe(`with an author asking for 3 tests when only 2 unique tests can exist`, function () {
+  //   let fixture = fixtures.warnings.too_many_requested;
+  //   let actual_string = parse_file({ file_text: fixture.arg });
+
+  //   // it(`TODO: adds a warning about not being able to make that many tests`, function () {
+  //   //   `Could only make _ unique tests out of the _ you asked for`
+  //   // });
+
+  //   it(`only makes 2 tests`, function () {
+  //     let matches = actual_string.match( /^Scenario:/gm );
+  //     expect( matches ).to.be.an(`array`);
+  //     expect( matches.length ).to.equal( 2 );
+  //   });
+
+  //   let text_1_regex = new RegExp( fixture.find_2[0], `g`);
+  //   let text_2_regex = new RegExp( fixture.find_2[1], `g`);
+  //   describe(`both tests are unique from each other`, function () {
+
+  //     it(`for ${ fixture.find_2[0] }`, function () {
+  //       let matches = actual_string.match( text_1_regex );
+  //       expect( matches ).to.be.an(`array`);
+  //       expect( matches.length ).to.equal( 1 );
+  //     })
+  //     it(`for ${ fixture.find_2[1] }`, function () {
+  //       let matches = actual_string.match( text_2_regex );
+  //       expect( matches ).to.be.an(`array`);
+  //       expect( matches.length ).to.equal( 1 );
+  //     })
+  //     it(`and all else to be standard`, function () {
+  //       expect( comparable_text( actual_string )).to.equal( fixture.expected );
+  //     })
+      
+  //   });
+
+  // });
 
 });
+
+

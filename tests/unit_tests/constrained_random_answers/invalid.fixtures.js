@@ -73,8 +73,8 @@ fixts.only_row_is_header.codes = [``];
 
 // No test for a table interrupted in the middle (the generator can't detect it)
 
-fixts.warnings.too_many_requested = {};
-fixts.warnings.too_many_requested.arg =
+fixts.too_many_requested = {};
+fixts.too_many_requested.arg =
 `Feature: I generate random tests
 
 Scenario: Too many tests requested to keep them unique
@@ -83,7 +83,7 @@ Scenario: Too many tests requested to keep them unique
     | var | possible_values |
     | user_choice | correct;; wrong |
 `;
-fixts.warnings.too_many_requested.expected =
+fixts.too_many_requested.expected =
 `@alkiln_randomized
 Feature: I generate random tests with ALKiln randomization
 
@@ -101,5 +101,5 @@ Scenario: Too many tests requested to keep them unique ALKiln random test genera
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
-fixts.warnings.too_many_requested.find_2 = [`correct`, `wrong`];
-fixts.warnings.too_many_requested.codes = [``];
+fixts.too_many_requested.find_2 = [`correct`, `wrong`];
+fixts.too_many_requested.codes = [``];

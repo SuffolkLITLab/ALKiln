@@ -1,6 +1,6 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.13.4",
+  "version": "5.13.3",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
@@ -12,7 +12,7 @@
     "setup": "./lib/docassemble/setup.js",
     "takedown": "./lib/docassemble/takedown.js",
     "server_install": "./lib/docassemble/server_install.js",
-    "unit": "mocha tests/unit_tests/*.test.*",
+    "unit": "mocha --recursive 'tests/unit_tests/**/*.test.*'",
     "codes": "tests/log_codes/check_codes.sh ."
   },
   "repository": {
