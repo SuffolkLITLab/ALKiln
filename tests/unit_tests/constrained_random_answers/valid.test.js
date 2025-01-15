@@ -40,28 +40,33 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`that is simple and normal`, function () {
     let fixture = fixtures.simple;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`generates 2 Scenarios`, function() {
-      let num_Scenarios = actual_string.split(`Scenario:`).length - 1;
+      let num_Scenarios = new_contents.split(`Scenario:`).length - 1;
       expect( 2 ).to.equal( num_Scenarios, `Wrong # of Scenarios: ${ num_Scenarios }/2` );
     });
 
     it(`has the right non-random text`, function () {
-      expect( comparable_text( actual_string ) ).to.equal( fixture.expected );
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
     });
+
   });
 
   describe(`that has various complexities with 2 generators and 3 generated`, function () {
     let fixture = fixtures.complex;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`generates 3 Scenarios (skipping the extra appearance of "Scenario:")`, function() {
-      let num_Scenarios = actual_string.split(`Scenario:`).length - 2;
+      let num_Scenarios = new_contents.split(`Scenario:`).length - 2;
       expect( 3 ).to.equal( num_Scenarios, `Wrong # of Scenarios: ${ num_Scenarios }/2` );
     });
 
-    let comparable = comparable_text( actual_string );
+    let comparable = comparable_text( new_contents );
     let passes = null;
     try {
       expect( comparable ).to.equal( fixture.expected );
@@ -94,115 +99,139 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with an author's tags`, function () {
     let fixture = fixtures.tags;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`keeps those tags`, function () {
-      expect( comparable_text( actual_string ) ).to.equal( fixture.expected );
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
     });
   });
 
   describe(`with author's tags on line 2`, function () {
     let fixture = fixtures.weird_spacing.tags_line_2;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`keeps those tags and spacing`, function () {
-      expect( comparable_text( actual_string ) ).to.equal( fixture.expected );
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
     });
   });
 
   describe(`with weird spacing in author's tags`, function () {
     let fixture = fixtures.weird_spacing.tags;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`keeps that spacing`, function () {
-      expect( comparable_text( actual_string ) ).to.equal( fixture.expected );
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
     });
   });
 
   describe(`with weird indentations`, function () {
     let fixture = fixtures.weird_spacing.indents;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`keeps those indentation levels`, function () {
-      expect( comparable_text( actual_string ) ).to.equal( fixture.expected );
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
     });
   });
 
   describe(`with no spacing in choices`, function () {
     let fixture = fixtures.weird_spacing.choices;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`gets a choice correctly`, function () {
-      expect( actual_string ).to.match( fixture.find_1 );
+      expect( new_contents ).to.match( fixture.find_1 );
     });
   });
 
   describe(`with 3 columns`, function () {
     let fixture = fixtures.columns_3;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`adds a "trigger" column with those values`, function () {
-      expect( actual_string ).to.equal( fixture.expected );
+      expect( new_contents ).to.equal( fixture.expected );
     });
   });
 
   describe(`with 4 columns`, function () {
     let fixture = fixtures.columns_4;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`ignores the 4th column`, function () {
-      expect( actual_string ).to.equal( fixture.expected );
+      expect( new_contents ).to.equal( fixture.expected );
     });
   });
 
   describe(`with comments before and in the table`, function () {
     let fixture = fixtures.rows_comments;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`removes the comments`, function () {
-      expect( comparable_text( actual_string )).to.equal( fixture.expected );
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
     });
   });
 
   describe(`with a comment after the table`, function () {
     let fixture = fixtures.comment_after_last_row;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`keeps and repeats the comment`, function () {
-      expect( comparable_text( actual_string )).to.equal( fixture.expected );
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
     });
   });
 
   describe(`with empty rows before and in the table`, function () {
     let fixture = fixtures.rows_empty;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`removes the empty rows`, function () {
-      expect( comparable_text( actual_string )).to.equal( fixture.expected );
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
     });
   });
 
   describe(`with no number value`, function () {
     let fixture = fixtures.warnings.no_number;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     // it(`TODO: adds a warning`, function () {
     //   `You gave no number. ALKiln will generate 1 test`
     // });
     it(`generates 1 test`, function () {
-      expect( comparable_text( actual_string )).to.equal( fixture.expected );
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
     });
   });
 
   describe(`with too many number values`, function () {
     let fixture = fixtures.warnings.multiple_numbers;
-    let actual_string = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     // it(`TODO: adds a warning`, function () {
     //   `You gave multiple numbers. ALKiln will use the second one and generate 2 test(s)`
     // });
     it(`uses the last number given`, function () {
-      expect( comparable_text( actual_string )).to.equal( fixture.expected );
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
     });
   });
 
