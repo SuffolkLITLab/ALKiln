@@ -25,6 +25,7 @@
 module.exports = fixts = {};
 
 fixts.RANDOM_TABLE_PLACEHOLDER = `@@@ ALK_RANDOM_TABLE_BODY_PLACEHOLDER @@@`;
+fixts.WARNING_PLACEHOLDER = `@@@ WARNING_PLACEHOLDER @@@`;
 
 /**
  * ===========
@@ -433,8 +434,6 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 fixts.warnings = {};
 
 
-// Why error?
-// TODO: add warning to output
 // Discuss: add a "strict mode" to fail on warnings?
 fixts.warnings.no_number = {};
 fixts.warnings.no_number.arg =
@@ -453,6 +452,10 @@ Feature: I generate random tests with ALKiln randomization
 @alkiln_randomized_generator1_scenario1_of_1
 Scenario: I'm warned with missing number in random answers generator ALKiln random test generator1_scenario1_of_1
   Given I start the interview at "test_kickout"
+  And ALKiln warns the author about a generator problem with:
+    """
+    🔎 ALK0245 ${ fixts.WARNING_PLACEHOLDER }
+    """
   And I get to any of the question ids ["end"] with this data:
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
@@ -460,8 +463,6 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 fixts.warnings.no_number.codes = [``];
 
 
-// More appropriate for an error
-// TODO: add warning to output
 fixts.warnings.multiple_numbers = {};
 fixts.warnings.multiple_numbers.arg =
 `Feature: I generate random tests
@@ -479,6 +480,11 @@ Feature: I generate random tests with ALKiln randomization
 @alkiln_randomized_generator1_scenario1_of_2
 Scenario: I'm warned with too many numbers in random input data ALKiln random test generator1_scenario1_of_2
   Given I start the interview at "test_kickout"
+  And ALKiln warns the author about a generator problem with:
+    """
+    🔎 ALK0246 ${ fixts.WARNING_PLACEHOLDER }
+    I generate 4 2 constrained random tests that get to "end" when I pick from:
+    """
   And I get to any of the question ids ["end"] with this data:
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
@@ -486,8 +492,66 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 @alkiln_randomized_generator1_scenario2_of_2
 Scenario: I'm warned with too many numbers in random input data ALKiln random test generator1_scenario2_of_2
   Given I start the interview at "test_kickout"
+  And ALKiln warns the author about a generator problem with:
+    """
+    🔎 ALK0246 ${ fixts.WARNING_PLACEHOLDER }
+    I generate 4 2 constrained random tests that get to "end" when I pick from:
+    """
   And I get to any of the question ids ["end"] with this data:
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
 fixts.warnings.multiple_numbers.codes = [``];
+
+
+fixts.warnings.fewer_unique_than_requested = {};
+fixts.warnings.fewer_unique_than_requested.arg =
+`Feature: I generate random tests
+
+Scenario: I'm warned when I ask for too many unique tests
+  Given I start the interview at "test_kickout"
+  And I generate 3 constrained random tests that get to "end" when I pick from:
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+`;
+fixts.warnings.fewer_unique_than_requested.expected =
+`@alkiln_randomized
+Feature: I generate random tests with ALKiln randomization
+
+@alkiln_randomized_generator1_scenario1_of_2
+Scenario: I'm warned when I ask for too many unique tests ALKiln random test generator1_scenario1_of_2
+  Given I start the interview at "test_kickout"
+  And ALKiln warns the author about a generator problem with:
+    """
+    🔎 ALK0243 ${ fixts.WARNING_PLACEHOLDER }
+    {
+      text: 'I generate 3 constrained random tests that get to "end" when I pick from:',
+      rows: [
+        [ 'var', 'possible_values' ],
+        [ 'user_choice', 'correct;; wrong' ]
+      ]
+    }
+    """
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+
+@alkiln_randomized_generator1_scenario2_of_2
+Scenario: I'm warned when I ask for too many unique tests ALKiln random test generator1_scenario2_of_2
+  Given I start the interview at "test_kickout"
+  And ALKiln warns the author about a generator problem with:
+    """
+    🔎 ALK0243 ${ fixts.WARNING_PLACEHOLDER }
+    {
+      text: 'I generate 3 constrained random tests that get to "end" when I pick from:',
+      rows: [
+        [ 'var', 'possible_values' ],
+        [ 'user_choice', 'correct;; wrong' ]
+      ]
+    }
+    """
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+`;
+fixts.warnings.fewer_unique_than_requested.codes = [``];

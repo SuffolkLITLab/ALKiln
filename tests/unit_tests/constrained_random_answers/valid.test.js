@@ -12,35 +12,55 @@ const expect = chai.expect;
 
 const constrained_random_tests = require(`../../../lib/utils/constrained_random_tests.js`);
 const parse_file = constrained_random_tests.parse_file;
-const fixtures = require(`./constrained_valid.fixtures.js`);
-
+const Log = require(`../../../lib/utils/Log.js`);
+const logger = new Log({ context: `unit` });
+const fixtures = require(`./valid.fixtures.js`);
 
 const RANDOM_TABLE_PLACEHOLDER = fixtures.RANDOM_TABLE_PLACEHOLDER;
 const TABLE_ROW_REGEX = /^(?!(?:.*\| var \| value \|))(.*\| .* \|)/gm;
-const PLACEHOLDER_REGEX = new RegExp(`(${ RANDOM_TABLE_PLACEHOLDER }\n)+`, `g`);
+const TABLE_PLACEHOLDER_REGEX = new RegExp(`(${ RANDOM_TABLE_PLACEHOLDER }\n)+`, `g`);
+
+const WARNING_PLACEHOLDER = fixtures.WARNING_PLACEHOLDER;
+// const WARNING_MSG_REGEX = /ALK\d{4} .*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*/;
+const WARNING_MSG_REGEX = /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*)/;
+
 function comparable_text( text ) {
-  /** Splits files around the random table contents.
+  /** Replaces unimportant dynamic strings with placeholder strings
    *
    * We need to check that the contents of the file match the expected contents,
    *    but the table contains random values, so we need to discount the table.
+   *    Same for warning timestamps and message text.
    * */
   let with_placeholders = text.replace(
     TABLE_ROW_REGEX,
     RANDOM_TABLE_PLACEHOLDER
   );
+  // Collapse multiple consecutive placeholders into one placeholder
   let with_reduced_placeholders = with_placeholders.replace(
-    PLACEHOLDER_REGEX,
+    TABLE_PLACEHOLDER_REGEX,
     `${ RANDOM_TABLE_PLACEHOLDER }\n`
   );
-  return with_reduced_placeholders;
+
+  let without_warnings = with_reduced_placeholders.replace(
+    /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*)/g,
+    `$1${ WARNING_PLACEHOLDER }`
+  );
+
+  return without_warnings;
 };
 
 
 describe(`Constrained random answers parser, when given a valid generator Scenario`, function () {
 
+  const generator_path = `fake_path_name_used_for_text_of_warning_logs`;
+
   describe(`that is simple and normal`, function () {
     let fixture = fixtures.simple;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
 
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -57,7 +77,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`that has various complexities with 2 generators and 3 generated`, function () {
     let fixture = fixtures.complex;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -99,7 +123,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with an author's tags`, function () {
     let fixture = fixtures.tags;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -110,7 +138,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with author's tags on line 2`, function () {
     let fixture = fixtures.weird_spacing.tags_line_2;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -121,7 +153,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with weird spacing in author's tags`, function () {
     let fixture = fixtures.weird_spacing.tags;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -132,7 +168,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with weird indentations`, function () {
     let fixture = fixtures.weird_spacing.indents;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -143,7 +183,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with no spacing in choices`, function () {
     let fixture = fixtures.weird_spacing.choices;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -154,7 +198,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with 3 columns`, function () {
     let fixture = fixtures.columns_3;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -165,7 +213,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with 4 columns`, function () {
     let fixture = fixtures.columns_4;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -176,7 +228,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with comments before and in the table`, function () {
     let fixture = fixtures.rows_comments;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -187,7 +243,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with a comment after the table`, function () {
     let fixture = fixtures.comment_after_last_row;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -198,7 +258,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with empty rows before and in the table`, function () {
     let fixture = fixtures.rows_empty;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -209,7 +273,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with no number value`, function () {
     let fixture = fixtures.warnings.no_number;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
@@ -223,7 +291,29 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   describe(`with too many number values`, function () {
     let fixture = fixtures.warnings.multiple_numbers;
-    let { new_contents, errors } = parse_file({ file_text: fixture.arg });
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+
+    // it(`TODO: adds a warning`, function () {
+    //   `You gave multiple numbers. ALKiln will use the second one and generate 2 test(s)`
+    // });
+    it(`uses the last number given`, function () {
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`that is unable to generate enough unique tests to fulfill the number of tests the author requested`, function () {
+    let fixture = fixtures.warnings.fewer_unique_than_requested;
+    let { new_contents, errors } = parse_file({
+      file_text: fixture.arg,
+      generator_path,
+      logger
+    });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
