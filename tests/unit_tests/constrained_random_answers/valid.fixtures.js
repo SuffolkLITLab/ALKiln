@@ -10,16 +10,10 @@
 // const S_INSERT_START = `ALKiln random test generator`;
 // const SIMPLE_FEATURE_START_ARG =
 // `@random_unit_tests
-// Feature: I generate random tests\n\n`;
+// Feature: I generate constrained random tests\n\n`;
 // const SIMPLE_FEATURE_START_EXPECTED =
 // `@random_unit_tests @${ F_TAG }
-// Feature: I generate random tests ${ F_INSERT }\n\n`;
-
-/**
- * TODO:
- * - Get all the different combos to match generator Step text ("constrain", "random", etc.)
- * - Test a row with only one choice always chooses that choice? Unnecessary?
- * */
+// Feature: I generate constrained random tests ${ F_INSERT }\n\n`;
 
 
 module.exports = fixts = {};
@@ -34,18 +28,18 @@ fixts.WARNING_PLACEHOLDER = `@@@ WARNING_PLACEHOLDER @@@`;
 fixts.simple = simple = {};
 // Research: Why does this work both with and without a new line at the end?
 simple.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Scenario: simplest random answers
   Given I start the interview at "test_kickout"
-  And I generate 2 random tests that get to any of ["kickout screen", "success screen"] when I pick from these constraints:
+  And I generate 2 random tests that get to any of "kickout screen", "success screen" when I pick from these constraints:
     | var | possible_values |
     | user_choice | correct;; wrong |
     | row_2 | answer1;; answer2;; answer3 |`;
 // ======= ENDS ARG ======= //
 simple.expected =
 `@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 @alkiln_randomized_generator1_scenario1_of_2
 Scenario: simplest random answers ALKiln random test generator1_scenario1_of_2
@@ -62,6 +56,160 @@ Scenario: simplest random answers ALKiln random test generator1_scenario2_of_2
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
 // ======= ENDS EXPECTED ======= //
+simple.included_log_codes = [ `ALK0247` ];
+
+
+/**
+ * ===========
+ * Minimal required Step text:
+ * - Required: "constrain"
+ * - Required: "generat" or "rand" or "mak" or "mad"
+ * =========== */
+fixts.generat = {};
+fixts.generat.arg =
+`Feature: I generate constrained random tests
+
+Scenario: I use minimal text (constrain and generat)
+  Given I start the interview at "test_kickout"
+  And constrain generat 1 "end"
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+
+Scenario: I use minimal text (generat and constrain)
+  Given I start the interview at "test_kickout"
+  And generat constrain 1 "end"
+    | var | possible_values |
+    | user_choice | correct;; wrong |`;
+fixts.generat.expected =
+`@alkiln_randomized
+Feature: I generate constrained random tests with ALKiln randomization
+
+@alkiln_randomized_generator1_scenario1_of_1
+Scenario: I use minimal text (constrain and generat) ALKiln random test generator1_scenario1_of_1
+  Given I start the interview at "test_kickout"
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+
+@alkiln_randomized_generator2_scenario1_of_1
+Scenario: I use minimal text (generat and constrain) ALKiln random test generator2_scenario1_of_1
+  Given I start the interview at "test_kickout"
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+`;
+fixts.generat.included_log_codes = [ `ALK0247` ];
+
+
+// ===============
+fixts.rand = {};
+fixts.rand.arg =
+`Feature: I generate constrained random tests
+
+Scenario: I use minimal text (constrain and rand)
+  Given I start the interview at "test_kickout"
+  And 1 "end" rand constrain
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+
+Scenario: I use minimal text (rand and constrain)
+  Given I start the interview at "test_kickout"
+  And constrain 1 "end" rand
+    | var | possible_values |
+    | user_choice | correct;; wrong |`;
+fixts.rand.expected =
+`@alkiln_randomized
+Feature: I generate constrained random tests with ALKiln randomization
+
+@alkiln_randomized_generator1_scenario1_of_1
+Scenario: I use minimal text (constrain and rand) ALKiln random test generator1_scenario1_of_1
+  Given I start the interview at "test_kickout"
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+
+@alkiln_randomized_generator2_scenario1_of_1
+Scenario: I use minimal text (rand and constrain) ALKiln random test generator2_scenario1_of_1
+  Given I start the interview at "test_kickout"
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+`;
+fixts.rand.included_log_codes = [ `ALK0247` ];
+
+
+// ===============
+fixts.mak = {};
+fixts.mak.arg =
+`Feature: I generate constrained random tests
+
+Scenario: I use minimal text (constrain and mak)
+  Given I start the interview at "test_kickout"
+  And 1 mak "end" constrain
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+
+Scenario: I use minimal text (mak and constrain)
+  Given I start the interview at "test_kickout"
+  And 1 "end" constrain mak
+    | var | possible_values |
+    | user_choice | correct;; wrong |`;
+fixts.mak.expected =
+`@alkiln_randomized
+Feature: I generate constrained random tests with ALKiln randomization
+
+@alkiln_randomized_generator1_scenario1_of_1
+Scenario: I use minimal text (constrain and mak) ALKiln random test generator1_scenario1_of_1
+  Given I start the interview at "test_kickout"
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+
+@alkiln_randomized_generator2_scenario1_of_1
+Scenario: I use minimal text (mak and constrain) ALKiln random test generator2_scenario1_of_1
+  Given I start the interview at "test_kickout"
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+`;
+fixts.mak.included_log_codes = [ `ALK0247` ];
+
+
+// ===============
+fixts.mad = {};
+fixts.mad.arg =
+`Feature: I generate constrained random tests
+
+Scenario: I use minimal text (constrain and mad)
+  Given I start the interview at "test_kickout"
+  And 1 mad "end" constrain
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+
+Scenario: I use minimal text (mad and constrain)
+  Given I start the interview at "test_kickout"
+  And 1 "end" constrain mad
+    | var | possible_values |
+    | user_choice | correct;; wrong |`;
+fixts.mad.expected =
+`@alkiln_randomized
+Feature: I generate constrained random tests with ALKiln randomization
+
+@alkiln_randomized_generator1_scenario1_of_1
+Scenario: I use minimal text (constrain and mad) ALKiln random test generator1_scenario1_of_1
+  Given I start the interview at "test_kickout"
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+
+@alkiln_randomized_generator2_scenario1_of_1
+Scenario: I use minimal text (mad and constrain) ALKiln random test generator2_scenario1_of_1
+  Given I start the interview at "test_kickout"
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+`;
+fixts.mad.included_log_codes = [ `ALK0247` ];
 
 
 /**
@@ -80,7 +228,7 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }
  * =========== */
 fixts.complex = complex = {};
 complex.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Line 1 after Feature that includes Scenario: keyword
 
@@ -105,7 +253,7 @@ Scenario: generate complex 2
 // ======= ENDS ARG ======= //
 complex.expected =
 `@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 Line 1 after Feature that includes Scenario: keyword
 
@@ -139,12 +287,14 @@ Scenario: generate complex 2 ALKiln random test generator2_scenario1_of_1
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
 // ======= ENDS EXPECTED ======= //
+complex.included_log_codes = [ `ALK0247` ];
+
 
 /** Existing Feature and Scenario tags are preserved */
 fixts.tags = tags = {};
 tags.arg =
 `@feature_tag1 @feature_tag2
-Feature: I generate random tests
+Feature: I generate constrained random tests
 
 @scenario_tag1 @scenario_tag2
 Scenario: simplest random answers
@@ -155,7 +305,7 @@ Scenario: simplest random answers
 // ======= ENDS ARG ======= //
 tags.expected =
 `@feature_tag1 @feature_tag2 @alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 @scenario_tag1 @scenario_tag2 @alkiln_randomized_generator1_scenario1_of_1
 Scenario: simplest random answers ALKiln random test generator1_scenario1_of_1
@@ -164,6 +314,7 @@ Scenario: simplest random answers ALKiln random test generator1_scenario1_of_1
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
+tags.included_log_codes = [ `ALK0247` ];
 
 
 /**
@@ -180,7 +331,7 @@ fixts.weird_spacing = {};
 fixts.weird_spacing.tags = {};
 fixts.weird_spacing.tags.arg =
 `  @feature_tag    @spacing       
-Feature: I generate random tests
+Feature: I generate constrained random tests
 
     @scenario_tag    @spacing    
 Scenario: a scenario
@@ -192,7 +343,7 @@ Scenario: a scenario
 // ======= ENDS ARG ======= //
 fixts.weird_spacing.tags.expected =
 `  @feature_tag    @spacing        @alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
     @scenario_tag    @spacing     @alkiln_randomized_generator1_scenario1_of_1
 Scenario: a scenario ALKiln random test generator1_scenario1_of_1
@@ -202,6 +353,7 @@ Scenario: a scenario ALKiln random test generator1_scenario1_of_1
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
 // ======= ENDS EXPECTED ======= //
+fixts.weird_spacing.tags.included_log_codes = [ `ALK0247` ];
 
 
 /** Weird spacing is preserved in all tag types */
@@ -209,7 +361,7 @@ fixts.weird_spacing.tags_line_2 = {};
 fixts.weird_spacing.tags_line_2.arg =
 `
 @line_2_tag
-Feature: I generate random tests
+Feature: I generate constrained random tests
 
 Scenario: a scenario
   Given I start the interview at "test_kickout"
@@ -221,7 +373,7 @@ Scenario: a scenario
 fixts.weird_spacing.tags_line_2.expected =
 `
 @line_2_tag @alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 @alkiln_randomized_generator1_scenario1_of_1
 Scenario: a scenario ALKiln random test generator1_scenario1_of_1
@@ -231,12 +383,13 @@ Scenario: a scenario ALKiln random test generator1_scenario1_of_1
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
 // ======= ENDS EXPECTED ======= //
+fixts.weird_spacing.tags_line_2.included_log_codes = [ `ALK0247` ];
 
 
 /** Various lines are not indented the usual way */
 fixts.weird_spacing.indents = {};
 fixts.weird_spacing.indents.arg =
-`    Feature: I generate random tests
+`    Feature: I generate constrained random tests
 
  Scenario: a scenario
 # Comment line
@@ -249,7 +402,7 @@ fixts.weird_spacing.indents.arg =
 // ======= ENDS ARG ======= //
 fixts.weird_spacing.indents.expected =
 `@alkiln_randomized
-    Feature: I generate random tests with ALKiln randomization
+    Feature: I generate constrained random tests with ALKiln randomization
 
 @alkiln_randomized_generator1_scenario1_of_1
  Scenario: a scenario ALKiln random test generator1_scenario1_of_1
@@ -260,12 +413,13 @@ fixts.weird_spacing.indents.expected =
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
 // ======= ENDS EXPECTED ======= //
+fixts.weird_spacing.indents.included_log_codes = [ `ALK0247` ];
 
 
 /** No spacing between choices (No `.expected` val. Different kind of test) */
 fixts.weird_spacing.choices = {};
 fixts.weird_spacing.choices.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Scenario: a scenario
   Given I start the interview at "test_kickout"
@@ -278,6 +432,7 @@ fixts.weird_spacing.choices.expected = `Not appropriate to use use expected valu
 // ======= ENDS EXPECTED ======= //
 fixts.weird_spacing.choices.find_1 = /(?:correct)|(?:wrong)/;
 // ======= ENDS OPTIONS TO FIND ONE OF ======= //
+fixts.weird_spacing.choices.included_log_codes = [ `ALK0247` ];
 
 
 /**
@@ -287,7 +442,7 @@ fixts.weird_spacing.choices.find_1 = /(?:correct)|(?:wrong)/;
 fixts.columns_3 = {};
 // Research: Why does this work both with and without a new line at the end?
 fixts.columns_3.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Scenario: 3 columns
   Given I start the interview at "file.yml"
@@ -297,7 +452,7 @@ Scenario: 3 columns
 // ======= ENDS ARG ======= //
 fixts.columns_3.expected =
 `@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 @alkiln_randomized_generator1_scenario1_of_1
 Scenario: 3 columns ALKiln random test generator1_scenario1_of_1
@@ -307,12 +462,13 @@ Scenario: 3 columns ALKiln random test generator1_scenario1_of_1
     | users[0].has_bear | True | users[0].name.first |
 `;
 // ======= ENDS EXPECTED ======= //
+fixts.columns_3.included_log_codes = [ `ALK0247` ];
 
 
 fixts.columns_4 = {};
 // Research: Why does this work both with and without a new line at the end?
 fixts.columns_4.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Scenario: 4 columns
   Given I start the interview at "file.yml"
@@ -322,7 +478,7 @@ Scenario: 4 columns
 // ======= ENDS ARG ======= //
 fixts.columns_4.expected =
 `@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 @alkiln_randomized_generator1_scenario1_of_1
 Scenario: 4 columns ALKiln random test generator1_scenario1_of_1
@@ -332,6 +488,7 @@ Scenario: 4 columns ALKiln random test generator1_scenario1_of_1
     | users[0].has_bear | True | users[0].name.first |
 `;
 // ======= ENDS EXPECTED ======= //
+fixts.columns_4.included_log_codes = [ `ALK0247` ];
 
 
 /**
@@ -340,7 +497,7 @@ Scenario: 4 columns ALKiln random test generator1_scenario1_of_1
  * =========== */
 fixts.rows_comments = {};
 fixts.rows_comments.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Scenario: Comment before and in table
   Given I start the interview at "file.yml"
@@ -352,7 +509,7 @@ Scenario: Comment before and in table
 `;
 fixts.rows_comments.expected =
 `@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 @alkiln_randomized_generator1_scenario1_of_1
 Scenario: Comment before and in table ALKiln random test generator1_scenario1_of_1
@@ -361,11 +518,12 @@ Scenario: Comment before and in table ALKiln random test generator1_scenario1_of
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
+fixts.rows_comments.included_log_codes = [ `ALK0247` ];
 
 
 fixts.comment_after_last_row = {};
 fixts.comment_after_last_row.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Scenario: Comment after table
   Given I start the interview at "file.yml"
@@ -378,7 +536,7 @@ Scenario: Comment after table
 `;
 fixts.comment_after_last_row.expected =
 `@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 @alkiln_randomized_generator1_scenario1_of_2
 Scenario: Comment after table ALKiln random test generator1_scenario1_of_2
@@ -400,11 +558,12 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 
 # Comment 2 keep and repeat
 `;
+fixts.comment_after_last_row.included_log_codes = [ `ALK0247` ];
 
 
 fixts.rows_empty = {};
 fixts.rows_empty.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Scenario: Empty rows before and in table
   Given I start the interview at "file.yml"
@@ -416,7 +575,7 @@ Scenario: Empty rows before and in table
 `;
 fixts.rows_empty.expected =
 `@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 @alkiln_randomized_generator1_scenario1_of_1
 Scenario: Empty rows before and in table ALKiln random test generator1_scenario1_of_1
@@ -425,6 +584,7 @@ Scenario: Empty rows before and in table ALKiln random test generator1_scenario1
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
+fixts.rows_empty.included_log_codes = [ `ALK0247` ];
 
 
 /**
@@ -437,7 +597,7 @@ fixts.warnings = {};
 // Discuss: add a "strict mode" to fail on warnings?
 fixts.warnings.no_number = {};
 fixts.warnings.no_number.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Scenario: I'm warned with missing number in random answers generator
   Given I start the interview at "test_kickout"
@@ -447,25 +607,25 @@ Scenario: I'm warned with missing number in random answers generator
 `;
 fixts.warnings.no_number.expected =
 `@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 @alkiln_randomized_generator1_scenario1_of_1
 Scenario: I'm warned with missing number in random answers generator ALKiln random test generator1_scenario1_of_1
   Given I start the interview at "test_kickout"
   And ALKiln warns the author about a generator problem with:
     """
-    🔎 ALK0245 ${ fixts.WARNING_PLACEHOLDER }
+    🔎 ALK0237 ${ fixts.WARNING_PLACEHOLDER }
     """
   And I get to any of the question ids ["end"] with this data:
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
-fixts.warnings.no_number.codes = [``];
+fixts.warnings.no_number.included_log_codes = [ `ALK0237`, `ALK0247` ];
 
 
 fixts.warnings.multiple_numbers = {};
 fixts.warnings.multiple_numbers.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Scenario: I'm warned with too many numbers in random input data
   Given I start the interview at "test_kickout"
@@ -475,14 +635,14 @@ Scenario: I'm warned with too many numbers in random input data
 `;
 fixts.warnings.multiple_numbers.expected =
 `@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 @alkiln_randomized_generator1_scenario1_of_2
 Scenario: I'm warned with too many numbers in random input data ALKiln random test generator1_scenario1_of_2
   Given I start the interview at "test_kickout"
   And ALKiln warns the author about a generator problem with:
     """
-    🔎 ALK0246 ${ fixts.WARNING_PLACEHOLDER }
+    🔎 ALK0238 ${ fixts.WARNING_PLACEHOLDER }
     I generate 4 2 constrained random tests that get to "end" when I pick from:
     """
   And I get to any of the question ids ["end"] with this data:
@@ -494,19 +654,19 @@ Scenario: I'm warned with too many numbers in random input data ALKiln random te
   Given I start the interview at "test_kickout"
   And ALKiln warns the author about a generator problem with:
     """
-    🔎 ALK0246 ${ fixts.WARNING_PLACEHOLDER }
+    🔎 ALK0238 ${ fixts.WARNING_PLACEHOLDER }
     I generate 4 2 constrained random tests that get to "end" when I pick from:
     """
   And I get to any of the question ids ["end"] with this data:
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
-fixts.warnings.multiple_numbers.codes = [``];
+fixts.warnings.multiple_numbers.included_log_codes = [ `ALK0238`, `ALK0247` ];
 
 
 fixts.warnings.fewer_unique_than_requested = {};
 fixts.warnings.fewer_unique_than_requested.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Scenario: I'm warned when I ask for too many unique tests
   Given I start the interview at "test_kickout"
@@ -516,7 +676,7 @@ Scenario: I'm warned when I ask for too many unique tests
 `;
 fixts.warnings.fewer_unique_than_requested.expected =
 `@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+Feature: I generate constrained random tests with ALKiln randomization
 
 @alkiln_randomized_generator1_scenario1_of_2
 Scenario: I'm warned when I ask for too many unique tests ALKiln random test generator1_scenario1_of_2
@@ -554,4 +714,39 @@ Scenario: I'm warned when I ask for too many unique tests ALKiln random test gen
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
-fixts.warnings.fewer_unique_than_requested.codes = [``];
+fixts.warnings.fewer_unique_than_requested.find_1_of = [/\| correct \|/, /\| wrong \|/];
+fixts.warnings.fewer_unique_than_requested.included_log_codes = [ `ALK0243`, `ALK0247` ];
+
+
+fixts.empty_string_value = {};
+fixts.empty_string_value.arg =
+`Feature: I generate constrained random tests
+
+Scenario: A empty string as a value causes log warnings
+  Given I start the interview at "test_kickout"
+  And I generate 2 constrained random tests that get to "end" when I pick from:
+    | var | possible_values |
+    | user_choice | correct;; |
+`;
+fixts.empty_string_value.expected =
+`@alkiln_randomized
+Feature: I generate constrained random tests with ALKiln randomization
+
+@alkiln_randomized_generator1_scenario1_of_2
+Scenario: A empty string as a value causes log warnings ALKiln random test generator1_scenario1_of_2
+  Given I start the interview at "test_kickout"
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+
+@alkiln_randomized_generator1_scenario2_of_2
+Scenario: A empty string as a value causes log warnings ALKiln random test generator1_scenario2_of_2
+  Given I start the interview at "test_kickout"
+  And I get to any of the question ids ["end"] with this data:
+    | var | value |
+${ fixts.RANDOM_TABLE_PLACEHOLDER }
+`;
+fixts.empty_string_value.find_1_of = [/\| correct \|/, /\|  \|/];
+fixts.empty_string_value.included_log_codes = [ `ALK0244`, `ALK0247` ];
+
+

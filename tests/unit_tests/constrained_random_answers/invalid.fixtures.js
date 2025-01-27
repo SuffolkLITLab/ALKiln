@@ -2,104 +2,129 @@
 
 module.exports = fixts = {};
 
-fixts.RANDOM_TABLE_PLACEHOLDER = `@@@ ALK_RANDOM_TABLE_BODY_PLACEHOLDER @@@`;
+fixts.generator_syntax_error = {};
+fixts.generator_syntax_error.arg = `Scenario: Invalid feature file`;
+fixts.generator_syntax_error.expected = null;
+fixts.generator_syntax_error.error_codes = [ `ALK0236` ];
+fixts.generator_syntax_error.log_codes = [ `ALK0236` ];
 
-/**
- * ===========
- * Simplest test
- * =========== */
-fixts.multiple_generator_Steps = {};
-fixts.multiple_generator_Steps.arg =
-`Feature: I generate random tests
+
+fixts.multiple_constraints_Steps = {};
+fixts.multiple_constraints_Steps.arg =
+`Feature: I generate constrained random tests
 
 Scenario: I fail with 2 generator Steps in 1 Scenario
   Given I start the interview at "form_entrypoint_file_name"
-  And I generate 2 constrained random tests that get to ["kickout screen", "success screen"] when I pick from:
+  And I generate 2 constrained random tests that get to "end" when I pick from:
     | var | possible_values |
     | other_var | val1;; val2;; val3 |
-  And I generate 1 constrained random test that gets to ["kickout screen", "success screen"] when I pick from:
+  And I generate 1 constrained random test that gets to "end" when I pick from:
     | var | possible_values |
     | user_choice | correct;; wrong |
 `;
 // ======= ENDS ARG ======= //
-fixts.multiple_generator_Steps.expected = null;
-// TODO: implement below
-fixts.multiple_generator_Steps.includes = 
-`@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+fixts.multiple_constraints_Steps.expected = null;
+fixts.multiple_constraints_Steps.error_codes = [ `ALK0240`, `ALK0246` ];
+fixts.multiple_constraints_Steps.log_codes = [ `ALK0240`, `ALK0246` ];
 
-@alkiln_invalid_randomized_generator_scenario
-Scenario: I fail with 2 generator Steps in 1 Scenario ALKiln random test invalid_randomized_generator_scenario
-  Given my random generator Scenario was invalid with this message: 
+
+fixts.no_constraints_Step = {};
+fixts.no_constraints_Step.arg =
+`Feature: I generate constrained random tests
+
+Scenario: I fail with missing constrained random input Step
+  Given the final Scenario status should be "failed"
+  Given I start the interview at "test_kickout"
 `;
-// ======= ENDS EXPECTED ======= //
-fixts.multiple_generator_Steps.codes = [``];
+fixts.no_constraints_Step.expected = null;
+fixts.no_constraints_Step.error_codes = [ `ALK0241`, `ALK0246` ];
+fixts.no_constraints_Step.log_codes = [ `ALK0241`, `ALK0246` ];
 
 
+fixts.missing_keywords = {};
+fixts.missing_keywords.arg =
+`Feature: I generate constrained random tests
+
+Scenario: I fail with missing keywords for a constraints Step
+  Given the final Scenario status should be "failed"
+  Given I start the interview at "test_kickout"
+  And I generate 2 tests that get to "end" when I pick from:
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+`;
+fixts.missing_keywords.expected = null;
+fixts.missing_keywords.error_codes = [ `ALK0241`, `ALK0246` ];
+fixts.missing_keywords.log_codes = [ `ALK0241`, `ALK0246` ];
 
 
+fixts.missing_table = {};
+fixts.missing_table.arg =
+`Feature: I generate constrained random tests
+
+Scenario: I fail with a missing table
+  Given I start the interview at "form_entrypoint_file_name"
+  And I generate 2 constrained random tests that get to "end" when I pick from:
+`;
+// ======= ENDS ARG ======= //
+fixts.missing_table.expected = null;
+fixts.missing_table.error_codes = [ `ALK0239`, `ALK0246` ];
+fixts.missing_table.log_codes = [ `ALK0239`, `ALK0246` ];
 
 
-// A valid generator Scenario, but an erroring test when run in cucumber
-// TODO: Generate a warning? Inconsistent behavior confusing? And yet
-//    a generator is also confusing and they may think the generator is making
-//    a mistake.
+fixts.too_many_Steps_with_2_missing_tables = {};
+fixts.too_many_Steps_with_2_missing_tables.arg =
+`Feature: I generate constrained random tests
+
+Scenario: I fail with 2 constraints Steps in 1 Scenario
+  Given I start the interview at "form_entrypoint_file_name"
+  And I generate 2 constrained random tests that get to "end" when I pick from:
+  And I generate 3 constrained random tests that get to "end" when I pick from:
+  And I generate 1 constrained random test that gets to "end" when I pick from:
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+`;
+// ======= ENDS ARG ======= //
+fixts.too_many_Steps_with_2_missing_tables.expected = null;
+fixts.too_many_Steps_with_2_missing_tables.error_codes = [ `ALK0239`, `ALK0239`, `ALK0240`, `ALK0246` ];
+fixts.too_many_Steps_with_2_missing_tables.log_codes = [ `ALK0239`, `ALK0239`, `ALK0240`, `ALK0246` ];
+
+
+fixts.missing_ids = {};
+fixts.missing_ids.arg =
+`Feature: I generate constrained random tests
+
+Scenario: I fail with missing quoted ids in constrained random answers
+  Given the final Scenario status should be "failed"
+  Given I start the interview at "test_kickout"
+  And I generate 1 constrained random test that gets to missing quoted ids when I pick from:
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+`;
+// ======= ENDS ARG ======= //
+fixts.missing_ids.expected = null;
+fixts.missing_ids.error_codes = [ `ALK0245`, `ALK0246` ];
+fixts.missing_ids.log_codes = [ `ALK0245`, `ALK0246` ];
+
+
+// A valid generator Scenario, but an erroring test when run in cucumber, so it
+// will error here instead
 fixts.only_row_is_header = {};
 fixts.only_row_is_header.arg =
-`Feature: I generate random tests
+`Feature: I generate constrained random tests
 
 Scenario: Non-table row after table header
   Given the final Scenario status should be "failed"
   Given I start the interview at "test_kickout"
-  And I generate 1 constrained random test that gets to ["kickout screen", "success screen"] when I pick from:
+  And I generate 1 constrained random test that gets to "end" when I pick from:
     | var | possible_values |
     Then non-table line
     | user_choice | correct;; wrong |
 `;
-fixts.only_row_is_header.expected =
-`@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
+fixts.only_row_is_header.expected = null;
+fixts.only_row_is_header.error_codes = [`ALK0242`, `ALK0246`];
+fixts.only_row_is_header.log_codes = [`ALK0242`, `ALK0246`];
 
-@alkiln_randomized_generator1_scenario1_of_1
-Scenario: Non-table row after table header ALKiln random test generator1_scenario1_of_1
-  Given the final Scenario status should be "failed"
-  Given I start the interview at "test_kickout"
-  And I get to any of the question ids ["kickout screen", "success screen"] with this data:
-    | var | value |
-    Then non-table line
-    | user_choice | correct;; wrong |
-`;
-fixts.only_row_is_header.codes = [``];
+/**
+ * No test for a table interrupted in the middle (the parser can't detect it)
+ * */
 
-// No test for a table interrupted in the middle (the generator can't detect it)
-
-fixts.too_many_requested = {};
-fixts.too_many_requested.arg =
-`Feature: I generate random tests
-
-Scenario: Too many tests requested to keep them unique
-  Given I start the interview at "file.yml"
-  And I generate 3 constrained random tests that get to "end" when I pick from:
-    | var | possible_values |
-    | user_choice | correct;; wrong |
-`;
-fixts.too_many_requested.expected =
-`@alkiln_randomized
-Feature: I generate random tests with ALKiln randomization
-
-@alkiln_randomized_generator1_scenario1_of_3
-Scenario: Too many tests requested to keep them unique ALKiln random test generator1_scenario1_of_3
-  Given I start the interview at "file.yml"
-  And I get to any of the question ids ["end"] with this data:
-    | var | value |
-${ fixts.RANDOM_TABLE_PLACEHOLDER }
-
-@alkiln_randomized_generator1_scenario2_of_3
-Scenario: Too many tests requested to keep them unique ALKiln random test generator1_scenario2_of_3
-  Given I start the interview at "file.yml"
-  And I get to any of the question ids ["end"] with this data:
-    | var | value |
-${ fixts.RANDOM_TABLE_PLACEHOLDER }
-`;
-fixts.too_many_requested.find_2 = [`correct`, `wrong`];
-fixts.too_many_requested.codes = [``];

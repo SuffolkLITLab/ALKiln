@@ -6,24 +6,21 @@ const expect = chai.expect;
  * - Test making more than one file?
  * - Test deleting the files from the sources folder?
  * - Test having multiple sources folders? (overdue)
- * 
- * TODO: Test no double semicolons are in the generated text
+ * - Allow single quotes?
  * */
 
 const constrained_random_tests = require(`../../../lib/utils/constrained_random_tests.js`);
 const parse_file = constrained_random_tests.parse_file;
 const Log = require(`../../../lib/utils/Log.js`);
-const logger = new Log({ context: `unit` });
 const fixtures = require(`./valid.fixtures.js`);
+
 
 const RANDOM_TABLE_PLACEHOLDER = fixtures.RANDOM_TABLE_PLACEHOLDER;
 const TABLE_ROW_REGEX = /^(?!(?:.*\| var \| value \|))(.*\| .* \|)/gm;
 const TABLE_PLACEHOLDER_REGEX = new RegExp(`(${ RANDOM_TABLE_PLACEHOLDER }\n)+`, `g`);
 
 const WARNING_PLACEHOLDER = fixtures.WARNING_PLACEHOLDER;
-// const WARNING_MSG_REGEX = /ALK\d{4} .*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*/;
 const WARNING_MSG_REGEX = /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*)/;
-
 function comparable_text( text ) {
   /** Replaces unimportant dynamic strings with placeholder strings
    *
@@ -50,16 +47,75 @@ function comparable_text( text ) {
 };
 
 
+function get_log_codes({ logger }) {
+  /** Returns a list of ALKiln codes from arguments sent to a Log instance
+   * 
+   * @params {object} obj - Named arguments
+   * @params {Log} obj.logger - An instance of Log
+   * @params {object} obj.logger.opts - Options passed to the Log instance
+   * @params {str} obj.logger.opts.code - ALK#### formatted log code
+   * @params {[str]} obj.logger.logs - Additional messages to be logged
+   * 
+   * @returns {[str]} - List of ALKiln log codes in the collection of logs
+   * */
+  let codes = [];
+
+  for ( let record of logger.internal_tests_records ) {
+    codes.push( record.opts.code );
+  }
+
+  return codes;
+}
+
+
+/** Variables that will change their values for each `it()` */
+const logger = new Log({ context: `valid generators unit tests` });
+let fixture = null;
+let new_contents = null;
+let errors = null;
+let actual = null;
+let comparable = null;
+let passes = null;
+function mutate_globals_with({ testing_vals, do_compare = false }) {
+  /** Set up values for parsing, parse, record values. Mutates in-scope
+   *    variables in a way that helps chaijs (mocha really) get the right
+   *    values to the right places.
+   * 
+   * @params {object} testing_vals - Arguments to pass to the function and
+   *     expected values
+   * 
+   * @returns {undefined}
+   * */
+  // Resets logger
+  logger.internal_tests_records = [];
+
+  // Mutates `fixture`
+  fixture = testing_vals;
+  // Mutates `new_contents` and `error`
+  ({ new_contents, errors } = parse_file({
+    file_text: fixture.arg,
+    generator_path: `used_in_warning_logs`,
+    logger
+  }) );
+
+  if ( do_compare ) {
+    // Mutates `comparable`
+    comparable = comparable_text( new_contents );
+    // Mutates `passes`
+    passes = comparable === fixture.expected;
+  }
+};
+
+
 describe(`Constrained random answers parser, when given a valid generator Scenario`, function () {
 
-  const generator_path = `fake_path_name_used_for_text_of_warning_logs`;
-
   describe(`that is simple and normal`, function () {
-    let fixture = fixtures.simple;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.simple }); });
+
+    let outer = fixtures.simple;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
 
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -75,12 +131,67 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   });
 
+  describe(`that has "constrain" and "generat" minimal Step text`, function() {
+    before(function () { mutate_globals_with({ testing_vals: fixtures.generat }); });
+
+    let outer = fixtures.generat;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`has the right non-random text`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`that has "constrain" and "rand" minimal Step text`, function() {
+    before(function () { mutate_globals_with({ testing_vals: fixtures.rand }); });
+
+    let outer = fixtures.rand;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`has the right non-random text`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`that has "constrain" and "mak" minimal Step text`, function() {
+    before(function () { mutate_globals_with({ testing_vals: fixtures.mak }); });
+
+    let outer = fixtures.mak;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`has the right non-random text`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
+  });
+
+  describe(`that has "constrain" and "mad" minimal Step text`, function() {
+    before(function () { mutate_globals_with({ testing_vals: fixtures.mad }); });
+
+    let outer = fixtures.mad;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`has the right non-random text`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
+  });
+
   describe(`that has various complexities with 2 generators and 3 generated`, function () {
-    let fixture = fixtures.complex;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({
+      testing_vals: fixtures.complex, do_compare: true
+    }); });
+
+    let outer = fixtures.complex;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -89,15 +200,6 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       let num_Scenarios = new_contents.split(`Scenario:`).length - 2;
       expect( 3 ).to.equal( num_Scenarios, `Wrong # of Scenarios: ${ num_Scenarios }/2` );
     });
-
-    let comparable = comparable_text( new_contents );
-    let passes = null;
-    try {
-      expect( comparable ).to.equal( fixture.expected );
-      passes = true;
-    } catch ( complex_check_error ) {
-      passes = false;
-    }
 
     it(`retains the text after the Feature`, function () {
       expect( passes, `Incorrect generated text. See below.` ).to.be.true
@@ -122,11 +224,12 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   });  // ends complex
 
   describe(`with an author's tags`, function () {
-    let fixture = fixtures.tags;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.tags }); });
+
+    let outer = fixtures.tags;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -137,11 +240,12 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   });
 
   describe(`with author's tags on line 2`, function () {
-    let fixture = fixtures.weird_spacing.tags_line_2;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.tags_line_2 }); });
+
+    let outer = fixtures.weird_spacing.tags_line_2;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -152,11 +256,12 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   });
 
   describe(`with weird spacing in author's tags`, function () {
-    let fixture = fixtures.weird_spacing.tags;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.tags }); });
+
+    let outer = fixtures.weird_spacing.tags;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -167,11 +272,12 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   });
 
   describe(`with weird indentations`, function () {
-    let fixture = fixtures.weird_spacing.indents;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.indents }); });
+
+    let outer = fixtures.weird_spacing.indents;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -182,11 +288,12 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   });
 
   describe(`with no spacing in choices`, function () {
-    let fixture = fixtures.weird_spacing.choices;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.choices }); });
+
+    let outer = fixtures.weird_spacing.choices;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -197,11 +304,12 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   });
 
   describe(`with 3 columns`, function () {
-    let fixture = fixtures.columns_3;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.columns_3 }); });
+
+    let outer = fixtures.columns_3;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -212,11 +320,12 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   });
 
   describe(`with 4 columns`, function () {
-    let fixture = fixtures.columns_4;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.columns_4 }); });
+
+    let outer = fixtures.columns_4;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -227,11 +336,12 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   });
 
   describe(`with comments before and in the table`, function () {
-    let fixture = fixtures.rows_comments;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.rows_comments }); });
+
+    let outer = fixtures.rows_comments;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -242,11 +352,12 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   });
 
   describe(`with a comment after the table`, function () {
-    let fixture = fixtures.comment_after_last_row;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.comment_after_last_row }); });
+
+    let outer = fixtures.comment_after_last_row;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -257,11 +368,12 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   });
 
   describe(`with empty rows before and in the table`, function () {
-    let fixture = fixtures.rows_empty;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.rows_empty }); });
+
+    let outer = fixtures.rows_empty;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -272,57 +384,90 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   });
 
   describe(`with no number value`, function () {
-    let fixture = fixtures.warnings.no_number;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.warnings.no_number }); });
+
+    let outer = fixtures.warnings.no_number;
+    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-    // it(`TODO: adds a warning`, function () {
-    //   `You gave no number. ALKiln will generate 1 test`
-    // });
     it(`generates 1 test`, function () {
       expect( comparable_text( new_contents )).to.equal( fixture.expected );
     });
   });
 
   describe(`with too many number values`, function () {
-    let fixture = fixtures.warnings.multiple_numbers;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.warnings.multiple_numbers }); });
+
+    let outer = fixtures.warnings.multiple_numbers;
+    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-    // it(`TODO: adds a warning`, function () {
-    //   `You gave multiple numbers. ALKiln will use the second one and generate 2 test(s)`
-    // });
     it(`uses the last number given`, function () {
       expect( comparable_text( new_contents )).to.equal( fixture.expected );
     });
   });
 
-  describe(`that is unable to generate enough unique tests to fulfill the number of tests the author requested`, function () {
-    let fixture = fixtures.warnings.fewer_unique_than_requested;
-    let { new_contents, errors } = parse_file({
-      file_text: fixture.arg,
-      generator_path,
-      logger
+  describe(`that asks for 3 tests when only 2 unique tests are possible`, function () {
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.warnings.fewer_unique_than_requested }); });
+
+    let outer = fixtures.warnings.fewer_unique_than_requested;
+    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-    // it(`TODO: adds a warning`, function () {
-    //   `You gave multiple numbers. ALKiln will use the second one and generate 2 test(s)`
-    // });
-    it(`uses the last number given`, function () {
+    it(`only makes 2 tests`, function () {
       expect( comparable_text( new_contents )).to.equal( fixture.expected );
     });
+    
+    it(`makes 2 unique tests`, function () {
+      for ( let to_find_1_of of fixture.find_1_of ) {
+        let text_regex = new RegExp( to_find_1_of, `g` );
+          let matches = new_contents.match( text_regex );
+          expect( matches ).to.be.an(`array`);
+          expect( matches.length ).to.equal( 1 );
+      }
+    });
   });
+
+  describe(`that has a blank var value in a generator column`, function () {
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.empty_string_value }); });
+
+    let outer = fixtures.empty_string_value;
+    it(`includes at least one of all these log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.include.members( fixture.included_log_codes );
+    });
+
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+
+    it(`has the right non-random text`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
+
+    describe(`the "" value does get its own Scenario`, function () {
+
+      for ( let to_find_1_of of outer.find_1_of ) {
+        let text_regex = new RegExp( to_find_1_of, `g` );
+        it(`for the var value "${ to_find_1_of }"`, function () {
+          let matches = new_contents.match( text_regex );
+          expect( matches, `Unable to find column matching ${ to_find_1_of }` ).to.be.an(`array`);
+          expect( matches.length ).to.equal( 1 );
+        })
+      }
+      
+    });
+
+  });  // ends blank var value
 
 });
