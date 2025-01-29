@@ -64,13 +64,15 @@ Scenario: Debug warning for constraints table syntax that creates missing vals
 # Generate warnings Steps
 # =====================
 
-Scenario: I'm warned with missing number in random answers generator and generate 1 test
+@generated_warning
+Scenario: With a missing number I get a warning and 1 generated test
   Given I start the interview at "test_kickout"
   And I generate not a number constrained random tests that get to ["kickout screen", "success screen"] when I pick from:
     | var | possible_values |
     | user_choice | correct;; wrong |
 
-Scenario: I'm warned with too many numbers in random input data and use the second number
+@generated_warning
+Scenario: With too many numbers I get a warning and use the 2nd number
   Given I start the interview at "test_kickout"
   And I generate 4 2 constrained random tests that get to "kickout screen" or "success screen" when I pick from:
     | var | possible_values |

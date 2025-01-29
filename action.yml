@@ -33,6 +33,10 @@ inputs:
     description: "The version of docassemblecli to install."
     required: false
     default: "0.0.17"
+  MAX_RANDOM_TESTS_PER_SCENARIO:
+    description: "The maximum number of tests ALKiln will generate for every Scenario that can generate tests."
+    required: false
+    # Default will be internal to avoid duplication of data
 
 outputs:
   PATH_TO_ARTIFACTS:
@@ -68,6 +72,7 @@ runs:
         MAX_SECONDS_FOR_SETUP: ${{ inputs.MAX_SECONDS_FOR_SETUP }}
         SERVER_RELOAD_TIMEOUT_SECONDS: ${{ inputs.SERVER_RELOAD_TIMEOUT_SECONDS }}
         DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
+        MAX_RANDOM_TESTS_PER_SCENARIO: ${{ inputs.MAX_RANDOM_TESTS_PER_SCENARIO }}
       shell: bash
       run: |
         log="💡 ALK0023 INFO: Set environment variables and create artifacts folder"
