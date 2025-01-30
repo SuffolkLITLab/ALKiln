@@ -20,7 +20,7 @@ const TABLE_ROW_REGEX = /^(?!(?:.*\| var \| value \|))(.*\| .* \|)/gm;
 const TABLE_PLACEHOLDER_REGEX = new RegExp(`(${ RANDOM_TABLE_PLACEHOLDER }\n)+`, `g`);
 
 const WARNING_PLACEHOLDER = fixtures.WARNING_PLACEHOLDER;
-const WARNING_MSG_REGEX = /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*)/;
+const WARNING_MSG_REGEX = /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*(?:\n.+)*)(\n\s\s\s\s---+)/g;
 function comparable_text( text ) {
   /** Replaces unimportant dynamic strings with placeholder strings
    *
@@ -39,8 +39,7 @@ function comparable_text( text ) {
   );
 
   let without_warnings = with_reduced_placeholders.replace(
-    /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*)/g,
-    `$1${ WARNING_PLACEHOLDER }`
+    WARNING_MSG_REGEX, `$1${ WARNING_PLACEHOLDER }$3`
   );
 
   return without_warnings;
