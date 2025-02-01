@@ -2,12 +2,33 @@
 
 module.exports = fixts = {};
 
-fixts.generator_syntax_error = {};
-fixts.generator_syntax_error.arg = `Scenario: Invalid feature file`;
-fixts.generator_syntax_error.expected = null;
-fixts.generator_syntax_error.error_codes = [ `ALK0236` ];
-fixts.generator_syntax_error.log_codes = [ `ALK0236` ];
+/** Research notes
+ * 
+ * Valid: A feature is valid without a description
+ * Valid: A scenario is valid without a description
+ * 
+ * TODO
+ * Research: Can we get back null or undefined without syntax errors? (unlikely)
+ * Research: Can feature.children[0] exist without a `.scenario` prop? (unlikely)
+ * */
 
+fixts.generator_missing_contents = {};
+fixts.generator_missing_contents.arg = ``;
+fixts.generator_missing_contents.expected = null;
+fixts.generator_missing_contents.error_codes = [ `ALK0254` ];
+fixts.generator_missing_contents.log_codes = [ `ALK0254` ];
+
+fixts.generator_missing_Feature = {};
+fixts.generator_missing_Feature.arg = `Scenario: Invalid feature file`;
+fixts.generator_missing_Feature.expected = null;
+fixts.generator_missing_Feature.error_codes = [ `ALK0236` ];
+fixts.generator_missing_Feature.log_codes = [ `ALK0236` ];
+
+fixts.generator_0_Scenarios = {};
+fixts.generator_0_Scenarios.arg = `Feature: No scenarios`;
+fixts.generator_0_Scenarios.expected = null;
+fixts.generator_0_Scenarios.error_codes = [ `ALK0256` ];
+fixts.generator_0_Scenarios.log_codes = [ `ALK0256` ];
 
 fixts.multiple_constraints_Steps = {};
 fixts.multiple_constraints_Steps.arg =
