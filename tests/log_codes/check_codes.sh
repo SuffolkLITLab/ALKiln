@@ -120,7 +120,6 @@ while [ "$indx" -lt "$highest_code" ]; do
 
   # To add to the list of strings to print later
   short_msg="$log_code $num_paths/$num_expected"
-  long_msg="$log_code "
   long_msg+="$num_paths/$num_expected:"
   long_msg+=$(echo "${codes_unique_paths[$indx]}" | sed 's/;/\n  - /g')
 
