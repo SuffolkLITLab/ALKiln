@@ -4,15 +4,20 @@
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "npm run unit && npm run codes && npm run cucumber",
-    "cucumber": "./lib/run_cucumber.js",
-    "local": "npm run setup && npm run cucumber; npm run takedown",
-    "pass": "npm run cucumber 'not @error and not @temp_error'",
-    "fail": "npm run cucumber '@error'",
+    "test": "npm run build && npm run unit && npm run codes && npm run cucumber",
+    "local": "npm run build && npm run setup && npm run cucumber; npm run takedown",
+    "pass": "npm run build && npm run cucumber 'not @error and not @temp_error'",
+    "fail": "npm run build && npm run cucumber '@error'",
+    "cucumber": "npm run build && ./lib/run_cucumber.js",
     "setup": "./lib/docassemble/setup.js",
     "takedown": "./lib/docassemble/takedown.js",
     "server_install": "./lib/docassemble/server_install.js",
-    "unit": "mocha --recursive 'tests/unit_tests/**/*.test.*'",
+    "build": "npm run artifacts && npm run files",
+    "files": "npm run validate && npm run generate",
+    "validate": "./lib/setup/validate.js",
+    "generate": "./lib/setup/generate.js",
+    "unit": "npm run artifacts && mocha --recursive 'tests/unit_tests/**/*.test.*'",
+    "artifacts": "./lib/setup/artifacts.js",
     "codes": "tests/log_codes/check_codes.sh ."
   },
   "repository": {
@@ -57,6 +62,9 @@
     "alkiln-server-install": "./lib/docassemble/server_install.js",
     "alkiln-setup": "./lib/docassemble/setup.js",
     "alkiln-takedown": "./lib/docassemble/takedown.js",
-    "alkiln-run": "./lib/run_cucumber.js"
+    "alkiln-run": "./lib/run_cucumber.js",
+    "alkiln-artifacts": "./lib/setup/artifacts.js",
+    "alkiln-validate": "./lib/setup/validate.js",
+    "alkiln-generate": "./lib/setup/generate.js"
   }
 }
