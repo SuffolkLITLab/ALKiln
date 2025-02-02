@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# TODO:
+# - Fix script doesn't catch numbers above max that are missing
+# - Fix script doesn't use -l arg after many iterations. Usage row when fixed:
+# | -l arg:   1 prints extra logs                       |
+
 # Identify missing and/or duplicate log codes
 
 # Profiling performance
@@ -11,21 +16,22 @@ exit_code=0
 
 echo " -------------------------------------------------------
 | Usage:                                                |
-| bash $(basename $0) [dir] [c file] [c folder] [-l arg]
+| bash $(basename $0) [dir] [c file] [c folder]         |
 | dir:      The directory in which to search for logs   |
 | c file:   Name of the log instance counter file       |
 | c folder: Path to the folder of the log counter file  |
-| -l arg:   \"1\" prints extra logs                       |
  -------------------------------------------------------"
 
-# Get flags and their values
-loudness="0"
-while getopts ':l:' opt; do
-  case "${opt}" in
-    l) loudness="${OPTARG}";;
-    \?) script_args+=("-$OPTARG");;
-  esac
-done
+## Get flags and their values
+#loudness="0"
+#while getopts ":l:" opt; do
+#  case "$opt" in
+#    l) loudness="$OPTARG";;
+#    \?) script_args+=("-$OPTARG");; # prepare for later code
+#  esac
+#done
+#
+# echo "loudness $loudness" # always prints 0
 
 # Use global "option index" to get the next args
 
@@ -46,22 +52,17 @@ fi
 
 expected_instances_path="$expected_instances_folder/$expected_instances_file"
 
-if [[ "$loudness" != "0" ]]; then
-  echo "loudness: $loudness"
-  echo "where_to_look: $where_to_look"
-  echo "File showing expected instances of log codes: $expected_instances_path"
-fi
+#if [[ "$loudness" != "0" ]]; then
+#  echo "loudness: $loudness"
+#  echo "where_to_look: $where_to_look"
+#  echo "File showing expected instances of log codes: $expected_instances_path"
+#fi
 
 
 # removed and are no longer used. Syntax used works with GitHub cli - [[:digit:]]
 # https://stackoverflow.com/a/6901221
 # Exclude files and paths
-instances=$(find "$where_to_look" -type f ! -name "CONTRIBUTING.md" ! -name "$expected_instances_file" ! -name "debug_log.txt" ! -name "cucumber-report.txt" ! -path "*/tests/*" ! -path "*/node_modules/*" ! -path "*/ALKilnTests/*" ! -path "*/alkiln-*/*" ! -path "*/_alkiln*/*" ! -path "*/docs/decisions/*" ! -path "*/\.*" -print0 | xargs -0 -P 4 grep -0 -ro 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' | grep -v -- '--' )
-
-if [[ "$loudness" != "0" ]]; then
-  total_instances=$(echo "$instances" | wc -l)
-  echo "Number 'ALK' logs found: $total_instances"
-fi
+instances=$(find "$where_to_look" -type f ! -name "CONTRIBUTING.md" ! -name "$expected_instances_file" ! -name "debug_log.txt" ! -name "cucumber-report.txt" ! -path "*/tests/*" ! -path "*/node_modules/*" ! -path "*/ALKilnTests/*" ! -path "*/alkiln-*/*" ! -path "*/_alkiln*/*" ! -path "*/docs/*" ! -path "*/docs/decisions/*" ! -path "*/\.*" -print0 | xargs -0 -P 4 grep -0 -ro 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' | grep -v -- '--' )
 
 # Get the unique paths for every code
 codes_unique_paths=()
@@ -92,12 +93,6 @@ for one_code in $instances; do
   fi
 done
 
-if [[ "$loudness" != "0" ]]; then
-  echo "Instance count: ${#codes_unique_paths[@]}"
-  echo ">>> highest_code <<<: $highest_code"
-  echo "Paths of ALK0000: ${codes_unique_paths[0]}"
-fi
-
 indx=0
 too_many=()
 missing=()
@@ -125,36 +120,21 @@ while [ "$indx" -lt "$highest_code" ]; do
 
   # To add to the list of strings to print later
   short_msg="$log_code $num_paths/$num_expected"
-  long_msg="$log_code act/exp "
+  long_msg="$log_code "
   long_msg+="$num_paths/$num_expected:"
   long_msg+=$(echo "${codes_unique_paths[$indx]}" | sed 's/;/\n  - /g')
 
   # missing
   if [ "$num_paths" -lt "$num_expected" ]; then
-    if [[ "$loudness" != "0" ]]; then
-      missing+=("$long_msg")
-    else
-      missing+=("$short_msg")
-    fi
+    missing+=("$long_msg")
 
   # too_many
   elif [ "$num_paths" -gt "$num_expected" ]; then
-    if [[ "$loudness" != "0" ]]; then
-      too_many+=("$long_msg")
-    else
-      too_many+=("$short_msg")
-    fi
+    too_many+=("$long_msg")
   fi
 
   let indx++
 done
-
-
-if [[ "$loudness" != "0" ]]; then
-  echo ""
-  echo "Missing count: ${#missing[@]}"
-  echo "Too many count: ${#too_many[@]}"
-fi
 
 # === Results ===
 
