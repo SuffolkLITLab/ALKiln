@@ -97,7 +97,7 @@ describe(`Constrained random answers parser,`, function () {
 
   });
 
-  describe(`when given a invalid generator text`, function () {
+  describe(`when given a missing Feature keyword`, function () {
 
     before(function () { mutate_globals_with({ testing_vals: fixtures.generator_missing_Feature }); });
     
@@ -136,6 +136,8 @@ describe(`Constrained random answers parser,`, function () {
   });
 
   describe(`when given an invalid generator Scenario`, function () {
+
+    /** TODO: `that is missing a "number" first Step` */
 
     describe(`that has multiple constrained random answers Steps,`, function () {
 
