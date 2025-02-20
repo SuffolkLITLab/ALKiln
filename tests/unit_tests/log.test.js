@@ -169,6 +169,10 @@ describe(`An instance of log`, function () {
   })
 
   describe(`given totally custom metadata`, function () {
+    let error;
+    before(function() {
+      error = new Error(`custom_SUCCESS_error`);
+    });
     it(`.success overwrites the right values`, async function() {
       let options = {
         before: `custom_SUCCESS_before~`,
@@ -176,17 +180,22 @@ describe(`An instance of log`, function () {
         icon: `custom_SUCCESS_icon`,
         code: `custom_SUCCESS_code`,
         context: `custom_SUCCESS_context`,
+        // Discuss: too complex to test right now? Test separately? Test
+        //     unexpected file contents?
+        error,
         do_throw: true,
       };
       let returned = log.success( options, `custom_SUCCESS_log` );
       // Note the intentional lack of space with `before`
       expect( returned ).to.include(`custom_SUCCESS_before~🌈 custom_SUCCESS_code custom_SUCCESS_context SUCCESS`);
       expect( returned ).to.include(`custom_SUCCESS_log`);
+      expect( returned ).to.include( error.stack );
       expect( returned ).to.not.include(`Skip`);
     });
     it(`.success stores the right text in the debug file`, async function() {
       expect_debug_file_to_include(`custom_SUCCESS_before~🌈 custom_SUCCESS_code custom_SUCCESS_context SUCCESS`);
       expect_debug_file_to_include(`custom_SUCCESS_log`);
+      expect_debug_file_to_include( error.stack );
       expect_debug_file_to_not_include(`Skip`);
     });
   })
@@ -313,10 +322,10 @@ describe(`An instance of log`, function () {
       } catch ( error ) {
         error_to_test = error;
       }
-      // Note: No metadata is included in the error so that we don't have
-      // to re-throw every error that comes in and they can keep their nice
-      // stack traces.
-      // Note: Also excludes logs from error message
+      // Note: No metadata is included in the error so that we don't have to
+      // re-throw every error that comes in (in order to add the metadata) and
+      // they can keep their nice stack traces. Note: Also excludes logs from
+      // error message
       expect( error_to_test.message ).to.include(`CUSTOM_THROW_ERROR_STRING`);
       expect( error_to_test.stack ).to.include(`at Log.throw`);
       expect( error_to_test.stack ).to.not.include(`Skip`);
@@ -435,47 +444,14 @@ describe(`An instance of log`, function () {
   })
 
   describe(`with a value for \`error\` and no throw with .debug()`, function () {
-    it(`returns a value that excludes the error and the error stack`, async function() {
+    it(`returns a value that includes the error and the error stack, but does not throw`, async function() {
       let options = { error: `custom_DEBUG_non_thrown_error`, };
       let returned = log.debug( options );
-      expect( returned ).to.not.include(`custom_DEBUG_non_thrown_error`);
+      expect( returned ).to.include(`custom_DEBUG_non_thrown_error`);
       expect( returned ).to.not.include(`at Log.throw`);
     });
-    it(`excludes the error in the debug file`, async function() {
-      expect_debug_file_to_not_include(`custom_DEBUG_non_thrown_error`);
-    });
-    it(`stores the warning code in the debug file`, async function() {
-      expect_debug_file_to_include(`ALK0223`);
-    });
-    it(`stores the text 'Skip' in the debug file`, async function() {
-      expect_debug_file_to_include(`Skip`);
-    });
-    it(`excludes the error in the unexpected output file`, async function() {
-      expect_unexpected_output_file_to_not_include(`custom_DEBUG_non_thrown_error`);
-    });
-    it(`stores the warning code in the unexpected output file`, async function() {
-      expect_unexpected_output_file_to_include(`ALK0223`);
-    });
-    it(`stores the text 'Skip' in the unexpected output file`, async function() {
-      expect_unexpected_output_file_to_include(`Skip`);
-    });
-  })
-
-  describe(`given an error without a do_throw`, function () {
-    it(`.debug saves a warning and ignores the error`, async function() {
-      let options = {
-        error: `Illegal error`,
-        do_throw: false,
-      };
-      let returned = log.debug( options, `DEBUG log with illegal error` );
-      expect( returned ).to.include(`DEBUG log with illegal error`);
-      expect( returned ).to.not.include(`Illegal error`);
-      // To not include `Illegal error`
-    });
-    it(`.debug stores and excludes the right text in the debug file`, async function() {
-      expect_debug_file_to_include(`ALK0223`);
-      expect_debug_file_to_include(`DEBUG log with illegal error`);
-      expect_debug_file_to_not_include(`Illegal error`);
+    it(`includes the error in the debug file`, async function() {
+      expect_debug_file_to_include(`custom_DEBUG_non_thrown_error`);
     });
   })
 

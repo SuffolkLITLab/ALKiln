@@ -231,7 +231,7 @@ ALK0219:1
 ALK0220:1
 ALK0221:1
 ALK0222:1
-ALK0223:1
+ALK0223:0 "Only logs that throw should give a value to \`error\`. Skipping the value."
 ALK0224:1
 ALK0225:1
 ALK0226:1
