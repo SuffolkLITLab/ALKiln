@@ -9,8 +9,8 @@ const expect = chai.expect;
  * - Allow single quotes?
  * */
 
-const constrained_random_tests = require(`../../../lib/utils/constrained_random_tests.js`);
-const parse_file = constrained_random_tests.parse_file;
+const TestGenerator = require(`../../../lib/utils/constrained_random_tests.js`);
+// const parse_file = new TestGenerator.parse_file;
 const Log = require(`../../../lib/utils/Log.js`);
 const fixtures = require(`./valid.fixtures.js`);
 
@@ -88,14 +88,16 @@ function mutate_globals_with({ testing_vals, do_compare = false }) {
   // Resets logger
   logger.internal_tests_records = [];
 
+  // Fresh namespace
+  let generator = new TestGenerator();
   // Mutates `fixture`
   fixture = testing_vals;
   // Mutates `new_contents` and `error`
-  ({ new_contents, errors } = parse_file({
-    file_text: fixture.arg,
-    generator_path: `used_in_warning_logs`,
-    logger
-  }) );
+  ( { new_contents, errors } = generator.parse_file({
+      file_text: fixture.arg,
+      generator_path: `used_in_warning_logs`,
+      logger
+    }) );
 
   if ( do_compare ) {
     // Mutates `comparable`
