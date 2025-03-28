@@ -480,16 +480,16 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       }
     });
 
-    // it(`tries at least 10 times`, function(){
-    //   let codes = get_log_codes({ logger });
-    //   // I'm curious about what the big O value of this method is
-    //   // Other methods: https://stackoverflow.com/questions/5667888/counting-the-occurrences-frequency-of-array-elements
-    //   let codes_regex = new RegExp(`ALK1001`, `g`);
-    //   let codes_str = codes.join(`;`);
-    //   let code_matches = codes_str.match(codes_regex);
-    //   expect( code_matches ).to.be.an(`array`);
-    //   expect( code_matches.length ).to.be.above( 9 );
-    // });
+    it(`tries at least 10 times`, function(){
+      let codes = get_log_codes({ logger });
+      // I'm curious about what the big O value of this method is
+      // Other methods: https://stackoverflow.com/questions/5667888/counting-the-occurrences-frequency-of-array-elements
+      let codes_regex = new RegExp(`ALK1001`, `g`);
+      let codes_str = codes.join(`;`);
+      let code_matches = codes_str.match(codes_regex);
+      expect( code_matches ).to.be.an(`array`);
+      expect( code_matches.length ).to.be.above( 9 );
+    });
   });
 
   // describe(`that has a blank var value in a generator column`, function () {
