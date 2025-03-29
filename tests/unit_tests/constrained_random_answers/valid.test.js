@@ -217,23 +217,7 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       expect( fixture.num_Scenarios ).to.equal( num_Scenarios, `Wrong # of Scenarios: ${ fixture.num_Scenarios }/2` );
     });
 
-    it(`retains the text after the Feature`, function () {
-      expect( text_matches, `Incorrect generated text. See below.` ).to.be.true
-    });
-    it(`retains the Step after the table`, function () {
-      expect( text_matches, `Incorrect generated text. See below.` ).to.be.true
-    });
-    it(`retains the comments before the table`, function () {
-      expect( text_matches, `Incorrect generated text. See below.` ).to.be.true
-    });
-    it(`retains the comments after the table`, function () {
-      expect( text_matches, `Incorrect generated text. See below.` ).to.be.true
-    });
-    it(`retains and ignores a commented extraneous generator Step`, function () {
-      expect( text_matches, `Incorrect generated text. See below.` ).to.be.true
-    });
-    it(`keeps the comments in the table`, function () {
-      // Make sure text comparison gets logged once
+    it(`retains the text after the Feature, retains the comments before the table, retains the comments after the table, retains the Step after the table, retains and ignores a commented extraneous generator Step, keeps the comments in the table`, function () {
       expect( comparable ).to.equal( fixture.expected );
     });
 
