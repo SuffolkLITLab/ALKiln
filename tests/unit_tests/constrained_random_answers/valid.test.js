@@ -22,6 +22,9 @@ const TABLE_PLACEHOLDER_REGEX = new RegExp(`(${ RANDOM_TABLE_PLACEHOLDER }\n)+`,
 
 const WARNING_PLACEHOLDER = fixtures.WARNING_PLACEHOLDER;
 const WARNING_MSG_REGEX = /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*(?:\n.+)*)(\n\s\s\s\s---+)/g;
+
+const FLUB_PLACEHOLDER = fixtures.FLUB_PLACEHOLDER;
+const FLUB_REGEX = fixtures.FLUB_OPTIONS_REGEX;
 function comparable_text( text ) {
   /** Replaces unimportant dynamic strings with placeholder strings
    *
@@ -40,11 +43,16 @@ function comparable_text( text ) {
     `${ RANDOM_TABLE_PLACEHOLDER }\n`
   );
 
+  // replaceAll?
   let without_warnings = with_reduced_placeholders.replace(
     WARNING_MSG_REGEX, `$1${ WARNING_PLACEHOLDER }$3`
   );
 
-  return without_warnings;
+  let without_random_flub_words = without_warnings.replaceAll(
+    FLUB_REGEX, FLUB_PLACEHOLDER
+  );
+
+  return without_random_flub_words;
 };
 
 
@@ -131,7 +139,6 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
   //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
   //   it(`generates 2 Scenarios`, function() {
-  //     // let num_Scenarios = new_contents.split(`Scenario:`).length - 1;
   //     expect( fixture.num_Scenarios ).to.equal( num_Scenarios, `Wrong # of Scenarios: ${ fixture.num_Scenarios }/2` );
   //   });
 
@@ -467,11 +474,15 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-    it(`only makes 2 tests`, function () {
+    it(`returns the right text`, function () {
       expect( comparable_text( new_contents )).to.equal( fixture.expected );
     });
+
+    it(`only makes 2 tests`, function () {
+      expect( fixture.num_Scenarios ).to.equal( num_Scenarios, `Wrong # of Scenarios: ${ fixture.num_Scenarios }/2` );
+    });
     
-    it(`makes 2 unique tests`, function () {
+    it(`the 2 tests are unique`, function () {
       for ( let to_find_1_of of fixture.find_1_of ) {
         let text_regex = new RegExp( to_find_1_of, `g` );
           let matches = new_contents.match( text_regex );
