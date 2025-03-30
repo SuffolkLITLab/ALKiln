@@ -18,7 +18,7 @@ const get_Gherkin_AST = require(`../../../lib/utils/get_Gherkin_AST`);
 
 const RANDOM_TABLE_PLACEHOLDER = fixtures.RANDOM_TABLE_PLACEHOLDER;
 const TABLE_ROW_REGEX = /^(?!(?:.*\| var \| value \|))(.*\| .* \|)/gm;
-const TABLE_PLACEHOLDER_REGEX = new RegExp(`(${ RANDOM_TABLE_PLACEHOLDER }\n)+`, `g`);
+const TABLE_PLACEHOLDER_REGEX = new RegExp(`(${ RANDOM_TABLE_PLACEHOLDER }(?:\n)?)+`, `g`);
 
 const WARNING_PLACEHOLDER = fixtures.WARNING_PLACEHOLDER;
 const WARNING_MSG_REGEX = /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*(?:\n.+)*)(\n\s\s\s\s---+)/g;
@@ -32,13 +32,12 @@ function comparable_text( text ) {
    *    but the table contains random values, so we need to discount the table.
    *    Same for warning timestamps and message text.
    * */
-  console.log(`\n\n`, text, `\n\n`)
-  let with_placeholders = text.replace(
+  let with_placeholders = text.replaceAll(
     TABLE_ROW_REGEX,
     RANDOM_TABLE_PLACEHOLDER
   );
   // Collapse multiple consecutive placeholders into one placeholder
-  let with_reduced_placeholders = with_placeholders.replace(
+  let with_reduced_placeholders = with_placeholders.replaceAll(
     TABLE_PLACEHOLDER_REGEX,
     `${ RANDOM_TABLE_PLACEHOLDER }\n`
   );
@@ -51,6 +50,9 @@ function comparable_text( text ) {
   let without_random_flub_words = without_warnings.replaceAll(
     FLUB_REGEX, FLUB_PLACEHOLDER
   );
+  console.log(`\n\n~~~~~~~~\n`)
+  console.log(without_random_flub_words)
+  console.log(`\n\n`)
 
   return without_random_flub_words;
 };
@@ -127,26 +129,26 @@ function mutate_globals_with({ testing_vals, do_compare=false }) {
 
 describe(`Constrained random answers parser, when given a valid generator Scenario`, function () {
 
-  // describe(`that is simple and normal`, function () {
+  describe(`that is simple and normal`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.simple }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.simple }); });
 
-  //   let outer = fixtures.simple;
-  //   it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.simple;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
 
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`generates 2 Scenarios`, function() {
-  //     expect( fixture.num_Scenarios ).to.equal( num_Scenarios, `Wrong # of Scenarios: ${ fixture.num_Scenarios }/2` );
-  //   });
+    it(`generates 2 Scenarios`, function() {
+      expect( num_Scenarios ).to.equal( fixture.num_Scenarios, `Wrong # of Scenarios: ${ num_Scenarios }/${ fixture.num_Scenarios }` );
+    });
 
-  //   it(`has the right non-random text`, function () {
-  //     expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
-  //   });
+    it(`has the right non-random text`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
 
-  // });
+  });
 
   describe(`that has "constrain" and "generat" minimal Steps text`, function() {
     before(function () { mutate_globals_with({ testing_vals: fixtures.generat }); });
@@ -156,9 +158,9 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
-    // it(`has the right non-random text`, function () {
-    //   expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
-    // });
+    it(`has the right non-random text`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
   });
 
   describe(`that has "constrain" and "rand" minimal Steps text`, function() {
@@ -169,9 +171,9 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
-    // it(`has the right non-random text`, function () {
-    //   expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
-    // });
+    it(`has the right non-random text`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
   });
 
   describe(`that has "constrain" and "make" minimal Steps text`, function() {
@@ -182,9 +184,9 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
-    // it(`has the right non-random text`, function () {
-    //   expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
-    // });
+    it(`has the right non-random text`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
   });
 
   describe(`that has "constrain" and "made" minimal Steps text`, function() {
@@ -195,9 +197,9 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
     });
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
-    // it(`has the right non-random text`, function () {
-    //   expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
-    // });
+    it(`has the right non-random text`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
   });
 
   describe(`that has various complexities with 1 generator asking for 2 tests,`, function () {
@@ -214,10 +216,10 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`generates 2 Scenarios (skipping the extra appearance of "Scenario:")`, function() {
-      expect( fixture.num_Scenarios ).to.equal( num_Scenarios, `Wrong # of Scenarios: ${ fixture.num_Scenarios }/2` );
+      expect( num_Scenarios ).to.equal( fixture.num_Scenarios, `Wrong # of Scenarios: ${ num_Scenarios }/${ fixture.num_Scenarios }` );
     });
 
-    it(`retains the text after the Feature, retains the comments before the table, retains the comments after the table, retains the Step after the table, retains and ignores a commented extraneous generator Step, keeps the comments in the table`, function () {
+    it(`retains the text after the Feature, retains the comments before the table, retains the comments after the table, retains the Step after the table, retains and ignores a commented extraneous generator Step, keeps the comments in the table, has an extra line on the end`, function () {
       expect( comparable ).to.equal( fixture.expected );
     });
 
@@ -394,9 +396,9 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-    // it(`generates 1 test`, function () {
-    //   expect( comparable_text( new_contents )).to.equal( fixture.expected );
-    // });
+    it(`generates 1 test`, function () {
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
+    });
   });
 
   describe(`with too many number values in one Step`, function () {
@@ -463,7 +465,7 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     });
 
     it(`only makes 2 tests`, function () {
-      expect( fixture.num_Scenarios ).to.equal( num_Scenarios, `Wrong # of Scenarios: ${ fixture.num_Scenarios }/2` );
+      expect( num_Scenarios ).to.equal( fixture.num_Scenarios, `Wrong # of Scenarios: ${ num_Scenarios }/${ fixture.num_Scenarios }` );
     });
     
     it(`the 2 tests are unique`, function () {
