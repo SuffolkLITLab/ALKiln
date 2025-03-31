@@ -18,10 +18,10 @@ const get_Gherkin_AST = require(`../../../lib/utils/get_Gherkin_AST`);
 
 const RANDOM_TABLE_PLACEHOLDER = fixtures.RANDOM_TABLE_PLACEHOLDER;
 const TABLE_ROW_REGEX = /^(?!(?:.*\| var \| value \|))(.*\| .* \|)/gm;
-const TABLE_PLACEHOLDER_REGEX = new RegExp(`(${ RANDOM_TABLE_PLACEHOLDER }(?:\n)?)+`, `g`);
+const TABLE_PLACEHOLDER_REGEX = new RegExp(`(${ RANDOM_TABLE_PLACEHOLDER }(\n)?)+`, `g`);
 
 const WARNING_PLACEHOLDER = fixtures.WARNING_PLACEHOLDER;
-const WARNING_MSG_REGEX = /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*(?:\n.+)*)(\n\s\s\s\s---+)/g;
+const WARNING_MSG_REGEX = /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*(?:\n.+))/g;
 
 const FLUB_PLACEHOLDER = fixtures.FLUB_PLACEHOLDER;
 const FLUB_REGEX = fixtures.FLUB_OPTIONS_REGEX;
@@ -39,20 +39,16 @@ function comparable_text( text ) {
   // Collapse multiple consecutive placeholders into one placeholder
   let with_reduced_placeholders = with_placeholders.replaceAll(
     TABLE_PLACEHOLDER_REGEX,
-    `${ RANDOM_TABLE_PLACEHOLDER }\n`
+    `${ RANDOM_TABLE_PLACEHOLDER }$2`
   );
 
-  // replaceAll?
   let without_warnings = with_reduced_placeholders.replace(
-    WARNING_MSG_REGEX, `$1${ WARNING_PLACEHOLDER }$3`
+    WARNING_MSG_REGEX, `$1${ WARNING_PLACEHOLDER }`
   );
 
   let without_random_flub_words = without_warnings.replaceAll(
     FLUB_REGEX, FLUB_PLACEHOLDER
   );
-  console.log(`\n\n~~~~~~~~\n`)
-  console.log(without_random_flub_words)
-  console.log(`\n\n`)
 
   return without_random_flub_words;
 };
@@ -225,165 +221,165 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
   });  // ends complex
 
-  // describe(`with an author's tags`, function () {
+  describe(`with an author's weird tag spacing`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.tags }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.tags }); });
 
-  //   let outer = fixtures.tags;
-  //   it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.tags;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
     
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`keeps those tags`, function () {
-  //     expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
-  //   });
-  // });
+    it(`keeps those tags`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
+  });
 
-  // describe(`with author's tags on line 2`, function () {
+  describe(`with author's tags on line 2`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.tags_line_2 }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.tags_line_2 }); });
 
-  //   let outer = fixtures.weird_spacing.tags_line_2;
-  //   it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.weird_spacing.tags_line_2;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
     
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`keeps those tags and spacing`, function () {
-  //     expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
-  //   });
-  // });
+    it(`keeps those tags and spacing`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
+  });
 
-  // describe(`with weird spacing in author's tags`, function () {
+  describe(`with weird spacing in author's tags`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.tags }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.tags }); });
 
-  //   let outer = fixtures.weird_spacing.tags;
-  //   it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.weird_spacing.tags;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
     
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`keeps that spacing`, function () {
-  //     expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
-  //   });
-  // });
+    it(`keeps that spacing`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
+  });
 
-  // describe(`with weird indentations`, function () {
+  describe(`with weird indentations`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.indents }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.indents }); });
 
-  //   let outer = fixtures.weird_spacing.indents;
-  //   it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.weird_spacing.indents;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
     
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`keeps those indentation levels`, function () {
-  //     expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
-  //   });
-  // });
+    it(`keeps those indentation levels`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
+  });
 
-  // describe(`with no spacing in choices`, function () {
+  describe(`with no spacing in choices`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.choices }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.choices }); });
 
-  //   let outer = fixtures.weird_spacing.choices;
-  //   it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.weird_spacing.choices;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
     
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`gets a choice correctly`, function () {
-  //     expect( new_contents ).to.match( fixture.find_1 );
-  //   });
-  // });
+    it(`gets a choice correctly`, function () {
+      expect( new_contents ).to.match( fixture.find_1 );
+    });
+  });
 
-  // describe(`with 3 columns`, function () {
+  describe(`with 3 columns`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.columns_3 }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.columns_3 }); });
 
-  //   let outer = fixtures.columns_3;
-  //   it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.columns_3;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
     
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`adds a "trigger" column with those values`, function () {
-  //     expect( new_contents ).to.equal( fixture.expected );
-  //   });
-  // });
+    it(`adds a "trigger" column with those values`, function () {
+      expect( new_contents ).to.equal( fixture.expected );
+    });
+  });
 
-  // describe(`with 4 columns`, function () {
+  describe(`with 4 columns`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.columns_4 }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.columns_4 }); });
 
-  //   let outer = fixtures.columns_4;
-  //   it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.columns_4;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
     
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`ignores the 4th column`, function () {
-  //     expect( new_contents ).to.equal( fixture.expected );
-  //   });
-  // });
+    it(`ignores the 4th column`, function () {
+      expect( new_contents ).to.equal( fixture.expected );
+    });
+  });
 
-  // describe(`with comments before and in the table`, function () {
+  describe(`with comments before and in the table`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.rows_comments }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.rows_comments }); });
 
-  //   let outer = fixtures.rows_comments;
-  //   it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.rows_comments;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
     
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`removes the comments`, function () {
-  //     expect( comparable_text( new_contents )).to.equal( fixture.expected );
-  //   });
-  // });
+    it(`removes the comments`, function () {
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
+    });
+  });
 
-  // describe(`with a comment after the table`, function () {
+  describe(`with a comment after the table`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.comment_after_last_row }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.comment_after_last_row }); });
 
-  //   let outer = fixtures.comment_after_last_row;
-  //   it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.comment_after_last_row;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
     
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`keeps and repeats the comment`, function () {
-  //     expect( comparable_text( new_contents )).to.equal( fixture.expected );
-  //   });
-  // });
+    it(`keeps and repeats the comment`, function () {
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
+    });
+  });
 
-  // describe(`with empty rows before and in the table`, function () {
+  describe(`with empty rows before and in the table`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.rows_empty }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.rows_empty }); });
 
-  //   let outer = fixtures.rows_empty;
-  //   it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.rows_empty;
+    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    });
     
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`removes the empty rows`, function () {
-  //     expect( comparable_text( new_contents )).to.equal( fixture.expected );
-  //   });
-  // });
+    it(`removes the empty rows`, function () {
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
+    });
+  });
 
   describe(`with no number value`, function () {
 
@@ -412,9 +408,9 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-    // it(`uses the last number given`, function () {
-    //   expect( comparable_text( new_contents )).to.equal( fixture.expected );
-    // });
+    it(`uses the last number given`, function () {
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
+    });
   });
 
   describe(`with too many "number" Steps in one Scenario`, function () {
@@ -428,9 +424,9 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-    // it(`uses the last Step given`, function () {
-    //   expect( comparable_text( new_contents )).to.equal( fixture.expected );
-    // });
+    it(`uses the last Step given`, function () {
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
+    });
   });
 
   describe(`with 2 "number" Steps in one Scenario and both have multiple numbers`, function () {
@@ -444,9 +440,9 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-    // it(`uses the last Step and number given`, function () {
-    //   expect( comparable_text( new_contents )).to.equal( fixture.expected );
-    // });
+    it(`uses the last Step and number given`, function () {
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
+    });
   });
 
   describe(`that asks for 3 tests when only 2 unique tests are possible`, function () {
@@ -489,34 +485,34 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     });
   });
 
-  // describe(`that has a blank var value in a generator column`, function () {
+  describe(`that has a blank var value in a generator column`, function () {
 
-  //   before(function () { mutate_globals_with({ testing_vals: fixtures.empty_string_value }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.empty_string_value }); });
 
-  //   let outer = fixtures.empty_string_value;
-  //   it(`includes at least one of all these log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-  //     expect( get_log_codes({ logger }) ).to.include.members( fixture.included_log_codes );
-  //   });
+    let outer = fixtures.empty_string_value;
+    it(`includes at least one of all these log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      // expect( get_log_codes({ logger }) ).to.include.members( fixture.included_log_codes );
+    });
 
-  //   it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-  //   it(`has the right non-random text`, function () {
-  //     expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
-  //   });
+    it(`has the right non-random text`, function () {
+      expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
 
-  //   describe(`the "" value does get its own Scenario`, function () {
+    describe(`the "" value does get its own Scenario`, function () {
 
-  //     for ( let to_find_1_of of outer.find_1_of ) {
-  //       let text_regex = new RegExp( to_find_1_of, `g` );
-  //       it(`for the var value "${ to_find_1_of }"`, function () {
-  //         let matches = new_contents.match( text_regex );
-  //         expect( matches, `Unable to find column matching ${ to_find_1_of }` ).to.be.an(`array`);
-  //         expect( matches.length ).to.equal( 1 );
-  //       })
-  //     }
+      for ( let to_find_1_of of outer.find_1_of ) {
+        let text_regex = new RegExp( to_find_1_of, `g` );
+        it(`for the var value "${ to_find_1_of }"`, function () {
+          let matches = new_contents.match( text_regex );
+          expect( matches, `Unable to find column matching ${ to_find_1_of }` ).to.be.an(`array`);
+          expect( matches.length ).to.equal( 1 );
+        })
+      }
       
-  //   });
+    });
 
-  // });  // ends blank var value
+  });  // ends blank var value
 
 });
