@@ -77,15 +77,17 @@ function mutate_globals_with({ testing_vals }) {
     generator_path: `used_in_warning_logs`,
     logger
   }) );
+
+  console.log(errors);
 };
 
 describe(`Constrained random answers parser,`, function () {
 
-  describe(`when given a empty generator text`, function () {
+  describe(`when given a missing Feature keyword`, function () {
 
-    before(function () { mutate_globals_with({ testing_vals: fixtures.generator_missing_contents }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.generator_missing_Feature }); });
     
-    let outer = fixtures.generator_missing_contents;
+    let outer = fixtures.generator_missing_Feature;
 
     it(`returns \`null\` for contents value`, function () {
       expect( new_contents ).to.equal( fixture.expected );
@@ -100,11 +102,11 @@ describe(`Constrained random answers parser,`, function () {
 
   });
 
-  describe(`when given a missing Feature keyword`, function () {
+  describe(`when given a empty generator text`, function () {
 
-    before(function () { mutate_globals_with({ testing_vals: fixtures.generator_missing_Feature }); });
+    before(function () { mutate_globals_with({ testing_vals: fixtures.generator_missing_contents }); });
     
-    let outer = fixtures.generator_missing_Feature;
+    let outer = fixtures.generator_missing_contents;
 
     it(`returns \`null\` for contents value`, function () {
       expect( new_contents ).to.equal( fixture.expected );
@@ -140,42 +142,6 @@ describe(`Constrained random answers parser,`, function () {
 
   describe(`when given an invalid generator Scenario`, function () {
 
-    // describe(`that has multiple constrained random answers Steps,`, function () {
-
-    //   before(function () { mutate_globals_with({ testing_vals: fixtures.multiple_constraints_Steps }); });
-
-    //   let outer = fixtures.multiple_constraints_Steps;
-      
-    //   it(`returns \`null\` for contents value`, function () {
-    //     expect( new_contents ).to.equal( fixture.expected );
-    //   });
-    //   // it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
-    //   //   expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
-    //   // });
-    //   // it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
-    //   //   expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
-    //   // });
-
-    // });
-
-    describe(`that has no constrained random answers Steps,`, function () {
-
-      before(function () { mutate_globals_with({ testing_vals: fixtures.no_constraints_Step }); });
-
-      let outer = fixtures.no_constraints_Step;
-      
-      it(`returns \`null\` for contents value`, function () {
-        expect( new_contents ).to.equal( fixture.expected );
-      });
-      // it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
-      //   expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
-      // });
-      // it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
-      //   expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
-      // });
-
-    });
-
     describe(`where a num tests fore Step is missing keywords,`, function () {
 
       before(function () { mutate_globals_with({ testing_vals: fixtures.missing_fore_Step_keywords }); });
@@ -185,12 +151,12 @@ describe(`Constrained random answers parser,`, function () {
       it(`returns \`null\` for contents value`, function () {
         expect( new_contents ).to.equal( fixture.expected );
       });
-      // it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
-      //   expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
-      // });
-      // it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
-      //   expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
-      // });
+      it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
+        expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
+      });
+      it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
+        expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
+      });
 
     });
 
@@ -203,12 +169,12 @@ describe(`Constrained random answers parser,`, function () {
       it(`returns \`null\` for contents value`, function () {
         expect( new_contents ).to.equal( fixture.expected );
       });
-      // it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
-      //   expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
-      // });
-      // it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
-      //   expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
-      // });
+      it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
+        expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
+      });
+      it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
+        expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
+      });
 
     });
 
@@ -221,30 +187,12 @@ describe(`Constrained random answers parser,`, function () {
       it(`returns \`null\` for contents value`, function () {
         expect( new_contents ).to.equal( fixture.expected );
       });
-      // it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
-      //   expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
-      // });
-      // it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
-      //   expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
-      // });
-
-    });
-
-    describe(`that has 2 constraints Steps that are missing tables and one Step that is valid,`, function () {
-
-      before(function () { mutate_globals_with({ testing_vals: fixtures.too_many_Steps_with_2_missing_tables }); });
-
-      let outer = fixtures.too_many_Steps_with_2_missing_tables;
-      
-      it(`returns \`null\` for contents value`, function () {
-        expect( new_contents ).to.equal( fixture.expected );
+      it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
+        expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
       });
-      // it(`has these exact error codes, including 2 missing table codes: ${ JSON.stringify( outer.error_codes )}`, function () {
-      //   expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
-      // });
-      // it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
-      //   expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
-      // });
+      it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
+        expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
+      });
 
     });
 
@@ -257,16 +205,16 @@ describe(`Constrained random answers parser,`, function () {
       it(`returns \`null\` for contents value`, function () {
         expect( new_contents ).to.equal( fixture.expected );
       });
-      // it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
-      //   expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
-      // });
-      // it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
-      //   expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
-      // });
+      it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
+        expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
+      });
+      it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
+        expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
+      });
 
     });
 
-    describe(`that has no quoted ids,`, function () {
+    describe(`that has no header row,`, function () {
 
       before(function () { mutate_globals_with({ testing_vals: fixtures.only_row_is_header }); });
 
@@ -275,12 +223,12 @@ describe(`Constrained random answers parser,`, function () {
       it(`returns \`null\` for contents value`, function () {
         expect( new_contents ).to.equal( fixture.expected );
       });
-      // it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
-      //   expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
-      // });
-      // it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
-      //   expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
-      // });
+      it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
+        expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
+      });
+      it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
+        expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
+      });
 
     });
 

@@ -130,8 +130,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.simple }); });
 
     let outer = fixtures.simple;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
 
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -150,8 +150,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.generat }); });
 
     let outer = fixtures.generat;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
     it(`has the right non-random text`, function () {
@@ -163,8 +163,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.rand }); });
 
     let outer = fixtures.rand;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
     it(`has the right non-random text`, function () {
@@ -176,8 +176,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.make }); });
 
     let outer = fixtures.make;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
     it(`has the right non-random text`, function () {
@@ -189,8 +189,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.made }); });
 
     let outer = fixtures.made;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
     it(`has the right non-random text`, function () {
@@ -205,8 +205,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     }); });
 
     let outer = fixtures.complex;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`includes these log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.include.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -226,8 +226,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.tags }); });
 
     let outer = fixtures.tags;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -242,8 +242,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.tags_line_2 }); });
 
     let outer = fixtures.weird_spacing.tags_line_2;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -258,8 +258,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.tags }); });
 
     let outer = fixtures.weird_spacing.tags;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -274,8 +274,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.indents }); });
 
     let outer = fixtures.weird_spacing.indents;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -290,8 +290,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.weird_spacing.choices }); });
 
     let outer = fixtures.weird_spacing.choices;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -306,8 +306,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.columns_3 }); });
 
     let outer = fixtures.columns_3;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -322,8 +322,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.columns_4 }); });
 
     let outer = fixtures.columns_4;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -338,8 +338,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.rows_comments }); });
 
     let outer = fixtures.rows_comments;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -355,7 +355,7 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
     let outer = fixtures.comment_after_last_row;
     it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+      expect( get_log_codes({ logger }) ).to.include.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -370,8 +370,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.rows_empty }); });
 
     let outer = fixtures.rows_empty;
-    it(`has these exact log codes: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -386,8 +386,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.warnings.no_number }); });
 
     let outer = fixtures.warnings.no_number;
-    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -402,8 +402,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.warnings.multiple_numbers }); });
 
     let outer = fixtures.warnings.multiple_numbers;
-    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -418,8 +418,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.warnings.multiple_number_Steps }); });
 
     let outer = fixtures.warnings.multiple_number_Steps;
-    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -434,8 +434,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     before(function () { mutate_globals_with({ testing_vals: fixtures.warnings.multiple_number_Steps_and_numbers }); });
 
     let outer = fixtures.warnings.multiple_number_Steps_and_numbers;
-    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -451,7 +451,7 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
     let outer = fixtures.warnings.fewer_unique_than_requested;
     it(`has these exact log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.have.all.members( fixture.included_log_codes );
+      expect( get_log_codes({ logger }) ).to.include.members( fixture.included_log_codes );
     });
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
@@ -477,11 +477,11 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       let codes = get_log_codes({ logger });
       // I'm curious about what the big O value of this method is
       // Other methods: https://stackoverflow.com/questions/5667888/counting-the-occurrences-frequency-of-array-elements
-      let codes_regex = new RegExp(`ALK1001`, `g`);
+      let codes_regex = new RegExp( fixture.repeat.code, `g` );
       let codes_str = codes.join(`;`);
-      let code_matches = codes_str.match(codes_regex);
+      let code_matches = codes_str.match( codes_regex );
       expect( code_matches ).to.be.an(`array`);
-      expect( code_matches.length ).to.be.above( 9 );
+      expect( code_matches.length ).to.be.above( fixture.repeat.count - 1 );
     });
   });
 
@@ -491,13 +491,17 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
     let outer = fixtures.empty_string_value;
     it(`includes at least one of all these log codes with warnings: ${ JSON.stringify( outer.included_log_codes )}`, function () {
-      // expect( get_log_codes({ logger }) ).to.include.members( fixture.included_log_codes );
+      expect( get_log_codes({ logger }) ).to.include.members( fixture.included_log_codes );
     });
 
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
     it(`has the right non-random text`, function () {
       expect( comparable_text( new_contents ) ).to.equal( fixture.expected );
+    });
+
+    it(`makes 2 tests`, function () {
+      expect( num_Scenarios ).to.equal( fixture.num_Scenarios, `Wrong # of Scenarios: ${ num_Scenarios }/${ fixture.num_Scenarios }` );
     });
 
     describe(`the "" value does get its own Scenario`, function () {
