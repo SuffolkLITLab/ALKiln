@@ -872,6 +872,12 @@ fixts.warnings.fewer_unique_than_requested.included_log_codes = [
 /**
  * ===========
  * Silent warnings
+ * 
+ * Discuss: Should we have author warnings that are only in the debug logs?
+ *     These would be warnings for tests that aren't invalid, but may (or may
+ *     not) have unexpected behavior. Should they have a different icon and
+ *     keyword?
+ * 
  * Discuss: Would a "strict mode" to fail on this warning?
  * =========== */
 

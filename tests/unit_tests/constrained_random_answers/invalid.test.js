@@ -1,9 +1,7 @@
 const chai = require(`chai`);
 const expect = chai.expect;
 
-// const constrained_random_tests = require(`../../../lib/utils/constrained_random_tests.js`);
-// const parse_file = constrained_random_tests.parse_file;
-const TestGenerator = require(`../../../lib/utils/constrained_random_tests.js`);
+const TestGenerator = require(`../../../lib/utils/TestGenerator.js`);
 const Log = require(`../../../lib/utils/Log.js`);
 const fixtures = require(`./invalid.fixtures.js`);
 

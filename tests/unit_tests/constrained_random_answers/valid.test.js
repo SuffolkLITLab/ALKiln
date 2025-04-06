@@ -9,8 +9,7 @@ const expect = chai.expect;
  * - Allow single quotes?
  * */
 
-const TestGenerator = require(`../../../lib/utils/constrained_random_tests.js`);
-// const parse_file = new TestGenerator.parse_file;
+const TestGenerator = require(`../../../lib/utils/TestGenerator.js`);
 const Log = require(`../../../lib/utils/Log.js`);
 const fixtures = require(`./valid.fixtures.js`);
 const get_Gherkin_AST = require(`../../../lib/utils/get_Gherkin_AST`);
