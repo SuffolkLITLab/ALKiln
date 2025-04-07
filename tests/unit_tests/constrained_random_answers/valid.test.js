@@ -111,6 +111,7 @@ function mutate_globals_with({ testing_vals, do_compare=false }) {
     file_text: new_contents
   });
   let scenarios = doc_AST.feature.children;
+  // Mutates num_Scenarios
   num_Scenarios = scenarios.length;
 
   if ( do_compare ) {
@@ -218,7 +219,7 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       expect( comparable ).to.equal( fixture.expected );
     });
 
-  });  // ends complex
+  });
 
   describe(`with an author's weird tag spacing`, function () {
 
@@ -474,7 +475,7 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
     it(`tries at least 10 times`, function(){
       let codes = get_log_codes({ logger });
-      // I'm curious about what the big O value of this method is
+      // I'm curious about what the big O value of this methodology is
       // Other methods: https://stackoverflow.com/questions/5667888/counting-the-occurrences-frequency-of-array-elements
       let codes_regex = new RegExp( fixture.repeat.code, `g` );
       let codes_str = codes.join(`;`);
@@ -515,7 +516,6 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       }
       
     });
-
-  });  // ends blank var value
+  });
 
 });

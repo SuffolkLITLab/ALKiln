@@ -51,10 +51,9 @@ Scenario: I fail with missing keywords for a fore Step
 fixts.missing_fore_Step_keywords.expected = null;
 fixts.missing_fore_Step_keywords.error_codes = [ `ALK0241`, `ALK0261` ];
 fixts.missing_fore_Step_keywords.log_codes = [
-  `ALK0236`, //`ALK0242`, `ALK0243`,
-  `ALK0241`, `ALK0261`,
-  // `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  // `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0236`,
+  `ALK0241`,
+  `ALK0261`,
 ];
 
 
@@ -74,10 +73,9 @@ fixts.missing_constraints_Step_keywords.expected = null;
 fixts.missing_constraints_Step_keywords.error_codes = [ `ALK0254`, `ALK0261` ];
 fixts.missing_constraints_Step_keywords.log_codes = [
   `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0254`,
-  `ALK0261`, 
-  // `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  // `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0244`, `ALK0247`, `ALK0248`,
+  `ALK0254`,
+  `ALK0261`,
 ];
 
 
@@ -97,10 +95,9 @@ fixts.missing_table.expected = null;
 fixts.missing_table.error_codes = [ `ALK0250`, `ALK0261` ];
 fixts.missing_table.log_codes = [
   `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0250`,
-  `ALK0261`, 
-  // `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  // `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`,
+  `ALK0250`,
+  `ALK0261`,
 ];
 
 
@@ -121,10 +118,9 @@ fixts.missing_ids.expected = null;
 fixts.missing_ids.error_codes = [ `ALK0249`, `ALK0261` ];
 fixts.missing_ids.log_codes = [
   `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0249`,
-  `ALK0261`, 
-  // `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  // `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`,
+  `ALK0249`,
+  `ALK0261`,
 ];
 
 
@@ -145,13 +141,11 @@ Scenario: Non-table row after table header
 `;
 fixts.only_row_is_header.expected = null;
 fixts.only_row_is_header.error_codes = [`ALK0251`, `ALK0261`];
-fixts.only_row_is_header.log_codes = //[`ALK0251`, `ALK0261`];
-[
+fixts.only_row_is_header.log_codes = [
   `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0251`,
-  `ALK0261`, 
-  // `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  // `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`,
+  `ALK0251`,
+  `ALK0261`,
 ];
 
 /**

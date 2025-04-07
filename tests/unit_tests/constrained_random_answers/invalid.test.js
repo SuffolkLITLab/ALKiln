@@ -75,8 +75,6 @@ function mutate_globals_with({ testing_vals }) {
     generator_path: `used_in_warning_logs`,
     logger
   }) );
-
-  console.log(errors);
 };
 
 describe(`Constrained random answers parser,`, function () {
