@@ -1,7 +1,7 @@
 const chai = require(`chai`);
 const expect = chai.expect;
 
-const TestGenerator = require(`../../../lib/utils/TestGenerator.js`);
+const TestGenerator = require(`../../../lib/setup/TestGenerator.js`);
 const Log = require(`../../../lib/utils/Log.js`);
 const fixtures = require(`./invalid.fixtures.js`);
 
