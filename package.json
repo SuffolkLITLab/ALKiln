@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run build && npm run unit && npm run codes && npm run cucumber",
     "local": "npm run build && npm run setup && npm run cucumber; npm run takedown",
-    "pass": "npm run build && npm run cucumber 'not @error and not @temp_error'",
+    "pass": "npm run build && ./lib/run_cucumber.js 'not @error and not @temp_error'",
     "fail": "npm run build && npm run cucumber '@error'",
     "cucumber": "npm run build && ./lib/run_cucumber.js",
     "setup": "./lib/docassemble/setup.js",
