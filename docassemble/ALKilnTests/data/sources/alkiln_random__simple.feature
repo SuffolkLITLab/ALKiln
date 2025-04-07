@@ -6,7 +6,9 @@ This line doesn't get added either.
 
 # Note: In here we test generated Scenarios that create extra artifacts like
 #     warnings. Tests here are also in unit tests.
-
+# 
+# Note: We test failures in unit tests to avoid actual failing tests
+# 
 # Discuss: Should empty var name columns have warnings/errors? They're valid
 #     table rows. Hold off on this for now.
 
