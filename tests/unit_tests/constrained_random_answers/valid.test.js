@@ -12,7 +12,7 @@ const expect = chai.expect;
 const TestGenerator = require(`../../../lib/setup/TestGenerator.js`);
 const Log = require(`../../../lib/utils/Log.js`);
 const fixtures = require(`./valid.fixtures.js`);
-const get_Gherkin_AST = require(`../../../lib/utils/get_Gherkin_AST`);
+const get_Gherkin_AST = require(`../../../lib/setup/get_Gherkin_AST`);
 
 
 const RANDOM_TABLE_PLACEHOLDER = fixtures.RANDOM_TABLE_PLACEHOLDER;
