@@ -64,18 +64,6 @@ runs:
 
       - shell: bash
         env:
-          GITHUB_SERVER_ARTIFACT_NAME: ${{ env.GITHUB_SERVER_ARTIFACT_NAME }}
-        run: |
-          log="💡 ALK0276 INFO: Prepare repository test files"
-          echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
-          alkiln-artifacts --path="${{ env.GITHUB_SERVER_ARTIFACT_NAME }}"
-          alkiln-validate
-          alkiln-generate
-
-          # These run twice. As before, this creates 2 artifact folders.
-
-      - shell: bash
-        env:
           MAX_SECONDS_FOR_DOCKER: ${{ inputs.MAX_SECONDS_FOR_DOCKER }}
           DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
         run: |
