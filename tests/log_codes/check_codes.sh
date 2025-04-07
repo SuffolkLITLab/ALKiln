@@ -102,7 +102,7 @@ fi
 indx=0
 too_many=()
 missing=()
-while [ "$indx" -lt "$highest_code" ]; do
+while [ "$indx" -le "$highest_code" ]; do
   # Turn the index into a log code by prepending ALK and adding leading zeros
   log_code=$(printf "ALK%04d" "$indx")
   # Count ";" - a stand-in for the number of
