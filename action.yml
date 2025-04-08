@@ -109,7 +109,7 @@ runs:
         vars_log='\nALKiln version is $ALKILN_VERSION\nRepo is "$REPO_URL"\nBranch ref is "$BRANCH_PATH"\nCustom MAX_SECONDS_FOR_SETUP is "$MAX_SECONDS_FOR_SETUP"\nCustom SERVER_RELOAD_TIMEOUT_SECONDS is "$SERVER_RELOAD_TIMEOUT_SECONDS"\nCustom MAX_RANDOM_TESTS_PER_SCENARIO is "$MAX_RANDOM_TESTS_PER_SCENARIO"\n'
         echo -e "$vars_log" >> "${{ env.DEBUG_PATH }}" && echo -e "$vars_log"
 
-    # Install ALKiln into GitHub workflow
+    # Install ALKiln during GitHub workflow
     - name: "💡 ALK0025 INFO: Set up node"
       uses: actions/setup-node@v4
       with:

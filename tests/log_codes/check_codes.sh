@@ -138,7 +138,7 @@ while [ "$indx" -le "$highest_code" ]; do
     # if [[ "$loudness" != "0" ]]; then
       missing+=("$long_msg")
     # else
-      # missing+=("$short_msg")
+    #   missing+=("$short_msg")
     # fi
 
   # too_many
@@ -146,7 +146,7 @@ while [ "$indx" -le "$highest_code" ]; do
     # if [[ "$loudness" != "0" ]]; then
       too_many+=("$long_msg")
     # else
-      # too_many+=("$short_msg")
+    #   too_many+=("$short_msg")
     # fi
   fi
 
