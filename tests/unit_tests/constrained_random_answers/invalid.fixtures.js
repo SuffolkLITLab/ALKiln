@@ -153,3 +153,25 @@ fixts.only_row_is_header.log_codes = [
  * can't detect it)
  * */
 
+
+fixts.multiple_scenarios = {};
+fixts.multiple_scenarios.arg =
+`Feature: It is invalid to have multiple Scenarios in one generator file
+
+Scenario: The first of 2 Scenarios
+  Given ALKiln makes 1 constrained random answers tests
+  Given I start the interview at "test_kickout"
+  And ALKiln will get to "end" with:
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+
+Scenario: The second of 2 Scenarios
+  Given ALKiln makes 1 constrained random answers tests
+  Given I start the interview at "test_kickout"
+  And ALKiln will get to "end" with:
+    | var | possible_values |
+    | user_choice | correct;; wrong |
+`;
+fixts.multiple_scenarios.expected = null;
+fixts.multiple_scenarios.error_codes = [`ALK0277`];
+fixts.multiple_scenarios.log_codes = [`ALK0277`];

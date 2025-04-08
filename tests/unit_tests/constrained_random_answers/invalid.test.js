@@ -98,7 +98,7 @@ describe(`Constrained random answers parser,`, function () {
 
   });
 
-  describe(`when given a empty generator text`, function () {
+  describe(`when given an empty string`, function () {
 
     before(function () { mutate_globals_with({ testing_vals: fixtures.generator_missing_contents }); });
     
@@ -215,6 +215,24 @@ describe(`Constrained random answers parser,`, function () {
       before(function () { mutate_globals_with({ testing_vals: fixtures.only_row_is_header }); });
 
       let outer = fixtures.only_row_is_header;
+      
+      it(`returns \`null\` for contents value`, function () {
+        expect( new_contents ).to.equal( fixture.expected );
+      });
+      it(`has these exact error codes: ${ JSON.stringify( outer.error_codes )}`, function () {
+        expect( get_error_codes({ errors: errors }) ).to.have.all.members( fixture.error_codes );
+      });
+      it(`has these exact _log_ codes: ${ JSON.stringify( outer.log_codes )}`, function () {
+        expect( get_log_codes({ logger }) ).to.have.all.members( fixture.log_codes );
+      });
+
+    });
+
+    describe(`that has multiple Scenarios,`, function () {
+
+      before(function () { mutate_globals_with({ testing_vals: fixtures.multiple_scenarios }); });
+
+      let outer = fixtures.multiple_scenarios;
       
       it(`returns \`null\` for contents value`, function () {
         expect( new_contents ).to.equal( fixture.expected );
