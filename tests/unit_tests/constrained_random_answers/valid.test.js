@@ -66,7 +66,7 @@ function get_log_codes({ logger }) {
    * */
   let codes = [];
 
-  for ( let record of logger.internal_tests_records ) {
+  for ( let record of logger.internal_log_records ) {
     codes.push( record.opts.code );
   }
 
@@ -93,8 +93,8 @@ function mutate_globals_with({ testing_vals, do_compare=false }) {
    * 
    * @returns {undefined}
    * */
-  // Resets logger
-  logger.internal_tests_records = [];
+  // Reset log codes
+  logger.clear_internal_log_records();
 
   // Fresh namespace
   let generator = new TestGenerator();
