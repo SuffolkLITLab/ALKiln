@@ -49,11 +49,11 @@ Scenario: I fail with missing keywords for a fore Step
     | user_choice | correct;; wrong |
 `;
 fixts.missing_fore_Step_keywords.expected = null;
-fixts.missing_fore_Step_keywords.error_codes = [ `ALK0241`, `ALK0261` ];
+fixts.missing_fore_Step_keywords.error_codes = [ `ALK0242`, `ALK0263` ];
 fixts.missing_fore_Step_keywords.log_codes = [
-  `ALK0236`,
-  `ALK0241`,
-  `ALK0261`,
+  `ALK0237`,
+  `ALK0242`,
+  `ALK0263`,
 ];
 
 
@@ -70,12 +70,12 @@ Scenario: I fail with missing keywords for a constraints Step
     | user_choice | correct;; wrong |
 `;
 fixts.missing_constraints_Step_keywords.expected = null;
-fixts.missing_constraints_Step_keywords.error_codes = [ `ALK0254`, `ALK0261` ];
+fixts.missing_constraints_Step_keywords.error_codes = [ `ALK0256`, `ALK0263` ];
 fixts.missing_constraints_Step_keywords.log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`,
-  `ALK0254`,
-  `ALK0261`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`,
+  `ALK0256`,
+  `ALK0263`,
 ];
 
 
@@ -92,12 +92,12 @@ Scenario: I fail with the first missing table
 `;
 // ======= ENDS ARG ======= //
 fixts.missing_table.expected = null;
-fixts.missing_table.error_codes = [ `ALK0250`, `ALK0261` ];
+fixts.missing_table.error_codes = [ `ALK0251`, `ALK0263` ];
 fixts.missing_table.log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`,
-  `ALK0250`,
-  `ALK0261`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`,
+  `ALK0251`,
+  `ALK0263`,
 ];
 
 
@@ -115,12 +115,12 @@ Scenario: I fail with missing quoted ids in constrained random answers
 `;
 // ======= ENDS ARG ======= //
 fixts.missing_ids.expected = null;
-fixts.missing_ids.error_codes = [ `ALK0249`, `ALK0261` ];
+fixts.missing_ids.error_codes = [ `ALK0250`, `ALK0263` ];
 fixts.missing_ids.log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`,
-  `ALK0249`,
-  `ALK0261`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`,
+  `ALK0250`,
+  `ALK0263`,
 ];
 
 
@@ -140,12 +140,12 @@ Scenario: Non-table row after table header
     | user_choice | correct;; wrong |
 `;
 fixts.only_row_is_header.expected = null;
-fixts.only_row_is_header.error_codes = [`ALK0251`, `ALK0261`];
+fixts.only_row_is_header.error_codes = [`ALK0252`, `ALK0263`];
 fixts.only_row_is_header.log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`,
-  `ALK0251`,
-  `ALK0261`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`,
+  `ALK0252`,
+  `ALK0263`,
 ];
 
 /**
@@ -173,5 +173,5 @@ Scenario: The second of 2 Scenarios
     | user_choice | correct;; wrong |
 `;
 fixts.multiple_scenarios.expected = null;
-fixts.multiple_scenarios.error_codes = [`ALK0277`];
-fixts.multiple_scenarios.log_codes = [`ALK0277`];
+fixts.multiple_scenarios.error_codes = [`ALK0236`];
+fixts.multiple_scenarios.log_codes = [`ALK0236`];

@@ -127,7 +127,7 @@ runs:
       env:
         ARTIFACT_FOLDER: ${{ env.ARTIFACT_FOLDER }}
       run: |
-        log="💡 ALK0273 INFO: Prepare repository test files"
+        log="💡 ALK0275 INFO: Prepare repository test files"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
         alkiln-artifacts --path="${{ env.ARTIFACT_FOLDER }}"
         alkiln-validate

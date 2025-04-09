@@ -44,9 +44,9 @@ Scenario: simplest random answers (1 of 1)
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 // ======= ENDS EXPECTED ======= //
 simple.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 simple.num_Scenarios = 1;
 
@@ -94,9 +94,9 @@ Scenario: I use minimal text (constrain and generat) (1 of 1)
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.generat.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -122,9 +122,9 @@ Scenario: I use minimal text (constrain and rand) (1 of 1)
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.rand.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -150,9 +150,9 @@ Scenario: I use minimal text (constrain and make) (1 of 1)
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.make.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -178,9 +178,9 @@ Scenario: I use minimal text (constrain and made) (1 of 1)
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.made.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -308,9 +308,9 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 // ======= ENDS EXPECTED ======= //
 complex.num_Scenarios = 2;
 complex.included_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -339,9 +339,9 @@ Scenario: simplest random answers (1 of 1)
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 tags.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0245`, `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0246`, `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -383,9 +383,9 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
 // ======= ENDS EXPECTED ======= //
 fixts.weird_spacing.tags.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0245`, `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0246`, `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -418,9 +418,9 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
 // ======= ENDS EXPECTED ======= //
 fixts.weird_spacing.tags_line_2.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -453,9 +453,9 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 `;
 // ======= ENDS EXPECTED ======= //
 fixts.weird_spacing.indents.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0245`, `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0246`, `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -477,9 +477,9 @@ fixts.weird_spacing.choices.expected = `Not appropriate to use use expected valu
 fixts.weird_spacing.choices.find_1 = /(?:correct)|(?:wrong)/;
 // ======= ENDS OPTIONS TO FIND ONE OF ======= //
 fixts.weird_spacing.choices.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -510,9 +510,9 @@ Scenario: 3 columns (1 of 1)
     | users[0].has_bear | True | users[0].name.first |`;
 // ======= ENDS EXPECTED ======= //
 fixts.columns_3.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -539,9 +539,9 @@ Scenario: 4 columns (1 of 1)
     | users[0].has_bear | True | users[0].name.first |`;
 // ======= ENDS EXPECTED ======= //
 fixts.columns_4.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -574,9 +574,9 @@ Scenario: Keeps comments before and in table (1 of 1)
 # Comment 2 keep and repeat
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.rows_comments.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -617,9 +617,9 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }
 
 # Comment 2 keep and repeat`;
 fixts.comment_after_last_row.included_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -648,9 +648,9 @@ Scenario: Keeps empty rows before and in table (1 of 1)
 
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.rows_empty.exact_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -681,7 +681,7 @@ Scenario: ALKiln humbly begs the author's forgiveness. The next tests might be f
   Then ALKiln warns the author about a generator ${ fixts.FLUB_PLACEHOLDER }:
     """
     ━━━━━ Generator file warning or warnings ━━━━━
-    🔎 ALK0238 ${ fixts.WARNING_PLACEHOLDER }
+    🔎 ALK0239 ${ fixts.WARNING_PLACEHOLDER }
     ━━━━━
     """
 
@@ -692,9 +692,9 @@ Scenario: I'm warned with missing number in random answers generator (1 of 1)
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.warnings.no_number.exact_log_codes = [
-  `ALK0236`, `ALK0238`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0239`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -717,7 +717,7 @@ Scenario: ALKiln humbly begs the author's forgiveness. The next tests might be f
   Then ALKiln warns the author about a generator ${ fixts.FLUB_PLACEHOLDER }:
     """
     ━━━━━ Generator file warning or warnings ━━━━━
-    🔎 ALK0239 ${ fixts.WARNING_PLACEHOLDER }
+    🔎 ALK0240 ${ fixts.WARNING_PLACEHOLDER }
     ━━━━━
     """
 
@@ -728,9 +728,9 @@ Scenario: I'm warned with too many numbers in random answers tests (1 of 1)
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.warnings.multiple_numbers.exact_log_codes = [
-  `ALK0236`, `ALK0239`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0240`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -754,7 +754,7 @@ Scenario: ALKiln humbly begs the author's forgiveness. The next tests might be f
   Then ALKiln warns the author about a generator ${ fixts.FLUB_PLACEHOLDER }:
     """
     ━━━━━ Generator file warning or warnings ━━━━━
-    🔎 ALK0237 ${ fixts.WARNING_PLACEHOLDER }
+    🔎 ALK0238 ${ fixts.WARNING_PLACEHOLDER }
     ━━━━━
     """
 
@@ -765,9 +765,9 @@ Scenario: I'm warned with too many number Steps in random answers tests (1 of 1)
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.warnings.multiple_number_Steps.exact_log_codes = [
-  `ALK0236`, `ALK0237`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0238`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -791,9 +791,9 @@ Scenario: ALKiln humbly begs the author's forgiveness. The next tests might be f
   Then ALKiln warns the author about a generator ${ fixts.FLUB_PLACEHOLDER }:
     """
     ━━━━━ Generator file warning or warnings ━━━━━
-    🔎 ALK0239 ${ fixts.WARNING_PLACEHOLDER }
-    🔎 ALK0237 ${ fixts.WARNING_PLACEHOLDER }
-    🔎 ALK0239 ${ fixts.WARNING_PLACEHOLDER }
+    🔎 ALK0240 ${ fixts.WARNING_PLACEHOLDER }
+    🔎 ALK0238 ${ fixts.WARNING_PLACEHOLDER }
+    🔎 ALK0240 ${ fixts.WARNING_PLACEHOLDER }
     ━━━━━
     """
 
@@ -804,9 +804,9 @@ Scenario: I'm warned with too many numbers in too many numbers Steps in random a
     | var | value |
 ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.warnings.multiple_number_Steps_and_numbers.exact_log_codes = [
-  `ALK0236`, `ALK0239`, `ALK0237`, `ALK0239`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0245`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`, `ALK0245`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0240`, `ALK0238`, `ALK0240`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0246`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`, `ALK0246`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -829,7 +829,7 @@ Scenario: ALKiln humbly begs the author's forgiveness. The next tests might be f
   Then ALKiln warns the author about a generator ${ fixts.FLUB_PLACEHOLDER }:
     """
     ━━━━━ Generator file warning or warnings ━━━━━
-    🔎 ALK0258 ${ fixts.WARNING_PLACEHOLDER }
+    🔎 ALK0260 ${ fixts.WARNING_PLACEHOLDER }
     ━━━━━
     """
 
@@ -849,11 +849,11 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.warnings.fewer_unique_than_requested.find_1_of = [/\| correct \|/, /\| wrong \|/];
 // The third one is the warning Scenario
 fixts.warnings.fewer_unique_than_requested.num_Scenarios = 3;
-fixts.warnings.fewer_unique_than_requested.repeat = { code: `ALK0255`, count: 10 };
+fixts.warnings.fewer_unique_than_requested.repeat = { code: `ALK0257`, count: 10 };
 fixts.warnings.fewer_unique_than_requested.included_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0253`, `ALK0255`, `ALK0257`,
-  `ALK0258`, `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0255`, `ALK0257`, `ALK0259`,
+  `ALK0260`, `ALK0261`, `ALK0262`, `ALK0264`,
 ];
 
 
@@ -899,7 +899,7 @@ ${ fixts.RANDOM_TABLE_PLACEHOLDER }`;
 fixts.empty_string_value.find_1_of = [/\| correct \|/, /\|  \|/];
 fixts.empty_string_value.num_Scenarios = 2;
 fixts.empty_string_value.included_log_codes = [
-  `ALK0236`, `ALK0242`, `ALK0243`,
-  `ALK0244`, `ALK0247`, `ALK0248`, `ALK0245`, `ALK0252`, `ALK0253`, `ALK0255`, `ALK0257`,
-  `ALK0259`, `ALK0260`, `ALK0262`,
+  `ALK0237`, `ALK0243`, `ALK0244`,
+  `ALK0245`, `ALK0248`, `ALK0249`, `ALK0246`, `ALK0254`, `ALK0255`, `ALK0257`, `ALK0259`,
+  `ALK0261`, `ALK0262`, `ALK0264`,
 ];

@@ -5,8 +5,11 @@ Why we need duplicate codes sometimes: GitHub actions sometimes don't have ways 
 The script that tests the log codes will ignore this file (or any file with this name), and any file with these names: check_codes.sh, debug_log.txt, cucumber-report.txt. It will also ignore files in folders with these names:, node_modules, ALKilnTests, alkiln-*, _alkiln*. That list might get updated, so for an up-to-date list, always check the file check_codes.sh where we use `--exclude=` and such.
 
 Reasons for deletion:
+0000 - unknown
 0053 - duplicate log
 0173 - redundant
+0181 - unknown
+0223 - changed Log behavior ("Only logs that throw should give a value to `error`.")
 
 ALK0000:0
 ALK0001:1
@@ -231,7 +234,7 @@ ALK0219:1
 ALK0220:1
 ALK0221:1
 ALK0222:1
-ALK0223:0 "Only logs that throw should give a value to \`error\`. Skipping the value."
+ALK0223:0
 ALK0224:1
 ALK0225:1
 ALK0226:1
@@ -285,3 +288,4 @@ ALK0273:1
 ALK0274:1
 ALK0275:1
 ALK0276:1
+ALK0277:1
