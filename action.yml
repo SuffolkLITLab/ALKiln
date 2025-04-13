@@ -106,7 +106,7 @@ runs:
       run: |
         log="💡 ALK0024 INFO: Confirm environment variables"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
-        vars_log='\nALKiln version is $ALKILN_VERSION\nRepo is "$REPO_URL"\nBranch ref is "$BRANCH_PATH"\nCustom MAX_SECONDS_FOR_SETUP is "$MAX_SECONDS_FOR_SETUP"\nCustom SERVER_RELOAD_TIMEOUT_SECONDS is "$SERVER_RELOAD_TIMEOUT_SECONDS"\nCustom MAX_RANDOM_TESTS_PER_SCENARIO is "$MAX_RANDOM_TESTS_PER_SCENARIO"\n'
+        vars_log='\nALKiln version is ${{ env.ALKILN_VERSION }}\nRepo is "${{ env.REPO_URL }}"\nBranch ref is "${{ env.BRANCH_PATH }}"\nCustom MAX_SECONDS_FOR_SETUP is "${{ env.MAX_SECONDS_FOR_SETUP }}"\nCustom SERVER_RELOAD_TIMEOUT_SECONDS is "${{ env.SERVER_RELOAD_TIMEOUT_SECONDS }}"\nCustom MAX_RANDOM_TESTS_PER_SCENARIO is "${{ env.MAX_RANDOM_TESTS_PER_SCENARIO }}"\n'
         echo -e "$vars_log" >> "${{ env.DEBUG_PATH }}" && echo -e "$vars_log"
 
     # Install ALKiln during GitHub workflow
@@ -122,7 +122,6 @@ runs:
         npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
 
     # Files prep
-
     - shell: bash
       env:
         ARTIFACT_FOLDER: ${{ env.ARTIFACT_FOLDER }}
@@ -134,7 +133,6 @@ runs:
         alkiln-generate
 
     # Install package on playground
-
     # Don't rely on the environment's version of python
     - uses: actions/setup-python@v5
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
@@ -156,15 +154,15 @@ runs:
         long_log="\n\n―――\n🤕 ALK0028 ERROR: Unable to create a Project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
         echo -e "$long_log" >> "${{ env.DEBUG_PATH }}" && echo -e "$long_log"
 
-    # Server installations - find folders and save session vars
-    - name: "💡 ALK0029 INFO: Install the GitHub package onto the server"
+    # Server installation
+    - name: "💡 ALK0029 INFO: Try to install the GitHub package onto the GitHub sandbox server"
       if: ${{ inputs.INSTALL_METHOD == 'server' }}
       shell: bash
       run: |
         log="💡 ALK0029 INFO: Install the GitHub package onto the server"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
         alkiln-server-install
-    - name: "🤕 ALK0030 ERROR: Unable to install the package"
+    - name: "🤕 ALK0030 ERROR: Unable to install the package on the GitHub sandbox server"
       if: ${{ inputs.INSTALL_METHOD == 'server' && failure() }}
       shell: bash
       run: |
