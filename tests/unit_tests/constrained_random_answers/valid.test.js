@@ -100,19 +100,39 @@ function mutate_globals_with({ testing_vals, do_compare=false }) {
   let generator = new TestGenerator();
   // Mutates `fixture`
   fixture = testing_vals;
-  // Mutates `new_contents` and `error`
-  ( { new_contents, errors } = generator.parse_file({
-      file_text: fixture.arg,
+
+  let generators = fixture.arg;
+  if ( !Array.isArray( generators )) {
+    generators = [ fixture.arg ];
+  }
+
+  // Mutates `errors` and `num_Scenarios`
+  errors = [];
+  num_Scenarios = 0;
+  let new_files = [];
+  for ( let generator_text of generators ) {
+
+    let { new_contents: new_file, errors: new_errors } = generator.parse_file({
+      file_text: generator_text,
       generator_path: `used_in_warning_logs`,
       logger
-    }) );
+    });
 
-  let { AST: doc_AST, errors: file_errs } = get_Gherkin_AST({
-    file_text: new_contents
-  });
-  let scenarios = doc_AST.feature.children;
-  // Mutates num_Scenarios
-  num_Scenarios = scenarios.length;
+    new_files.push( new_file );
+    errors.push( ...new_errors );
+
+    // Validate new file. Should always be valid
+    let { AST: doc_AST, errors: file_errs } = get_Gherkin_AST({
+      file_text: new_file
+    });
+
+    let scenarios = doc_AST.feature.children;
+    num_Scenarios += scenarios.length;
+
+  }
+
+  // Mutates `new_contents`
+  new_contents = new_files.join(`\n\n`);
 
   if ( do_compare ) {
     // Mutates `comparable`
