@@ -4,20 +4,23 @@
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
-    "test": "npm run build && npm run unit && npm run codes && npm run cucumber",
-    "local": "npm run build && npm run setup && npm run cucumber; npm run takedown",
-    "pass": "npm run build && ./lib/run_cucumber.js 'not @error and not @temp_error'",
-    "fail": "npm run build && npm run cucumber '@error'",
-    "cucumber": "npm run build && ./lib/run_cucumber.js",
-    "setup": "./lib/docassemble/setup.js",
+    "test": "npm run unit && npm run codes && npm run cucumber",
+    "local": "npm run setup && npm run cucumber; npm run takedown",
+
     "takedown": "./lib/docassemble/takedown.js",
+    "setup": "./lib/docassemble/setup.js",
     "server_install": "./lib/docassemble/server_install.js",
-    "build": "npm run artifacts && npm run files",
-    "files": "npm run validate && npm run generate",
+
+    "pass": "npm run cucumber 'not @error and not @temp_error'",
+    "fail": "npm run cucumber '@error'",
+    "cucumber": "npm run build && ./lib/run_cucumber.js",
+
+    "build": "npm run artifacts && npm run validate && npm run generate",
     "validate": "./lib/setup/validate.js",
     "generate": "./lib/setup/generate.js",
-    "unit": "npm run artifacts && mocha --recursive 'tests/unit_tests/**/*.test.*'",
     "artifacts": "./lib/setup/artifacts.js",
+    
+    "unit": "npm run artifacts && mocha --recursive 'tests/unit_tests/**/*.test.*'",
     "codes": "tests/log_codes/check_codes.sh ."
   },
   "repository": {
