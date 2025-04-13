@@ -43,7 +43,34 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+
+- Add the `constrained random answers` Step. You must put the Step in a "constrained random test generator" Scenario which goes in a "constrained random test generator" file - a `.feature` file that starts with "alkiln_random". The file **MUST have ONLY 1 Scenario per generator file** at the moment. The Step is pretty strict. If there are irregularities, it will probably fail, but it will fail quickly. It is flexible about number of tests, though, and will default to 1. Closes [#962](https://github.com/SuffolkLITLab/ALKiln/issues/962).
+- Add `MAX_RANDOM_TESTS_PER_SCENARIO` optional environment variable for the above `constrained random answers` Step. Default value is `40` until we hear otherwise.
+- Regular tests that have incorrect syntax will fail more quickly now - very near the start. So will invalid "constrained random test generator" files. This will be a little slower for GitHub Sandbox tests right now, but still faster than it has been in the past. Closes [#972](https://github.com/SuffolkLITLab/ALKiln/issues/972).
+
+### Changed
+
+- Improve report indentation and tweak styling.
+- Clarify some logs, including addressing bite-sized issues like [#981](https://github.com/SuffolkLITLab/ALKiln/issues/981).
+- The report now shows the name of every Step that gets run in a test.
+
+### Internal
+
+- Added: `lib/globals.js` file to hold some shared constant values across the framework. It should NOT manage state. We may want to change the name to `constants.js` or `global_contants.js`. Let's see how it serves us.
+- Added: executable scripts for more setup steps - managing the artifacts path (at the start of a run) and validating and generating files.
+- Changed: `Log` now prioritizes what folder it stores files in in this order:
+    1. Use the argument to use an existing folder and save that to runtime_config.json at root.
+    2. Use the argument to make a new folder with that name and save that to runtime_config.json at root.
+    3. Use the alread-existing folder name value in runtime_config.json at root
+    4. Create a new folder and save that to runtime_config.json at root
+- Changed: Add `.error()` to `Log` for visual clarity when storing an error to throw later. We need to discuss this behavior and its return value. To make that work Logs can now get the `error` prop without throwing an error.
+- Changed: the Story Table step now accepts multiple ids and stops at whatever id it reaches first. I highly recommend that only ALKiln generated tests use this feature. We may avoid documenting it unless authors ask for it.
+- Changed: `.gitignore` and `.npmignore` more things
+- Fixed: log codes checker obob.
+- Fixed: updated `actions/upload-artifact@v3` to `actions/upload-artifact@v4`
 
 ## [5.13.4] - 2025-01-11
 
