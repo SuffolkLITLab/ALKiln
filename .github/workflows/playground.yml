@@ -80,8 +80,6 @@ jobs:
           # Internal: docassemble changes sometimes break @a11y tests. That is
           # a da problem, not ours. We will trigger these tests manually when we
           # want to check up on this.
-          #ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
-          # Temp debugging GitHub multi-folder problem
-          ALKILN_TAG_EXPRESSION: "@rp1"
+          ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
           #### Developer note: You can probably leave this out
           ALKILN_VERSION: random
