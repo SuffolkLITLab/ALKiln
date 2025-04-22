@@ -76,7 +76,7 @@ jobs:
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ env.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           #### Developer note: See https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           #### You can probably leave this out
-          MAX_RANDOM_TESTS_PER_SCENARIO: 10
+          ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO: 10
           # Internal: docassemble changes sometimes break @a11y tests. That is
           # a da problem, not ours. We will trigger these tests manually when we
           # want to check up on this.
