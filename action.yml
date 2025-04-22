@@ -33,7 +33,7 @@ inputs:
     description: "The version of docassemblecli to install."
     required: false
     default: "0.0.17"
-  MAX_RANDOM_TESTS_PER_SCENARIO:
+  ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO:
     description: "The maximum number of tests ALKiln will generate for every Scenario that can generate tests."
     required: false
     # Default will be internal to avoid duplication of data
@@ -72,7 +72,7 @@ runs:
         MAX_SECONDS_FOR_SETUP: ${{ inputs.MAX_SECONDS_FOR_SETUP }}
         SERVER_RELOAD_TIMEOUT_SECONDS: ${{ inputs.SERVER_RELOAD_TIMEOUT_SECONDS }}
         DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
-        MAX_RANDOM_TESTS_PER_SCENARIO: ${{ inputs.MAX_RANDOM_TESTS_PER_SCENARIO }}
+        ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO: ${{ inputs.ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO }}
       shell: bash
       run: |
         log="💡 ALK0023 INFO: Set environment variables and create artifacts folder"
@@ -96,7 +96,7 @@ runs:
         echo "DOCASSEMBLE_DEVELOPER_API_KEY=$DOCASSEMBLE_DEVELOPER_API_KEY" >> $GITHUB_ENV
         echo "ALKILN_VERSION=$ALKILN_VERSION" >> $GITHUB_ENV
         echo "MAX_SECONDS_FOR_SETUP=$MAX_SECONDS_FOR_SETUP" >> $GITHUB_ENV
-        echo "MAX_RANDOM_TESTS_PER_SCENARIO=$MAX_RANDOM_TESTS_PER_SCENARIO" >> $GITHUB_ENV
+        echo "ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO=$ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO" >> $GITHUB_ENV
         echo "SERVER_RELOAD_TIMEOUT_SECONDS=$SERVER_RELOAD_TIMEOUT_SECONDS" >> $GITHUB_ENV
         echo "DOCASSEMBLECLI_VERSION=$DOCASSEMBLECLI_VERSION" >> $GITHUB_ENV
         # Hard-coded internal ALKiln vars
@@ -106,7 +106,7 @@ runs:
       run: |
         log="💡 ALK0024 INFO: Confirm environment variables"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
-        vars_log='\nALKiln version is ${{ env.ALKILN_VERSION }}\nRepo is "${{ env.REPO_URL }}"\nBranch ref is "${{ env.BRANCH_PATH }}"\nCustom MAX_SECONDS_FOR_SETUP is "${{ env.MAX_SECONDS_FOR_SETUP }}"\nCustom SERVER_RELOAD_TIMEOUT_SECONDS is "${{ env.SERVER_RELOAD_TIMEOUT_SECONDS }}"\nCustom MAX_RANDOM_TESTS_PER_SCENARIO is "${{ env.MAX_RANDOM_TESTS_PER_SCENARIO }}"\n'
+        vars_log='\nALKiln version is ${{ env.ALKILN_VERSION }}\nRepo is "${{ env.REPO_URL }}"\nBranch ref is "${{ env.BRANCH_PATH }}"\nCustom MAX_SECONDS_FOR_SETUP is "${{ env.MAX_SECONDS_FOR_SETUP }}"\nCustom SERVER_RELOAD_TIMEOUT_SECONDS is "${{ env.SERVER_RELOAD_TIMEOUT_SECONDS }}"\nCustom ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO is "${{ env.ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO }}"\n'
         echo -e "$vars_log" >> "${{ env.DEBUG_PATH }}" && echo -e "$vars_log"
 
     # Install ALKiln during GitHub workflow
