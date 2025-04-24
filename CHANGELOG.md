@@ -47,9 +47,9 @@ Format:
 
 ### Added
 
-- Add the `constrained random answers` Step. You must put the Step in a "constrained random test generator" Scenario which goes in a "constrained random test generator" file - a `.feature` file that starts with "alkiln_random". The file **MUST have ONLY 1 Scenario per generator file** at the moment. The Step is pretty strict. If there are irregularities, it will probably fail, but it will fail quickly. It is flexible about number of tests, though, and will default to 1. Closes [#962](https://github.com/SuffolkLITLab/ALKiln/issues/962).
+- Add the `constrained random answers` Step. You must put the Step in a "constrained random test template" Scenario which goes in a "constrained random test template" file - a `.feature` file that starts with "alkiln_random". The file **MUST have ONLY 1 Scenario per template file** at the moment. The Step is pretty strict. If there are irregularities, it will probably fail, but it will fail quickly. It is flexible about number of tests, though, and will default to 1. Closes [#962](https://github.com/SuffolkLITLab/ALKiln/issues/962).
 - Add `ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO` optional environment variable for the above `constrained random answers` Step. Default value is `40` until we hear otherwise.
-- Regular tests that have incorrect syntax will fail more quickly now - very near the start. So will invalid "constrained random test generator" files. This will be a little slower for GitHub Sandbox tests right now, but still faster than it has been in the past. Closes [#972](https://github.com/SuffolkLITLab/ALKiln/issues/972).
+- Regular tests that have incorrect syntax will fail more quickly now - very near the start. So will invalid "constrained random test template" files. This will be a little slower for GitHub Sandbox tests right now, but still faster than it has been in the past. Closes [#972](https://github.com/SuffolkLITLab/ALKiln/issues/972).
 
 ### Changed
 
