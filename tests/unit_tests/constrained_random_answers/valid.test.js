@@ -20,7 +20,7 @@ const TABLE_ROW_REGEX = /^(?!(?:.*\| var \| value \|))(.*\| .* \|)/gm;
 const TABLE_PLACEHOLDER_REGEX = new RegExp(`(${ RANDOM_TABLE_PLACEHOLDER }(\n)?)+`, `g`);
 
 const WARNING_PLACEHOLDER = fixtures.WARNING_PLACEHOLDER;
-const WARNING_MSG_REGEX = /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*(?:\n.+))/g;
+const WARNING_MSG_REGEX = /(ALK\d{4} )(.*\d{4}-\d\d-\d\d \d\d:\d\d:\d\dUTC.*(?!\n    ―)(?:\n)?.+)/g;
 
 const FLUB_PLACEHOLDER = fixtures.FLUB_PLACEHOLDER;
 const FLUB_REGEX = fixtures.FLUB_OPTIONS_REGEX;
@@ -95,6 +95,11 @@ function mutate_globals_with({ testing_vals, do_compare=false }) {
    * */
   // Reset log codes
   logger.clear_internal_log_records();
+
+  process.env.ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO = 40;
+  if ( testing_vals.max_num_allowed ) {
+    process.env.ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO = testing_vals.max_num_allowed;
+  }
 
   // Fresh namespace
   let generator = new TestGenerator();
@@ -503,6 +508,23 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
       expect( code_matches ).to.be.an(`array`);
       expect( code_matches.length ).to.be.above( fixture.repeat.count - 1 );
     });
+  });
+
+  describe(`that asks for over max # of tests allowed - 1 -`, function () {
+
+    before(function () { mutate_globals_with({ testing_vals: fixtures.warnings.over_max }); });
+
+    let outer = fixtures.warnings.over_max;
+    it(`has these exact log codes with warnings: ${ JSON.stringify( outer.exact_log_codes )}`, function () {
+      expect( get_log_codes({ logger }) ).to.have.all.members( fixture.exact_log_codes );
+    });
+    
+    it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
+
+    it(`has max # of tests - 1`, function () {
+      expect( comparable_text( new_contents )).to.equal( fixture.expected );
+    });
+
   });
 
   describe(`that has a blank var value in a generator column`, function () {
