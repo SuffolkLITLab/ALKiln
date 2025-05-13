@@ -1,0 +1,37 @@
+metadata:
+  title: Test multiline answers
+  short title: Multiline
+---
+features:
+  css:
+    - styles.css
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <div id="alkiln_proxy_var_values"
+      data-generic_object="${ encode_name(str( x.instanceName if defined('x') else '' )) }"
+      % for letter in [ 'i', 'j', 'k', 'l', 'm', 'n' ]:
+      data-index_var_${ letter }="${ encode_name(str( value( letter ) if defined( letter ) else '' )) }"
+      % endfor
+      aria-hidden="true" style="display: none;"></div>
+---
+mandatory: True
+id: interview order
+code: |
+  textarea
+  end
+---
+id: textarea multiline answer
+question: |
+  Textarea multiline answer
+fields:
+  - textarea: textarea
+    input type: area
+---
+id: the end
+event: end
+question: |
+  Congratulations! Tests have passed!
