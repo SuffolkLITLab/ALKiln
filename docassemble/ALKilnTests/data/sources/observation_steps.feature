@@ -100,7 +100,7 @@ Scenario: Test "Then I don’t continue" with an apostrophe
   And I will be told an answer is invalid
 
 @fast @o9 @json
-Scenario: I can match JSON page vars
+Scenario: I can match JSON values that were set in code
   Given I start the interview at "test_json.yml"
   Then the text in the JSON variable "multiline_val" should be
   """
@@ -167,7 +167,7 @@ Scenario: I take a screenshot of the signature
   And I take a screenshot
   Then I tap to continue
 
-@fast @o14 @verify
+@fast @o14 @verify @json
 Scenario: I can match JSON page var to str
   Given I start the interview at "all_tests.yml"
   And I get to "showifs" with this data:
@@ -197,6 +197,11 @@ Scenario: I can match JSON page var to str
   Then the text in the JSON variable "text_input" should be
     """
     Regular text input field value
+    """
+  Then the text in the JSON variable "textarea" should be
+    """
+    Multiline text
+    area value
     """
 
 @fast @o15 @date @time

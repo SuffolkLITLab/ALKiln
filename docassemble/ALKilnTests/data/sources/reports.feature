@@ -333,7 +333,7 @@ Scenario: Fail with I can't match JSON page var to str
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
-  was not equal to the expected value
+  ALK0083
   """
   Given I start the interview at "all_tests.yml"
   And I get to "showifs" with this data:

@@ -27,7 +27,7 @@ jobs:
       - run: npm run unit
       # Artifacts
       - name: upload unit tests artifacts folder
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         # This will upload even if a previous step has failed
         if: ${{ always() }}
         with:

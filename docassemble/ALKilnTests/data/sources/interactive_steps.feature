@@ -26,7 +26,11 @@ Scenario: I set various values
   And I set the var "radio_yesno" to "False"
   And I set the var "radio_other" to "radio_other_opt_3"
   And I set the var "text_input" to "Regular text input field value"
-  And I set the var "textarea" to "Multiline text\narea value"
+  And I set the var "textarea" to
+    """
+    Multiline text
+    area value
+    """
   And I set the var "date_input" to "today - 1"
   When I set the var "direct_standard_fields" to "True"
   # Next page
@@ -39,7 +43,12 @@ Scenario: I set various values
   And I set the var "showif_yesnoradio" to "True"
   And I set the var "showif_radio_other" to "showif_radio_multi_2"
   And I set the var "showif_text_input" to "Show if text input value"
-  And I set the var "showif_textarea" to "Show if\nmultiline text\narea value"
+  And I set the var "showif_textarea" to
+    """
+    Show if
+    multiline text
+    area value
+    """
   And I set the var "showif_combobox_input" to "Showif custom combobox value"
   And I set the var "showif_dropdown" to "showif_dropdown_1"
   When I tap to continue
@@ -181,7 +190,7 @@ Scenario: tap selectors with & without navigating
   And I wait 1 second
   Then I see the phrase "Portishead"
 
-@i8 @input_check
+@i8 @input_check @json
 Scenario: I replace a default value
   Given I start the interview at "test_default_value"
   And I set the variable "new_input" to "Something new!"
@@ -190,3 +199,18 @@ Scenario: I replace a default value
   """
   Something new!
   """
+
+@i9 @input_check @json @multiline
+Scenario: I answer with multiple lines
+  Given I start the interview at "test_multiline"
+  And I set the variable "textarea" to
+    """
+    A value with
+    multiple lines
+    """
+  And I tap to continue
+  Then the text in the JSON variable "textarea" should be
+    """
+    A value with
+    multiple lines
+    """
