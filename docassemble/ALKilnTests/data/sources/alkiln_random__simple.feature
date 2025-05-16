@@ -1,16 +1,10 @@
 @random_tests @success
 Feature: I generate valid constrained random answers tests
 
-This line does not get parsed as a Scenario despite the Scenario: keyword
-This line doesn't get added either.
+This line does not get parsed as a Scenario despite the Scenario: keyword. It does get copied, though.
 
-# Note: In the following generators we test generated Scenarios that create
-#     extra artifacts like warnings. Tests here are also in unit tests.
-# 
-# Note: We test failures in unit tests to avoid actual failing tests
-# 
-# Discuss: Should empty var name columns have warnings/errors? They're valid
-#     table rows. Hold off on this for now.
+# Note: We test generator failures in unit tests to avoid actual failing tests for now.
+# Note: Each generated test must be completely unique from all other generated tests.
 
 @simple_random
 Scenario: Simple constrained random answers Steps

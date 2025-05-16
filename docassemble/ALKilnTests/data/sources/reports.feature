@@ -480,16 +480,11 @@ Scenario: Report still shows page id when I tap to continue without setting any 
   Given the final Scenario status should be "passed"
   Given the Scenario report should include:
     """
-    screen id: group-of-complex-fields
+    screen id: upload-files
     """
   And I start the interview at "all_tests"
   And I tap to continue
   Then the question id should be "group of complex fields"
-  # Make the Story table appear with its list of screen ids. In future, we may
-  #     switch to always listing screen ids the test visits
-  And I set the var "double_quote_dict['double_quote_key']['dq_two']" to "true"
-  And I set the var "single_quote_dict['single_quote_key']['sq_two']" to "true"
-  And I tap to continue
 
 @slow @rp2 @table
 Scenario: Report lists unused table rows

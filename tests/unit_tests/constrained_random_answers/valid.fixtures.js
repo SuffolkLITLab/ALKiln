@@ -51,22 +51,6 @@ simple.exact_log_codes = [
 simple.num_Scenarios = 1;
 
 
-/** TODO: 2 generator Steps in one Scenario */
-
-`Feature: I generate constrained random tests
-
-Scenario: I fail with 2 generator Steps in 1 Scenario
-  Given ALKiln makes 2 constrained answers tests
-  Given I start the interview at "form_entrypoint_file_name"
-  And I generate 2 constrained random tests that get to "end" when I pick from:
-    | var | possible_values |
-    | other_var | val1;; val2;; val3 |
-  And I generate 1 constrained random test that gets to "end" when I pick from:
-    | var | possible_values |
-    | user_choice | correct;; wrong |
-`;
-
-
 /**
  * ===========
  * Minimal required Step text:

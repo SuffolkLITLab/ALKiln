@@ -9,7 +9,8 @@ module.exports = fixts = {};
  * 
  * TODO
  * Research: Can we get back null or undefined without syntax errors? (unlikely)
- * Research: Can feature.children[0] exist without a `.scenario` prop? (unlikely)
+ * Research: Can a feature.children item exist without having a `.scenario`
+ *     prop? (unlikely)
  * */
 
 fixts.generator_missing_Feature = {};
