@@ -72,6 +72,17 @@ Format:
 - Fixed: log codes checker obob.
 - Fixed: updated `actions/upload-artifact@v3` to `actions/upload-artifact@v4`
 
+## [5.14.0] - 2025-05-15
+
+### Added
+
+- Adds a linear Step to properly set multi-line values for `textarea`s with a doc string (closes [#1003](https://github.com/SuffolkLITLab/ALKiln/issues/1003)). We are unable to fix the current "set variable" linear Step for this. See [this comment on #655](https://github.com/SuffolkLITLab/ALKiln/issues/655#issuecomment-2876491571).
+
+### Internal
+
+- Changes how Log joins logs.
+- Allows reports to accept log messages as an argument without duplicating metadata text. Debug logs will still save duplicate messages.
+
 ## [5.13.4] - 2025-01-11
 
 ### Changed
