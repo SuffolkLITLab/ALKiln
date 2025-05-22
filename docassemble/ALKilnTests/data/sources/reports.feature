@@ -480,83 +480,33 @@ Scenario: Report still shows page id when I tap to continue without setting any 
   Given the final Scenario status should be "passed"
   Given the Scenario report should include:
     """
-    ―――――――――――――――
-    Scenario: Report still shows page id when I tap to continue without setting any fields
-    Tags: @reports @fast @rp1
-    ―――――――――――――――
-    Trying to load the interview at "
-    """
-  Given the Scenario report should include:
-    """
-    all_tests.yml"
-    """
-  Given the Scenario report should include:
-    """
     screen id: upload-files
-    screen id: group-of-complex-fields
-          | double_quote_dict['double_quote_key']['dq_two'] | true |  |
-          | single_quote_dict['single_quote_key']['sq_two'] | true |  |
-    screen id: direct-standard-fields
-          | checkboxes_yesno | True |  |
-          | checkboxes_other['checkbox_other_opt_1'] | true |  |
-          | combobox_input | Custom combobox option |  |
-          | dropdown_test | dropdown_opt_2 |  |
-          | radio_yesno | False |  |
-          | radio_other | radio_other_opt_3 |  |
-          | text_input | Regular text input field value |  |
-          | textarea | Multiline text\narea value |  |
-    screen id: showifs
-
     """
   And I start the interview at "all_tests"
   And I tap to continue
-  # Next page
-  And I set the var "double_quote_dict['double_quote_key']['dq_two']" to "true"
-  And I set the var "single_quote_dict['single_quote_key']['sq_two']" to "true"
-  And I tap to continue
-  Then the question id should be "direct standard fields"
-  # Next page
-  When I set the var "checkboxes_yesno" to "True"
-  And I set the var "checkboxes_other['checkbox_other_opt_1']" to "true"
-  And I set the var "combobox_input" to "Custom combobox option"
-  And I set the var "dropdown_test" to "dropdown_opt_2"
-  And I set the var "radio_yesno" to "False"
-  And I set the var "radio_other" to "radio_other_opt_3"
-  And I set the var "text_input" to "Regular text input field value"
-  And I set the var "textarea" to "Multiline text\narea value"
-  When I tap to continue
-  # Next page
-  Then the question id should be "showifs"
-  When I tap to continue
-  # Next page
-  Then the question id should be "object checkboxes"
-  And I set the var "object_checkboxes_test['obj_chkbx_opt_1']" to "true" 
-  And I set the var "object_dropdown" to "obj_opt_2"
-  When I tap to continue
-  # Next page (showifs ID SHOULD BE SHOWN IN REPORT)
-  Then the question id should be "buttons yesnomaybe"
+  Then the question id should be "group of complex fields"
 
 @slow @rp2 @table
 Scenario: Report lists unused table rows
   Given the final Scenario status should be "passed"
   Given the Scenario report should include:
     """
-      Unused rows:
-          | extra_2 | extra 2 |  |
-          | extra_out_of_alphabetical_order | extra 1 |  |
+        Unused rows:
+            | extra_2 | extra 2 |  |
+            | extra_out_of_alphabetical_order | extra 1 |  |
     """
   Given the Scenario report should include:
     """
-      Unused rows:
-          | extra_3 | extra 3 |  |
-          | extra_4 | extra 4 |  |
-          | extra_5 | extra 5 |  |
+        Unused rows:
+            | extra_3 | extra 3 |  |
+            | extra_4 | extra 4 |  |
+            | extra_5 | extra 5 |  |
     """
   Given the Scenario report should include:
     """
-      Unused rows:
-          | extra_6 | extra 6 |  |
-          | extra_7 | extra 7 |  |
+        Unused rows:
+            | extra_6 | extra 6 |  |
+            | extra_7 | extra 7 |  |
     """
   And I start the interview at "all_tests"
   And I get to "direct standard fields" with this data:

@@ -76,9 +76,10 @@ jobs:
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ env.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           #### Developer note: See https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           #### You can probably leave this out
+          ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO: 10
           # Internal: docassemble changes sometimes break @a11y tests. That is
           # a da problem, not ours. We will trigger these tests manually when we
           # want to check up on this.
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
           #### Developer note: You can probably leave this out
-          # ALKILN_VERSION: "5.13.4-feat-textarea-1"
+          ALKILN_VERSION: random

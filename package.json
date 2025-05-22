@@ -1,18 +1,26 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.14.0",
+  "version": "5.13.3-feat-random-6",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run unit && npm run codes && npm run cucumber",
-    "cucumber": "./lib/run_cucumber.js",
     "local": "npm run setup && npm run cucumber; npm run takedown",
+
+    "takedown": "./lib/docassemble/takedown.js",
+    "setup": "./lib/docassemble/setup.js",
+    "server_install": "./lib/docassemble/server_install.js",
+
     "pass": "npm run cucumber 'not @error and not @temp_error'",
     "fail": "npm run cucumber '@error'",
-    "setup": "./lib/docassemble/setup.js",
-    "takedown": "./lib/docassemble/takedown.js",
-    "server_install": "./lib/docassemble/server_install.js",
-    "unit": "mocha tests/unit_tests/*.test.*",
+    "cucumber": "npm run build && ./lib/run_cucumber.js",
+
+    "build": "npm run artifacts && npm run validate && npm run generate",
+    "validate": "./lib/setup/validate.js",
+    "generate": "./lib/setup/generate.js",
+    "artifacts": "./lib/setup/artifacts.js",
+    
+    "unit": "npm run artifacts && mocha --recursive 'tests/unit_tests/**/*.test.*'",
     "codes": "tests/log_codes/check_codes.sh ."
   },
   "repository": {
@@ -57,6 +65,9 @@
     "alkiln-server-install": "./lib/docassemble/server_install.js",
     "alkiln-setup": "./lib/docassemble/setup.js",
     "alkiln-takedown": "./lib/docassemble/takedown.js",
-    "alkiln-run": "./lib/run_cucumber.js"
+    "alkiln-run": "./lib/run_cucumber.js",
+    "alkiln-artifacts": "./lib/setup/artifacts.js",
+    "alkiln-validate": "./lib/setup/validate.js",
+    "alkiln-generate": "./lib/setup/generate.js"
   }
 }

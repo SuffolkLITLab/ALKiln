@@ -125,9 +125,9 @@ node_modules*
 .env
 npm-debug.log
 /alkiln-*
-/_alkiln-*
+_alkiln*
 /alkiln_test*
-/runtime_config.json
+/runtime_config*
 error*.jpg
 screenshot_*.jpg
 downloads_*

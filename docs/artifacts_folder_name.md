@@ -21,115 +21,165 @@ Our 4 environments can be condensed into 3 environments for the purpose of manag
 - ALKilnInThePlayground
 - The command line for internal development
 
-The GitHub action creates an artifact folder name and sends it to various scripts that use an instance of the `Log` class to create the folder and save the name. In other environments, an instance of the `Log` class both creates the name, creates the folder, and saves the name. The instance of the `Log` saves the name in `runtime_config.json`. That instance of `Log` and other ALKiln code uses that name to create and store files in that artifacts folder.
+Every environment runs npm commands. Those commands are sometimes run separately and thus trigger separate processes. We must find a way to persist information, like the name of the artifacts folder, across these processes.
 
-The artifact folder name generation code is in 2 places - the GitHub action and ALKiln's core code[^1]. In future, we may reduce that to just one location - the core code.
+The GitHub action creates an artifact folder name and sends it to a script that use an instance of the `Log` class to create the folder and save the name. In other environments, an instance of the `Log` class is what creates the name.
 
-<!-- More complex description that I don't think we need now, but want to double check:
-The scripts that GitHub action uses need to store its output in the same artifacts folder. The GitHub action therefore builds the name of the artifact folder and passes that around to the different scripts. The scripts pass the folder name to the `Log` class every time, which saves the folder name in `runtime_config.json`. After that, the core code uses that `json` value to put other artifacts in the same folder. We also have folder-naming code in the core code which we use for other purposes. The GitHub action duplicates that folder-naming code, which is unfortunate.
+The instance of the `Log` saves the name in `runtime_config.json`. That instance of `Log` and other ALKiln code uses that name to create and store files in that artifacts folder.
 
-At the same time, tests that run in ALKilnInThePlayground don't have GitHub to manage the artifact folder name. It only uses the `run_cucumber` script, not any of the others...
+The artifact folder name generation code is in 2 places - the GitHub action and ALKiln's core code[^1]. In future, we may be able to reduce that to just one location - the core code.
 
-Adding to that confusion, when people (like internal ALKiln developers) run tests from their command line, they do use the `setup` script once at first, but then run test suites repeatedly...
-
-Neither of the last 2 can depend on the `runtime_config.json` folder name that `setup` creates. If they did, all their multiple test runs would save to that first folder. Since both those environments use `run_cucumber.js` alone repeatedly, and since we don't want to duplicate folder-naming behavior between even more scripts, we decided that those non-GitHub environments should be able to let `Log` create a folder name from scratch every time. The `Log` constructor has to be able to accept a `path` argument with a folder name and also to accept an undefined `path` argument.
--->
-
-A future goal is to remove the need to store the name in the runtime configuration file to reduce that complexity a bit. These flows are up for discussion.
-
-Below are more detailed descriptions of the different paths the folder name takes in the different environments. Where the folder name is created, gets passed, gets saved, and gets used. Note that there's a little glossing over the details. For example, everything saves to `runtime_config.json`, but only the core code[^1] ever uses the value there.
+Below are more detailed descriptions of how each environment interacts with the folder name. Where the folder name is created, gets passed, gets saved, and gets used. These descriptions still gloss over many details.
 
 The diagrams highlight `Log` to help visualize a common point in all the flows.
 
-### GitHub action
 
-1. GitHub action creates a new folder name, passes that name to `setup`, which passes that name to `Log`, which creates the artifacts folder and saves the name in `runtime_config.json`. The setup `Log` uses the name to store logs in the folder. The setup uses its `Log`.
-2. GitHub action uses the same folder name, passes that same name to `run_cucumber`, which passes that same name to `Log`. The `runtime_cucumber` process uses that `Log`. The `run_cucumber` process also triggers the core code, which uses the folder name in `runtime_config.json` to create its own `Log`. The core code also uses that name to store other artifact files in the folder.
-3. GitHub action creates the folder name, passes that same name to `takedown`, which passes that same name when instantiating its `Log`. The takedown `Log` uses the name to store logs in the folder.
+### Shared behavior
+
+For each environment, the start and end of how they manage the artifacts folder name is different. In the middle, though - once the artifacts folder name is already stored in the `runtime_config` file - the flow is the same.
+
+Npm commands that come in the middle have this flow to save logs:
 
 ```mermaid
-%% "pass name too" has 2 o's at the end because mermaid makes one of them disappear
-
 flowchart LR
-    action[action part 1] --create/pass name too--> setup
-    setup["setup"] --pass name too--> log1["#96;Log#96;"]:::log
-    log1 --store name in/ignore--> runtime1["runtime config file"]
-    log1 --create with name--> folder1[folder]
 
-    action2[action part 2] --pass name too--> run["run"]
-    run --pass name too--> log2["#96;Log#96;"]:::log
-    log2 --store name in/ignore--> runtime2["runtime config file"]
-    log2 --use with name--> folder2[folder]
-    run --> core["core code"]
-    core --pass name too--> log3["#96;Log#96;"]:::log
-    core --use with name--> folder2
-    core --get name from--> runtime2
-    log3 --use with name--> folder2
-    log3 --store name in/ignore--> runtime2
-
-    action3[action part 3] --pass name too--> takedown["takedown"]
-    takedown --pass name too--> log4["#96;Log#96;"]:::log
-    log4 --store name in/ignore--> runtime3["runtime config file"]
-    log4 --create with name--> folder5[folder]
+    environment --triggers--> commands["middle</br>commands"]
+    commands --trigger--> scripts["package</br>code"]
+    scripts --make--> log2["#96;Log#96;"]:::log
+    log2 --"gets name</br>from"--> runtime2["runtime config</br>file"]
+    log2 --"adds to"--> folder2[folder</br>& files]
 
 classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 ```
+
+The core code also needs to use the artifacts folder name in order to save both logs and other artifacts:
+
+```mermaid
+flowchart LR
+
+    core["core</br>code"] --"makes"--> log4["#96;Log#96;"]:::log
+    core --"adds to"--> folder3[folder</br>& files]
+    core --"gets name</br>from"--> runtime3["runtime config</br>file"]
+    log4 --"gets name</br>from"--> runtime3
+    log4 --"adds to"--> folder3
+
+classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
+```
+
+Those are the shared flows. Each environment, though, has its own way to store the name at the start and each environment has its own way to give the author the final artifacts.
+
+
+### GitHub action
+
+The GitHub action starts off with an empty `runtime_config` file. The action creates a new folder name and passes that name to the `artifacts` script, which passes that name to a `Log`. The `Log` creates the artifacts folder and saves the name in `runtime_config.json`.
+
+```mermaid
+flowchart LR
+
+    action["GitHub action"] --creates--> name["artifacts</br>folder name"]
+    action --"passes</br>name "--> command["'artifacts'</br>command"]
+    command --"passes</br>name"--> artifacts["artifacts.js"]
+    artifacts --"passes</br>name"--> log1["#96;Log#96;"]:::log
+    log1 --"stores name in</br>& uses"--> runtime1["runtime config</br>file"]
+    log1 --"creates</br>with name"--> folder1["folder</br>& files"]
+    log1 --"adds to"--> folder1
+
+classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
+```
+
+Then other processes use the name from the config to store logs and other files in the artifacts folder (as we've already shown).
+
+Finally, the action uses the name in the action context to download the artifacts folder so the user can have access to it after the action is done.
+
+```mermaid
+flowchart LR
+
+    action["GitHub action"] --previously created--> name["artifacts folder name"]
+    action --uses name to get--> folder["folder & files"]
+
+classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
+```
+
 
 ### ALKilnInThePlayground
 
-1. ALKilnInThePlayground triggers `run_cucumber` without a folder name which triggers `Log` without a folder name. `Log` creates a new folder name and saves it in `runtime_config.json`. It also creates the artifacts folder. The `run_cucumber` process also triggers the core code, which uses the folder name in `runtime_config.json` to create its own `Log`. The core code also uses that name to store other artifact files in the folder.
+_Note: This should be implemented by the time anyone actually reads this. Here's hoping._
+
+ALKilnInThePlayground starts off with an empty `runtime_config` file. ALKilnInThePlayground triggers the `artifacts` command, but without a folder name. The code still creates a `Log` (also without a folder name). The `Log` itself creates the name.
 
 ```mermaid
 flowchart LR
-    ALKilnInThePlayground --> run["run"]
-    run --> log2["#96;Log#96;"]:::log
-    log2 --store name in/ignore--> runtime2["runtime config file"]
-    log2 --create with name--> folder2[folder]
-    run --> core["core code"]
-    core --> log3["#96;Log#96;"]:::log
-    core --use with name--> folder2
-    core --get name from--> runtime2
-    log3 --use with name--> folder2
-    log3 --store name in/ignore--> runtime2
+
+    ALKilnInThePlayground --> command["'artifacts'</br>command"]
+    command --> artifacts["artifacts.js"]
+    artifacts --> log1["#96;Log#96;"]:::log
+    log1 --creates--> name["artifacts</br>folder name"]
+    log1 --stores name--> runtime1["runtime config file"]
+    log1 --"gets name</br>from"--> runtime1["runtime config</br>file"]
+    log1 --creates</br>with name--> folder1["folder</br>& files"]
 
 classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 ```
+
+Then other processes use the name from the config to store logs and other files in the artifacts folder (as we've already shown).
+
+Finally, ALKilnInThePlayground itself uses the runtime config file to get the name so it can give the artifacts to the user.
+
+```mermaid
+flowchart LR
+
+    ALKilnInThePlayground --"gets name from"--> runtime1["runtime config file"]
+    ALKilnInThePlayground --"uses name to get"--> folder["folder & files"]
+
+classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
+```
+
 
 ### Command line
 
-1. The developer uses the command line to trigger setup without a folder name which triggers `Log` without a folder name. `Log` creates a name and creates the artifacts folder, then stores files in that folder.
-2. The developer uses the command line to trigger `run_cucumber` without a folder name which triggers `Log` without a folder name. `Log` creates and saves a new folder name in `runtime_config.json`, and creates the artifacts folder.  The `run_cucumber` process also triggers the core code, which uses the folder name in `runtime_config.json` to create its own `Log`. The core code also uses that name to store other artifact files in the folder.
-3. The developer uses the command line to trigger `takedown` without a folder name which triggers `Log` without a folder name. `Log` creates a name and the artifacts folder, then stores files in that folder.
+The command line flow is similar to ALKilnInThePlayground, but has to deal with a pre-existing runtime config file[^2]. The command line flow overwrites the artifacts folder name on each run.
+
+An internal developer uses the command line to trigger the `artifacts` command, but without a folder name. The code still creates a `Log` (also without a folder name). The `Log` itself creates a name and overwrites the current name in the runtime config file.
 
 ```mermaid
 flowchart LR
-    cmd1[command line] --> setup
-    setup["setup"] --> log1["#96;Log#96;"]:::log
-    log1 --store name in/ignore--> runtime1["runtime config file"]
-    log1 --create with/use with name--> folder1[folder]
 
-    cmd2[command line] --> run["run"]
-    run --> log2["#96;Log#96;"]:::log
-    log2 --store name in/ignore--> runtime2["runtime config file"]
-    log2 --create with name--> folder2[folder]
-    run --> core["core code"]
-    core --> log3["#96;Log#96;"]:::log
-    core --use with name--> folder2
-    core --get name from--> runtime2
-    log3 --use with name--> folder2
-    log3 --store name in/ignore--> runtime2
-
-    cmd3[command line] --> takedown["takedown"]
-    takedown --> log4["#96;Log#96;"]:::log
-    log4 --store name in/ignore--> runtime3["runtime config file"]
-    log4 --create with name--> folder5[folder]
+    dev --> command["'artifacts'</br>command"]
+    command --> artifacts["artifacts.js"]
+    artifacts --> log1["#96;Log#96;"]:::log
+    log1 --creates--> name["artifacts</br>folder name"]
+    log1 --"overwrites</br>previous name"--> runtime1["runtime config file"]
+    log1 --"gets name</br>from"--> runtime1["runtime config</br>file"]
+    log1 --creates</br>with name--> folder1["folder</br>& files"]
 
 classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
 ```
 
+Then other processes use the name from the config to store logs and other files in the artifacts folder (as we've already shown).
+
+ALKiln stores the artifacts folder in the root of the local repository folder. The developer has direct access to the file system and can see every new artifacts folder. In fact, they can also see any previous artifacts folders. We avoid adding those artifacts folders to the repo by including the folder name pattern in the `.gitignore` and `.npmignore` files.
+
+```mermaid
+flowchart LR
+
+    git --🙈--> folder["folders & files"]
+    dev --👁️--> folder
+    npm --🙉--> folder
+
+classDef log fill:#d6fd88,stroke:#000,stroke-width:2px,color:#000
+```
+
+
 ## Alternatives considered
 
-- One script for creating the artifacts folder name: Make a script that saves the folder name to the ALKiln `runtime_config.json`. Then all the other code, including instances of `Log`, would always use `runtime_config.json`. We would want `package.json` scripts for the command line environment that would include getting the name of the folder. That potentially complicates the code and process for internal development. We will see how our current design behaves first.
-- Use `Log`'s path name instead of the one in `runtime_config.json`. We thought we would want to save in previous artifacts folders, but it now seems potentially unnecessary. This seems the most viable option for the future, but it is unclear how we can integrate `Log` with all the other files. I wouldn't consider PDFs and screenshots to be logs.
+- Each originator (GitHub, ALKilnInThePlayground, the dev) could always create the name from the outside. This would duplicate work, but would give more fine-grained control.
+- Have `Log` make a different folder name each time and, at the very end, combine the contents of those folders into one folder. Hey, all ideas are welcome here.
+
+For name creation:
+
+- Avoid GitHub actions creating names. That is, create names only in `artifacts.js` and pass that out again. Needs research.
+
 
 [^1]: **Core framework code/core code:** the code that implements the Steps in the `.feature` test files.
+
+[^2] Keeping the `runtime_config` file around helps greatly improves the local development experience. You can read more in the document that talks about the 4 environments ALKiln supports.

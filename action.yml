@@ -33,6 +33,10 @@ inputs:
     description: "The version of docassemblecli to install."
     required: false
     default: "0.0.17"
+  ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO:
+    description: "The maximum number of tests ALKiln will generate for every Scenario that can generate tests."
+    required: false
+    # Default will be internal to avoid duplication of data
 
 outputs:
   PATH_TO_ARTIFACTS:
@@ -68,6 +72,7 @@ runs:
         MAX_SECONDS_FOR_SETUP: ${{ inputs.MAX_SECONDS_FOR_SETUP }}
         SERVER_RELOAD_TIMEOUT_SECONDS: ${{ inputs.SERVER_RELOAD_TIMEOUT_SECONDS }}
         DOCASSEMBLECLI_VERSION: ${{ inputs.DOCASSEMBLECLI_VERSION }}
+        ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO: ${{ inputs.ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO }}
       shell: bash
       run: |
         log="💡 ALK0023 INFO: Set environment variables and create artifacts folder"
@@ -91,6 +96,7 @@ runs:
         echo "DOCASSEMBLE_DEVELOPER_API_KEY=$DOCASSEMBLE_DEVELOPER_API_KEY" >> $GITHUB_ENV
         echo "ALKILN_VERSION=$ALKILN_VERSION" >> $GITHUB_ENV
         echo "MAX_SECONDS_FOR_SETUP=$MAX_SECONDS_FOR_SETUP" >> $GITHUB_ENV
+        echo "ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO=$ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO" >> $GITHUB_ENV
         echo "SERVER_RELOAD_TIMEOUT_SECONDS=$SERVER_RELOAD_TIMEOUT_SECONDS" >> $GITHUB_ENV
         echo "DOCASSEMBLECLI_VERSION=$DOCASSEMBLECLI_VERSION" >> $GITHUB_ENV
         # Hard-coded internal ALKiln vars
@@ -100,10 +106,10 @@ runs:
       run: |
         log="💡 ALK0024 INFO: Confirm environment variables"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
-        vars_log="\nALKiln version is $ALKILN_VERSION\nRepo is $REPO_URL\nBranch ref is $BRANCH_PATH\nMAX_SECONDS_FOR_SETUP is $MAX_SECONDS_FOR_SETUP\nSERVER_RELOAD_TIMEOUT_SECONDS is $SERVER_RELOAD_TIMEOUT_SECONDS\n"
+        vars_log='\nALKiln version is ${{ env.ALKILN_VERSION }}\nRepo is "${{ env.REPO_URL }}"\nBranch ref is "${{ env.BRANCH_PATH }}"\nCustom MAX_SECONDS_FOR_SETUP is "${{ env.MAX_SECONDS_FOR_SETUP }}"\nCustom SERVER_RELOAD_TIMEOUT_SECONDS is "${{ env.SERVER_RELOAD_TIMEOUT_SECONDS }}"\nCustom ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO is "${{ env.ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO }}"\n'
         echo -e "$vars_log" >> "${{ env.DEBUG_PATH }}" && echo -e "$vars_log"
 
-    # Install
+    # Install ALKiln during GitHub workflow
     - name: "💡 ALK0025 INFO: Set up node"
       uses: actions/setup-node@v4
       with:
@@ -115,8 +121,18 @@ runs:
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
         npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
 
-    # Install on playground
+    # Files prep
+    - shell: bash
+      env:
+        ARTIFACT_FOLDER: ${{ env.ARTIFACT_FOLDER }}
+      run: |
+        log="💡 ALK0275 INFO: Prepare repository test files"
+        echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
+        alkiln-artifacts --path="${{ env.ARTIFACT_FOLDER }}"
+        alkiln-validate
+        alkiln-generate
 
+    # Install package on playground
     # Don't rely on the environment's version of python
     - uses: actions/setup-python@v5
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
@@ -129,7 +145,7 @@ runs:
         log="💡 ALK0027 INFO: Create a Project and install the package from GitHub"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
         pip install "docassemblecli==$DOCASSEMBLECLI_VERSION"
-        alkiln-setup --path="${{ env.ARTIFACT_FOLDER }}"
+        alkiln-setup
     - name: "🤕 ALK0028 ERROR: Unable to create a Project"
       if: ${{ inputs.INSTALL_METHOD == 'playground' && failure() }}
       shell: bash
@@ -138,15 +154,15 @@ runs:
         long_log="\n\n―――\n🤕 ALK0028 ERROR: Unable to create a Project on your server's testing account or pull your package into it. Check the messages above this line.\n\n"
         echo -e "$long_log" >> "${{ env.DEBUG_PATH }}" && echo -e "$long_log"
 
-    # Server installations - find folders and save session vars
-    - name: "💡 ALK0029 INFO: Install the GitHub package onto the server"
+    # Server installation
+    - name: "💡 ALK0029 INFO: Try to install the GitHub package onto the GitHub sandbox server"
       if: ${{ inputs.INSTALL_METHOD == 'server' }}
       shell: bash
       run: |
         log="💡 ALK0029 INFO: Install the GitHub package onto the server"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
-        alkiln-server-install --path="${{ env.ARTIFACT_FOLDER }}"
-    - name: "🤕 ALK0030 ERROR: Unable to install the package"
+        alkiln-server-install
+    - name: "🤕 ALK0030 ERROR: Unable to install the package on the GitHub sandbox server"
       if: ${{ inputs.INSTALL_METHOD == 'server' && failure() }}
       shell: bash
       run: |
@@ -162,7 +178,7 @@ runs:
       run: |
         log="💡 ALK0031 INFO: Run tests"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
-        alkiln-run "$ALKILN_TAG_EXPRESSION" --path="${{ env.ARTIFACT_FOLDER }}"
+        alkiln-run "$ALKILN_TAG_EXPRESSION"
     
     # on playground, delete project
     - name: "💡 ALK0032 INFO: Delete the Project from the Playground"
@@ -171,7 +187,7 @@ runs:
       run: |
         log="💡 ALK0032 INFO: Delete the Project from the Playground"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
-        alkiln-takedown --path="${{ env.ARTIFACT_FOLDER }}"
+        alkiln-takedown
     
     # Upload artifacts that subscribers can download on the Actions summary page
     - name: "💡 ALK0033 INFO: Upload artifacts folder"

@@ -11,12 +11,13 @@ exit_code=0
 
 echo " -------------------------------------------------------
 | Usage:                                                |
-| bash $(basename $0) [dir] [c file] [c folder] [-l arg]
+| bash $(basename $0) [dir] [c file] [c folder]         |
 | dir:      The directory in which to search for logs   |
 | c file:   Name of the log instance counter file       |
 | c folder: Path to the folder of the log counter file  |
-| -l arg:   \"1\" prints extra logs                       |
  -------------------------------------------------------"
+# | bash $(basename $0) [dir] [c file] [c folder] [-l arg]
+# | -l arg:   \"1\" prints extra logs                       |
 
 # Get flags and their values
 loudness="0"
@@ -56,7 +57,7 @@ fi
 # removed and are no longer used. Syntax used works with GitHub cli - [[:digit:]]
 # https://stackoverflow.com/a/6901221
 # Exclude files and paths
-instances=$(find "$where_to_look" -type f ! -name "CONTRIBUTING.md" ! -name "$expected_instances_file" ! -name "debug_log.txt" ! -name "cucumber-report.txt" ! -path "*/tests/*" ! -path "*/node_modules/*" ! -path "*/ALKilnTests/*" ! -path "*/alkiln-*/*" ! -path "*/_alkiln*/*" ! -path "*/docs/decisions/*" ! -path "*/\.*" -print0 | xargs -0 -P 4 grep -0 -ro 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' | grep -v -- '--' )
+instances=$(find "$where_to_look" -type f ! -name "CONTRIBUTING.md" ! -name "$expected_instances_file" ! -name "debug_log.txt" ! -name "cucumber-report.txt" ! -name "_alkiln*" ! -path "*/tests/*" ! -path "*/node_modules/*" ! -path "*/ALKilnTests/*" ! -path "*/alkiln-*/*" ! -path "*/_alkiln*/*" ! -path "*/docs/*" ! -path "*/\.*" -print0 | xargs -0 -P 4 grep -0 -ro 'ALK[[:digit:]][[:digit:]][[:digit:]][[:digit:]]' | grep -v -- '--' )
 
 if [[ "$loudness" != "0" ]]; then
   total_instances=$(echo "$instances" | wc -l)
@@ -101,7 +102,7 @@ fi
 indx=0
 too_many=()
 missing=()
-while [ "$indx" -lt "$highest_code" ]; do
+while [ "$indx" -le "$highest_code" ]; do
   # Turn the index into a log code by prepending ALK and adding leading zeros
   log_code=$(printf "ALK%04d" "$indx")
   # Count ";" - a stand-in for the number of
@@ -126,24 +127,27 @@ while [ "$indx" -lt "$highest_code" ]; do
   # To add to the list of strings to print later
   short_msg="$log_code $num_paths/$num_expected"
   long_msg="$log_code act/exp "
-  long_msg+="$num_paths/$num_expected:"
+  long_msg+="$num_paths/$num_expected"
+  if [ "$num_paths" -gt "$num_expected" ]; then
+    long_msg+=":"
+  fi
   long_msg+=$(echo "${codes_unique_paths[$indx]}" | sed 's/;/\n  - /g')
 
   # missing
   if [ "$num_paths" -lt "$num_expected" ]; then
-    if [[ "$loudness" != "0" ]]; then
+    # if [[ "$loudness" != "0" ]]; then
       missing+=("$long_msg")
-    else
-      missing+=("$short_msg")
-    fi
+    # else
+    #   missing+=("$short_msg")
+    # fi
 
   # too_many
   elif [ "$num_paths" -gt "$num_expected" ]; then
-    if [[ "$loudness" != "0" ]]; then
+    # if [[ "$loudness" != "0" ]]; then
       too_many+=("$long_msg")
-    else
-      too_many+=("$short_msg")
-    fi
+    # else
+    #   too_many+=("$short_msg")
+    # fi
   fi
 
   let indx++
