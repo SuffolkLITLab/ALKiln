@@ -43,7 +43,9 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.15.0] - 2025-05-22
 
 ### Added
 
