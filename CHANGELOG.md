@@ -43,7 +43,11 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+
+- "Breaking news" feature for ALKilnInThePlayground - a way new ALKiln versions can talk directly with authors even if ALKilnInThePlayground's version stays the same. ALKilnInThePlayground will be able to get text from ALKiln that ALKilnInThePlayground can turn into Mako and then insert on a screen the author can see.
 
 ## [5.15.0] - 2025-05-22
 

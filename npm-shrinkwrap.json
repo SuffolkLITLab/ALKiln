@@ -1,12 +1,12 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.13.0",
+  "version": "5.15.0-feat-news",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "@suffolklitlab/alkiln",
-      "version": "5.13.0",
+      "version": "5.15.0-feat-news",
       "license": "MIT",
       "dependencies": {
         "@axe-core/puppeteer": "4.7.3",
@@ -29,10 +29,13 @@
         "uuid": "8.3.2"
       },
       "bin": {
+        "alkiln-artifacts": "lib/setup/artifacts.js",
+        "alkiln-generate": "lib/setup/generate.js",
         "alkiln-run": "lib/run_cucumber.js",
         "alkiln-server-install": "lib/docassemble/server_install.js",
         "alkiln-setup": "lib/docassemble/setup.js",
-        "alkiln-takedown": "lib/docassemble/takedown.js"
+        "alkiln-takedown": "lib/docassemble/takedown.js",
+        "alkiln-validate": "lib/setup/validate.js"
       }
     },
     "node_modules/@axe-core/puppeteer": {

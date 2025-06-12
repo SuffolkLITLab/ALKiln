@@ -1,6 +1,6 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.15.0",
+  "version": "5.15.0-feat-news",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
@@ -68,6 +68,7 @@
     "alkiln-run": "./lib/run_cucumber.js",
     "alkiln-artifacts": "./lib/setup/artifacts.js",
     "alkiln-validate": "./lib/setup/validate.js",
-    "alkiln-generate": "./lib/setup/generate.js"
+    "alkiln-generate": "./lib/setup/generate.js",
+    "alkiln-news": "./lib/breaking_news.js"
   }
 }
