@@ -64,10 +64,14 @@ Will we need more info in the future?
 - docassemble-os/docassemble version?
 - version of AssemblyLine if it's there?
 - various env vars...? Not sure which ones, though, and those change. All env
-  vars seems like tmi.
+  vars seems like tmi, though we are sending all env vars for test runs anyway.
 - npm-shrinkwrap.json of ALKiln? Or maybe just package.json? We should be able
   to see that in the given version of ALKiln.
-- files we know we've put on the system...? (runtime_config.json)
+- addresses of files we know we've put on the system...? (runtime_config.json)
+- contents of files we know we've put on the system...? (runtime_config.json)
+- question id (https://docassemble.org/docs/functions.html#current_context)
+- variable being sought (https://docassemble.org/docs/functions.html#current_context)
+- start_time (https://docassemble.org/docs/functions.html#start_time)
 
 
 Message format?

@@ -17,7 +17,7 @@ describe(`try_to_break_the_news_gently() with`, function () {
   // ===== Announcements =====
 
   describe(`desired ALKiln at 5.15.0 and ALKiP at 1.3.1`, function () {
-
+    // This will never show in real life
     it(`to return an announcement that includes "ALK0280"`, function () {
       process.argv = [`node_path`, `file_path`, `--alkiln_desired_version=5.15.0`, `--alkip_version=1.3.1`];
       let news = try_to_break_the_news_gently();
