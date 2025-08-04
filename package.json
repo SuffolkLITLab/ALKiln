@@ -1,6 +1,6 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.15.0-feat-news-14",
+  "version": "5.15.0-feat-news-15",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
@@ -21,7 +21,8 @@
     "artifacts": "./lib/setup/artifacts.js",
     
     "unit": "npm run artifacts && mocha --recursive 'tests/unit_tests/**/*.test.*'",
-    "codes": "tests/log_codes/check_codes.sh ."
+    "codes": "tests/log_codes/check_codes.sh .",
+    "news": "./lib/breaking_news.js"
   },
   "repository": {
     "type": "git",
