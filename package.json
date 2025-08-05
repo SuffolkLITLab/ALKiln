@@ -1,25 +1,22 @@
 {
   "name": "@suffolklitlab/alkiln",
   "version": "5.15.0-feat-news-15",
+  "version": "5.15.1",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
     "test": "npm run unit && npm run codes && npm run cucumber",
     "local": "npm run setup && npm run cucumber; npm run takedown",
-
     "takedown": "./lib/docassemble/takedown.js",
     "setup": "./lib/docassemble/setup.js",
     "server_install": "./lib/docassemble/server_install.js",
-
     "pass": "npm run cucumber 'not @error and not @temp_error'",
     "fail": "npm run cucumber '@error'",
     "cucumber": "npm run build && ./lib/run_cucumber.js",
-
     "build": "npm run artifacts && npm run validate && npm run generate",
     "validate": "./lib/setup/validate.js",
     "generate": "./lib/setup/generate.js",
     "artifacts": "./lib/setup/artifacts.js",
-    
     "unit": "npm run artifacts && mocha --recursive 'tests/unit_tests/**/*.test.*'",
     "codes": "tests/log_codes/check_codes.sh .",
     "news": "./lib/breaking_news.js"
@@ -46,7 +43,7 @@
     "@axe-core/puppeteer": "4.7.3",
     "@cucumber/cucumber": "9.3.0",
     "@faker-js/faker": "7.3.0",
-    "axios": "1.7.3",
+    "axios": "1.9.0",
     "chai": "4.2.0",
     "cheerio": "1.0.0-rc.10",
     "deep-equal-in-any-order": "2.0.0",
@@ -55,8 +52,8 @@
     "fast-glob": "3.2.12",
     "minimatch": "3.0.5",
     "minimist": "1.2.8",
-    "mocha": "9.2.2",
-    "pdfjs-dist": "3.11.174",
+    "mocha": "11.5.0",
+    "pdfjs-dist": "5.2.133",
     "puppeteer": "22.15.0",
     "qs": "6.10.3",
     "sanitize-filename": "1.6.3",

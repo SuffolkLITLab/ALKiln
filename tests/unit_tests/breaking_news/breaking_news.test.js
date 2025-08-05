@@ -9,7 +9,7 @@ describe(`try_to_break_the_news_gently() with`, function () {
 
   describe(`desired ALKiln at 5.15.0 and ALKiP at 1.3.1`, function () {
     // This will never show in real life
-    it(`to return an announcement that includes "ALK0280"`, function () {
+    it(`to return an announcement about randomized test generators that includes "ALK0280"`, function () {
       let news = try_to_break_the_news_gently({ alkiln_desired_version: `5.15.0`, alkip_version: `1.3.1`, });
       expect( news ).to.include(`ALK0280`);
     });
@@ -18,15 +18,15 @@ describe(`try_to_break_the_news_gently() with`, function () {
 
   describe(`current ALKiln at 5.14.1 and ALKiP at 1.4.0`, function () {
     // This will also never show in the wild
-    it(`to return an announcement that includes "ALK0281"`, function () {
+    it(`to return an announcement about announcements that includes "ALK0281"`, function () {
       let news = try_to_break_the_news_gently({ alkiln_current_version: `5.14.1`, alkip_version: `1.4.0`, });
       expect( news ).to.include(`ALK0281`);
     });
   });
 
-  describe(`experimental versions of different formats for current ALKiln at 5.14.1-feat and ALKiP with a version greater than 1.3.1 purely because of the experimental version format at 1.3.1-b`, function () {
-    it(`to return an announcement that includes "ALK0281"`, function () {
-      let news = try_to_break_the_news_gently({ alkiln_current_version: `5.14.1-feat`, alkip_version: `1.3.1-b`, });
+  describe(`experimental versions of different formats for current ALKiln at 5.14.1-feat and ALKiP with a version greater than 1.4.1 purely because of the experimental version format at 1.4.1-b`, function () {
+    it(`to return an announcement about announcements that includes "ALK0281"`, function () {
+      let news = try_to_break_the_news_gently({ alkiln_current_version: `5.14.1-feat`, alkip_version: `1.4.1-b`, });
       expect( news ).to.include(`ALK0281`);
     });
   });
@@ -35,30 +35,24 @@ describe(`try_to_break_the_news_gently() with`, function () {
   // ===== Non-announcements =====
 
   describe(`desired ALKiln at 5.14.1 and ALKiP at 1.3.1`, function () {
-
     it(`to return no announcement ("ALK0278")`, function () {
       let news = try_to_break_the_news_gently({ alkiln_desired_version: `5.14.1`, alkip_version: `1.3.1`, });
       expect( news ).to.include(`ALK0278`);
     });
-
   });
 
-  describe(`current ALKiln at 5.15.2 and ALKiP at 1.3.0`, function () {
-
+  describe(`current ALKiln at 5.16.0 and ALKiP at 1.5.0`, function () {
     it(`to return no announcement ("ALK0278")`, function () {
-      let news = try_to_break_the_news_gently({ alkiln_current_version: `5.15.2`, alkip_version: `1.3.0`, });
+      let news = try_to_break_the_news_gently({ alkiln_current_version: `5.16.0`, alkip_version: `1.5.0`, });
       expect( news ).to.include(`ALK0278`);
     });
-
   });
 
-  describe(`experimental versions of different formats for current ALKiln at 5.15.2-3 and ALKiP at 1.3.0-5-2`, function () {
-
+  describe(`experimental versions of different formats for current ALKiln at 5.16.2-3 and ALKiP at 1.3.0-5-2`, function () {
     it(`the version after the "-" doesn't get used as numbers and returns no announcement ("ALK0278")`, function () {
-      let news = try_to_break_the_news_gently({ alkiln_current_version: `5.15.2-3`, alkip_version: `1.3.0-5-2`, });
+      let news = try_to_break_the_news_gently({ alkiln_current_version: `5.16.2-3`, alkip_version: `1.3.0-5-2`, });
       expect( news ).to.include(`ALK0278`);
     });
-
   });
 
 });

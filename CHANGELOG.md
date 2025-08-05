@@ -62,6 +62,16 @@ Format:
 - Implement constrained random answers Step for ALKilnInThePlayground.
 
 
+## [5.15.1] - 2025-08-05
+
+### Changed
+
+- Updated dependencies. See [#1012](https://github.com/SuffolkLITLab/ALKiln/issues/1012).
+
+### Fixed
+
+- Fix pdfjs version mismatch with docassemble's most recent version of node. See ALKilnInThePlayground https://github.com/SuffolkLITLab/docassemble-ALKilnInThePlayground/issues/42.
+
 ## [5.15.0] - 2025-05-22
 
 ### Added
