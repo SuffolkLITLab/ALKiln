@@ -73,6 +73,23 @@ function get_log_codes({ logger }) {
   return codes;
 }
 
+function get_printed_Scenarios_counts({ logger }) {
+  /**
+   * Return list of strings the logs have for the number of Scenarios that got
+   *     created. Return as many of them as currently exist in the logs.
+   * */
+  let printed_counts = [];
+  for ( let record of logger.internal_log_records ) {
+    for ( let log of record.logs ) {
+      if ( typeof(log) !== `string` ) { continue; }
+      let matches = log.match(/generated (\d) Scen/);
+      if ( !matches ) { continue; }
+      printed_counts.push( ...matches.slice(1) );
+    }
+  }
+  return printed_counts;
+}
+
 
 /** Variables that will change their values for each `it()` */
 const logger = new Log({ context: `valid generators unit tests` });
@@ -161,8 +178,10 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-    it(`generates 2 Scenarios`, function() {
+    it(`makes 2 Scenarios`, function() {
       expect( num_Scenarios ).to.equal( fixture.num_Scenarios, `Wrong # of Scenarios: ${ num_Scenarios }/${ fixture.num_Scenarios }` );
+      let printed = get_printed_Scenarios_counts({ logger });
+      expect( printed ).to.include(`${ fixture.num_Scenarios }`, `Printed wrong number of Scenarios.`);
     });
 
     it(`has the right non-random text`, function () {
@@ -236,8 +255,10 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-    it(`generates 2 Scenarios (skipping the extra appearance of "Scenario:")`, function() {
+    it(`makes 2 Scenarios (skipping the extra appearance of "Scenario:")`, function() {
       expect( num_Scenarios ).to.equal( fixture.num_Scenarios, `Wrong # of Scenarios: ${ num_Scenarios }/${ fixture.num_Scenarios }` );
+      let printed = get_printed_Scenarios_counts({ logger });
+      expect( printed ).to.include(`${ fixture.num_Scenarios }`, `Printed wrong number of Scenarios.`);
     });
 
     it(`retains the text after the Feature, retains the comments before the table, retains the comments after the table, retains the Step after the table, retains and ignores a commented extraneous generator Step, keeps the comments in the table, has an extra line on the end`, function () {
@@ -417,7 +438,7 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     
     it(`returns no errors`, function () { expect( errors ).to.have.lengthOf( 0 ); });
 
-    it(`generates 1 test`, function () {
+    it(`makes 1 test`, function () {
       expect( comparable_text( new_contents )).to.equal( fixture.expected );
     });
   });
@@ -486,7 +507,19 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
     });
 
     it(`only makes 2 tests`, function () {
+      /**
+       * - Q: Why is this first test passing? This tests if 4 scenarios were
+       * created. There should only be 2 and only 3 were requested.
+       * - A: The 3rd and 4th are the warning Scenarios.
+       * 
+       * - Q: Why is this logging "generated \d Scenario" twice?
+       * - A: Because it's generating from 2 "generator files" here.
+       * */
       expect( num_Scenarios ).to.equal( fixture.num_Scenarios, `Wrong # of Scenarios: ${ num_Scenarios }/${ fixture.num_Scenarios }` );
+      let printed = get_printed_Scenarios_counts({ logger });
+      // Note: printed value different than `.num_Scenarios` which includes
+      // counting warning Scenarios. Discuss: Create new prop?
+      expect( printed ).to.include(`2`, `Printed wrong number of Scenarios.`);
     });
     
     it(`the 2 tests are unique`, function () {
@@ -544,6 +577,8 @@ describe(`Constrained random answers parser, when given a valid generator Scenar
 
     it(`makes 2 tests`, function () {
       expect( num_Scenarios ).to.equal( fixture.num_Scenarios, `Wrong # of Scenarios: ${ num_Scenarios }/${ fixture.num_Scenarios }` );
+      let printed = get_printed_Scenarios_counts({ logger });
+      expect( printed ).to.include(`${ fixture.num_Scenarios }`, `Printed wrong number of Scenarios.`);
     });
 
     describe(`the "" value does get its own Scenario`, function () {
