@@ -160,7 +160,15 @@ jobs:
           #### Developer note: You can probably leave the rest out
           #### To learn more, see https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
-          # ALKILN_VERSION: 
+          # ALKILN_VERSION:
+
+
+      ### Developer note: You can probably leave this out
+      # Optional debugging to explore things like docker issues
+      - name: Docker debug tmate session
+        uses: mxschmitt/action-tmate@v3
+        # if: ${{ failure() && github.event.inputs.enable_tmate == 'true' }}
+
 
       #### Developer note: Example of making an issue when tests fail
       #### that includes the text of the failure output file
