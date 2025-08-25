@@ -167,6 +167,7 @@ jobs:
       # Optional debugging to explore things like docker issues
       - name: Docker debug tmate session
         uses: mxschmitt/action-tmate@v3
+        if: ${{ always }}
         # if: ${{ failure() && github.event.inputs.enable_tmate == 'true' }}
 
 
