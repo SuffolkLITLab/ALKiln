@@ -1,0 +1,46 @@
+---
+objects:
+  protagonist: Individual
+  antagonist: Individual
+---
+mandatory: True
+id: interview_order
+code: |
+  protagonist.name.first = "Harry"
+  protagonist.name.last = "Potter"
+  antagonist.name.first = "Tom"
+  antagonist.name.last = "Riddle"
+  villain
+  the_end
+---
+question: Who is the villain?
+id: question_block
+fields:
+  - The villain is: villain
+    datatype: object
+    default: antagonist
+    choices:
+      - protagonist
+      - antagonist
+  - The hero is: hero
+    datatype: object_radio
+    choices:
+      - protagonist
+      - antagonist
+  - who are the characters?: characters
+    datatype: object_checkboxes
+    choices:
+      - protagonist
+      - antagonist
+  - actually who are the characters?: actual_characters
+    datatype: object_multiselect
+    choices:
+      - protagonist
+      - antagonist
+  - freeform: jazz
+    datatype: raw
+---
+id: end
+event: the_end
+question: the end
+---
