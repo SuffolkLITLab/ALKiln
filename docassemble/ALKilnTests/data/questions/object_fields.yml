@@ -2,6 +2,12 @@
 objects:
   protagonist: Individual
   antagonist: Individual
+  lady: Individual
+  other_lady: Individual
+  pooh: Individual
+  piglet: Individual
+  fictional: Individual
+  double_fictional: Individual
 ---
 mandatory: True
 id: interview_order
@@ -10,35 +16,53 @@ code: |
   protagonist.name.last = "Potter"
   antagonist.name.first = "Tom"
   antagonist.name.last = "Riddle"
+
+  pooh.name.first = "Pooh"
+  pooh.name.last = "Bear"
+  piglet.name.first = "Piglet"
+  piglet.name.last = "N/A"
+
+  lady.name.first = "Goldie"
+  lady.name.last = "Locks"
+  other_lady.name.first = "Momma"
+  other_lady.name.last = "Bear"
+
+  fictional.name.first = "Hubert"
+  fictional.name.last = "Hawkins"
+  double_fictional.name.first = "Giacomo"
+  double_fictional.name.last = "King of Jesters"
+
   villain
   the_end
 ---
-question: Who is the villain?
+question: Choose your characters?
 id: question_block
 fields:
-  - The villain is: villain
-    datatype: object
-    default: antagonist
-    choices:
-      - protagonist
-      - antagonist
-  - The hero is: hero
-    datatype: object_radio
-    choices:
-      - protagonist
-      - antagonist
-  - who are the characters?: characters
+  - note: Working
+  - Who are the characters?: characters
     datatype: object_checkboxes
     choices:
       - protagonist
       - antagonist
-  - actually who are the characters?: actual_characters
+  - Freeform: jazz
+    datatype: raw
+  - Who is right?: moral_judgement
+    datatype: object_radio
+    choices:
+      - lady
+      - other_lady
+
+  - note: Broken
+  - Who is your favorite?: favorite
     datatype: object_multiselect
     choices:
-      - protagonist
-      - antagonist
-  - freeform: jazz
-    datatype: raw
+      - pooh
+      - piglet
+  - Who is more awesome? Take this seriously!: awesomer
+    datatype: object
+    choices:
+      - fictional
+      - double_fictional
 ---
 id: end
 event: the_end
