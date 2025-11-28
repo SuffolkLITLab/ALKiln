@@ -43,7 +43,11 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Fixed
+
+- Fixed race condition between navigating and extracting button text.
 
 ## [5.15.1] - 2025-08-05
 
