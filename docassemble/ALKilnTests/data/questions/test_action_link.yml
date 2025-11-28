@@ -29,7 +29,6 @@ subquestion: |
       </div>
     </div>
   </div>
-  <p class="attribution">"<a rel="noopener noreferrer" href="https://commons.wikimedia.org/w/index.php?curid=114389316">Noun Project upload icon 1049724</a>" by artworkbean is licensed under <a rel="noopener noreferrer" href="https://creativecommons.org/licenses/by/3.0/?ref=openverse">CC BY 3.0 <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" style="height: 1em; margin-right: 0.125em; display: inline;" /><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" style="height: 1em; margin-right: 0.125em; display: inline;" /></a>.</p>
 css: |
   <style>
   .question-landing-page div.container {
@@ -43,7 +42,7 @@ code: |
     result_type = "survey_without_template"
   intro = True
 ---
-id: choose an result screen
+id: choose a result screen
 question: |
   What kind of result are you looking for?
 fields: 
