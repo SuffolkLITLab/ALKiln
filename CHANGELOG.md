@@ -45,6 +45,10 @@ Format:
 
 ## [Unreleased]
 
+### Changed
+
+- Updated dependencies
+
 ### Fixed
 
 - Fixed race condition between navigating and extracting button text.
