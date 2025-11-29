@@ -43,7 +43,25 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.15.4] - 2025-11-29
+
+### Changed
+
+- Published on correct commit/branch
+
+## [5.15.3] - 2025-11-29
+
+Note: published on incorrect commit
+
+### Fixed
+
+- Update bin versions as per npm instructions
+
+## [5.15.2] - 2025-11-29
+
+Note: published on incorrect commit
 
 ### Changed
 
