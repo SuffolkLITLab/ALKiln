@@ -111,9 +111,10 @@ runs:
 
     # Install ALKiln during GitHub workflow
     - name: "💡 ALK0025 INFO: Set up node"
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v5
       with:
-        node-version: "18"
+        node-version: "24.x"
+        package-manager-cache: false
     - name: "💡 ALK0026 INFO: Install ALKiln directly from npm"
       shell: bash
       run: |
