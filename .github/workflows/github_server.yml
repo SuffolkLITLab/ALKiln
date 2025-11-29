@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [24.x]
 
     #### Developer note: You can probably leave out these specific
     #### environment variables. You may not even need the `env`
@@ -160,7 +160,7 @@ jobs:
           #### Developer note: You can probably leave the rest out
           #### To learn more, see https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
-          ALKILN_VERSION: "race"
+          ALKILN_VERSION: "deps"
 
       #### Developer note: Example of making an issue when tests fail
       #### that includes the text of the failure output file
