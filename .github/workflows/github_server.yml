@@ -36,9 +36,6 @@ jobs:
           && github.event.pull_request.head.repo.fork
         )
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [24.x]
 
     #### Developer note: You can probably leave out these specific
     #### environment variables. You may not even need the `env`
@@ -56,10 +53,6 @@ jobs:
       SECRET_FOR_MISSING_FIELD: secret for missing field
       
     steps:
-      # Place the root directory in this branch to access
-      # relative paths to action files
-      - uses: actions/checkout@v4
-
       - name: "ALKiln - Start the isolated temporary docassemble server on GitHub"
         id: github_server
         #### Developer note: you'll need to replace `uses: ./action_for_github_server`
