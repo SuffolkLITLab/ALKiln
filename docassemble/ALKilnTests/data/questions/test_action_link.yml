@@ -1,0 +1,60 @@
+---
+metadata:
+  title: Action navigation
+  description: Derived from ALWeaver opening screen to reproduce its navigation bug. See https://github.com/SuffolkLITLab/docassemble-ALWeaver/pull/953
+---
+mandatory: True
+code: |
+  intro
+  result_type
+  end
+---
+objects:
+  - upload_template_image: DAStaticFile.using(filename="upload.png")
+---
+id: opening screen
+event: intro
+question: |
+  Offer action buttons
+subquestion: |
+  <div class="row row-cols-1 row-cols-md-2 g-2">
+    <div class="col">
+      <div class="card h-100">
+        <img src="${ upload_template_image.url_for() }" class="card-img-top p-2" style="max-height: 15rem;" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" >Upload a form to automate</h5>
+          <p class="card-text">Upload an existing form and answer simple questions to build a draft automation.</p>
+          <a id="upload" class="btn btn-primary stretched-link align-self-end" href="${ url_action("choose_first_action", selected_action="upload") }" role="button">Upload and start building</a>
+        </div>
+      </div>
+    </div>
+  </div>
+css: |
+  <style>
+  .question-landing-page div.container {
+    max-width: 100rem;
+  }
+  </style>
+---
+event: choose_first_action
+code: |
+  if action_argument("selected_action") == "build_from_scratch":
+    result_type = "survey_without_template"
+  intro = True
+---
+id: choose a result screen
+question: |
+  What kind of result are you looking for?
+fields: 
+  - How do you want to fill this out?: result_type
+    input type: radio    
+    choices:
+      - I need help: help
+      - I can do it myself: self
+        help: |
+          You can do it!
+---
+event: end
+id: final screen
+question: Thank you
+---
