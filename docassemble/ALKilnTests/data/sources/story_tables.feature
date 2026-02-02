@@ -119,7 +119,7 @@ Scenario: 0 target_number for there_are_any and target_number lists, 1 for there
   And I SHOULD see the phrase "target_people people: 0"
 
 @slow @st6 @loops
-Scenario: target_number 2 for there_are_any, there_is_another, and target_number lists
+Scenario: proxy target_number 2 for there_are_any, there_is_another, and target_number lists
   Given I start the interview at "test_loops.yml"
   And I take a screenshot
   And I get to "end" with this data:
@@ -138,7 +138,7 @@ Scenario: target_number 2 for there_are_any, there_is_another, and target_number
   And I SHOULD see the phrase "target_people people: 2"
 
 @slow @st6_no_proxy @loops @no_proxy
-Scenario: target_number 2 for there_are_any, there_is_another, and target_number lists
+Scenario: no proxy target_number 2 for there_are_any, there_is_another, and target_number lists
   Given I start the interview at "test_loops.yml"
   And I take a screenshot
   And I get to "end" with this data:
