@@ -212,7 +212,7 @@ Scenario: I enter the date and time
     | time_input | 12:34 PM | |
 
 @fast @o16 @signature @screenshot
-Scenario: I take a screenshot of the signature
+Scenario: I take a screenshot of the typed signature
   Given I start the interview at "test_signature.yml"
   When I sign with the name "David"
   And I take a screenshot
