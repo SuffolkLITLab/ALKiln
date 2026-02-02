@@ -62,6 +62,32 @@ Format:
 - Implement constrained random answers Step for ALKilnInThePlayground.
 
 
+## [5.15.4] - 2025-11-29
+
+### Changed
+
+- Published on correct commit/branch
+
+## [5.15.3] - 2025-11-29
+
+Note: published on incorrect commit
+
+### Fixed
+
+- Update bin versions as per npm instructions
+
+## [5.15.2] - 2025-11-29
+
+Note: published on incorrect commit
+
+### Changed
+
+- Updated dependencies
+
+### Fixed
+
+- Fixed race condition between navigating and extracting button text.
+
 ## [5.15.1] - 2025-08-05
 
 ### Changed

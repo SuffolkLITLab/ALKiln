@@ -1,6 +1,6 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.15.0-feat-random-9",
+  "version": "5.15.4",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {
@@ -17,8 +17,7 @@
     "generate": "./lib/setup/generate.js",
     "artifacts": "./lib/setup/artifacts.js",
     "unit": "npm run artifacts && mocha --recursive 'tests/unit_tests/**/*.test.*'",
-    "codes": "tests/log_codes/check_codes.sh .",
-    "news": "./lib/breaking_news.js"
+    "codes": "tests/log_codes/check_codes.sh ."
   },
   "repository": {
     "type": "git",
@@ -42,7 +41,7 @@
     "@axe-core/puppeteer": "4.7.3",
     "@cucumber/cucumber": "9.3.0",
     "@faker-js/faker": "7.3.0",
-    "axios": "1.9.0",
+    "axios": "1.13.2",
     "chai": "4.2.0",
     "cheerio": "1.0.0-rc.10",
     "deep-equal-in-any-order": "2.0.0",
@@ -52,20 +51,19 @@
     "minimatch": "3.0.5",
     "minimist": "1.2.8",
     "mocha": "11.5.0",
-    "pdfjs-dist": "5.2.133",
+    "pdfjs-dist": "5.4.394",
     "puppeteer": "22.15.0",
     "qs": "6.10.3",
     "sanitize-filename": "1.6.3",
     "uuid": "8.3.2"
   },
   "bin": {
-    "alkiln-server-install": "./lib/docassemble/server_install.js",
-    "alkiln-setup": "./lib/docassemble/setup.js",
-    "alkiln-takedown": "./lib/docassemble/takedown.js",
-    "alkiln-run": "./lib/run_cucumber.js",
-    "alkiln-artifacts": "./lib/setup/artifacts.js",
-    "alkiln-validate": "./lib/setup/validate.js",
-    "alkiln-generate": "./lib/setup/generate.js",
-    "alkiln-news": "./lib/breaking_news.js"
+    "alkiln-server-install": "lib/docassemble/server_install.js",
+    "alkiln-setup": "lib/docassemble/setup.js",
+    "alkiln-takedown": "lib/docassemble/takedown.js",
+    "alkiln-run": "lib/run_cucumber.js",
+    "alkiln-artifacts": "lib/setup/artifacts.js",
+    "alkiln-validate": "lib/setup/validate.js",
+    "alkiln-generate": "lib/setup/generate.js"
   }
 }
