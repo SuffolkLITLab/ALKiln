@@ -207,7 +207,7 @@ runs:
           sleep 60
 
           response="start"
-          while [[ $response != *"200"* ]]; do
+          while [[ $response != "200" ]]; do
             log2="💡 ALK0013 INFO: Time elapsed: $SECONDS seconds"
             echo -e "\n$log2" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log2"
 
@@ -219,16 +219,22 @@ runs:
             fi
 
             # Set the variable to a new string value in each iteration
-            response=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:80/health_check?ready=1)
-            log4="💡 ALK0015 INFO: Response is $response"
+            response=$(curl -o /dev/null -s -w "%{http_code}" http://localhost:80/health_check?ready=1)
+            status=$?
+
+            if [[$status -ne 0 ]]; then
+              response="000"
+            fi
+
+            log4="💡 ALK0015 INFO: Response is $response (status: $status)"
             echo -e "\n$log4" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log4"
 
             # Check if the string includes the desired text
-            if [[ $response == *"200"* ]]; then
+            if [[ $response == "200" ]]; then
               log5="💡 ALK0016 SUCCESS: Success! The docker container is ready!"
               echo -e "\n$log5" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log5"
             else
-              log6="💡 ALK0017 INFO: The docker container is not ready yet. Will check again in 30 seconds."
+              log6="💡 ALK0017 INFO: The docker container is not ready yet (HTTP=$response, status=$status). Will check again in 30 seconds."
               echo -e "\n$log6" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log6"
               sleep 30
             fi
