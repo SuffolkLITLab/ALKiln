@@ -43,7 +43,11 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Changed
+
+- Changed the default version of docassemblecli to 0.0.25
 
 ## [5.15.4] - 2025-11-29
 

@@ -26,7 +26,7 @@ inputs:
   DOCASSEMBLECLI_VERSION:
     description: "The version of docassemblecli to install."
     required: false
-    default: "0.0.17"
+    default: "0.0.25"
 
 outputs:
   DOCASSEMBLE_DEVELOPER_API_KEY:
