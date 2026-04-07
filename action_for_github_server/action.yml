@@ -213,7 +213,7 @@ runs:
 
             # Check if max seconds till loading has passed
             if [[ $SECONDS -ge $MAX_SECONDS_FOR_DOCKER ]]; then
-              log3="🤕 ALK0014 ERROR: Timed out waiting for docker container to serve the site. If you want to give your docker container more timem to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
+              log3="🤕 ALK0014 ERROR: Timed out waiting for docker container to serve the site. If you want to give your docker container more time to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
               echo -e "\n$log3" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log3"
               exit 1
             fi
@@ -222,11 +222,11 @@ runs:
             response=$(curl -o /dev/null -s -w "%{http_code}" http://localhost:80/health_check?ready=1)
             status=$?
 
-            if [[$status -ne 0 ]]; then
+            if [[ $status -eq 56 ]]; then
               response="000"
             fi
 
-            log4="💡 ALK0015 INFO: Response is $response (status: $status)"
+            log4="💡 ALK0015 INFO: Response is $response (curl exit code: $status)"
             echo -e "\n$log4" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log4"
 
             # Check if the string includes the desired text
@@ -234,7 +234,7 @@ runs:
               log5="💡 ALK0016 SUCCESS: Success! The docker container is ready!"
               echo -e "\n$log5" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log5"
             else
-              log6="💡 ALK0017 INFO: The docker container is not ready yet (HTTP=$response, status=$status). Will check again in 30 seconds."
+              log6="💡 ALK0017 INFO: The docker container is not ready yet (HTTP=$response, curl exit code=$status). Will check again in 30 seconds."
               echo -e "\n$log6" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log6"
               sleep 30
             fi

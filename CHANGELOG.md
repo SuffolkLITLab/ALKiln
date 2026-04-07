@@ -45,6 +45,12 @@ Format:
 
 <!-- ## [Unreleased] -->
 
+## [Unreleased]
+
+### Fixed
+- Retry on curl exit code 56 (failure receiving data from peer) while waiting for docassemble server to start up. See [#1044](https://github.com/SuffolkLITLab/ALKiln/issues/1044).
+
+
 ## [5.15.4] - 2025-11-29
 
 ### Changed
