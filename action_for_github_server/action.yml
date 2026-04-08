@@ -198,7 +198,6 @@ runs:
       - name: "💡 ALK0012 INFO: Waiting for server to start"
         shell: bash
         run: |
-          set +e
           log="💡 ALK0012 INFO: Waiting for server to start"
           echo -e "\n$log" >> "${{ env.DEBUG_LOGS_PATH }}"
 
@@ -220,13 +219,13 @@ runs:
             fi
 
             # Set the variable to a new string value in each iteration
+            set +e
             response=$(curl -o /dev/null -s -w "%{http_code}" http://localhost:80/health_check?ready=1)
             status=$?
+            set -e
 
-            if [[ $status -eq 56 ]]; then
+            if [[ $status -ne 0 ]]; then
               response="000"
-            else
-              exit $status
             fi
 
             log4="💡 ALK0015 INFO: Response is $response (curl exit code: $status)"

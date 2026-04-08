@@ -48,7 +48,7 @@ Format:
 ## [Unreleased]
 
 ### Fixed
-- Retry on curl exit code 56 (failure receiving data from peer) while waiting for docassemble server to start up. Added set +e to prevent GitHub Actions from killing the acript on curl failures, retries on exit code 56 and exits wuth actual curl exit code on any unexpected error See [#1044](https://github.com/SuffolkLITLab/ALKiln/issues/1044).
+- Handle curl failures while waiting for docassemble server startup. Wrapped the curl call with set +e / set -e so GitHub Actions strict error handling doesn't kill the script on curl failures. Any non-zero curl exit code is treated as "not ready yet" and retries after 30 seconds. See [#1044](https://github.com/SuffolkLITLab/ALKiln/issues/1044).
 
 
 ## [5.15.4] - 2025-11-29
