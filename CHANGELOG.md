@@ -43,7 +43,15 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Changed
+
+- Use `cwd` as the base of file paths. Motivated by ALKiP's upcoming need to change the way it handles its own file paths.
+
+### Fixed
+
+- Print error correctly when missing sources paths
 
 ## [5.15.4] - 2025-11-29
 
