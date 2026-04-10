@@ -48,7 +48,7 @@ Format:
 ## [Unreleased]
 
 ### Fixed
-- Handle curl failures while waiting for docassemble server startup. Wrapped the curl call with set +e / set -e so GitHub Actions strict error handling doesn't kill the script on curl failures. Any non-zero curl exit code is treated as "not ready yet" and retries after 30 seconds. See [#1044](https://github.com/SuffolkLITLab/ALKiln/issues/1044).
+- Handle curl failures while waiting for docassemble server startup. Wrapped the curl call with set +e / set -e so GitHub Actions does not exit on curl failures. All non-zero curl exit codes are treated as "not ready yet" and retried - this covers transient errors like exit code 56 (connection dropped) and exit code 7 (connection refused) that may come up during startup. Added a comment explaining the permissive approach. Changed response value from "000" to "missing" for clarity in logs. See [#1044](https://github.com/SuffolkLITLab/ALKiln/issues/1044).
 
 
 ## [5.15.4] - 2025-11-29
