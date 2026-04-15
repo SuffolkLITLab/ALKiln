@@ -207,7 +207,7 @@ runs:
           sleep 60
 
           response="start"
-          while [[ $response != "200" ]]; do
+          while [[ $response != *"200"* ]]; do
             log2="💡 ALK0013 INFO: Time elapsed: $SECONDS seconds"
             echo -e "\n$log2" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log2"
 
@@ -235,7 +235,7 @@ runs:
             echo -e "\n$log4" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log4"
 
             # Check if the string includes the desired text
-            if [[ $response == "200" ]]; then
+            if [[ $response == *"200"* ]]; then
               log5="💡 ALK0016 SUCCESS: Success! The docker container is ready!"
               echo -e "\n$log5" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log5"
             else
