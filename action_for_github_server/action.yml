@@ -26,7 +26,7 @@ inputs:
   DOCASSEMBLECLI_VERSION:
     description: "The version of docassemblecli to install."
     required: false
-    default: "0.0.17"
+    default: "0.0.25"
 
 outputs:
   DOCASSEMBLE_DEVELOPER_API_KEY:
@@ -213,14 +213,25 @@ runs:
 
             # Check if max seconds till loading has passed
             if [[ $SECONDS -ge $MAX_SECONDS_FOR_DOCKER ]]; then
-              log3="🤕 ALK0014 ERROR: Timed out waiting for docker container to serve the site. If you want to give your docker container more timem to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
+              log3="🤕 ALK0014 ERROR: Timed out waiting for docker container to serve the site. If you want to give your docker container more time to install, set the MAX_SECONDS_FOR_DOCKER input for this action."
               echo -e "\n$log3" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log3"
               exit 1
             fi
 
             # Set the variable to a new string value in each iteration
-            response=$(curl -o /dev/null -s -w "%{http_code}\n" http://localhost:80/health_check?ready=1)
-            log4="💡 ALK0015 INFO: Response is $response"
+            # We intentionally skip all non-zero curl exit codes here instead of handling specific ones.
+            # During server startup there are several transient errors that can come up and since we already log  the exit code and have a timeout,
+            # retrying on all of them is safer than trying to maintain a list of specific codes to handle.
+            set +e
+            response=$(curl -o /dev/null -s -w "%{http_code}" http://localhost:80/health_check?ready=1)
+            status=$?
+            set -e
+            
+            if [[ $status -ne 0 ]]; then
+              response="missing"
+            fi
+
+            log4="💡 ALK0015 INFO: Response is $response (curl exit code: $status)"
             echo -e "\n$log4" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log4"
 
             # Check if the string includes the desired text
@@ -228,7 +239,7 @@ runs:
               log5="💡 ALK0016 SUCCESS: Success! The docker container is ready!"
               echo -e "\n$log5" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log5"
             else
-              log6="💡 ALK0017 INFO: The docker container is not ready yet. Will check again in 30 seconds."
+              log6="💡 ALK0017 INFO: The docker container is not ready yet (HTTP=$response, curl exit code=$status). Will check again in 30 seconds."
               echo -e "\n$log6" >> "${{ env.DEBUG_LOGS_PATH }}" && echo -e "$log6"
               sleep 30
             fi

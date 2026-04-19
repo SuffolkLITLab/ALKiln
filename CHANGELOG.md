@@ -48,10 +48,12 @@ Format:
 ### Changed
 
 - Use `cwd` as the base of file paths. Motivated by ALKiP's upcoming need to change the way it handles its own file paths.
+- Handle curl failures while waiting for docassemble server startup. Wrapped the curl call with set +e / set -e so GitHub Actions does not exit on curl failures. All non-zero curl exit codes are treated as "not ready yet" and retried - this covers transient errors like exit code 56 (connection dropped) and exit code 7 (connection refused) that may come up during startup. Added a comment explaining the permissive approach. Changed response value from "000" to "missing" for clarity in logs. See [#1044](https://github.com/SuffolkLITLab/ALKiln/issues/1044).
 
 ### Fixed
 
 - Print error correctly when missing sources paths
+- Changed the default version of docassemblecli to 0.0.25
 
 ## [5.15.4] - 2025-11-29
 
