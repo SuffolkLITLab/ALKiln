@@ -47,7 +47,7 @@ Format:
 
 ### Added
 
-- Adds a new optional parameter to `action_for_github_server/action.yml`, the full name of the docassemble image. It defaults to `jhpyle/docassemble:latest`, what we previously used, but can also be changed to an earlier version (`jhpyle/docassemble:1.9.8`) or a different fork of docassemble (`ghcr.io/suffolklitlab/docassemble:latest`).
+- Adds a new optional parameter to `action_for_github_server/action.yml`, the full name of the docassemble image. It defaults to `jhpyle/docassemble:latest`, what we previously used, but can also be changed to an earlier version (`jhpyle/docassemble:1.9.8`) or a different fork of docassemble (`ghcr.io/suffolklitlab/docassemble:latest`). Note that old docassemble versions may sometimes get removed.
 
 ### Changed
 
