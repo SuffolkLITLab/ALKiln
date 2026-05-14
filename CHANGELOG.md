@@ -55,6 +55,10 @@ Format:
 - Print error correctly when missing sources paths
 - Changed the default version of docassemblecli to 0.0.25
 
+### Security
+
+- Security: Gave our main action's `npm install` call the arguments ` --ignore-scripts --min-release-age=7` to improve security against malicious `pre-install` and `post-install` scripts. See [#1053](https://github.com/SuffolkLITLab/ALKiln/issues/1053).
+
 ## [5.15.4] - 2025-11-29
 
 ### Changed
