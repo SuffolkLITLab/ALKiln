@@ -45,8 +45,13 @@ Format:
 
 ## [Unreleased]
 
+### Added
+
+- Adds a new optional parameter to `action_for_github_server/action.yml`, the full name of the docassemble image. It defaults to `jhpyle/docassemble:latest`, what we previously used, but can also be changed to an earlier version (`jhpyle/docassemble:1.9.8`) or a different fork of docassemble (`ghcr.io/suffolklitlab/docassemble:latest`). Note that old docassemble versions may sometimes get removed.
+
 ### Changed
 
+- Changed the default version of docassemblecli to 0.0.25
 - Use `cwd` as the base of file paths. Motivated by ALKiP's upcoming need to change the way it handles its own file paths.
 - Handle curl failures while waiting for docassemble server startup. Wrapped the curl call with set +e / set -e so GitHub Actions does not exit on curl failures. All non-zero curl exit codes are treated as "not ready yet" and retried - this covers transient errors like exit code 56 (connection dropped) and exit code 7 (connection refused) that may come up during startup. Added a comment explaining the permissive approach. Changed response value from "000" to "missing" for clarity in logs. See [#1044](https://github.com/SuffolkLITLab/ALKiln/issues/1044).
 

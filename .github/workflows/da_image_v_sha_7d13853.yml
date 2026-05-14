@@ -1,0 +1,67 @@
+name: Use docassemble image version
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      show_docker_output:
+        required: false
+        default: false
+        type: boolean
+        description: 'Show the docker logs while building the GitHub server container. It will also save the docker log artifact. This might show sensitive config information.'
+      # Experimental
+      enable_tmate:
+        type: boolean
+        description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
+        required: false
+        default: false
+
+jobs:
+
+  github-server-tests:
+    # Avoids running double tests when someone on the team makes a pull request
+    # 1: Trigger job on push or dispatch from this repository
+    # 2: Trigger job on pull request from a fork
+    if: (
+          github.event_name != 'pull_request'
+          && ! github.event.pull_request.head.repo.fork
+        ) || (
+          github.event_name == 'pull_request'
+          && github.event.pull_request.head.repo.fork
+        )
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [24.x]
+      
+    steps:
+      # Place the root directory in this branch to access relative paths to
+      # action files
+      - uses: actions/checkout@v4
+
+      - name: "ALKiln - Use a specific docassemble image version to start the isolated temporary docassemble server on GitHub"
+        id: github_server
+        uses: ./action_for_github_server
+        with:
+          SHOW_DOCKER_OUTPUT: "${{ github.event.inputs.show_docker_output }}"
+          DOCASSEMBLE_IMAGE: "ghcr.io/suffolklitlab/docassemble:sha-7d13853"
+      - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
+        shell: bash
+
+      ## Optional debugging to explore things like docker issues
+      #- name: Docker debug tmate session
+      #  #if: ${{ failure() && github.event.inputs.enable_tmate == 'true' }}
+      #  uses: mxschmitt/action-tmate@v3
+
+      - name: "ALKiln - Confirm docassemble packages get installed correctly"
+        if: ${{ success() }}
+        id: alkiln
+        uses: ./
+        with:
+          # Required inputs. See
+          # https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#sandbox-inputs
+          SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
+          DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
+          INSTALL_METHOD: "server"
+          ALKILN_TAG_EXPRESSION: "@e3"  # One very simple test
