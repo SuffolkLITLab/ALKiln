@@ -162,10 +162,10 @@ jobs:
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
           # ALKILN_VERSION: 
 
-      - shell: bash
-        if: ${{ always() }}
-        run: |
-          echo "Temp: Done with tests, about to process outputs. Next is setting env vars."
+      # - shell: bash
+      #   if: ${{ always() }}
+      #   run: |
+      #     echo "Temp: Done with tests, about to process outputs. Next is setting env vars."
 
       #### Developer note: You can probably leave out this section
       # Test our own action output
@@ -205,4 +205,4 @@ jobs:
 
           ### Results:
 
-          "$UNEXPECTED_2" --repo "$GITHUB_REPOSITORY" --label "testing" --title "ALKiln tests failed"
+          $UNEXPECTED_2" --repo "$GITHUB_REPOSITORY" --label "testing" --title "ALKiln tests failed"
