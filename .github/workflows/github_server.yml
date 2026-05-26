@@ -164,7 +164,8 @@ jobs:
 
       - shell: bash
         if: ${{ always() }}
-        run: echo "Temp: Done with tests, about to process outputs. Next is setting env vars."
+        run: |
+          echo "Temp: Done with tests, about to process outputs. Next is setting env vars."
 
       #### Developer note: You can probably leave out this section
       # Test our own action output
