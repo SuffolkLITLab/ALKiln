@@ -162,6 +162,20 @@ jobs:
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
           # ALKILN_VERSION: 
 
+      #### Developer note: You can probably leave out this section
+      # Test our own action output
+      - shell: bash
+        if: ${{ success() }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PATH_TO_REPORT_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_REPORT_LOG_FILE }}"
+          PATH_TO_UNEXPECTED_RESULTS_FILE: "${{ steps.alkiln.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}"
+          PATH_TO_DEBUG_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_DEBUG_LOG_FILE }}"
+        run: |
+          echo "$PATH_TO_REPORT_LOG_FILE"
+          echo "PATH_TO_UNEXPECTED_RESULTS_FILE"
+          echo "PATH_TO_DEBUG_LOG_FILE"
+
       #### Developer note: Example of making an issue when tests fail
       #### that includes the text of the failure output file
       #### See https://cli.github.com/manual/gh_issue_create for more details
@@ -185,4 +199,4 @@ jobs:
 
           ### Results:
 
-          $UNEXPECTED_2" --repo "$GITHUB_REPOSITORY" --label "testing" --title "ALKiln tests failed"
+          "$UNEXPECTED_2" --repo "$GITHUB_REPOSITORY" --label "testing" --title "ALKiln tests failed"
