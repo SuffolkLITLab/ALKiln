@@ -162,16 +162,21 @@ jobs:
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
           # ALKILN_VERSION: 
 
+      - shell: bash
+        if: ${{ always() }}
+        run: echo "Temp: Done with tests, about to process outputs. Next is setting env vars."
+
       #### Developer note: You can probably leave out this section
       # Test our own action output
       - shell: bash
-        if: ${{ success() }}
+        if: ${{ always() }}
         env:
           GH_TOKEN: ${{ github.token }}
           PATH_TO_REPORT_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_REPORT_LOG_FILE }}"
           PATH_TO_UNEXPECTED_RESULTS_FILE: "${{ steps.alkiln.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}"
           PATH_TO_DEBUG_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_DEBUG_LOG_FILE }}"
         run: |
+          echo "Temp: If we got here, the problem was something other than setting env vars."
           echo "$PATH_TO_REPORT_LOG_FILE"
           echo "PATH_TO_UNEXPECTED_RESULTS_FILE"
           echo "PATH_TO_DEBUG_LOG_FILE"
