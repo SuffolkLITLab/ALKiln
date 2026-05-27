@@ -37,6 +37,10 @@ inputs:
     description: "The maximum number of tests ALKiln will generate for every Scenario that can generate tests."
     required: false
     # Default will be internal to avoid duplication of data
+  _ALKILN_INTERNAL_TESTS:
+    desciption: "If true, will use different security settings."
+    required: false
+    default: false
 
 outputs:
   PATH_TO_ARTIFACTS:
@@ -115,14 +119,42 @@ runs:
       with:
         node-version: "24.x"
         package-manager-cache: false
-    - name: "💡 ALK0026 INFO: Install ALKiln directly from npm"
+
+    # For regular users
+    - name: "💡 ALK0026 INFO: Install ALKiln directly from npm (at least 7 days old)"
+      if: |
+        ${{ !inputs._ALKILN_INTERNAL_TESTS }}
       shell: bash
       run: |
         log="💡 ALK0026 INFO: Install ALKiln directly from npm"
+        repo_name="${{ github.event.repository.name }}"
+        if [[ $repo_name == *"ALKiln"* ]]; then
+          echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE MISSING THE _ALKILN_INTERNAL_TESTS FLAG ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
+        fi
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
+        if [[ $repo_name == *"ALKiln"* ]]; then
+          echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE MISSING THE _ALKILN_INTERNAL_TESTS FLAG ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
+        fi
         npm install --ignore-scripts --min-release-age=7 -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
         npm rebuild -g puppeteer --update-binary
 
+    # For internal development, allow testing with more recent versions of ALKiln
+    - name: "🔎 ALK0279 WARNING: Install recent version of ALKiln directly from npm"
+      if: |
+        ${{ inputs._ALKILN_INTERNAL_TESTS }}
+      shell: bash
+      run: |
+        log="🔎 ALK0279 WARNING: Install **recent** version of ALKiln directly from npm"
+        repo_name="${{ github.event.repository.name }}"
+        if [[ $repo_name != *"ALKiln"* ]]; then
+          echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE USING AN UNSAFE VERSION OF ALKILN ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
+        fi
+        echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
+        if [[ $repo_name != *"ALKiln"* ]]; then
+          echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE USING AN UNSAFE VERSION OF ALKILN ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
+        fi
+        npm install --ignore-scripts -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
+        npm rebuild -g puppeteer --update-binary
 
     # Files prep
     - shell: bash
