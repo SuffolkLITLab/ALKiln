@@ -14,7 +14,7 @@ inputs:
   ALKILN_VERSION:
     description: 'Version of ALKiln to get from npm.'
     required: false
-    default: '^5.0.0'
+    default: '5.15.4'
   MAX_SECONDS_FOR_SETUP:
     description: "Amount of time to give the Project to upload your package's GitHub code."
     required: false
