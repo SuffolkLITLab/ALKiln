@@ -135,11 +135,9 @@ runs:
         if [[ $repo_name == *"ALKiln"* ]]; then
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE MISSING THE _ALKILN_INTERNAL_TESTS FLAG ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
-        npm install --ignore-scripts --min-release-age=7 -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
+        npm install --ignore-scripts --min-release-age=7 --loglevel=verbose -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
         npm list -g puppeteer
-        # npm rebuild -g puppeteer
-        # Does this need to be global?
-        npm puppeteer browsers install chrome
+        npm rebuild -g puppeteer
 
     # For internal development, allow testing with more recent versions of ALKiln
     - name: "🔎 ALK0279 WARNING: Install recent version of ALKiln directly from npm"
@@ -156,11 +154,9 @@ runs:
         if [[ $repo_name != *"ALKiln"* ]]; then
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE USING AN UNSAFE VERSION OF ALKILN ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
-        npm install --ignore-scripts -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
+        npm install --ignore-scripts --loglevel=verbose -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
         npm list -g puppeteer
-        # npm rebuild -g puppeteer
-        # Does this need to be global?
-        npm puppeteer browsers install chrome
+        npm rebuild -g puppeteer
 
     # Files prep
     - shell: bash
