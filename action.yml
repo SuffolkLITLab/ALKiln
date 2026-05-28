@@ -136,6 +136,7 @@ runs:
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE MISSING THE _ALKILN_INTERNAL_TESTS FLAG ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
         npm install --ignore-scripts --min-release-age=7 -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
+        npm list -g puppeteer
         # npm rebuild -g puppeteer
         # Does this need to be global?
         npm puppeteer browsers install chrome
@@ -156,6 +157,7 @@ runs:
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE USING AN UNSAFE VERSION OF ALKILN ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
         npm install --ignore-scripts -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
+        npm list -g puppeteer
         # npm rebuild -g puppeteer
         # Does this need to be global?
         npm puppeteer browsers install chrome
