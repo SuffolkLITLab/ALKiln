@@ -38,7 +38,8 @@ inputs:
     required: false
     # Default will be internal to avoid duplication of data
   _ALKILN_INTERNAL_TESTS:
-    desciption: "If true, will use different security settings."
+    description: "If true, will use different security settings."
+    type: boolean
     required: false
     default: false
 
