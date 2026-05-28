@@ -124,7 +124,7 @@ runs:
     # For regular users
     - name: "💡 ALK0026 INFO: Install ALKiln directly from npm (at least 7 days old)"
       if: |
-        ${{ !inputs._ALKILN_INTERNAL_TESTS }}
+        ${{ inputs._ALKILN_INTERNAL_TESTS == false }}
       shell: bash
       run: |
         log="💡 ALK0026 INFO: Install ALKiln directly from npm"
@@ -139,15 +139,16 @@ runs:
         npm install --ignore-scripts --min-release-age=7 -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
         echo "🍕 1"
         npm list -g puppeteer
-        # npm rebuild -g puppeteer
-        npm install -g puppeteer # Should have the same version as already installed
+        # npm rebuild -g puppeteer  # Doesn't get Chrome now, causes errors
+        # npm install -g puppeteer  # Gets a new version of puppeteer
+        npx puppeteer browsers install chrome --install-deps
         echo "🍕 2"
         npm list -g puppeteer
 
     # For internal development, allow testing with more recent versions of ALKiln
     - name: "🔎 ALK0279 WARNING: Install recent version of ALKiln directly from npm"
       if: |
-        ${{ inputs._ALKILN_INTERNAL_TESTS }}
+        ${{ inputs._ALKILN_INTERNAL_TESTS == true }}
       shell: bash
       run: |
         log="🔎 ALK0279 WARNING: Install **recent** version of ALKiln directly from npm"
@@ -162,8 +163,9 @@ runs:
         npm install --ignore-scripts -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
         echo "🐸 1"
         npm list -g puppeteer
-        # npm rebuild -g puppeteer
-        npm install -g puppeteer  # Should have the same version as already installed
+        # npm rebuild -g puppeteer  # Doesn't get Chrome now, causes errors
+        # npm install -g puppeteer  # Gets a new version of puppeteer
+        npx puppeteer browsers install chrome --install-deps
         echo "🐸 2"
         npm list -g puppeteer
 
