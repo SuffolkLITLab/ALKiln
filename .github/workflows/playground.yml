@@ -1,7 +1,6 @@
 name: Playground installation
 
 on:
-  # push:
   pull_request:
   workflow_dispatch:
     inputs:
@@ -9,6 +8,8 @@ on:
         required: False
         description: 'Optional. Use a "tag expression" specify which tagged tests to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)'
         default: ''
+  schedule:
+    - cron: "0 1 * * SUN"
 
 jobs:
 
