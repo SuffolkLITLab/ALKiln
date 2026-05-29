@@ -138,7 +138,8 @@ runs:
         npm install --ignore-scripts --min-release-age=7 -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
         export PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer"
         rm -rf "$PUPPETEER_CACHE_DIR"
-        npm explore -g @suffolklitlab/alkiln -- npx puppeteer browsers install chrome
+        puppeteer_cli="$(npm root -g)/@suffolklitlab/alkiln/node_modules/.bin/puppeteer"
+        "$puppeteer_cli" browsers install chrome
 
     # For internal development, allow testing with more recent versions of ALKiln
     - name: "🔎 ALK0279 WARNING: Install recent version of ALKiln directly from npm"
@@ -157,7 +158,8 @@ runs:
         npm install --ignore-scripts -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
         export PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer"
         rm -rf "$PUPPETEER_CACHE_DIR"
-        npm explore -g @suffolklitlab/alkiln -- npx puppeteer browsers install chrome
+        puppeteer_cli="$(npm root -g)/@suffolklitlab/alkiln/node_modules/.bin/puppeteer"
+        "$puppeteer_cli" browsers install chrome
 
     # Files prep
     - shell: bash
