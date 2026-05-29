@@ -136,7 +136,9 @@ runs:
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE MISSING THE _ALKILN_INTERNAL_TESTS FLAG ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
         npm install --ignore-scripts --min-release-age=7 -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
-        npm explore -g @suffolklitlab/alkiln -- npm rebuild puppeteer --update-binary
+        export PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer"
+        rm -rf "$PUPPETEER_CACHE_DIR"
+        npm explore -g @suffolklitlab/alkiln -- npx puppeteer browsers install chrome
 
     # For internal development, allow testing with more recent versions of ALKiln
     - name: "🔎 ALK0279 WARNING: Install recent version of ALKiln directly from npm"
@@ -153,7 +155,9 @@ runs:
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE USING AN UNSAFE VERSION OF ALKILN ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
         npm install --ignore-scripts -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
-        npm explore -g @suffolklitlab/alkiln -- npm rebuild puppeteer --update-binary
+        export PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer"
+        rm -rf "$PUPPETEER_CACHE_DIR"
+        npm explore -g @suffolklitlab/alkiln -- npx puppeteer browsers install chrome
 
     # Files prep
     - shell: bash
