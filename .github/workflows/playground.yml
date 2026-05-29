@@ -75,6 +75,7 @@ jobs:
           #### https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#githubNyou-inputs
           SERVER_URL: "${{ env.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ env.DOCASSEMBLE_DEVELOPER_API_KEY }}"
+          _ALKILN_INTERNAL_TESTS: "true"
           #### Developer note: See https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           #### You can probably leave this out
           ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO: 10
