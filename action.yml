@@ -137,9 +137,22 @@ runs:
         fi
         npm install --ignore-scripts --min-release-age=7 -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
         export PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer"
+        echo "PUPPETEER_CACHE_DIR=$PUPPETEER_CACHE_DIR" >> "$GITHUB_ENV"
         rm -rf "$PUPPETEER_CACHE_DIR"
-        puppeteer_cli="$(npm root -g)/@suffolklitlab/alkiln/node_modules/.bin/puppeteer"
+        npm_root="$(npm root -g)"
+        puppeteer_cli="$npm_root/@suffolklitlab/alkiln/node_modules/.bin/puppeteer"
+        puppeteer_pkg="$npm_root/@suffolklitlab/alkiln/node_modules/puppeteer"
         "$puppeteer_cli" browsers install chrome
+        puppeteer_browser_path="$(node - "$puppeteer_pkg" <<'NODE'
+const puppeteer = require(process.argv[2]);
+console.log(puppeteer.executablePath());
+NODE
+)"
+        if [[ ! -x "$puppeteer_browser_path" ]]; then
+          echo "Expected Chrome executable at '$puppeteer_browser_path', but it was not found." >&2
+          exit 1
+        fi
+        echo "PUPPETEER_EXECUTABLE_PATH=$puppeteer_browser_path" >> "$GITHUB_ENV"
 
     # For internal development, allow testing with more recent versions of ALKiln
     - name: "🔎 ALK0279 WARNING: Install recent version of ALKiln directly from npm"
@@ -157,9 +170,22 @@ runs:
         fi
         npm install --ignore-scripts -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
         export PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer"
+        echo "PUPPETEER_CACHE_DIR=$PUPPETEER_CACHE_DIR" >> "$GITHUB_ENV"
         rm -rf "$PUPPETEER_CACHE_DIR"
-        puppeteer_cli="$(npm root -g)/@suffolklitlab/alkiln/node_modules/.bin/puppeteer"
+        npm_root="$(npm root -g)"
+        puppeteer_cli="$npm_root/@suffolklitlab/alkiln/node_modules/.bin/puppeteer"
+        puppeteer_pkg="$npm_root/@suffolklitlab/alkiln/node_modules/puppeteer"
         "$puppeteer_cli" browsers install chrome
+        puppeteer_browser_path="$(node - "$puppeteer_pkg" <<'NODE'
+const puppeteer = require(process.argv[2]);
+console.log(puppeteer.executablePath());
+NODE
+)"
+        if [[ ! -x "$puppeteer_browser_path" ]]; then
+          echo "Expected Chrome executable at '$puppeteer_browser_path', but it was not found." >&2
+          exit 1
+        fi
+        echo "PUPPETEER_EXECUTABLE_PATH=$puppeteer_browser_path" >> "$GITHUB_ENV"
 
     # Files prep
     - shell: bash
