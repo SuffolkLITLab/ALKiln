@@ -136,8 +136,19 @@ runs:
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE MISSING THE _ALKILN_INTERNAL_TESTS FLAG ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
         npm install --ignore-scripts --min-release-age=7 -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
-        rm -rf "$HOME/.cache/puppeteer"
-        node "$(npm root -g)/@suffolklitlab/alkiln/node_modules/puppeteer/install.mjs"
+        BROWSER="$(
+          command -v google-chrome-stable ||
+          command -v google-chrome ||
+          command -v chromium-browser ||
+          command -v chromium ||
+          true
+        )"
+        if [[ -n "$BROWSER" ]]; then
+          echo "PUPPETEER_EXECUTABLE_PATH=$BROWSER" >> "$GITHUB_ENV"
+        else
+          rm -rf "$HOME/.cache/puppeteer"
+          node "$(npm root -g)/@suffolklitlab/alkiln/node_modules/puppeteer/install.mjs"
+        fi
 
     # For internal development, allow testing with more recent versions of ALKiln
     - name: "🔎 ALK0279 WARNING: Install recent version of ALKiln directly from npm"
@@ -154,8 +165,19 @@ runs:
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE USING AN UNSAFE VERSION OF ALKILN ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
         npm install --ignore-scripts -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
-        rm -rf "$HOME/.cache/puppeteer"
-        node "$(npm root -g)/@suffolklitlab/alkiln/node_modules/puppeteer/install.mjs"
+        BROWSER="$(
+          command -v google-chrome-stable ||
+          command -v google-chrome ||
+          command -v chromium-browser ||
+          command -v chromium ||
+          true
+        )"
+        if [[ -n "$BROWSER" ]]; then
+          echo "PUPPETEER_EXECUTABLE_PATH=$BROWSER" >> "$GITHUB_ENV"
+        else
+          rm -rf "$HOME/.cache/puppeteer"
+          node "$(npm root -g)/@suffolklitlab/alkiln/node_modules/puppeteer/install.mjs"
+        fi
 
     # Files prep
     - shell: bash
