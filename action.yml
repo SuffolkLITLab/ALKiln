@@ -38,7 +38,7 @@ inputs:
     required: false
     # Default will be internal to avoid duplication of data
   _ALKILN_INTERNAL_TESTS:
-    desciption: "If true, will use different security settings."
+    description: "If true, will use different security settings."
     required: false
     default: false
 
@@ -120,10 +120,10 @@ runs:
         node-version: "24.x"
         package-manager-cache: false
 
+    # Composite action inputs are strings, so compare explicitly to "true".
     # For regular users
     - name: "💡 ALK0026 INFO: Install ALKiln directly from npm (at least 7 days old)"
-      if: |
-        ${{ !inputs._ALKILN_INTERNAL_TESTS }}
+      if: ${{ inputs._ALKILN_INTERNAL_TESTS != 'true' }}
       shell: bash
       run: |
         log="💡 ALK0026 INFO: Install ALKiln directly from npm"
@@ -140,8 +140,7 @@ runs:
 
     # For internal development, allow testing with more recent versions of ALKiln
     - name: "🔎 ALK0279 WARNING: Install recent version of ALKiln directly from npm"
-      if: |
-        ${{ inputs._ALKILN_INTERNAL_TESTS }}
+      if: ${{ inputs._ALKILN_INTERNAL_TESTS == 'true' }}
       shell: bash
       run: |
         log="🔎 ALK0279 WARNING: Install **recent** version of ALKiln directly from npm"
