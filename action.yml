@@ -136,30 +136,8 @@ runs:
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE MISSING THE _ALKILN_INTERNAL_TESTS FLAG ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
         npm install --ignore-scripts --min-release-age=7 -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
-        system_browser_path="$(
-          command -v google-chrome-stable ||
-          command -v google-chrome ||
-          command -v chromium-browser ||
-          command -v chromium ||
-          true
-        )"
-        if [[ -n "$system_browser_path" ]]; then
-          echo "Using system browser at '$system_browser_path'."
-          echo "PUPPETEER_EXECUTABLE_PATH=$system_browser_path" >> "$GITHUB_ENV"
-        else
-          export PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer"
-          echo "PUPPETEER_CACHE_DIR=$PUPPETEER_CACHE_DIR" >> "$GITHUB_ENV"
-          rm -rf "$PUPPETEER_CACHE_DIR"
-          npm_root="$(npm root -g)"
-          puppeteer_pkg="$npm_root/@suffolklitlab/alkiln/node_modules/puppeteer"
-          node "$puppeteer_pkg/install.mjs"
-          puppeteer_browser_path="$(node -e 'const puppeteer = require(process.argv[1]); console.log(puppeteer.executablePath());' "$puppeteer_pkg")"
-          if [[ ! -x "$puppeteer_browser_path" ]]; then
-            echo "Expected Chrome executable at '$puppeteer_browser_path', but it was not found." >&2
-            exit 1
-          fi
-          echo "PUPPETEER_EXECUTABLE_PATH=$puppeteer_browser_path" >> "$GITHUB_ENV"
-        fi
+        rm -rf "$HOME/.cache/puppeteer"
+        node "$(npm root -g)/@suffolklitlab/alkiln/node_modules/puppeteer/install.mjs"
 
     # For internal development, allow testing with more recent versions of ALKiln
     - name: "🔎 ALK0279 WARNING: Install recent version of ALKiln directly from npm"
@@ -176,30 +154,8 @@ runs:
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE USING AN UNSAFE VERSION OF ALKILN ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
         npm install --ignore-scripts -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
-        system_browser_path="$(
-          command -v google-chrome-stable ||
-          command -v google-chrome ||
-          command -v chromium-browser ||
-          command -v chromium ||
-          true
-        )"
-        if [[ -n "$system_browser_path" ]]; then
-          echo "Using system browser at '$system_browser_path'."
-          echo "PUPPETEER_EXECUTABLE_PATH=$system_browser_path" >> "$GITHUB_ENV"
-        else
-          export PUPPETEER_CACHE_DIR="$HOME/.cache/puppeteer"
-          echo "PUPPETEER_CACHE_DIR=$PUPPETEER_CACHE_DIR" >> "$GITHUB_ENV"
-          rm -rf "$PUPPETEER_CACHE_DIR"
-          npm_root="$(npm root -g)"
-          puppeteer_pkg="$npm_root/@suffolklitlab/alkiln/node_modules/puppeteer"
-          node "$puppeteer_pkg/install.mjs"
-          puppeteer_browser_path="$(node -e 'const puppeteer = require(process.argv[1]); console.log(puppeteer.executablePath());' "$puppeteer_pkg")"
-          if [[ ! -x "$puppeteer_browser_path" ]]; then
-            echo "Expected Chrome executable at '$puppeteer_browser_path', but it was not found." >&2
-            exit 1
-          fi
-          echo "PUPPETEER_EXECUTABLE_PATH=$puppeteer_browser_path" >> "$GITHUB_ENV"
-        fi
+        rm -rf "$HOME/.cache/puppeteer"
+        node "$(npm root -g)/@suffolklitlab/alkiln/node_modules/puppeteer/install.mjs"
 
     # Files prep
     - shell: bash
