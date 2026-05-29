@@ -157,6 +157,7 @@ jobs:
           SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
+          _ALKILN_INTERNAL_TESTS: "true"
           #### Developer note: You can probably leave the rest out
           #### To learn more, see https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"

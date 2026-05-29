@@ -64,4 +64,5 @@ jobs:
           SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
           INSTALL_METHOD: "server"
+          _ALKILN_INTERNAL_TESTS: "true"
           ALKILN_TAG_EXPRESSION: "@e3"  # One very simple test

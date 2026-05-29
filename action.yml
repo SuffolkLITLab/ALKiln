@@ -38,7 +38,7 @@ inputs:
     required: false
     # Default will be internal to avoid duplication of data
   _ALKILN_INTERNAL_TESTS:
-    desciption: "If true, will use different security settings."
+    description: "If true, will use different security settings."
     required: false
     default: false
 
@@ -120,10 +120,10 @@ runs:
         node-version: "24.x"
         package-manager-cache: false
 
+    # Composite action inputs are strings, so compare explicitly to "true".
     # For regular users
     - name: "💡 ALK0026 INFO: Install ALKiln directly from npm (at least 7 days old)"
-      if: |
-        ${{ !inputs._ALKILN_INTERNAL_TESTS }}
+      if: ${{ inputs._ALKILN_INTERNAL_TESTS != 'true' }}
       shell: bash
       run: |
         log="💡 ALK0026 INFO: Install ALKiln directly from npm"
@@ -136,12 +136,23 @@ runs:
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE MISSING THE _ALKILN_INTERNAL_TESTS FLAG ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
         npm install --ignore-scripts --min-release-age=7 -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
-        npm rebuild -g puppeteer
+        BROWSER="$(
+          command -v google-chrome-stable ||
+          command -v google-chrome ||
+          command -v chromium-browser ||
+          command -v chromium ||
+          true
+        )"
+        if [[ -n "$BROWSER" ]]; then
+          echo "PUPPETEER_EXECUTABLE_PATH=$BROWSER" >> "$GITHUB_ENV"
+        else
+          rm -rf "$HOME/.cache/puppeteer"
+          node "$(npm root -g)/@suffolklitlab/alkiln/node_modules/puppeteer/install.mjs"
+        fi
 
     # For internal development, allow testing with more recent versions of ALKiln
     - name: "🔎 ALK0279 WARNING: Install recent version of ALKiln directly from npm"
-      if: |
-        ${{ inputs._ALKILN_INTERNAL_TESTS }}
+      if: ${{ inputs._ALKILN_INTERNAL_TESTS == 'true' }}
       shell: bash
       run: |
         log="🔎 ALK0279 WARNING: Install **recent** version of ALKiln directly from npm"
@@ -154,7 +165,19 @@ runs:
           echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE USING AN UNSAFE VERSION OF ALKILN ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
         fi
         npm install --ignore-scripts -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
-        npm rebuild -g puppeteer
+        BROWSER="$(
+          command -v google-chrome-stable ||
+          command -v google-chrome ||
+          command -v chromium-browser ||
+          command -v chromium ||
+          true
+        )"
+        if [[ -n "$BROWSER" ]]; then
+          echo "PUPPETEER_EXECUTABLE_PATH=$BROWSER" >> "$GITHUB_ENV"
+        else
+          rm -rf "$HOME/.cache/puppeteer"
+          node "$(npm root -g)/@suffolklitlab/alkiln/node_modules/puppeteer/install.mjs"
+        fi
 
     # Files prep
     - shell: bash
@@ -247,7 +270,7 @@ runs:
         log="💡 ALK0184 INFO: Prepare ALKiln output file paths"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}" && echo "$log"
 
-        FOLDER=$(ls -d */ | grep -E '^alkiln-*' || true)
+        FOLDER="$(ls -dt alkiln-*/ 2>/dev/null | head -n 1 || true)"
 
         log_folder="Test results artifacts folder is $FOLDER"
         echo -e "\n$log_folder" >> "${{ env.DEBUG_PATH }}" && echo "$log_folder"
