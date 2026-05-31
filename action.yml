@@ -157,16 +157,9 @@ runs:
       shell: bash
       run: |
         BROWSER="$(
-          command -v google-chrome-stable ||
-          command -v google-chrome ||
-          command -v chromium-browser ||
-          command -v chromium ||
           true
         )"
         echo "BROWSER: $BROWSER"
-        set +e
-        echo -e "'-v' $( $BROWSER -v )"
-        set -e
         if [[ -n "$BROWSER" ]]; then
           echo "PUPPETEER_EXECUTABLE_PATH=$BROWSER" >> "$GITHUB_ENV"
         else
