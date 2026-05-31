@@ -53,6 +53,9 @@ Format:
 
 - In action.yml, temporarily (we hope) replaced `npm rebuild` with an explicit search for existing puppeteer chrome executables. There is no fallback if all of those are missing. Addresses [#1088](https://github.com/suffolkLITLab/aLKiln/issues/1088). We hope to find a proper fix in the future.
 
+### Fixed
+- Artifacts were being created in the wrong dir when using the main action.yml in GitHub actions. See [#1055](https://github.com/suffolkLITLab/aLKiln/issues/1055). We will have to release a temporary fix in the action to let people run passing tests until the week is up and the fix passes our new security measures.
+
 
 ## [5.16.0] - 2026-05-14
 

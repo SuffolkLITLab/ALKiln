@@ -66,3 +66,4 @@ jobs:
           INSTALL_METHOD: "server"
           _ALKILN_INTERNAL_TESTS: "true"
           ALKILN_TAG_EXPRESSION: "@e3"  # One very simple test
+          ALKILN_VERSION: "action_outputs"

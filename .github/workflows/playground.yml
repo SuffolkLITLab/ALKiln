@@ -33,7 +33,7 @@ jobs:
 
     env:
       #### Developer note: We recommend turning these into environment
-      #### variables before using them as inputs later
+      #### variables, like we do here, before using them as inputs later
       SERVER_URL: ${{ secrets.SERVER_URL }}
       DOCASSEMBLE_DEVELOPER_API_KEY: ${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}
 
@@ -75,13 +75,13 @@ jobs:
           #### https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#githubNyou-inputs
           SERVER_URL: "${{ env.SERVER_URL }}"
           DOCASSEMBLE_DEVELOPER_API_KEY: "${{ env.DOCASSEMBLE_DEVELOPER_API_KEY }}"
-          _ALKILN_INTERNAL_TESTS: "true"
           #### Developer note: See https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           #### You can probably leave this out
           ALKILN_MAX_RANDOM_TESTS_PER_SCENARIO: 10
           # Internal: docassemble changes sometimes break @a11y tests. That is
-          # a da problem, not ours. We will trigger these tests manually when we
+          # a da problem, not ours. We must trigger @a11y tests manually when we
           # want to check up on this.
+          #### Developer note: Optional inputs. You can probably leave the rest out
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
-          #### Developer note: You can probably leave this out
-          # ALKILN_VERSION: 
+          _ALKILN_INTERNAL_TESTS: "true"
+          ALKILN_VERSION: "action_outputs"
