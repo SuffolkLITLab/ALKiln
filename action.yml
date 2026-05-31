@@ -123,6 +123,8 @@ runs:
 
     # For regular users
     - name: "💡 ALK0026 INFO: Install ALKiln directly from npm (at least 7 days old)"
+      if: |
+        ${{ inputs._ALKILN_INTERNAL_TESTS == false }}
       shell: bash
       run: |
         log="💡 ALK0026 INFO: Install ALKiln directly from npm"
@@ -137,3 +139,33 @@ runs:
         npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
         echo "🍕 1"
         npm list -g puppeteer
+
+    # For internal development, allow testing with more recent versions of ALKiln
+    - name: "🔎 ALK0279 WARNING: Install recent version of ALKiln directly from npm"
+      if: |
+        ${{ inputs._ALKILN_INTERNAL_TESTS == true }}
+      shell: bash
+      run: |
+        log="🔎 ALK0279 WARNING: Install **recent** version of ALKiln directly from npm"
+        repo_name="${{ github.event.repository.name }}"
+        if [[ $repo_name != *"ALKiln"* ]]; then
+          echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE USING AN UNSAFE VERSION OF ALKILN ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
+        fi
+        echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
+        if [[ $repo_name != *"ALKiln"* ]]; then
+          echo "⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️ YOU MAY BE USING AN UNSAFE VERSION OF ALKILN ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️"
+        fi
+        npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
+        echo "🐸 1"
+        npm list -g puppeteer
+
+    # Files prep
+    - shell: bash
+      env:
+        ARTIFACT_FOLDER: ${{ env.ARTIFACT_FOLDER }}
+      run: |
+        log="💡 ALK0275 INFO: Prepare repository test files"
+        echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
+        alkiln-artifacts --path="${{ env.ARTIFACT_FOLDER }}"
+        alkiln-validate
+        alkiln-generate
