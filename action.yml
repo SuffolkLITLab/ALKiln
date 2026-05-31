@@ -122,18 +122,24 @@ runs:
         log="💡 ALK0026 INFO: Install ALKiln directly from npm"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
         npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
+
         BROWSER="$(
           command -v google-chrome-stable ||
           command -v google-chrome ||
+          command -v chrome ||
           command -v chromium-browser ||
           command -v chromium ||
           true
         )"
         if [[ -n "$BROWSER" ]]; then
+          log_result="💡 ALK0279 INFO: Found puppeteer browser executable at '$BROWSER'"
+          echo -e "\n$log_result" >> "${{ env.DEBUG_PATH }}" && echo -e "$log_result"
           echo "PUPPETEER_EXECUTABLE_PATH=$BROWSER" >> "$GITHUB_ENV"
         else
-          rm -rf "$HOME/.cache/puppeteer"
-          node "$(npm root -g)/@suffolklitlab/alkiln/node_modules/puppeteer/install.mjs"
+          log_result="🤕 ALK0280 INFO: Unable to find puppeteer browser executable"
+          echo -e "\n$log_result" >> "${{ env.DEBUG_PATH }}" && echo -e "$log_result"
+          # Our project uses bash error codes in the 50's. This may change.
+          exit 51
         fi
 
     # Files prep
@@ -227,7 +233,7 @@ runs:
         log="💡 ALK0184 INFO: Prepare ALKiln output file paths"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}" && echo "$log"
 
-        FOLDER="$(ls -dt alkiln-*/ 2>/dev/null | head -n 1 || true)"
+        FOLDER=$(ls -d */ | grep -E '^alkiln-*' || true)
 
         log_folder="Test results artifacts folder is $FOLDER"
         echo -e "\n$log_folder" >> "${{ env.DEBUG_PATH }}" && echo "$log_folder"
