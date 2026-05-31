@@ -43,6 +43,17 @@ Format:
 - 
 -->
 
+## [Unreleased]
+
+### Added
+
+- Added `_ALKILN_INTERNAL_TESTS` action.yml input to allow us to skip some security flags to install and test our development releases of ALKiln.
+
+### Changed
+
+- In action.yml, temporarily (we hope) replaced `npm rebuild` with an explicit search for existing puppeteer chrome executables. There is no fallback if all of those are missing. Addresses [#1088](https://github.com/suffolkLITLab/aLKiln/issues/1088). We hope to find a proper fix in the future.
+
+
 ## [5.16.0] - 2026-05-14
 
 ### Added
