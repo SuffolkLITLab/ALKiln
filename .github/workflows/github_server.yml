@@ -162,25 +162,31 @@ jobs:
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
           # ALKILN_VERSION: 
 
-      # - shell: bash
-      #   if: ${{ always() }}
-      #   run: |
-      #     echo "Temp: Done with tests, about to process outputs. Next is setting env vars."
-
-      #### Developer note: You can probably leave out this section
+      #### Developer note: You can leave out this section
       # Test our own action output
       - shell: bash
         if: ${{ always() }}
         env:
           GH_TOKEN: ${{ github.token }}
+          PATH_TO_ARTIFACTS: "${{ steps.alkiln.outputs.PATH_TO_ARTIFACTS }}"
+          PATH_TO_REPORT_FILE: "${{ steps.alkiln.outputs.PATH_TO_REPORT_FILE }}"
           PATH_TO_REPORT_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_REPORT_LOG_FILE }}"
           PATH_TO_UNEXPECTED_RESULTS_FILE: "${{ steps.alkiln.outputs.PATH_TO_UNEXPECTED_RESULTS_FILE }}"
           PATH_TO_DEBUG_LOG_FILE: "${{ steps.alkiln.outputs.PATH_TO_DEBUG_LOG_FILE }}"
         run: |
-          echo "Temp: If we got here, the problem was something other than setting env vars."
-          echo "$PATH_TO_REPORT_LOG_FILE"
-          echo "PATH_TO_UNEXPECTED_RESULTS_FILE"
-          echo "PATH_TO_DEBUG_LOG_FILE"
+          echo "PATH_TO_ARTIFACTS: $PATH_TO_ARTIFACTS"
+          echo "PATH_TO_REPORT_FILE: $PATH_TO_REPORT_FILE"
+          echo "PATH_TO_REPORT_LOG_FILE: $PATH_TO_REPORT_LOG_FILE"
+          echo "PATH_TO_UNEXPECTED_RESULTS_FILE: $PATH_TO_UNEXPECTED_RESULTS_FILE"
+          echo "PATH_TO_DEBUG_LOG_FILE: $PATH_TO_DEBUG_LOG_FILE"
+
+          # Test accessing the report file
+          if [ -f "${{ env.PATH_TO_REPORT_FILE }}" ]; then
+            REPORT_TEXT=$(cat "${{ env.PATH_TO_REPORT_FILE }}")
+            echo "The report file exists and we can get its text"
+          else
+            echo "The report file does not exist. Something other than the interview tests may have failed."
+          fi
 
       #### Developer note: Example of making an issue when tests fail
       #### that includes the text of the failure output file
@@ -196,13 +202,13 @@ jobs:
           # Make an issue with file contents or 'no file' message as part of the body
 
           if [ -f "${{ env.PATH_TO_UNEXPECTED_RESULTS_FILE }}" ]; then
-            UNEXPECTED_2=$(cat "${{ env.PATH_TO_UNEXPECTED_RESULTS_FILE }}")
+            UNEXPECTED_RESULTS_TEXT=$(cat "${{ env.PATH_TO_UNEXPECTED_RESULTS_FILE }}")
           else
-            UNEXPECTED_2="unexpected_results.txt does not exist. Something other than the interview tests may have failed."
+            UNEXPECTED_RESULTS_TEXT="unexpected_results.txt does not exist. Something other than the interview tests may have failed."
           fi
 
           gh issue create --body "An ALKiln test run failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
 
           ### Results:
 
-          $UNEXPECTED_2" --repo "$GITHUB_REPOSITORY" --label "testing" --title "ALKiln tests failed"
+          $UNEXPECTED_RESULTS_TEXT" --repo "$GITHUB_REPOSITORY" --label "testing" --title "ALKiln tests failed"
