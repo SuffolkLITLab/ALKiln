@@ -45,12 +45,9 @@ Format:
 
 ## [Unreleased]
 
-### Changed
-
-- In action.yml, replaced `npm rebuild` with an explicit search for existing puppeteer chrome executables. There is no fallback if all of those are missing. Addresses [#1088](https://github.com/suffolkLITLab/aLKiln/issues/1088). We hope to address the core issue when we can.
-
 ### Fixed
 
+- In action.yml, replaced `npm rebuild` with an explicit search for existing puppeteer chrome executables. There is no fallback if all of those are missing. Addresses [#1088](https://github.com/suffolkLITLab/aLKiln/issues/1088). We hope to address the core issue when we can.
 - Restore custom artifacts path argument to allow environments like action.yml to make and reuse their own artifacts path value in environments where it's hard to pass around return values. Closes [#1055](https://github.com/suffolkLITLab/aLKiln/issues/1055).
 
 ### Security
