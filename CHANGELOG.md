@@ -43,6 +43,20 @@ Format:
 - 
 -->
 
+## [Unreleased]
+
+### Fixed
+
+- Restore custom artifacts path argument to allow environments like action.yml to make and reuse their own artifacts path value in environments where it's hard to pass around return values. Closes [#1055](https://github.com/suffolkLITLab/aLKiln/issues/1055).
+
+### Security
+
+- Moved responsibility for security measures to ALKiln internal development by automating internal security measures with `.npmrc`. Closes [#1088](https://github.com/suffolkLITLab/aLKiln/issues/1088).
+
+### Internal
+
+- Avoid testing on our dev server with every push, uses cron job instead.
+
 ## [5.16.0] - 2026-05-14
 
 ### Added
