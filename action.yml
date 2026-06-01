@@ -121,7 +121,7 @@ runs:
       run: |
         log="💡 ALK0026 INFO: Install ALKiln directly from npm"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
-        npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
+        npm install -g --ignore-scripts "@suffolklitlab/alkiln@$ALKILN_VERSION"
 
         BROWSER="$(
           command -v google-chrome-stable ||
