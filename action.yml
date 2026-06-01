@@ -120,9 +120,7 @@ runs:
       run: |
         log="💡 ALK0026 INFO: Install ALKiln directly from npm"
         echo -e "\n$log" >> "${{ env.DEBUG_PATH }}"
-        npm install --ignore-scripts --min-release-age=7 -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
-        npm rebuild -g puppeteer --update-binary
-
+        npm install -g "@suffolklitlab/alkiln@$ALKILN_VERSION"
 
     # Files prep
     - shell: bash
