@@ -43,7 +43,11 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Changed
+
+- GitHub action release: Restored our GitHub action's default for ALKiln version to the latest version 5 again. Released first on GitHub actions. NPM release will come in time, but npm has no impact on GitHub action releases.
 
 ## [5.16.1] - 2026-06-01
 
