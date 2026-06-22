@@ -59,7 +59,7 @@ runs:
   using: "composite"
   steps:
     # Place the root directory in this branch
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     # Set environment variables
     - name: "💡 ALK0023 INFO: Set environment variables"
@@ -111,7 +111,7 @@ runs:
 
     # Install ALKiln during GitHub workflow
     - name: "💡 ALK0025 INFO: Set up node"
-      uses: actions/setup-node@v5
+      uses: actions/setup-node@v6
       with:
         node-version: "24.x"
         package-manager-cache: false
@@ -155,7 +155,7 @@ runs:
 
     # Install package on playground
     # Don't rely on the environment's version of python
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@v6
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       with:
         python-version: '3.10'
@@ -213,7 +213,7 @@ runs:
     # Upload artifacts that subscribers can download on the Actions summary page
     - name: "💡 ALK0033 INFO: Upload artifacts folder"
       if: ${{ always() }}
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: ${{ env.ARTIFACT_FOLDER }}
         path: ./alkiln-*
@@ -221,7 +221,7 @@ runs:
     # Download artifacts folder internally to create action output
     - name: "💡 ALK0183 INFO: Get uploaded artifacts folder"
       if: ${{ always() }}
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: ${{ env.ARTIFACT_FOLDER }}
 
