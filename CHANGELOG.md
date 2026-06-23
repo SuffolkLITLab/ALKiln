@@ -53,6 +53,10 @@ Format:
 
 - Fixed GitHub+You action outdated docassemble cli version causing Scenario timeouts.
 
+### Internal
+
+- Updated both of our actions' dependencies (the checkout, setup-node, setup-python, upload-artifacts, download-artifacts actions). Closes [#1095](https://github.com/suffolkLITLab/aLKiln/issues/1095). Once again, action related.
+
 ## [5.16.1] - 2026-06-01
 
 ### Fixed

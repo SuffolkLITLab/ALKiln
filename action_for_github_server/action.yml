@@ -49,7 +49,7 @@ runs:
   using: "composite"
   steps:
       # Place the root directory in this branch
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - shell: bash
         run: |
@@ -253,7 +253,7 @@ runs:
           done
 
       # Don't rely on the environment's version of python
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.10'
       # No output
@@ -285,7 +285,7 @@ runs:
           echo "$(docker output docassemble_container)" >> "${{ env.DEBUG_LOGS_PATH }}"
       - name: "💡 ALK0020 INFO: Upload artifacts folder"
         if: ${{ always() && env.OUTPUT_DOCKER == 'true' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ env.GITHUB_SERVER_ARTIFACT_NAME }}
           path: ${{ env.DEBUG_LOGS_PATH }}
