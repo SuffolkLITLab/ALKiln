@@ -49,6 +49,10 @@ Format:
 
 - GitHub action release: Restored our GitHub action's default for ALKiln version to the latest version 5 again. Released first on GitHub actions. NPM release will come in time, but npm has no impact on GitHub action releases.
 
+### Internal
+
+- Updated both of our actions' dependencies (the checkout, setup-node, setup-python, upload-artifacts, download-artifacts actions). Closes [#1095](https://github.com/suffolkLITLab/aLKiln/issues/1095). Once again, action related.
+
 ## [5.16.1] - 2026-06-01
 
 ### Fixed
