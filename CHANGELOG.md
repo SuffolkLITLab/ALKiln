@@ -47,6 +47,8 @@ Format:
 
 ### Changed
 
+- On pages with sensitive answers, store the HTML of the page. The HTML excludes field values, so those sensitive answers will not be in the saved file. Still avoid taking a pic of the screen, which would reveal sensitive answers. NEVER USE REAL USERS' ANSWERS IN ALKILN TESTS. This HTML can still reveal information about a user's answers. For example, some answers will reveal new questions. That will change the code of the revealed fields and that code will be in the HTML.
+
 - GitHub action release: Restored our GitHub action's default for ALKiln version to the latest version 5 again. Released first on GitHub actions. NPM release will come in time, but npm has no impact on GitHub action releases.
 
 ### Fixed
@@ -54,6 +56,8 @@ Format:
 - Fixed GitHub+You action outdated docassemble cli version causing Scenario timeouts.
 
 ### Internal
+
+- Break out the function in `Before()` to attempt better error tracing. Goal: try to repeat this for other functions in that file.
 
 - Updated both of our actions' dependencies (the checkout, setup-node, setup-python, upload-artifacts, download-artifacts actions). Closes [#1095](https://github.com/suffolkLITLab/aLKiln/issues/1095). Once again, action related.
 
