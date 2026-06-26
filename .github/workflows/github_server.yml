@@ -36,9 +36,6 @@ jobs:
           && github.event.pull_request.head.repo.fork
         )
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [24.x]
 
     #### Developer note: You can probably leave out these specific
     #### environment variables. You may not even need the `env`
