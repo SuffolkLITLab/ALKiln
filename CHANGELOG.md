@@ -55,6 +55,7 @@ Format:
 
 ### Internal
 
+- Simplify workflow files by removing `node` env setup (leaving it to the actions)
 - Updated both of our actions' dependencies (the checkout, setup-node, setup-python, upload-artifacts, download-artifacts actions). Closes [#1095](https://github.com/suffolkLITLab/aLKiln/issues/1095). Once again, action related.
 
 ## [5.16.1] - 2026-06-01
