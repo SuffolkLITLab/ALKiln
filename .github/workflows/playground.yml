@@ -27,9 +27,6 @@ jobs:
           && github.event.pull_request.head.repo.fork
         )
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [24.x]
 
     env:
       #### Developer note: We recommend turning these into environment
