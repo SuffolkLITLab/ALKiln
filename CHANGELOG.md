@@ -57,10 +57,11 @@ Format:
 
 ### Internal
 
-- Break out the function in `Before()` and `After()` to attempt better error tracing. Goal: try to repeat this for other functions in that file.
+- Broke out the function in `Before()` and `After()` to attempt better error tracing. Goal: try to repeat this for other functions in that file.
+- Simplified workflow files by removing `node` env setup (leaving it to the actions)
 - Updated both of our actions' dependencies (the checkout, setup-node, setup-python, upload-artifacts, download-artifacts actions). Closes [#1095](https://github.com/suffolkLITLab/aLKiln/issues/1095). Once again, action related.
 - When our report phrases are missing, list all missing phrases at one time in our custom message. The cucumber message will stay the same.
-- Silence errors from screenshots & HTML downloads when trying to provide more information about failing tests. Those records are nice to have, but not absolutely necessary, and if a server is busy puppeteer will rightly have lost execution context, preventing interactions with the page and we don't need a noisy error about it. Log any problems.
+- Silenced errors from screenshots & HTML downloads when trying to provide more information about failing tests. Those records are nice to have, but not absolutely necessary, and if a server is busy puppeteer will rightly have lost execution context, preventing interactions with the page and we don't need a noisy error about it. Log any problems.
 
 ## [5.16.1] - 2026-06-01
 

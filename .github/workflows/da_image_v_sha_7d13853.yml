@@ -31,9 +31,6 @@ jobs:
           && github.event.pull_request.head.repo.fork
         )
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [24.x]
       
     steps:
       # Place the root directory in this branch to access relative paths to
