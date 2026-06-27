@@ -1,0 +1,44 @@
+name: ALKiln v5 sandbox tests
+# See https://assemblyline.suffolklitlab.org/docs/components/ALKiln/setup#sandbox-details
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      tags:
+        required: False
+        description: 'Optional. Use a "tag expression" to specify which tagged tests to run (https://cucumber.io/docs/cucumber/api#tag-expressions)'
+      # Experimental
+      show_docker_output:
+        required: false
+        default: false
+        type: boolean
+        description: 'Show the docker logs while building the GitHub server container. It will also save the docker log artifact. This might show sensitive config information.'
+
+jobs:
+  alkiln-sandbox-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "ALKiln - Create the GitHub sandbox docassemble server"
+        id: github_server
+        uses: suffolkLITLab/ALKiln/action_for_github_server@v5
+        with:
+          SHOW_DOCKER_OUTPUT: "${{ github.event.inputs.show_docker_output }}"
+      - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
+        shell: bash
+
+      - name: "Run ALKiln sandbox tests"
+        if: ${{ success() }}
+        id: alkiln
+        uses: suffolkLITLab/ALKiln@v5
+        with:
+          # Required inputs. See https://assemblyline.suffolklitlab.org/docs/alkiln/writing#sandbox-inputs
+          SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
+          DOCASSEMBLE_DEVELOPER_API_KEY: "${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}"
+          INSTALL_METHOD: "server"
+          # To learn more about these optional inputs, see
+          # https://assemblyline.suffolklitlab.org/docs/alkiln/writing#optional-inputs
+          # ALKILN_TAG_EXPRESSION: ""
+          # ALKILN_VERSION: ""
