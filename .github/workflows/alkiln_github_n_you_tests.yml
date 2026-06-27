@@ -1,0 +1,53 @@
+name: ALKiln v5 GitHub+You tests
+# See https://assemblyline.suffolklitlab.org/docs/components/ALKiln/setup#githubNyou-details
+
+on:
+  push:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Optional. Use a "tag expression" to specify which tagged tests to run. See https://cucumber.io/docs/cucumber/api#tag-expressions for syntax.'
+        default: ''
+  # To run your tests on a schedule, delete the first "#" symbol at the beginning of each line below.
+  ## Also see https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+  ## Also see https://crontab.guru/examples.html
+  #schedule:
+  #  - cron: '0 1 * * TUE'
+
+jobs:
+
+  alkiln-github-n-you-tests:
+    # To avoid `push` and `pull_request` above from running double tests
+    # when someone on the team makes a pull request
+    # 1: Trigger job on push or dispatch from this repository
+    # 2: Trigger job on pull request from a fork
+    if: (
+          github.event_name != 'pull_request'
+          && ! github.event.pull_request.head.repo.fork
+        ) || (
+          github.event_name == 'pull_request'
+          && github.event.pull_request.head.repo.fork
+        )
+
+    runs-on: ubuntu-latest
+    name: Run interview tests
+    steps:
+      - name: Use ALKiln to run tests
+        uses: SuffolkLITLab/ALKiln@v5
+        with:
+          SERVER_URL: "${{ secrets.SERVER_URL }}"
+          DOCASSEMBLE_DEVELOPER_API_KEY: "${{ secrets.DOCASSEMBLE_DEVELOPER_API_KEY }}"
+      - run: echo "Finished running ALKiln tests"
+      
+      ## To make a new issue in your repository when a test fails,
+      ## simply delete the first "#" symbol in each line below
+      #- name: If any tests failed create an issue
+      #  if: ${{ failure() }}
+      #  uses: actions-ecosystem/action-create-issue@v1
+      #  with:
+      #    github_token: "${{ secrets.github_token }}"
+      #    title: ALKiln tests failed
+      #    body: |
+      #      An ALKiln test failed. See the action at ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}.
+      #    labels: |
+      #      bug
