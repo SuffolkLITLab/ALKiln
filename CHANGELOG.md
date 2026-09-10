@@ -45,6 +45,18 @@ Format:
 
 ## [Unreleased]
 
+### Changed
+
+- Extended error message for reaching a docassemble system error page (like syntax errors, etc.) It now should contain the relevant contents of the page.
+
+### Fixed
+
+- Fixed linear Steps not failing on error screens. See #656.
+
+### Internal
+
+- Fixed confusing error message when tests expected to fail actually pass.
+
 ## [5.17.0] - 2026-09-10
 
 ### Changed
@@ -54,7 +66,7 @@ Format:
 ### Fixed
 
 - Fixed GitHub+You action outdated docassemble cli version causing Scenario timeouts.
-- Part 1 of detecting custom AL error screen: Story Table now catches `al_custom_error_screen` error. Previously, Story Tables that ran into this screen would get stuck on the AL error page infinitely. Next steps: Linear Steps may need additional development. Currently linear Steps succeed even when they run into AL's error page. That bears additional discussion. See [issue #656](https://github.com/SuffolkLITLab/ALKiln/issues/656) and [PR #1116](https://github.com/SuffolkLITLab/ALKiln/pull/1116).
+- Part 1 of detecting custom AL error screen: Story Table now catches `al_custom_error_action` error. Previously, Story Tables that ran into this screen would get stuck on the AL error page infinitely. Next steps: Linear Steps may need additional development. Currently linear Steps succeed even when they run into AL's error page. That bears additional discussion. See [issue #656](https://github.com/SuffolkLITLab/ALKiln/issues/656) and [PR #1116](https://github.com/SuffolkLITLab/ALKiln/pull/1116).
 
 ### Internal
 
