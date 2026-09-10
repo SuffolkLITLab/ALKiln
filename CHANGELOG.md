@@ -45,6 +45,8 @@ Format:
 
 ## [Unreleased]
 
+## [5.17.0] - 2026-09-10
+
 ### Changed
 
 - GitHub action release: Restored our GitHub action's default for ALKiln version to the latest version 5 again. Released first on GitHub actions. NPM release will come in time, but npm has no impact on GitHub action releases.
@@ -52,6 +54,7 @@ Format:
 ### Fixed
 
 - Fixed GitHub+You action outdated docassemble cli version causing Scenario timeouts.
+- Part 1 of detecting custom AL error screen: Story Table now catches `al_custom_error_screen` error. Previously, Story Tables that ran into this screen would get stuck on the AL error page infinitely. Next steps: Linear Steps may need additional development. Currently linear Steps succeed even when they run into AL's error page. That bears additional discussion. See [issue #656](https://github.com/SuffolkLITLab/ALKiln/issues/656) and [PR #1116](https://github.com/SuffolkLITLab/ALKiln/pull/1116).
 
 ### Internal
 
