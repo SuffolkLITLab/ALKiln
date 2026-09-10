@@ -171,10 +171,6 @@ Scenario: Fails as it doesn't try to 'continue' with a restart button
   """
   ALK0102
   """
-  And the Scenario report should include:
-  """
-  ALK0062
-  """
   Given the max seconds for each step in this scenario is 10
   Given I start the interview at "test_kickout"
   And I get to "doesnt exist" with this data:

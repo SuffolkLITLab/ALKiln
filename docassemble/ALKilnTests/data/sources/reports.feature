@@ -92,7 +92,7 @@ Scenario: Fail with missing error message
 #  Given the final Scenario status should be "failed"
 #  Given the Scenario report should include:
 #  """
-#  The error was a system error, not an error message to the user.
+#  ALK0077
 #  """
 #  And I start the interview at "all_tests"
 #  And I will be told an answer is invalid
