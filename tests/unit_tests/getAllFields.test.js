@@ -170,3 +170,11 @@ it(`creates the right data for a question whose table will have mixed quotes`, a
   let result = await getAllFields( scope, { html: html.mixed_quotes });
   expect( result ).to.deep.equalInAnyOrder( fields.mixed_quotes );
 });
+
+for (const fixture of ['button_continue', 'buttons_yesnomaybe', 'buttons_other']) {
+  it(`recognizes docassemble 1.10 div button groups: ${fixture}`, async function() {
+    const markup = html[fixture].replace(/<fieldset\b/g, '<div').replace(/<\/fieldset>/g, '</div>');
+    const result = await getAllFields(scope, {html: markup});
+    expect(result).to.deep.equalInAnyOrder(fields[fixture]);
+  });
+}
