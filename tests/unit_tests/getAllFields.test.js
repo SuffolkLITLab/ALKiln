@@ -2,7 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 const deepEqualInAnyOrder = require('deep-equal-in-any-order');
 chai.use(deepEqualInAnyOrder);
-// We need jest or something, right? To do fancy stuff.
+// jest may let us store and update snapshots, but may discourage hand-checking
 
 const html = require('./html.fixtures.js');
 const fields = require('./fields.fixtures.js');

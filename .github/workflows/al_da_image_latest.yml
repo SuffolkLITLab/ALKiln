@@ -1,10 +1,13 @@
-name: Use docassemble image version
+name: GitHub server with AL da image version
 
 on:
   push:
   pull_request:
   workflow_dispatch:
     inputs:
+      tags:
+        required: False
+        description: 'Optional. Use a "tag expression" specify which tagged tests to run (https://cucumber.io/docs/cucumber/api/#tag-expressions)'
       show_docker_output:
         required: false
         default: false
@@ -16,6 +19,8 @@ on:
         description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
         default: false
+  schedule:
+    - cron: "0 1 * * SUN"
 
 jobs:
 
@@ -42,7 +47,7 @@ jobs:
         uses: ./action_for_github_server
         with:
           SHOW_DOCKER_OUTPUT: "${{ github.event.inputs.show_docker_output }}"
-          DOCASSEMBLE_IMAGE: "ghcr.io/suffolklitlab/docassemble:sha-7d13853"
+          DOCASSEMBLE_IMAGE: "ghcr.io/suffolklitlab/docassemble:latest"
       - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
         shell: bash
 

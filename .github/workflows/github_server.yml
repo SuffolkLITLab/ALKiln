@@ -19,6 +19,8 @@ on:
         description: 'Run the build with tmate debugging enabled (https://github.com/marketplace/actions/debugging-with-tmate)'
         required: false
         default: false
+  schedule:
+    - cron: "0 1 * * SUN"
 
 jobs:
 
@@ -157,7 +159,7 @@ jobs:
           #### Developer note: You can probably leave the rest out
           #### To learn more, see https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
-          # ALKILN_VERSION: 
+          ALKILN_VERSION: "da_version"
 
       #### Developer note: Example of making an issue when tests fail
       #### that includes the text of the failure output file

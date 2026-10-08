@@ -3,6 +3,8 @@ let fields =  {};
 /** The fixtures in here are used in at least 2 types of tests:
  * - getAllFields
  * - getMatchignRows
+ * 
+ * ✏️ Fixtures are using HTML from docassemble versions <= 1.9.n
  * */
 
 // ============================
@@ -885,20 +887,22 @@ fields.proxy_substitution_i_is_1 = [
 // ============================
 // Signature
 // ============================
-// Signature page continue buttons are contained in a different DOM structure than regular ones
-// Also, there's an additional hidden continue button on the page with similar selectors
+// Signature page continue buttons are contained in a different DOM structure
+//   than other pages. Also, there's an additional continue button on the page
+//   with similar selectors. One continue button is hidden on wide screens while
+//   the other is hidden on narrow screens.
 fields.signature = [
   {
-    "selector": "#daquestion canvas",
+    "selector": "#daquestion canvas[id=\"dasigcanvas\"]",
     "tag": "canvas",
     "guesses": [
       {
-        "var": "c2lnbmF0dXJlXzE",
-        "value": ""
+        "value": "",
+        "var": "c2lnbmF0dXJlXzE"
       },
       {
-        "var": "signature_1",
-        "value": ""
+        "value": "",
+        "var": "signature_1"
       }
     ],
     "type": "",
@@ -1129,7 +1133,7 @@ fields.ajax = [
     "trigger": ""
   },
   {
-    "selector": "#daquestion input[id=\"ZmF2b3JpdGVfd29yZA\"][class=\"form-control da-ajax-combobox\"]",
+    "selector": "#daquestion input[id=\"ZmF2b3JpdGVfd29yZA\"][class=\"form-control da-ajax-combobox\"][role=\"combobox\"]",
     "tag": "input",
     "guesses": [
       {
@@ -1158,6 +1162,13 @@ fields.ajax = [
       }
     ],
     "type": "",
+    "trigger": ""
+  },
+  {
+    "selector": "#daquestion button[class=\"btn btn-outline-secondary dacomboboxtoggle\"]",
+    "tag": "button",
+    "guesses": [],
+    "type": "button",
     "trigger": ""
   },
   {

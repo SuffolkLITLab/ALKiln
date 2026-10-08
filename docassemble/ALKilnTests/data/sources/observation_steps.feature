@@ -20,7 +20,6 @@ Scenario: I see user errors.
   Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
-  And I tap to continue
   Then I can't continue
   And I will be told an answer is invalid
 
@@ -44,7 +43,6 @@ Scenario: I check navigation
     | text_input | Regular text input field value | |
     | textarea | Multiline text\narea value | |
     | date_input | today | |
-  Then I arrive at the next page
   Then I get to "screen features" with this data:
     | var | value | trigger |
     | object_checkboxes_test["obj_chkbx_opt_1"] | True | |
@@ -54,10 +52,9 @@ Scenario: I check navigation
     | buttons_yesnomaybe | True |  |
   And I should see the link to "http://ecosia.org/"
 
-@fast @o4
+@fast @o19
 Scenario: Test "Then I don't continue" with a single quote
   Given I start the interview at "all_tests"
-  And I tap to continue
   And I tap to continue
   And I tap to continue
   Then I don't continue
@@ -68,14 +65,12 @@ Scenario: Test "Then I cannot continue"
   Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
-  And I tap to continue
   Then I cannot continue
   And I will be told an answer is invalid
 
 @fast @o6
 Scenario: Test "Then I do not continue"
   Given I start the interview at "all_tests"
-  And I tap to continue
   And I tap to continue
   And I tap to continue
   Then I do not continue
@@ -86,14 +81,12 @@ Scenario: Test "Then I can’t continue" with an apostrophe
   Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
-  And I tap to continue
   Then I can’t continue
   And I will be told an answer is invalid
 
 @fast @o8
 Scenario: Test "Then I don’t continue" with an apostrophe
   Given I start the interview at "all_tests"
-  And I tap to continue
   And I tap to continue
   And I tap to continue
   Then I don’t continue
@@ -212,9 +205,9 @@ Scenario: I enter the date and time
     | time_input | 12:34 PM | |
 
 @fast @o16 @signature @screenshot
-Scenario: I take a screenshot of the signature
+Scenario: I take a screenshot of the signature with the name "Charlie"
   Given I start the interview at "test_signature.yml"
-  When I sign with the name "David"
+  When I sign with the name "Charlie"
   And I take a screenshot
   Then I tap to continue
   Then the question id should be "the end"

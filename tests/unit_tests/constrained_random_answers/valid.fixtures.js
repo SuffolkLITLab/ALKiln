@@ -573,7 +573,9 @@ Scenario: Keeps comment after table
   Given I start the interview at "file.yml"
   And ALKiln will get to "end" with:
     | var | possible_values |
-    | user_choice | correct;; wrong |
+    | choice_1 | correct;; wrong |
+    | choice_2 | a;; b;; c |
+    | choice_3 | 1;; 2;; 3 |
     # Comment 1 keep and repeat
 
 # Comment 2 keep and repeat`;
