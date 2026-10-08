@@ -169,7 +169,11 @@ Scenario: Fails as it doesn't try to 'continue' with a restart button
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
-  The test got stuck on "kickout-screen"
+  ALK0102
+  """
+  And the Scenario report should include:
+  """
+  ALK0062
   """
   Given the max seconds for each step in this scenario is 10
   Given I start the interview at "test_kickout"

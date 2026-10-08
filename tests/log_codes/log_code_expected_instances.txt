@@ -10,6 +10,7 @@ Reasons for deletion:
 0173 - redundant
 0181 - unknown
 0223 - changed Log behavior ("Only logs that throw should give a value to `error`.")
+0078 - removed unsupported Step "I arrive at the next page" and moved responsibility to Steps that navigate
 
 ALK0000:0
 ALK0001:1
@@ -89,7 +90,7 @@ ALK0074:1
 ALK0075:1
 ALK0076:1
 ALK0077:1
-ALK0078:1
+ALK0078:0
 ALK0079:1
 ALK0080:1
 ALK0081:1
@@ -159,7 +160,7 @@ ALK0144:1
 ALK0145:1
 ALK0146:1
 ALK0147:1
-ALK0148:1
+ALK0148:2
 ALK0149:1
 ALK0150:1
 ALK0151:1
@@ -291,3 +292,12 @@ ALK0276:1
 ALK0277:1
 ALK0278:1
 ALK0279:1
+ALK0280:1
+ALK0281:1
+ALK0282:1
+ALK0283:1
+ALK0284:1
+ALK0285:1
+ALK0286:1
+ALK0287:1
+ALK0288:1

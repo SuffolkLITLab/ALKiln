@@ -45,6 +45,25 @@ Format:
 
 ## [Unreleased]
 
+### Changed
+
+- Updated to work with docassemble v1.10.n while being backwards compatible. See [issue #1117](https://github.com/SuffolkLITLab/ALKiln/issues/1117)
+  - Unable to find some continue buttons
+    - Single-line fields like `yesno: likes_good_things`
+    - Buttons created with `buttons:`
+    - Continue buttons on signature pages
+  - Unable to sign with a name
+  - Unable to upload files
+  - Created infinite loop with 'Restart' button
+- Changed the internal behavior of the experimental Step "I can't continue" from testing for errors after the previous Step (whatever it happened to be) to attempting to continue. Failure to continue causes success of the Step.
+
+### Internal
+
+- Added a workflow to test using an Assembly Line docker image
+- Test using a cron job to catch failures more regularly
+- Remove unsupported Step "Then I arrive at the next page" and moved responsibility to Steps that imply they navigate
+- Fixed typo in fixture
+
 ## [5.17.0] - 2026-09-10
 
 ### Changed

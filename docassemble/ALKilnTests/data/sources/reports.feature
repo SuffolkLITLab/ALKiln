@@ -81,7 +81,7 @@ Scenario: Fail with missing error message
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
-  No error message was found on the page
+  ALK0076
   """
   And I start the interview at "all_tests"
   And I will be told an answer is invalid
@@ -103,13 +103,12 @@ Scenario: Fail with was unexpectedly not able to continue for invalid field inpu
   Given the final Scenario status should be "failed"
   Given the Scenario report should include:
   """
-  User did not arrive at the next page.
+  ALK0148
   """
   And I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
   And I tap to continue
-  Then I arrive at the next page
 
 @fast @rf11 @failure
 Scenario: Fail with link text not visible
@@ -151,7 +150,6 @@ Scenario: Fail with link with given text does not lead to correct url
     | single_quote_dict['single_quote_key']['sq_two'] | true |  |
     | text_input | Regular text input field value | |
     | textarea | Multiline text\narea value | |
-  Then I arrive at the next page
   Then I get to "screen features" with this data:
     | var | value | trigger |
     | object_checkboxes_test["obj_chkbx_opt_1"] | true | |
@@ -182,7 +180,6 @@ Scenario: Fail with link unexpectedly opens in same window
     | single_quote_dict['single_quote_key']['sq_two'] | true |  |
     | text_input | Regular text input field value | |
     | textarea | Multiline text\narea value | |
-  Then I arrive at the next page
   Then I get to "screen features" with this data:
     | var | value | trigger |
     | object_checkboxes_test["obj_chkbx_opt_1"] | true | |
@@ -213,7 +210,6 @@ Scenario: Fail with link unexpectedly opens in a new window
     | single_quote_dict['single_quote_key']['sq_two'] | true |  |
     | text_input | Regular text input field value | |
     | textarea | Multiline text\narea value | |
-  Then I arrive at the next page
   Then I get to "screen features" with this data:
     | var | value | trigger |
     | object_checkboxes_test["obj_chkbx_opt_1"] | true | |
@@ -245,7 +241,6 @@ Scenario: Fail with link unexpectedly opens in a new window
 #    | single_quote_dict['single_quote_key']['sq_two'] | true |  |
 #    | text_input | Regular text input field value | |
 #    | textarea | Multiline text\narea value | |
-#  Then I arrive at the next page
 #  Then I get to "screen features" with this data:
 #    | var | value | trigger |
 #    | button_continue | True |  |

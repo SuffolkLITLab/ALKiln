@@ -4,6 +4,8 @@
 * #trigger element is added into #daquestion, though it's not at
 * that location on the actual page. Otherwise, we'd have a lot more
 * html in here. In scope.js, it's found just using its id selector.
+* 
+* ✏️ Fixtures are using HTML from docassemble versions <= 1.9.n
 */
 
 let html = {};
@@ -586,7 +588,7 @@ html.proxy_substitution_i_is_0 = `
       <legend class="visually-hidden">Press one of the following buttons:</legend>
       <button class="btn btn-da btn-primary" id="da-continue-button" type="submit">Continue</button>
     </fieldset>
-    <input type="hidden" name="csrf_toke" value="ImNlMGRmOWY5NmQ4MGRjMjI0ZDQyNGFjMWRiYjdiODAzOTk2ZThhY2Ui.Zb7dOA.Fvil0jDP4mebaBoPmtM7sXv6wSQ"/>
+    <input type="hidden" name="csrf_token" value="ImNlMGRmOWY5NmQ4MGRjMjI0ZDQyNGFjMWRiYjdiODAzOTk2ZThhY2Ui.Zb7dOA.Fvil0jDP4mebaBoPmtM7sXv6wSQ"/>
     <input type="hidden" name="_event" value="WyJwcm94eV9saXN0WzBdLm5hbWUuZmlyc3QiXQ"/>
     <input type="hidden" name="_question_name" value="ID proxy vars"/>
     <input type="hidden" name="_tracker" value="3"/>
