@@ -43,7 +43,9 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.17.1] - 2026-10-13
 
 ### Changed
 

@@ -1,4 +1,4 @@
-name: GitHub server installation
+name: Sandbox with latest da image
 
 on:
   push:
@@ -24,7 +24,7 @@ on:
 
 jobs:
 
-  github-server-tests:
+  sandbox-da-tests:
     #### Developer note: If you have both `push` and `pull_request` in the
     #### `on` section (above), this avoids running double tests when someone
     #### on the team makes a pull request
@@ -159,7 +159,7 @@ jobs:
           #### Developer note: You can probably leave the rest out
           #### To learn more, see https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#optional-inputs
           ALKILN_TAG_EXPRESSION: "${{ env.ALKILN_TAG_EXPRESSION }}"
-          ALKILN_VERSION: "da_version"
+          # ALKILN_VERSION:
 
       #### Developer note: Example of making an issue when tests fail
       #### that includes the text of the failure output file

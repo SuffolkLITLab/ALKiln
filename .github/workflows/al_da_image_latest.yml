@@ -1,4 +1,4 @@
-name: GitHub server with AL da image version
+name: Sandbox with AL da image version
 
 on:
   push:
@@ -24,7 +24,7 @@ on:
 
 jobs:
 
-  github-server-tests:
+  sandbox-al-tests:
     # Avoids running double tests when someone on the team makes a pull request
     # 1: Trigger job on push or dispatch from this repository
     # 2: Trigger job on pull request from a fork
