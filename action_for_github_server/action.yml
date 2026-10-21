@@ -253,7 +253,7 @@ runs:
           done
 
       # Don't rely on the environment's version of python
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.10'
       # No output

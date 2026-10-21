@@ -155,7 +155,7 @@ runs:
 
     # Install package on playground
     # Don't rely on the environment's version of python
-    - uses: actions/setup-python@v6
+    - uses: actions/setup-python@v7
       if: ${{ inputs.INSTALL_METHOD == 'playground' }}
       with:
         python-version: '3.10'
