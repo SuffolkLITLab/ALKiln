@@ -51,7 +51,7 @@ jobs:
     steps:
       # Place the root directory in this branch to access relative paths to
       # action files
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: "ALKiln - Use a specific docassemble image version to start the isolated temporary docassemble server on GitHub"
         id: github_server

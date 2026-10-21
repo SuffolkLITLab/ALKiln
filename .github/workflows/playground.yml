@@ -58,7 +58,7 @@ jobs:
     steps:
       #### Developer note: You can probably leave this out
       # Place the root directory in this branch to access relative paths to action files
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       #### Developer note: you'll need to replace `uses: ./`
       #### with the path to ALKiln’s repository name and branch name. For example,
