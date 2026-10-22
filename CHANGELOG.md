@@ -21,6 +21,7 @@ Format:
 - 
 
 ## [1.0.0] - 2021-01-16
+
 ### Added
 - 
 
@@ -43,9 +44,37 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Added
+
+- Step "I continue" which taps the continue button expecting to navigate to a new page in the interview. "I continue" and "I can't continue" should together replace the behaviors of "I tap to continue".
+- Step "I can't continue" which taps the continue button expecting to fail to navigate. It passes when there are invalid answers or when a continue button is missing. It fails on other errors, like system errors (including Assembly Line custom errors) and timeout errors. Those types of errors should always fail across the whole framework. An author could use "I can't continue" to check that the interview correctly indicated one or more invalid answers. This replaces the practice of using "I tap to continue" twice.
+
+### Changed
+
+- Part 2 of detecting custom AL error screen (final part): Though `I tap to continue` allows invalid answers again, it throws on other errors, like system errors (including Assembly Line custom errors) and timeout errors. Those types of errors should always fail across the whole framework. It also throws if the continue button is missing.
+- Extended error message when the test causes a docassemble system error page (like syntax errors, etc.) It now should contain some of the relevant contents of the page.
+- Tweaked other log messages.
+
+### Fixed
+
+- Restores the documented behavior of `I tap to continue`. Specifically, the documentation describes using `I tap to continue` to potentially trigger invalid answers. To do this, these commits re-implement old behavior - `I tap to continue` never fails with invalid answers or missing continue-type buttons. Does add a small change - `I tap to continue` now throws on other errors, like system errors and timeout errors. Those types of errors should always fail across the whole framework. Note: A different behavior was proposed where an author could tap to continue once and be guaranteed no failures and then fail on a second tap to the same page. There are situations in which this would break potentially live tests. For example, an author could test multiple invalid answers in a row for the same field by cycling through. `I tap to continue` and `I should see the phrase`. The proposed change would break those tests.
+- Ensured new file upload buttons don't warn about duplicates since they have the same selectors.
+
+### Internal
+
+- Fixed confusing error message when tests expected to fail actually pass.
+- Started refactoring navigation functions to start untangling that rat's nest formed by overlapping motivations.
+- Refactored getting different types of page errors (system error pages vs. user errors.)
+- Started refactoring out `scope.examinePageID()` which is currently doing too many things.
+- Added tests
 
 ## [5.17.1] - 2026-10-13
+
+### Added
+
+- Added the `I can't continue` Step to assert that pressing the continue button fails to continue. That press should allow the author to then check for invalid answers. Using `I can't continue` once should replace the practice of using `I tap to continue` twice.
 
 ### Changed
 
@@ -57,26 +86,14 @@ Format:
   - Unable to sign with a name
   - Unable to upload files
   - Created infinite loop with 'Restart' button
-- Changed the internal behavior of the experimental Step "I can't continue" from testing for errors after the previous Step (whatever it happened to be) to attempting to continue. Failure to continue causes success of the Step.
+- Changed the internal behavior of the experimental Step `I can't continue` from testing for errors after the previous Step (whatever it happened to be) to attempting to continue. Failure to continue causes success of the Step.
 
 ### Internal
 
 - Added a workflow to test using an Assembly Line docker image
 - Test using a cron job to catch failures more regularly
-- Remove unsupported Step "Then I arrive at the next page" and moved responsibility to Steps that imply they navigate
+- Remove unsupported Step `Then I arrive at the next page` and moved responsibility to Steps that imply they navigate
 - Fixed typo in fixture
-
-### Changed
-
-- Extended error message for reaching a docassemble system error page (like syntax errors, etc.) It now should contain the relevant contents of the page.
-
-### Fixed
-
-- Fixed linear Steps not failing on error screens. See #656.
-
-### Internal
-
-- Fixed confusing error message when tests expected to fail actually pass.
 
 ## [5.17.0] - 2026-09-10
 
