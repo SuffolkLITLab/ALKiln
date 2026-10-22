@@ -1,6 +1,6 @@
 {
   "name": "@suffolklitlab/alkiln",
-  "version": "5.17.1-fix-stop-on-error-2",
+  "version": "5.17.1-fix-stop-on-error-3",
   "description": "Integrated automated end-to-end testing with docassemble, puppeteer, and cucumber.",
   "main": "lib/index.js",
   "scripts": {

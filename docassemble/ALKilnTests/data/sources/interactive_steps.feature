@@ -10,12 +10,12 @@ Scenario: I set various values
   When I set the var "upload_files_visible" to "some_png_1.png, some_png_2.png"
   And I set the var "show_upload" to "True"
   And I upload "some_png_2.png,some_png_1.png" to "upload_files_hidden"
-  And I tap to continue
+  And I continue
   # Next page
   Then the question id should be "group of complex fields"
   And I set the var "double_quote_dict['double_quote_key']['dq_two']" to "true"
   And I set the var "single_quote_dict['single_quote_key']['sq_two']" to "true"
-  And I tap to continue
+  And I continue
   Then the question id should be "direct standard fields"
   # Next page
   When I set the var "checkboxes_yesno" to "True"
@@ -51,12 +51,12 @@ Scenario: I set various values
     """
   And I set the var "showif_combobox_input" to "Showif custom combobox value"
   And I set the var "showif_dropdown" to "showif_dropdown_1"
-  When I tap to continue
+  When I continue
   # Next page
   Then the question id should be "object checkboxes"
   And I set the var "object_checkboxes_test['obj_chkbx_opt_1']" to "true" 
   And I set the var "object_dropdown" to "obj_opt_2"
-  When I tap to continue
+  When I continue
   # Next page
   Then the question id should be "buttons yesnomaybe"
   When I set the var "buttons_yesnomaybe" to "None"
@@ -70,40 +70,40 @@ Scenario: I set various values
   Then the question id should be "screen features"
   And I tap the defined text link "Term"
   Then I SHOULD see the phrase "definition"
-  When I tap to continue
+  When I continue
   # Next page
   Then the question id should be "proxy vars"
   When I set the var "x[i].name.first" to "Proxyname1"
-  And I tap to continue
+  And I continue
   # Next page
   Then the question id should be "is there another generic"
   When I set the var "x.there_is_another" to "True"
   # Next page
   Then the question id should be "proxy vars"
   When I set the var "x[i].name.first" to "Proxyname2"
-  And I tap to continue
+  And I continue
   # Next page
   Then the question id should be "is there another generic"
   When I set the var "x.there_is_another" to "False"
   # Next page
   Then the question id should be "first signature"
   When I sign
-  And I tap to continue
+  And I continue
   # Next page
   Then the question id should be "second signature"
   When I sign
-  And I tap to continue
+  And I continue
   # Next page
   Then the question id should be "simple doc"
   When I download "simple-doc.pdf"
-  And I tap to continue
+  And I continue
   # Next page
   Then the question id should be "button event action"
-  And I tap to continue
+  And I continue
   # Next page
   Then the question id should be "single-dropdown-field"
   And I set the var "single_dropdown_field" to "email"
-  And I tap to continue
+  And I continue
   # Next page
   Then the question id should be "the end"
 
@@ -116,13 +116,13 @@ Scenario: Fail with missing secret and succeed with correct ones
   """
   Given I start the interview at "test_secret_vars"
   When I set the var "first_text_entry" to the secret "SECRET_VAR1"
-  And I tap to continue
+  And I continue
   Then I see the phrase "secret-var1-value"
-  When I tap to continue
+  When I continue
   And I set the var "second_text_entry" to the github secret "SECRET_VAR2"
-  And I tap to continue
+  And I continue
   Then I see the phrase "secret-var2-value"
-  When I tap to continue
+  When I continue
   And I set the variable "third_text_entry" to secret "SECRET_NOT_THERE"
 
 @i3 @tap_elements @tabs
@@ -194,7 +194,7 @@ Scenario: tap selectors with & without navigating
 Scenario: I replace a default value
   Given I start the interview at "test_default_value"
   And I set the variable "new_input" to "Something new!"
-  And I tap to continue
+  And I continue
   Then the text in the JSON variable "new_input" should be
   """
   Something new!
@@ -208,7 +208,7 @@ Scenario: I answer with multiple lines
     A value with
     multiple lines
     """
-  And I tap to continue
+  And I continue
   Then the text in the JSON variable "textarea" should be
     """
     A value with

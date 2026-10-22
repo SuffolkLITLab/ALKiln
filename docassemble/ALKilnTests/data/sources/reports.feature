@@ -97,18 +97,20 @@ Scenario: Fail with missing error message
 #  And I start the interview at "all_tests"
 #  And I will be told an answer is invalid
 
-# TODO: Check this with validation code failure too
-@fast @rf10 @failure
-Scenario: Fail with was unexpectedly not able to continue for invalid field input message
-  Given the final Scenario status should be "failed"
-  Given the Scenario report should include:
-  """
-  ALK0148
-  """
-  And I start the interview at "all_tests"
-  And I tap to continue
-  And I tap to continue
-  And I tap to continue
+## Scenario retired: "I arrive at the next page", an unsupported Step, was removed in favor of the "I continue" Step, which will error if the test is unable to tap a "continue" button.
+## TODO: Check this with validation code failure too
+#@fast @rf10 @failure
+#Scenario: Fail "I tap to continue" with unexpected invalid answers #prevented navigation
+#  Given the final Scenario status should be "failed"
+#  Given the Scenario report should include:
+#  """
+#  User did not arrive at the next page.
+#  """
+#  And I start the interview at "all_tests"
+#  And I tap to continue
+#  And I tap to continue
+#  And I tap to continue
+#  Then I arrive at the next page
 
 @fast @rf11 @failure
 Scenario: Fail with link text not visible
@@ -418,6 +420,54 @@ Scenario: Fail on unexpected status even when report is as expected
   """
   Given I start the interview at "AL_tests"
   And I set the name of "users[0]" to "Uli Udo User Sampson NotASuffix"
+
+@rf29 @failure @slow
+Scenario: Fail when using "I tap to continue" reaches a system error
+  Given the final Scenario status should be "failed"
+  And the max seconds for each Step is 5
+  # TODO: When we implement capturing the responses, this will be a 501 (not implemented) response
+  # Timeout error
+  And the Scenario report should include:
+  """
+  ALK0103
+  """
+  And I start the interview at "test_missing_var_error_screen"
+  And I tap to continue
+
+@rf30 @failure
+Scenario: Fail "I continue" with invalid answers
+  Given the final Scenario status should be "failed"
+  And the Scenario report should include:
+  """
+  ALK0148
+  """
+  And I start the interview at "all_tests"
+  And I continue
+  And I continue
+  And I continue
+
+@rf31 @failure
+Scenario: Fail "I tap to continue" with no continue button
+  Given the final Scenario status should be "failed"
+  And the Scenario report should include:
+  """
+  ALK0102
+  """
+  And I start the interview at "test_kickout"
+  And I continue
+  And I set the var "user_choice" to "wrong"
+  And I continue
+  And I tap to continue
+
+@rf32 @failure
+Scenario: Fail "I can't continue" with successful navigation
+  Given the final Scenario status should be "failed"
+  And the Scenario report should include:
+  """
+  ALK0075
+  """
+  And I start the interview at "all_tests"
+  And I can't continue
 
 
 # scope.js

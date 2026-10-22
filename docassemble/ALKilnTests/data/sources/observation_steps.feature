@@ -15,8 +15,12 @@ Scenario: I observe things on a single page when I arrive
   And an element should have the id "daform"
 
 @fast @o2
-Scenario: I see user errors.
+Scenario: I see user errors with "I can't continue"
 #  They're everywhere.  Some don't even know they are errors.
+  Given the Scenario report should NOT include:
+  """
+  ALK0075
+  """
   Given I start the interview at "all_tests"
   And I tap to continue
   And I tap to continue
@@ -270,3 +274,17 @@ Scenario: I compare different PDFs
   When I download "2_signatu"
   And I expect the baseline PDF "DOES_NOT_EXIST.pdf" and the new PDF "2_signature.pdf" to be the same
   And I expect the baseline PDF "linear_2_signature-Baseline.pdf" and the new PDF "2_signature.pdf" to be the same
+
+# @o19 is above because of a typo
+
+@fast @o20
+Scenario: "I tap to continue" never fails on invalid answers
+  Given I start the interview at "all_tests"
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  And I tap to continue
+  And I will be told an answer is invalid
