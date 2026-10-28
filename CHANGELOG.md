@@ -48,19 +48,20 @@ Format:
 
 ### Added
 
-- Step "I continue" which taps the continue button expecting to navigate to a new page in the interview. "I continue" and "I can't continue" should together replace the behaviors of "I tap to continue".
-- Step "I can't continue" which taps the continue button expecting to fail to navigate. It passes when there are invalid answers or when a continue button is missing. It fails on other errors, like system errors (including Assembly Line custom errors) and timeout errors. Those types of errors should always fail across the whole framework. An author could use "I can't continue" to check that the interview correctly indicated one or more invalid answers. This replaces the practice of using "I tap to continue" twice.
+- Step `I continue` which taps the continue button expecting to navigate to a new page in the interview. `I continue` and `I can't continue` should together replace the behaviors of `I tap to continue`.
+- Step `I can't continue` which taps the continue button expecting to fail to navigate. It passes when there are invalid answers or when a continue button is missing. It fails on other errors, like system errors (including Assembly Line custom errors) and timeout errors. Those types of errors should always fail across the whole framework. An author could use `I can't continue` to check that the interview correctly indicated one or more invalid answers. This replaces the practice of using `I tap to continue` twice.
 
 ### Changed
 
-- Part 2 of detecting custom AL error screen (final part): Though `I tap to continue` allows invalid answers again, it throws on other errors, like system errors (including Assembly Line custom errors) and timeout errors. Those types of errors should always fail across the whole framework. It also throws if the continue button is missing.
+- Part 2 of detecting custom AL error screen (final part): Though `I tap to continue` allows invalid answers again, it throws on other errors, like system errors (including Assembly Line custom errors) and timeout errors. Those types of errors should always fail across the whole framework. It also throws if the continue button is missing. See [#656](https://github.com/SuffolkLITLab/ALKiln/issues/656).
 - Extended error message when the test causes a docassemble system error page (like syntax errors, etc.) It now should contain some of the relevant contents of the page.
 - Tweaked other log messages.
 
 ### Fixed
 
-- Restores the documented behavior of `I tap to continue`. Specifically, the documentation describes using `I tap to continue` to potentially trigger invalid answers. To do this, these commits re-implement old behavior - `I tap to continue` never fails with invalid answers or missing continue-type buttons. Does add a small change - `I tap to continue` now throws on other errors, like system errors and timeout errors. Those types of errors should always fail across the whole framework. Note: A different behavior was proposed where an author could tap to continue once and be guaranteed no failures and then fail on a second tap to the same page. There are situations in which this would break potentially live tests. For example, an author could test multiple invalid answers in a row for the same field by cycling through. `I tap to continue` and `I should see the phrase`. The proposed change would break those tests.
+- Restored the documented behavior of `I tap to continue`. Specifically, the documentation describes using `I tap to continue` to potentially trigger invalid answers. To do this, these commits re-implement old behavior - `I tap to continue` never fails with invalid answers or missing continue-type buttons. Does add a small change - `I tap to continue` now throws on other errors, like system errors and timeout errors. Those types of errors should always fail across the whole framework. Note: A different behavior was proposed where an author could tap to continue once and be guaranteed no failures and then fail on a second tap to the same page. There are situations in which this would break potentially live tests. For example, an author could test multiple invalid answers in a row for the same field by cycling through `I tap to continue` and `I should see the phrase`. The proposed change would break those tests. The `I tap to continue` Step does now log its deprecation, as well as copious warnings with invalid answers or ambiguous lack of navigation. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
 - Ensured new file upload buttons don't warn about duplicates since they have the same selectors.
+- Restored wait for file upload completion signals. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
 
 ### Internal
 
@@ -69,6 +70,8 @@ Format:
 - Refactored getting different types of page errors (system error pages vs. user errors.)
 - Started refactoring out `scope.examinePageID()` which is currently doing too many things.
 - Added tests
+- Fixed check for previous filenames on file uploads. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
+- Removed `shared_names` from global scope. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
 
 ## [5.17.1] - 2026-10-13
 
