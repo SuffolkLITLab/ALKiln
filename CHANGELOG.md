@@ -44,7 +44,9 @@ Format:
 - 
 -->
 
-## [Unreleased]
+<!-- ## [Unreleased] -->
+
+## [5.17.2] - 2026-10-29
 
 ### Added
 
