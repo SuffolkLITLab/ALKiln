@@ -36,6 +36,17 @@ jobs:
           && github.event.pull_request.head.repo.fork
         )
     runs-on: ubuntu-latest
+
+    env:
+      NORMAL_USER_EMAIL: "alkiln@example.com"
+      NORMAL_USER_PASSWORD: "User123^"
+      WRONG_EMAIL: "wrong_email@example.com"
+      WRONG_PASSWORD: "wrong_password"
+      INVALID_API_KEY: "invalidAPIkey"
+      EMPTY_STRING: ""
+      SECRET_VAR1: "secret-var1-value"
+      SECRET_VAR2: "secret-var2-value"
+      SECRET_FOR_MISSING_FIELD: "secret for missing field"
       
     steps:
       # Place the root directory in this branch to access relative paths to
@@ -51,15 +62,65 @@ jobs:
       - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
         shell: bash
 
+      - name: "Add a low-level user and their API key (in an env var)"
+        env:
+          SERVER_URL: "${{ steps.github_server.outputs.SERVER_URL }}"
+          KEY: ${{ steps.github_server.outputs.DOCASSEMBLE_DEVELOPER_API_KEY }}
+        run: |
+          # Create user and their API key
+
+          # Install json processor
+          sudo apt-get install jq
+
+          # https://docassemble.org/docs/api.html#user_new
+          user_data=$(curl -X POST \
+            ${{ env.SERVER_URL }}/api/user/new \
+            -H 'Content-Type: application/json' \
+            -d '{
+              "key": "${{ env.KEY }}",
+              "username": "${{ env.NORMAL_USER_EMAIL }}",
+              "password": "${{ env.NORMAL_USER_PASSWORD }}"
+            }')
+          echo "User data:"
+          echo "$user_data"
+
+          user_id=$(echo "$user_data" | jq '.user_id' -r)
+
+          # https://docassemble.org/docs/api.html#api_user_user_id_api_post
+          new_key_with_quotes=$(curl -X POST \
+            ${{ env.SERVER_URL }}/api/user/"$user_id"/api \
+            -H 'Content-Type: application/json' \
+            -d '{
+              "key": "${{ env.KEY }}",
+              "name": "alkiln_key",
+              "method": "none"
+            }')
+          echo "new key (watch out, this contains actual quotation marks): $new_key_with_quotes"
+          no_end_quote="${new_key_with_quotes%\"}"
+          unquoted="${no_end_quote#\"}"
+          echo "unquoted: $unquoted"
+
+          echo "NORMAL_USER_API_KEY=$unquoted" >> "$GITHUB_ENV"
+
       ## Optional debugging to explore things like docker issues
       #- name: Docker debug tmate session
       #  #if: ${{ failure() && github.event.inputs.enable_tmate == 'true' }}
       #  uses: mxschmitt/action-tmate@v3
 
-      - name: "ALKiln - Confirm docassemble packages get installed correctly"
+      - name: "Create other env vars for our own tests from server output"
+        run: |
+          echo "USER1_EMAIL=${{ steps.github_server.outputs.DA_ADMIN_EMAIL }}" >> $GITHUB_ENV
+          echo "USER1_PASSWORD=${{ steps.github_server.outputs.DA_ADMIN_PASSWORD }}" >> $GITHUB_ENV
+
+      - name: "ALKiln - Run if docassemble packages get installed correctly"
         if: ${{ success() }}
         id: alkiln
         uses: ./
+        env:
+          # Internal: docassemble changes sometimes break @a11y tests. That is
+          # a da problem, not ours. We will trigger these tests manually when we
+          # want to check up on this.
+          ALKILN_TAG_EXPRESSION: "${{ (github.event.inputs.tags && format('{0}', github.event.inputs.tags)) || '(not @error) and (not @temp_error)' }}"
         with:
           # Required inputs. See
           # https://assemblyline.suffolklitlab.org/docs/alkiln/writing/#sandbox-inputs

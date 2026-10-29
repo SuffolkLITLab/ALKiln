@@ -72,8 +72,6 @@ jobs:
           SHOW_DOCKER_OUTPUT: "${{ github.event.inputs.show_docker_output }}"
           #### Developer note: You can probably leave this out
           CONFIG_CONTENTS: "${{ secrets.CONFIG_CONTENTS }}"
-          #### Developer note: Example of using a different docassemble image:
-          # DOCASSEMBLE_IMAGE: "ghcr.io/suffolklitlab/docassemble:latest"
       - run: echo "ALKiln finished starting the isolated GitHub docassemble server"
         shell: bash
 
