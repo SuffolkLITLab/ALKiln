@@ -113,7 +113,7 @@ runs:
     - name: "💡 ALK0025 INFO: Set up node"
       uses: actions/setup-node@v6
       with:
-        node-version: "24.x"
+        node-version: "26.x"
         package-manager-cache: false
 
     - name: "💡 ALK0026 INFO: Install ALKiln directly from npm"
