@@ -72,6 +72,7 @@ Format:
 - Added tests
 - Fixed check for previous filenames on file uploads. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
 - Removed `shared_names` from global scope. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
+- Use latest AL docassemble image to run all tests instead of just one.
 
 ## [5.17.1] - 2026-10-13
 
