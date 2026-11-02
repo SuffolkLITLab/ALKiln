@@ -21,6 +21,7 @@ Format:
 - 
 
 ## [1.0.0] - 2021-01-16
+
 ### Added
 - 
 
@@ -45,6 +46,59 @@ Format:
 
 ## [Unreleased]
 
+### Added
+
+- Step `I continue` which taps the continue button expecting to navigate to a new page in the interview. `I continue` and `I can't continue` should together replace the behaviors of `I tap to continue`.
+- Step `I can't continue` which taps the continue button expecting to fail to navigate. It passes when there are invalid answers or when a continue button is missing. It fails on other errors, like system errors (including Assembly Line custom errors) and timeout errors. Those types of errors should always fail across the whole framework. An author could use `I can't continue` to check that the interview correctly indicated one or more invalid answers. This replaces the practice of using `I tap to continue` twice.
+
+### Changed
+
+- Part 2 of detecting custom AL error screen (final part): Though `I tap to continue` allows invalid answers again, it throws on other errors, like system errors (including Assembly Line custom errors) and timeout errors. Those types of errors should always fail across the whole framework. It also throws if the continue button is missing. See [#656](https://github.com/SuffolkLITLab/ALKiln/issues/656).
+- Extended error message when the test causes a docassemble system error page (like syntax errors, etc.) It now should contain some of the relevant contents of the page.
+- Tweaked other log messages.
+
+### Fixed
+
+- Restored the documented behavior of `I tap to continue`. Specifically, the documentation describes using `I tap to continue` to potentially trigger invalid answers. To do this, these commits re-implement old behavior - `I tap to continue` never fails with invalid answers or missing continue-type buttons. Does add a small change - `I tap to continue` now throws on other errors, like system errors and timeout errors. Those types of errors should always fail across the whole framework. Note: A different behavior was proposed where an author could tap to continue once and be guaranteed no failures and then fail on a second tap to the same page. There are situations in which this would break potentially live tests. For example, an author could test multiple invalid answers in a row for the same field by cycling through `I tap to continue` and `I should see the phrase`. The proposed change would break those tests. The `I tap to continue` Step does now log its deprecation, as well as copious warnings with invalid answers or ambiguous lack of navigation. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
+- Ensured new file upload buttons don't warn about duplicates since they have the same selectors.
+- Restored wait for file upload completion signals. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
+
+### Internal
+
+- Fixed confusing error message when tests expected to fail actually pass.
+- Started refactoring navigation functions to start untangling that rat's nest formed by overlapping motivations.
+- Refactored getting different types of page errors (system error pages vs. user errors.)
+- Started refactoring out `scope.examinePageID()` which is currently doing too many things.
+- Added tests
+- Fixed check for previous filenames on file uploads. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
+- Removed `shared_names` from global scope. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
+- Use latest AL docassemble image to run all tests instead of just one.
+
+## [5.17.1] - 2026-10-13
+
+### Added
+
+- Added the `I can't continue` Step to assert that pressing the continue button fails to continue. That press should allow the author to then check for invalid answers. Using `I can't continue` once should replace the practice of using `I tap to continue` twice.
+
+### Changed
+
+- Updated to work with docassemble v1.10.n while being backwards compatible. See [issue #1117](https://github.com/SuffolkLITLab/ALKiln/issues/1117)
+  - Unable to find some continue buttons
+    - Single-line fields like `yesno: likes_good_things`
+    - Buttons created with `buttons:`
+    - Continue buttons on signature pages
+  - Unable to sign with a name
+  - Unable to upload files
+  - Created infinite loop with 'Restart' button
+- Changed the internal behavior of the experimental Step `I can't continue` from testing for errors after the previous Step (whatever it happened to be) to attempting to continue. Failure to continue causes success of the Step.
+
+### Internal
+
+- Added a workflow to test using an Assembly Line docker image
+- Test using a cron job to catch failures more regularly
+- Remove unsupported Step `Then I arrive at the next page` and moved responsibility to Steps that imply they navigate
+- Fixed typo in fixture
+
 ## [5.17.0] - 2026-09-10
 
 ### Changed
@@ -54,7 +108,7 @@ Format:
 ### Fixed
 
 - Fixed GitHub+You action outdated docassemble cli version causing Scenario timeouts.
-- Part 1 of detecting custom AL error screen: Story Table now catches `al_custom_error_screen` error. Previously, Story Tables that ran into this screen would get stuck on the AL error page infinitely. Next steps: Linear Steps may need additional development. Currently linear Steps succeed even when they run into AL's error page. That bears additional discussion. See [issue #656](https://github.com/SuffolkLITLab/ALKiln/issues/656) and [PR #1116](https://github.com/SuffolkLITLab/ALKiln/pull/1116).
+- Part 1 of detecting custom AL error screen: Story Table now catches `al_custom_error_action` error. Previously, Story Tables that ran into this screen would get stuck on the AL error page infinitely. Next steps: Linear Steps may need additional development. Currently linear Steps succeed even when they run into AL's error page. That bears additional discussion. See [issue #656](https://github.com/SuffolkLITLab/ALKiln/issues/656) and [PR #1116](https://github.com/SuffolkLITLab/ALKiln/pull/1116).
 
 ### Internal
 

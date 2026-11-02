@@ -1,9 +1,9 @@
 ---
 mandatory: True
 code: |
-  signature
+  go_to_error
   missing_var
 ---
-question: Signature
-signature: signature
+question: Go to error
+continue button field: go_to_error
 ---

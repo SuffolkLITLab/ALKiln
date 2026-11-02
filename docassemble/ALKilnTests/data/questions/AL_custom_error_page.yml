@@ -1,0 +1,13 @@
+---
+include:
+  - docassemble.AssemblyLine:al_package.yml
+  - docassemble.AssemblyLine:al_visual.yml
+---
+mandatory: True
+code: |
+  signature
+  missing_var
+---
+question: Signature
+signature: signature
+---
