@@ -44,7 +44,17 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Changed
+
+- Updated many dependencies
+- Updated nodejs version
+
+### Internal
+
+- Add .nvmrc to help manage node versions
+- Add "engine" with node to give warnings for incorrect versions of node
 
 ## [5.17.2] - 2026-10-29
 
