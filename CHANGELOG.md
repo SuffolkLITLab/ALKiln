@@ -44,7 +44,12 @@ Format:
 - 
 -->
 
-<!-- ## [Unreleased] -->
+## [Unreleased]
+
+### Changed
+
+- Updated many dependencies
+- Updated nodejs version
 
 ## [5.17.2] - 2026-10-29
 
