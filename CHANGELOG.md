@@ -46,6 +46,13 @@ Format:
 
 ## [Unreleased]
 
+### Changed
+
+- Updated many dependencies
+- Updated nodejs version
+
+## [5.17.2] - 2026-10-29
+
 ### Added
 
 - Step `I continue` which taps the continue button expecting to navigate to a new page in the interview. `I continue` and `I can't continue` should together replace the behaviors of `I tap to continue`.
