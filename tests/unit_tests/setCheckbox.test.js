@@ -18,6 +18,17 @@ describe('setCheckbox', function () {
     }
   }
 
+  it('prefers the native state when aria-checked is stale', async function () {
+    const input = { type: 'checkbox', checked: true };
+    const element = {
+      control: input,
+      getAttribute: () => 'false',
+      click() { input.checked = !input.checked; },
+    };
+    await scope.setCheckbox(scope, { label: { evaluate: fn => fn(element) }, answer: 'True' });
+    expect(input.checked).to.equal(true);
+  });
+
   it('uses aria-checked when native checkbox state is unavailable', async function () {
     let checked = false;
     const element = {
