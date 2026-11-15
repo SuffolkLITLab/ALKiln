@@ -1,42 +1,43 @@
-const { expect } = require('chai');
-const scope = require('../../lib/scope');
+const chai = require('chai');
+const expect = chai.expect;
 
-describe('setCheckbox', function () {
-  for (const initial of [false, true]) {
-    for (const wanted of [false, true]) {
-      it(`sets a checkbox without aria-checked from ${initial} to ${wanted}`, async function () {
-        const input = { type: 'checkbox', checked: initial };
-        const element = {
-          control: input,
-          getAttribute: () => null,
-          click() { input.checked = !input.checked; },
-        };
-        const label = { evaluate: fn => fn(element) };
-        await scope.setCheckbox(scope, { label, answer: String(wanted) });
-        expect(input.checked).to.equal(wanted);
-      });
-    }
+const checkboxes = require('./setCheckbox.fixtures.js');
+const scope = require('../../lib/scope.js');
+const setCheckbox = scope.setCheckbox;
+
+
+let mock_label = function ( fixture ) {
+  // Mock the label's browser methods without starting Puppeteer.
+  let input = { type: `checkbox`, checked: fixture.checked };
+  let clicks = 0;
+  let element = {
+    control: fixture.has_input === false ? null : input,
+    getAttribute: function ( name ) {
+      return name === `aria-checked` ? fixture.aria_checked : null;
+    },
+    click: function () {
+      input.checked = !input.checked;
+      clicks += 1;
+    },
+  };
+  let label = {
+    evaluate: async function ( callback ) {
+      return callback( element );
+    },
+  };
+  return { label, input, get_clicks: () => clicks };
+};
+
+
+describe(`When I use scope.setCheckbox()`, function() {
+
+  for ( let fixture of checkboxes ) {
+    it( fixture.description, async function() {
+      let mock = mock_label( fixture );
+      await setCheckbox( scope, { label: mock.label, answer: fixture.answer });
+      expect( mock.input.checked ).to.equal( fixture.expected_checked );
+      expect( mock.get_clicks() ).to.equal( fixture.expected_clicks );
+    });
   }
 
-  it('prefers the native state when aria-checked is stale', async function () {
-    const input = { type: 'checkbox', checked: true };
-    const element = {
-      control: input,
-      getAttribute: () => 'false',
-      click() { input.checked = !input.checked; },
-    };
-    await scope.setCheckbox(scope, { label: { evaluate: fn => fn(element) }, answer: 'True' });
-    expect(input.checked).to.equal(true);
-  });
-
-  it('uses aria-checked when native checkbox state is unavailable', async function () {
-    let checked = false;
-    const element = {
-      control: { type: 'checkbox', checked: undefined },
-      getAttribute: () => String(checked),
-      click() { checked = !checked; },
-    };
-    await scope.setCheckbox(scope, { label: { evaluate: fn => fn(element) }, answer: 'True' });
-    expect(checked).to.equal(true);
-  });
 });
