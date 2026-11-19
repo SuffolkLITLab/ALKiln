@@ -50,6 +50,7 @@ Format:
 
 - Updated many dependencies
 - Updated nodejs version
+- Allow servers hosted on http, not just https
 
 ### Internal
 
