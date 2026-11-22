@@ -56,6 +56,7 @@ Format:
 
 - Add .nvmrc to help manage node versions
 - Add "engine" with node to give warnings for incorrect versions of node
+- For making Scenario filename unique on retry, replaced timestamp with a short (6 character) unique id. Timestamps have been insufficient recently.
 
 ## [5.17.2] - 2026-10-29
 
