@@ -59,6 +59,7 @@ Format:
 
 ### Fixed
 
+- Preserve the selected state of checkboxes when docassemble omits `aria-checked` from their labels.
 - Restored the documented behavior of `I tap to continue`. Specifically, the documentation describes using `I tap to continue` to potentially trigger invalid answers. To do this, these commits re-implement old behavior - `I tap to continue` never fails with invalid answers or missing continue-type buttons. Does add a small change - `I tap to continue` now throws on other errors, like system errors and timeout errors. Those types of errors should always fail across the whole framework. Note: A different behavior was proposed where an author could tap to continue once and be guaranteed no failures and then fail on a second tap to the same page. There are situations in which this would break potentially live tests. For example, an author could test multiple invalid answers in a row for the same field by cycling through `I tap to continue` and `I should see the phrase`. The proposed change would break those tests. The `I tap to continue` Step does now log its deprecation, as well as copious warnings with invalid answers or ambiguous lack of navigation. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
 - Ensured new file upload buttons don't warn about duplicates since they have the same selectors.
 - Restored wait for file upload completion signals. See [#1125](https://github.com/SuffolkLITLab/ALKiln/issues/1125).
