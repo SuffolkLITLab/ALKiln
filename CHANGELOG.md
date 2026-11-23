@@ -46,6 +46,20 @@ Format:
 
 ## [Unreleased]
 
+### Changed
+
+- Updated many dependencies
+- Updated nodejs version
+- Allow servers hosted on http, not just https
+
+### Internal
+
+- Add .nvmrc to help manage node versions
+- Add "engine" with node to give warnings for incorrect versions of node
+- For making Scenario filename unique on retry, replaced timestamp with a short (6 character) unique id. Timestamps have been insufficient recently.
+
+## [5.17.2] - 2026-10-29
+
 ### Added
 
 - Step `I continue` which taps the continue button expecting to navigate to a new page in the interview. `I continue` and `I can't continue` should together replace the behaviors of `I tap to continue`.

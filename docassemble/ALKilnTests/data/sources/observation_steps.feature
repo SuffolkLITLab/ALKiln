@@ -238,6 +238,11 @@ Scenario: I compare the same PDFs
 
 @o18 @compare_docs
 Scenario: I compare different PDFs
+
+  # 👀 Internal tests will show no red "F" because the assessment
+  #   for this failure happens in the `After()` hook where overall
+  #   Scenario success or failure gets determined.
+
   Given the final Scenario status should be "failed"
   And the Scenario report should include:
   """
@@ -249,7 +254,7 @@ Scenario: I compare different PDFs
   """
   And the Scenario report should include:
   """
-  -  diff
+  - diff
   """
   And the Scenario report should include:
   """
