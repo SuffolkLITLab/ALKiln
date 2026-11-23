@@ -1,0 +1,52 @@
+metadata:
+  title: Test checkbox defaults
+  short title: Checkbox defaults
+---
+# Necessary to tell us what the sought var is on each page
+# Every interview that wants testing will need to have an element like this
+default screen parts:
+  post: |
+    <div data-variable="${ encode_name(str( user_info().variable )) }" id="trigger" aria-hidden="true" style="display: none;"></div>
+    <div id="alkiln_proxy_var_values"
+      data-generic_object="${ encode_name(str( x.instanceName if defined('x') else '' )) }"
+      % for letter in [ 'i', 'j', 'k', 'l', 'm', 'n' ]:
+      data-index_var_${ letter }="${ encode_name(str( value( letter ) if defined( letter ) else '' )) }"
+      % endfor
+      aria-hidden="true" style="display: none;"></div>
+---
+mandatory: True
+code: |
+  checkbox_answers
+  end
+---
+id: checkbox defaults
+question: Checkbox defaults
+fields:
+  - Initially selected: selected
+    datatype: yesno
+    default: True
+  - Initially unselected: unselected
+    datatype: yesno
+    default: False
+  - Checkbox choices: choices
+    datatype: checkboxes
+    required: False
+    none of the above: False
+    choices:
+      - Selected option: selected
+      - Unselected option: unselected
+    default:
+      - selected
+continue button field: checkbox_answers
+---
+id: checkbox results
+event: end
+question: Checkbox results
+subquestion: |
+  Selected boolean: ${ selected }.
+
+  Unselected boolean: ${ unselected }.
+
+  Selected choice: ${ choices['selected'] }.
+
+  Unselected choice: ${ choices['unselected'] }.

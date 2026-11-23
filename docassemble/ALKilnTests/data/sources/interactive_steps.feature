@@ -214,3 +214,27 @@ Scenario: I answer with multiple lines
     A value with
     multiple lines
     """
+
+# Use native docassemble fields so these tests exercise the markup generated
+# by both 1.9 (ARIA checkbox labels) and 1.10 (native checkbox state).
+@i10 @input_check @checkbox_defaults
+Scenario Outline: I set checkboxes with default values to <selected> and <unselected>
+  Given I start the interview at "test_checkbox_defaults"
+  Then the question id should be "checkbox defaults"
+  When I set the var "selected" to "<selected>"
+  And I set the var "unselected" to "<unselected>"
+  And I set the var "choices['selected']" to "<selected>"
+  And I set the var "choices['unselected']" to "<unselected>"
+  And I continue
+  Then the question id should be "checkbox results"
+  And I see the phrase "Selected boolean: <selected>."
+  And I see the phrase "Unselected boolean: <unselected>."
+  And I see the phrase "Selected choice: <selected>."
+  And I see the phrase "Unselected choice: <unselected>."
+
+  Examples: checkbox answers
+    | selected | unselected |
+    | True     | False      |
+    | False    | True       |
+    | True     | True       |
+    | False    | False      |
